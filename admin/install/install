@@ -17,11 +17,21 @@ if [ -f /etc/debian_version ] ; then
 	DTCsetupDaemons
 fi
 
-# Find the rpm exec: it can be not present, thus the || to avoid
-# that this script fails
 if [ -f /etc/redhat-release ] ; then
 	# Prepare everything
 	. /usr/share/dtc/admin/install/redhat_config
+	. /usr/share/dtc/admin/install/functions
+	. /usr/share/dtc/admin/install/interactive_installer
+	interactiveInstaller
+	DTCinstallPackage
+	/usr/share/dtc/admin/install/uninstall
+	. ${DTC_SAVED_INSTALL_CONFIG}
+	/usr/share/dtc/admin/install/functions
+	# Then call the installer!
+	DTCsetupDaemons
+elif [ -f SuSE-release ] ; then
+	# Prepare everything
+	. /usr/share/dtc/admin/install/suse_config
 	. /usr/share/dtc/admin/install/functions
 	. /usr/share/dtc/admin/install/interactive_installer
 	interactiveInstaller

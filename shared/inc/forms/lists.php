@@ -231,6 +231,9 @@ function getTunableHelp($tunable_name){
 	case "noaccessdenymails":
 		$hlp .= _("Help missing for noaccessdenymails") ;
 		break;
+	case "relayhost":
+		$hlp .= _("Mail server used to send the messages.") ;
+		break;
 	case "memorymailsize":
 		$hlp .= _("Here is specified in bytes how big a mail can be and still be prepared for sending in memory. It\'s greatly reducing the amount of write system calls to prepare it in memory before sending it, but can also lead to denial of service attacks. Default is 16k (16384 bytes).") ;
 		break;
@@ -385,6 +388,8 @@ function list_options(){
 
 	global $edit_domain;
 	global $adm_login;
+	global $conf_use_advanced_lists_tunables;
+
 	$admin_path = getAdminPath($adm_login);
 	$list_path = $admin_path."/".$edit_domain."/lists/".$edit_domain."_".$_REQUEST["edit_mailbox"];
 
@@ -422,11 +427,14 @@ function list_options(){
 
 	$output .= "<tr><td colspan=\"2\"><b>". _("SMTP configuration") ."</b></td></tr>";
 	$output .= getListOptionsValue($list_path,"memorymailsize", _("Max mail memory size:") );
-	$output .= getListOptionsValue($list_path,"verp", _("VERP:") );
-	$output .= getListOptionsValue($list_path,"maxverprecips", _("Max VERP recipients:") );
-	$output .= getListOptionsValue($list_path,"delimiter", _("Delimiter:") );
-	$output .= getListOptionsValue($list_path,"bouncelife", _("Bounce life:") );
-	$output .= getListOptionsTextarea($list_path,"access", _("Access list:") );
+	if($conf_use_advanced_lists_tunables == "yes"){
+		$output .= getListOptionsValue($list_path,"relayhost", _("SMTP relay server:") );
+		$output .= getListOptionsValue($list_path,"verp", _("VERP:") );
+		$output .= getListOptionsValue($list_path,"maxverprecips", _("Max VERP recipients:") );
+		$output .= getListOptionsValue($list_path,"delimiter", _("Delimiter:") );
+		$output .= getListOptionsValue($list_path,"bouncelife", _("Bounce life:") );
+		$output .= getListOptionsTextarea($list_path,"access", _("Access list:") );
+	}
 
 	$output .= "<tr><td colspan=\"2\"><b>". _("Subscribe/Unsubscribe an email address") ."</b></td></tr>";
 	$output .= "<tr><td onmouseover=\"Tip('". _("Insert here an email address to subscribe it.") ."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">". _("Subscribe:") ."</td>

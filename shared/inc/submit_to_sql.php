@@ -240,8 +240,10 @@ function validateWaitingUser($waiting_login){
 		if($n != 1)die("There is no user with name $waiting_login in database: I can't add a service to it line: ".__LINE__." file: ".__FILE__."!");
 		$existing_admin = mysql_fetch_array($r);
 		$cid = $existing_admin["id_client"];
+		$vps_root_pass = $existing_admin["adm_pass"];
 	}else{
 		if($n != 0)die("There is already a user with name $waiting_login in database: I can't add another one line: ".__LINE__." file: ".__FILE__."!");
+		$vps_root_pass = $a["reqadm_pass"];
 	}
 
 	// Calculate user's path with default path
@@ -329,7 +331,8 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 					"ostype" => $a["vps_os"],
 					"hddsize" => $a2["quota_disk"],
 					"ramsize" => $a2["memory_size"],
-					"ipaddr" => $avps["ip_addr"]),"","","");
+					"ipaddr" => $avps["ip_addr"],
+					"password" => $vps_root_pass),"","","");
 				$qcountry = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".$a["vps_location"]."';";
 				$rcountry = mysql_query($qcountry)or die("Cannot execute query \"$qcountry\" line ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 				$ncountry = mysql_num_rows($rcountry);

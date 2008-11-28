@@ -248,7 +248,8 @@ function drawNagiosConfig(){
 		"title" => _("Nagios monitoring"),
 		"action" => "vps_renewal_period",
 		"forward" => array("rub","sousrub"),
-		"desc" => _("DTC lets you auto-configure a Nagios monitoring server, letting your VPS customers know when their services are working.  This works by generating the Nagios configuration file and copying it using SCP to the remote Nagios server, then using SSH to restart the remote Nagios service.  Unfortunately, this requires some manual intervention to set up: You must manually add a user to your Nagios server, give it sudo access to restart the Nagios service, set up public key authentication for that user, add the Nagios server's SSH public key to the DTC user's SSH keyring, and create an empty config file which must be writable by the user in the Nagios server."),
+		"desc" => _("DTC lets you auto-configure a Nagios monitoring server, enabling your VPS customers know when their services are working. This works by generating the Nagios configuration file and copying it using SCP to the remote Nagios server, then using SSH to restart the remote Nagios service.<br><br>
+Unfortunately, this requires some manual intervention to set up SSH keys: you must manually add a user to your Nagios server, and give it sudo access to restart the Nagios service. Then you must set up public key authentication for that user, add the Nagios server's SSH public key to the DTC user's SSH keyring, and create an empty config file which must be writable by the user in the Nagios server."),
 		"cols" => array(
 			"nagios_host" => array(
 				"legend" => _("Nagios host name: "),
@@ -263,7 +264,7 @@ function drawNagiosConfig(){
                                 "type" => "text",
                                 "size" => "16"),
 			"nagios_restart_command" => array(
-				"legend" => _("Restart command used to notify Nagios of new configuration: "),
+				"legend" => _("Command line that, run in the Nagios server, will reload its configuration: "),
                                 "type" => "text",
                                 "size" => "16")
 			)
@@ -897,6 +898,11 @@ function drawGeneralConfig(){
 			"use_cyrus" => array(
 				"type" => "radio",
 				"legend" => _("Use cyrus: "),
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))),
+			"use_advanced_lists_tunables" => array(
+				"type" => "radio",
+				"legend" => _("Show advanced mailing list options: "),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
 			"use_webalizer" => array(

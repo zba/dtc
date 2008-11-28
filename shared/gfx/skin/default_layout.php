@@ -139,7 +139,7 @@ function skin_LayoutAdminPage_Default (){
 		break;
 	case "generate": // Gen Config Files
 		$mainFrameCells[] = skin($conf_skin,$top_commands, _("Launching the configuration files generation") );
-		$the_iframe = "<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
+		$the_iframe = "<br><br>"._("Please note that you need to create at least one email and one FTP account in order to have the daemon status working!")."<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
 		$mainFrameCells[] = skin($conf_skin,$the_iframe, _("Deamons states") ); // fixed bug by seeb
 		// The console
 		$mainFrameCells[] = skinConsole();

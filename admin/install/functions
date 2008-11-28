@@ -481,6 +481,7 @@ dtcGenDebianLocales () {
 		debianSetLocale pt_PT
 		debianSetLocale es_ES
 		debianSetLocale fi_FI
+		debianSetLocale lv_LV
 		echo "done!"
 	fi
 }
@@ -1206,7 +1207,7 @@ createApachePIDSymLink () {
 		PATH_APACHE_PID_FILE=${PATH_APACHE_PID_FILE%%\"}
 
 		if [ "${PATH_APACHE_PID_FILE}" = "\${APACHE_PID_FILE}" ] ; then
-			PATH_APACHE_PID_FILE=`cat /etc/apache2/envvars  | grep APACHE_PID_FILE | cut -d'=' -f2`
+			PATH_APACHE_PID_FILE=`cat /etc/apache2/envvars  | grep APACHE_PID_FILE | cut -d'=' -f2 | tail -n 1`
 		fi
 	
 		# in case the specified pid file doesn't exist, try and find it
@@ -2632,10 +2633,10 @@ MYSQL_QUOTA_FIELD       quota_couriermaildrop
 MYSQL_DEFAULT_DOMAIN    $main_domain_name
 
 # use the experimental query
-#MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt, passwd, uid, gid, home, '', quota_couriermaildrop, ''  FROM pop_access  WHERE ( (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1) AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1)) ) AND active = '1'
+MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt, passwd, uid, gid, home, '', quota_couriermaildrop, ''  FROM pop_access  WHERE ( (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1) AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1)) ) AND active = '1'
 # We now use a query that checks if the account is expired, so this way, pop and imap access
 # are disabled for expired accounts! :)
-MYSQL_SELECT_CLAUSE     SELECT concat(pop_access.id, '@', mbox_host), crypt, passwd, uid, gid, home, '', quota_couriermaildrop, ''  FROM pop_access,domain,admin  WHERE ( (pop_access.id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (pop_access.id = SUBSTRING_INDEX('\$(local_part)', '%', 1) AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1)) ) AND active = '1' AND domain.name=pop_access.mbox_host AND domain.owner=admin.adm_login AND admin.expire > now()
+#MYSQL_SELECT_CLAUSE     SELECT concat(pop_access.id, '@', mbox_host), crypt, passwd, uid, gid, home, '', quota_couriermaildrop, ''  FROM pop_access,domain,admin  WHERE ( (pop_access.id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (pop_access.id = SUBSTRING_INDEX('\$(local_part)', '%', 1) AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1)) ) AND active = '1' AND domain.name=pop_access.mbox_host AND domain.owner=admin.adm_login AND admin.expire > now()
 
 MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(newpass_crypt)' WHERE (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1)  AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1))
 " > $PATH_COURIER_AUTHD_CONF_PATH/authmysqlrc

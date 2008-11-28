@@ -185,10 +185,10 @@ onMouseOut=\"this.className='input_btn_container';\">
 	}else if($vps_remote_info == true){
 		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"shutdown_vps\">
 ". submitButtonStart() . _("Gracefully shutdown (xm shutdown)") . submitButtonEnd() ."
-</form>";
+</form><br><br>";
 		$out .= $frm_start."<input type=\"hidden\" name=\"action\" value=\"destroy_vps\">
 " . submitButtonStart() . _("Immediate kill (xm destroy)") . submitButtonEnd() ."
-</form>";
+</form><br><br>";
 		$out .= _("To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first.") ."<br><br>";
 	}else{
 		if($expired == "yes"){
@@ -206,6 +206,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 		$out .= "<h3>". _("Reinstall operating system:") ."</h3><br>";
 		$out .= _("Currently installed operating system: ") .$vps["operatingsystem"]."<br>";
 		$deb_selected = " ";
+		$debdtc_selected = " ";
 		$cent_selected = " ";
 		$gen_selected = " ";
 		$bsd_selected = " ";
@@ -213,6 +214,9 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 		switch($vps["operatingsystem"]){
 		case "debian":
 			$deb_selected = " selected ";
+			break;
+		case "debian-dtc":
+			$debdtc_selected = " selected ";
 			break;
 		case "centos":
 			$cent_selected = " selected ";
@@ -227,8 +231,9 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 			break;
 		}
 		// Operating system selection popup and reinstallation button
-		$out .= $frm_start."<table><tr><td><select name=\"os_type\">
+		$out .= $frm_start."<table><tr><td>"._("Operating system:")." </td><td><select name=\"os_type\">
 <option value=\"debian\" $deb_selected>Debian (" . _("network install with debootstrap") .")</option>
+<option value=\"debian-dtc\" $debdtc_selected>Debian with DTC panel (" . _("network install with debootstrap") .")</option>
 <option value=\"centos\" $cent_selected>CentOS (" . _("network install with yum") .")</option>
 <option value=\"netbsd\" $bsd_selected>NetBSD (" . _("network setup with install kernel") .")</option>
 <option value=\"xenpv\" $xenpv_selected>Xen PV (" . _("boot on your own .iso image") .")</option>";
@@ -243,9 +248,10 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 			}
 			$out .= "<option value=\"$os_name\" $selected>$os_name ("._("operating system image").")</option>";
 		}
-		$out .= "</select><input type=\"hidden\" name=\"action\" value=\"reinstall_os\"></td><td>
-" . submitButtonStart() . _("Reinstall operating system") . submitButtonEnd() ."
-</form></td></table>";
+		$out .= "</select></td></tr>
+<tr><td>".("VPS root password:")." </td><td><input type=\"password\" name=\"root_password\"><input type=\"hidden\" name=\"action\" value=\"reinstall_os\"></td></tr>
+<tr><td></td><td>" . submitButtonStart() . _("Reinstall operating system") . submitButtonEnd() ."
+</td></tr></table></form>";
 //		}
 
   		// BSD kernel change popup

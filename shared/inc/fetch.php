@@ -465,7 +465,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	$adm_quota = $row["quota"];
 
 	// Get all the VPS of the user
-	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_login';";
+	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_login' ORDER BY vps_server_hostname,vps_xen_name;";
 	$r = mysql_query ($q);
 	if (!$r)
 	{

@@ -536,12 +536,13 @@ function registration_form(){
 	}
 
 	$debian_selected = " ";
+	$debiandtc_selected = " ";
 	$centos_selected = " ";
 	$gentoo_selected = " ";
 	$netbsd_selected = " ";
 	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "debian")	$debian_selected = " selected ";
+	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "debian-dtc")	$debiandtc_selected = " selected ";
 	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "centos")	$centos_selected = " selected ";
-	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "gentoo")	$gentoo_selected = " selected ";
 	if(isset($_REQUEST["vps_os"]) && $_REQUEST["vps_os"] == "netbsd")	$netbsd_selected = " selected ";
 
 	$tld_popup = "";
@@ -562,10 +563,10 @@ function registration_form(){
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\"><div name=\"vps_ospopup_text\" id=\"vps_ospopup_text\" $vps_hidden></div></td>
 	<td><div name=\"vps_ospopup_field\" id=\"vps_ospopup_field\" $vps_hidden><select name=\"vps_os\">
-		<option value=\"debian\" $debian_selected>Debian</option>
-		<option value=\"centos\" $centos_selected>CentOS</option>
-		<option value=\"gentoo\" $gentoo_selected>Gentoo</option>
-		<option value=\"netbsd\" $netbsd_selected>NetBSD</option></select></div></td>
+		<option value=\"debian\" $debian_selected>Debian (" . _("network install with debootstrap") .")</option>
+		<option value=\"debian-dtc\" $debiandtc_selected>Debian with DTC panel (" . _("network install with debootstrap") .")</option>
+		<option value=\"centos\" $centos_selected>CentOS (" . _("network install with yum") .")</option>
+		<option value=\"netbsd\" $netbsd_selected>NetBSD (" . _("network setup with install kernel") .")</option></select></div></td>
 </tr></table>";
 
 	$login_info = "<table>
@@ -604,7 +605,7 @@ function registration_form(){
 	<td style=\"white-space: nowrap;text-align: right;\">". _("Company name: ") ."</td>
 	<td><input type=\"text\" name=\"compname\" value=\"$frm_compname\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("VAT Number: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("VAT/GST Number: ") ."</td>
 	<td><input type=\"text\" name=\"vat_num\" value=\"$frm_vat_num\"></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">". _("Email: ") ."</td>

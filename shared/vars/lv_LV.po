@@ -1,35 +1,38 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Domain Technologie Control (DTC) - git 2008.11.19\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-19 20:45+0800\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Coool (Nauris Ešenvalds) <coool@vivonet.lv>\n"
+"Language-Team: Coool (Nauris Ešenvalds) <coool@vivonet.lv>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Latvian\n"
+"X-Poedit-Country: LATVIA\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
-#: admin/deamons_state.php:92 admin/inc/draw_user_admin.php:283
+#: admin/deamons_state.php:92
+#: admin/inc/draw_user_admin.php:283
 #: admin/inc/draw_user_admin.php:356
 msgid "Pending"
 msgstr ""
 
-#: admin/deamons_state.php:93 email/login.php:20
+#: admin/deamons_state.php:93
+#: email/login.php:20
 #: shared/inc/forms/vps_installation.php:317
 #: shared/inc/forms/vps_installation.php:319
-#: shared/inc/forms/domain_stats.php:88 shared/inc/forms/email.php:127
-#: shared/inc/forms/email.php:179 shared/inc/forms/email.php:222
-#: shared/inc/forms/email.php:239 shared/inc/forms/email.php:256
-#: shared/inc/forms/email.php:275 shared/inc/forms/my_account.php:194
+#: shared/inc/forms/domain_stats.php:88
+#: shared/inc/forms/email.php:127
+#: shared/inc/forms/email.php:179
+#: shared/inc/forms/email.php:222
+#: shared/inc/forms/email.php:239
+#: shared/inc/forms/email.php:256
+#: shared/inc/forms/email.php:275
+#: shared/inc/forms/my_account.php:194
 msgid "Ok"
-msgstr ""
+msgstr "Labi"
 
 #: admin/deamons_state.php:131
 msgid "Mail restart"
@@ -45,7 +48,7 @@ msgstr ""
 
 #: admin/deamons_state.php:134
 msgid "Apache restart"
-msgstr ""
+msgstr "Apache restarts"
 
 #: admin/deamons_state.php:135
 msgid "Bind reload"
@@ -56,24 +59,25 @@ msgid "SSH gen pass"
 msgstr ""
 
 #: admin/deamons_state.php:137
+#, fuzzy
 msgid "Next cronjob"
-msgstr ""
+msgstr "Nākošais cronjob"
 
 #: admin/deamons_state.php:157
+#, fuzzy
 msgid "Cannot resolv your"
-msgstr ""
+msgstr "Neizdevās noteikt jūsu ..."
 
 #: admin/deamons_state.php:157
 msgid "SMTP server"
-msgstr ""
+msgstr "SMTP serveris"
 
 #: admin/deamons_state.php:163
 msgid "Could not connect to SMTP server (timed out): "
-msgstr ""
+msgstr "Neizdevās pieslēgties jūsu SMTP serverim (gaidīšanas laiks beidzies): "
 
 #: admin/deamons_state.php:169
-msgid ""
-"Server did not send OK after connect, maybe wrong server or server is down: "
+msgid "Server did not send OK after connect, maybe wrong server or server is down: "
 msgstr ""
 
 #: admin/deamons_state.php:174
@@ -116,15 +120,19 @@ msgstr ""
 msgid "is not same as the one I have in the database"
 msgstr ""
 
-#: admin/deamons_state.php:291 admin/deamons_state.php:297
-#: admin/deamons_state.php:303 admin/deamons_state.php:309
+#: admin/deamons_state.php:291
+#: admin/deamons_state.php:297
+#: admin/deamons_state.php:303
+#: admin/deamons_state.php:309
 msgid "Running ok"
-msgstr ""
+msgstr "Darbojas normāli"
 
-#: admin/deamons_state.php:293 admin/deamons_state.php:299
-#: admin/deamons_state.php:305 admin/deamons_state.php:311
+#: admin/deamons_state.php:293
+#: admin/deamons_state.php:299
+#: admin/deamons_state.php:305
+#: admin/deamons_state.php:311
 msgid "ERROR!"
-msgstr ""
+msgstr "KĻŪDA!"
 
 #: admin/inc/renewals.php:36
 msgid "Renewal report"
@@ -134,15 +142,18 @@ msgstr ""
 msgid "Renewal repport"
 msgstr ""
 
-#: admin/inc/renewals.php:42 admin/inc/renewals.php:44
+#: admin/inc/renewals.php:42
+#: admin/inc/renewals.php:44
 msgid "Money spent"
 msgstr ""
 
-#: admin/inc/renewals.php:48 admin/inc/renewals.php:50
+#: admin/inc/renewals.php:48
+#: admin/inc/renewals.php:50
 msgid "Bank accounts & payments"
 msgstr ""
 
-#: admin/inc/renewals.php:54 admin/inc/renewals.php:56
+#: admin/inc/renewals.php:54
+#: admin/inc/renewals.php:56
 msgid "Upstream provider editor"
 msgstr ""
 
@@ -184,7 +195,7 @@ msgstr ""
 
 #: admin/inc/renewals.php:195
 msgid "Paypal"
-msgstr ""
+msgstr "PayPal"
 
 #: admin/inc/renewals.php:195
 msgid "Check"
@@ -206,9 +217,11 @@ msgstr ""
 msgid "Total tax"
 msgstr ""
 
-#: admin/inc/renewals.php:211 admin/inc/renewals.php:283
+#: admin/inc/renewals.php:211
+#: admin/inc/renewals.php:283
+#, fuzzy
 msgid "Currency"
-msgstr ""
+msgstr "Valūta"
 
 #: admin/inc/renewals.php:216
 msgid "Bank account"
@@ -222,10 +235,11 @@ msgstr ""
 msgid "Invoice date"
 msgstr ""
 
-#: admin/inc/renewals.php:229 admin/inc/renewals.php:427
+#: admin/inc/renewals.php:229
+#: admin/inc/renewals.php:427
 #: admin/inc/draw_user_admin.php:325
 msgid "Payment date"
-msgstr ""
+msgstr "Apmaksas datums"
 
 #: admin/inc/renewals.php:251
 msgid "Bank accounts edition"
@@ -271,27 +285,30 @@ msgstr ""
 msgid "Short name:"
 msgstr ""
 
-#: admin/inc/renewals.php:333 admin/inc/dtc_config.php:1619
+#: admin/inc/renewals.php:333
+#: admin/inc/dtc_config.php:1619
 #: shared/inc/forms/my_account.php:205
 msgid "Company name:"
-msgstr ""
+msgstr "Firmas nosaukums: "
 
 #: admin/inc/renewals.php:339
 msgid "Is it a company:"
-msgstr ""
+msgstr "Tā ir firma:"
 
-#: admin/inc/renewals.php:341 shared/inc/forms/my_account.php:208
+#: admin/inc/renewals.php:341
+#: shared/inc/forms/my_account.php:208
 msgid "First name:"
-msgstr ""
+msgstr "Vārds: "
 
 #: admin/inc/renewals.php:344
 msgid "Familly name:"
-msgstr ""
+msgstr "Uzvārds:"
 
-#: admin/inc/renewals.php:347 admin/inc/dtc_config.php:1624
+#: admin/inc/renewals.php:347
+#: admin/inc/dtc_config.php:1624
 #: shared/inc/forms/my_account.php:210
 msgid "Address:"
-msgstr ""
+msgstr "Adrese: "
 
 #: admin/inc/renewals.php:350
 msgid "Address (line2):"
@@ -301,35 +318,42 @@ msgstr ""
 msgid "Address (line3):"
 msgstr ""
 
-#: admin/inc/renewals.php:356 shared/inc/forms/my_account.php:213
+#: admin/inc/renewals.php:356
+#: shared/inc/forms/my_account.php:213
 msgid "City:"
-msgstr ""
+msgstr "Pilsēta: "
 
-#: admin/inc/renewals.php:359 shared/inc/forms/my_account.php:212
+#: admin/inc/renewals.php:359
+#: shared/inc/forms/my_account.php:212
 msgid "Zipcode:"
-msgstr ""
+msgstr "Pasta indekss: "
 
-#: admin/inc/renewals.php:362 shared/inc/forms/my_account.php:214
+#: admin/inc/renewals.php:362
+#: shared/inc/forms/my_account.php:214
+#, fuzzy
 msgid "State:"
-msgstr ""
+msgstr "Rajons: "
 
-#: admin/inc/renewals.php:365 admin/inc/dtc_config.php:1627
+#: admin/inc/renewals.php:365
+#: admin/inc/dtc_config.php:1627
 #: shared/inc/forms/my_account.php:215
 msgid "Country:"
-msgstr ""
+msgstr "Valsts: "
 
 #: admin/inc/renewals.php:368
 msgid "Phone:"
-msgstr ""
+msgstr "Tālrunis:"
 
-#: admin/inc/renewals.php:371 shared/inc/forms/my_account.php:217
+#: admin/inc/renewals.php:371
+#: shared/inc/forms/my_account.php:217
 msgid "Fax:"
-msgstr ""
+msgstr "Fakss:"
 
-#: admin/inc/renewals.php:374 shared/inc/forms/aliases.php:48
+#: admin/inc/renewals.php:374
+#: shared/inc/forms/aliases.php:48
 #: shared/inc/forms/my_account.php:218
 msgid "Email:"
-msgstr ""
+msgstr "E-pasts: "
 
 #: admin/inc/renewals.php:377
 msgid "Note:"
@@ -343,9 +367,12 @@ msgstr ""
 msgid "No past payments for this period"
 msgstr ""
 
-#: admin/inc/renewals.php:425 admin/inc/draw_user_admin.php:248
-#: admin/inc/draw_user_admin.php:325 client/new_account_form.php:556
-#: shared/dtcrm/draw.php:86 shared/inc/forms/invoices.php:23
+#: admin/inc/renewals.php:425
+#: admin/inc/draw_user_admin.php:248
+#: admin/inc/draw_user_admin.php:325
+#: client/new_account_form.php:556
+#: shared/dtcrm/draw.php:86
+#: shared/inc/forms/invoices.php:23
 #: shared/inc/forms/root_admin.php:566
 msgid "Product"
 msgstr ""
@@ -354,13 +381,16 @@ msgstr ""
 msgid "Client ID"
 msgstr ""
 
-#: admin/inc/renewals.php:425 admin/inc/renewals.php:646
-#: admin/inc/renewals.php:677 admin/inc/renewals.php:712
+#: admin/inc/renewals.php:425
+#: admin/inc/renewals.php:646
+#: admin/inc/renewals.php:677
+#: admin/inc/renewals.php:712
 #: admin/inc/renewals.php:792
 msgid "Client"
 msgstr ""
 
-#: admin/inc/renewals.php:425 admin/inc/dtc_config.php:1711
+#: admin/inc/renewals.php:425
+#: admin/inc/dtc_config.php:1711
 msgid "Service country"
 msgstr ""
 
@@ -368,42 +398,54 @@ msgstr ""
 msgid "Client country"
 msgstr ""
 
-#: admin/inc/renewals.php:427 admin/inc/renewals.php:585
+#: admin/inc/renewals.php:427
+#: admin/inc/renewals.php:585
 msgid "VAT collected"
 msgstr ""
 
-#: admin/inc/renewals.php:427 admin/inc/renewals.php:585
-#: admin/dtcrm/product_manager.php:41 admin/dtcrm/product_manager.php:119
-#: admin/dtcrm/product_manager.php:187 admin/dtcrm/product_manager.php:255
+#: admin/inc/renewals.php:427
+#: admin/inc/renewals.php:585
+#: admin/dtcrm/product_manager.php:41
+#: admin/dtcrm/product_manager.php:119
+#: admin/dtcrm/product_manager.php:187
+#: admin/dtcrm/product_manager.php:255
 #: shared/dtcrm/draw.php:87
 msgid "Period"
 msgstr ""
 
-#: admin/inc/renewals.php:427 shared/securepay/pay_functions.php:71
+#: admin/inc/renewals.php:427
+#: shared/securepay/pay_functions.php:71
 msgid "Total"
 msgstr ""
 
-#: admin/inc/renewals.php:428 admin/inc/renewals.php:716
-#: admin/inc/draw_user_admin.php:248 admin/inc/draw_user_admin.php:306
-#: admin/inc/draw_user_admin.php:325 admin/dtcrm/main.php:217
-#: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
-#: shared/inc/forms/email.php:27 shared/inc/forms/my_account.php:129
+#: admin/inc/renewals.php:428
+#: admin/inc/renewals.php:716
+#: admin/inc/draw_user_admin.php:248
+#: admin/inc/draw_user_admin.php:306
+#: admin/inc/draw_user_admin.php:325
+#: admin/dtcrm/main.php:217
+#: shared/inc/forms/database.php:37
+#: shared/inc/forms/database.php:76
+#: shared/inc/forms/email.php:27
+#: shared/inc/forms/my_account.php:129
 #: shared/inc/forms/reseller.php:24
 msgid "Action"
-msgstr ""
+msgstr "Darbība"
 
-#: admin/inc/renewals.php:432 admin/inc/renewals.php:433
+#: admin/inc/renewals.php:432
+#: admin/inc/renewals.php:433
 msgid "No client id"
 msgstr ""
 
-#: admin/inc/renewals.php:439 admin/inc/renewals.php:440
+#: admin/inc/renewals.php:439
+#: admin/inc/renewals.php:440
 #: admin/inc/renewals.php:441
 msgid "N/A"
 msgstr ""
 
 #: admin/inc/renewals.php:453
 msgid "Product not found"
-msgstr ""
+msgstr "Produkts nav atrasts datu bāzē"
 
 #: admin/inc/renewals.php:463
 msgid "Payment not found"
@@ -413,11 +455,14 @@ msgstr ""
 msgid "VAT not found"
 msgstr ""
 
-#: admin/inc/renewals.php:479 admin/inc/draw_user_admin.php:292
-#: admin/inc/draw_user_admin.php:312 shared/inc/forms/database.php:53
-#: shared/inc/forms/database.php:99 shared/inc/forms/domain_stats.php:104
+#: admin/inc/renewals.php:479
+#: admin/inc/draw_user_admin.php:292
+#: admin/inc/draw_user_admin.php:312
+#: shared/inc/forms/database.php:53
+#: shared/inc/forms/database.php:99
+#: shared/inc/forms/domain_stats.php:104
 msgid "Delete"
-msgstr ""
+msgstr "Izdzēst"
 
 #: admin/inc/renewals.php:487
 msgid "Total recurring incomes per month:"
@@ -443,11 +488,13 @@ msgstr ""
 msgid "Total: "
 msgstr ""
 
-#: admin/inc/renewals.php:585 shared/securepay/pay_functions.php:68
+#: admin/inc/renewals.php:585
+#: shared/securepay/pay_functions.php:68
 msgid "Amount"
 msgstr ""
 
-#: admin/inc/renewals.php:585 shared/inc/forms/invoices.php:23
+#: admin/inc/renewals.php:585
+#: shared/inc/forms/invoices.php:23
 msgid "Payment gateway cost"
 msgstr ""
 
@@ -463,33 +510,51 @@ msgstr ""
 msgid "No shared account expired."
 msgstr ""
 
-#: admin/inc/renewals.php:646 admin/inc/renewals.php:677
-#: admin/inc/renewals.php:711 admin/inc/renewals.php:792
-#: admin/inc/draw_user_admin.php:248 admin/inc/draw_user_admin.php:306
-#: admin/inc/draw_user_admin.php:325 admin/inc/draw_user_admin.php:411
-#: admin/inc/dtc_config.php:444 admin/inc/dtc_config.php:1121
-#: admin/inc/dtc_config.php:1148 admin/inc/dtc_config.php:1173
-#: admin/inc/dtc_config.php:1200 admin/inc/dtc_config.php:1225
-#: shared/inc/forms/email.php:27 shared/inc/forms/reseller.php:24
-#: shared/gfx/skin/default_layout.php:24 shared/gfx/skin/default_layout.php:34
-#: shared/gfx/skin/default_layout.php:63 shared/gfx/skin/default_layout.php:72
-#: shared/gfx/skin/bwoup/layout.php:53 shared/gfx/skin/bwoup/layout.php:61
-#: shared/gfx/skin/bwoup/layout.php:253 shared/gfx/skin/bwoup/layout.php:262
+#: admin/inc/renewals.php:646
+#: admin/inc/renewals.php:677
+#: admin/inc/renewals.php:711
+#: admin/inc/renewals.php:792
+#: admin/inc/draw_user_admin.php:248
+#: admin/inc/draw_user_admin.php:306
+#: admin/inc/draw_user_admin.php:325
+#: admin/inc/draw_user_admin.php:411
+#: admin/inc/dtc_config.php:444
+#: admin/inc/dtc_config.php:1121
+#: admin/inc/dtc_config.php:1148
+#: admin/inc/dtc_config.php:1173
+#: admin/inc/dtc_config.php:1200
+#: admin/inc/dtc_config.php:1225
+#: shared/inc/forms/email.php:27
+#: shared/inc/forms/reseller.php:24
+#: shared/gfx/skin/default_layout.php:24
+#: shared/gfx/skin/default_layout.php:34
+#: shared/gfx/skin/default_layout.php:63
+#: shared/gfx/skin/default_layout.php:72
+#: shared/gfx/skin/bwoup/layout.php:53
+#: shared/gfx/skin/bwoup/layout.php:61
+#: shared/gfx/skin/bwoup/layout.php:253
+#: shared/gfx/skin/bwoup/layout.php:262
 msgid "Login"
-msgstr ""
+msgstr "Ieiet"
 
-#: admin/inc/renewals.php:646 admin/inc/renewals.php:677
-#: admin/inc/renewals.php:713 admin/inc/renewals.php:792
+#: admin/inc/renewals.php:646
+#: admin/inc/renewals.php:677
+#: admin/inc/renewals.php:713
+#: admin/inc/renewals.php:792
 msgid "Email"
 msgstr ""
 
-#: admin/inc/renewals.php:646 admin/inc/renewals.php:677
-#: admin/inc/renewals.php:714 admin/inc/renewals.php:792
+#: admin/inc/renewals.php:646
+#: admin/inc/renewals.php:677
+#: admin/inc/renewals.php:714
+#: admin/inc/renewals.php:792
 msgid "Expiration date"
 msgstr ""
 
-#: admin/inc/renewals.php:653 admin/inc/renewals.php:692
-#: admin/inc/renewals.php:733 admin/inc/renewals.php:807
+#: admin/inc/renewals.php:653
+#: admin/inc/renewals.php:692
+#: admin/inc/renewals.php:733
+#: admin/inc/renewals.php:807
 msgid "Client name not found!"
 msgstr ""
 
@@ -553,7 +618,8 @@ msgstr ""
 msgid "Server"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:122 admin/inc/draw_user_admin.php:149
+#: admin/inc/draw_user_admin.php:122
+#: admin/inc/draw_user_admin.php:149
 #: admin/inc/draw_user_admin.php:201
 msgid "Cannot find ticket!"
 msgstr ""
@@ -562,11 +628,13 @@ msgstr ""
 msgid "Subject: "
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:131 admin/inc/draw_user_admin.php:419
+#: admin/inc/draw_user_admin.php:131
+#: admin/inc/draw_user_admin.php:419
 msgid "Type not found!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:136 admin/inc/dtc_config.php:1451
+#: admin/inc/draw_user_admin.php:136
+#: admin/inc/dtc_config.php:1451
 msgid "Type:"
 msgstr ""
 
@@ -586,71 +654,123 @@ msgstr ""
 msgid "Request to close the ticket: "
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:168 admin/inc/draw_user_admin.php:281
-#: admin/inc/draw_user_admin.php:349 admin/inc/dtc_config.php:453
-#: admin/inc/dtc_config.php:491 admin/inc/dtc_config.php:529
-#: admin/inc/dtc_config.php:718 admin/inc/dtc_config.php:772
-#: admin/inc/dtc_config.php:857 admin/inc/dtc_config.php:862
-#: admin/inc/dtc_config.php:867 admin/inc/dtc_config.php:872
-#: admin/inc/dtc_config.php:902 admin/inc/dtc_config.php:907
-#: admin/inc/dtc_config.php:912 admin/inc/dtc_config.php:917
-#: admin/inc/dtc_config.php:922 admin/inc/dtc_config.php:927
-#: admin/inc/dtc_config.php:992 admin/inc/dtc_config.php:997
-#: admin/inc/dtc_config.php:1059 admin/inc/dtc_config.php:1064
-#: admin/inc/dtc_config.php:1249 admin/inc/dtc_config.php:1287
-#: admin/inc/dtc_config.php:1315 admin/inc/dtc_config.php:1336
-#: admin/inc/dtc_config.php:1341 admin/inc/dtc_config.php:1358
-#: admin/inc/dtc_config.php:1363 admin/inc/dtc_config.php:1379
-#: admin/inc/dtc_config.php:1408 admin/dtcrm/main.php:161
-#: admin/dtcrm/product_manager.php:88 admin/dtcrm/product_manager.php:156
-#: admin/dtcrm/product_manager.php:224 admin/dtcrm/product_manager.php:277
-#: client/new_account_form.php:602 shared/inc/forms/domain_info.php:74
-#: shared/inc/forms/email.php:236 shared/inc/forms/email.php:242
-#: shared/inc/forms/email.php:271 shared/inc/forms/root_admin.php:47
-#: shared/inc/forms/root_admin.php:57 shared/inc/forms/root_admin.php:67
-#: shared/inc/forms/root_admin.php:77 shared/inc/forms/root_admin.php:235
-#: shared/inc/forms/root_admin.php:353 shared/inc/forms/root_admin.php:358
-#: shared/inc/forms/subdomain.php:138 shared/inc/forms/subdomain.php:180
-#: shared/inc/forms/subdomain.php:194 shared/inc/forms/ticket.php:129
+#: admin/inc/draw_user_admin.php:168
+#: admin/inc/draw_user_admin.php:281
+#: admin/inc/draw_user_admin.php:349
+#: admin/inc/dtc_config.php:453
+#: admin/inc/dtc_config.php:491
+#: admin/inc/dtc_config.php:529
+#: admin/inc/dtc_config.php:718
+#: admin/inc/dtc_config.php:772
+#: admin/inc/dtc_config.php:857
+#: admin/inc/dtc_config.php:862
+#: admin/inc/dtc_config.php:867
+#: admin/inc/dtc_config.php:872
+#: admin/inc/dtc_config.php:902
+#: admin/inc/dtc_config.php:907
+#: admin/inc/dtc_config.php:912
+#: admin/inc/dtc_config.php:917
+#: admin/inc/dtc_config.php:922
+#: admin/inc/dtc_config.php:927
+#: admin/inc/dtc_config.php:992
+#: admin/inc/dtc_config.php:997
+#: admin/inc/dtc_config.php:1059
+#: admin/inc/dtc_config.php:1064
+#: admin/inc/dtc_config.php:1249
+#: admin/inc/dtc_config.php:1287
+#: admin/inc/dtc_config.php:1315
+#: admin/inc/dtc_config.php:1336
+#: admin/inc/dtc_config.php:1341
+#: admin/inc/dtc_config.php:1358
+#: admin/inc/dtc_config.php:1363
+#: admin/inc/dtc_config.php:1379
+#: admin/inc/dtc_config.php:1408
+#: admin/dtcrm/main.php:161
+#: admin/dtcrm/product_manager.php:88
+#: admin/dtcrm/product_manager.php:156
+#: admin/dtcrm/product_manager.php:224
+#: admin/dtcrm/product_manager.php:277
+#: client/new_account_form.php:602
+#: shared/inc/forms/domain_info.php:74
+#: shared/inc/forms/email.php:236
+#: shared/inc/forms/email.php:242
+#: shared/inc/forms/email.php:271
+#: shared/inc/forms/root_admin.php:47
+#: shared/inc/forms/root_admin.php:57
+#: shared/inc/forms/root_admin.php:67
+#: shared/inc/forms/root_admin.php:77
+#: shared/inc/forms/root_admin.php:235
+#: shared/inc/forms/root_admin.php:353
+#: shared/inc/forms/root_admin.php:358
+#: shared/inc/forms/subdomain.php:138
+#: shared/inc/forms/subdomain.php:180
+#: shared/inc/forms/subdomain.php:194
+#: shared/inc/forms/ticket.php:129
 #: shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:76
 #: shared/securepay/modules/worldpay/main.php:77
 #: shared/securepay/modules/webmoney/main.php:39
 msgid "Yes"
-msgstr ""
+msgstr "Jā"
 
-#: admin/inc/draw_user_admin.php:170 admin/inc/draw_user_admin.php:285
-#: admin/inc/draw_user_admin.php:353 admin/inc/dtc_config.php:453
-#: admin/inc/dtc_config.php:491 admin/inc/dtc_config.php:529
-#: admin/inc/dtc_config.php:718 admin/inc/dtc_config.php:772
-#: admin/inc/dtc_config.php:857 admin/inc/dtc_config.php:862
-#: admin/inc/dtc_config.php:867 admin/inc/dtc_config.php:872
-#: admin/inc/dtc_config.php:902 admin/inc/dtc_config.php:907
-#: admin/inc/dtc_config.php:912 admin/inc/dtc_config.php:917
-#: admin/inc/dtc_config.php:922 admin/inc/dtc_config.php:927
-#: admin/inc/dtc_config.php:992 admin/inc/dtc_config.php:997
-#: admin/inc/dtc_config.php:1059 admin/inc/dtc_config.php:1064
-#: admin/inc/dtc_config.php:1249 admin/inc/dtc_config.php:1287
-#: admin/inc/dtc_config.php:1315 admin/inc/dtc_config.php:1336
-#: admin/inc/dtc_config.php:1341 admin/inc/dtc_config.php:1358
-#: admin/inc/dtc_config.php:1363 admin/inc/dtc_config.php:1379
-#: admin/inc/dtc_config.php:1408 admin/dtcrm/main.php:162
-#: admin/dtcrm/product_manager.php:88 admin/dtcrm/product_manager.php:156
-#: admin/dtcrm/product_manager.php:224 admin/dtcrm/product_manager.php:277
-#: client/new_account_form.php:603 shared/inc/forms/domain_info.php:75
-#: shared/inc/forms/email.php:236 shared/inc/forms/email.php:244
-#: shared/inc/forms/email.php:271 shared/inc/forms/root_admin.php:48
-#: shared/inc/forms/root_admin.php:58 shared/inc/forms/root_admin.php:68
-#: shared/inc/forms/root_admin.php:78 shared/inc/forms/root_admin.php:236
-#: shared/inc/forms/root_admin.php:353 shared/inc/forms/root_admin.php:358
-#: shared/inc/forms/subdomain.php:138 shared/inc/forms/subdomain.php:180
-#: shared/inc/forms/subdomain.php:194 shared/inc/forms/ticket.php:130
+#: admin/inc/draw_user_admin.php:170
+#: admin/inc/draw_user_admin.php:285
+#: admin/inc/draw_user_admin.php:353
+#: admin/inc/dtc_config.php:453
+#: admin/inc/dtc_config.php:491
+#: admin/inc/dtc_config.php:529
+#: admin/inc/dtc_config.php:718
+#: admin/inc/dtc_config.php:772
+#: admin/inc/dtc_config.php:857
+#: admin/inc/dtc_config.php:862
+#: admin/inc/dtc_config.php:867
+#: admin/inc/dtc_config.php:872
+#: admin/inc/dtc_config.php:902
+#: admin/inc/dtc_config.php:907
+#: admin/inc/dtc_config.php:912
+#: admin/inc/dtc_config.php:917
+#: admin/inc/dtc_config.php:922
+#: admin/inc/dtc_config.php:927
+#: admin/inc/dtc_config.php:992
+#: admin/inc/dtc_config.php:997
+#: admin/inc/dtc_config.php:1059
+#: admin/inc/dtc_config.php:1064
+#: admin/inc/dtc_config.php:1249
+#: admin/inc/dtc_config.php:1287
+#: admin/inc/dtc_config.php:1315
+#: admin/inc/dtc_config.php:1336
+#: admin/inc/dtc_config.php:1341
+#: admin/inc/dtc_config.php:1358
+#: admin/inc/dtc_config.php:1363
+#: admin/inc/dtc_config.php:1379
+#: admin/inc/dtc_config.php:1408
+#: admin/dtcrm/main.php:162
+#: admin/dtcrm/product_manager.php:88
+#: admin/dtcrm/product_manager.php:156
+#: admin/dtcrm/product_manager.php:224
+#: admin/dtcrm/product_manager.php:277
+#: client/new_account_form.php:603
+#: shared/inc/forms/domain_info.php:75
+#: shared/inc/forms/email.php:236
+#: shared/inc/forms/email.php:244
+#: shared/inc/forms/email.php:271
+#: shared/inc/forms/root_admin.php:48
+#: shared/inc/forms/root_admin.php:58
+#: shared/inc/forms/root_admin.php:68
+#: shared/inc/forms/root_admin.php:78
+#: shared/inc/forms/root_admin.php:236
+#: shared/inc/forms/root_admin.php:353
+#: shared/inc/forms/root_admin.php:358
+#: shared/inc/forms/subdomain.php:138
+#: shared/inc/forms/subdomain.php:180
+#: shared/inc/forms/subdomain.php:194
+#: shared/inc/forms/ticket.php:130
 msgid "No"
-msgstr ""
+msgstr "Nē"
 
 #: admin/inc/draw_user_admin.php:179
 msgid "Send reply"
-msgstr ""
+msgstr "Nosūtīt atbildi"
 
 #: admin/inc/draw_user_admin.php:184
 msgid "Send reply and close ticket"
@@ -662,27 +782,36 @@ msgstr ""
 
 #: admin/inc/draw_user_admin.php:227
 msgid "Add a new user"
-msgstr ""
+msgstr "Pievienot jaunu lietotāju"
 
-#: admin/inc/draw_user_admin.php:231 shared/inc/forms/aliases.php:42
-#: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:92
-#: shared/inc/forms/email.php:553 shared/inc/forms/email.php:559
+#: admin/inc/draw_user_admin.php:231
+#: shared/inc/forms/aliases.php:42
+#: shared/inc/forms/domain_stats.php:85
+#: shared/inc/forms/domain_stats.php:92
+#: shared/inc/forms/email.php:553
+#: shared/inc/forms/email.php:559
 #: shared/inc/forms/ssh.php:71
 msgid "Login:"
-msgstr ""
+msgstr "Lietotājvārds:"
 
-#: admin/inc/draw_user_admin.php:232 client/login.php:16
-#: shared/inc/draw.php:482 shared/inc/forms/database.php:37
-#: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:93
-#: shared/inc/forms/email.php:27 shared/inc/forms/email.php:566
-#: shared/inc/forms/root_admin.php:104 shared/inc/forms/ssh.php:76
+#: admin/inc/draw_user_admin.php:232
+#: client/login.php:16
+#: shared/inc/draw.php:482
+#: shared/inc/forms/database.php:37
+#: shared/inc/forms/domain_stats.php:85
+#: shared/inc/forms/domain_stats.php:93
+#: shared/inc/forms/email.php:27
+#: shared/inc/forms/email.php:566
+#: shared/inc/forms/root_admin.php:104
+#: shared/inc/forms/ssh.php:76
 msgid "Password:"
-msgstr ""
+msgstr "Parole:"
 
-#: admin/inc/draw_user_admin.php:233 shared/inc/forms/root_admin.php:123
+#: admin/inc/draw_user_admin.php:233
+#: shared/inc/forms/root_admin.php:123
 #: shared/inc/forms/ssh.php:81
 msgid "Path:"
-msgstr ""
+msgstr "Ceļš:"
 
 #: admin/inc/draw_user_admin.php:240
 msgid "User and domain waiting for addition:"
@@ -692,8 +821,10 @@ msgstr ""
 msgid "No user waiting!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:248 admin/dtcrm/product_manager.php:114
-#: admin/dtcrm/product_manager.php:182 admin/dtcrm/product_manager.php:250
+#: admin/inc/draw_user_admin.php:248
+#: admin/dtcrm/product_manager.php:114
+#: admin/dtcrm/product_manager.php:182
+#: admin/dtcrm/product_manager.php:250
 msgid "Name"
 msgstr ""
 
@@ -701,16 +832,20 @@ msgstr ""
 msgid "Domain name / VPS server hostname"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:248 admin/dtcrm/main.php:215
-#: shared/inc/forms/invoices.php:23 shared/inc/forms/ticket.php:158
+#: admin/inc/draw_user_admin.php:248
+#: admin/dtcrm/main.php:215
+#: shared/inc/forms/invoices.php:23
+#: shared/inc/forms/ticket.php:158
 msgid "Date"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:248 admin/inc/draw_user_admin.php:325
+#: admin/inc/draw_user_admin.php:248
+#: admin/inc/draw_user_admin.php:325
 msgid "Bank validated"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:259 admin/inc/draw_user_admin.php:260
+#: admin/inc/draw_user_admin.php:259
+#: admin/inc/draw_user_admin.php:260
 msgid "Cannot find product in db!"
 msgstr ""
 
@@ -722,24 +857,28 @@ msgstr ""
 msgid "View details"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:291 admin/inc/draw_user_admin.php:311
+#: admin/inc/draw_user_admin.php:291
+#: admin/inc/draw_user_admin.php:311
 msgid "Add"
-msgstr ""
+msgstr "Pievienot"
 
 #: admin/inc/draw_user_admin.php:303
 msgid "No domain waiting!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:306 admin/dtcrm/main.php:212
-#: shared/inc/forms/admin_stats.php:104 shared/inc/forms/root_admin.php:344
+#: admin/inc/draw_user_admin.php:306
+#: admin/dtcrm/main.php:212
+#: shared/inc/forms/admin_stats.php:104
+#: shared/inc/forms/root_admin.php:344
 msgid "Domain name"
-msgstr ""
+msgstr "Domēns"
 
 #: admin/inc/draw_user_admin.php:322
 msgid "No pending renewals!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:325 admin/inc/draw_user_admin.php:411
+#: admin/inc/draw_user_admin.php:325
+#: admin/inc/draw_user_admin.php:411
 #: shared/inc/forms/ticket.php:158
 msgid "Type"
 msgstr ""
@@ -784,7 +923,8 @@ msgstr ""
 msgid "Age"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:411 shared/inc/forms/ticket.php:45
+#: admin/inc/draw_user_admin.php:411
+#: shared/inc/forms/ticket.php:45
 #: shared/inc/forms/ticket.php:158
 msgid "Subject"
 msgstr ""
@@ -801,18 +941,21 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:455 admin/inc/monitor.php:15
-#: shared/inc/forms/database.php:37 shared/inc/forms/database.php:76
+#: admin/inc/draw_user_admin.php:455
+#: admin/inc/monitor.php:15
+#: shared/inc/forms/database.php:37
+#: shared/inc/forms/database.php:76
 msgid "User"
-msgstr ""
+msgstr "Lietotājs"
 
 #: admin/inc/draw_user_admin.php:480
 msgid "Console output"
 msgstr ""
 
-#: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:849
+#: admin/inc/dtc_config.php:29
+#: admin/inc/dtc_config.php:849
 msgid "General"
-msgstr ""
+msgstr "Galvenie"
 
 #: admin/inc/dtc_config.php:32
 msgid "IP addresses and network"
@@ -820,7 +963,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:35
 msgid "SSL IP addresses"
-msgstr ""
+msgstr "SSL IP adreses"
 
 #: admin/inc/dtc_config.php:38
 msgid "IP addresses pool"
@@ -834,7 +977,8 @@ msgstr ""
 msgid "Dedicated server IP addresses"
 msgstr ""
 
-#: admin/inc/dtc_config.php:47 admin/inc/dtc_config.php:1024
+#: admin/inc/dtc_config.php:47
+#: admin/inc/dtc_config.php:1024
 msgid "Named zonefiles"
 msgstr ""
 
@@ -846,7 +990,8 @@ msgstr ""
 msgid "FTP backup"
 msgstr ""
 
-#: admin/inc/dtc_config.php:56 admin/inc/dtc_config.php:376
+#: admin/inc/dtc_config.php:56
+#: admin/inc/dtc_config.php:376
 msgid "Support ticket"
 msgstr ""
 
@@ -854,9 +999,10 @@ msgstr ""
 msgid "VPS servers"
 msgstr ""
 
-#: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:1503
+#: admin/inc/dtc_config.php:65
+#: admin/inc/dtc_config.php:1503
 msgid "Paths"
-msgstr ""
+msgstr "Ceļi"
 
 #: admin/inc/dtc_config.php:68
 msgid "Payment gateway"
@@ -872,11 +1018,11 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:77
 msgid "Companies"
-msgstr ""
+msgstr "Firmas"
 
 #: admin/inc/dtc_config.php:80
 msgid "Invoicing"
-msgstr ""
+msgstr "Rēķinu izraksts"
 
 #: admin/inc/dtc_config.php:209
 msgid "VPS renewal email reminders periodicity"
@@ -916,16 +1062,8 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:251
 msgid ""
-"DTC lets you auto-configure a Nagios monitoring server, enabling your VPS "
-"customers know when their services are working. This works by generating the "
-"Nagios configuration file and copying it using SCP to the remote Nagios "
-"server, then using SSH to restart the remote Nagios service.<br><br>\n"
-"Unfortunately, this requires some manual intervention to set up SSH keys: "
-"you must manually add a user to your Nagios server, and give it sudo access "
-"to restart the Nagios service. Then you must set up public key "
-"authentication for that user, add the Nagios server's SSH public key to the "
-"DTC user's SSH keyring, and create an empty config file which must be "
-"writable by the user in the Nagios server."
+"DTC lets you auto-configure a Nagios monitoring server, enabling your VPS customers know when their services are working. This works by generating the Nagios configuration file and copying it using SCP to the remote Nagios server, then using SSH to restart the remote Nagios service.<br><br>\n"
+"Unfortunately, this requires some manual intervention to set up SSH keys: you must manually add a user to your Nagios server, and give it sudo access to restart the Nagios service. Then you must set up public key authentication for that user, add the Nagios server's SSH public key to the DTC user's SSH keyring, and create an empty config file which must be writable by the user in the Nagios server."
 msgstr ""
 
 #: admin/inc/dtc_config.php:255
@@ -941,11 +1079,11 @@ msgid "Path to the Nagios configuration file to be created: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:267
-msgid ""
-"Command line that, run in the Nagios server, will reload its configuration: "
+msgid "Command line that, run in the Nagios server, will reload its configuration: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:294 admin/inc/dtc_config.php:728
+#: admin/inc/dtc_config.php:294
+#: admin/inc/dtc_config.php:728
 msgid "Warning: no IP pool in the database!"
 msgstr ""
 
@@ -953,13 +1091,16 @@ msgstr ""
 msgid "Dedicated server IP address pool editor"
 msgstr ""
 
-#: admin/inc/dtc_config.php:323 admin/inc/dtc_config.php:368
-#: admin/inc/dtc_config.php:438 admin/inc/dtc_config.php:688
+#: admin/inc/dtc_config.php:323
+#: admin/inc/dtc_config.php:368
+#: admin/inc/dtc_config.php:438
+#: admin/inc/dtc_config.php:688
 #: admin/inc/dtc_config.php:763
 msgid "IPs addrs"
 msgstr ""
 
-#: admin/inc/dtc_config.php:326 admin/inc/dtc_config.php:766
+#: admin/inc/dtc_config.php:326
+#: admin/inc/dtc_config.php:766
 msgid "IP Pool"
 msgstr ""
 
@@ -971,12 +1112,14 @@ msgstr ""
 msgid "IP address pool editor: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:361 admin/inc/dtc_config.php:362
+#: admin/inc/dtc_config.php:361
+#: admin/inc/dtc_config.php:362
 #: shared/inc/forms/root_admin.php:348
 msgid "Customize"
 msgstr ""
 
-#: admin/inc/dtc_config.php:365 admin/inc/dtc_config.php:701
+#: admin/inc/dtc_config.php:365
+#: admin/inc/dtc_config.php:701
 msgid "Location"
 msgstr ""
 
@@ -1008,10 +1151,12 @@ msgstr ""
 msgid "The following will be appened at the end of the reverse zone file."
 msgstr ""
 
-#: admin/inc/dtc_config.php:410 shared/inc/forms/database.php:49
-#: shared/inc/forms/database.php:95 shared/inc/forms/domain_stats.php:98
+#: admin/inc/dtc_config.php:410
+#: shared/inc/forms/database.php:49
+#: shared/inc/forms/database.php:95
+#: shared/inc/forms/domain_stats.php:98
 msgid "Save"
-msgstr ""
+msgstr "Saglabāt"
 
 #: admin/inc/dtc_config.php:426
 msgid "SSL dedicated IP addresses: "
@@ -1021,19 +1166,20 @@ msgstr ""
 msgid "NAT Port"
 msgstr ""
 
-#: admin/inc/dtc_config.php:448 shared/inc/forms/my_account.php:129
+#: admin/inc/dtc_config.php:448
+#: shared/inc/forms/my_account.php:129
+#, fuzzy
 msgid "Expire"
-msgstr ""
+msgstr "Izbeigsies"
 
-#: admin/inc/dtc_config.php:451 admin/inc/dtc_config.php:489
+#: admin/inc/dtc_config.php:451
+#: admin/inc/dtc_config.php:489
 #: admin/inc/dtc_config.php:771
 msgid "Available"
 msgstr ""
 
 #: admin/inc/dtc_config.php:457
-msgid ""
-"Take care not to add the control panel SSL IP itself if you don't want to "
-"have conflicts (and prevent apache from restarting)!"
+msgid "Take care not to add the control panel SSL IP itself if you don't want to have conflicts (and prevent apache from restarting)!"
 msgstr ""
 
 #: admin/inc/dtc_config.php:467
@@ -1046,11 +1192,11 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:480
 msgid "Nick name"
-msgstr ""
+msgstr "Iesauka"
 
 #: admin/inc/dtc_config.php:483
 msgid "Real name"
-msgstr ""
+msgstr "Reālais vārds"
 
 #: admin/inc/dtc_config.php:486
 msgid "Email addr"
@@ -1070,11 +1216,11 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:521
 msgid "FTP backup configuration"
-msgstr ""
+msgstr "Rezerves kopijas veidošana pa FTP uzstādījumi"
 
 #: admin/inc/dtc_config.php:526
 msgid "Activate FTP backups:"
-msgstr ""
+msgstr "Aktivizēt rezerves kopijas veidošanu pa FTP:"
 
 #: admin/inc/dtc_config.php:531
 msgid "Hostname:"
@@ -1086,11 +1232,11 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:539
 msgid "FTP password:"
-msgstr ""
+msgstr "FTP parole:"
 
 #: admin/inc/dtc_config.php:543
 msgid "Backup frequency:"
-msgstr ""
+msgstr "Backup frequency:"
 
 #: admin/inc/dtc_config.php:546
 msgid "Daily"
@@ -1124,7 +1270,8 @@ msgstr ""
 msgid "dom0 IP addresses"
 msgstr ""
 
-#: admin/inc/dtc_config.php:697 shared/inc/forms/ticket.php:158
+#: admin/inc/dtc_config.php:697
+#: shared/inc/forms/ticket.php:158
 msgid "Hostname"
 msgstr ""
 
@@ -1136,7 +1283,8 @@ msgstr ""
 msgid "SOAP password"
 msgstr ""
 
-#: admin/inc/dtc_config.php:712 shared/inc/forms/root_admin.php:561
+#: admin/inc/dtc_config.php:712
+#: shared/inc/forms/root_admin.php:561
 msgid "Country"
 msgstr ""
 
@@ -1158,11 +1306,11 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:854
 msgid "Use javascript: "
-msgstr ""
+msgstr "Lietot JavaScript:"
 
 #: admin/inc/dtc_config.php:859
 msgid "Use SSL: "
-msgstr ""
+msgstr "Lietot SSL:"
 
 #: admin/inc/dtc_config.php:864
 msgid "Use @domain.com ftp logins: "
@@ -1178,7 +1326,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:879
 msgid "This server location: "
-msgstr ""
+msgstr "Šis serveris izvietots: "
 
 #: admin/inc/dtc_config.php:883
 msgid "Selling conditions URL: "
@@ -1186,7 +1334,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:889
 msgid "Daemon"
-msgstr ""
+msgstr "Serviss"
 
 #: admin/inc/dtc_config.php:900
 msgid "Use cyrus: "
@@ -1206,7 +1354,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:920
 msgid "Use awstats: "
-msgstr ""
+msgstr "Lietot AWStats: "
 
 #: admin/inc/dtc_config.php:925
 msgid "Use visitors: "
@@ -1278,7 +1426,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1007
 msgid "SSL Port: "
-msgstr ""
+msgstr "SSL ports:"
 
 #: admin/inc/dtc_config.php:1030
 msgid "Address of your main MX server:"
@@ -1348,28 +1496,34 @@ msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1106
-msgid ""
-"Allow those servers to list this server's domain names for doing backup:"
+msgid "Allow those servers to list this server's domain names for doing backup:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1118 shared/inc/forms/my_account.php:129
+#: admin/inc/dtc_config.php:1118
+#: shared/inc/forms/my_account.php:129
 #: shared/inc/forms/root_admin.php:385
 msgid "IP address"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1124 admin/inc/dtc_config.php:1151
-#: admin/inc/dtc_config.php:1176 admin/inc/dtc_config.php:1203
-#: admin/inc/dtc_config.php:1228 shared/inc/draw.php:331
-#: shared/inc/draw.php:484 shared/inc/forms/reseller.php:24
+#: admin/inc/dtc_config.php:1124
+#: admin/inc/dtc_config.php:1151
+#: admin/inc/dtc_config.php:1176
+#: admin/inc/dtc_config.php:1203
+#: admin/inc/dtc_config.php:1228
+#: shared/inc/draw.php:331
+#: shared/inc/draw.php:484
+#: shared/inc/forms/reseller.php:24
 msgid "Password"
-msgstr ""
+msgstr "Parole"
 
 #: admin/inc/dtc_config.php:1133
 msgid "Tell the following servers when a domain is added or removed :"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1145 admin/inc/dtc_config.php:1170
-#: admin/inc/dtc_config.php:1197 admin/inc/dtc_config.php:1222
+#: admin/inc/dtc_config.php:1145
+#: admin/inc/dtc_config.php:1170
+#: admin/inc/dtc_config.php:1197
+#: admin/inc/dtc_config.php:1222
 msgid "URL"
 msgstr ""
 
@@ -1447,7 +1601,7 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1333
 msgid "Use paypal: "
-msgstr ""
+msgstr "Lietot PayPal: "
 
 #: admin/inc/dtc_config.php:1338
 msgid "Validate new account if paid: "
@@ -1521,7 +1675,8 @@ msgstr ""
 msgid "NAS config"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1445 shared/inc/forms/vps_monitoring.php:143
+#: admin/inc/dtc_config.php:1445
+#: shared/inc/forms/vps_monitoring.php:143
 #: shared/inc/forms/vps_installation.php:91
 msgid "Name: "
 msgstr ""
@@ -1534,15 +1689,17 @@ msgstr ""
 msgid "Port number: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1459 client/new_account_form.php:577
-#: email/login.php:17 shared/inc/forms/email.php:216
+#: admin/inc/dtc_config.php:1459
+#: client/new_account_form.php:577
+#: email/login.php:17
+#: shared/inc/forms/email.php:216
 #: shared/inc/forms/ftp.php:81
 msgid "Password: "
-msgstr ""
+msgstr "Parole: "
 
 #: admin/inc/dtc_config.php:1466
 msgid "Description: "
-msgstr ""
+msgstr "Apraksts: "
 
 #: admin/inc/dtc_config.php:1508
 msgid "Path of your DTC shared directory:"
@@ -1558,10 +1715,8 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1517
 msgid ""
-"Path where DTC will be restricted for generating it's configuration files "
-"for daemons.<br>\n"
-"Each of the following (qmail, apache and named) path will be concatened to "
-"this:"
+"Path where DTC will be restricted for generating it's configuration files for daemons.<br>\n"
+"Each of the following (qmail, apache and named) path will be concatened to this:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1521
@@ -1606,19 +1761,19 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:1602
 msgid "List of your companies:"
-msgstr ""
+msgstr "Jūsu firmas saraksts:"
 
 #: admin/inc/dtc_config.php:1603
 msgid "Add a new company:"
-msgstr ""
+msgstr "Pievienot jaunu firmu:"
 
 #: admin/inc/dtc_config.php:1604
 msgid "Add a new company"
-msgstr ""
+msgstr "Pievienot jaunu firmu"
 
 #: admin/inc/dtc_config.php:1605
 msgid "Edit a company:"
-msgstr ""
+msgstr "Rediģēt firmas datus:"
 
 #: admin/inc/dtc_config.php:1633
 msgid "Registration number:"
@@ -1644,7 +1799,8 @@ msgstr ""
 msgid "Invoice footer:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1679 admin/inc/dtc_config.php:1684
+#: admin/inc/dtc_config.php:1679
+#: admin/inc/dtc_config.php:1684
 msgid "Default company invoicing:"
 msgstr ""
 
@@ -1672,38 +1828,35 @@ msgstr ""
 msgid "Transfer per month"
 msgstr ""
 
-#: admin/inc/monitor.php:15 shared/inc/forms/admin_stats.php:83
+#: admin/inc/monitor.php:15
+#: shared/inc/forms/admin_stats.php:83
 #: shared/inc/forms/admin_stats.php:104
 msgid "Disk usage"
 msgstr ""
 
 #: admin/inc/monitor.php:15
 msgid "Quota"
-msgstr ""
+msgstr "Kvota"
 
 #: admin/inc/monitor.php:99
 msgid "Server accounted transfers this month: "
 msgstr ""
 
 #: admin/inc/submit_root_querys.php:278
-msgid ""
-"Incorect admin login format: it should consist of only lowercase letters or "
-"numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
+msgid "Incorect admin login format: it should consist of only lowercase letters or numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
 msgstr ""
 
 #: admin/inc/submit_root_querys.php:282
-msgid ""
-"Password consist of only letters and numbers (a-zA-Z0-9) and should be "
-"between 6 and 16 chars long.<br>\n"
+msgid "Password consist of only letters and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n"
 msgstr ""
 
 #: admin/inc/graphs.php:5
 msgid "Network Traffic Statistics"
-msgstr ""
+msgstr "Tīkla trafika statistika"
 
 #: admin/inc/graphs.php:7
 msgid "CPU Load Average"
-msgstr ""
+msgstr "Procesora vidējā noslodze"
 
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
@@ -1771,15 +1924,18 @@ msgstr ""
 
 #: admin/inc/nav.php:115
 msgid "Display and sort by:"
-msgstr ""
+msgstr "Kārtot pēc:"
 
-#: admin/inc/nav.php:161 admin/inc/nav.php:166 admin/inc/nav.php:170
+#: admin/inc/nav.php:161
+#: admin/inc/nav.php:166
+#: admin/inc/nav.php:170
 msgid "New virtual admin"
 msgstr ""
 
-#: admin/dtcrm/main.php:11 admin/dtcrm/main.php:24
+#: admin/dtcrm/main.php:11
+#: admin/dtcrm/main.php:24
 msgid "New customer"
-msgstr ""
+msgstr "Jauns klients"
 
 #: admin/dtcrm/main.php:71
 msgid "Remove an administrator for this customer:"
@@ -1791,106 +1947,146 @@ msgstr ""
 
 #: admin/dtcrm/main.php:109
 msgid "Select a customer."
-msgstr ""
+msgstr "Izvēlies klientu."
 
-#: admin/dtcrm/main.php:159 client/new_account_form.php:595
-#: shared/dtcrm/draw_handle.php:57 shared/dtcrm/draw_handle.php:89
-#: shared/dtcrm/draw_handle.php:121 shared/dtcrm/draw_handle.php:232
+#: admin/dtcrm/main.php:159
+#: client/new_account_form.php:595
+#: shared/dtcrm/draw_handle.php:57
+#: shared/dtcrm/draw_handle.php:89
+#: shared/dtcrm/draw_handle.php:121
+#: shared/dtcrm/draw_handle.php:232
 msgid "Familly name: "
-msgstr ""
+msgstr "Uzvārds:"
 
-#: admin/dtcrm/main.php:160 client/new_account_form.php:598
-#: shared/dtcrm/draw_handle.php:56 shared/dtcrm/draw_handle.php:88
-#: shared/dtcrm/draw_handle.php:120 shared/dtcrm/draw_handle.php:229
+#: admin/dtcrm/main.php:160
+#: client/new_account_form.php:598
+#: shared/dtcrm/draw_handle.php:56
+#: shared/dtcrm/draw_handle.php:88
+#: shared/dtcrm/draw_handle.php:120
+#: shared/dtcrm/draw_handle.php:229
 msgid "First name: "
-msgstr ""
+msgstr "Vārds:"
 
-#: admin/dtcrm/main.php:161 client/new_account_form.php:601
+#: admin/dtcrm/main.php:161
+#: client/new_account_form.php:601
 msgid "Is it a company: "
 msgstr ""
 
-#: admin/dtcrm/main.php:163 client/new_account_form.php:605
-#: shared/dtcrm/draw_handle.php:58 shared/dtcrm/draw_handle.php:90
-#: shared/dtcrm/draw_handle.php:122 shared/dtcrm/draw_handle.php:226
+#: admin/dtcrm/main.php:163
+#: client/new_account_form.php:605
+#: shared/dtcrm/draw_handle.php:58
+#: shared/dtcrm/draw_handle.php:90
+#: shared/dtcrm/draw_handle.php:122
+#: shared/dtcrm/draw_handle.php:226
 msgid "Company name: "
-msgstr ""
+msgstr "Firmas nosaukums:"
 
 #: admin/dtcrm/main.php:164
 msgid "VAT number: "
 msgstr ""
 
-#: admin/dtcrm/main.php:165 client/new_account_form.php:625
-#: shared/dtcrm/draw_handle.php:59 shared/dtcrm/draw_handle.php:91
-#: shared/dtcrm/draw_handle.php:123 shared/dtcrm/draw_handle.php:235
+#: admin/dtcrm/main.php:165
+#: client/new_account_form.php:625
+#: shared/dtcrm/draw_handle.php:59
+#: shared/dtcrm/draw_handle.php:91
+#: shared/dtcrm/draw_handle.php:123
+#: shared/dtcrm/draw_handle.php:235
 msgid "Address (line1): "
 msgstr ""
 
-#: admin/dtcrm/main.php:166 client/new_account_form.php:628
-#: shared/dtcrm/draw_handle.php:60 shared/dtcrm/draw_handle.php:92
-#: shared/dtcrm/draw_handle.php:124 shared/dtcrm/draw_handle.php:238
+#: admin/dtcrm/main.php:166
+#: client/new_account_form.php:628
+#: shared/dtcrm/draw_handle.php:60
+#: shared/dtcrm/draw_handle.php:92
+#: shared/dtcrm/draw_handle.php:124
+#: shared/dtcrm/draw_handle.php:238
 msgid "Address (line2): "
 msgstr ""
 
-#: admin/dtcrm/main.php:167 client/new_account_form.php:631
-#: shared/dtcrm/draw_handle.php:61 shared/dtcrm/draw_handle.php:93
-#: shared/dtcrm/draw_handle.php:125 shared/dtcrm/draw_handle.php:241
+#: admin/dtcrm/main.php:167
+#: client/new_account_form.php:631
+#: shared/dtcrm/draw_handle.php:61
+#: shared/dtcrm/draw_handle.php:93
+#: shared/dtcrm/draw_handle.php:125
+#: shared/dtcrm/draw_handle.php:241
 msgid "Address (line3): "
 msgstr ""
 
-#: admin/dtcrm/main.php:168 client/new_account_form.php:637
-#: shared/dtcrm/draw_handle.php:63 shared/dtcrm/draw_handle.php:95
-#: shared/dtcrm/draw_handle.php:127 shared/dtcrm/draw_handle.php:247
+#: admin/dtcrm/main.php:168
+#: client/new_account_form.php:637
+#: shared/dtcrm/draw_handle.php:63
+#: shared/dtcrm/draw_handle.php:95
+#: shared/dtcrm/draw_handle.php:127
+#: shared/dtcrm/draw_handle.php:247
 msgid "City: "
-msgstr ""
+msgstr "Pilsēta:"
 
-#: admin/dtcrm/main.php:169 client/new_account_form.php:634
-#: shared/dtcrm/draw_handle.php:62 shared/dtcrm/draw_handle.php:94
-#: shared/dtcrm/draw_handle.php:126 shared/dtcrm/draw_handle.php:250
+#: admin/dtcrm/main.php:169
+#: client/new_account_form.php:634
+#: shared/dtcrm/draw_handle.php:62
+#: shared/dtcrm/draw_handle.php:94
+#: shared/dtcrm/draw_handle.php:126
+#: shared/dtcrm/draw_handle.php:250
 msgid "Zipcode: "
-msgstr ""
+msgstr "Pasta indekss:"
 
-#: admin/dtcrm/main.php:170 client/new_account_form.php:640
-#: shared/dtcrm/draw_handle.php:64 shared/dtcrm/draw_handle.php:96
-#: shared/dtcrm/draw_handle.php:128 shared/dtcrm/draw_handle.php:244
+#: admin/dtcrm/main.php:170
+#: client/new_account_form.php:640
+#: shared/dtcrm/draw_handle.php:64
+#: shared/dtcrm/draw_handle.php:96
+#: shared/dtcrm/draw_handle.php:128
+#: shared/dtcrm/draw_handle.php:244
 msgid "State: "
 msgstr ""
 
-#: admin/dtcrm/main.php:171 client/new_account_form.php:643
-#: shared/dtcrm/draw_handle.php:65 shared/dtcrm/draw_handle.php:97
-#: shared/dtcrm/draw_handle.php:129 shared/dtcrm/draw_handle.php:253
+#: admin/dtcrm/main.php:171
+#: client/new_account_form.php:643
+#: shared/dtcrm/draw_handle.php:65
+#: shared/dtcrm/draw_handle.php:97
+#: shared/dtcrm/draw_handle.php:129
+#: shared/dtcrm/draw_handle.php:253
 #: shared/inc/forms/root_admin.php:281
 msgid "Country: "
-msgstr ""
+msgstr "Valsts:"
 
-#: admin/dtcrm/main.php:173 client/new_account_form.php:614
-#: shared/dtcrm/draw_handle.php:66 shared/dtcrm/draw_handle.php:98
-#: shared/dtcrm/draw_handle.php:130 shared/dtcrm/draw_handle.php:256
+#: admin/dtcrm/main.php:173
+#: client/new_account_form.php:614
+#: shared/dtcrm/draw_handle.php:66
+#: shared/dtcrm/draw_handle.php:98
+#: shared/dtcrm/draw_handle.php:130
+#: shared/dtcrm/draw_handle.php:256
 msgid "Phone number: "
-msgstr ""
+msgstr "Tālruņa numurs: "
 
-#: admin/dtcrm/main.php:174 client/new_account_form.php:617
-#: shared/dtcrm/draw_handle.php:67 shared/dtcrm/draw_handle.php:99
-#: shared/dtcrm/draw_handle.php:131 shared/dtcrm/draw_handle.php:259
+#: admin/dtcrm/main.php:174
+#: client/new_account_form.php:617
+#: shared/dtcrm/draw_handle.php:67
+#: shared/dtcrm/draw_handle.php:99
+#: shared/dtcrm/draw_handle.php:131
+#: shared/dtcrm/draw_handle.php:259
 msgid "Fax: "
-msgstr ""
+msgstr "Fakss: "
 
-#: admin/dtcrm/main.php:175 client/new_account_form.php:611
-#: shared/dtcrm/draw_handle.php:68 shared/dtcrm/draw_handle.php:100
-#: shared/dtcrm/draw_handle.php:132 shared/dtcrm/draw_handle.php:262
+#: admin/dtcrm/main.php:175
+#: client/new_account_form.php:611
+#: shared/dtcrm/draw_handle.php:68
+#: shared/dtcrm/draw_handle.php:100
+#: shared/dtcrm/draw_handle.php:132
+#: shared/dtcrm/draw_handle.php:262
 msgid "Email: "
-msgstr ""
+msgstr "E-pasta: "
 
 #: admin/dtcrm/main.php:176
 msgid "Notes: "
-msgstr ""
+msgstr "Piezīmes:"
 
 #: admin/dtcrm/main.php:177
 msgid "Money remaining: "
-msgstr ""
+msgstr "Naudas pārpalikums: "
 
 #: admin/dtcrm/main.php:178
 msgid "Quota (MB): "
-msgstr ""
+msgstr "Kvota (MB): "
 
 #: admin/dtcrm/main.php:179
 msgid "Allowed data transfer (GB): "
@@ -1898,29 +2094,35 @@ msgstr ""
 
 #: admin/dtcrm/main.php:194
 msgid "Delete client"
-msgstr ""
+msgstr "Izdzēst klientu"
 
 #: admin/dtcrm/main.php:211
 msgid "What"
 msgstr ""
 
-#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:46
-#: admin/dtcrm/product_manager.php:124 admin/dtcrm/product_manager.php:192
-#: admin/dtcrm/product_manager.php:260 shared/dtcrm/draw.php:87
+#: admin/dtcrm/main.php:213
+#: admin/dtcrm/product_manager.php:46
+#: admin/dtcrm/product_manager.php:124
+#: admin/dtcrm/product_manager.php:192
+#: admin/dtcrm/product_manager.php:260
+#: shared/dtcrm/draw.php:87
 #: shared/inc/forms/invoices.php:23
 msgid "Price"
-msgstr ""
+msgstr "Cena"
 
 #: admin/dtcrm/main.php:214
 msgid "Quantity"
 msgstr ""
 
-#: admin/dtcrm/main.php:216 shared/inc/forms/my_account.php:100
+#: admin/dtcrm/main.php:216
+#: shared/inc/forms/my_account.php:100
 msgid "Expiry date"
-msgstr ""
+msgstr "Termiņa beigšanās datums"
 
-#: admin/dtcrm/product_manager.php:24 admin/dtcrm/product_manager.php:96
-#: admin/dtcrm/product_manager.php:164 admin/dtcrm/product_manager.php:232
+#: admin/dtcrm/product_manager.php:24
+#: admin/dtcrm/product_manager.php:96
+#: admin/dtcrm/product_manager.php:164
+#: admin/dtcrm/product_manager.php:232
 msgid "Product list editor"
 msgstr ""
 
@@ -1928,17 +2130,22 @@ msgstr ""
 msgid "Product name"
 msgstr ""
 
-#: admin/dtcrm/product_manager.php:51 admin/dtcrm/product_manager.php:129
-#: admin/dtcrm/product_manager.php:197 admin/dtcrm/product_manager.php:265
+#: admin/dtcrm/product_manager.php:51
+#: admin/dtcrm/product_manager.php:129
+#: admin/dtcrm/product_manager.php:197
+#: admin/dtcrm/product_manager.php:265
 msgid "Setup fee"
 msgstr ""
 
-#: admin/dtcrm/product_manager.php:56 admin/dtcrm/product_manager.php:134
-#: admin/dtcrm/product_manager.php:202 admin/dtcrm/product_manager.php:270
+#: admin/dtcrm/product_manager.php:56
+#: admin/dtcrm/product_manager.php:134
+#: admin/dtcrm/product_manager.php:202
+#: admin/dtcrm/product_manager.php:270
 msgid "Commission"
 msgstr ""
 
-#: admin/dtcrm/product_manager.php:61 admin/dtcrm/product_manager.php:139
+#: admin/dtcrm/product_manager.php:61
+#: admin/dtcrm/product_manager.php:139
 #: admin/dtcrm/product_manager.php:207
 msgid "Disk"
 msgstr ""
@@ -1951,7 +2158,8 @@ msgstr ""
 msgid "Max database"
 msgstr ""
 
-#: admin/dtcrm/product_manager.php:76 admin/dtcrm/product_manager.php:149
+#: admin/dtcrm/product_manager.php:76
+#: admin/dtcrm/product_manager.php:149
 #: admin/dtcrm/product_manager.php:217
 msgid "Traffic"
 msgstr ""
@@ -1960,45 +2168,58 @@ msgstr ""
 msgid "Add domain"
 msgstr ""
 
-#: admin/dtcrm/product_manager.php:86 admin/dtcrm/product_manager.php:154
-#: admin/dtcrm/product_manager.php:222 admin/dtcrm/product_manager.php:275
+#: admin/dtcrm/product_manager.php:86
+#: admin/dtcrm/product_manager.php:154
+#: admin/dtcrm/product_manager.php:222
+#: admin/dtcrm/product_manager.php:275
 msgid "Private"
 msgstr ""
 
-#: admin/dtcrm/product_manager.php:108 admin/dtcrm/product_manager.php:176
+#: admin/dtcrm/product_manager.php:108
+#: admin/dtcrm/product_manager.php:176
 #: admin/dtcrm/product_manager.php:244
 msgid "Renewal-ID"
 msgstr ""
 
 #: admin/dtcrm/product_manager.php:144
 msgid "RAM"
-msgstr ""
+msgstr "Operatīvā atmiņa"
 
-#: client/login.php:6 email/login.php:6
+#: client/login.php:6
+#: email/login.php:6
+#, fuzzy
 msgid "Client panel"
-msgstr ""
+msgstr "Klienta panelis:"
 
-#: client/login.php:6 email/login.php:7
+#: client/login.php:6
+#: email/login.php:7
+#, fuzzy
 msgid "Email panel"
-msgstr ""
+msgstr "E-pasta: "
 
-#: client/login.php:7 client/new_account.php:158 client/new_account.php:413
+#: client/login.php:7
+#: client/new_account.php:158
+#: client/new_account.php:413
 #: email/login.php:8
 msgid "Register a new account"
 msgstr ""
 
-#: client/login.php:8 email/login.php:9
+#: client/login.php:8
+#: email/login.php:9
+#, fuzzy
 msgid "Recover password"
-msgstr ""
+msgstr "Jaunā parole:"
 
-#: client/login.php:13 client/new_account_form.php:574 email/login.php:14
+#: client/login.php:13
+#: client/new_account_form.php:574
+#: email/login.php:14
 #: shared/inc/forms/ftp.php:77
 msgid "Login: "
-msgstr ""
+msgstr "Lietotājvārds:"
 
 #: client/login.php:19
 msgid "Use text menu: "
-msgstr ""
+msgstr "Lietot teksta izvēlni:"
 
 #: client/new_account_form.php:32
 msgid "Not registering"
@@ -2013,28 +2234,23 @@ msgid "Product not found in database"
 msgstr ""
 
 #: client/new_account_form.php:58
-msgid ""
-"User login format incorrect. Please use letters and numbers only and from 4 "
-"to 16 chars."
+msgid "User login format incorrect. Please use letters and numbers only and from 4 to 16 chars."
 msgstr ""
 
 #: client/new_account_form.php:63
-msgid ""
-"Username invalid: please choose something else other than root or debian-sys-"
-"maint"
+msgid "Username invalid: please choose something else other than root or debian-sys-maint"
 msgstr ""
 
 #: client/new_account_form.php:68
-msgid ""
-"Password format incorrect. Please use letters and numbers only and from 4 to "
-"16 chars."
+msgid "Password format incorrect. Please use letters and numbers only and from 4 to 16 chars."
 msgstr ""
 
 #: client/new_account_form.php:73
 msgid "Passwords 1 and 2 do not match!"
 msgstr ""
 
-#: client/new_account_form.php:80 client/new_account_form.php:87
+#: client/new_account_form.php:80
+#: client/new_account_form.php:87
 msgid "Domain name seems to be incorrect."
 msgstr ""
 
@@ -2086,7 +2302,8 @@ msgstr ""
 msgid "Selling conditions not accepted!"
 msgstr ""
 
-#: client/new_account_form.php:253 client/new_account_form.php:261
+#: client/new_account_form.php:253
+#: client/new_account_form.php:261
 msgid "Username already taken! Try again."
 msgstr ""
 
@@ -2098,21 +2315,25 @@ msgstr ""
 msgid "Desired domain name"
 msgstr ""
 
-#: client/new_account_form.php:561 shared/dtcrm/draw_adddomain.php:58
+#: client/new_account_form.php:561
+#: shared/dtcrm/draw_adddomain.php:58
 msgid "VPS location: "
 msgstr ""
 
-#: client/new_account_form.php:566 client/new_account_form.php:567
+#: client/new_account_form.php:566
+#: client/new_account_form.php:567
 #: shared/inc/forms/vps_installation.php:235
 #: shared/inc/forms/vps_installation.php:236
 msgid "network install with debootstrap"
 msgstr ""
 
-#: client/new_account_form.php:568 shared/inc/forms/vps_installation.php:237
+#: client/new_account_form.php:568
+#: shared/inc/forms/vps_installation.php:237
 msgid "network install with yum"
 msgstr ""
 
-#: client/new_account_form.php:569 shared/inc/forms/vps_installation.php:238
+#: client/new_account_form.php:569
+#: shared/inc/forms/vps_installation.php:238
 msgid "network setup with install kernel"
 msgstr ""
 
@@ -2126,11 +2347,11 @@ msgstr ""
 
 #: client/new_account_form.php:650
 msgid "I agree to the"
-msgstr ""
+msgstr "Es piekrītu"
 
 #: client/new_account_form.php:650
 msgid "selling conditions"
-msgstr ""
+msgstr "pārdošanas nosacījumi"
 
 #: client/new_account_form.php:655
 msgid "Go to login"
@@ -2146,21 +2367,22 @@ msgstr ""
 
 #: client/new_account_form.php:726
 msgid "Client info"
-msgstr ""
+msgstr "Informācija par klientu:"
 
-#: client/new_account_form.php:728 shared/gfx/skin/default_layout.php:120
+#: client/new_account_form.php:728
+#: shared/gfx/skin/default_layout.php:120
 #: shared/gfx/skin/bwoup/layout.php:479
 msgid "Customer's address"
-msgstr ""
+msgstr "Klienta rekvizīti"
 
 #: client/new_account_form.php:733
-msgid ""
-"Leave a message describing any specific requirements you might have for your "
-"account:"
+msgid "Leave a message describing any specific requirements you might have for your account:"
 msgstr ""
 
-#: client/new_account.php:36 shared/gfx/skin/default_layout.php:15
-#: shared/gfx/skin/default_layout.php:54 shared/gfx/skin/bwoup/layout.php:244
+#: client/new_account.php:36
+#: shared/gfx/skin/default_layout.php:15
+#: shared/gfx/skin/default_layout.php:54
+#: shared/gfx/skin/bwoup/layout.php:244
 msgid "Language"
 msgstr ""
 
@@ -2176,19 +2398,18 @@ msgstr ""
 msgid "TRANSACTION FINISHED AND APPROVED"
 msgstr ""
 
-#: client/new_account.php:123 client/new_account.php:215
+#: client/new_account.php:123
+#: client/new_account.php:215
 #: client/new_account.php:326
 msgid "Cannot reselect user: registration failed!"
 msgstr ""
 
 #: client/new_account.php:156
 msgid "PAYMENT CANCELLED"
-msgstr ""
+msgstr "APMAKSA ATCELTA"
 
 #: client/new_account.php:157
-msgid ""
-"You have canceled the payment, your account wont be validated. To start "
-"again the registration procedure, follow the link here:"
+msgid "You have canceled the payment, your account wont be validated. To start again the registration procedure, follow the link here:"
 msgstr ""
 
 #: client/new_account.php:162
@@ -2196,12 +2417,11 @@ msgid "PAYMENT FAILED"
 msgstr ""
 
 #: client/new_account.php:163
-msgid ""
-"The payment gateway have reported that your payment has failed. Contact us, "
-"we also accept checks and wire transfers."
+msgid "The payment gateway have reported that your payment has failed. Contact us, we also accept checks and wire transfers."
 msgstr ""
 
-#: client/new_account.php:168 shared/dtcrm/draw_adddomain.php:39
+#: client/new_account.php:168
+#: shared/dtcrm/draw_adddomain.php:39
 msgid "The product ID is not a valid integer number."
 msgstr ""
 
@@ -2217,9 +2437,12 @@ msgstr ""
 msgid "VPS operating system not recognized"
 msgstr ""
 
-#: client/new_account.php:191 client/new_account.php:200
-#: client/new_account.php:256 client/new_account.php:334
-#: client/new_account.php:350 shared/dtcrm/draw_adddomain.php:46
+#: client/new_account.php:191
+#: client/new_account.php:200
+#: client/new_account.php:256
+#: client/new_account.php:334
+#: client/new_account.php:350
+#: shared/dtcrm/draw_adddomain.php:46
 msgid "Cannot reselect product: registration failed!"
 msgstr ""
 
@@ -2231,23 +2454,30 @@ msgstr ""
 msgid "New service registered successfully!"
 msgstr ""
 
-#: client/new_account.php:300 client/new_account.php:395
+#: client/new_account.php:300
+#: client/new_account.php:395
+#, fuzzy
 msgid "Product name:"
-msgstr ""
+msgstr "Produkts: "
 
-#: client/new_account.php:301 client/new_account.php:396
+#: client/new_account.php:301
+#: client/new_account.php:396
+#, fuzzy
 msgid "Product price:"
-msgstr ""
+msgstr "Produkts: "
 
-#: client/new_account.php:302 client/new_account.php:397
+#: client/new_account.php:302
+#: client/new_account.php:397
 msgid "Setup fees:"
 msgstr ""
 
-#: client/new_account.php:303 client/new_account.php:398
+#: client/new_account.php:303
+#: client/new_account.php:398
 msgid "Product net price before VAT and payment gateway:"
 msgstr ""
 
-#: client/new_account.php:304 client/new_account.php:399
+#: client/new_account.php:304
+#: client/new_account.php:399
 msgid "Please now click on the following button to go for payment:"
 msgstr ""
 
@@ -2275,21 +2505,22 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
-#: shared/drawlib/anotherDtc.php:144 shared/drawlib/anotherDtc.php:156
+#: shared/drawlib/anotherDtc.php:144
+#: shared/drawlib/anotherDtc.php:156
 msgid "Take control of your domain name"
-msgstr ""
+msgstr "Pārvaldi savu domēnu"
 
 #: shared/drawlib/cc_code_popup.php:103
 msgid "Afghanistan"
-msgstr ""
+msgstr "Afganistāna"
 
 #: shared/drawlib/cc_code_popup.php:104
 msgid "Albania"
-msgstr ""
+msgstr "Albānija"
 
 #: shared/drawlib/cc_code_popup.php:105
 msgid "Algeria"
-msgstr ""
+msgstr "Alžīrija"
 
 #: shared/drawlib/cc_code_popup.php:106
 msgid "American Samoa"
@@ -2297,15 +2528,15 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:107
 msgid "Andorra"
-msgstr ""
+msgstr "Andora"
 
 #: shared/drawlib/cc_code_popup.php:108
 msgid "Angola"
-msgstr ""
+msgstr "Angola"
 
 #: shared/drawlib/cc_code_popup.php:109
 msgid "Anguilla"
-msgstr ""
+msgstr "Angilja"
 
 #: shared/drawlib/cc_code_popup.php:110
 msgid "Antarctica"
@@ -2313,19 +2544,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:111
 msgid "Antigua And Barbuda"
-msgstr ""
+msgstr "Antigva un Barbuda"
 
 #: shared/drawlib/cc_code_popup.php:112
 msgid "Argentina"
-msgstr ""
+msgstr "Argentīna"
 
 #: shared/drawlib/cc_code_popup.php:113
 msgid "Armenia"
-msgstr ""
+msgstr "Armēnija"
 
 #: shared/drawlib/cc_code_popup.php:114
 msgid "Aruba"
-msgstr ""
+msgstr "Aruba"
 
 #: shared/drawlib/cc_code_popup.php:115
 msgid "Ascension Island"
@@ -2333,11 +2564,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:116
 msgid "Australia"
-msgstr ""
+msgstr "Austrālija"
 
 #: shared/drawlib/cc_code_popup.php:117
 msgid "Austria"
-msgstr ""
+msgstr "Austrija"
 
 #: shared/drawlib/cc_code_popup.php:118
 msgid "Azerbaijan"
@@ -2345,51 +2576,51 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:119
 msgid "Bahamas"
-msgstr ""
+msgstr "Bahamas"
 
 #: shared/drawlib/cc_code_popup.php:120
 msgid "Bahrain"
-msgstr ""
+msgstr "Bahreina"
 
 #: shared/drawlib/cc_code_popup.php:121
 msgid "Bangladesh"
-msgstr ""
+msgstr "Bangladeša"
 
 #: shared/drawlib/cc_code_popup.php:122
 msgid "Barbados"
-msgstr ""
+msgstr "Barbadosa"
 
 #: shared/drawlib/cc_code_popup.php:123
 msgid "Belgium"
-msgstr ""
+msgstr "Beļģija"
 
 #: shared/drawlib/cc_code_popup.php:124
 msgid "Belize"
-msgstr ""
+msgstr "Beliza"
 
 #: shared/drawlib/cc_code_popup.php:125
 msgid "Benin"
-msgstr ""
+msgstr "Benina"
 
 #: shared/drawlib/cc_code_popup.php:126
 msgid "Bermuda"
-msgstr ""
+msgstr "Bermudu salas"
 
 #: shared/drawlib/cc_code_popup.php:127
 msgid "Bhutan"
-msgstr ""
+msgstr "Butāna"
 
 #: shared/drawlib/cc_code_popup.php:128
 msgid "Bolivia"
-msgstr ""
+msgstr "Bolīvija"
 
 #: shared/drawlib/cc_code_popup.php:129
 msgid "Bosnia Hercegovina"
-msgstr ""
+msgstr "Bosnija un Hercegovina"
 
 #: shared/drawlib/cc_code_popup.php:130
 msgid "Botswana"
-msgstr ""
+msgstr "Botsvāna"
 
 #: shared/drawlib/cc_code_popup.php:131
 msgid "Bouvet Island"
@@ -2397,7 +2628,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:132
 msgid "Brazil"
-msgstr ""
+msgstr "Brazīlija"
 
 #: shared/drawlib/cc_code_popup.php:133
 msgid "British Indian Ocean Territory"
@@ -2409,15 +2640,15 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:135
 msgid "Bulgaria"
-msgstr ""
+msgstr "Bulgārija"
 
 #: shared/drawlib/cc_code_popup.php:136
 msgid "Burkina Faso"
-msgstr ""
+msgstr "Burkina Faso"
 
 #: shared/drawlib/cc_code_popup.php:137
 msgid "Burundi"
-msgstr ""
+msgstr "Burundi"
 
 #: shared/drawlib/cc_code_popup.php:138
 msgid "Byelorussian SSR"
@@ -2425,23 +2656,23 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:139
 msgid "Cambodia"
-msgstr ""
+msgstr "Kambodža"
 
 #: shared/drawlib/cc_code_popup.php:140
 msgid "Cameroon"
-msgstr ""
+msgstr "Kamerūna"
 
 #: shared/drawlib/cc_code_popup.php:141
 msgid "Canada"
-msgstr ""
+msgstr "Kanāda"
 
 #: shared/drawlib/cc_code_popup.php:142
 msgid "Cape Verde"
-msgstr ""
+msgstr "Kaboverde"
 
 #: shared/drawlib/cc_code_popup.php:143
 msgid "Cayman Islands"
-msgstr ""
+msgstr "Kaimanu salas"
 
 #: shared/drawlib/cc_code_popup.php:144
 msgid "Central African Republic"
@@ -2449,15 +2680,15 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:145
 msgid "Chad"
-msgstr ""
+msgstr "Čada"
 
 #: shared/drawlib/cc_code_popup.php:146
 msgid "Chile"
-msgstr ""
+msgstr "Čīle"
 
 #: shared/drawlib/cc_code_popup.php:147
 msgid "China"
-msgstr ""
+msgstr "Ķīna"
 
 #: shared/drawlib/cc_code_popup.php:148
 msgid "Christmas Island"
@@ -2469,7 +2700,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:150
 msgid "Colombia"
-msgstr ""
+msgstr "Kolumbija"
 
 #: shared/drawlib/cc_code_popup.php:151
 msgid "Comoros"
@@ -2477,7 +2708,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:152
 msgid "Congo"
-msgstr ""
+msgstr "Kongo"
 
 #: shared/drawlib/cc_code_popup.php:153
 msgid "Congo, The Democratic Republic Of"
@@ -2485,11 +2716,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:154
 msgid "Cook Islands"
-msgstr ""
+msgstr "Kuka salas"
 
 #: shared/drawlib/cc_code_popup.php:155
 msgid "Costa Rica"
-msgstr ""
+msgstr "Kostarika"
 
 #: shared/drawlib/cc_code_popup.php:156
 msgid "Cote D'Ivoire"
@@ -2497,15 +2728,15 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:157
 msgid "Croatia"
-msgstr ""
+msgstr "Horvātija"
 
 #: shared/drawlib/cc_code_popup.php:158
 msgid "Cuba"
-msgstr ""
+msgstr "Kuba"
 
 #: shared/drawlib/cc_code_popup.php:159
 msgid "Cyprus"
-msgstr ""
+msgstr "Kipra"
 
 #: shared/drawlib/cc_code_popup.php:160
 msgid "Czech Republic"
@@ -2513,19 +2744,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:161
 msgid "Czechoslovakia"
-msgstr ""
+msgstr "Čehoslovākija"
 
 #: shared/drawlib/cc_code_popup.php:162
 msgid "Denmark"
-msgstr ""
+msgstr "Dānija"
 
 #: shared/drawlib/cc_code_popup.php:163
 msgid "Djibouti"
-msgstr ""
+msgstr "Džibutija"
 
 #: shared/drawlib/cc_code_popup.php:164
 msgid "Dominica"
-msgstr ""
+msgstr "Dominika"
 
 #: shared/drawlib/cc_code_popup.php:165
 msgid "Dominican Republic"
@@ -2533,35 +2764,35 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:166
 msgid "East Timor"
-msgstr ""
+msgstr "Austrumtimoras Demokrātiskā Republika"
 
 #: shared/drawlib/cc_code_popup.php:167
 msgid "Ecuador"
-msgstr ""
+msgstr "Ekvadora"
 
 #: shared/drawlib/cc_code_popup.php:168
 msgid "Egypt"
-msgstr ""
+msgstr "Ēģipte"
 
 #: shared/drawlib/cc_code_popup.php:169
 msgid "El Salvador"
-msgstr ""
+msgstr "Salvadora"
 
 #: shared/drawlib/cc_code_popup.php:170
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "Ekvatoriālā Gvineja"
 
 #: shared/drawlib/cc_code_popup.php:171
 msgid "Eritrea"
-msgstr ""
+msgstr "Eritreja"
 
 #: shared/drawlib/cc_code_popup.php:172
 msgid "Estonia"
-msgstr ""
+msgstr "Igaunija"
 
 #: shared/drawlib/cc_code_popup.php:173
 msgid "Ethiopia"
-msgstr ""
+msgstr "Etiopija"
 
 #: shared/drawlib/cc_code_popup.php:174
 msgid "Falkland Islands (Malvinas)"
@@ -2569,19 +2800,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:175
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Fēru salas"
 
 #: shared/drawlib/cc_code_popup.php:176
 msgid "Fiji"
-msgstr ""
+msgstr "Fidži"
 
 #: shared/drawlib/cc_code_popup.php:177
 msgid "Finland"
-msgstr ""
+msgstr "Somija"
 
 #: shared/drawlib/cc_code_popup.php:178
 msgid "France"
-msgstr ""
+msgstr "Francija"
 
 #: shared/drawlib/cc_code_popup.php:179
 msgid "France, Metropolitan"
@@ -2589,11 +2820,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:180
 msgid "French Guiana"
-msgstr ""
+msgstr "Franču Gviāna"
 
 #: shared/drawlib/cc_code_popup.php:181
 msgid "French Polynesia"
-msgstr ""
+msgstr "Franču Polinēzija"
 
 #: shared/drawlib/cc_code_popup.php:182
 msgid "French Southern Territories"
@@ -2601,11 +2832,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:183
 msgid "Gabon"
-msgstr ""
+msgstr "Gabona"
 
 #: shared/drawlib/cc_code_popup.php:184
 msgid "Gambia"
-msgstr ""
+msgstr "Gambija"
 
 #: shared/drawlib/cc_code_popup.php:185
 msgid "Georgia"
@@ -2613,43 +2844,43 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:186
 msgid "Germany"
-msgstr ""
+msgstr "Vācija"
 
 #: shared/drawlib/cc_code_popup.php:187
 msgid "Ghana"
-msgstr ""
+msgstr "Gana"
 
 #: shared/drawlib/cc_code_popup.php:188
 msgid "Gibraltar"
-msgstr ""
+msgstr "Gibraltārs"
 
 #: shared/drawlib/cc_code_popup.php:189
 msgid "Great Britain"
-msgstr ""
+msgstr "Lielbritānija"
 
 #: shared/drawlib/cc_code_popup.php:190
 msgid "Greece"
-msgstr ""
+msgstr "Grieķija"
 
 #: shared/drawlib/cc_code_popup.php:191
 msgid "Greenland"
-msgstr ""
+msgstr "Grenlande"
 
 #: shared/drawlib/cc_code_popup.php:192
 msgid "Grenada"
-msgstr ""
+msgstr "Grenāda"
 
 #: shared/drawlib/cc_code_popup.php:193
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Gvadelupa"
 
 #: shared/drawlib/cc_code_popup.php:194
 msgid "Guam"
-msgstr ""
+msgstr "Guama"
 
 #: shared/drawlib/cc_code_popup.php:195
 msgid "Guatemela"
-msgstr ""
+msgstr "Gvatemala"
 
 #: shared/drawlib/cc_code_popup.php:196
 msgid "Guernsey"
@@ -2661,7 +2892,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:198
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "Gvineja-Bisava"
 
 #: shared/drawlib/cc_code_popup.php:199
 msgid "Guyana"
@@ -2669,7 +2900,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:200
 msgid "Haiti"
-msgstr ""
+msgstr "Haiti"
 
 #: shared/drawlib/cc_code_popup.php:201
 msgid "Heard and McDonald Islands"
@@ -2677,27 +2908,27 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:202
 msgid "Honduras"
-msgstr ""
+msgstr "Hondurasa"
 
 #: shared/drawlib/cc_code_popup.php:203
 msgid "Hong Kong"
-msgstr ""
+msgstr "Honkonga"
 
 #: shared/drawlib/cc_code_popup.php:204
 msgid "Hungary"
-msgstr ""
+msgstr "Ungārija"
 
 #: shared/drawlib/cc_code_popup.php:205
 msgid "Iceland"
-msgstr ""
+msgstr "Islande"
 
 #: shared/drawlib/cc_code_popup.php:206
 msgid "India"
-msgstr ""
+msgstr "Indija"
 
 #: shared/drawlib/cc_code_popup.php:207
 msgid "Indonesia"
-msgstr ""
+msgstr "Indonēzija"
 
 #: shared/drawlib/cc_code_popup.php:208
 msgid "Iran (Islamic Republic Of)"
@@ -2705,31 +2936,31 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:209
 msgid "Iraq"
-msgstr ""
+msgstr "Irāka"
 
 #: shared/drawlib/cc_code_popup.php:210
 msgid "Ireland"
-msgstr ""
+msgstr "Ireland"
 
 #: shared/drawlib/cc_code_popup.php:211
 msgid "Isle Of Man"
-msgstr ""
+msgstr "Mena"
 
 #: shared/drawlib/cc_code_popup.php:212
 msgid "Israel"
-msgstr ""
+msgstr "Izraēla"
 
 #: shared/drawlib/cc_code_popup.php:213
 msgid "Italy"
-msgstr ""
+msgstr "Itālija"
 
 #: shared/drawlib/cc_code_popup.php:214
 msgid "Jamaica"
-msgstr ""
+msgstr "Jamaika"
 
 #: shared/drawlib/cc_code_popup.php:215
 msgid "Japan"
-msgstr ""
+msgstr "Japāna"
 
 #: shared/drawlib/cc_code_popup.php:216
 msgid "Jersey"
@@ -2737,19 +2968,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:217
 msgid "Jordan"
-msgstr ""
+msgstr "Jordānija"
 
 #: shared/drawlib/cc_code_popup.php:218
 msgid "Kazakhstan"
-msgstr ""
+msgstr "Kazahstana"
 
 #: shared/drawlib/cc_code_popup.php:219
 msgid "Kenya"
-msgstr ""
+msgstr "Kenija"
 
 #: shared/drawlib/cc_code_popup.php:220
 msgid "Kiribati"
-msgstr ""
+msgstr "Kiribati Republika"
 
 #: shared/drawlib/cc_code_popup.php:221
 msgid "Korea, Democratic People's Republic Of"
@@ -2761,11 +2992,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:223
 msgid "Kuwait"
-msgstr ""
+msgstr "Kuveita"
 
 #: shared/drawlib/cc_code_popup.php:224
 msgid "Kyrgyzstan"
-msgstr ""
+msgstr "Kirgīzija"
 
 #: shared/drawlib/cc_code_popup.php:225
 msgid "Lao People's Democratic Republic"
@@ -2773,19 +3004,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:226
 msgid "Latvia"
-msgstr ""
+msgstr "Latvija"
 
 #: shared/drawlib/cc_code_popup.php:227
 msgid "Lebanon"
-msgstr ""
+msgstr "Libāna"
 
 #: shared/drawlib/cc_code_popup.php:228
 msgid "Lesotho"
-msgstr ""
+msgstr "Lesoto"
 
 #: shared/drawlib/cc_code_popup.php:229
 msgid "Liberia"
-msgstr ""
+msgstr "Libērija"
 
 #: shared/drawlib/cc_code_popup.php:230
 msgid "Libyan Arab Jamahiriya"
@@ -2793,47 +3024,47 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:231
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Lihtenšteina"
 
 #: shared/drawlib/cc_code_popup.php:232
 msgid "Lithuania"
-msgstr ""
+msgstr "Lietuva"
 
 #: shared/drawlib/cc_code_popup.php:233
 msgid "Luxembourg"
-msgstr ""
+msgstr "Luksemburga"
 
 #: shared/drawlib/cc_code_popup.php:234
 msgid "Macau"
-msgstr ""
+msgstr "Makao"
 
 #: shared/drawlib/cc_code_popup.php:235
 msgid "Macedonia"
-msgstr ""
+msgstr "Maķedonija"
 
 #: shared/drawlib/cc_code_popup.php:236
 msgid "Madagascar"
-msgstr ""
+msgstr "Madagaskara"
 
 #: shared/drawlib/cc_code_popup.php:237
 msgid "Malawi"
-msgstr ""
+msgstr "Malāvija"
 
 #: shared/drawlib/cc_code_popup.php:238
 msgid "Malaysia"
-msgstr ""
+msgstr "Malaizija"
 
 #: shared/drawlib/cc_code_popup.php:239
 msgid "Maldives"
-msgstr ""
+msgstr "Maldīvijas Republika"
 
 #: shared/drawlib/cc_code_popup.php:240
 msgid "Mali"
-msgstr ""
+msgstr "Mali"
 
 #: shared/drawlib/cc_code_popup.php:241
 msgid "Malta"
-msgstr ""
+msgstr "Malta"
 
 #: shared/drawlib/cc_code_popup.php:242
 msgid "Marshall Islands"
@@ -2845,19 +3076,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:244
 msgid "Mauritania"
-msgstr ""
+msgstr "Mauretānija"
 
 #: shared/drawlib/cc_code_popup.php:245
 msgid "Mauritius"
-msgstr ""
+msgstr "Maurīcija"
 
 #: shared/drawlib/cc_code_popup.php:246
 msgid "Mayotte"
-msgstr ""
+msgstr "Majota"
 
 #: shared/drawlib/cc_code_popup.php:247
 msgid "Mexico"
-msgstr ""
+msgstr "Meksika"
 
 #: shared/drawlib/cc_code_popup.php:248
 msgid "Micronesia, Federated States Of"
@@ -2869,15 +3100,15 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:250
 msgid "Monaco"
-msgstr ""
+msgstr "Monako"
 
 #: shared/drawlib/cc_code_popup.php:251
 msgid "Mongolia"
-msgstr ""
+msgstr "Mongolija"
 
 #: shared/drawlib/cc_code_popup.php:252
 msgid "Montserrat"
-msgstr ""
+msgstr "Montserrata"
 
 #: shared/drawlib/cc_code_popup.php:253
 msgid "Morocco"
@@ -2885,23 +3116,23 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:254
 msgid "Mozambique"
-msgstr ""
+msgstr "Mozambika"
 
 #: shared/drawlib/cc_code_popup.php:255
 msgid "Myanmar"
-msgstr ""
+msgstr "Mjanma"
 
 #: shared/drawlib/cc_code_popup.php:256
 msgid "Namibia"
-msgstr ""
+msgstr "Namībija"
 
 #: shared/drawlib/cc_code_popup.php:257
 msgid "Nauru"
-msgstr ""
+msgstr "Nauru"
 
 #: shared/drawlib/cc_code_popup.php:258
 msgid "Nepal"
-msgstr ""
+msgstr "Nepāla"
 
 #: shared/drawlib/cc_code_popup.php:259
 msgid "Netherlands"
@@ -2917,27 +3148,27 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:262
 msgid "New Caledonia"
-msgstr ""
+msgstr "Jaunkaledonija"
 
 #: shared/drawlib/cc_code_popup.php:263
 msgid "New Zealand"
-msgstr ""
+msgstr "Jaunzēlande"
 
 #: shared/drawlib/cc_code_popup.php:264
 msgid "Nicaragua"
-msgstr ""
+msgstr "Nikaragva"
 
 #: shared/drawlib/cc_code_popup.php:265
 msgid "Niger"
-msgstr ""
+msgstr "Nigēra"
 
 #: shared/drawlib/cc_code_popup.php:266
 msgid "Nigeria"
-msgstr ""
+msgstr "Nigērija"
 
 #: shared/drawlib/cc_code_popup.php:267
 msgid "Niue"
-msgstr ""
+msgstr "Niue"
 
 #: shared/drawlib/cc_code_popup.php:268
 msgid "Norfolk Island"
@@ -2949,39 +3180,39 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:270
 msgid "Norway"
-msgstr ""
+msgstr "Norvēģija"
 
 #: shared/drawlib/cc_code_popup.php:271
 msgid "Oman"
-msgstr ""
+msgstr "Omāna"
 
 #: shared/drawlib/cc_code_popup.php:272
 msgid "Pakistan"
-msgstr ""
+msgstr "Pakistāna"
 
 #: shared/drawlib/cc_code_popup.php:273
 msgid "Palau"
-msgstr ""
+msgstr "Palau"
 
 #: shared/drawlib/cc_code_popup.php:274
 msgid "Palestine"
-msgstr ""
+msgstr "Palestīna"
 
 #: shared/drawlib/cc_code_popup.php:275
 msgid "Panama"
-msgstr ""
+msgstr "Panama"
 
 #: shared/drawlib/cc_code_popup.php:276
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Papua-Jaungvineja"
 
 #: shared/drawlib/cc_code_popup.php:277
 msgid "Paraguay"
-msgstr ""
+msgstr "Paragvaja"
 
 #: shared/drawlib/cc_code_popup.php:278
 msgid "Peru"
-msgstr ""
+msgstr "Peru"
 
 #: shared/drawlib/cc_code_popup.php:279
 msgid "Philippines"
@@ -2993,15 +3224,15 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:281
 msgid "Poland"
-msgstr ""
+msgstr "Polija"
 
 #: shared/drawlib/cc_code_popup.php:282
 msgid "Portugal"
-msgstr ""
+msgstr "Portugāle"
 
 #: shared/drawlib/cc_code_popup.php:283
 msgid "Puerto Rico"
-msgstr ""
+msgstr "Puertoriko"
 
 #: shared/drawlib/cc_code_popup.php:284
 msgid "Qatar"
@@ -3013,15 +3244,15 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:286
 msgid "Romania"
-msgstr ""
+msgstr "Rumānija"
 
 #: shared/drawlib/cc_code_popup.php:287
 msgid "Russian Federation"
-msgstr ""
+msgstr "Krievija"
 
 #: shared/drawlib/cc_code_popup.php:288
 msgid "Rwanda"
-msgstr ""
+msgstr "Ruanda"
 
 #: shared/drawlib/cc_code_popup.php:289
 msgid "Saint Helena"
@@ -3033,15 +3264,15 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:291
 msgid "Saint Lucia"
-msgstr ""
+msgstr "Sentlūsija"
 
 #: shared/drawlib/cc_code_popup.php:292
 msgid "Saint Pierre and Miquelon"
-msgstr ""
+msgstr "Senpjēra un Mikelona"
 
 #: shared/drawlib/cc_code_popup.php:293
 msgid "Saint Vincent and The Grenadines"
-msgstr ""
+msgstr "Sentvinsenta un Grenadīnas"
 
 #: shared/drawlib/cc_code_popup.php:294
 msgid "Samoa"
@@ -3049,7 +3280,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:295
 msgid "San Marino"
-msgstr ""
+msgstr "Sanmarīno"
 
 #: shared/drawlib/cc_code_popup.php:296
 msgid "Sao Tome and Principe"
@@ -3057,35 +3288,35 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:297
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "Saūda Arābija"
 
 #: shared/drawlib/cc_code_popup.php:298
 msgid "Senegal"
-msgstr ""
+msgstr "Senegāla"
 
 #: shared/drawlib/cc_code_popup.php:299
 msgid "Serbia"
-msgstr ""
+msgstr "Serbija"
 
 #: shared/drawlib/cc_code_popup.php:300
 msgid "Seychelles"
-msgstr ""
+msgstr "Seišelu salas"
 
 #: shared/drawlib/cc_code_popup.php:301
 msgid "Sierra Leone"
-msgstr ""
+msgstr "Sjerraleone"
 
 #: shared/drawlib/cc_code_popup.php:302
 msgid "Singapore"
-msgstr ""
+msgstr "Singapūra"
 
 #: shared/drawlib/cc_code_popup.php:303
 msgid "Slovakia"
-msgstr ""
+msgstr "Slovākija"
 
 #: shared/drawlib/cc_code_popup.php:304
 msgid "Slovenia"
-msgstr ""
+msgstr "Slovēnija"
 
 #: shared/drawlib/cc_code_popup.php:305
 msgid "Solomon Islands"
@@ -3093,7 +3324,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:306
 msgid "Somalia"
-msgstr ""
+msgstr "Somālija"
 
 #: shared/drawlib/cc_code_popup.php:307
 msgid "South Africa"
@@ -3105,19 +3336,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:309
 msgid "Spain"
-msgstr ""
+msgstr "Spānija"
 
 #: shared/drawlib/cc_code_popup.php:310
 msgid "Sri Lanka"
-msgstr ""
+msgstr "Šrilanka"
 
 #: shared/drawlib/cc_code_popup.php:311
 msgid "Sudan"
-msgstr ""
+msgstr "Sudāna"
 
 #: shared/drawlib/cc_code_popup.php:312
 msgid "Suriname"
-msgstr ""
+msgstr "Surinama"
 
 #: shared/drawlib/cc_code_popup.php:313
 msgid "Svalbard and Jan Mayen Islands"
@@ -3125,15 +3356,15 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:314
 msgid "Swaziland"
-msgstr ""
+msgstr "Svazilenda"
 
 #: shared/drawlib/cc_code_popup.php:315
 msgid "Sweden"
-msgstr ""
+msgstr "Zviedrija"
 
 #: shared/drawlib/cc_code_popup.php:316
 msgid "Switzerland"
-msgstr ""
+msgstr "Šveice"
 
 #: shared/drawlib/cc_code_popup.php:317
 msgid "Syrian Arab Republic"
@@ -3141,11 +3372,11 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:318
 msgid "Taiwan"
-msgstr ""
+msgstr "Taivana"
 
 #: shared/drawlib/cc_code_popup.php:319
 msgid "Tajikista"
-msgstr ""
+msgstr "Tadžikistāna"
 
 #: shared/drawlib/cc_code_popup.php:320
 msgid "Tanzania, United Republic Of"
@@ -3153,19 +3384,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:321
 msgid "Thailand"
-msgstr ""
+msgstr "Taizeme"
 
 #: shared/drawlib/cc_code_popup.php:322
 msgid "Togo"
-msgstr ""
+msgstr "Togo"
 
 #: shared/drawlib/cc_code_popup.php:323
 msgid "Tokelau"
-msgstr ""
+msgstr "Tokelau"
 
 #: shared/drawlib/cc_code_popup.php:324
 msgid "Tonga"
-msgstr ""
+msgstr "Tongas Karaliste"
 
 #: shared/drawlib/cc_code_popup.php:325
 msgid "Trinidad and Tobago"
@@ -3173,15 +3404,15 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:326
 msgid "Tunisia"
-msgstr ""
+msgstr "Tunisija"
 
 #: shared/drawlib/cc_code_popup.php:327
 msgid "Turkey"
-msgstr ""
+msgstr "Turcija"
 
 #: shared/drawlib/cc_code_popup.php:328
 msgid "Turkmenistan"
-msgstr ""
+msgstr "Turkmenistāna"
 
 #: shared/drawlib/cc_code_popup.php:329
 msgid "Turks and Caicos Islands"
@@ -3189,7 +3420,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:330
 msgid "Tuvalu"
-msgstr ""
+msgstr "Tuvalu"
 
 #: shared/drawlib/cc_code_popup.php:331
 msgid "USSR"
@@ -3197,19 +3428,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:332
 msgid "Uganda"
-msgstr ""
+msgstr "Uganda"
 
 #: shared/drawlib/cc_code_popup.php:333
 msgid "Ukraine"
-msgstr ""
+msgstr "Ukraina"
 
 #: shared/drawlib/cc_code_popup.php:334
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "Apvienotie Arābu Emirāti"
 
 #: shared/drawlib/cc_code_popup.php:335
 msgid "United Kingdom"
-msgstr ""
+msgstr "Apvienotā karaliste"
 
 #: shared/drawlib/cc_code_popup.php:336
 msgid "United States"
@@ -3221,15 +3452,15 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:338
 msgid "Uruguay"
-msgstr ""
+msgstr "Urugvaja"
 
 #: shared/drawlib/cc_code_popup.php:339
 msgid "Uzbekistan"
-msgstr ""
+msgstr "Uzbekija"
 
 #: shared/drawlib/cc_code_popup.php:340
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu Republika"
 
 #: shared/drawlib/cc_code_popup.php:341
 msgid "Vatican City State"
@@ -3237,19 +3468,19 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:342
 msgid "Venezuela"
-msgstr ""
+msgstr "Venecuēla"
 
 #: shared/drawlib/cc_code_popup.php:343
 msgid "Vietnam"
-msgstr ""
+msgstr "Vjetnama"
 
 #: shared/drawlib/cc_code_popup.php:344
 msgid "Virgin Islands (British)"
-msgstr ""
+msgstr "Virdžīnu salas (Britu)"
 
 #: shared/drawlib/cc_code_popup.php:345
 msgid "Virgin Islands (U.S.)"
-msgstr ""
+msgstr "Virdžīnu salas (ASV)"
 
 #: shared/drawlib/cc_code_popup.php:346
 msgid "Wallis and Futuna Islands"
@@ -3261,36 +3492,37 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:348
 msgid "Western Sahara"
-msgstr ""
+msgstr "Rietumsahāra"
 
 #: shared/drawlib/cc_code_popup.php:349
 msgid "Yemen, Republic of"
-msgstr ""
+msgstr "Jemena"
 
 #: shared/drawlib/cc_code_popup.php:350
 msgid "Yugoslavia"
-msgstr ""
+msgstr "Dienvidslāvija"
 
 #: shared/drawlib/cc_code_popup.php:351
 msgid "Zaire"
-msgstr ""
+msgstr "Zaira"
 
 #: shared/drawlib/cc_code_popup.php:352
 msgid "Zambia"
-msgstr ""
+msgstr "Zambija"
 
 #: shared/drawlib/cc_code_popup.php:353
 msgid "Zimbabwe"
-msgstr ""
+msgstr "Zimbabve"
 
 #: shared/drawlib/dtc_functions.php:845
 msgid "GBytes"
-msgstr ""
+msgstr "Gigabaiti"
 
-#: shared/drawlib/dtc_functions.php:846 shared/inc/forms/email.php:587
+#: shared/drawlib/dtc_functions.php:846
+#: shared/inc/forms/email.php:587
 #: shared/inc/forms/email.php:594
 msgid "MBytes"
-msgstr ""
+msgstr "Megabaiti"
 
 #: shared/drawlib/dtc_functions.php:847
 msgid "kBytes"
@@ -3304,7 +3536,8 @@ msgstr ""
 msgid "VPS OS: "
 msgstr ""
 
-#: shared/dtcrm/draw_adddomain.php:67 shared/dtcrm/draw_adddomain.php:99
+#: shared/dtcrm/draw_adddomain.php:67
+#: shared/dtcrm/draw_adddomain.php:99
 msgid "Add another service to your account:"
 msgstr ""
 
@@ -3325,10 +3558,7 @@ msgid "Hosting only"
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:130
-msgid ""
-"You curently don't have enough privileges to add domain names. If you often "
-"add domain names, you can ask the administrator to do so. To request hosting "
-"for a new domain without domain name registration, please write to:"
+msgid "You curently don't have enough privileges to add domain names. If you often add domain names, you can ask the administrator to do so. To request hosting for a new domain without domain name registration, please write to:"
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:134
@@ -3348,13 +3578,7 @@ msgid "Your domain name will be soon validated:"
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:151
-msgid ""
-"An administrator will examine your request shortly, and validate the "
-"addition of this domain name to your account. You curently don't have enough "
-"privileges to add domain names. If you often add domain names, you can ask "
-"the administrator to grant you the privilege of automatic domain name "
-"addition. To request hosting for a new domain name, without administrator "
-"validation or domain name registration, please write to:"
+msgid "An administrator will examine your request shortly, and validate the addition of this domain name to your account. You curently don't have enough privileges to add domain names. If you often add domain names, you can ask the administrator to grant you the privilege of automatic domain name addition. To request hosting for a new domain name, without administrator validation or domain name registration, please write to:"
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:154
@@ -3363,7 +3587,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:160
 msgid "Your domain name is now ready:"
-msgstr ""
+msgstr "Jūsu domēna vārds gatavs:"
 
 #: shared/dtcrm/draw_adddomain.php:161
 msgid "Now you can go to check its configuration by clicking here:"
@@ -3398,8 +3622,7 @@ msgid "Enter the domain name you want to register:"
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:199
-msgid ""
-"Could not connect to domain registration server: please try again later!"
+msgid "Could not connect to domain registration server: please try again later!"
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:206
@@ -3416,16 +3639,14 @@ msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:233
 msgid "year"
-msgstr ""
+msgstr "gads"
 
 #: shared/dtcrm/draw_adddomain.php:234
 msgid "years"
-msgstr ""
+msgstr "gadi"
 
 #: shared/dtcrm/draw_adddomain.php:235
-msgid ""
-"Please select the 3 contact handles you want to use for registering that "
-"domain name."
+msgid "Please select the 3 contact handles you want to use for registering that domain name."
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:238
@@ -3436,7 +3657,8 @@ msgstr ""
 msgid "Step 3: Proceed to registration"
 msgstr ""
 
-#: shared/dtcrm/draw_adddomain.php:287 shared/dtcrm/draw_transferdomain.php:94
+#: shared/dtcrm/draw_adddomain.php:287
+#: shared/dtcrm/draw_transferdomain.php:94
 msgid "You don't have a client ID. Please contact us."
 msgstr ""
 
@@ -3450,11 +3672,10 @@ msgstr ""
 msgid "Total price: "
 msgstr ""
 
-#: shared/dtcrm/draw_adddomain.php:310 shared/dtcrm/draw.php:155
+#: shared/dtcrm/draw_adddomain.php:310
+#: shared/dtcrm/draw.php:155
 #: shared/dtcrm/draw_transferdomain.php:135
-msgid ""
-"You currently don't have enough funds on your account. You will be "
-"redirected to our payment system. Please click on the button below to pay."
+msgid "You currently don't have enough funds on your account. You will be redirected to our payment system. Please click on the button below to pay."
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:312
@@ -3462,9 +3683,7 @@ msgid "Payment complete. Proceed to checkout"
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:319
-msgid ""
-"You have enough funds on your account to proceed with registration. Press "
-"the confirm button to proceed."
+msgid "You have enough funds on your account to proceed with registration. Press the confirm button to proceed."
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:322
@@ -3475,9 +3694,12 @@ msgstr ""
 msgid "Registration failed"
 msgstr ""
 
-#: shared/dtcrm/draw_adddomain.php:336 shared/dtcrm/draw_nameservers.php:23
-#: shared/dtcrm/draw_nameservers.php:43 shared/dtcrm/draw_nameservers.php:51
-#: shared/dtcrm/draw_nameservers.php:60 shared/dtcrm/draw_nameservers.php:69
+#: shared/dtcrm/draw_adddomain.php:336
+#: shared/dtcrm/draw_nameservers.php:23
+#: shared/dtcrm/draw_nameservers.php:43
+#: shared/dtcrm/draw_nameservers.php:51
+#: shared/dtcrm/draw_nameservers.php:60
+#: shared/dtcrm/draw_nameservers.php:69
 #: shared/dtcrm/draw_nameservers.php:75
 #: shared/dtcrm/draw_transferdomain.php:62
 msgid "Server said: "
@@ -3488,12 +3710,14 @@ msgid "Successfully added your domain name to the hosting database"
 msgstr ""
 
 #: shared/dtcrm/draw_adddomain.php:362
+#, fuzzy
 msgid "Click"
-msgstr ""
+msgstr "Klikšķis"
 
-#: shared/dtcrm/draw_adddomain.php:362 shared/dtcrm/draw_whois.php:50
+#: shared/dtcrm/draw_adddomain.php:362
+#: shared/dtcrm/draw_whois.php:50
 msgid "here"
-msgstr ""
+msgstr "šeit"
 
 #: shared/dtcrm/draw_adddomain.php:362
 msgid "to refresh the menu or add another domain name."
@@ -3512,8 +3736,7 @@ msgid "Who will be contacted for domain renewall (billing contact)?"
 msgstr ""
 
 #: shared/dtcrm/draw_handle.php:105
-msgid ""
-"Who will have the rights for changing the whois information (admin contact)?"
+msgid "Who will have the rights for changing the whois information (admin contact)?"
 msgstr ""
 
 #: shared/dtcrm/draw_handle.php:199
@@ -3528,10 +3751,11 @@ msgstr ""
 msgid "Name for this handle: "
 msgstr ""
 
-#: shared/dtcrm/draw_handle.php:238 shared/dtcrm/draw_handle.php:241
+#: shared/dtcrm/draw_handle.php:238
+#: shared/dtcrm/draw_handle.php:241
 #: shared/dtcrm/draw_handle.php:259
 msgid "optional"
-msgstr ""
+msgstr "neobligāts"
 
 #: shared/dtcrm/draw_handle.php:244
 msgid "if applicable"
@@ -3539,7 +3763,7 @@ msgstr ""
 
 #: shared/dtcrm/draw_handle.php:256
 msgid "+1.XXXXXXXXXX format"
-msgstr ""
+msgstr "+1.XXXXXXXXXX formāts"
 
 #: shared/dtcrm/draw_handle.php:262
 msgid "This MUST be a valid address"
@@ -3581,7 +3805,8 @@ msgstr ""
 msgid "Name server hostname: "
 msgstr ""
 
-#: shared/dtcrm/draw_nameservers.php:109 shared/dtcrm/draw_nameservers.php:142
+#: shared/dtcrm/draw_nameservers.php:109
+#: shared/dtcrm/draw_nameservers.php:142
 msgid "IP address of name server:"
 msgstr ""
 
@@ -3598,9 +3823,7 @@ msgid "What subzone do you want to use (example: ns1):"
 msgstr ""
 
 #: shared/dtcrm/draw_nameservers.php:135
-msgid ""
-"Select one of your domain-names for registering an additional name server to "
-"the registries:"
+msgid "Select one of your domain-names for registering an additional name server to the registries:"
 msgstr ""
 
 #: shared/dtcrm/draw.php:40
@@ -3621,7 +3844,7 @@ msgstr ""
 
 #: shared/dtcrm/draw.php:69
 msgid "Your past account was: "
-msgstr ""
+msgstr "Jūsu iepriekšējais konts bija: "
 
 #: shared/dtcrm/draw.php:70
 msgid "Refund"
@@ -3641,12 +3864,10 @@ msgstr ""
 
 #: shared/dtcrm/draw.php:71
 msgid " remaining to be paid"
-msgstr ""
+msgstr " atlikušas, kai samaksātu"
 
 #: shared/dtcrm/draw.php:73
-msgid ""
-"You currently don't have a validated account. Please contact customer "
-"support."
+msgid "You currently don't have a validated account. Please contact customer support."
 msgstr ""
 
 #: shared/dtcrm/draw.php:76
@@ -3678,9 +3899,7 @@ msgid "Bandwidth/month"
 msgstr ""
 
 #: shared/dtcrm/draw.php:164
-msgid ""
-"You have enough funds on your account to proceed account upgrade. Press the "
-"confirm button and your order will be proceeded."
+msgid "You have enough funds on your account to proceed account upgrade. Press the confirm button and your order will be proceeded."
 msgstr ""
 
 #: shared/dtcrm/draw.php:167
@@ -3729,15 +3948,11 @@ msgid "Your account has been credited!"
 msgstr ""
 
 #: shared/dtcrm/draw_whois.php:49
-msgid ""
-"Your domain name has been registred elsewhere (i.e. not on this site). To "
-"order its transfer, please click "
+msgid "Your domain name has been registred elsewhere (i.e. not on this site). To order its transfer, please click "
 msgstr ""
 
 #: shared/dtcrm/draw_whois.php:51
-msgid ""
-"If you want to keep your current registrar, you have to make the whois point "
-"to these DNS:"
+msgid "If you want to keep your current registrar, you have to make the whois point to these DNS:"
 msgstr ""
 
 #: shared/dtcrm/draw_whois.php:52
@@ -3752,21 +3967,23 @@ msgstr ""
 msgid "Your domain name whois data:"
 msgstr ""
 
-#: shared/inc/draw.php:49 shared/inc/forms/email.php:213
+#: shared/inc/draw.php:49
+#: shared/inc/forms/email.php:213
 msgid "Change your password:"
-msgstr ""
+msgstr "Nomainīt savu paroli:"
 
 #: shared/inc/draw.php:56
 msgid "New password:"
-msgstr ""
+msgstr "Jaunā parole:"
 
 #: shared/inc/draw.php:57
 msgid "Retype new password:"
-msgstr ""
+msgstr "Atkārtot jauno paroli:"
 
-#: shared/inc/draw.php:122 shared/inc/draw.php:220
+#: shared/inc/draw.php:122
+#: shared/inc/draw.php:220
 msgid "Statistics"
-msgstr ""
+msgstr "Statistika"
 
 #: shared/inc/draw.php:128
 msgid "Past payments"
@@ -3776,7 +3993,8 @@ msgstr ""
 msgid "Add a domain or service"
 msgstr ""
 
-#: shared/inc/draw.php:139 shared/inc/draw.php:458
+#: shared/inc/draw.php:139
+#: shared/inc/draw.php:458
 msgid "DNS Nick handles"
 msgstr ""
 
@@ -3786,7 +4004,7 @@ msgstr ""
 
 #: shared/inc/draw.php:150
 msgid "My account"
-msgstr ""
+msgstr "Jūsu konts"
 
 #: shared/inc/draw.php:160
 msgid "Monitoring"
@@ -3814,15 +4032,16 @@ msgstr ""
 
 #: shared/inc/draw.php:234
 msgid "Sub-domains"
-msgstr ""
+msgstr "Apakšdomēni"
 
-#: shared/inc/draw.php:240 shared/inc/draw.php:446
+#: shared/inc/draw.php:240
+#: shared/inc/draw.php:446
 msgid "FTP accounts"
-msgstr ""
+msgstr "FTP konti"
 
 #: shared/inc/draw.php:247
 msgid "SSH accounts"
-msgstr ""
+msgstr "SSH konti"
 
 #: shared/inc/draw.php:254
 msgid "Package installer"
@@ -3838,7 +4057,7 @@ msgstr ""
 
 #: shared/inc/draw.php:318
 msgid "Databases"
-msgstr ""
+msgstr "Datu bāzes"
 
 #: shared/inc/draw.php:325
 msgid "Sub-accounts (reseller)"
@@ -3850,21 +4069,23 @@ msgstr ""
 
 #: shared/inc/draw.php:341
 msgid "Help"
-msgstr ""
+msgstr "Palīgs"
 
-#: shared/inc/draw.php:347 shared/inc/forms/email.php:306
+#: shared/inc/draw.php:347
+#: shared/inc/forms/email.php:306
 msgid "Logout"
-msgstr ""
+msgstr "Iziet"
 
 #: shared/inc/draw.php:349
 msgid "Use text menu"
-msgstr ""
+msgstr "Lietot teksta izvēlni"
 
 #: shared/inc/draw.php:351
 msgid "Use image menu"
 msgstr ""
 
-#: shared/inc/draw.php:401 shared/inc/forms/domain_info.php:55
+#: shared/inc/draw.php:401
+#: shared/inc/forms/domain_info.php:55
 msgid "Mailboxes:"
 msgstr ""
 
@@ -3892,7 +4113,8 @@ msgstr ""
 msgid "Domain Tools"
 msgstr ""
 
-#: shared/inc/draw.php:420 shared/inc/draw.php:466
+#: shared/inc/draw.php:420
+#: shared/inc/draw.php:466
 msgid "Name servers:"
 msgstr ""
 
@@ -3900,9 +4122,11 @@ msgstr ""
 msgid "DNS config of:"
 msgstr ""
 
-#: shared/inc/draw.php:429 shared/inc/draw.php:433 shared/inc/draw.php:470
+#: shared/inc/draw.php:429
+#: shared/inc/draw.php:433
+#: shared/inc/draw.php:470
 msgid "Statistics:"
-msgstr ""
+msgstr "Statistika:"
 
 #: shared/inc/draw.php:431
 msgid "My account global statistics"
@@ -3920,13 +4144,14 @@ msgstr ""
 msgid "Whois of:"
 msgstr ""
 
-#: shared/inc/draw.php:442 shared/inc/forms/domain_info.php:57
+#: shared/inc/draw.php:442
+#: shared/inc/forms/domain_info.php:57
 msgid "Subdomains:"
-msgstr ""
+msgstr "Apakšdomēni:"
 
 #: shared/inc/draw.php:444
 msgid "Subdomains of "
-msgstr ""
+msgstr "Apakšdomēni "
 
 #: shared/inc/draw.php:448
 msgid "FTP accounts of "
@@ -3934,11 +4159,11 @@ msgstr ""
 
 #: shared/inc/draw.php:450
 msgid "SSH accounts:"
-msgstr ""
+msgstr "SSH konti:"
 
 #: shared/inc/draw.php:452
 msgid "SSH accounts of "
-msgstr ""
+msgstr "SSH konti - "
 
 #: shared/inc/draw.php:454
 msgid "Package installer:"
@@ -3966,15 +4191,15 @@ msgstr ""
 
 #: shared/inc/draw.php:472
 msgid "My Account information:"
-msgstr ""
+msgstr "Jūsu konta informācija:"
 
 #: shared/inc/draw.php:474
 msgid "Databases:"
-msgstr ""
+msgstr "Datu bāzes:"
 
 #: shared/inc/draw.php:476
 msgid "Your databases"
-msgstr ""
+msgstr "Jūsu datu bāzes"
 
 #: shared/inc/draw.php:478
 msgid "Sub-accounts (reseller):"
@@ -3986,75 +4211,58 @@ msgstr ""
 
 #: shared/inc/draw.php:490
 msgid "Help:"
-msgstr ""
+msgstr "Palīgs"
 
 #: shared/inc/draw.php:491
 msgid ""
 "<font face=\"Arial, Verdana\">\n"
-"<center><font size=\"+2\"><u><b>ONLINE DTC HELP</b></u></font></"
-"center><br><br>\n"
+"<center><font size=\"+2\"><u><b>ONLINE DTC HELP</b></u></font></center><br><br>\n"
 "<div align=\"justify\">\n"
 "<font size=\"+1\"><u>1. What is DTC</u></font><br><br>\n"
-"DTC is a tool we made especialy for you. With it, you can take the control "
-"of your domain administration : you can manage all your\n"
-"subdomains, emails, ftp or ssh accounts, and manage your VPS. DTC does also "
-"billing and invoices, plus many other things.<br><br>\n"
+"DTC is a tool we made especialy for you. With it, you can take the control of your domain administration : you can manage all your\n"
+"subdomains, emails, ftp or ssh accounts, and manage your VPS. DTC does also billing and invoices, plus many other things.<br><br>\n"
 "\n"
-"All this tool and all the software it uses and configure have been release "
-"under the <a href=\"http://www.gnu.org/\">GPL</a>\n"
-"(GNU Public Licence), which means that you can have a copy of this interface "
-"source code, modify it and use it as you wish, as long as\n"
-"you redistribute all thoses changes. We (at GPLHost) believe in the Free "
-"Software effort, and we hope this participation will encourage\n"
-"other developpements. We consider that because we use only open-source "
-"software for our hosting service, it is normal to redistribute\n"
+"All this tool and all the software it uses and configure have been release under the <a href=\"http://www.gnu.org/\">GPL</a>\n"
+"(GNU Public Licence), which means that you can have a copy of this interface source code, modify it and use it as you wish, as long as\n"
+"you redistribute all thoses changes. We (at GPLHost) believe in the Free Software effort, and we hope this participation will encourage\n"
+"other developpements. We consider that because we use only open-source software for our hosting service, it is normal to redistribute\n"
 "our developpements as well.<br><br>\n"
 "\n"
-"If you want to know more about DTC, you can visit this URL: <a href=\"http://"
-"www.gplhost.com/software-dtc.html\">DTC home page</a>.\n"
+"If you want to know more about DTC, you can visit this URL: <a href=\"http://www.gplhost.com/software-dtc.html\">DTC home page</a>.\n"
 "\n"
 "<font size=\"+1\"><u>2. Emails</u></font><br>\n"
 "<u>2.1. What will it do ?</u><br><br>\n"
 "You can add, delete or modify a mailbox with this tool.<br><br>\n"
 "\n"
 "<u>2.2. Redirection and local delivery</u><br><br>\n"
-"Each mailbox can be redirected to one or more email addresses. This means "
-"that when a message is recieved, it is forwared to one\n"
-"or two email adresse(s). The &quote;deliver locally&quote; checkbox tells "
-"wether or not all message for this mailbox will be written on\n"
-"our hard disk, so thenafter you will be able to read your messages using a "
-"mail client, connecting to our server. Don't forget to\n"
-"checkup your mails often if you have trafic, because the mailbox are "
-"included in the quota<br><br>\n"
+"Each mailbox can be redirected to one or more email addresses. This means that when a message is recieved, it is forwared to one\n"
+"or two email adresse(s). The &quote;deliver locally&quote; checkbox tells wether or not all message for this mailbox will be written on\n"
+"our hard disk, so thenafter you will be able to read your messages using a mail client, connecting to our server. Don't forget to\n"
+"checkup your mails often if you have trafic, because the mailbox are included in the quota<br><br>\n"
 "\n"
 "<u>2.3. Delay when adding / deleting accounts</u><br><br>\n"
-"When you add or delete a mail account, don't expect it to work immediatly: "
-"you will have to wait until the next cron job to start, so the\n"
+"When you add or delete a mail account, don't expect it to work immediatly: you will have to wait until the next cron job to start, so the\n"
 "mail, ssh or web server reloads it's database.<br><br>\n"
 "\n"
 "<u>2.4. Other tools for email</u><br><br>\n"
-"DTC doesn't only have email accounts. It also handles mailing lists using "
-"MLMMJ and mail alias groups to be able to have one email\n"
+"DTC doesn't only have email accounts. It also handles mailing lists using MLMMJ and mail alias groups to be able to have one email\n"
 "redirected to many other addresses.\n"
 "\n"
 "<font size=\"+1\"><u>3. Subdomains</u></font><br>\n"
 "<u>3.1. What will it do ?</u><br><br>\n"
-"This part of the interface is for configurating your somain's sites, which "
-"means that you will be able to populate your web site with url\n"
+"This part of the interface is for configurating your somain's sites, which means that you will be able to populate your web site with url\n"
 "of the form:\n"
 "<pre>\n"
 "http://anything.u.want.mydomain.com\n"
 "</pre>\n"
 "\n"
 "<u>3.2. What is the default subdomain ?</u><br><br>\n"
-"Whe someone trys to contact your web site with an URL without a subdomain, "
-"he is redirected to the subdomain you said it was the default.\n"
+"Whe someone trys to contact your web site with an URL without a subdomain, he is redirected to the subdomain you said it was the default.\n"
 "In other words, if you tell that:\n"
 "<pre>\n"
 "www\n"
 "</pre>\n"
-"is the default subdomain, someone that trys to connect using an url starting "
-"with:\n"
+"is the default subdomain, someone that trys to connect using an url starting with:\n"
 "<pre>\n"
 "http://mydomain.com\n"
 "</pre>\n"
@@ -4063,16 +4271,12 @@ msgid ""
 "http://www.mydomain.com\n"
 "</pre>\n"
 "\n"
-"In fact, the URL is kept, and no URL redirection in a HTML page has been "
-"created, but simply, a website with that URL has been configurated\n"
-"to the same location of the &quote;www&quote; subdomain, so it accesses the "
-"same html (or php) files, and shares the same log file.<br><br>\n"
+"In fact, the URL is kept, and no URL redirection in a HTML page has been created, but simply, a website with that URL has been configurated\n"
+"to the same location of the &quote;www&quote; subdomain, so it accesses the same html (or php) files, and shares the same log file.<br><br>\n"
 "\n"
 "<u>3.3. Subdomains generated by default</u><br><br>\n"
-"Because you might expect to have these subdomains for other services than "
-"web already working by default, the following subdomains will\n"
-"resolve to the same IP address as your web site, even if you didn't add "
-"them:\n"
+"Because you might expect to have these subdomains for other services than web already working by default, the following subdomains will\n"
+"resolve to the same IP address as your web site, even if you didn't add them:\n"
 "<ul><li>ftp</li>\n"
 "<li>pop</li>\n"
 "<li>smtp</li>\n"
@@ -4080,14 +4284,11 @@ msgid ""
 "</ul>\n"
 "\n"
 "<u>3.4. Delay when adding / deleting subdomain</u><br><br>\n"
-"Like for mail, any action here will take up to 10 minutes to take effect."
-"<br><br>\n"
+"Like for mail, any action here will take up to 10 minutes to take effect.<br><br>\n"
 "\n"
 "<u>3.6. Trafic statistics for your subdomains</u><br><br>\n"
-"Because all your trafic is loged, we calculate the overall last 12 month "
-"statistics using <a href=\"http://www.mrunix.net/webalizer/\">\n"
-"webalizer</a>. The statistics are calculated each days (this is when there "
-"is less trafic), and can be reach under the \"/stats\" directory\n"
+"Because all your trafic is loged, we calculate the overall last 12 month statistics using <a href=\"http://www.mrunix.net/webalizer/\">\n"
+"webalizer</a>. The statistics are calculated each days (this is when there is less trafic), and can be reach under the \"/stats\" directory\n"
 "on each subdomains. That means that if you have registerd :\n"
 "<pre>\n"
 "http://www.mydomain.com\n"
@@ -4101,14 +4302,11 @@ msgid ""
 "\n"
 "<font size=\"+1\"><u>4. FTP accounts</u></font><br>\n"
 "<u>4.1. What will it do ?</u><br><br>\n"
-"To have your page working and running, you have to upload them. But because "
-"you may not be only one to work on your web site, you may want to\n"
-"have more that one FTP account for accessing your web site. DTC will be the "
-"tool for managing thoses accounts and passwords.<br><br>\n"
+"To have your page working and running, you have to upload them. But because you may not be only one to work on your web site, you may want to\n"
+"have more that one FTP account for accessing your web site. DTC will be the tool for managing thoses accounts and passwords.<br><br>\n"
 "\n"
 "<u>4.2. Delay when adding / deleting FTP accounts</u><br><br>\n"
-"Because DTC uses ProFTP or pure-ftpd with a special module for handling "
-"accounts in a MySql database, all changes to your FTP accounts take\n"
+"Because DTC uses ProFTP or pure-ftpd with a special module for handling accounts in a MySql database, all changes to your FTP accounts take\n"
 "effect in realtime.<br><br>\n"
 "\n"
 "</div>\n"
@@ -4121,9 +4319,11 @@ msgstr ""
 
 #: shared/inc/draw.php:599
 msgid "General information of "
-msgstr ""
+msgstr "Vispārēja informācija par "
 
-#: shared/inc/fetch.php:39 shared/inc/fetch.php:365 shared/inc/fetch.php:370
+#: shared/inc/fetch.php:39
+#: shared/inc/fetch.php:365
+#: shared/inc/fetch.php:370
 msgid "Wrong user or password, or timeout expired!"
 msgstr ""
 
@@ -4133,12 +4333,10 @@ msgstr ""
 
 #: shared/inc/fetch.php:457
 msgid "file"
-msgstr ""
+msgstr "fails"
 
 #: shared/inc/fetch.php:457
-msgid ""
-"either your login and password pair is not valid, either your session "
-"expired (timed out)."
+msgid "either your login and password pair is not valid, either your session expired (timed out)."
 msgstr ""
 
 #: shared/inc/vps.php:64
@@ -4149,8 +4347,10 @@ msgstr ""
 msgid "Could not get virtual machine info. Error: "
 msgstr ""
 
-#: shared/inc/forms/vps_monitoring.php:30 shared/inc/forms/vps_graphs.php:30
-#: shared/inc/forms/vps_installation.php:31 shared/inc/forms/vps.php:30
+#: shared/inc/forms/vps_monitoring.php:30
+#: shared/inc/forms/vps_graphs.php:30
+#: shared/inc/forms/vps_installation.php:31
+#: shared/inc/forms/vps.php:30
 #: shared/inc/forms/vps_dom0graphs.php:30
 msgid "Credential not correct: can't display in file "
 msgstr ""
@@ -4160,7 +4360,7 @@ msgstr ""
 #: shared/inc/forms/vps_monitoring.php:69
 #: shared/inc/forms/vps_monitoring.php:70
 msgid "2 months ago: "
-msgstr ""
+msgstr "2 mēnešus atpakaļ: "
 
 #: shared/inc/forms/vps_monitoring.php:68
 #: shared/inc/forms/vps_monitoring.php:81
@@ -4205,9 +4405,7 @@ msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:126
 #: shared/inc/forms/vps_installation.php:74
-msgid ""
-"Could not get remote status (Method getVPSState() failed). Maybe the VPS is "
-"not running?"
+msgid "Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running?"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:127
@@ -4217,9 +4415,7 @@ msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:128
 #: shared/inc/forms/vps_installation.php:76
-msgid ""
-"Could not get remote status: could not connect to the SOAP server (HTTP "
-"error)."
+msgid "Could not get remote status: could not connect to the SOAP server (HTTP error)."
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:130
@@ -4297,7 +4493,8 @@ msgid "IP address(es) of your VPS:"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:194
-#: shared/inc/forms/vps_installation.php:141 shared/inc/forms/dedicated.php:71
+#: shared/inc/forms/vps_installation.php:141
+#: shared/inc/forms/dedicated.php:71
 msgid "IP addresses: "
 msgstr ""
 
@@ -4325,27 +4522,27 @@ msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:259
 msgid "SSH: "
-msgstr ""
+msgstr "SSH:"
 
 #: shared/inc/forms/vps_monitoring.php:260
 msgid "HTTP: "
-msgstr ""
+msgstr "HTTP:"
 
 #: shared/inc/forms/vps_monitoring.php:261
 msgid "SMTP: "
-msgstr ""
+msgstr "SMTP:"
 
 #: shared/inc/forms/vps_monitoring.php:262
 msgid "POP3: "
-msgstr ""
+msgstr "POP3:"
 
 #: shared/inc/forms/vps_monitoring.php:263
 msgid "IMAP4: "
-msgstr ""
+msgstr "IMAP4:"
 
 #: shared/inc/forms/vps_monitoring.php:264
 msgid "FTP: "
-msgstr ""
+msgstr "FTP:"
 
 #: shared/inc/forms/vps_graphs.php:35
 msgid "Hourly VPS usage statistics:"
@@ -4369,9 +4566,10 @@ msgstr ""
 
 #: shared/inc/forms/vps_installation.php:157
 msgid "Error line "
-msgstr ""
+msgstr "Kļūda: "
 
-#: shared/inc/forms/vps_installation.php:167 shared/inc/forms/dedicated.php:95
+#: shared/inc/forms/vps_installation.php:167
+#: shared/inc/forms/dedicated.php:95
 msgid "Change RDNS"
 msgstr ""
 
@@ -4396,15 +4594,11 @@ msgid "Immediate kill (xm destroy)"
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:192
-msgid ""
-"To do a file system check or an operating system reinstallation, you need to "
-"shutdown or destroy your server first."
+msgid "To do a file system check or an operating system reinstallation, you need to shutdown or destroy your server first."
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:195
-msgid ""
-"You cannot start your VPS if it has expired. Please renew it if you want the "
-"boot up (xm start) button to appear here."
+msgid "You cannot start your VPS if it has expired. Please renew it if you want the boot up (xm start) button to appear here."
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:198
@@ -4448,9 +4642,7 @@ msgid "Change NetBSD kernel"
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:275
-msgid ""
-"To upload .iso files so they appear bellow and you can boot on them, you can "
-"upload them using ftp, "
+msgid "To upload .iso files so they appear bellow and you can boot on them, you can upload them using ftp, "
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:275
@@ -4466,16 +4658,18 @@ msgid "Boot device: "
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:302
+#, fuzzy
 msgid "VNC console password: "
-msgstr ""
+msgstr "Jaunā parole:"
 
 #: shared/inc/forms/vps_installation.php:303
 msgid "VNC console activation: "
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:303
+#, fuzzy
 msgid "yes"
-msgstr ""
+msgstr "gadi"
 
 #: shared/inc/forms/vps_installation.php:303
 msgid "no"
@@ -4498,26 +4692,24 @@ msgid "New SSH key: "
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:322
-msgid ""
-"To access to your console, first enter a ssh password or key above, and then "
-"ssh to:"
+msgid "To access to your console, first enter a ssh password or key above, and then ssh to:"
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:323
-msgid ""
-"You should then install sshd in your VPS and use the physical console only "
-"for debugging purposes."
+msgid "You should then install sshd in your VPS and use the physical console only for debugging purposes."
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:352
 msgid "Installation log (last 20 lines):"
 msgstr ""
 
-#: shared/inc/forms/admin_stats.php:33 shared/inc/forms/domain_info.php:53
+#: shared/inc/forms/admin_stats.php:33
+#: shared/inc/forms/domain_info.php:53
 msgid "Total transfered bytes this month:"
 msgstr ""
 
-#: shared/inc/forms/admin_stats.php:62 shared/inc/forms/admin_stats.php:73
+#: shared/inc/forms/admin_stats.php:62
+#: shared/inc/forms/admin_stats.php:73
 #: shared/inc/forms/my_account.php:76
 msgid "Total disk usage:"
 msgstr ""
@@ -4526,7 +4718,8 @@ msgstr ""
 msgid "Domain name files:"
 msgstr ""
 
-#: shared/inc/forms/admin_stats.php:69 shared/inc/forms/admin_stats.php:71
+#: shared/inc/forms/admin_stats.php:69
+#: shared/inc/forms/admin_stats.php:71
 msgid "Database files:"
 msgstr ""
 
@@ -4536,7 +4729,7 @@ msgstr ""
 
 #: shared/inc/forms/admin_stats.php:83
 msgid "Database Name"
-msgstr ""
+msgstr "Datu bāzes nosaukums"
 
 #: shared/inc/forms/admin_stats.php:102
 msgid "Domain name traffic and disk usage:"
@@ -4562,7 +4755,8 @@ msgstr ""
 msgid "Edit Mail Group"
 msgstr ""
 
-#: shared/inc/forms/aliases.php:31 shared/inc/forms/email.php:540
+#: shared/inc/forms/aliases.php:31
+#: shared/inc/forms/email.php:540
 msgid "Number of active mailboxes:"
 msgstr ""
 
@@ -4576,23 +4770,24 @@ msgstr ""
 
 #: shared/inc/forms/database.php:32
 msgid "Your users"
-msgstr ""
+msgstr "Jūsu datu bāzes lietotāji"
 
-#: shared/inc/forms/database.php:65 shared/inc/forms/database.php:113
+#: shared/inc/forms/database.php:65
+#: shared/inc/forms/database.php:113
 msgid "Create"
-msgstr ""
+msgstr "Izveidot"
 
 #: shared/inc/forms/database.php:68
 msgid "List of your databases:"
-msgstr ""
+msgstr "Jūsu datu bāzes saraksts:"
 
 #: shared/inc/forms/database.php:76
 msgid "Database name"
-msgstr ""
+msgstr "Datu bāzes nosaukums"
 
 #: shared/inc/forms/database.php:117
 msgid "Total database number:"
-msgstr ""
+msgstr "Kopējais datu bāzes skaits:"
 
 #: shared/inc/forms/database.php:127
 msgid "Please create a MySQL user in order to be able to create a database."
@@ -4602,10 +4797,12 @@ msgstr ""
 msgid "Server not found!"
 msgstr ""
 
-#: shared/inc/forms/dedicated.php:39 shared/inc/forms/invoices.php:39
-#: shared/inc/forms/invoices.php:40 shared/inc/forms/invoices.php:41
+#: shared/inc/forms/dedicated.php:39
+#: shared/inc/forms/invoices.php:39
+#: shared/inc/forms/invoices.php:40
+#: shared/inc/forms/invoices.php:41
 msgid "Not found!"
-msgstr ""
+msgstr "Nav atrasts!"
 
 #: shared/inc/forms/dedicated.php:41
 msgid "Dedicated server contract:"
@@ -4643,7 +4840,8 @@ msgstr ""
 msgid "Primary MX address:"
 msgstr ""
 
-#: shared/inc/forms/dns.php:44 shared/inc/forms/dns.php:53
+#: shared/inc/forms/dns.php:44
+#: shared/inc/forms/dns.php:53
 msgid "Other MX (backup) servers:"
 msgstr ""
 
@@ -4687,7 +4885,7 @@ msgstr ""
 
 #: shared/inc/forms/domain_info.php:52
 msgid "Your domain:"
-msgstr ""
+msgstr "Jūsu domēns:"
 
 #: shared/inc/forms/domain_info.php:54
 msgid "Your area disk usage:"
@@ -4695,13 +4893,14 @@ msgstr ""
 
 #: shared/inc/forms/domain_info.php:56
 msgid "FTP accounts:"
-msgstr ""
+msgstr "FTP konti:"
 
 #: shared/inc/forms/domain_info.php:59
 msgid "Your domain"
 msgstr ""
 
-#: shared/inc/forms/domain_info.php:60 shared/inc/forms/email.php:27
+#: shared/inc/forms/domain_info.php:60
+#: shared/inc/forms/email.php:27
 msgid "Use"
 msgstr ""
 
@@ -4745,7 +4944,8 @@ msgstr ""
 msgid "Protect your logs and stats folder with a password"
 msgstr ""
 
-#: shared/inc/forms/domain_stats.php:87 shared/inc/forms/domain_stats.php:94
+#: shared/inc/forms/domain_stats.php:87
+#: shared/inc/forms/domain_stats.php:94
 msgid "Copy to subdomains:"
 msgstr ""
 
@@ -4769,11 +4969,13 @@ msgstr ""
 msgid "Edit your mailbox redirections:"
 msgstr ""
 
-#: shared/inc/forms/email.php:247 shared/inc/forms/email.php:617
+#: shared/inc/forms/email.php:247
+#: shared/inc/forms/email.php:617
 msgid "Deliver messages locally in INBOX: "
 msgstr ""
 
-#: shared/inc/forms/email.php:250 shared/inc/forms/email.php:607
+#: shared/inc/forms/email.php:250
+#: shared/inc/forms/email.php:607
 #: shared/inc/forms/email.php:613
 msgid "Redirection 1: "
 msgstr ""
@@ -4803,8 +5005,7 @@ msgid "Your list of imported mail"
 msgstr ""
 
 #: shared/inc/forms/email.php:323
-msgid ""
-"Those mail are in quarantine, and were not delivered to your pop account:"
+msgid "Those mail are in quarantine, and were not delivered to your pop account:"
 msgstr ""
 
 #: shared/inc/forms/email.php:327
@@ -4833,7 +5034,7 @@ msgstr ""
 
 #: shared/inc/forms/email.php:532
 msgid "new mailbox"
-msgstr ""
+msgstr "Jauna pastkastīte"
 
 #: shared/inc/forms/email.php:533
 msgid "Mailbox configuration:"
@@ -4855,7 +5056,8 @@ msgstr ""
 msgid "SPAM mailbox destination: "
 msgstr ""
 
-#: shared/inc/forms/email.php:582 shared/inc/forms/email.php:595
+#: shared/inc/forms/email.php:582
+#: shared/inc/forms/email.php:595
 msgid "Mailbox quota: "
 msgstr ""
 
@@ -4865,7 +5067,7 @@ msgstr ""
 
 #: shared/inc/forms/email.php:600
 msgid "files"
-msgstr ""
+msgstr "faili"
 
 #: shared/inc/forms/email.php:601
 msgid "Mailbox max files quota: "
@@ -4935,7 +5137,8 @@ msgstr ""
 msgid "List of your mailing lists"
 msgstr ""
 
-#: shared/inc/forms/lists.php:51 shared/inc/forms/lists.php:85
+#: shared/inc/forms/lists.php:51
+#: shared/inc/forms/lists.php:85
 msgid "new mailing list"
 msgstr ""
 
@@ -4947,11 +5150,13 @@ msgstr ""
 msgid "Name of the list."
 msgstr ""
 
-#: shared/inc/forms/lists.php:70 shared/inc/forms/lists.php:97
+#: shared/inc/forms/lists.php:70
+#: shared/inc/forms/lists.php:97
 msgid "List name:"
 msgstr ""
 
-#: shared/inc/forms/lists.php:72 shared/inc/forms/lists.php:99
+#: shared/inc/forms/lists.php:72
+#: shared/inc/forms/lists.php:99
 msgid "This is the main owner of the list."
 msgstr ""
 
@@ -4968,8 +5173,9 @@ msgid "List name"
 msgstr ""
 
 #: shared/inc/forms/lists.php:99
+#, fuzzy
 msgid "List owner:"
-msgstr ""
+msgstr "Sarakstes īpašnieks:"
 
 #: shared/inc/forms/lists.php:109
 msgid "Maximum number of lists reached"
@@ -4980,28 +5186,19 @@ msgid "Subscriber list (click to unsubscribe):"
 msgstr ""
 
 #: shared/inc/forms/lists.php:173
-msgid ""
-"When this flag is set, only people who are subscribed to the list, are "
-"allowed to post to it. The check is made against the &quot;From:&quot; "
-"header."
+msgid "When this flag is set, only people who are subscribed to the list, are allowed to post to it. The check is made against the &quot;From:&quot; header."
 msgstr ""
 
 #: shared/inc/forms/lists.php:175
-msgid ""
-"Is the list is open or closed. If it\\'s closed subscribtion and "
-"unsubscription via mail is disabled."
+msgid "Is the list is open or closed. If it\\'s closed subscribtion and unsubscription via mail is disabled."
 msgstr ""
 
 #: shared/inc/forms/lists.php:178
-msgid ""
-"The email addresses in this fields (1 per line) will get mails to listname-"
-"owner@listdomain.tld"
+msgid "The email addresses in this fields (1 per line) will get mails to listname-owner@listdomain.tld"
 msgstr ""
 
 #: shared/inc/forms/lists.php:181
-msgid ""
-"If this flag is set, the email addresses in the field moderators will act as "
-"moderators for the list."
+msgid "If this flag is set, the email addresses in the field moderators will act as moderators for the list."
 msgstr ""
 
 #: shared/inc/forms/lists.php:184
@@ -5009,87 +5206,55 @@ msgid "This is the list of moderators."
 msgstr ""
 
 #: shared/inc/forms/lists.php:187
-msgid ""
-"If this flag exists, no mail confirmation is needed to subscribe to the "
-"list. This should in principle never ever be used, but there is times on "
-"local lists etc. where this is useful. HANDLE WITH CARE!"
+msgid "If this flag exists, no mail confirmation is needed to subscribe to the list. This should in principle never ever be used, but there is times on local lists etc. where this is useful. HANDLE WITH CARE!"
 msgstr ""
 
 #: shared/inc/forms/lists.php:190
-msgid ""
-"The prefix for the Subject: line of mails to the list. This will alter the "
-"Subject: line, and add a prefix if it\\'s not present elsewhere."
+msgid "The prefix for the Subject: line of mails to the list. This will alter the Subject: line, and add a prefix if it\\'s not present elsewhere."
 msgstr ""
 
 #: shared/inc/forms/lists.php:193
-msgid ""
-"In those fields is specified *ONE* headertoken to match per line. If the "
-"fields are like this:<br><br>Received:<br>Message-ID:<br><br>Then all "
-"occurences of these headers in incoming list mail will be deleted. From: and "
-"Return-Path: are deleted no matter what."
+msgid "In those fields is specified *ONE* headertoken to match per line. If the fields are like this:<br><br>Received:<br>Message-ID:<br><br>Then all occurences of these headers in incoming list mail will be deleted. From: and Return-Path: are deleted no matter what."
 msgstr ""
 
 #: shared/inc/forms/lists.php:196
-msgid ""
-"When this flag is present, a To: header including the recipients "
-"emailaddress will be added to outgoing mail. Recommended usage is to remove "
-"existing To: headers with delheaders (see above) first."
+msgid "When this flag is present, a To: header including the recipients emailaddress will be added to outgoing mail. Recommended usage is to remove existing To: headers with delheaders (see above) first."
 msgstr ""
 
 #: shared/inc/forms/lists.php:199
-msgid ""
-"If this flag is set, the list address does not have to be in the To: or Cc: "
-"header of the email to the list (interesting for aliases addressing multiple "
-"lists)."
+msgid "If this flag is set, the list address does not have to be in the To: or Cc: header of the email to the list (interesting for aliases addressing multiple lists)."
 msgstr ""
 
 #: shared/inc/forms/lists.php:202
-msgid ""
-"These headers are added to every mail coming through. This is the place you "
-"want to add Reply-To: header in case you want such."
+msgid "These headers are added to every mail coming through. This is the place you want to add Reply-To: header in case you want such."
 msgstr ""
 
 #: shared/inc/forms/lists.php:205
-msgid ""
-"Fill this if you want every mail to have something like:<br>--<br>To "
-"unsubscribe send a mail to coollist+unsubscribe@lists.domain.net."
+msgid "Fill this if you want every mail to have something like:<br>--<br>To unsubscribe send a mail to coollist+unsubscribe@lists.domain.net."
 msgstr ""
 
 #: shared/inc/forms/lists.php:208
-msgid ""
-"If this flag exists, the mail won\\'t be saved in the archive but simply "
-"deleted."
+msgid "If this flag exists, the mail won\\'t be saved in the archive but simply deleted."
 msgstr ""
 
 #: shared/inc/forms/lists.php:211
-msgid ""
-"If this file exists, then retrieving old posts with -get-N (for exemple "
-"mylist-get-12@my-domain.tld) is disabled"
+msgid "If this file exists, then retrieving old posts with -get-N (for exemple mylist-get-12@my-domain.tld) is disabled"
 msgstr ""
 
 #: shared/inc/forms/lists.php:214
-msgid ""
-"If this file exists, then retrieving old posts with -get-N is only possible "
-"for subscribers. The above mentioned \\'noget\\' have precedence."
+msgid "If this file exists, then retrieving old posts with -get-N is only possible for subscribers. The above mentioned \\'noget\\' have precedence."
 msgstr ""
 
 #: shared/inc/forms/lists.php:217
-msgid ""
-"This value specifies how many seconds will pass before the next digest is "
-"sent. Defaults to 604800 seconds, which is 7 days."
+msgid "This value specifies how many seconds will pass before the next digest is sent. Defaults to 604800 seconds, which is 7 days."
 msgstr ""
 
 #: shared/inc/forms/lists.php:220
-msgid ""
-"This file specifies how many mails can accumulate before digest sending is "
-"triggered. Defaults to 50 mails, meaning that if 50 mails arrive to the list "
-"before digestinterval have passed, the digest is delivered."
+msgid "This file specifies how many mails can accumulate before digest sending is triggered. Defaults to 50 mails, meaning that if 50 mails arrive to the list before digestinterval have passed, the digest is delivered."
 msgstr ""
 
 #: shared/inc/forms/lists.php:223
-msgid ""
-"If this flag is present, the owner(s) will get a mail with the address of "
-"someone sub/unsubscribing to a mailinglist."
+msgid "If this flag is present, the owner(s) will get a mail with the address of someone sub/unsubscribing to a mailinglist."
 msgstr ""
 
 #: shared/inc/forms/lists.php:226
@@ -5109,11 +5274,7 @@ msgid "Mail server used to send the messages."
 msgstr ""
 
 #: shared/inc/forms/lists.php:238
-msgid ""
-"Here is specified in bytes how big a mail can be and still be prepared for "
-"sending in memory. It\\'s greatly reducing the amount of write system calls "
-"to prepare it in memory before sending it, but can also lead to denial of "
-"service attacks. Default is 16k (16384 bytes)."
+msgid "Here is specified in bytes how big a mail can be and still be prepared for sending in memory. It\\'s greatly reducing the amount of write system calls to prepare it in memory before sending it, but can also lead to denial of service attacks. Default is 16k (16384 bytes)."
 msgstr ""
 
 #: shared/inc/forms/lists.php:241
@@ -5121,14 +5282,11 @@ msgid "Enable VERP support."
 msgstr ""
 
 #: shared/inc/forms/lists.php:244
-msgid ""
-"Here is specified for how long time in seconds an address can bounce before "
-"it\\'s unsubscribed. Defaults to 432000 seconds, which is 5 days."
+msgid "Here is specified for how long time in seconds an address can bounce before it\\'s unsubscribed. Defaults to 432000 seconds, which is 5 days."
 msgstr ""
 
 #: shared/inc/forms/lists.php:247
-msgid ""
-"How many recipients pr. mail delivered to the smtp server. Defaults to 100."
+msgid "How many recipients pr. mail delivered to the smtp server. Defaults to 100."
 msgstr ""
 
 #: shared/inc/forms/lists.php:250
@@ -5136,10 +5294,7 @@ msgid "Do not change unless you really know what you are doing."
 msgstr ""
 
 #: shared/inc/forms/lists.php:253
-msgid ""
-"If this file exists, all headers of a post to the list is matched against "
-"the rules. The first rule to match wins. NOTE: the default action is to deny "
-"access (reject the mail) so take care if you write something here"
+msgid "If this file exists, all headers of a post to the list is matched against the rules. The first rule to match wins. NOTE: the default action is to deny access (reject the mail) so take care if you write something here"
 msgstr ""
 
 #: shared/inc/forms/lists.php:256
@@ -5147,24 +5302,15 @@ msgid "Enable webarchive."
 msgstr ""
 
 #: shared/inc/forms/lists.php:259
-msgid ""
-"Insert here the template\\'s code that you want use for your web archive. "
-"Read <a href=\\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\\' "
-"target=\\'_blank\\'>documentation</a> and see <a href=\\'http://www.mhonarc."
-"org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>examples</a>."
+msgid "Insert here the template\\'s code that you want use for your web archive. Read <a href=\\'http://www.mhonarc.org/MHonArc/doc/resources/rcfile.html\\' target=\\'_blank\\'>documentation</a> and see <a href=\\'http://www.mhonarc.org/MHonArc/doc/app-rcfileexs.html\\' target=\\'_blank\\'>examples</a>."
 msgstr ""
 
 #: shared/inc/forms/lists.php:262
-msgid ""
-"Recreate all messages of webarchive. Use this only if you have changed the "
-"webarchive\\'s template. NOTE: this works only if you have &quot;web "
-"archive&quot; checked."
+msgid "Recreate all messages of webarchive. Use this only if you have changed the webarchive\\'s template. NOTE: this works only if you have &quot;web archive&quot; checked."
 msgstr ""
 
 #: shared/inc/forms/lists.php:265
-msgid ""
-"Delete all messages of webarchive. NOTE: this works only if you have &quot;"
-"web archive&quot; not checked."
+msgid "Delete all messages of webarchive. NOTE: this works only if you have &quot;web archive&quot; not checked."
 msgstr ""
 
 #: shared/inc/forms/lists.php:268
@@ -5173,7 +5319,7 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:397
 msgid "Rights"
-msgstr ""
+msgstr "Tiesības"
 
 #: shared/inc/forms/lists.php:398
 msgid "Subscribers only post:"
@@ -5185,7 +5331,7 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:400
 msgid "Owner:"
-msgstr ""
+msgstr "Īpašnieks:"
 
 #: shared/inc/forms/lists.php:401
 msgid "Moderated:"
@@ -5305,7 +5451,7 @@ msgstr ""
 
 #: shared/inc/forms/lists.php:436
 msgid "Access list:"
-msgstr ""
+msgstr "Piekļuves saraksts:"
 
 #: shared/inc/forms/lists.php:439
 msgid "Subscribe/Unsubscribe an email address"
@@ -5360,8 +5506,9 @@ msgid "Transfer this month:"
 msgstr ""
 
 #: shared/inc/forms/my_account.php:90
+#, fuzzy
 msgid "Export configuration:"
-msgstr ""
+msgstr "DTC uzstādījumi"
 
 #: shared/inc/forms/my_account.php:91
 msgid "Export all my domains configuration to a file"
@@ -5369,7 +5516,7 @@ msgstr ""
 
 #: shared/inc/forms/my_account.php:97
 msgid "Your hosting account:"
-msgstr ""
+msgstr "Jūsu hostinga konts:"
 
 #: shared/inc/forms/my_account.php:100
 msgid "Storage space"
@@ -5399,7 +5546,8 @@ msgstr ""
 msgid "Used by"
 msgstr ""
 
-#: shared/inc/forms/my_account.php:146 shared/inc/forms/my_account.php:173
+#: shared/inc/forms/my_account.php:146
+#: shared/inc/forms/my_account.php:173
 msgid "No ssl product defined."
 msgstr ""
 
@@ -5421,11 +5569,11 @@ msgstr ""
 
 #: shared/inc/forms/my_account.php:209
 msgid "Family name:"
-msgstr ""
+msgstr "Uzvārds: "
 
 #: shared/inc/forms/my_account.php:216
 msgid "Phone number:"
-msgstr ""
+msgstr "Tālruņa numurs: "
 
 #: shared/inc/forms/my_account.php:220
 msgid "You do not have a client account, so there is no money in your account."
@@ -5436,12 +5584,13 @@ msgid "Choose a package to install"
 msgstr ""
 
 #: shared/inc/forms/packager.php:218
+#, fuzzy
 msgid "Package name"
-msgstr ""
+msgstr "Paketes nosaukums"
 
 #: shared/inc/forms/packager.php:218
 msgid "Description"
-msgstr ""
+msgstr "Apraksts"
 
 #: shared/inc/forms/packager.php:218
 msgid "Package version"
@@ -5449,15 +5598,16 @@ msgstr ""
 
 #: shared/inc/forms/packager.php:218
 msgid "Need a database"
-msgstr ""
+msgstr "Nepieciešama datu bāze"
 
 #: shared/inc/forms/packager.php:218
 msgid "Unpack size"
 msgstr ""
 
-#: shared/inc/forms/packager.php:218 shared/inc/forms/packager.php:230
+#: shared/inc/forms/packager.php:218
+#: shared/inc/forms/packager.php:230
 msgid "Install"
-msgstr ""
+msgstr "Uzstādīt"
 
 #: shared/inc/forms/reseller.php:22
 msgid "Your child accounts:"
@@ -5473,15 +5623,16 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:125
 msgid "Disk quota (MB):"
-msgstr ""
+msgstr "Diska kvota (MB):"
 
 #: shared/inc/forms/root_admin.php:126
 msgid "Allowed bandwidth per month (MB):"
 msgstr ""
 
-#: shared/inc/forms/root_admin.php:127 shared/inc/forms/vps.php:75
+#: shared/inc/forms/root_admin.php:127
+#: shared/inc/forms/vps.php:75
 msgid "Expiry date:"
-msgstr ""
+msgstr "Termiņa beigšanās datums:"
 
 #: shared/inc/forms/root_admin.php:128
 msgid "Product ID:"
@@ -5489,11 +5640,11 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:129
 msgid "Number of databases:"
-msgstr ""
+msgstr "Datu bāžu skaits:"
 
 #: shared/inc/forms/root_admin.php:130
 msgid "Allow to add domains:"
-msgstr ""
+msgstr "Atļaut pievienot domēnus:"
 
 #: shared/inc/forms/root_admin.php:131
 msgid "Grant sub-account addition rights (reseller):"
@@ -5512,23 +5663,19 @@ msgid "Allow the use of the package installer:"
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:140
-msgid ""
-"Are your sure you want to delete this user? This will erase all his hosted "
-"domain names, files, and databases !!!"
+msgid "Are your sure you want to delete this user? This will erase all his hosted domain names, files, and databases !!!"
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:141
 msgid "Delete the user"
-msgstr ""
+msgstr "Izdzēst lietotāju"
 
 #: shared/inc/forms/root_admin.php:143
 msgid "Delete a user domain:"
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:151
-msgid ""
-"Are you sure you want to delete this domain name ? This will erase all "
-"hosted files for this domain!!!"
+msgid "Are you sure you want to delete this domain name ? This will erase all hosted files for this domain!!!"
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:157
@@ -5540,17 +5687,16 @@ msgid "Import a domain file for this user:"
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:182
+#, fuzzy
 msgid "Import"
-msgstr ""
+msgstr "Imports"
 
 #: shared/inc/forms/root_admin.php:191
 msgid "Delete one of the admin VPS: "
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:197
-msgid ""
-"Are you sure you want to delete this VPS? This will also delete the "
-"partitions!"
+msgid "Are you sure you want to delete this VPS? This will also delete the partitions!"
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:223
@@ -5561,18 +5707,17 @@ msgstr ""
 msgid "VPS Server hostname: "
 msgstr ""
 
-#: shared/inc/forms/root_admin.php:232 shared/inc/forms/root_admin.php:277
+#: shared/inc/forms/root_admin.php:232
+#: shared/inc/forms/root_admin.php:277
 msgid "Product: "
-msgstr ""
+msgstr "Produkts: "
 
 #: shared/inc/forms/root_admin.php:234
 msgid "Setup physical VPS (LVM): "
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:243
-msgid ""
-"To add a VPS, you need to setup some free IPs VPS in the general config and "
-"setup some VPS products."
+msgid "To add a VPS, you need to setup some free IPs VPS in the general config and setup some VPS products."
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:251
@@ -5589,7 +5734,7 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:334
 msgid "Configuration of the domains"
-msgstr ""
+msgstr "Domēnu konfigurācija"
 
 #: shared/inc/forms/root_admin.php:347
 msgid "Vhost"
@@ -5605,7 +5750,7 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:361
 msgid "Disk quota"
-msgstr ""
+msgstr "Diska kvota"
 
 #: shared/inc/forms/root_admin.php:365
 msgid "Email max"
@@ -5643,21 +5788,24 @@ msgstr ""
 msgid "VPS Name"
 msgstr ""
 
-#: shared/inc/forms/root_admin.php:478 shared/inc/forms/root_admin.php:542
+#: shared/inc/forms/root_admin.php:478
+#: shared/inc/forms/root_admin.php:542
 msgid "Registration"
-msgstr ""
+msgstr "Reģistrācija"
 
-#: shared/inc/forms/root_admin.php:482 shared/inc/forms/root_admin.php:546
+#: shared/inc/forms/root_admin.php:482
+#: shared/inc/forms/root_admin.php:546
 msgid "Expiration"
 msgstr ""
 
-#: shared/inc/forms/root_admin.php:494 shared/inc/forms/root_admin.php:558
+#: shared/inc/forms/root_admin.php:494
+#: shared/inc/forms/root_admin.php:558
 msgid "Bandwidth per month"
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:497
 msgid "Product ID"
-msgstr ""
+msgstr "Produkta ID"
 
 #: shared/inc/forms/root_admin.php:526
 msgid "Configuration of the dedicated servers"
@@ -5665,7 +5813,7 @@ msgstr ""
 
 #: shared/inc/forms/root_admin.php:538
 msgid "Server name"
-msgstr ""
+msgstr "Servera nosaukums"
 
 #: shared/inc/forms/ssh.php:45
 msgid "List of your SSH accounts:"
@@ -5673,11 +5821,11 @@ msgstr ""
 
 #: shared/inc/forms/ssh.php:46
 msgid "New SSH account:"
-msgstr ""
+msgstr "Jauns SSH konts:"
 
 #: shared/inc/forms/ssh.php:47
 msgid "new SSH account"
-msgstr ""
+msgstr "jauns SSH konts"
 
 #: shared/inc/forms/ssh.php:48
 msgid "SSH account configuration:"
@@ -5691,13 +5839,14 @@ msgstr ""
 msgid "There is already a ssh login by that name"
 msgstr ""
 
-#: shared/inc/forms/subdomain.php:11 shared/inc/forms/subdomain.php:65
+#: shared/inc/forms/subdomain.php:11
+#: shared/inc/forms/subdomain.php:65
 msgid "Could not found subdomain in table for folder deletion"
 msgstr ""
 
 #: shared/inc/forms/subdomain.php:121
 msgid "Default subdomain: "
-msgstr ""
+msgstr "Noklusētais apakšdomēns: "
 
 #: shared/inc/forms/subdomain.php:138
 msgid "Use as wildcard for the domain:"
@@ -5705,15 +5854,15 @@ msgstr ""
 
 #: shared/inc/forms/subdomain.php:144
 msgid "List of your subdomains: "
-msgstr ""
+msgstr "Jūsu apakšdomēnu saraksts: "
 
 #: shared/inc/forms/subdomain.php:145
 msgid "Create a subdomain: "
-msgstr ""
+msgstr "Izveidot apakšdomēnu: "
 
 #: shared/inc/forms/subdomain.php:146
 msgid "New subdomain"
-msgstr ""
+msgstr "Jauns apakšdomēns"
 
 #: shared/inc/forms/subdomain.php:147
 msgid "Edit one of your subdomains"
@@ -5725,7 +5874,7 @@ msgstr ""
 
 #: shared/inc/forms/subdomain.php:170
 msgid "Subdomain name: "
-msgstr ""
+msgstr "Apakšdomēna nosaukums: "
 
 #: shared/inc/forms/subdomain.php:176
 msgid "IP address or CNAME: "
@@ -5748,8 +5897,7 @@ msgid "TXT field of the subdomain: "
 msgstr ""
 
 #: shared/inc/forms/subdomain.php:203
-msgid ""
-"This subdomain is a nameserver (NS)<br>entry for the following subdomain: "
+msgid "This subdomain is a nameserver (NS)<br>entry for the following subdomain: "
 msgstr ""
 
 #: shared/inc/forms/subdomain.php:216
@@ -5772,7 +5920,8 @@ msgstr ""
 msgid "What is your server hostname:"
 msgstr ""
 
-#: shared/inc/forms/ticket.php:52 shared/inc/forms/ticket.php:87
+#: shared/inc/forms/ticket.php:52
+#: shared/inc/forms/ticket.php:87
 msgid "Type of problem:"
 msgstr ""
 
@@ -5784,7 +5933,8 @@ msgstr ""
 msgid "Send trouble ticket"
 msgstr ""
 
-#: shared/inc/forms/ticket.php:75 shared/inc/forms/ticket.php:103
+#: shared/inc/forms/ticket.php:75
+#: shared/inc/forms/ticket.php:103
 msgid "Ticket not found!"
 msgstr ""
 
@@ -5800,7 +5950,8 @@ msgstr ""
 msgid "Request to close the issue:"
 msgstr ""
 
-#: shared/inc/forms/ticket.php:133 shared/inc/forms/ticket.php:148
+#: shared/inc/forms/ticket.php:133
+#: shared/inc/forms/ticket.php:148
 msgid "Submit new support issue"
 msgstr ""
 
@@ -5822,7 +5973,7 @@ msgstr ""
 
 #: shared/inc/forms/ticket.php:165
 msgid "Open"
-msgstr ""
+msgstr "Atvērt"
 
 #: shared/inc/forms/vps.php:71
 msgid "Current contract: "
@@ -5869,19 +6020,16 @@ msgid "Incorrect MySQL login format: please enter another login and try again."
 msgstr ""
 
 #: shared/inc/sql/database.php:17
-msgid ""
-"Incorrect MySQL login format: please don't enter root or debian-sys-maint"
+msgid "Incorrect MySQL login format: please don't enter root or debian-sys-maint"
 msgstr ""
 
 #: shared/inc/sql/database.php:21
-msgid ""
-"Password must consist of only letters and numbers (a-zA-Z0-9) and should be "
-"between 6 and 16 chars long."
+msgid "Password must consist of only letters and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long."
 msgstr ""
 
 #: shared/inc/sql/database.php:29
 msgid "A user with that name exists in the database, please select a new one."
-msgstr ""
+msgstr "Lietotājs ar šādu vārdu jau eksistē datu bāzē, lūdzu, izvēlieties citu."
 
 #: shared/inc/sql/database.php:42
 msgid "Cannot close user database"
@@ -5893,25 +6041,22 @@ msgstr ""
 
 #: shared/inc/sql/database.php:61
 msgid "A database by that name exists, please choose another name."
-msgstr ""
+msgstr "Datu bāzē ar šādu nosaukumu jau eksistē, lūdzu, izvēlieties citu nosaukumus."
 
 #: shared/inc/sql/database.php:66
 msgid "Incorrect db login format: please enter another login and try again."
 msgstr ""
 
 #: shared/inc/sql/database.php:73
-msgid ""
-"No user by that name exists in the database, or you don't own this db user. "
-"Please select a new one."
+msgid "No user by that name exists in the database, or you don't own this db user. Please select a new one."
 msgstr ""
 
 #: shared/inc/sql/database.php:144
-msgid ""
-"That user still owns some databases. Please remove them or change the owner "
-"first."
+msgid "That user still owns some databases. Please remove them or change the owner first."
 msgstr ""
 
-#: shared/inc/sql/database.php:166 shared/inc/sql/database.php:211
+#: shared/inc/sql/database.php:166
+#: shared/inc/sql/database.php:211
 msgid "Incorrect MySQL db name format: please enter another and try again."
 msgstr ""
 
@@ -5920,39 +6065,46 @@ msgid "Cannot reselect MySQL db name: please enter another and try again."
 msgstr ""
 
 #: shared/inc/sql/database.php:181
-msgid ""
-"MySql database ownership not valid: I will not let you delete this database "
-"because it doesn't seem to be owned by you."
+msgid "MySql database ownership not valid: I will not let you delete this database because it doesn't seem to be owned by you."
 msgstr ""
 
 #: shared/inc/sql/database.php:226
-msgid ""
-"MySql database ownership not valid: I will not let you change owner of this "
-"database because it doesn't seems to be owned by you."
+msgid "MySql database ownership not valid: I will not let you change owner of this database because it doesn't seems to be owned by you."
 msgstr ""
 
 #: shared/inc/sql/database.php:252
 msgid "User or password is incorrect!"
 msgstr ""
 
-#: shared/inc/sql/dedicated.php:6 shared/inc/sql/vps.php:99
+#: shared/inc/sql/dedicated.php:6
+#: shared/inc/sql/vps.php:99
 msgid "This is not a correct IP line "
 msgstr ""
 
-#: shared/inc/sql/dedicated.php:6 shared/inc/sql/dedicated.php:9
-#: shared/inc/sql/vps.php:36 shared/inc/sql/vps.php:93
-#: shared/inc/sql/vps.php:99 shared/inc/sql/vps.php:102
-#: shared/inc/sql/vps.php:108 shared/inc/sql/vps.php:130
-#: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:160
-#: shared/inc/sql/vps.php:184 shared/inc/sql/vps.php:199
-#: shared/inc/sql/vps.php:216 shared/inc/sql/vps.php:226
-#: shared/inc/sql/vps.php:269 shared/inc/sql/vps.php:334
-#: shared/inc/sql/vps.php:342 shared/inc/sql/vps.php:352
+#: shared/inc/sql/dedicated.php:6
+#: shared/inc/sql/dedicated.php:9
+#: shared/inc/sql/vps.php:36
+#: shared/inc/sql/vps.php:93
+#: shared/inc/sql/vps.php:99
+#: shared/inc/sql/vps.php:102
+#: shared/inc/sql/vps.php:108
+#: shared/inc/sql/vps.php:130
+#: shared/inc/sql/vps.php:140
+#: shared/inc/sql/vps.php:160
+#: shared/inc/sql/vps.php:184
+#: shared/inc/sql/vps.php:199
+#: shared/inc/sql/vps.php:216
+#: shared/inc/sql/vps.php:226
+#: shared/inc/sql/vps.php:269
+#: shared/inc/sql/vps.php:334
+#: shared/inc/sql/vps.php:342
+#: shared/inc/sql/vps.php:352
 #: shared/inc/sql/vps.php:362
 msgid " file "
 msgstr ""
 
-#: shared/inc/sql/dedicated.php:9 shared/inc/sql/vps.php:102
+#: shared/inc/sql/dedicated.php:9
+#: shared/inc/sql/vps.php:102
 msgid "This is not a correct hostname or IP line "
 msgstr ""
 
@@ -5960,21 +6112,18 @@ msgstr ""
 msgid "This IP doesn't bellong to you, you can't change it's RDNS entry!"
 msgstr ""
 
-#: shared/inc/sql/dedicated.php:31 shared/inc/sql/vps.php:119
+#: shared/inc/sql/dedicated.php:31
+#: shared/inc/sql/vps.php:119
 msgid "Could not find the corresponding IP pool"
 msgstr ""
 
-#: shared/inc/sql/dedicated.php:35 shared/inc/sql/vps.php:123
-msgid ""
-"This IP pool can't be changed automatically, because our upstream network "
-"provider doesn't support it. Please open a support ticket to request this "
-"RDNS request."
+#: shared/inc/sql/dedicated.php:35
+#: shared/inc/sql/vps.php:123
+msgid "This IP pool can't be changed automatically, because our upstream network provider doesn't support it. Please open a support ticket to request this RDNS request."
 msgstr ""
 
 #: shared/inc/sql/email.php:14
-msgid ""
-"Incorect mail login format: it should consist of only lowercase letters, "
-"numbers, or the \"-\" sign.<br>\n"
+msgid "Incorect mail login format: it should consist of only lowercase letters, numbers, or the \"-\" sign.<br>\n"
 msgstr ""
 
 #: shared/inc/sql/email.php:23
@@ -5988,20 +6137,16 @@ msgstr ""
 #: shared/inc/sql/lists.php:217
 msgid ""
 "You can control your mailing list by email or by control panel.\n"
-"You can send a email to the following addresses to execute the listed "
-"command:\n"
+"You can send a email to the following addresses to execute the listed command:\n"
 "  \n"
 "  #name#-help@#domain# -> return the most common list's commands\n"
 "  #name#-list@#domain# -> return the subscribers's list\n"
 "  #name#-get-N@#domain# -> return the N list's message\n"
 "  #name#-owner@#domain# -> you can contact the list's owner by this address\n"
-"  #name#-unsubscribe@#domain# -> unsubscribe the email's sender from the "
-"list\n"
+"  #name#-unsubscribe@#domain# -> unsubscribe the email's sender from the list\n"
 "  #name#-subscribe@#domain# -> subscribe the email's sender to the list\n"
-"  #name#-subscribe-digest@#domain# -> subscribe the email's sender to the "
-"list's digest version\n"
-"  #name#-subscribe-nomail@#domain# -> subscribe the email's sender to the "
-"list's nomail version\n"
+"  #name#-subscribe-digest@#domain# -> subscribe the email's sender to the list's digest version\n"
+"  #name#-subscribe-nomail@#domain# -> subscribe the email's sender to the list's nomail version\n"
 "  \n"
 "For more informations go to mlmmj official web site at http://mlmmj.mmj.dk"
 msgstr ""
@@ -6014,13 +6159,13 @@ msgstr ""
 msgid "You don't have the SSH login flag!"
 msgstr ""
 
-#: shared/inc/sql/ssh.php:31 shared/inc/sql/ssh.php:94
+#: shared/inc/sql/ssh.php:31
+#: shared/inc/sql/ssh.php:94
 msgid "Your path is restricted to "
 msgstr ""
 
 #: shared/inc/sql/ssh.php:49
-msgid ""
-"Incorrect SSH login form: please enter another login and try again.<br>\n"
+msgid "Incorrect SSH login form: please enter another login and try again.<br>\n"
 msgstr ""
 
 #: shared/inc/sql/ssh.php:53
@@ -6028,9 +6173,7 @@ msgid "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9<br>\n"
 msgstr ""
 
 #: shared/inc/sql/ssh.php:101
-msgid ""
-"Incorrect ssh login : this is not a good string for a ssh login, please "
-"enter a new one."
+msgid "Incorrect ssh login : this is not a good string for a ssh login, please enter a new one."
 msgstr ""
 
 #: shared/inc/sql/ssh.php:106
@@ -6041,18 +6184,26 @@ msgstr ""
 msgid "Incorrect sub-domain format."
 msgstr ""
 
-#: shared/inc/sql/vps.php:6 shared/inc/sql/vps.php:146
-#: shared/inc/sql/vps.php:170 shared/inc/sql/vps.php:190
-#: shared/inc/sql/vps.php:242 shared/inc/sql/vps.php:274
+#: shared/inc/sql/vps.php:6
+#: shared/inc/sql/vps.php:146
+#: shared/inc/sql/vps.php:170
+#: shared/inc/sql/vps.php:190
+#: shared/inc/sql/vps.php:242
+#: shared/inc/sql/vps.php:274
 #: shared/inc/sql/vps.php:378
 msgid "Could not connect to VPS server!"
 msgstr ""
 
-#: shared/inc/sql/vps.php:36 shared/inc/sql/vps.php:93
-#: shared/inc/sql/vps.php:108 shared/inc/sql/vps.php:130
-#: shared/inc/sql/vps.php:140 shared/inc/sql/vps.php:160
-#: shared/inc/sql/vps.php:184 shared/inc/sql/vps.php:199
-#: shared/inc/sql/vps.php:269 shared/inc/sql/vps.php:334
+#: shared/inc/sql/vps.php:36
+#: shared/inc/sql/vps.php:93
+#: shared/inc/sql/vps.php:108
+#: shared/inc/sql/vps.php:130
+#: shared/inc/sql/vps.php:140
+#: shared/inc/sql/vps.php:160
+#: shared/inc/sql/vps.php:184
+#: shared/inc/sql/vps.php:199
+#: shared/inc/sql/vps.php:269
+#: shared/inc/sql/vps.php:334
 msgid "Access not granted line "
 msgstr ""
 
@@ -6066,13 +6217,15 @@ msgstr ""
 
 #: shared/inc/sql/vps.php:153
 msgid "Error: "
-msgstr ""
+msgstr "Kļūda:"
 
-#: shared/inc/sql/vps.php:216 shared/inc/sql/vps.php:352
+#: shared/inc/sql/vps.php:216
+#: shared/inc/sql/vps.php:352
 msgid "Cannot get VPS information line "
 msgstr ""
 
-#: shared/inc/sql/vps.php:226 shared/inc/sql/vps.php:362
+#: shared/inc/sql/vps.php:226
+#: shared/inc/sql/vps.php:362
 msgid "Cannot get VPS IP addresses information line "
 msgstr ""
 
@@ -6120,133 +6273,161 @@ msgstr ""
 msgid "Instant account"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:24 shared/gfx/skin/default_layout.php:34
-#: shared/gfx/skin/bwoup/layout.php:53 shared/gfx/skin/bwoup/layout.php:61
+#: shared/gfx/skin/default_layout.php:24
+#: shared/gfx/skin/default_layout.php:34
+#: shared/gfx/skin/bwoup/layout.php:53
+#: shared/gfx/skin/bwoup/layout.php:61
 msgid "Email panel: "
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
+#: shared/gfx/skin/default_layout.php:61
+#: shared/gfx/skin/bwoup/layout.php:251
 msgid "Error"
-msgstr ""
+msgstr "Kļūda"
 
-#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
+#: shared/gfx/skin/default_layout.php:61
+#: shared/gfx/skin/bwoup/layout.php:251
 msgid "fetching admin: "
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:63 shared/gfx/skin/default_layout.php:72
-#: shared/gfx/skin/bwoup/layout.php:253 shared/gfx/skin/bwoup/layout.php:262
+#: shared/gfx/skin/default_layout.php:63
+#: shared/gfx/skin/default_layout.php:72
+#: shared/gfx/skin/bwoup/layout.php:253
+#: shared/gfx/skin/bwoup/layout.php:262
 msgid "Client panel:"
-msgstr ""
+msgstr "Klienta panelis:"
 
-#: shared/gfx/skin/default_layout.php:84 shared/gfx/skin/bwoup/layout.php:360
+#: shared/gfx/skin/default_layout.php:84
+#: shared/gfx/skin/bwoup/layout.php:360
 msgid "Your domains"
-msgstr ""
+msgstr "Jūsu domēni"
 
 #: shared/gfx/skin/default_layout.php:122
 msgid "Customer's administrators"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:125 shared/gfx/skin/bwoup/layout.php:474
+#: shared/gfx/skin/default_layout.php:125
+#: shared/gfx/skin/bwoup/layout.php:474
 msgid "Customers list"
-msgstr ""
+msgstr "Klientu saraksts"
 
-#: shared/gfx/skin/default_layout.php:131 shared/gfx/skin/bwoup/layout.php:492
+#: shared/gfx/skin/default_layout.php:131
+#: shared/gfx/skin/bwoup/layout.php:492
 msgid "Customer renewals"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:135 shared/gfx/skin/bwoup/layout.php:496
+#: shared/gfx/skin/default_layout.php:135
+#: shared/gfx/skin/bwoup/layout.php:496
 msgid "Customer's bandwidth consumption"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:499
+#: shared/gfx/skin/default_layout.php:138
+#: shared/gfx/skin/bwoup/layout.php:499
 msgid "Server statistic graphs"
-msgstr ""
+msgstr "Servera statistikas grafiki"
 
-#: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:502
+#: shared/gfx/skin/default_layout.php:141
+#: shared/gfx/skin/bwoup/layout.php:502
 msgid "Launching the configuration files generation"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:142 shared/gfx/skin/bwoup/layout.php:503
-msgid ""
-"Please note that you need to create at least one email and one FTP account "
-"in order to have the daemon status working!"
+#: shared/gfx/skin/default_layout.php:142
+#: shared/gfx/skin/bwoup/layout.php:503
+msgid "Please note that you need to create at least one email and one FTP account in order to have the daemon status working!"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:504
+#: shared/gfx/skin/default_layout.php:143
+#: shared/gfx/skin/bwoup/layout.php:504
+#, fuzzy
 msgid "Deamons states"
-msgstr ""
+msgstr "Servisu darbības stāvoklis"
 
-#: shared/gfx/skin/default_layout.php:152 shared/gfx/skin/bwoup/layout.php:519
+#: shared/gfx/skin/default_layout.php:152
+#: shared/gfx/skin/bwoup/layout.php:519
 msgid "DTC Configuration"
-msgstr ""
+msgstr "DTC uzstādījumi"
 
 #: shared/gfx/skin/default_layout.php:159
-#: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:422
-#: shared/gfx/skin/bwoup/layout.php:424 shared/gfx/skin/bwoup/layout.php:532
+#: shared/gfx/skin/default_layout.php:294
+#: shared/gfx/skin/bwoup/layout.php:422
+#: shared/gfx/skin/bwoup/layout.php:424
+#: shared/gfx/skin/bwoup/layout.php:532
 msgid "Hosting product manager"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:562
+#: shared/gfx/skin/default_layout.php:181
+#: shared/gfx/skin/bwoup/layout.php:562
 msgid "Admins list"
-msgstr ""
+msgstr "Administratoru saraksts"
 
 #: shared/gfx/skin/default_layout.php:194
 msgid "Domain Technologie Control : root admin console"
-msgstr ""
+msgstr "Domain Technologie Control : administrēšanas konsole"
 
-#: shared/gfx/skin/default_layout.php:226 shared/gfx/skin/bwoup/layout.php:397
+#: shared/gfx/skin/default_layout.php:226
+#: shared/gfx/skin/bwoup/layout.php:397
 #: shared/gfx/skin/bwoup/layout.php:399
 msgid "Users administration"
-msgstr ""
+msgstr "Lietotāju pārvaldīšana"
 
-#: shared/gfx/skin/default_layout.php:246 shared/gfx/skin/bwoup/layout.php:402
+#: shared/gfx/skin/default_layout.php:246
+#: shared/gfx/skin/bwoup/layout.php:402
 #: shared/gfx/skin/bwoup/layout.php:404
 msgid "Customer management"
-msgstr ""
+msgstr "Klientu pārvaldīšana"
 
-#: shared/gfx/skin/default_layout.php:257 shared/gfx/skin/bwoup/layout.php:407
+#: shared/gfx/skin/default_layout.php:257
+#: shared/gfx/skin/bwoup/layout.php:407
 #: shared/gfx/skin/bwoup/layout.php:409
 msgid "Bandwidth monitor"
-msgstr ""
+msgstr "Joslas platuma monitorings"
 
-#: shared/gfx/skin/default_layout.php:269 shared/gfx/skin/bwoup/layout.php:412
+#: shared/gfx/skin/default_layout.php:269
+#: shared/gfx/skin/bwoup/layout.php:412
 #: shared/gfx/skin/bwoup/layout.php:414
 msgid "Server monitor"
-msgstr ""
+msgstr "Servera monitorings"
 
-#: shared/gfx/skin/default_layout.php:280 shared/gfx/skin/bwoup/layout.php:417
+#: shared/gfx/skin/default_layout.php:280
+#: shared/gfx/skin/bwoup/layout.php:417
 #: shared/gfx/skin/bwoup/layout.php:419
 msgid "Renewals management"
 msgstr ""
 
-#: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:427
+#: shared/gfx/skin/default_layout.php:307
+#: shared/gfx/skin/bwoup/layout.php:427
 #: shared/gfx/skin/bwoup/layout.php:429
 msgid "Configuration generation"
-msgstr ""
+msgstr "Konfigurācijas ģenerēšana"
 
-#: shared/gfx/skin/default_layout.php:319 shared/gfx/skin/bwoup/layout.php:432
+#: shared/gfx/skin/default_layout.php:319
+#: shared/gfx/skin/bwoup/layout.php:432
 #: shared/gfx/skin/bwoup/layout.php:434
 msgid "DTC general configuration"
-msgstr ""
+msgstr "DTC uzstādījumi"
 
-#: shared/gfx/skin/default_layout.php:369 shared/gfx/skin/bwoup/layout.php:637
+#: shared/gfx/skin/default_layout.php:369
+#: shared/gfx/skin/bwoup/layout.php:637
 #: shared/gfx/skin/bwoup/layout.php:639
 msgid "Client interface"
-msgstr ""
+msgstr "Klienta interfeiss"
 
-#: shared/gfx/skin/default_layout.php:378 shared/gfx/skin/bwoup/layout.php:643
+#: shared/gfx/skin/default_layout.php:378
+#: shared/gfx/skin/bwoup/layout.php:643
 #: shared/gfx/skin/bwoup/layout.php:645
 msgid "Domain config"
-msgstr ""
+msgstr "Domēna uzstādījumi"
 
-#: shared/gfx/skin/default_layout.php:387 shared/gfx/skin/bwoup/layout.php:649
+#: shared/gfx/skin/default_layout.php:387
+#: shared/gfx/skin/bwoup/layout.php:649
 #: shared/gfx/skin/bwoup/layout.php:651
 msgid "Admin editor"
-msgstr ""
+msgstr "Administratora redaktors"
 
-#: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:567
+#: shared/gfx/skin/default_layout.php:393
+#: shared/gfx/skin/bwoup/layout.php:567
 msgid "User administration"
-msgstr ""
+msgstr "Lietotāju administrēšana"
 
 #: shared/gfx/skin/default_layout.php:402
 msgid "Configuration of the virtual administrator"
@@ -6263,3 +6444,7 @@ msgstr ""
 #: shared/gfx/skin/default_layout.php:426
 msgid "Add a virtual administrator"
 msgstr ""
+
+#~ msgid "Go to client panel"
+#~ msgstr "Doties uz klienta paneli"
+

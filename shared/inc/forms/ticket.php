@@ -114,7 +114,7 @@ $popup_cats
 				$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".nl2br(stripslashes($a["text"]))."</td></tr>";
 			}
 			$out .= "</table>";
-			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"subaction\" value=\"view_ticket\">
@@ -138,7 +138,7 @@ $popup_cats
 		}
 	// The main screen
 	}else{
-		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"subaction\" value=\"new_ticket\">
