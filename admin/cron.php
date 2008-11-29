@@ -297,17 +297,20 @@ function restartApache () {
 // 		root@xen011106:~# kill -HUP 29153
 // 		root@xen011106:~# [Sun Aug 31 12:44:53 2008] [notice] SIGHUP received.  Attempting to restart
 // 		[Sun Aug 31 12:44:53 2008] [notice] Apache/2.2.3 (Debian) PHP/5.2.0-8+etch11 configured -- resuming normal operations
-		echo "Making Apache reload its configuration\n";
 		$pid = get_apache_pid();
-		if ($pid) { $ret = system("kill -HUP $pid"); }
-		else { $ret = 1; /* so brutal restart takes place */ }
-		if ($ret != 0) {
-			echo "Failed to kill -HUP Apache with return status $ret\n -- switching to brutal restart";
+		if ($pid) {
+			echo "Apache PID: $pid\n";
+		 	$ret = posix_kill($pid,1);
+			if ($ret) print "Apache successfully SIGHUPped -- configuration should have been reloaded\n";
+		}
+		else { $ret = FALSE; /* so brutal restart takes place */ }
+		if ($ret === FALSE) {
+			echo "Apache is not running -- switching to restart mode\n";
 			$pid = get_apache_pid();
 			if ($pid && posix_kill($pid,0)) {
 				/* apache is running, we stop it */
 				$ret = system("$APACHECTL stop");
-				if ($ret != 0) { echo "apachectl stop failed with return status $ret\n"; }
+				if ($ret != 0) { echo "$APACHECTL stop failed with return status $ret\n"; }
 				/* wait 20 seconds or until it is down */
 				for ($m = 0; $m < 80 && posix_kill($pid,0); $m++) { usleep(250000); }
 				if (posix_kill($pid,0)) { echo "error: apache still running with PID $pid\n"; }
@@ -315,12 +318,17 @@ function restartApache () {
 			/* we now start Apache */
 			for ($x = 0; $x < 10; $x++) {
 				$ret = system("$APACHECTL start");
-				if ($ret != 0) echo "apachectl start failed with return status $ret\n";
+				if ($ret != 0) echo "$APACHECTL start failed with return status $ret\n";
+				$suc = 0;
 				for ($m = 0; $m < 80; $m++) { /* wait 20 seconds or until it is up */
 					$pid = get_apache_pid();
-					if (($pid) && posix_kill($pid,0)) { /* apache is now running */ break; }
-					usleep(250000);
+					if (($pid) && posix_kill($pid,0)) { /* apache is now running */
+						echo "Apache restarted\n";
+						$suc = 1; break;
+					}
+					else { usleep(250000); }
 				}
+				if ($suc == 1) { break; }
 				$pid = get_apache_pid();
 				if (!$pid || !posix_kill($pid,0)) { echo "error: apache never started\n"; }
 			}
