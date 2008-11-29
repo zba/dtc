@@ -1280,6 +1280,10 @@ function drawDTCpayConfig(){
 		"action" => "own_domain_edit",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
+			"affiliate_return_domain" => array(
+				"legend" => _("Domain name for affiliation return URL:"),
+				"type" => "text"
+				),
 			"provide_own_domain_hosts" => array(
 				"legend" => _("Allow registration of subdomain of the main domain: "),
 				"type" => "radio",

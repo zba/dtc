@@ -48,7 +48,7 @@ if($sousrub == "register"){
 	$ZeContent = '
 	
 <div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
-<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtc/new_account.php?product_id='.$_REQUEST["product_id"].'" width="100%">  </iframe>
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="//'.$_SERVER["HTTP_HOST"].'/dtc/new_account.php?product_id='.$_REQUEST["product_id"].'" width="100%">  </iframe>
       </div>
 
 ';
@@ -63,7 +63,7 @@ if($sousrub == "dtc"){
 	$ZeContentWindowTitle = "DTC Client interface|dtc.gif";
 	$ZeContent = '
 <div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
-<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtc" width="100%">  </iframe>
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="//'.$_SERVER["HTTP_HOST"].'/dtc" width="100%">  </iframe>
       </div>
 ';
 }
@@ -72,7 +72,7 @@ if($sousrub == "squirrelmail"){
 	$ZeContentWindowTitle = "SquirrelMail|squirrel.gif";
 	$ZeContent = '
 	<div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
-<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="http://'.$_SERVER["HTTP_HOST"].'/squirrelmail/src/" width="100%">  </iframe>
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="//'.$_SERVER["HTTP_HOST"].'/squirrelmail/src/" width="100%">  </iframe>
       </div>
 ';
 }
@@ -80,7 +80,7 @@ if($sousrub == "squirrelmail"){
 if($sousrub == "dtcadmin"){
 	$ZeContentWindowTitle = "DTC Client interface|dtc.gif";
 	$ZeContent = '<div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
-<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtcadmin" width="100%">  </iframe>
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="//'.$_SERVER["HTTP_HOST"].'/dtcadmin" width="100%">  </iframe>
       </div>
 ';
 }
@@ -88,7 +88,7 @@ if($sousrub == "dtcadmin"){
 if($sousrub == "dtcemail"){
 	$ZeContentWindowTitle = "DTC Email interface|dtc.gif";
 	$ZeContent = '<div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
-<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="https://'.$_SERVER["HTTP_HOST"].'/dtcemail" width="100%">  </iframe>
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="//'.$_SERVER["HTTP_HOST"].'/dtcemail" width="100%">  </iframe>
       </div>
 ';
 }
@@ -96,7 +96,7 @@ if($sousrub == "dtcemail"){
 if($sousrub == "phpmyadmin"){
 	$ZeContentWindowTitle = "PhpMyAdmin|mysql.png";
 	$ZeContent = '<div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
-<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="https://'.$_SERVER["HTTP_HOST"].'/phpmyadmin" width="100%">  </iframe>
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="//'.$_SERVER["HTTP_HOST"].'/phpmyadmin" width="100%">  </iframe>
       </div>
 ';
 }
