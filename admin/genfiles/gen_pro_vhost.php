@@ -410,7 +410,8 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
 		if($num_rows2 != 1){
-			die("No user of that name !");
+			echo("No user of that name ($web_owner)!\n");
+			continue;
 		}
 		$webadmin = mysql_fetch_array($result2) or die ("Cannot fetch user");
 		$web_path = $webadmin["path"];
@@ -535,7 +536,8 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 					$alias_user_result = mysql_query($alias_user_query) or die("Cannot fetch user for Alias");
 					$num_rows_alias_user = mysql_num_rows($alias_user_result);
 					if ($num_rows_alias_user != 1) {
-						die("No user of that name!");
+						echo("No user of that name ($web_ownerX)!\n");
+						continue;
 					}
 					$alias_path = mysql_fetch_array($alias_user_result) or die ("Cannot fetch user");
 					$web_pathX = $alias_path["path"];
