@@ -610,7 +610,7 @@ function drawAdminTools_Emails($domain){
 			"check" => "email",
 			"can_be_empty" => "yes",
 			"empty_makes_sql_null" => "yes",
-			"legend" => _("Redirection 1: ") );
+			"legend" => _("Redirection 2: ") );
 		$dsc["cols"]["localdeliver"] = array(
 			"type" => "checkbox",
 			"values" => array( "yes","no"),
