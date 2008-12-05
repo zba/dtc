@@ -497,7 +497,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	}
 
 	// Get all the dedicated servers of the user
-	$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE owner='$adm_login';";
+	$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE owner='$adm_login' ORDER BY server_hostname;";
 	$r = mysql_query ($q);
 	if (!$r){
 		$ret["err"] = 3;
