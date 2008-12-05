@@ -27,7 +27,7 @@ $DONOT_USE_ROTATING_PASS="yes";
 $anotherTopBanner = anotherTopBanner("DTC","yes");
 $anotherMenu = "";
 
-$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE reqadm_login='".$_REQUEST["reqadm_login"]."'";
+$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE id='".$_REQUEST["reqadm_id"]."'";
 $r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 $n = mysql_num_rows($r);
 if($n != 1){

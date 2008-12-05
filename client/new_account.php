@@ -123,7 +123,7 @@ case "enets-success":
 					$form .= _("Cannot reselect user: registration failed!") ;//"Cannot reselect user: registration failed!";
 				}else{
 					$a2 = mysql_fetch_array($r2);
-					validateWaitingUser($a2["reqadm_login"]);
+					validateWaitingUser($a2["id"]);
 					$form .= "Your account has just been created. Please login <a href=\"/dtc\">here</a> to
 					start using your account.<br><br>
 					If you have registered your domain name yourself, then you should set the

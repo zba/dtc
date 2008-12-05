@@ -187,7 +187,7 @@ Date: ".$renew_entry["renew_date"]." ".$renew_entry["renew_time"]."
 	return true;
 }
 
-function validateWaitingUser($waiting_login){
+function validateWaitingUser($waiting_login_id){
 	global $conf_administrative_site;
 	global $conf_use_ssl;
 	global $pro_mysql_admin_table;
@@ -226,11 +226,13 @@ function validateWaitingUser($waiting_login){
 	}
 
 	// Get the informations from the user waiting table
-	$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE reqadm_login='$waiting_login';";
+	$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE id='$waiting_login_id';";
+//	$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE reqadm_login='$waiting_login';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-	if($n != 1)die("I can't find username $waiting_login in the userwaiting table line: ".__LINE__." file: ".__FILE__."!");
+	if($n != 1)die("I can't find username with id $waiting_login_id in the userwaiting table line: ".__LINE__." file: ".__FILE__."!");
 	$a = mysql_fetch_array($r);
+	$waiting_login = $a["reqadm_login"];
 
 	// Check if there is a user by that name
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$waiting_login';";
@@ -453,7 +455,7 @@ Password: ".$a["reqadm_pass"];
 	}
 
 	// Finaly delete the user from the userwaiting table
-	$q = "DELETE FROM $pro_mysql_new_admin_table WHERE reqadm_login='$waiting_login';";
+	$q = "DELETE FROM $pro_mysql_new_admin_table WHERE id='$waiting_login_id';";
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
 }
