@@ -939,6 +939,15 @@ function drawGeneralConfig(){
 			"user_mysql_root_pass" => array(
 				"legend" => _("User MySQL root password: "),
 				"type" => "text"),
+			"autogen_webmail_alias" => array(
+				"legend" => _("Generate a global /webmail alias: "),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))),
+			"autogen_webmail_type" => array(
+				"legend" => _("Type of webmail fot the /webmail alias: "),
+				"type" => "radio",
+				"values" => array("Roundcube","Squirrelmail")),
 			"apache_directoryindex" => array(
 				"legend" => _("Apache DirectoryIndex: "),
 				"size" => "50",
