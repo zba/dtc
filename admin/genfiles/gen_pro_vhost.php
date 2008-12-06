@@ -754,9 +754,6 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 						$vhost_file .= "	ServerName $web_subname.$web_name
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
 	Alias /awstats-icon /usr/share/awstats/icon\n";
-						if($conf_autogen_webmail_alias == "yes"){
-							$vhost_file .= "	Alias /webmail /var/lib/dtc/etc/webmail\n";
-						}
 						// Disable the site if expired
 						if($site_expired == "yes"){
 							$document_root = $conf_generated_file_path."/expired_site";
