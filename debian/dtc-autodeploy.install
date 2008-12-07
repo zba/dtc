@@ -1,0 +1,2 @@
+debian/dtc_autodeploy		/usr/bin
+debian/selection_config_file	/usr/share/dtc-autodeploy

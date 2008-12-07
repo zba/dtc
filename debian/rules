@@ -40,6 +40,7 @@ binary-indep: install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs doc/changelog
+	dh_install
 	dh_installdocs
 	dh_installmenu -n
 	dh_installdebconf
