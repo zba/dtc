@@ -621,7 +621,9 @@ function checkIPAssigned(){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 0){
+			$a = mysql_array($r);
 			$action_error_txt = _("The IP address $test_ip is already assigned to a VPS: cannot assign this one!");
+			$action_error_txt .= "<br>xen" . $a["vps_xen_name"] . " " . $a["vps_server_hostname"];
 			$ret_val = false;
 		}
 
@@ -634,7 +636,9 @@ function checkIPAssigned(){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 0){
+			$a = mysql_array($r);
 			$action_error_txt = _("The IP address $test_ip is already assigned to a dedicated server: cannot assign this one!");
+			$action_error_txt .= "<br>". _("Server hostname: ") . $a["dedicated_server_hostname"];
 			$ret_val = false;
 		}
 
