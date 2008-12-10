@@ -93,7 +93,10 @@ function checkLockFlag () {
 	if($cronjob_table_content["lock_flag"] != "finished"){
 		echo "DB flag says that last cron job is not finished: exiting.\n
 If no cronjob is running, then please please type:\n
-mysql -uroot -Ddtc -p --execute=\"UPDATE $pro_mysql_cronjob_table SET lock_flag='finished';\"\n";
+mysql -uroot -Ddtc -p --execute=\"UPDATE $pro_mysql_cronjob_table SET lock_flag='finished';\"\n
+If runing Debian, you can directly run:\n
+mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute=\"UPDATE cron_job SET lock_flag='finished';\"\n
+";
 		die("Exiting NOW!");
 	}
 	echo "Setting-up lock flag\n";
