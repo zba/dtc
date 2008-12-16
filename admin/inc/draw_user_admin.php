@@ -287,9 +287,9 @@ dtcFromOkDraw()."
 			}
 			$waiting_new_users .= "<td><pre style='width: 200px; height: 100px; overflow: scroll;'>".htmlspecialchars(
 				print_r(unserialize($a["maxmind_output"]),true))."</pre></td>";
-			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_login=".$a["reqadm_login"]."\">". _("View details") ."</a><br/>
-			<a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_login=".$a["reqadm_login"]."\">". _("Add") ."</a><br/>
-			<a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_login=".$a["reqadm_login"]."\">". _("Delete") ."</a></td>";
+			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_id=".$a["id"]."\">". _("View details") ."</a><br/>
+			<a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_id=".$a["id"]."\">". _("Add") ."</a><br/>
+			<a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_id=".$a["id"]."\">". _("Delete") ."</a></td>";
 			$waiting_new_users .= "</tr>";
 		}
 		$waiting_new_users .= "</table>";

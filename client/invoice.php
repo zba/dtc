@@ -231,12 +231,12 @@ class zPDF extends FPDF{
 
 		// VAT calculation
 		if($use_vat == "yes"){
-			$vat = round(($pay["paiement_total"] * $company["vat_rate"] / 100),2);
+			$vat = round(($pay["paiement_total"] * $pay["vat_rate"] / 100),2);
 			$without_vat = $pay["paiement_total"] - $vat;
 
 			$this->SetX(120);
 			$this->SetFont('Arial','B',12);
-			$this->Cell(50,7,"Total VAT (".$company["vat_rate"]."%):","1",0,"L");
+			$this->Cell(50,7,"Total VAT (".$pay["vat_rate"]."%):","1",0,"L");
 			$this->SetFont('Arial','',12);
 			$this->Cell(30,7,$vat." ".$secpayconf_currency_letters,"1",0,"L");
 			$this->Ln();

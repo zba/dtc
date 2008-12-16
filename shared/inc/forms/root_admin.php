@@ -184,7 +184,7 @@ function drawEditAdmin($admin){
 </div></td></tr></table></form>";
 
 	// Deletion of VPS
-	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_login';";
+	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_login' ORDER BY vps_server_hostname,vps_xen_name;";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n > 0){
@@ -461,6 +461,7 @@ function drawDomainConfig($admin){
 			"skip_deletion" => "yes",
 			"skip_creation" => "yes",
 			"where_condition" => "owner='$adm_login'",
+			"order_by" => "vps_server_hostname,vps_xen_name",
 			"cols" => array(
 				"id" => array(
 					"type" => "id",

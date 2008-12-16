@@ -46,6 +46,7 @@ function deleteVPS($id){
 	global $pro_mysql_vps_table;
 	global $pro_mysql_vps_ip_table;
 	global $pro_mysql_vps_stats_table;
+	global $pro_mysql_cronjob_table;
 
 	$q = "SELECT * FROM $pro_mysql_vps_table WHERE id='$id';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -305,7 +306,7 @@ if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
 
 // action=delete_waiting_user&reqadm_login=tom
 if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="delete_waiting_user"){
-	$q = "DELETE FROM $pro_mysql_new_admin_table WHERE reqadm_login='".$_REQUEST["reqadm_login"]."';";
+	$q = "DELETE FROM $pro_mysql_new_admin_table WHERE id='".$_REQUEST["reqadm_id"]."';";
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 }
 

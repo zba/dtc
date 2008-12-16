@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-19 20:45+0800\n"
+"POT-Creation-Date: 2008-12-12 14:37+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Cynthia Yang <cynthia@mtiglobal.com>\n"
 "Language-Team: Chinese <zh_TW@li.org>\n"
@@ -240,11 +240,11 @@ msgstr "產品名稱"
 msgid "Account number"
 msgstr "電話號碼: "
 
-#: admin/inc/dtc_config.php:1210
+#: admin/inc/dtc_config.php:1223
 msgid "Act as backup DNS server for the following servers:"
 msgstr "針對以下的伺服器，以備份郵件伺服器來運作:"
 
-#: admin/inc/dtc_config.php:1185
+#: admin/inc/dtc_config.php:1198
 msgid "Act as backup mail server for the following servers:"
 msgstr "針對以下的伺服器，以備份郵件伺服器來運作:"
 
@@ -297,11 +297,11 @@ msgstr "從此顧客新增一個管理員:"
 msgid "Add a domain or service:"
 msgstr "從此顧客新增一個管理員:"
 
-#: admin/inc/dtc_config.php:1604
+#: admin/inc/dtc_config.php:1621
 msgid "Add a new company"
 msgstr "增加新公司:"
 
-#: admin/inc/dtc_config.php:1603
+#: admin/inc/dtc_config.php:1620
 msgid "Add a new company:"
 msgstr "增加新公司:"
 
@@ -371,11 +371,11 @@ msgstr "住址 (線路3): "
 msgid "Address email"
 msgstr "地址:"
 
-#: admin/inc/dtc_config.php:1030
+#: admin/inc/dtc_config.php:1043
 msgid "Address of your main MX server:"
 msgstr "你主要 MX 伺服器的位址"
 
-#: admin/inc/renewals.php:347 admin/inc/dtc_config.php:1624
+#: admin/inc/renewals.php:347 admin/inc/dtc_config.php:1641
 #: shared/inc/forms/my_account.php:210
 msgid "Address:"
 msgstr "地址:"
@@ -423,7 +423,7 @@ msgstr ""
 msgid "Allow addition of SSH logins:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1284
+#: admin/inc/dtc_config.php:1301
 msgid "Allow registration of subdomain of the main domain: "
 msgstr ""
 
@@ -431,7 +431,7 @@ msgstr ""
 msgid "Allow the use of the package installer:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1106
+#: admin/inc/dtc_config.php:1119
 msgid ""
 "Allow those servers to list this server's domain names for doing backup:"
 msgstr "允許伺服器在進行備份過程中列出伺服器網域名稱:"
@@ -461,7 +461,8 @@ msgstr ""
 msgid "American Samoa"
 msgstr ""
 
-#: admin/inc/renewals.php:585 shared/securepay/pay_functions.php:68
+#: admin/inc/renewals.php:585 shared/inc/forms/my_account.php:231
+#: shared/securepay/pay_functions.php:68
 msgid "Amount"
 msgstr "數量"
 
@@ -491,7 +492,7 @@ msgstr ""
 msgid "Anguilla"
 msgstr ""
 
-#: admin/inc/dtc_config.php:932
+#: admin/inc/dtc_config.php:936
 msgid "Another location"
 msgstr "定一個地點"
 
@@ -507,15 +508,15 @@ msgstr ""
 msgid "Antigua And Barbuda"
 msgstr ""
 
-#: admin/inc/dtc_config.php:943
+#: admin/inc/dtc_config.php:956
 msgid "Apache DirectoryIndex: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1550
+#: admin/inc/dtc_config.php:1567
 msgid "Apache file names"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1521
+#: admin/inc/dtc_config.php:1538
 msgid "Apache htpasswd path"
 msgstr ""
 
@@ -577,12 +578,12 @@ msgstr ""
 msgid "Austria"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1061
+#: admin/inc/dtc_config.php:1074
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
 msgstr "自動產生預設的次網域 (郵件、pop、imap、smtp、ftp、list):"
 
 #: admin/inc/dtc_config.php:451 admin/inc/dtc_config.php:489
-#: admin/inc/dtc_config.php:771
+#: admin/inc/dtc_config.php:775
 msgid "Available"
 msgstr "有效的"
 
@@ -1053,11 +1054,11 @@ msgstr "公司"
 msgid "Company"
 msgstr "公司"
 
-#: admin/inc/dtc_config.php:1721
+#: admin/inc/dtc_config.php:1738
 msgid "Company name"
 msgstr "公司名稱"
 
-#: admin/inc/renewals.php:333 admin/inc/dtc_config.php:1619
+#: admin/inc/renewals.php:333 admin/inc/dtc_config.php:1636
 #: shared/inc/forms/my_account.php:205
 msgid "Company name:"
 msgstr "公司名稱:"
@@ -1236,7 +1237,7 @@ msgstr "無法寫入PASS至伺服器"
 msgid "Could not write USER to server"
 msgstr "無法寫入USER至伺服器"
 
-#: admin/inc/dtc_config.php:712 shared/inc/forms/root_admin.php:561
+#: admin/inc/dtc_config.php:716 shared/inc/forms/root_admin.php:561
 msgid "Country"
 msgstr "縣市"
 
@@ -1244,7 +1245,7 @@ msgstr "縣市"
 msgid "Country code seems incorrect."
 msgstr "國碼似乎錯誤。"
 
-#: admin/inc/renewals.php:365 admin/inc/dtc_config.php:1627
+#: admin/inc/renewals.php:365 admin/inc/dtc_config.php:1644
 #: shared/inc/forms/my_account.php:215
 msgid "Country:"
 msgstr "國家:"
@@ -1306,11 +1307,11 @@ msgstr ""
 msgid "Currency"
 msgstr "貨幣符號: "
 
-#: admin/inc/dtc_config.php:1300
+#: admin/inc/dtc_config.php:1317
 msgid "Currency letters: "
 msgstr "貨幣代號: "
 
-#: admin/inc/dtc_config.php:1296
+#: admin/inc/dtc_config.php:1313
 msgid "Currency symbol: "
 msgstr "貨幣符號: "
 
@@ -1337,11 +1338,11 @@ msgstr ""
 msgid "Custom headers:"
 msgstr "顧客的住址"
 
-#: admin/inc/dtc_config.php:1701
+#: admin/inc/dtc_config.php:1718
 msgid "Customer and service country vs company:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1716
+#: admin/inc/dtc_config.php:1733
 msgid "Customer country"
 msgstr "顧客國家"
 
@@ -1410,7 +1411,7 @@ msgstr ""
 msgid "DTC Configuration"
 msgstr "FTP備份結構"
 
-#: admin/inc/dtc_config.php:961
+#: admin/inc/dtc_config.php:974
 msgid "DTC Skin chooser"
 msgstr ""
 
@@ -1434,7 +1435,7 @@ msgid ""
 "writable by the user in the Nagios server."
 msgstr ""
 
-#: admin/inc/dtc_config.php:889
+#: admin/inc/dtc_config.php:893
 msgid "Daemon"
 msgstr "程式類型"
 
@@ -1478,7 +1479,8 @@ msgid "Databases:"
 msgstr "最多資料庫"
 
 #: admin/inc/draw_user_admin.php:248 admin/dtcrm/main.php:215
-#: shared/inc/forms/invoices.php:23 shared/inc/forms/ticket.php:158
+#: shared/inc/forms/invoices.php:23 shared/inc/forms/my_account.php:231
+#: shared/inc/forms/ticket.php:158
 msgid "Date"
 msgstr "日期"
 
@@ -1524,7 +1526,7 @@ msgstr "獨立主機更新"
 msgid "Dedicated servers: "
 msgstr "獨立主機"
 
-#: admin/inc/dtc_config.php:1679 admin/inc/dtc_config.php:1684
+#: admin/inc/dtc_config.php:1696 admin/inc/dtc_config.php:1701
 msgid "Default company invoicing:"
 msgstr "預設公司發票:"
 
@@ -1533,7 +1535,7 @@ msgstr "預設公司發票:"
 msgid "Default subdomain: "
 msgstr "預設公司發票:"
 
-#: admin/inc/dtc_config.php:1072
+#: admin/inc/dtc_config.php:1085
 msgid "Defaut TTL for your zonefiles:"
 msgstr ""
 
@@ -1620,7 +1622,7 @@ msgstr ""
 msgid "Description"
 msgstr "描述: "
 
-#: admin/inc/dtc_config.php:1466
+#: admin/inc/dtc_config.php:1483
 msgid "Description: "
 msgstr "描述: "
 
@@ -1685,7 +1687,7 @@ msgstr ""
 msgid "Do you want to transfer an existing domain or register a new domain?"
 msgstr "你想要轉移已存在的網域或是重新註冊一個新的網域?"
 
-#: shared/drawlib/anotherDtc.php:132
+#: shared/drawlib/anotherDtc.php:134
 msgid "Documentation"
 msgstr "文件"
 
@@ -1718,6 +1720,11 @@ msgstr "網域名稱 / VPS伺服器主機名"
 msgid "Domain name files:"
 msgstr "網域名稱"
 
+#: admin/inc/dtc_config.php:1297
+#, fuzzy
+msgid "Domain name for affiliation return URL:"
+msgstr "網域名稱註冊"
+
 #: shared/dtcrm/draw_adddomain.php:139
 msgid "Domain name is not in correct format. Please enter another name."
 msgstr "網域名稱格式錯誤。 請輸入另一個名稱。"
@@ -1726,7 +1733,7 @@ msgstr "網域名稱格式錯誤。 請輸入另一個名稱。"
 msgid "Domain name registration"
 msgstr "網域名稱註冊"
 
-#: admin/inc/dtc_config.php:1240
+#: admin/inc/dtc_config.php:1253
 msgid "Domain name registry API configuraiton"
 msgstr ""
 
@@ -1791,7 +1798,7 @@ msgstr ""
 msgid "Edit Mail Group"
 msgstr "編輯一個公司:"
 
-#: admin/inc/dtc_config.php:1605
+#: admin/inc/dtc_config.php:1622
 msgid "Edit a company:"
 msgstr "編輯一個公司:"
 
@@ -1839,7 +1846,7 @@ msgstr ""
 msgid "Email address is already in use!"
 msgstr "你的網站管理員的電子郵件:"
 
-#: admin/inc/dtc_config.php:1039
+#: admin/inc/dtc_config.php:1052
 msgid "Email address of your webmaster:"
 msgstr "你的網站管理員的電子郵件:"
 
@@ -2120,11 +2127,11 @@ msgstr ""
 msgid "Full description of the trouble:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1003
+#: admin/inc/dtc_config.php:1016
 msgid "Full hostname of DTC admin panel: "
 msgstr "完整的"
 
-#: admin/inc/dtc_config.php:1092
+#: admin/inc/dtc_config.php:1105
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr ""
 
@@ -2144,7 +2151,7 @@ msgstr ""
 msgid "Gateway cost"
 msgstr ""
 
-#: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:849
+#: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:853
 msgid "General"
 msgstr "一般"
 
@@ -2152,11 +2159,15 @@ msgstr "一般"
 msgid "General information of "
 msgstr ""
 
+#: admin/inc/dtc_config.php:947
+msgid "Generate a global /webmail alias: "
+msgstr ""
+
 #: shared/inc/forms/subdomain.php:181
 msgid "Generate a vhost entry for this subdomain:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:994
+#: admin/inc/dtc_config.php:1007
 msgid "Generate all apache vhosts on local network ip (NAT): "
 msgstr ""
 
@@ -2306,7 +2317,7 @@ msgstr ""
 msgid "Hong Kong"
 msgstr "只需代管"
 
-#: admin/inc/dtc_config.php:985
+#: admin/inc/dtc_config.php:998
 msgid "Host IP addresses (separated by \"|\"): "
 msgstr "主機IP位址 (以\"|\"區分): "
 
@@ -2324,7 +2335,7 @@ msgstr "只需代管"
 msgid "Hosting product manager"
 msgstr ""
 
-#: admin/inc/dtc_config.php:697 shared/inc/forms/ticket.php:158
+#: admin/inc/dtc_config.php:701 shared/inc/forms/ticket.php:158
 msgid "Hostname"
 msgstr "主機名"
 
@@ -2362,7 +2373,7 @@ msgstr "我同意以下 "
 msgid "IMAP4: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:326 admin/inc/dtc_config.php:766
+#: admin/inc/dtc_config.php:326 admin/inc/dtc_config.php:770
 msgid "IP Pool"
 msgstr ""
 
@@ -2370,7 +2381,7 @@ msgstr ""
 msgid "IP Resolved"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1118 shared/inc/forms/my_account.php:129
+#: admin/inc/dtc_config.php:1131 shared/inc/forms/my_account.php:129
 #: shared/inc/forms/root_admin.php:385
 msgid "IP address"
 msgstr "IP 位址"
@@ -2421,13 +2432,13 @@ msgstr "IP 位址"
 msgid "IP addresses: "
 msgstr "IP 位址"
 
-#: admin/inc/dtc_config.php:1052
+#: admin/inc/dtc_config.php:1065
 msgid "IP of the master DNS to be written in the named.slavezones.conf:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:323 admin/inc/dtc_config.php:368
-#: admin/inc/dtc_config.php:438 admin/inc/dtc_config.php:688
-#: admin/inc/dtc_config.php:763
+#: admin/inc/dtc_config.php:438 admin/inc/dtc_config.php:692
+#: admin/inc/dtc_config.php:767
 msgid "IPs addrs"
 msgstr "IP位址"
 
@@ -2518,7 +2529,7 @@ msgid ""
 "Return-Path: are deleted no matter what."
 msgstr ""
 
-#: admin/inc/submit_root_querys.php:278
+#: admin/inc/submit_root_querys.php:279
 msgid ""
 "Incorect admin login format: it should consist of only lowercase letters or "
 "numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
@@ -2630,11 +2641,11 @@ msgstr "開發票"
 msgid "Invoice date"
 msgstr "開發票"
 
-#: admin/inc/dtc_config.php:1655
+#: admin/inc/dtc_config.php:1672
 msgid "Invoice footer:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1650
+#: admin/inc/dtc_config.php:1667
 msgid "Invoice free text:"
 msgstr ""
 
@@ -2839,7 +2850,7 @@ msgstr "你的公司列表:"
 msgid "List of your SSH accounts:"
 msgstr "你的公司列表:"
 
-#: admin/inc/dtc_config.php:1602
+#: admin/inc/dtc_config.php:1619
 msgid "List of your companies:"
 msgstr "你的公司列表:"
 
@@ -2881,7 +2892,7 @@ msgstr ""
 msgid "List owner:"
 msgstr "名: "
 
-#: admin/inc/dtc_config.php:1066
+#: admin/inc/dtc_config.php:1079
 msgid ""
 "List the DNS server IPs allowed to do zone<br>\n"
 "transfers separated by &quot;|&quot; (pipe)<br>\n"
@@ -2890,7 +2901,7 @@ msgstr ""
 "transfers separated by &quot;|&quot; (pipe)<br>\n"
 "(如果你沒有備份的 DNS 伺服器請不用填寫):"
 
-#: admin/inc/dtc_config.php:1034
+#: admin/inc/dtc_config.php:1047
 msgid ""
 "List your backup MX servers separated by &quot;|&quot; (pipe)<br>\n"
 "(leave blank if you don't have backup MX server):"
@@ -2904,11 +2915,11 @@ msgstr ""
 msgid "Lithuania"
 msgstr ""
 
-#: admin/inc/dtc_config.php:999
+#: admin/inc/dtc_config.php:1012
 msgid "Local network area ip address of the vhost using NAT: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:365 admin/inc/dtc_config.php:701
+#: admin/inc/dtc_config.php:365 admin/inc/dtc_config.php:705
 msgid "Location"
 msgstr "地點"
 
@@ -2916,7 +2927,7 @@ msgstr "地點"
 msgid "Location is not a valid hostname."
 msgstr ""
 
-#: admin/inc/dtc_config.php:929
+#: admin/inc/dtc_config.php:933
 msgid "Location of user's database: "
 msgstr "使用者資料庫地點"
 
@@ -2924,9 +2935,9 @@ msgstr "使用者資料庫地點"
 #: admin/inc/renewals.php:711 admin/inc/renewals.php:792
 #: admin/inc/draw_user_admin.php:248 admin/inc/draw_user_admin.php:306
 #: admin/inc/draw_user_admin.php:325 admin/inc/draw_user_admin.php:411
-#: admin/inc/dtc_config.php:444 admin/inc/dtc_config.php:1121
-#: admin/inc/dtc_config.php:1148 admin/inc/dtc_config.php:1173
-#: admin/inc/dtc_config.php:1200 admin/inc/dtc_config.php:1225
+#: admin/inc/dtc_config.php:444 admin/inc/dtc_config.php:1134
+#: admin/inc/dtc_config.php:1161 admin/inc/dtc_config.php:1186
+#: admin/inc/dtc_config.php:1213 admin/inc/dtc_config.php:1238
 #: shared/inc/forms/email.php:27 shared/inc/forms/reseller.php:24
 #: shared/gfx/skin/default_layout.php:24 shared/gfx/skin/default_layout.php:34
 #: shared/gfx/skin/default_layout.php:63 shared/gfx/skin/default_layout.php:72
@@ -2955,7 +2966,7 @@ msgstr "登入: "
 msgid "Login: "
 msgstr "登入: "
 
-#: admin/inc/dtc_config.php:1645
+#: admin/inc/dtc_config.php:1662
 msgid "Logo path relative to"
 msgstr "Logo路徑相關"
 
@@ -3066,11 +3077,11 @@ msgstr ""
 msgid "Mailing lists:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:981
+#: admin/inc/dtc_config.php:994
 msgid "Main ip address of the server: "
 msgstr "伺服器主要ip位址: "
 
-#: admin/inc/dtc_config.php:976
+#: admin/inc/dtc_config.php:989
 msgid "Main software configuration of DTC"
 msgstr "DTC主要軟體結構"
 
@@ -3152,11 +3163,11 @@ msgstr ""
 msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1414
+#: admin/inc/dtc_config.php:1431
 msgid "Maxmind license key: "
 msgstr "Maxmind 授權金鑰: "
 
-#: admin/inc/dtc_config.php:1410
+#: admin/inc/dtc_config.php:1427
 msgid "Maxmind login: "
 msgstr "Maxmind 登入: "
 
@@ -3307,7 +3318,7 @@ msgstr ""
 msgid "NAMED ZONES FILES"
 msgstr "命名的區資源記錄文件"
 
-#: admin/inc/dtc_config.php:1428
+#: admin/inc/dtc_config.php:1445
 msgid "NAS config"
 msgstr ""
 
@@ -3366,7 +3377,7 @@ msgstr "獨立主機"
 msgid "Name:"
 msgstr "名稱: "
 
-#: admin/inc/dtc_config.php:1445 shared/inc/forms/vps_monitoring.php:143
+#: admin/inc/dtc_config.php:1462 shared/inc/forms/vps_monitoring.php:143
 #: shared/inc/forms/vps_installation.php:91
 msgid "Name: "
 msgstr "名稱: "
@@ -3375,19 +3386,19 @@ msgstr "名稱: "
 msgid "Named conf files generated !"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1571
+#: admin/inc/dtc_config.php:1588
 msgid "Named file names"
 msgstr "命名的檔案名稱"
 
-#: admin/inc/dtc_config.php:1576
+#: admin/inc/dtc_config.php:1593
 msgid "Named main file:"
 msgstr "命名的主要檔案:"
 
-#: admin/inc/dtc_config.php:1584
+#: admin/inc/dtc_config.php:1601
 msgid "Named main zonefiles folder:"
 msgstr "命名的區資源記錄文件資料夾"
 
-#: admin/inc/dtc_config.php:1580
+#: admin/inc/dtc_config.php:1597
 msgid "Named slave file:"
 msgstr ""
 
@@ -3396,7 +3407,7 @@ msgstr ""
 msgid "Named zonefile:"
 msgstr "區資源紀錄文件命名"
 
-#: admin/inc/dtc_config.php:47 admin/inc/dtc_config.php:1024
+#: admin/inc/dtc_config.php:47 admin/inc/dtc_config.php:1037
 msgid "Named zonefiles"
 msgstr "區資源紀錄文件命名"
 
@@ -3525,29 +3536,30 @@ msgstr ""
 #: admin/inc/draw_user_admin.php:170 admin/inc/draw_user_admin.php:285
 #: admin/inc/draw_user_admin.php:353 admin/inc/dtc_config.php:453
 #: admin/inc/dtc_config.php:491 admin/inc/dtc_config.php:529
-#: admin/inc/dtc_config.php:718 admin/inc/dtc_config.php:772
-#: admin/inc/dtc_config.php:857 admin/inc/dtc_config.php:862
-#: admin/inc/dtc_config.php:867 admin/inc/dtc_config.php:872
-#: admin/inc/dtc_config.php:902 admin/inc/dtc_config.php:907
-#: admin/inc/dtc_config.php:912 admin/inc/dtc_config.php:917
-#: admin/inc/dtc_config.php:922 admin/inc/dtc_config.php:927
-#: admin/inc/dtc_config.php:992 admin/inc/dtc_config.php:997
-#: admin/inc/dtc_config.php:1059 admin/inc/dtc_config.php:1064
-#: admin/inc/dtc_config.php:1249 admin/inc/dtc_config.php:1287
-#: admin/inc/dtc_config.php:1315 admin/inc/dtc_config.php:1336
-#: admin/inc/dtc_config.php:1341 admin/inc/dtc_config.php:1358
-#: admin/inc/dtc_config.php:1363 admin/inc/dtc_config.php:1379
-#: admin/inc/dtc_config.php:1408 admin/dtcrm/main.php:162
-#: admin/dtcrm/product_manager.php:88 admin/dtcrm/product_manager.php:156
-#: admin/dtcrm/product_manager.php:224 admin/dtcrm/product_manager.php:277
-#: client/new_account_form.php:603 shared/inc/forms/domain_info.php:75
-#: shared/inc/forms/email.php:236 shared/inc/forms/email.php:244
-#: shared/inc/forms/email.php:271 shared/inc/forms/root_admin.php:48
-#: shared/inc/forms/root_admin.php:58 shared/inc/forms/root_admin.php:68
-#: shared/inc/forms/root_admin.php:78 shared/inc/forms/root_admin.php:236
-#: shared/inc/forms/root_admin.php:353 shared/inc/forms/root_admin.php:358
-#: shared/inc/forms/subdomain.php:138 shared/inc/forms/subdomain.php:180
-#: shared/inc/forms/subdomain.php:194 shared/inc/forms/ticket.php:130
+#: admin/inc/dtc_config.php:722 admin/inc/dtc_config.php:776
+#: admin/inc/dtc_config.php:861 admin/inc/dtc_config.php:866
+#: admin/inc/dtc_config.php:871 admin/inc/dtc_config.php:876
+#: admin/inc/dtc_config.php:906 admin/inc/dtc_config.php:911
+#: admin/inc/dtc_config.php:916 admin/inc/dtc_config.php:921
+#: admin/inc/dtc_config.php:926 admin/inc/dtc_config.php:931
+#: admin/inc/dtc_config.php:950 admin/inc/dtc_config.php:1005
+#: admin/inc/dtc_config.php:1010 admin/inc/dtc_config.php:1072
+#: admin/inc/dtc_config.php:1077 admin/inc/dtc_config.php:1262
+#: admin/inc/dtc_config.php:1304 admin/inc/dtc_config.php:1332
+#: admin/inc/dtc_config.php:1353 admin/inc/dtc_config.php:1358
+#: admin/inc/dtc_config.php:1375 admin/inc/dtc_config.php:1380
+#: admin/inc/dtc_config.php:1396 admin/inc/dtc_config.php:1425
+#: admin/dtcrm/main.php:162 admin/dtcrm/product_manager.php:88
+#: admin/dtcrm/product_manager.php:156 admin/dtcrm/product_manager.php:224
+#: admin/dtcrm/product_manager.php:277 client/new_account_form.php:603
+#: shared/inc/forms/domain_info.php:75 shared/inc/forms/email.php:236
+#: shared/inc/forms/email.php:244 shared/inc/forms/email.php:271
+#: shared/inc/forms/root_admin.php:48 shared/inc/forms/root_admin.php:58
+#: shared/inc/forms/root_admin.php:68 shared/inc/forms/root_admin.php:78
+#: shared/inc/forms/root_admin.php:236 shared/inc/forms/root_admin.php:353
+#: shared/inc/forms/root_admin.php:358 shared/inc/forms/subdomain.php:138
+#: shared/inc/forms/subdomain.php:180 shared/inc/forms/subdomain.php:194
+#: shared/inc/forms/ticket.php:130
 msgid "No"
 msgstr "No"
 
@@ -3773,6 +3785,11 @@ msgstr "eNETS 伺服器: "
 msgid "Other MX (backup) servers:"
 msgstr "MX與NS備份伺服器"
 
+#: shared/inc/forms/my_account.php:231
+#, fuzzy
+msgid "Outstanding payments:"
+msgstr "無法找到款項"
+
 #: shared/inc/forms/lists.php:447
 msgid "Own template:"
 msgstr ""
@@ -3789,13 +3806,13 @@ msgstr "付款已取消"
 msgid "PAYMENT FAILED"
 msgstr "付款失敗"
 
-#: admin/inc/dtc_config.php:1559
+#: admin/inc/dtc_config.php:1576
 msgid ""
 "PHP libraries open_basedir<br>\n"
 "(separated by \":\", reset on each dtc install):"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1564
+#: admin/inc/dtc_config.php:1581
 msgid ""
 "PHP open_basedir additional libraries path<br>\n"
 "(survives reinstallation):"
@@ -3854,14 +3871,14 @@ msgstr ""
 msgid "Paraguay"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1124 admin/inc/dtc_config.php:1151
-#: admin/inc/dtc_config.php:1176 admin/inc/dtc_config.php:1203
-#: admin/inc/dtc_config.php:1228 shared/inc/draw.php:331
+#: admin/inc/dtc_config.php:1137 admin/inc/dtc_config.php:1164
+#: admin/inc/dtc_config.php:1189 admin/inc/dtc_config.php:1216
+#: admin/inc/dtc_config.php:1241 shared/inc/draw.php:331
 #: shared/inc/draw.php:484 shared/inc/forms/reseller.php:24
 msgid "Password"
 msgstr "密碼"
 
-#: admin/inc/submit_root_querys.php:282
+#: admin/inc/submit_root_querys.php:283
 msgid ""
 "Password consist of only letters and numbers (a-zA-Z0-9) and should be "
 "between 6 and 16 chars long.<br>\n"
@@ -3892,7 +3909,7 @@ msgstr ""
 msgid "Password:"
 msgstr "密碼: "
 
-#: admin/inc/dtc_config.php:1459 client/new_account_form.php:577
+#: admin/inc/dtc_config.php:1476 client/new_account_form.php:577
 #: email/login.php:17 shared/inc/forms/email.php:216
 #: shared/inc/forms/ftp.php:81
 msgid "Password: "
@@ -3912,11 +3929,11 @@ msgstr ""
 msgid "Past payments"
 msgstr "無法找到款項"
 
-#: admin/inc/dtc_config.php:1514
+#: admin/inc/dtc_config.php:1531
 msgid "Path of the cgi-wrapper disk template (chroot for SBOX):"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1508
+#: admin/inc/dtc_config.php:1525
 msgid "Path of your DTC shared directory:"
 msgstr ""
 
@@ -3924,7 +3941,7 @@ msgstr ""
 msgid "Path to the Nagios configuration file to be created: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1517
+#: admin/inc/dtc_config.php:1534
 msgid ""
 "Path where DTC will be restricted for generating it's configuration files "
 "for daemons.<br>\n"
@@ -3942,23 +3959,23 @@ msgstr "路徑: "
 msgid "Path: "
 msgstr "路徑: "
 
-#: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:1503
+#: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:1520
 msgid "Paths"
 msgstr "路徑"
 
-#: admin/inc/dtc_config.php:1343
+#: admin/inc/dtc_config.php:1360
 msgid "PayPal business account email: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1347
+#: admin/inc/dtc_config.php:1364
 msgid "PayPal fee rate: "
 msgstr "Paypal 免費費率: "
 
-#: admin/inc/dtc_config.php:1351
+#: admin/inc/dtc_config.php:1368
 msgid "PayPal flat fee: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1365
+#: admin/inc/dtc_config.php:1382
 msgid "PayPal test account email (sandbox): "
 msgstr ""
 
@@ -4115,7 +4132,7 @@ msgstr ""
 msgid "Poland"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1455
+#: admin/inc/dtc_config.php:1472
 msgid "Port number: "
 msgstr "端口號碼: "
 
@@ -4130,7 +4147,7 @@ msgstr ""
 msgid "Price"
 msgstr "價格"
 
-#: admin/inc/dtc_config.php:1043
+#: admin/inc/dtc_config.php:1056
 msgid "Primary DNS server address:"
 msgstr "主要的 DNS 伺服器位址:"
 
@@ -4229,7 +4246,7 @@ msgstr "產品: "
 msgid "Product: "
 msgstr "產品: "
 
-#: admin/inc/dtc_config.php:1384
+#: admin/inc/dtc_config.php:1401
 msgid "Production server"
 msgstr "生產伺服器"
 
@@ -4301,12 +4318,11 @@ msgid "Redirection"
 msgstr "註冊選擇"
 
 #: shared/inc/forms/email.php:250 shared/inc/forms/email.php:607
-#: shared/inc/forms/email.php:613
 #, fuzzy
 msgid "Redirection 1: "
 msgstr "註冊選擇"
 
-#: shared/inc/forms/email.php:253
+#: shared/inc/forms/email.php:253 shared/inc/forms/email.php:613
 #, fuzzy
 msgid "Redirection 2: "
 msgstr "註冊選擇"
@@ -4351,7 +4367,7 @@ msgstr "註冊失敗"
 msgid "Registration failed"
 msgstr "註冊失敗"
 
-#: admin/inc/dtc_config.php:1633
+#: admin/inc/dtc_config.php:1650
 msgid "Registration number:"
 msgstr "登記號碼:"
 
@@ -4369,7 +4385,7 @@ msgstr "註冊成功!"
 msgid "Registration successful!"
 msgstr "註冊成功!"
 
-#: admin/inc/dtc_config.php:816
+#: admin/inc/dtc_config.php:820
 msgid "Registry selection"
 msgstr "註冊選擇"
 
@@ -4529,28 +4545,28 @@ msgstr "SMTP伺服器"
 msgid "SMTP: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1088
+#: admin/inc/dtc_config.php:1101
 msgid "SOA default ttl value: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1084
+#: admin/inc/dtc_config.php:1097
 msgid "SOA expire value: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1076
+#: admin/inc/dtc_config.php:1089
 msgid "SOA refresh value: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1080
+#: admin/inc/dtc_config.php:1093
 msgid "SOA retry value: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:705
+#: admin/inc/dtc_config.php:709
 #, fuzzy
 msgid "SOAP login"
 msgstr "FTP登入"
 
-#: admin/inc/dtc_config.php:709
+#: admin/inc/dtc_config.php:713
 msgid "SOAP password"
 msgstr "SOAP密碼"
 
@@ -4597,7 +4613,7 @@ msgstr "SSL IP更新"
 msgid "SSL IPs renewals: "
 msgstr "SSL IP更新"
 
-#: admin/inc/dtc_config.php:1007
+#: admin/inc/dtc_config.php:1020
 msgid "SSL Port: "
 msgstr "SSL 埠"
 
@@ -4647,7 +4663,7 @@ msgstr ""
 msgid "Same DocumentRoot"
 msgstr "文件"
 
-#: admin/inc/dtc_config.php:932
+#: admin/inc/dtc_config.php:936
 msgid "Same as for DTC"
 msgstr "與DTC一樣"
 
@@ -4677,7 +4693,7 @@ msgstr "伺服器主機"
 msgid "Sbox cgi-bin protection: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1047
+#: admin/inc/dtc_config.php:1060
 msgid ""
 "Secondary DNS servers address<br>\n"
 "(separated by &quot;|&quot; (pipe) if more than one):"
@@ -4689,7 +4705,7 @@ msgstr ""
 msgid "Secondary DNS:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1291
+#: admin/inc/dtc_config.php:1308
 msgid "Secure payment configuration"
 msgstr "確保付款結構"
 
@@ -4707,11 +4723,11 @@ msgid ""
 "the registries:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:966
+#: admin/inc/dtc_config.php:979
 msgid "Select the type of skin:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:883
+#: admin/inc/dtc_config.php:887
 msgid "Selling conditions URL: "
 msgstr ""
 
@@ -4775,6 +4791,11 @@ msgstr "伺服器在連接後沒有送出OK，可能為錯誤伺服器或伺服�
 msgid "Server hostname related: "
 msgstr "伺服器主機名稱相關: "
 
+#: admin/inc/dtc_config.php:641
+#, fuzzy
+msgid "Server hostname: "
+msgstr "VPS伺服器列表"
+
 #: shared/gfx/skin/default_layout.php:269 shared/gfx/skin/bwoup/layout.php:412
 #: shared/gfx/skin/bwoup/layout.php:414
 #, fuzzy
@@ -4813,7 +4834,7 @@ msgstr "伺服器:"
 msgid "ServerAlias"
 msgstr "伺服器主機"
 
-#: admin/inc/renewals.php:425 admin/inc/dtc_config.php:1711
+#: admin/inc/renewals.php:425 admin/inc/dtc_config.php:1728
 msgid "Service country"
 msgstr "服務國家"
 
@@ -4856,11 +4877,11 @@ msgstr "共享虛擬主機"
 msgid "Short name:"
 msgstr "簡短名稱: "
 
-#: admin/inc/dtc_config.php:1448
+#: admin/inc/dtc_config.php:1465
 msgid "Short name: "
 msgstr "簡短名稱: "
 
-#: admin/inc/dtc_config.php:905
+#: admin/inc/dtc_config.php:909
 msgid "Show advanced mailing list options: "
 msgstr ""
 
@@ -5162,7 +5183,7 @@ msgid ""
 msgstr ""
 "小心不要加入SSL IP控制板，如果你不想要 有排斥衝突 (也避免apache重新啟動)!"
 
-#: shared/drawlib/anotherDtc.php:144 shared/drawlib/anotherDtc.php:156
+#: shared/drawlib/anotherDtc.php:146 shared/drawlib/anotherDtc.php:158
 msgid "Take control of your domain name"
 msgstr "掌管你的網域名稱"
 
@@ -5179,15 +5200,15 @@ msgstr "稅率:"
 msgid "Taxes (VAT or GST)"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1133
+#: admin/inc/dtc_config.php:1146
 msgid "Tell the following servers when a domain is added or removed :"
 msgstr "當新增或移除一個網域時，告知以下的伺服器 :"
 
-#: admin/inc/dtc_config.php:1158
+#: admin/inc/dtc_config.php:1171
 msgid "Tell the following servers when an email is added or removed :"
 msgstr "當新增或移除一個墊子郵件時，告知以下的伺服器 :"
 
-#: admin/inc/dtc_config.php:1384
+#: admin/inc/dtc_config.php:1401
 msgid "Test server"
 msgstr "冊是伺服器"
 
@@ -5331,7 +5352,7 @@ msgstr ""
 msgid "This month: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:879
+#: admin/inc/dtc_config.php:883
 msgid "This server location: "
 msgstr "此伺服器定位: "
 
@@ -5538,7 +5559,7 @@ msgstr "形式"
 msgid "Type not found!"
 msgstr "找不到形式"
 
-#: admin/inc/dtc_config.php:1251
+#: admin/inc/dtc_config.php:1264
 msgid "Type of encryption for connecting to Tucows server:"
 msgstr ""
 
@@ -5550,11 +5571,15 @@ msgstr ""
 msgid "Type of problem:"
 msgstr ""
 
+#: admin/inc/dtc_config.php:952
+msgid "Type of webmail fot the /webmail alias: "
+msgstr ""
+
 #: admin/inc/dtc_config.php:374
 msgid "Type of zone generation"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:136 admin/inc/dtc_config.php:1451
+#: admin/inc/draw_user_admin.php:136 admin/inc/dtc_config.php:1468
 msgid "Type:"
 msgstr "形式"
 
@@ -5563,8 +5588,8 @@ msgstr "形式"
 msgid "Type: type not found!"
 msgstr "找不到形式"
 
-#: admin/inc/dtc_config.php:1145 admin/inc/dtc_config.php:1170
-#: admin/inc/dtc_config.php:1197 admin/inc/dtc_config.php:1222
+#: admin/inc/dtc_config.php:1158 admin/inc/dtc_config.php:1183
+#: admin/inc/dtc_config.php:1210 admin/inc/dtc_config.php:1235
 msgid "URL"
 msgstr "URL"
 
@@ -5639,31 +5664,31 @@ msgstr ""
 msgid "Use"
 msgstr "使用者"
 
-#: admin/inc/dtc_config.php:864
+#: admin/inc/dtc_config.php:868
 msgid "Use @domain.com ftp logins: "
 msgstr "使用@domain.com FTP登入: "
 
-#: admin/inc/dtc_config.php:869
+#: admin/inc/dtc_config.php:873
 msgid "Use @domain.com ssh logins: "
 msgstr "使用@domain.com ssh登入"
 
-#: admin/inc/dtc_config.php:1056
+#: admin/inc/dtc_config.php:1069
 msgid "Use CNAME instead of A record for subdomains:"
 msgstr "對於次網域使用 CNAME 代替紀錄"
 
-#: admin/inc/dtc_config.php:717
+#: admin/inc/dtc_config.php:721
 msgid "Use LVM backend"
 msgstr "使用LVM後端"
 
-#: admin/inc/dtc_config.php:1405
+#: admin/inc/dtc_config.php:1422
 msgid "Use Maxmind API: "
 msgstr "使用 Maxmind API: "
 
-#: admin/inc/dtc_config.php:859
+#: admin/inc/dtc_config.php:863
 msgid "Use SSL: "
 msgstr "使用SSL: "
 
-#: admin/inc/dtc_config.php:1312
+#: admin/inc/dtc_config.php:1329
 #, fuzzy
 msgid "Use WebMoney: "
 msgstr "使用webalizer"
@@ -5676,15 +5701,15 @@ msgstr ""
 msgid "Use as wildcard for the domain:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:920
+#: admin/inc/dtc_config.php:924
 msgid "Use awstats: "
 msgstr "使用awstats: "
 
-#: admin/inc/dtc_config.php:900
+#: admin/inc/dtc_config.php:904
 msgid "Use cyrus: "
 msgstr "使用cyrus: "
 
-#: admin/inc/dtc_config.php:1376
+#: admin/inc/dtc_config.php:1393
 msgid "Use eNETS: "
 msgstr "使用 eNETS: "
 
@@ -5693,19 +5718,19 @@ msgstr "使用 eNETS: "
 msgid "Use image menu"
 msgstr "使用文字選單: "
 
-#: admin/inc/dtc_config.php:854
+#: admin/inc/dtc_config.php:858
 msgid "Use javascript: "
 msgstr "使用javascript: "
 
-#: admin/inc/dtc_config.php:989
+#: admin/inc/dtc_config.php:1002
 msgid "Use multiple IPs: "
 msgstr "使用多組IP: "
 
-#: admin/inc/dtc_config.php:1360
+#: admin/inc/dtc_config.php:1377
 msgid "Use paypal recuring: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1333
+#: admin/inc/dtc_config.php:1350
 msgid "Use paypal: "
 msgstr "使用 paypal: "
 
@@ -5714,7 +5739,7 @@ msgstr "使用 paypal: "
 msgid "Use register_globals=1: "
 msgstr "使用API登錄"
 
-#: admin/inc/dtc_config.php:1246
+#: admin/inc/dtc_config.php:1259
 msgid "Use registrar API:"
 msgstr "使用API登錄"
 
@@ -5727,19 +5752,19 @@ msgstr "使用文字選單: "
 msgid "Use text menu: "
 msgstr "使用文字選單: "
 
-#: admin/inc/dtc_config.php:1255
+#: admin/inc/dtc_config.php:1268
 msgid "Use the LIVE server (and not the test one) :"
 msgstr "使用 LIVE 伺服器 (但不是測試的那一個) :"
 
-#: admin/inc/dtc_config.php:1355
+#: admin/inc/dtc_config.php:1372
 msgid "Use the sandbox test server: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:925
+#: admin/inc/dtc_config.php:929
 msgid "Use visitors: "
 msgstr "使用visitors: "
 
-#: admin/inc/dtc_config.php:910
+#: admin/inc/dtc_config.php:914
 msgid "Use webalizer: "
 msgstr "使用webalizer"
 
@@ -5757,15 +5782,15 @@ msgstr "使用awstats: "
 msgid "User"
 msgstr "使用者"
 
-#: admin/inc/dtc_config.php:934
+#: admin/inc/dtc_config.php:938
 msgid "User MySQL host: "
 msgstr "User MySQL主機: "
 
-#: admin/inc/dtc_config.php:937
+#: admin/inc/dtc_config.php:941
 msgid "User MySQL root login: "
 msgstr "User MySQL root登入: "
 
-#: admin/inc/dtc_config.php:940
+#: admin/inc/dtc_config.php:944
 msgid "User MySQL root password: "
 msgstr "User MySQL root密碼: "
 
@@ -5792,7 +5817,7 @@ msgstr ""
 msgid "User or password is incorrect!"
 msgstr ""
 
-#: admin/inc/dtc_config.php:874
+#: admin/inc/dtc_config.php:878
 msgid "User session expire time (min): "
 msgstr ""
 
@@ -5816,10 +5841,6 @@ msgstr "使用者與網域等待附加: "
 msgid "Uzbekistan"
 msgstr ""
 
-#: client/new_account_form.php:608
-msgid "VAT Number: "
-msgstr "稅籍號碼: "
-
 #: admin/inc/renewals.php:427 admin/inc/renewals.php:585
 msgid "VAT collected"
 msgstr ""
@@ -5829,7 +5850,7 @@ msgstr ""
 msgid "VAT not found"
 msgstr "找不到形式"
 
-#: admin/inc/dtc_config.php:1637
+#: admin/inc/dtc_config.php:1654
 msgid "VAT number:"
 msgstr "稅籍號碼:"
 
@@ -5837,9 +5858,14 @@ msgstr "稅籍號碼:"
 msgid "VAT number: "
 msgstr "稅籍號碼: "
 
-#: admin/inc/dtc_config.php:1641
+#: admin/inc/dtc_config.php:1658
 msgid "VAT rate:"
 msgstr "稅率:"
+
+#: client/new_account_form.php:608
+#, fuzzy
+msgid "VAT/GST Number: "
+msgstr "稅籍號碼: "
 
 #: shared/inc/forms/lists.php:432
 #, fuzzy
@@ -5864,7 +5890,7 @@ msgstr "確認密碼: "
 msgid "VPS"
 msgstr "VPS"
 
-#: admin/inc/dtc_config.php:746
+#: admin/inc/dtc_config.php:750
 msgid "VPS IPs for "
 msgstr ""
 
@@ -5883,7 +5909,7 @@ msgstr "VPS: "
 msgid "VPS Server"
 msgstr "VPS伺服器"
 
-#: admin/inc/dtc_config.php:672
+#: admin/inc/dtc_config.php:676
 msgid "VPS Server and IP addresses registry edition"
 msgstr "VPS伺服器與IP位址註冊版"
 
@@ -5892,7 +5918,7 @@ msgstr "VPS伺服器與IP位址註冊版"
 msgid "VPS Server hostname: "
 msgstr "VPS伺服器列表"
 
-#: admin/inc/dtc_config.php:675
+#: admin/inc/dtc_config.php:679
 msgid "VPS Server list:"
 msgstr "VPS伺服器列表"
 
@@ -5930,7 +5956,7 @@ msgstr "VPS更新"
 msgid "VPS servers"
 msgstr "VPS伺服器"
 
-#: admin/inc/dtc_config.php:760
+#: admin/inc/dtc_config.php:764
 msgid "VPS xen number"
 msgstr ""
 
@@ -5942,7 +5968,7 @@ msgstr "VPS: "
 msgid "VPS: Cannot find VPS in db!"
 msgstr "VPS: 無法於資料庫找到VPS!"
 
-#: admin/inc/dtc_config.php:1338
+#: admin/inc/dtc_config.php:1355
 msgid "Validate new account if paid: "
 msgstr "確認已付款的新帳號: "
 
@@ -5978,11 +6004,11 @@ msgstr ""
 msgid "Virgin Islands (U.S.)"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1555
+#: admin/inc/dtc_config.php:1572
 msgid "Virtual host config-file:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1321
+#: admin/inc/dtc_config.php:1338
 msgid "WMZ: "
 msgstr ""
 
@@ -5990,7 +6016,7 @@ msgstr ""
 msgid "Wallis and Futuna Islands"
 msgstr ""
 
-#: admin/inc/dtc_config.php:294 admin/inc/dtc_config.php:728
+#: admin/inc/dtc_config.php:294 admin/inc/dtc_config.php:732
 msgid "Warning: no IP pool in the database!"
 msgstr ""
 
@@ -6010,16 +6036,16 @@ msgstr "期滿前的警告: "
 msgid "Web archive"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1279
+#: admin/inc/dtc_config.php:1292
 #, fuzzy
 msgid "Web host subdomain registration"
 msgstr "網域名稱註冊"
 
-#: admin/inc/dtc_config.php:1317
+#: admin/inc/dtc_config.php:1334
 msgid "WebMoney secret key: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:914
+#: admin/inc/dtc_config.php:918
 msgid "Webalizer country graph: "
 msgstr ""
 
@@ -6137,30 +6163,30 @@ msgstr ""
 #: admin/inc/draw_user_admin.php:168 admin/inc/draw_user_admin.php:281
 #: admin/inc/draw_user_admin.php:349 admin/inc/dtc_config.php:453
 #: admin/inc/dtc_config.php:491 admin/inc/dtc_config.php:529
-#: admin/inc/dtc_config.php:718 admin/inc/dtc_config.php:772
-#: admin/inc/dtc_config.php:857 admin/inc/dtc_config.php:862
-#: admin/inc/dtc_config.php:867 admin/inc/dtc_config.php:872
-#: admin/inc/dtc_config.php:902 admin/inc/dtc_config.php:907
-#: admin/inc/dtc_config.php:912 admin/inc/dtc_config.php:917
-#: admin/inc/dtc_config.php:922 admin/inc/dtc_config.php:927
-#: admin/inc/dtc_config.php:992 admin/inc/dtc_config.php:997
-#: admin/inc/dtc_config.php:1059 admin/inc/dtc_config.php:1064
-#: admin/inc/dtc_config.php:1249 admin/inc/dtc_config.php:1287
-#: admin/inc/dtc_config.php:1315 admin/inc/dtc_config.php:1336
-#: admin/inc/dtc_config.php:1341 admin/inc/dtc_config.php:1358
-#: admin/inc/dtc_config.php:1363 admin/inc/dtc_config.php:1379
-#: admin/inc/dtc_config.php:1408 admin/dtcrm/main.php:161
-#: admin/dtcrm/product_manager.php:88 admin/dtcrm/product_manager.php:156
-#: admin/dtcrm/product_manager.php:224 admin/dtcrm/product_manager.php:277
-#: client/new_account_form.php:602 shared/inc/forms/domain_info.php:74
-#: shared/inc/forms/email.php:236 shared/inc/forms/email.php:242
-#: shared/inc/forms/email.php:271 shared/inc/forms/root_admin.php:47
-#: shared/inc/forms/root_admin.php:57 shared/inc/forms/root_admin.php:67
-#: shared/inc/forms/root_admin.php:77 shared/inc/forms/root_admin.php:235
-#: shared/inc/forms/root_admin.php:353 shared/inc/forms/root_admin.php:358
-#: shared/inc/forms/subdomain.php:138 shared/inc/forms/subdomain.php:180
-#: shared/inc/forms/subdomain.php:194 shared/inc/forms/ticket.php:129
-#: shared/securepay/modules/enets/main.php:46
+#: admin/inc/dtc_config.php:722 admin/inc/dtc_config.php:776
+#: admin/inc/dtc_config.php:861 admin/inc/dtc_config.php:866
+#: admin/inc/dtc_config.php:871 admin/inc/dtc_config.php:876
+#: admin/inc/dtc_config.php:906 admin/inc/dtc_config.php:911
+#: admin/inc/dtc_config.php:916 admin/inc/dtc_config.php:921
+#: admin/inc/dtc_config.php:926 admin/inc/dtc_config.php:931
+#: admin/inc/dtc_config.php:950 admin/inc/dtc_config.php:1005
+#: admin/inc/dtc_config.php:1010 admin/inc/dtc_config.php:1072
+#: admin/inc/dtc_config.php:1077 admin/inc/dtc_config.php:1262
+#: admin/inc/dtc_config.php:1304 admin/inc/dtc_config.php:1332
+#: admin/inc/dtc_config.php:1353 admin/inc/dtc_config.php:1358
+#: admin/inc/dtc_config.php:1375 admin/inc/dtc_config.php:1380
+#: admin/inc/dtc_config.php:1396 admin/inc/dtc_config.php:1425
+#: admin/dtcrm/main.php:161 admin/dtcrm/product_manager.php:88
+#: admin/dtcrm/product_manager.php:156 admin/dtcrm/product_manager.php:224
+#: admin/dtcrm/product_manager.php:277 client/new_account_form.php:602
+#: shared/inc/forms/domain_info.php:74 shared/inc/forms/email.php:236
+#: shared/inc/forms/email.php:242 shared/inc/forms/email.php:271
+#: shared/inc/forms/root_admin.php:47 shared/inc/forms/root_admin.php:57
+#: shared/inc/forms/root_admin.php:67 shared/inc/forms/root_admin.php:77
+#: shared/inc/forms/root_admin.php:235 shared/inc/forms/root_admin.php:353
+#: shared/inc/forms/root_admin.php:358 shared/inc/forms/subdomain.php:138
+#: shared/inc/forms/subdomain.php:180 shared/inc/forms/subdomain.php:194
+#: shared/inc/forms/ticket.php:129 shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:76
 #: shared/securepay/modules/worldpay/main.php:77
 #: shared/securepay/modules/webmoney/main.php:39
@@ -6225,7 +6251,7 @@ msgid ""
 "redirected to our payment system. Please click on the button below to pay."
 msgstr ""
 
-#: shared/inc/forms/my_account.php:220
+#: shared/inc/forms/my_account.php:245
 msgid "You do not have a client account, so there is no money in your account."
 msgstr ""
 
@@ -6266,7 +6292,7 @@ msgid ""
 "for debugging purposes."
 msgstr ""
 
-#: admin/inc/dtc_config.php:1259
+#: admin/inc/dtc_config.php:1272
 msgid "Your SRS username:"
 msgstr "你的 SRS 使用者名稱"
 
@@ -6319,7 +6345,7 @@ msgstr "無期滿的獨立主機"
 msgid "Your dedicated server will expire on the: "
 msgstr "無期滿的獨立主機"
 
-#: admin/inc/dtc_config.php:1511
+#: admin/inc/dtc_config.php:1528
 msgid "Your default new account directory:"
 msgstr ""
 
@@ -6361,11 +6387,11 @@ msgstr "增加網域"
 msgid "Your hosting account:"
 msgstr ""
 
-#: admin/inc/dtc_config.php:1267
+#: admin/inc/dtc_config.php:1280
 msgid "Your key to access the LIVE server:"
 msgstr "進入 LIVE 伺服器的金鑰"
 
-#: admin/inc/dtc_config.php:1263
+#: admin/inc/dtc_config.php:1276
 msgid "Your key to access the test server:"
 msgstr "進入測試伺服器的金鑰"
 
@@ -6443,24 +6469,24 @@ msgstr ""
 msgid "couldn't connect to host"
 msgstr ""
 
-#: admin/inc/dtc_config.php:693
+#: admin/inc/dtc_config.php:697
 #, fuzzy
 msgid "dom0 IP addresses"
 msgstr "SSL IP位址"
 
-#: admin/inc/dtc_config.php:1386
+#: admin/inc/dtc_config.php:1403
 msgid "eNETS merchant ID: "
 msgstr ""
 
-#: admin/inc/dtc_config.php:1394
+#: admin/inc/dtc_config.php:1411
 msgid "eNETS rate: "
 msgstr "eNETS 費用: "
 
-#: admin/inc/dtc_config.php:1381
+#: admin/inc/dtc_config.php:1398
 msgid "eNETS server: "
 msgstr "eNETS 伺服器: "
 
-#: admin/inc/dtc_config.php:1390
+#: admin/inc/dtc_config.php:1407
 msgid "eNETS test merchant ID: "
 msgstr "eNETS 測試零售 ID: "
 

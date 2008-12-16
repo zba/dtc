@@ -650,7 +650,8 @@ function named_generate(){
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
 		if($num_rows2 != 1){
-			die("No user of that name !");
+			echo("No user of that name ($web_owner)!\n");
+			continue;
 		}
 		$webadmin = mysql_fetch_array($result2) or die ("Cannot fetch user");
 		$web_path = $webadmin["path"];
