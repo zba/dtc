@@ -1473,6 +1473,7 @@ generateOpenSSLApacheCert () {
 				fi
 			fi
 		fi
+		chmod 400 new.cert.csr new.cert.cert new.cert.key privkey.pem
 		cd $cwd
 	fi
 }
