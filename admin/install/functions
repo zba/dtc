@@ -1868,6 +1868,7 @@ setupAmavisConf () {
                 	echo "# Configured by DTC $VERSION" >> $TMP_FILE
                 	echo "\$daemon_user  = 'amavis';" >> $TMP_FILE
                 	echo "\$daemon_group  = 'amavis';" >> $TMP_FILE
+			echo "\$max_servers=8;" >> $TMP_FILE
                 	echo "\$final_virus_destiny = D_DISCARD;" >> $TMP_FILE
                 	echo "\$final_spam_destiny = D_PASS;" >> $TMP_FILE
                 	echo "\$final_banned_destiny = D_PASS;" >> $TMP_FILE
