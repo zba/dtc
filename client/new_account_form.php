@@ -82,7 +82,12 @@ function register_user($adding_service="no"){
 		}
 	// If not a shared or ssl account, we don't care if it's umpty, but we take care of mysql insertion anyway
 	}else{
-		if($_REQUEST["domain_name"].$_REQUEST["domain_tld"] != "" && (!isHostnameOrIP($_REQUEST["domain_name"].$_REQUEST["domain_tld"]))){
+		if($_REQUEST["domain_name"] == ""){
+			$domain_tld = "";
+		}else{
+			$domain_tld = $_REQUEST["domain_tld"];
+		}
+		if($_REQUEST["domain_name"].$domain_tld != "" && (!isHostnameOrIP($_REQUEST["domain_name"].$domain_tld))){
 			$ret["err"] = 2;
 			$ret["mesg"] = _("Domain name seems to be incorrect.") ;
 			return $ret;
@@ -335,7 +340,7 @@ maxmind_output$vps_add1
 )
 VALUES('".$_REQUEST["reqadm_login"]."',
 '".$_REQUEST["reqadm_pass"]."',
-'".$_REQUEST["domain_name"].$_REQUEST["domain_tld"]."',
+'".$_REQUEST["domain_name"].$domain_tld."',
 '$esc_familyname',
 '$esc_firstname',
 '$esc_compname',
@@ -379,7 +384,7 @@ Somebody tried to register an account. Here is the details of the new user:
 
 login: ".$_REQUEST["reqadm_login"]."
 pass: ".$_REQUEST["reqadm_pass"]."
-domain: ".$_REQUEST["domain_name"].$_REQUEST["domain_tld"]."
+domain: ".$_REQUEST["domain_name"].$domain_tld."
 Company name: ".$_REQUEST["compname"]."
 First name: ".$_REQUEST["firstname"]."
 Family name: ".$_REQUEST["familyname"]."
