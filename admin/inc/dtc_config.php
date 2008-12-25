@@ -1338,7 +1338,7 @@ function drawDTCpayConfig(){
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
-			"cheques_flat_fees" => array (
+			"wiretransfers_flat_fees" => array (
 				"legend" => _("Flat fee for accepting wire transfers: "),
 				"size" => "6",
 				"type" => "text")
