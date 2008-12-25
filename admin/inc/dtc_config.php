@@ -1319,6 +1319,32 @@ function drawDTCpayConfig(){
 				"size" => "6")));
 	$out .= configEditorTemplate ($dsc,"secpay");
 
+	$dsc = array(
+		"title" => _("Cheques and wire transfers:"),
+		"action" => "cheques edit",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"accept_cheques" => array (
+				"legend" => _("Accept cheques: "),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))),
+			"cheques_flat_fees" => array (
+				"legend" => _("Flat fee for accepting cheques: "),
+				"size" => "6",
+				"type" => "text"),
+			"accept_wiretransfers" => array (
+				"legend" => _("Accept wire transfers to bank: "),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))),
+			"cheques_flat_fees" => array (
+				"legend" => _("Flat fee for accepting wire transfers: "),
+				"size" => "6",
+				"type" => "text")
+			)
+		);
+
 //  -- zion --
 	$dsc = array(
 		"title" => "WebMoney:",

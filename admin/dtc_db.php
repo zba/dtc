@@ -926,7 +926,11 @@ $dtc_database = array(
 			"maxmind_license_key" => "varchar(255) NOT NULL default ''",
 			"use_webmoney" => "enum('yes','no') NOT NULL default 'no'",
 			"webmoney_license_key" => "varchar(255) NOT NULL default ''",
-			"webmoney_wmz" => "varchar(255) NOT NULL default ''"
+			"webmoney_wmz" => "varchar(255) NOT NULL default ''",
+			"accept_cheques" => "enum('yes','no') NOT NULL default 'no'",
+			"cheques_flat_fees" => "float(6,2) NOT NULL default '0.00' ",
+			"accept_wiretransfers" => "enum('yes','no') NOT NULL default 'no'",
+			"wiretransfers_flat_fees" => "float(6,2) NOT NULL default '0.00' "
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"
