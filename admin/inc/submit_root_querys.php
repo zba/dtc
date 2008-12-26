@@ -312,7 +312,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="delete_waiting_user"){
 
 // action=valid_waiting_user&reqadm_login=tom
 if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="valid_waiting_user"){
-	validateWaitingUser($_REQUEST["reqadm_login"]);
+	validateWaitingUser($_REQUEST["reqadm_id"]);
 	triggerDomainListUpdate();
 }
 
