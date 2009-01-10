@@ -109,6 +109,7 @@ function drawNewAdminForm(){
 	global $pro_mysql_dedicated_table;
 
 	global $secpayconf_currency_letters;
+	global $secpayconf_use_maxmind;
 
 	get_secpay_conf();
 
@@ -236,6 +237,11 @@ dtcFromOkDraw()."
 </table>
 ";
 
+	if($secpayconf_use_maxmind == "yes"){
+		$maxmindsays_th = "<td>" . _("MaxMind says") . "</td>";
+	}else{
+		$maxmindsays_th = "";
+	}
 	// Draw the list of users awaiting for an account
 	$waiting_new_users = "<h3>". _("User and domain waiting for addition:") ."</h3>";
 	$q = "SELECT * FROM $pro_mysql_new_admin_table ORDER BY date,time";
@@ -245,7 +251,7 @@ dtcFromOkDraw()."
 		$waiting_new_users .= "<b>". _("No user waiting!") ."</b>";
 	}else{
 		$waiting_new_users .= "<table width=\"100%\"border=\"1\">
-<tr><td>". _("Name") ."</td><td>". _("Login") ."</td><td>". _("Domain name / VPS server hostname") ."</td><td>". _("Product") ."</td><td>". _("Date") . "</td><td>". _("Bank validated") ."</td><td>MaxMind says</td><td>". _("Action") ."</td></tr>";
+<tr><td>". _("Name") ."</td><td>". _("Login") ."</td><td>". _("Domain name / VPS server hostname") ."</td><td>". _("Product") ."</td><td>". _("Date") . "</td><td>". _("Bank validated") ."</td>$maxmindsays_th<td>". _("Action") ."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><td style=\"white-space:nowrap\"><u>".$a["comp_name"].":</u><br>";
@@ -285,8 +291,10 @@ dtcFromOkDraw()."
 					$waiting_new_users .= "<td><font color=\"red\">"._("No")."</font></td>";
 				}
 			}
-			$waiting_new_users .= "<td><pre style='width: 200px; height: 100px; overflow: scroll;'>".htmlspecialchars(
-				print_r(unserialize($a["maxmind_output"]),true))."</pre></td>";
+			if($secpayconf_use_maxmind == "yes"){
+				$waiting_new_users .= "<td><pre style='width: 200px; height: 100px; overflow: scroll;'>".htmlspecialchars(
+					print_r(unserialize($a["maxmind_output"]),true))."</pre></td>";
+			}
 			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_id=".$a["id"]."\">". _("View details") ."</a><br/>
 			<a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_id=".$a["id"]."\">". _("Add") ."</a><br/>
 			<a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_id=".$a["id"]."\">". _("Delete") ."</a></td>";
