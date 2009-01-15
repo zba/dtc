@@ -56,7 +56,7 @@ function domainNamePopup($domain_name=""){
 ".va",".vc",".ve",".vg",".vi",".vn",".vu",
 ".wf",".ws",
 ".ye",".yt",".yu",
-".za",".zm",".zw");
+".ac.za",".city.za",".co.za",".edu.za",".gov.za",".law.za",".mil.za",".nom.za",".org.za",".school.za",".zm",".zw");
 
 	$nbr_tld = sizeof($allTLD);
 	for($i=0;$i<$nbr_tld;$i++){
