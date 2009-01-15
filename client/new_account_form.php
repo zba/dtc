@@ -73,20 +73,25 @@ function register_user($adding_service="no"){
 		$ret["mesg"] = _("Passwords 1 and 2 do not match!") ;
 		return $ret;
 	}
+
+	if($_REQUEST["domain_name"] == "" || !isTLD($_REQUEST["domain_tld"])){
+		$domain_tld = "";
+	}else{
+		$domain_tld = $_REQUEST["domain_tld"];
+	}
+
 	// If shared or ssl hosting, we MUST do type checkings
-	if($db_product["heb_type"] == "shared" || $db_product["heb_type"] == "ssl"){
+	if($db_product["heb_type"] == "shared" || $db_product["heb_type"] == "ssl" || $db_product["heb_type"] == "dedicated"){
 		if(!isHostnameOrIP($_REQUEST["domain_name"].$_REQUEST["domain_tld"])){
 			$ret["err"] = 2;
 			$ret["mesg"] = _("Domain name seems to be incorrect.") ;
 			return $ret;
 		}
-	// If not a shared or ssl account, we don't care if it's umpty, but we take care of mysql insertion anyway
+	// If not a shared, a dedicated or ssl account, it's a VPS:
+	// we don't care if it's umpty, but we take care of mysql insertion anyway
+	// so if there is a domain name, then we check it's consistency, but we don't
+	// do much more if there's nothing...
 	}else{
-		if($_REQUEST["domain_name"] == ""){
-			$domain_tld = "";
-		}else{
-			$domain_tld = $_REQUEST["domain_tld"];
-		}
 		if($_REQUEST["domain_name"].$domain_tld != "" && (!isHostnameOrIP($_REQUEST["domain_name"].$domain_tld))){
 			$ret["err"] = 2;
 			$ret["mesg"] = _("Domain name seems to be incorrect.") ;

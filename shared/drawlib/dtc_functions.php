@@ -28,10 +28,7 @@ function headAndTailEmailMessage($msg){
 	return str_replace("%%%SIGNATURE%%%",$signature,$msg);
 }
 
-function domainNamePopup($domain_name=""){
-	$out = "";
-
-	$allTLD = array(".com", ".aero", ".asia", ".biz", ".cat", ".coop", ".edu", ".gov", ".info", ".int", ".jobs", ".mil", ".mobi", ".museum", ".name", ".net",".org", ".pro", ".tel", ".travel",
+$allTLD = array(".com", ".aero", ".asia", ".biz", ".cat", ".coop", ".edu", ".gov", ".info", ".int", ".jobs", ".mil", ".mobi", ".museum", ".name", ".net",".org", ".pro", ".tel", ".travel",
 ".ac",".ad",".ae",".af",".ag",".ai",".al",".am",".an",".ao",".aq",".ar",".as",".at",".au",".aw",".ax",".az",
 ".ba",".bb",".bd",".be",".bf",".bg",".bh",".bi",".bj",".bm",".bn",".bo",".br",".bs",".bt",".bw",".by",".bz",
 ".ca",".cc",".cd",".cf",".cg",".ch",".ci",".ck",".cl",".cm",".cn",".co",".cr",".cu",".cv",".cx",".cy",".cz",
@@ -57,6 +54,16 @@ function domainNamePopup($domain_name=""){
 ".wf",".ws",
 ".ye",".yt",".yu",
 ".ac.za",".city.za",".co.za",".edu.za",".gov.za",".law.za",".mil.za",".nom.za",".org.za",".school.za",".zm",".zw");
+
+function isTLD($tld){
+	global $allTLD;
+	return in_array ($tld, $allTLD);
+}
+
+function domainNamePopup($domain_name=""){
+	global $allTLD;
+
+	$out = "";
 
 	$nbr_tld = sizeof($allTLD);
 	for($i=0;$i<$nbr_tld;$i++){
