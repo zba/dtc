@@ -115,6 +115,16 @@ phpmyadmin phpmyadmin/setup-password password true
 phpmyadmin phpmyadmin/restart-webserver boolean false
 phpmyadmin phpmyadmin/restart-webserver seen true
 
+# roundcube
+roundcube-core roundcube/hosts string localhost
+roundcube-core roundcube/hosts seen true
+roundcube-core roundcube/reconfigure-webserver multiselect apache2
+roundcube-core roundcube/reconfigure-webserver seen true
+roundcube-core roundcube/restart-webserver boolean false
+roundcube-core roundcube/restart-webserver seen true
+roundcube-core roundcube/language select en_US
+roundcube-core roundcube/language seen true
+
 # debconf
 debconf debconf/frontend select Noninteractive
 debconf debconf/frontend seen true
