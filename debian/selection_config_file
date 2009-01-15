@@ -124,6 +124,10 @@ roundcube-core roundcube/restart-webserver boolean false
 roundcube-core roundcube/restart-webserver seen true
 roundcube-core roundcube/language select en_US
 roundcube-core roundcube/language seen true
+roundcube-core roundcube/dbconfig-install boolean true
+roundcube-core roundcube/dbconfig-install seen true
+roundcube-core roundcube/database-type select sqlite
+roundcube-core roundcube/database-type seen true
 
 # debconf
 debconf debconf/frontend select Noninteractive
