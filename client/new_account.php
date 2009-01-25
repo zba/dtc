@@ -237,15 +237,15 @@ case "add_new_service":
 	
 	vat_num,shopper_ip,date,time,add_service)
 
-	VALUES ('','".$_REQUEST["adm_login"]."','','example.com','".$client["familyname"]."','".$client["christname"]."',
-	'".$client["company_name"]."','".$client["is_company"]."','".$client["email"]."',
-	'".$client["phone"]."','".$client["fax"]."','".$client["addr1"]."','".$client["addr2"]."','".$client["addr3"]."',
-	'".$client["zipcode"]."','".$client["city"]."','".$client["state"]."','".$client["country"]."',
+	VALUES ('','".$_REQUEST["adm_login"]."','','example.com','". mysql_escape_string($client["familyname"]) ."','". mysql_escape_string($client["christname"]) ."',
+	'". mysql_escape_string($client["company_name"]) ."','".$client["is_company"]."','".$client["email"]."',
+	'". mysql_escape_string($client["phone"]) ."','". mysql_escape_string($client["fax"]) ."','". mysql_escape_string($client["addr1"]) ."','". mysql_escape_string($client["addr2"]) ."','". mysql_escape_string($client["addr3"])."',
+	'". mysql_escape_string($client["zipcode"]) ."','". mysql_escape_string($client["city"]) ."','". mysql_escape_string($client["state"]) ."','".$client["country"]."',
 	
 	'".$_REQUEST["product_id"]."',
 	'".mysql_escape_string($_REQUEST["custom_notes"])."','".$_REQUEST["vps_location"]."','".$_REQUEST["vps_os"]."',
 	
-	'".$client["vat_num"]."','".$_SERVER["REMOTE_ADDR"]."','".date("Y-m-d")."','".date("H:i:s")."','yes')";
+	'". mysql_escape_string($client["vat_num"]) ."','".$_SERVER["REMOTE_ADDR"]."','".date("Y-m-d")."','".date("H:i:s")."','yes')";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$insert_id = mysql_insert_id();
 
