@@ -36,7 +36,9 @@ function drawAdminMonitor (){
 			if (isset($admin_stats["total_transfer"])){
 				$transfer += $admin_stats["total_transfer"];
 			}
-			$du += $admin_stats["total_du"];
+			if( isset($admin_stats["total_du"]) ){
+				$du += $admin_stats["total_du"];
+			}
 			if (isset($admin_stats["total_hit"])){
 				$hits = $admin_stats["total_hit"];
 				$total_hits += $hits;
