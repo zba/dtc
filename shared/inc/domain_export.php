@@ -69,7 +69,7 @@ function getDomainData($domain,$adm_login){
 	$dom["subdomains"] = getExDomTableData($pro_mysql_subdomain_table,"domain_name='$domain'","subdomain_name",
 					"safe_mode,sbox_protect,subdomain_name,ip,register_globals,associated_txt_record,generate_vhost,ssl_ip,nameserver_for,ttl,srv_record,add_default_charset,customize_vhost");
 	$pop_access = getExDomTableData($pro_mysql_pop_table,"mbox_host='$domain'","id",
-					"id,home,passwd,crypt,redirect1,redirect2,localdeliver,vacation_flag,bounce_msg,vacation_text,spam_mailbox_enable");
+					"id,home,passwd,crypt,redirect1,redirect2,localdeliver,vacation_flag,bounce_msg,vacation_text,spam_mailbox_enable,quota_size,quota_files,quota_couriermaildrop");
 	$dom["mailboxes"] = removePathFromArray($pop_access,$adm_login,"home");
 	$dom["alias_group"] = getExDomTableData($pro_mysql_mailaliasgroup_table,"domain_parent='$domain'","id",
 					"delivery_group");
@@ -319,7 +319,7 @@ function domainImport($path_from,$adm_login,$adm_pass){
 			"safe_mode,sbox_protect,subdomain_name,ip,register_globals,associated_txt_record,generate_vhost,ssl_ip,nameserver_for,ttl,srv_record,add_default_charset,customize_vhost",
 			",domain_name",",'$dom_name'");
 		recreateAllRows($pro_mysql_pop_table,"mbox_host='$dom_name'",$cur_dom["mailboxes"],
-			"id,home,passwd,crypt,redirect1,redirect2,localdeliver,vacation_flag,bounce_msg,vacation_text,spam_mailbox_enable",
+			"id,home,passwd,crypt,redirect1,redirect2,localdeliver,vacation_flag,bounce_msg,vacation_text,spam_mailbox_enable,quota_size,quota_files,quota_couriermaildrop",
 			",mbox_host",",'$dom_name'");
 		recreateAllRows($pro_mysql_mailaliasgroup_table,"domain_parent='$dom_name'",$cur_dom["alias_group"],
 			"id,delivery_group",",domain_parent",",'$dom_name'");
