@@ -3571,13 +3571,13 @@ modifyMysqmail () {
 		#	echo "ftp.*						|/var/log/pure-ftpd.fifo" >> $TMP_FILE
 				cat < $TMP_FILE >> $SYSLOG_CONF;
 				rm $TMP_FILE
-				if ! [ -f /var/log/mail.fifo ] ; then
+				if ! [ -e /var/log/mail.fifo ] ; then
 					mkfifo /var/log/mail.fifo
 				fi
-				if ! [ -f /var/log/courier.fifo ] ; then
+				if ! [ -e /var/log/courier.fifo ] ; then
 					mkfifo /var/log/courier.fifo
 				fi
-				if ! [ -f /var/log/pure-ftpd.fifo ] ; then
+				if ! [ -e /var/log/pure-ftpd.fifo ] ; then
 					mkfifo /var/log/pure-ftpd.fifo
 				fi
 				echoIfVerbose "Do not forget restart syslog daemon and mysqmail-loggers"
