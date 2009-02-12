@@ -164,7 +164,7 @@ case "dtcemail_set_deliver_local":
 // action=dtcemail_edit_redirect&redirect1=&redirect2=&submit=Ok
 case "dtcemail_edit_redirect":
 	if(isValidEmail($_REQUEST["redirect1"]))	$redir1 = $_REQUEST["redirect1"];	else	$redir1 = "";
-	if(isValidEmail($_REQUEST["redirect2"]))	$redir1 = $_REQUEST["redirect2"];	else	$redir2 = "";
+	if(isValidEmail($_REQUEST["redirect2"]))	$redir2 = $_REQUEST["redirect2"];	else	$redir2 = "";
 
 	$q = "UPDATE $pro_mysql_pop_table SET redirect1='$redir1',redirect2='$redir2' WHERE id='$user' AND mbox_host='$host' LIMIT 1;";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
