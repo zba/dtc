@@ -754,9 +754,13 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 
 		//exec("if [ `uname -m` = \"x86_64\" ] ; then if [ ! -e $admin_path/lib64 ] ; then ln -s subdomains/www/lib $admin_path/lib64 ; fi ; fi");
 		if ($conf_unix_type == "bsd") {			// no -u in freebsd, could blow away custom changes, NEEDFIX: KC
-			system ("cp -rp $conf_generated_file_path/template/* $admin_path/$domain_name/subdomains/www/html");
+			$cp_opt = "p";
 		}else{
-			system ("cp -rup $conf_generated_file_path/template/* $admin_path/$domain_name/subdomains/www/html");
+			$cp_opt = "up";
+		}
+		system ("cp -r$cp_opt $conf_generated_file_path/template/* $admin_path/$domain_name/subdomains/www/html");
+		if( file_exists("$conf_generated_file_path/template/.htaccess") ){
+			system ("cp -$cp_opt $conf_generated_file_path/template/.htaccess $admin_path/$domain_name/subdomains/www/html");
 		}
 	}
 
