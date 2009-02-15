@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-02-15 22:02+0800\n"
-"PO-Revision-Date: 2009-02-15 22:16+0800\n"
+"PO-Revision-Date: 2009-02-15 22:58+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1793,7 +1793,7 @@ msgstr "域名文件："
 #: admin/inc/dtc_config.php:1297
 #, fuzzy
 msgid "Domain name for affiliation return URL:"
-msgstr "的域名"
+msgstr "实际目标URL的域名"
 
 #: shared/dtcrm/draw_adddomain.php:139
 msgid "Domain name is not in correct format. Please enter another name."
