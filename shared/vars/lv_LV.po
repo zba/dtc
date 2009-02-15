@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Domain Technologie Control (DTC) - git 2008.11.19\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-15 16:53+0800\n"
+"POT-Creation-Date: 2009-02-15 22:02+0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Coool (Nauris Ešenvalds) <coool@vivonet.lv>\n"
 "Language-Team: Coool (Nauris Ešenvalds) <coool@vivonet.lv>\n"
@@ -5341,7 +5341,7 @@ msgid "Type of problem:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:952
-msgid "Type of webmail fot the /webmail alias: "
+msgid "Type of webmail for the /webmail alias: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:374

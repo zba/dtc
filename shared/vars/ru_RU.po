@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: git_21mar2008\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-15 16:53+0800\n"
+"POT-Creation-Date: 2009-02-15 22:02+0800\n"
 "PO-Revision-Date: 2008-03-21 22:24+0300\n"
 "Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
@@ -5715,7 +5715,7 @@ msgid "Type of problem:"
 msgstr "Категория проблемы:"
 
 #: admin/inc/dtc_config.php:952
-msgid "Type of webmail fot the /webmail alias: "
+msgid "Type of webmail for the /webmail alias: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:374

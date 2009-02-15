@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-15 16:53+0800\n"
+"POT-Creation-Date: 2009-02-15 22:02+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1254,7 +1254,7 @@ msgid "Generate a global /webmail alias: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:952
-msgid "Type of webmail fot the /webmail alias: "
+msgid "Type of webmail for the /webmail alias: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:956

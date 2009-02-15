@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-15 16:53+0800\n"
+"POT-Creation-Date: 2009-02-15 22:02+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Cynthia Yang <cynthia@mtiglobal.com>\n"
 "Language-Team: Chinese <zh_TW@li.org>\n"
@@ -5598,7 +5598,7 @@ msgid "Type of problem:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:952
-msgid "Type of webmail fot the /webmail alias: "
+msgid "Type of webmail for the /webmail alias: "
 msgstr ""
 
 #: admin/inc/dtc_config.php:374
