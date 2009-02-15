@@ -1344,6 +1344,7 @@ function drawDTCpayConfig(){
 				"type" => "text")
 			)
 		);
+	$out .= configEditorTemplate ($dsc,"secpay");
 
 //  -- zion --
 	$dsc = array(
