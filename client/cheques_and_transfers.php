@@ -44,7 +44,8 @@ if( $proceed == "yes"){
 		$payment_type = 'wire';
 		$pending_reason = "Wire transfer";
 	}
-	$q = "UPDATE $pro_mysql_pay_table SET (paiement_type,valid,pending_reason) VALUES ('$payment_type','pending','$pending_reason') WHERE hash_check_key='" . $_REQUEST["hash_check"] . "' AND id='" . $_REQUEST["item_id"] . "'";
+	$q = "UPDATE $pro_mysql_pay_table SET paiement_type='$payment_type',valid='pending',pending_reason='$pending_reason' WHERE hash_check_key='" . $_REQUEST["hash_check"] . "' AND id='" . $_REQUEST["item_id"] . "'";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 }
 
 // Display the payment infos
@@ -55,6 +56,7 @@ if( $proceed == "yes"){
 	}else{
 		$form = "<u>" . _("Wire transfers shall be made to: ") . "</u><br><pre>" . $secpayconf_wiretransfers_bank_details . "</pre><br><br>";
 	}
+	$form .= "<b>" . _("Thanks for your order. Your order has been set on hold until someone checks for your payment.") . "</b><br><br>";
 }
 
 $login_skined = skin($conf_skin,$form, _("Register a new account") );

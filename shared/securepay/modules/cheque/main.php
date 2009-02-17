@@ -38,7 +38,7 @@ function cheque_display_icon($pay_id,$amount,$item_name,$return_url,$use_recurri
 	$out = '<form action="'.$goback_start.$conf_administrative_site."/dtc/cheques_and_transfers.php".'" method="post" target="_top">
 <input type="hidden" name="item_name" value="'.$item_name.'">
 <input type="hidden" name="hash_check" value="'.$hash.'">
-<input type="hidden" name="item_id" value="'.$item_id.'">
+<input type="hidden" name="item_id" value="'.$pay_id.'">
 <input type="hidden" name="payment_type" value="cheque">
 <input type="hidden" name="currency_code" value="'.$secpayconf_currency_letters.'">
 '.$add_to_form.'

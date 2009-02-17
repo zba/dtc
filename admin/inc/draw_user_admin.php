@@ -286,7 +286,7 @@ dtcFromOkDraw()."
 				if($a2["valid"] == "yes"){
 					$waiting_new_users .= "<td><font color=\"green\">"._("Yes")."</font></td>";
 				}elseif($a2["valid"] == "pending"){
-					$waiting_new_users .= "<td><font color=\"#FF8800\">". _("Pending") ."</font></td>";
+					$waiting_new_users .= "<td><font color=\"#FF8800\">". _("Pending") .": ". $a2["pending_reason"] ."</font></td>";
 				}else{
 					$waiting_new_users .= "<td><font color=\"red\">"._("No")."</font></td>";
 				}
