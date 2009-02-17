@@ -212,7 +212,7 @@ CLIENT_PHP_SCRIPT_FILES=client/bw_per_month.php client/dynip.php client/enets-no
 client/invoice.php client/list_domains.php client/login.php client/new_account_form.php client/new_account.php \
 client/new_account_renewal.php client/paypal.php client/secpaycallback_worldpay.php client/webmoney.php \
 client/inc/img_alt.php client/inc/img_alt_skin.php client/inc/img.php client/get_vps_location_status.php \
-client/logPushlet.php client/xanjaxXHR.js
+client/logPushlet.php client/xanjaxXHR.js client/cheques_and_transfers.php
 
 EMAIL_PHP_SCRIPT_FILES=email/api.php email/index.php email/login.php email/submit_to_sql_dtcemail.php
 
@@ -275,7 +275,7 @@ client/inc/tools.png
 
 NEW_SITES_TEMPLATE_IMG=shared/template/dtc_logo.gif shared/template/dtclogo.png shared/template/favicon.ico shared/template/logo_dtc.gif
 
-CLIENT_PICTURES=client/enets_pay_icon.gif client/favicon.ico
+CLIENT_PICTURES=client/enets_pay_icon.gif client/favicon.ico client/cheque.gif
 
 ALL_PICS=$(CLIENT_INC_PNG_FILES) $(NEW_SITES_TEMPLATE_IMG) $(CLIENT_PICTURES)
 ################# EXECUTABLE SCRIPTS #################
