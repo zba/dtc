@@ -22,7 +22,7 @@ function cheque_display_icon($product_id,$amount,$item_name,$return_url,$use_rec
 	}
 
 	$add_to_form = '<input type="hidden" name="amount" value="'.str_replace(",",".",$amount).'">';
-	$out = '<form action="https://'.$goback_start.$conf_administrative_site."/dtc/cheques_and_transfers.php".'" method="post" target="_top">
+	$out = '<form action="'.$goback_start.$conf_administrative_site."/dtc/cheques_and_transfers.php".'" method="post" target="_top">
 <input type="hidden" name="item_name" value="'.$item_name.'">
 <input type="hidden" name="item_number" value="'.$product_id.'">
 <input type="hidden" name="currency_code" value="'.$secpayconf_currency_letters.'">
