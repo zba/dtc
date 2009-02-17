@@ -184,6 +184,19 @@ function configEditorTemplate ($dsc,$conftype="config"){
 			}
 			$control = "<select class=\"$input_class\" name=\"".$keys[$i]."\">".$control."</select>";
 			break;
+		case "textarea":
+			if( isset($dsc["cols"][ $keys[$i] ]["cols"]) ){
+				$cols = " cols=\"".$dsc["cols"][ $keys[$i] ]["cols"]."\" ";
+			}else{
+				$cols = "";
+			}
+			if( isset($dsc["cols"][ $keys[$i] ]["rows"]) ){
+				$rows = " rows=\"".$dsc["cols"][ $keys[$i] ]["rows"]."\" ";
+			}else{
+				$rows = "";
+			}
+			$control = "<textarea class=\"$input_class\" $cols $rows name=\"".$keys[$i]."\">".$$fld."</textarea>";
+			break;
 		case "text":
 		default:
 			if( isset($dsc["cols"][ $keys[$i] ]["size"]) ){
@@ -1328,7 +1341,7 @@ function drawDTCpayConfig(){
 
 	$dsc = array(
 		"title" => _("Cheques and wire transfers:"),
-		"action" => "cheques edit",
+		"action" => "cheques_edit",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
 			"accept_cheques" => array (
@@ -1340,6 +1353,15 @@ function drawDTCpayConfig(){
 				"legend" => _("Flat fee for accepting cheques: "),
 				"size" => "6",
 				"type" => "text"),
+			"cheques_to_label" => array (
+				"legend" => _("Flat fee for accepting cheques: "),
+				"size" => "30",
+				"type" => "text"),
+			"cheques_send_address" => array (
+				"legend" => _("Instructions to send cheques: "),
+				"cols" => "60",
+				"rows" => "7",
+				"type" => "textarea"),
 			"accept_wiretransfers" => array (
 				"legend" => _("Accept wire transfers to bank: "),
 				"type" => "radio",
@@ -1348,7 +1370,12 @@ function drawDTCpayConfig(){
 			"wiretransfers_flat_fees" => array (
 				"legend" => _("Flat fee for accepting wire transfers: "),
 				"size" => "6",
-				"type" => "text")
+				"type" => "text"),
+			"wiretransfers_bank_details" => array (
+				"legend" => _("Bank account details: "),
+				"cols" => "60",
+				"rows" => "12",
+				"type" => "textarea")
 			)
 		);
 	$out .= configEditorTemplate ($dsc,"secpay");

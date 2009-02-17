@@ -25,8 +25,11 @@ CREATE TABLE IF NOT EXISTS secpayconf (
 
   accept_cheques enum('yes','no') NOT NULL default 'no',
   cheques_flat_fees float(6,2) NOT NULL default '0.00',
+  cheques_to_label varchar(255) NOT NULL default '',
+  cheques_send_address text NOT NULL default '',
   accept_wiretransfers enum('yes','no') NOT NULL default 'no',
   wiretransfers_flat_fees float(6,2) NOT NULL default '0.00',
+  wiretransfers_bank_details text NOT NULL default '',
 
   UNIQUE KEY unicrow (unicrow)
 ) TYPE=MyISAM

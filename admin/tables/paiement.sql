@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS paiement (
   product_id int(11) NOT NULL default '0',
   vat_rate decimal(9,2) NOT NULL default '0.00',
   vat_total int(11) NOT NULL default '0',
+  hash_check_key varchar(255) NOT NULL default '0',
   PRIMARY KEY  (id),
   UNIQUE KEY id (id)
 ) TYPE=MyISAM;
