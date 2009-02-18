@@ -3,7 +3,11 @@
 # This scripts populates your chroot with some more stuffs for your chroot
 # so that it's usable with ssh
 
-DEST=/var/lib/dtc/chroot_template
+if [ -z "${1}" ] ; then
+	DEST=/var/lib/dtc/chroot_template
+else
+	DEST=${1}
+fi
 
 # Copy all the terminfo stuufs
 cp -f /etc/terminfo ${DEST}/etc
@@ -16,9 +20,11 @@ cp -f /usr/bin/uxterm ${DEST}/usr/bin
 cp -f /usr/bin/vi ${DEST}/usr/bin
 
 # Some basic apps
-cp -f /usr/bin/whoami ${DEST}/usb/bin
+cp -f /usr/bin/whoami ${DEST}/usr/bin
 cp -f /bin/cp ${DEST}/bin
 cp -f /bin/mv ${DEST}/bin
+cp -f /bin/gzip ${DEST}/bin
+cp -f /usr/bin/wget ${DEST}/bin
 
 # nvi
 cp -f /etc/alternatives ${DEST}/etc
