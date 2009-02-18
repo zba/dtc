@@ -256,7 +256,7 @@ shared/securepay/modules/enets/main.php \
 shared/securepay/modules/paypal/main.php \
 shared/securepay/modules/worldpay/main.php \
 shared/securepay/modules/cheque/main.php \
-shared/securepay/modules/wiretransfer.php \
+shared/securepay/modules/wiretransfer/main.php \
 shared/securepay/modules/webmoney/main.php
 
 WEB_SCRIPT_FILES=$(ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES) $(ADMIN_GENFILE_PHP_SCRIPT_FILES) $(ADMIN_INC_PHP_SCRIPT_FILES) \
