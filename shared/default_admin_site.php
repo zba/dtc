@@ -34,10 +34,9 @@ $ZeContent = '<div class="top">
             <br />
             <span class="italics">Most of code done by:
                 <a target= "_blank" href="http://thomas.goirand.fr">Thomas GOIRAND</a>, under
-                <a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit
-                <a target="_blank" href="http://gplhost.com/hosting-vps.html">GPLHost
-                hosting VPS services</a> and
-                <a target="_blank" href="http://gplhost.com/software-dtc.html">DTC GPL control panel home</a> for more info.
+                <a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit GPLHost
+                <a target="_blank" href="http://gplhost.com/hosting-vps.html">VPS hosting</a> services and
+                <a target="_blank" href="http://gplhost.com/software-dtc.html">DTC LGPL control panel</a> home for more info.
 </span>
         </div> ';
 

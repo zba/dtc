@@ -424,7 +424,7 @@ function drawRenewalTables (){
 				$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
 				<tr><td>"._("Product")."</td><td>". _("Client ID") ."</td><td>". _("Client")."</td><td>". _("Service country")."</td>
 				<td>"._("Client country")."</td>
-				<td>". _("VAT collected")."</td><td>". _("Period")."</td><td>". _("Payment date")."</td><td>"._("Total")."</td>
+				<td>". _("VAT collected")."</td><td>". _("Period")."</td><td>". _("Payment date")."</td><td>"._("Total")."</td><td>". _("Payment method")."</td>
 				<td>". _("Action") ."</td></tr>";
 				for($i=0;$i<$n;$i++){
 					$a = mysql_fetch_array($r);
@@ -461,10 +461,15 @@ function drawRenewalTables (){
 					$n2 = mysql_num_rows($r2);
 					if($n2 != 1){
 						$payment_txt = _("Payment not found");
+						$payment_type = _("Payment not found");
 						$vat_collected = _("VAT not found");
 					}else{
 						$a2 = mysql_fetch_array($r2);
 						$payment_txt = $a2["paiement_total"]. " " . $a2["currency"];
+						$payment_type = $a2["paiement_type"];
+						if($payment_type == "online"){
+							$payment_type .= ": ".$a2["secpay_site"];
+						}
 						$vat_collected = $a2["paiement_total"] * $a2["vat_rate"] / 100 ;
 					}
 					if($a["last_expiry_date"] == "0000-00-00"){
@@ -476,6 +481,7 @@ function drawRenewalTables (){
 					$out .= "<tr><td>$product_txt</td><td>$client_id_txt</td><td>$client_name</td><td>".$a["country_code"]."</td>
 					<td>$client_country</td>
 					<td>$vat_collected</td><td>$last_expiry_date -> $new_expiry_date</td><td>".$a["date"]."</td><td>$payment_txt</td>
+					<td>$payment_type</td>
 					<td><a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&date=".$_REQUEST["date"]."&action=nuke_payment&completedorders_id=".$a["id"]."\">"._("Delete")."</a></tr>";
 				}
 				$out .= "</table>";
