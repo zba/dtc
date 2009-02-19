@@ -26,6 +26,9 @@ cp -f /bin/mv ${DEST}/bin
 cp -f /bin/gzip ${DEST}/bin
 cp -f /usr/bin/wget ${DEST}/bin
 
+# needed by wget
+cp -f /lib/libnss_dns.so.2 ${DEST}/lib
+
 # nvi
 cp -f /etc/alternatives ${DEST}/etc
 cp -f /usr/share/vi ${DEST}/usr/share
