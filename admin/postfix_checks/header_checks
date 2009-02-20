@@ -1,0 +1,51 @@
+#
+# Headers to track SPAM
+#
+/^Bel-Tracking: .*/				REJECT Confirmed spam. Go away.
+/^Hel-Tracking: .*/				REJECT Confirmed spam. Go away.
+/^Kel-Tracking: .*/				REJECT Confirmed spam. Go away.
+/^BIC-Tracking: .*/				REJECT Confirmed spam. Go away.
+/^Lid-Tracking: .*/				REJECT Confirmed spam. Go away.
+#
+# Known Mass Mailers
+#
+/^X-Mailer: 0001/                               REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: Avalanche/                          REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: Crescent Internet Tool/             REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: DiffondiCool/                       REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: E-Mail Delivery Agent/              REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: Emailer Platinum/                   REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: Entity/                             REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: Extractor/                          REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: Floodgate/                          REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: GOTO Software Sarbacane/            REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: MailWorkz/                          REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: MassE-Mail/                         REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: MaxBulk.Mailer/                     REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: News Breaker Pro/                   REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: SmartMailer/                        REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: StormPort/                          REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+/^X-Mailer: SuperMail-2/                        REJECT You used an email program that is used almost exclusively for spam. We do not accept email sent using this program.
+#
+# Block certain Subjects
+#
+/^Subject: .*Make Money Fast!/ REJECT Spam Header Make Money
+/^Subject: .*Viagra/ REJECT Spam Header Viagra
+/^Subject: .*CheapPrice/ REJECT Spam Header CheapPrice
+/^Subject: .*PenisEnlargement/ REJECT Spam Header Penis Enlargement
+# /^Subject: .*        / REJECT Spam Header Too Many Spaces
+/^Subject: .*penis/ REJECT Spam Header Penis Enlargement
+#
+# Past Dates
+#
+/^Date: .* 200[0-7]/ REJECT Spam Header Past Date 1
+/^Date: .* 19[0-9][0-9]/ REJECT Spam Header Past Date 2
+#
+# Hidden Words
+#
+/^Subject: .*f[ _\.\*\-]+r[ _\.\*\-]+e[ _\.\*\-]+e/ REJECT Hidden Word free
+/^Subject: .*v[ _\.\*\-]+i[ _\.\*\-]+a[ _\.\*\-]+g[ _\.\*\-]+r[ _\.\*\-]+a/ REJECT Hidden Word 1 viagra
+/^Subject: .*p[ _\.\*\-]+e[ _\.\*\-]+n[ _\.\*\-]+i[ _\.\*\-]+s/ REJECT Hidden Word 1 penis
+#
+# End
+#

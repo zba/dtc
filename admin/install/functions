@@ -2476,6 +2476,30 @@ pickup fifo n - n 60 1 pickup
 				cat < $TMP_FILE2 >>"$PATH_POSTFIX_ETC/master.cf"
 				rm $TMP_FILE2
 			fi
+
+			# Keep bounce and queue small, we don't want the default 5 days ...
+			echo "bounce_queue_lifetime = 3d
+maximal_queue_lifetime = 3d" >> $TMP_FILE
+			# Now we add the header, mime and body checks
+			if [ ! -d ${PATH_POSTFIX_ETC}/maps ] ; then
+				mkdir -p ${PATH_POSTFIX_ETC}/maps
+			fi
+			if [ ! -e ${PATH_POSTFIX_ETC}/maps/header_checks ] ; then
+				cp -f ${PATH_DTC_ADMIN}/postfix_checks/header_checks ${PATH_POSTFIX_ETC}/maps
+			fi
+			if [ ! -e ${PATH_POSTFIX_ETC}/maps/body_checks ] ; then
+				cp -f ${PATH_DTC_ADMIN}/postfix_checks/body_checks ${PATH_POSTFIX_ETC}/maps
+			fi
+			if [ ! -e ${PATH_POSTFIX_ETC}/maps/mime_header_checks ] ; then
+				cp -f ${PATH_DTC_ADMIN}/postfix_checks/mime_header_checks ${PATH_POSTFIX_ETC}/maps
+			fi
+			postmap regexp:${PATH_POSTFIX_ETC}/maps/header_checks
+			postmap regexp:${PATH_POSTFIX_ETC}/maps/body_checks
+			postmap regexp:${PATH_POSTFIX_ETC}/maps/mime_header_checks
+
+			echo "header_checks = regexp:/etc/postfix/maps/header_checks
+body_checks = regexp:/etc/postfix/maps/body_checks
+mime_header_checks = regexp:/etc/postfix/maps/mime_header_checks" >> $TMP_FILE
 			
 			# if we have maildrop, we should use it!
 			if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ] ; then
