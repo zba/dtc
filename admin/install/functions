@@ -2493,9 +2493,9 @@ maximal_queue_lifetime = 3d" >> $TMP_FILE
 			if [ ! -e ${PATH_POSTFIX_ETC}/maps/mime_header_checks ] ; then
 				cp -f ${PATH_DTC_ADMIN}/postfix_checks/mime_header_checks ${PATH_POSTFIX_ETC}/maps
 			fi
-			postmap regexp:${PATH_POSTFIX_ETC}/maps/header_checks
-			postmap regexp:${PATH_POSTFIX_ETC}/maps/body_checks
-			postmap regexp:${PATH_POSTFIX_ETC}/maps/mime_header_checks
+#			postmap ${PATH_POSTFIX_ETC}'/maps/header_checks'
+#			postmap ${PATH_POSTFIX_ETC}'/maps/body_checks'
+#			postmap ${PATH_POSTFIX_ETC}'/maps/mime_header_checks'
 
 			echo "header_checks = regexp:/etc/postfix/maps/header_checks
 body_checks = regexp:/etc/postfix/maps/body_checks
