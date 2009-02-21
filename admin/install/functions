@@ -3538,6 +3538,18 @@ password ${MYSQL_DTCDAEMONS_PASS}
 	else
 		echo "-> Didn't find libnss nsswitch.conf: configuration of libnssmysql aborded"
 	fi
+
+	# Fixup the Lenny /etc/pam.d/common-auth to use libpam-unix2
+	if [ -e /etc/pam.d/common-auth ] ; then
+		if [ -e /lib/security/pam_unix2.so ] ; then
+			if grep "pam_unix.so" /etc/pam.d/common-auth ; then
+				sed -i "s/pam_unix.so/pam_unix2.so/" /etc/pam.d/common-auth
+			fi
+			if grep "nullok_secure" /etc/pam.d/common-auth ; then
+				sed -i "s/nullok_secure/nullok/" /etc/pam.d/common-auth
+			fi
+		fi
+	fi
 }
 #
 # Install mysqmailconfig in the $PATH_MYSQMAIL_CONF
