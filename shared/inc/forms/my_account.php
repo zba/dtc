@@ -30,8 +30,8 @@ function drawAdminTools_MyAccount($admin){
 	}
 
 	if(isset($_REQUEST["action"]) && $id_client != 0 && $_REQUEST["action"] == "refund_myaccount"){
-		if(isset($_REQUEST["inneraction"]) && $_REQUEST["return_from_paypal_refund_my_account"]){
-			$ze_refund = isPayIDValidated(addslashes($_REQUEST["pay_id"]));
+		if(isset($_REQUEST["inneraction"]) && $_REQUEST["inneraction"] == "return_from_paypal_refund_my_account"){
+			$ze_refund = isPayIDValidated(addslashes($_REQUEST["payid"]));
 			if($ze_refund == 0){
 				$out .= "<font color=\"red\">The transaction failed, please try again!</font>";
 				return $out;
