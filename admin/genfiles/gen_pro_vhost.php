@@ -459,7 +459,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		unset($temp_array_subs);
 		$temp_array_subs = array();
 		for($j=0;$j<$num_rows2;$j++){
-			$temp_array_subs[] = mysql_fetch_array($result2) or die ("Cannot fetch user");
+			$temp_array_subs[] = mysql_fetch_array($result2) or die ("Cannot fetch user line ".__LINE__." file ".__FILE__);
 		}
 
 		// We get the default subdomain and we add it at the end of the array. The goal is to have the
@@ -468,7 +468,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$my_num_rows = mysql_num_rows($result2);
 		if($my_num_rows == 1){
-			$temp_array_subs[] = mysql_fetch_array($result2) or die ("Cannot fetch user");
+			$temp_array_subs[] = mysql_fetch_array($result2) or die ("Cannot fetch user".__LINE__." file ".__FILE__);
 			$num_rows2++;
 		}
 
