@@ -5,9 +5,10 @@ function drawAdminTools_MyAccount($admin){
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
-	global $pro_mysql_pay_table;
 	global $dtcshared_path;
 
+	global $pro_mysql_pay_table;
+	global $pro_mysql_client_table;
 	global $pro_mysql_ssl_ips_table;
 	global $pro_mysql_product_table;
 
