@@ -202,7 +202,7 @@ date\n";
 	$backup_net .= "date\n";
 	$filep = fopen("$conf_generated_file_path/net_backup.sh", "w+");
 	if( $filep == NULL){
-		die("Cannot open file for writting");
+		echo("Cannot open file for writting");
 	}
 	fwrite($filep,$backup_net);
 	fclose($filep);
@@ -212,7 +212,7 @@ date\n";
 
 	$filep = fopen("$conf_generated_file_path/net_restor.sh", "w+");
 	if( $filep == NULL){
-		die("Cannot open file for writting");
+		echo("Cannot open file for writting");
 	}
 	fwrite($filep,$restor_net);
 	fclose($filep);
@@ -232,7 +232,7 @@ pass $conf_ftp_backup_pass
 
 	$filep = fopen("$conf_generated_file_path/ncftpput_login.cfg", "w+");
 	if( $filep == NULL){
-		die("Cannot open file for writting");
+		echo("Cannot open file for writting");
 	}
 	fwrite($filep,$ftp_login_cfg);
 	fclose($filep);
@@ -288,9 +288,9 @@ fi
 	$result = mysql_query ($query)or die("Cannot execute query \"$query\"");
 	$num_rows = mysql_num_rows($result);
 
-	if($num_rows < 1){
-		die("No account to generate");
-	}
+//	if($num_rows < 1){
+//		die("No account to generate");
+//	}
 
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result) or die ("Cannot fetch user");
@@ -309,7 +309,8 @@ fi
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
 		if($num_rows2 != 1){
-			die("No user of that name !");
+			echo("No user of that name: $web_owner!");
+			continue;
 		}
 		$webadmin = mysql_fetch_array($result2) or die ("Cannot fetch user");
 		$web_path = $webadmin["path"];
@@ -318,9 +319,10 @@ fi
 		$query2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE domain_name='$web_name' ORDER BY subdomain_name;";
 		$result2 = mysql_query ($query2)or die("Cannot execute query \"$query2\"");
 		$num_rows2 = mysql_num_rows($result2);
-		if($num_rows2 < 1){
-			die("No subdomain for domain $web_name !");
-		}
+// Very bad idea: the script should never dies
+//		if($num_rows2 < 1){
+//			die("No subdomain for domain $web_name !");
+//		}
 		for($j=0;$j<$num_rows2;$j++){
 			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 			$web_subname = $subdomain["subdomain_name"];
@@ -340,7 +342,7 @@ fi
 	// Ecriture du fichier
 	$filep = fopen("$conf_generated_file_path/$conf_backup_script_path", "w+");
 	if( $filep == NULL){
-		die("Cannot open file for writting");
+		echo("Cannot open file for writting");
 	}
 	fwrite($filep,$backup_script);
 	fclose($filep);
