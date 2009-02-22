@@ -30,6 +30,9 @@ function drawDataBase($database){
 	}
 
 	$out = "<br><h3>". _("Your users") ."</h3>";
+	if($conf_user_mysql_prepend_admin_name == "yes"){
+		$out .= "<i>" . _("Your username will be prepended to the database username.") . "</i><br>";
+	}
 	$q = "SELECT DISTINCT User FROM mysql.user WHERE dtcowner='$adm_login' ORDER BY User;";
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -66,7 +69,9 @@ function drawDataBase($database){
 	$out .= "</table>";
 
 	$out .= "<br><h3>". _("List of your databases:") ."</h3><br>";
-
+	if($conf_user_mysql_prepend_admin_name == "yes"){
+		$out .= "<i>" . _("Your username will be prepended to the database name.") . "</i><br>";
+	}
 	if($conf_demo_version == "no" && $num_users > 0){
 		mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");
 		$query = "SELECT DISTINCT Db,User FROM db WHERE $dblist_clause;";
@@ -104,7 +109,6 @@ function drawDataBase($database){
 			for($j=0;$j<$num_users;$j++){
 				$dblist_user_popup .= "<option value=\"".$dblist_user[$j]."\">".$dblist_user[$j]."</option>";
 			}
-
 
 			$dblist .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
 		<input type=\"hidden\" name=\"action\" value=\"add_dbuser_db\">

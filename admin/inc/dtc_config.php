@@ -942,6 +942,11 @@ function drawGeneralConfig(){
 				"legend" => _("Use visitors: "),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
+			"user_mysql_prepend_admin_name" => array(
+				"type" => "radio",
+				"legend" => _("Prepend admin name to db names: "),
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"user_mysql_type" => array(
 				"legend" => _("Location of user's database: "),
 				"type" => "radio",

@@ -17,12 +17,17 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
 		$submit_err .= _("Incorrect MySQL login format: please don't enter root or debian-sys-maint") ."<br>\n";
 		$commit_flag = "no";
 	}
+	if($conf_user_mysql_prepend_admin_name == "yes"){
+		$dbuser = $adm_login . "-" . $_REQUEST["dbuser"];
+	}else{
+		$dbuser = $_REQUEST["dbuser"];
+	}
 	if(!isDTCPassword($_REQUEST["db_pass"])){
 		$submit_err .= _("Password must consist of only letters and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.") ."<br>\n";
 		$commit_flag = "no";
 	}
 	if($commit_flag == "yes"){
-		$query = "SELECT * FROM mysql.user WHERE User='".$_REQUEST["dbuser"]."';";
+		$query = "SELECT * FROM mysql.user WHERE User='".$dbuser."';";
 		$result = mysql_query($query)or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$num_rows = mysql_num_rows($result);
 		if($num_rows > 0){
@@ -32,10 +37,10 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
 	}
 	if($commit_flag == "yes"){
 		$q = "INSERT INTO mysql.user (Host,User,Password,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Reload_priv,Shutdown_priv,Process_priv,File_priv,Grant_priv,References_priv,Index_priv,Alter_priv,dtcowner)
-			VALUES ('%','".$_REQUEST["dbuser"]."',Password('".$_REQUEST["db_pass"]."'),'N','N','N','N','N','N','N','N','N','N','N','N','N','N','$adm_login');";
+			VALUES ('%','".$dbuser."',Password('".$_REQUEST["db_pass"]."'),'N','N','N','N','N','N','N','N','N','N','N','N','N','N','$adm_login');";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$q = "INSERT INTO mysql.user (Host,User,Password,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Reload_priv,Shutdown_priv,Process_priv,File_priv,Grant_priv,References_priv,Index_priv,Alter_priv,dtcowner)
-			VALUES ('localhost','".$_REQUEST["dbuser"]."',Password('".$_REQUEST["db_pass"]."'),'N','N','N','N','N','N','N','N','N','N','N','N','N','N','$adm_login');";
+			VALUES ('localhost','". $dbuser ."',Password('".$_REQUEST["db_pass"]."'),'N','N','N','N','N','N','N','N','N','N','N','N','N','N','$adm_login');";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
 	if($conf_user_mysql_type=="distant"){
@@ -54,7 +59,12 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
 		$submit_err .= _("This is not a valid database name! Please choose another one.") ."<br>\n";
 		$commit_flag = "no";
 	}else{
-		$q = "SELECT * FROM mysql.db WHERE Db='".$_REQUEST["newdb_name"]."';";
+		if($conf_user_mysql_prepend_admin_name == "yes"){
+			$newdb_name = $adm_login . "_" . $_REQUEST["newdb_name"];
+		}else{
+			$newdb_name = $_REQUEST["newdb_name"];
+		}
+		$q = "SELECT * FROM mysql.db WHERE Db='". $newdb_name ."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$num_rows = mysql_num_rows($r);
 		if($num_rows > 0){
@@ -75,13 +85,13 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
 		}
 	}
 	if($commit_flag == "yes"){
-		$q = "CREATE DATABASE ".$_REQUEST["newdb_name"].";";
+		$q = "CREATE DATABASE ". $newdb_name .";";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$q = "INSERT INTO mysql.db ( Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Grant_priv,References_priv,Index_priv,Alter_priv,Lock_tables_priv)
-		VALUES ('%','".$_REQUEST["newdb_name"]."','".$_REQUEST["dbuser"]."','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y');";
+		VALUES ('%','". $newdb_name ."','".$_REQUEST["dbuser"]."','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y');";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$q = "INSERT INTO mysql.db ( Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Grant_priv,References_priv,Index_priv,Alter_priv,Lock_tables_priv)
-		VALUES ('localhost','".$_REQUEST["newdb_name"]."','".$_REQUEST["dbuser"]."','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y');";
+		VALUES ('localhost','". $newdb_name ."','".$_REQUEST["dbuser"]."','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y');";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$q = "FLUSH PRIVILEGES;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
