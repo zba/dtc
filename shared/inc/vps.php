@@ -149,4 +149,16 @@ function getInstallableOS($soap_client){
 	}
 }
 
+function getInstallableAPP($soap_client){
+	global $vps_soap_err;
+	$r = $soap_client->call("getInstallableAPP",array(),"","","");
+	$err = $soap_client->getError();
+	if($err){
+		$vps_soap_err = "Could not get installable APP data. Error: ".$err;
+		return false;
+	}else{
+		return $r;
+	}
+}
+
 ?>

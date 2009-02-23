@@ -248,6 +248,17 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 			}
 			$out .= "<option value=\"$os_name\" $selected>$os_name ("._("operating system image").")</option>";
 		}
+		$installable_app = getInstallableAPP($soap_client);
+		$nbr_app = sizeof($installable_app);
+		for($i=0;$i<$nbr_app;$i++){
+			$app_name = $installable_app[$i];
+			if($vps["operatingsystem"] == $os_name){
+				$selected = " selected ";
+			}else{
+				$selected = "";
+			}
+			$out .= "<option value=\"$app_name\" $selected>$app_name ("._("applicance builder").")</option>";
+		}
 		$out .= "</select></td></tr>
 <tr><td>".("VPS root password:")." </td><td><input type=\"password\" name=\"root_password\"><input type=\"hidden\" name=\"action\" value=\"reinstall_os\"></td></tr>
 <tr><td></td><td>" . submitButtonStart() . _("Reinstall operating system") . submitButtonEnd() ."
