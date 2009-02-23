@@ -732,9 +732,9 @@ function hostingProductChanged(){
 	<td valign=\"top\"><h3>". _("Product:") ."</h3>
 	$prod_popup<br>
 <h3>". _("Login info") .":</h3> ".$login_skined."</td>
-	<td width=\"4\" background=\"gfx/skin/frame/border_2.gif\"></td>
+	<td width=\"4\" background=\"gfx/border_2.gif\"></td>
 	<td valign=\"top\"><h3>". _("Client info") ."</h3> $client_skined</td>
-	<td width=\"4\" background=\"gfx/skin/frame/border_2.gif\"></td>
+	<td width=\"4\" background=\"gfx/border_2.gif\"></td>
 	<td valign=\"top\"><h3>". _("Customer's address") ."</h3> $addr_skined</td>
 </tr></table>
 $conditions

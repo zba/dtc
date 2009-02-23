@@ -277,7 +277,7 @@ function drawAdminTools_emailAccount($mailbox){
 	$out = "<table width=\"100%\" heigh=\"1\">
 <tr>
 	<td width=\"50%\" valign=\"top\">".$left."</td>
-	<td width=\"4\" background=\"gfx/skin/frame/border_2.gif\"></td>
+	<td width=\"4\" background=\"gfx/border_2.gif\"></td>
 	<td valign=\"top\">".$right."</td>
 </tr>
 </table>

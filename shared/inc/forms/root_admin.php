@@ -285,7 +285,7 @@ function drawEditAdmin($admin){
 	$out = "<font size=\"-1\">
 <table>
  <tr>
-  <td>$domain_conf</td><td background=\"gfx/skin/frame/border_2.gif\">&nbsp;</td>
+  <td>$domain_conf</td><td background=\"gfx/border_2.gif\">&nbsp;</td>
   <td>$user_data</td>
  </tr>
 </table>
