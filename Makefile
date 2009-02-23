@@ -199,9 +199,9 @@ admin/genfiles/gen_ssh_account.php admin/genfiles/gen_maildrop_userdb.php admin/
 admin/genfiles/remote_mail_list.php admin/genfiles/gen_named_files.php \
 admin/genfiles/mailfilter_vacation_template admin/genfiles/gen_nagios.php
 
-ADMIN_INC_PHP_SCRIPT_FILES=admin/inc/img_alt_skin.php admin/inc/img.php admin/inc/renewals.php \
+ADMIN_INC_PHP_SCRIPT_FILES=admin/inc/renewals.php \
 admin/inc/draw_user_admin.php admin/inc/dtc_config.php \
-admin/inc/monitor.php admin/inc/submit_root_querys.php admin/inc/graphs.php admin/inc/nav.php admin/inc/img_alt.php \
+admin/inc/monitor.php admin/inc/submit_root_querys.php admin/inc/graphs.php admin/inc/nav.php \
 admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/submit_to_sql.php
 
 # Todo: have the client/vps_stats_* be taken from the admin folder!
@@ -211,7 +211,7 @@ vm-cpu-all.php vm-io-all.php vm-net-all.php
 CLIENT_PHP_SCRIPT_FILES=client/bw_per_month.php client/dynip.php client/enets-notify.php client/index.php \
 client/invoice.php client/list_domains.php client/login.php client/new_account_form.php client/new_account.php \
 client/new_account_renewal.php client/paypal.php client/secpaycallback_worldpay.php client/webmoney.php \
-client/inc/img_alt.php client/inc/img_alt_skin.php client/inc/img.php client/get_vps_location_status.php \
+client/get_vps_location_status.php \
 client/logPushlet.php client/xanjaxXHR.js client/cheques_and_transfers.php
 
 EMAIL_PHP_SCRIPT_FILES=email/api.php email/index.php email/login.php email/submit_to_sql_dtcemail.php
@@ -380,11 +380,6 @@ install-dtc-common:
 
 	# The SQL table scripts
 	@for i in $(INSTALL_SQL_TABLES) ; do $(INSTALL) -m $(ROOT_ONLY_READ) $$i $(APP_INST_DIR)/$$i ; done
-
-	### email panel ###
-	@$(INSTALL) -m $(PHP_RIGHTS) admin/inc/img_alt.php		$(APP_INST_DIR)/email/inc/img_alt.php
-	@$(INSTALL) -m $(PHP_RIGHTS) admin/inc/img_alt_skin.php		$(APP_INST_DIR)/email/inc/img_alt_skin.php
-	@$(INSTALL) -m $(PHP_RIGHTS) admin/inc/img.php			$(APP_INST_DIR)/email/inc/img.php
 
 	# The man pages
 	$(INSTALL) -m $(MANPAGE_RIGHTS) doc/dtc-chroot-shell.8		$(MAN_DIR)/man8/dtc-chroot-shell.8
