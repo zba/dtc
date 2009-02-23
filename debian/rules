@@ -30,7 +30,6 @@ install:
 
 	dh_installdirs
 
-	install -D -m 0644 debian/lintian/dtc-common debian/dtc-common/usr/share/lintian/overrides/dtc-common
 	$(MAKE) install-dtc-common DESTDIR=$(CURDIR)/debian/dtc-common
 	rm -f $(CURDIR)/debian/dtc-common/usr/share/doc/dtc/LICENSE.gz
 	rm -f $(CURDIR)/debian/dtc-common/usr/share/doc/dtc/README.gentoo

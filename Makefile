@@ -399,12 +399,6 @@ install-dtc-common:
 	[ -h $(APP_INST_DIR)/client/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/client/gfx
 	[ -h $(APP_INST_DIR)/email/gfx ] || ln -s ../shared/gfx	$(APP_INST_DIR)/email/gfx
 
-	mkdir -p $(APP_INST_DIR)/shared/imgcache
-	chmod $(NORMAL_FOLDER) $(APP_INST_DIR)/shared/imgcache
-	[ -h $(APP_INST_DIR)/admin/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/admin/imgcache
-	[ -h $(APP_INST_DIR)/client/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/client/imgcache
-	[ -h $(APP_INST_DIR)/email/imgcache ] || ln -s ../shared/imgcache $(APP_INST_DIR)/email/imgcache
-
 	# Set the stuffs for the logrotate
 	mkdir -p $(DESTDIR)$(CONFIG_DIR)/logrotate.d
 	$(INSTALL) -m 0644 etc/logrotate.d/dtc $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc
