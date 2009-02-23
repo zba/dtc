@@ -371,7 +371,7 @@ function drawAdminTools($admin){
 					$vps_founded = 1;
 				}
 			}
-			$web_editor .= "<img src=\"inc/virtual-server.png\" align=\"left\"><font size=\"+2\"><b><u>VPS $vps_name:$vps_node</u></b><br></font>";
+			$web_editor .= "<img src=\"gfx/toolstitles/virtual-server.png\" align=\"left\"><font size=\"+2\"><b><u>VPS $vps_name:$vps_node</u></b><br></font>";
 			if($vps_founded){
 				switch($vps_subcommand){
 				case "monitor":
@@ -398,96 +398,96 @@ function drawAdminTools($admin){
 			$web_editor .= drawAdminTools_Dedicated($admin,$dedicated_server_hostname);
 			$title = "Dedicated server: $dedicated_server_hostname";
 		}else if(@$add_array[1] == "mailboxs"){
-                        $web_editor .= "<img src=\"inc/mailboxs.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Mailboxes:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/mailboxs.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Mailboxes:") ."</u></b><br></font>";
                         $web_editor .= drawAdminTools_Emails($eddomain);
                   	$title = _("Mailboxes of ") .$edit_domain;
 		}else if(@$add_array[1] == "mailaliases"){
-                        $web_editor .= "<img src=\"inc/mailaliasgroup.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Mail Groups:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/mailaliasgroup.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Mail Groups:") ."</u></b><br></font>";
                         $web_editor .= drawAdminTools_Aliases($eddomain);
                   	$title = _("Mail groups of ").$edit_domain;
 		}else if(@$add_array[1] == "mailing-lists"){
-                        $web_editor .= "<img src=\"inc/mailing-lists.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Mailing lists:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/mailing-lists.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Mailing lists:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_MailingLists($eddomain);
 			$title = _("Edit mailing lists of domain:") .$edit_domain;
 		//udns.us add
 		}else if(@$add_array[1] == "tools"){
-			$web_editor .= "<img src=\"inc/tools.png\" align=\"left\"><font size=\"+2\"><b><u>Tools:</u></b><br></font>";
+			$web_editor .= "<img src=\"gfx/toolstitles/tools.png\" align=\"left\"><font size=\"+2\"><b><u>Tools:</u></b><br></font>";
 			$web_editor .= drawAdminTools_Tools($eddomain);
 			// To be translated:
 			$title = _("Domain Tools");
 			//udns.us /add
 		}else if(@$add_array[1] == "dns"){
-                        $web_editor .= "<img src=\"inc/nameservers.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Name servers:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/nameservers.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Name servers:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_DomainDNS($admin,$eddomain);
 			$title = _("DNS config of:") ." ".$edit_domain;
 		}else if(@$add_array[1] == "invoices"){
-			$web_editor .= "<img src=\"inc/stats.png\" align=\"left\"><font size=\"+2\"><b><u>Invoices:</u></b><br></font>";
+			$web_editor .= "<img src=\"gfx/toolstitles/stats.png\" align=\"left\"><font size=\"+2\"><b><u>Invoices:</u></b><br></font>";
 			$web_editor .= drawAdminTools_Invoices($admin);
 			$title = "Invoices";
 		}else if(@$add_array[1] == "stats"){
 			if($add_array[0] == "myaccount"){
-				$web_editor .= "<img src=\"inc/stats.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Statistics:") ."</u></b><br></font>";
+				$web_editor .= "<img src=\"gfx/toolstitles/stats.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Statistics:") ."</u></b><br></font>";
 				$web_editor .= drawAdminTools_AdminStats($admin);
 				$title = _("My account global statistics");
 			}else{
-				$web_editor .= "<img src=\"inc/stats.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Statistics:") ."</u></b><br></font>";
+				$web_editor .= "<img src=\"gfx/toolstitles/stats.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Statistics:") ."</u></b><br></font>";
 				$web_editor .= drawAdminTools_DomainStats($admin,$eddomain);
 				$title = _("Statistics of domain:")." ".$edit_domain;
 			}
 		}else if(@$add_array[1] == "whois"){
-                        $web_editor .= "<img src=\"inc/nickhandles.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Whois:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/nickhandles.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Whois:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_Whois($admin,$eddomain);
 			$title = _("Whois of:") ." ".$edit_domain;
 		}else if(@$add_array[1] == "subdomains"){
-                        $web_editor .= "<img src=\"inc/subdomains.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Subdomains:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/subdomains.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Subdomains:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_Subdomain($admin,$eddomain);
 			$title = _("Subdomains of ") .$edit_domain;
 		}else if(@$add_array[1] == "ftp-accounts"){
-                        $web_editor .= "<img src=\"inc/ftp-accounts.png\" align=\"left\"><font size=\"+2\"><b><u>". _("FTP accounts") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/ftp-accounts.png\" align=\"left\"><font size=\"+2\"><b><u>". _("FTP accounts") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_Ftp($eddomain,$adm_path);
 			$title = _("FTP accounts of ") .$edit_domain;
 		}else if(@$add_array[1] == "ssh-accounts"){
-                        $web_editor .= "<img src=\"inc/ssh-accounts.png\" align=\"left\"><font size=\"+2\"><b><u>". _("SSH accounts:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/ssh-accounts.png\" align=\"left\"><font size=\"+2\"><b><u>". _("SSH accounts:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_SSH($eddomain,$adm_path);
 			$title = _("SSH accounts of ") .$edit_domain;
 		}else if(@$add_array[1] == "package-installer"){
-                        $web_editor .= "<img src=\"inc/package-installer.png\" align=\"left\"><font size=\"+2\"><b><u>"._("Package installer:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/package-installer.png\" align=\"left\"><font size=\"+2\"><b><u>"._("Package installer:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_PackageInstaller($eddomain,$adm_path);			
 			$title = _("Package") .": ".$edit_domain;
 		}else if(@$add_array[1] == "nickhandles"){
-                        $web_editor .= "<img src=\"inc/nickhandles.png\" align=\"left\"><font size=\"+2\"><b><u>". _("DNS Nick handles") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/nickhandles.png\" align=\"left\"><font size=\"+2\"><b><u>". _("DNS Nick handles") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_NickHandles($admin);
 			$title = _("Internet Whois Nick Handles management:") ;
 		}else if(@$add_array[1] == "adddomain"){
-                        $web_editor .= "<img src=\"inc/adddomain.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Add a domain or service:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/adddomain.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Add a domain or service:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_AddDomain($admin);
 			$title = _("Add a domain name to my account") ;
 		}else if(@$add_array[1] == "nameservers"){
-                        $web_editor .= "<img src=\"inc/nameservers.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Name servers:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/nameservers.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Name servers:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_NameServers($admin);
 			$title = _("Manage my name servers:");
 		}else if($add_array[0] == "myaccount"){   
-			$web_editor .= "<img src=\"inc/my-account.png\" align=\"left\"><font size=\"+2\"><b><u>" . _("Statistics:") ."</u></b><br></font>";
+			$web_editor .= "<img src=\"gfx/toolstitles/my-account.png\" align=\"left\"><font size=\"+2\"><b><u>" . _("Statistics:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_MyAccount($admin);
 			$title = _("My Account information:");
 		}else if($add_array[0] == "database"){
-                        $web_editor .= "<img src=\"inc/databases.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Databases:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/databases.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Databases:") ."</u></b><br></font>";
 			$web_editor .= drawDataBase("");
 			$title = _("Your databases");
 		}else if($add_array[0] == "reseller"){
-                        $web_editor .= "<img src=\"inc/reseller.png\" align=\"left\"><font size=\"+2\"><b><u>"._("Sub-accounts (reseller):") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/reseller.png\" align=\"left\"><font size=\"+2\"><b><u>"._("Sub-accounts (reseller):") ."</u></b><br></font>";
 			$web_editor .= drawReseller($admin);	
 			$title = _("Resseller child accounts");
 		}else if($add_array[0] == "password"){
-                        $web_editor .= "<img src=\"inc/password.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Password:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/password.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Password:") ."</u></b><br></font>";
 			$web_editor .= drawPasswordChange();
 			$title = _("Password");
 		}else if($add_array[0] == "ticket"){
-                        $web_editor .= "<img src=\"inc/ticket.png\" align=\"left\"><font size=\"+2\"><b><u>Support tickets:</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/ticket.png\" align=\"left\"><font size=\"+2\"><b><u>Support tickets:</u></b><br></font>";
 			$web_editor .= drawTickets($admin);
 			$title = "Support ticket system";
 		}else if($add_array[0] == "help"){
-                        $web_editor .= "<img src=\"inc/help.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Help:") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/help.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Help:") ."</u></b><br></font>";
 			$web_editor .= _("<font face=\"Arial, Verdana\">
 <center><font size=\"+2\"><u><b>ONLINE DTC HELP</b></u></font></center><br><br>
 <div align=\"justify\">
@@ -594,7 +594,7 @@ effect in realtime.<br><br>
 </a></pre>";
 			$title = _("Online DTC help");
 		}else{
-                        $web_editor .= "<img src=\"inc/domains.png\" align=\"left\"><font size=\"+2\"><b><u>$addrlink:</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/domains.png\" align=\"left\"><font size=\"+2\"><b><u>$addrlink:</u></b><br></font>";
 			$web_editor .= drawAdminTools_DomainInfo($admin,$eddomain);
 			$title = _("General information of ") .$edit_domain;
 		}

@@ -264,21 +264,11 @@ $(CLIENT_PHP_SCRIPT_FILES) $(EMAIL_PHP_SCRIPT_FILES) $(SHARED_PHP_SCRIPT_FILES) 
 $(PAYMENT_API_PHP_SCRIPT_FILES)
 
 ################ PICTURES ##################
-# Take care! These are in admin/inc !!!
-ADMIN_INC_PNG_FILES=adddomain.png package-installer.png databases.png imglong.png password.png dedic-server.png domains.png \
-imgshort.png mailaliasgroup.png reseller.png mailboxs.png ssh-accounts.png mailing-lists.png stats.png subdomains.png folder.png \
-ftp-accounts.png my-account.png ticket.png nameservers.png tools.png help.png virtual-server.png nickhandles.png
-
-# I have the feeling that these files are not used anymore. To be tested (with old skin and new one)!!!
-CLIENT_INC_PNG_FILES=client/inc/database.png client/inc/dns.png client/inc/domain.png client/inc/domains.png client/inc/floppy.png \
-client/inc/folder.png client/inc/home.png client/inc/imgshort.png client/inc/mail.png client/inc/man.png client/inc/stat.png \
-client/inc/tools.png
-
 NEW_SITES_TEMPLATE_IMG=shared/template/dtc_logo.gif shared/template/dtclogo.png shared/template/favicon.ico shared/template/logo_dtc.gif
 
 CLIENT_PICTURES=client/enets_pay_icon.gif client/favicon.ico client/cheque.gif
 
-ALL_PICS=$(CLIENT_INC_PNG_FILES) $(NEW_SITES_TEMPLATE_IMG) $(CLIENT_PICTURES)
+ALL_PICS=$(NEW_SITES_TEMPLATE_IMG) $(CLIENT_PICTURES)
 ################# EXECUTABLE SCRIPTS #################
 # Owned by root, ran by root
 ROOT_CRON_PHP_SCRIPT_FILES=admin/cron.php admin/reminders.php admin/restor_db.php admin/backup_db.php
@@ -399,13 +389,8 @@ install-dtc-common:
 	# The man pages
 	$(INSTALL) -m $(MANPAGE_RIGHTS) doc/dtc-chroot-shell.8		$(MAN_DIR)/man8/dtc-chroot-shell.8
 
-	# inc png files
-	@for i in $(ADMIN_INC_PNG_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) admin/inc/$$i $(APP_INST_DIR)/admin/inc/$$i ; done
 	# Client and email inc png files
-	@for i in $(ADMIN_INC_PNG_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) admin/inc/$$i $(APP_INST_DIR)/client/inc/$$i ; done
 	@for i in $(ALL_PICS) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
-	@$(INSTALL) -m $(PHP_RIGHTS) email/inc/domain.png	$(APP_INST_DIR)/email/inc/domain.png
-	@$(INSTALL) -m $(PHP_RIGHTS) email/inc/domains.png $(APP_INST_DIR)/email/inc/domains.png
 
 	# Copy all the graphics...
 	@$(INSTALL) -m $(PHP_RIGHTS) shared/404_template/logo.png $(APP_INST_DIR)/shared/404_template/logo.png
