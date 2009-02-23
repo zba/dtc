@@ -16,6 +16,7 @@ function drawDataBase($database){
 	global $conf_user_mysql_root_pass;
 
 	global $conf_demo_version;
+	global $conf_user_mysql_prepend_admin_name;
 
 	global $pro_mysql_admin_table;
 
