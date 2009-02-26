@@ -74,7 +74,7 @@ function drawAdminTools_MyAccount($admin){
 			$overall .= " / ".smartByte($bw_quota)."<br>";
 			$overall .= drawPercentBar($stats["total_transfer"],$bw_quota);
 		}
-		$overall .= _("Total disk usage:").smartByte($stats["total_du"]);
+		$overall .= "<br>" . _("Total disk usage:").smartByte($stats["total_du"]);
 		if($id_client != 0 && isset($admin["data"])){
 			$du_quota = $admin["info"]["quota"]*1024*1024;
 			$overall .= " / ".smartByte($du_quota)."<br>";
@@ -243,7 +243,7 @@ $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 		You can customize the <code>return</code> variable to redirect the user to any particular landing page that exists on our Web site (though we recommend the product page as per the example).  Then, when one of your visitors clicks on that link to buy a product from us, he will be redirected to our Web site.  Once he buys, you will automatically be credited a payment depending on the product that your visitor bought.";
 
 	}else{
-		$out .= _("You do not have a client account, so there is no money in your account.");
+		$out .= "<br>" . _("You do not have a client account, so there is no money in your account.");
 	}
 	return $out;
 
