@@ -217,16 +217,17 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	$msg = str_replace("#name#",$name, _("You can control your mailing list by email or by control panel.
 You can send a email to the following addresses to execute the listed command:
   
-  #name#-help@#domain# -> return the most common list's commands
-  #name#-list@#domain# -> return the subscribers's list
-  #name#-get-N@#domain# -> return the N list's message
-  #name#-owner@#domain# -> you can contact the list's owner by this address
-  #name#-unsubscribe@#domain# -> unsubscribe the email's sender from the list
-  #name#-subscribe@#domain# -> subscribe the email's sender to the list
-  #name#-subscribe-digest@#domain# -> subscribe the email's sender to the list's digest version
-  #name#-subscribe-nomail@#domain# -> subscribe the email's sender to the list's nomail version
+  #name##DELIMITER#help@#domain# -> return the most common list's commands
+  #name##DELIMITER#list@#domain# -> return the subscribers's list
+  #name##DELIMITER#get-N@#domain# -> return the N list's message
+  #name##DELIMITER#owner@#domain# -> you can contact the list's owner by this address
+  #name##DELIMITER#unsubscribe@#domain# -> unsubscribe the email's sender from the list
+  #name##DELIMITER#subscribe@#domain# -> subscribe the email's sender to the list
+  #name##DELIMITER#subscribe-digest@#domain# -> subscribe the email's sender to the list's digest version
+  #name##DELIMITER#subscribe-nomail@#domain# -> subscribe the email's sender to the list's nomail version
   
 For more informations go to mlmmj official web site at http://mlmmj.mmj.dk") );
+	$msg = str_replace("#DELIMITER#",$conf_recipient_delimiter,$msg);
 	$msg = str_replace("#domain#",$edit_domain,$msg);
 	$headers = "FROM: $conf_webmaster_email_addr\n";
 	$headers .= "Return-Path: $conf_webmaster_email_addr\n";
