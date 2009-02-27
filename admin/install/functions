@@ -709,15 +709,10 @@ createHostingDirAndFiles () {
 		chmod -R 775 $PATH_DTC_ETC/template
 	fi
 
-	# fix the perms for the gfx and imgcache 
-	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_SHARED/shared/imgcache
-	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_SHARED/shared/gfx
-	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_SHARED/client/imgcache
-	chown -hR ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_SHARED/client/gfx
 	chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_ETC}
 
-	echoIfVerbose "chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path"
-	chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path || true
+#	echoIfVerbose "chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path"
+#	chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path || true
 
 }
 
