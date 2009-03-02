@@ -151,14 +151,11 @@ bsd-ports-packages:
 	echo "-> Building list of files"
 	@cd $(PKG_PLIST_BUILD) && find . -type f | sed "s/\.\/usr\/local/%%LOCALBASE%%/" | sort -r >../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
 	@echo "%%LOCALBASE%%/www/dtc/admin/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
-	@echo "%%LOCALBASE%%/www/dtc/admin/imgcache" >>$(PORT_BUILD)/pkg-plist.tmp
 	@echo "%%LOCALBASE%%/www/dtc/shared/mysql_config.php" >>$(PORT_BUILD)/pkg-plist.tmp
 	@echo "%%LOCALBASE%%/www/dtc/client/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
-	@echo "%%LOCALBASE%%/www/dtc/client/imgcache" >>$(PORT_BUILD)/pkg-plist.tmp
 	@echo "sbin/dtc-install" >>$(PORT_BUILD)/pkg-plist.tmp
 	@echo "sbin/dtc-deinstall" >>$(PORT_BUILD)/pkg-plist.tmp
 	@echo "%%LOCALBASE%%/dtc/email/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
-	@echo "%%LOCALBASE%%/dtc/email/imgcache" >>$(PORT_BUILD)/pkg-plist.tmp
 	@cd $(PKG_PLIST_BUILD) && find usr/local -type d -exec echo @dirrm {} \; | grep -v "/etc" | sed "s/usr\/local/%%LOCALBASE%%/" | sort -r >>../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
 	@NBR_LINE=`cat $(PORT_BUILD)/pkg-plist.tmp | wc -l` && cat $(PORT_BUILD)/pkg-plist.tmp | head -n $$(( $$NBR_LINE - 2 )) >$(PORT_BUILD)/pkg-plist.tmp2
 	@cat $(PORT_BUILD)/pkg-plist.tmp2 | grep -v "mysql_config.php" >$(PORT_BUILD)/pkg-plist
