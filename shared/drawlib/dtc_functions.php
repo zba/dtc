@@ -729,30 +729,11 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 		}
 		exec("cp -fulpRv $conf_chroot_path/* $admin_path/$domain_name/subdomains/www");
 		// create a link so that the user can log in via SSH to $admin_path or $admin_path/$domain_name
-		createSymLink("subdomains/www/bin", "$admin_path/$domain_name/bin");
-		createSymLink("subdomains/www/var", "$admin_path/$domain_name/var");
-		createSymLink("subdomains/www/lib", "$admin_path/$domain_name/lib");
-		createSymLink("subdomains/www/lib", "$admin_path/$domain_name/lib64");
-		createSymLink("subdomains/www/sbin", "$admin_path/$domain_name/sbin");
-		createSymLink("subdomains/www/tmp", "$admin_path/$domain_name/tmp");
-		createSymLink("subdomains/www/usr", "$admin_path/$domain_name/usr");
-		createSymLink("subdomains/www/dev", "$admin_path/$domain_name/dev");
-		createSymLink("subdomains/www/etc", "$admin_path/$domain_name/etc");
-
-		//exec("if [ `uname -m` = \"x86_64\" ] ; then if [ ! -e $admin_path/$domain_name/lib64 ] ; then ln -s subdomains/www/lib $admin_path/$domain_name/lib64 ; fi ; fi");
-
-		// now for the admin user chroot links
-		createSymLink("$domain_name/subdomains/www/bin", "$admin_path/bin");
-		createSymLink("$domain_name/subdomains/www/var", "$admin_path/var");
-		createSymLink("$domain_name/subdomains/www/lib", "$admin_path/lib");
-		createSymLink("$domain_name/subdomains/www/lib", "$admin_path/lib64");
-		createSymLink("$domain_name/subdomains/www/sbin", "$admin_path/sbin");
-		createSymLink("$domain_name/subdomains/www/tmp", "$admin_path/tmp");
-		createSymLink("$domain_name/subdomains/www/usr", "$admin_path/usr");
-		createSymLink("$domain_name/subdomains/www/dev", "$admin_path/dev");
-		createSymLink("$domain_name/subdomains/www/etc", "$admin_path/etc");
-
-		//exec("if [ `uname -m` = \"x86_64\" ] ; then if [ ! -e $admin_path/lib64 ] ; then ln -s subdomains/www/lib $admin_path/lib64 ; fi ; fi");
+		for ( explode( " " , "bin var lib lib64 sbin tmp usr dev etc" ) as $subdir) {
+			createSymLink("subdomains/www/$subdir", "$admin_path/$domain_name/$subdir");
+			createSymLink("$domain_name/subdomains/www/$subdir", "$admin_path/$subdir");
+		}
+		
 		if ($conf_unix_type == "bsd") {			// no -u in freebsd, could blow away custom changes, NEEDFIX: KC
 			$cp_opt = "p";
 		}else{
