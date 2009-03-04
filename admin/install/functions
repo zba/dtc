@@ -1365,10 +1365,8 @@ MIMEMagicFile etc/apache22/magic
 AddType application/x-httpd-php .php
 " >>$PATH_HTTPD_CONF
 		fi
-		if [ "$UNIX_TYPE" = "debian" ] ; then
-			echo "ScriptAlias /cgi-bin /usr/lib/cgi-bin
+		echo "ScriptAlias /cgi-bin $PATH_CGIBIN
 " >>$PATH_HTTPD_CONF
-		fi
 		echo "
 Include $PATH_DTC_ETC/vhosts.conf
 " >>$PATH_HTTPD_CONF

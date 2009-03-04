@@ -225,7 +225,10 @@ function mail_account_generate_postfix(){
 						$console .= "Missing home variable for $id";
 					}
 					if(! is_dir($home) ){
+						$PATH = getenv('PATH');
+						putenv("PATH=/usr/lib/courier-imap/bin:$PATH");
 						system("/bin/mkdir -p $home && maildirmake $home");
+						putenv("PATH=$PATH");
 						$homedir_created = 1;
 					}
 

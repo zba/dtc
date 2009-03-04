@@ -82,7 +82,10 @@ function mail_account_generate_maildrop(){
 			$userdb_file .= $a["id"]."@".$a2["name"]."\t".'home='.$boxpath.'|mail='.$boxpath."|uid=".$a["uid"].'|gid='.$a["gid"].'|quota='.$a["quota_size"]."\n";
 			$quota_maildrop=$a["quota_couriermaildrop"];
 
+			$PATH = getenv('PATH');
+			putenv("PATH=/usr/lib/courier-imap/bin:$PATH");
 			system("maildirmake -q  $quota_maildrop $boxpath/Maildir");
+			putenv("PATH=$PATH");
 			if($quota_maildrop==0){
 				if(file_exists("$boxpath/Maildir/maildirsize")){
 					system("rm $boxpath/Maildir/maildirsize");
