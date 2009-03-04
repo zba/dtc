@@ -40,7 +40,11 @@ $ZeContent = '<div class="top">
 </span>
         </div> ';
 
-$sousrub = $_REQUEST["sousrub"];
+if( isset($_REQUEST['sousrub']) ){
+	$sousrub = $_REQUEST["sousrub"];
+}else{
+	$sousrub = "";
+}
 
 if($sousrub == "register"){
 	$ZeContentWindowTitle = "Register an account|gplhost.gif";
