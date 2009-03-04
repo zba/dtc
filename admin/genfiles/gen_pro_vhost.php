@@ -356,14 +356,6 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	Order Deny,Allow
 	Allow from all
 </Directory>\n";
-//	This is not needed anymore as we don't use cgi-bin for the rrdtool graphing anymore
-//	If you need it for your specific config, then add it in the main apache config
-//	if($conf_unix_type == "debian"){
-//		$vhost_file .= "ScriptAlias /cgi-bin /usr/lib/cgi-bin
-//<Directory /usr/lib/cgi-bin>
-//	Options FollowSymLinks
-//</Directory>\n";
-//	}
 
 	if($conf_autogen_webmail_alias == "yes"){
 		if($conf_autogen_webmail_type == "squirrelmail"){
