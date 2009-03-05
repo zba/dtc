@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-26 17:19+0800\n"
+"POT-Creation-Date: 2009-03-05 16:02+0100\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Luca Franceschini <info@atw.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -35,7 +35,7 @@ msgstr ""
 
 #: shared/inc/sql/lists.php:497
 msgid " does not look like a mailbox login..."
-msgstr ""
+msgstr " non sembra una login di posta valida..."
 
 #: shared/inc/sql/dedicated.php:6 shared/inc/sql/dedicated.php:9
 #: shared/inc/sql/vps.php:36 shared/inc/sql/vps.php:93
@@ -57,11 +57,11 @@ msgstr "Bytes trasferiti in totale questo mese:"
 
 #: shared/dtcrm/draw.php:71
 msgid " remaining to be paid"
-msgstr ""
+msgstr "resto da pagare"
 
 #: shared/inc/forms/vps_installation.php:286
 msgid " using the password of your physical console."
-msgstr ""
+msgstr "usando la password della vostra console fisica."
 
 #: shared/dtcrm/draw_handle.php:256
 msgid "+1.XXXXXXXXXX format"
@@ -72,7 +72,7 @@ msgstr "formato +39.XXXXXXXXX"
 #: shared/inc/forms/vps_monitoring.php:69
 #: shared/inc/forms/vps_monitoring.php:70
 msgid "2 months ago: "
-msgstr ""
+msgstr "2 mesi fa:"
 
 #: shared/inc/draw.php:491
 msgid ""
@@ -356,11 +356,11 @@ msgstr ""
 
 #: shared/inc/sql/database.php:71
 msgid "A database by that name exists, please choose another name."
-msgstr ""
+msgstr "Esiste un database con questo nome, scelga un altro nome."
 
 #: shared/inc/sql/database.php:34
 msgid "A user with that name exists in the database, please select a new one."
-msgstr ""
+msgstr "Un utente con questo nome esiste nel database, ne scelga uno nuovo."
 
 #: admin/inc/nav.php:49
 msgid "ALL FILES AND SCRIPTS"
@@ -372,7 +372,7 @@ msgstr "VHOST APACHE"
 
 #: admin/inc/dtc_config.php:1353
 msgid "Accept cheques: "
-msgstr ""
+msgstr "Accetta assehni:"
 
 #: admin/inc/dtc_config.php:1371
 msgid "Accept wire transfers to bank: "
@@ -420,11 +420,11 @@ msgstr "Azione"
 
 #: admin/inc/dtc_config.php:539
 msgid "Activate FTP backups:"
-msgstr ""
+msgstr "Attiva i backup via FTP:"
 
 #: admin/inc/draw_user_admin.php:299 admin/inc/draw_user_admin.php:319
 msgid "Add"
-msgstr ""
+msgstr "Aggiungi"
 
 #: shared/inc/forms/lists.php:408
 msgid "Add To: header:"
@@ -432,11 +432,11 @@ msgstr "Aggiungi all header To:"
 
 #: shared/inc/forms/root_admin.php:223
 msgid "Add a VPS for this admin:"
-msgstr ""
+msgstr "Aggiugi un VPS per questo utente:"
 
 #: shared/inc/forms/root_admin.php:270
 msgid "Add a dedicated server for this admin:"
-msgstr ""
+msgstr "Aggiungi un server dedicato per questo utente:"
 
 #: shared/inc/forms/root_admin.php:157
 msgid "Add a domain for this user:"
@@ -459,15 +459,15 @@ msgstr "Aggiungi un dominio per questo utente:"
 
 #: admin/inc/dtc_config.php:1687
 msgid "Add a new company"
-msgstr ""
+msgstr "Aggiungi una nuova azienda"
 
 #: admin/inc/dtc_config.php:1686
 msgid "Add a new company:"
-msgstr ""
+msgstr "Aggiungi una nuova azienda"
 
 #: admin/inc/draw_user_admin.php:228
 msgid "Add a new user"
-msgstr ""
+msgstr "Aggiungi un nuovo utente"
 
 #: shared/gfx/skin/default_layout.php:426
 msgid "Add a virtual administrator"
@@ -590,12 +590,12 @@ msgstr "Permetti l'aggiunta di logins SSH vhosts:"
 
 #: admin/inc/dtc_config.php:1315
 msgid "Allow registration of subdomain of the main domain: "
-msgstr ""
+msgstr "Permetti la registrazione di sottodomini del dominio principale: "
 
 #: shared/inc/forms/root_admin.php:134
 #, fuzzy
 msgid "Allow the use of the package installer:"
-msgstr "Scegli un pacchetto da installare"
+msgstr "Scegli un pacchetto da installare:"
 
 #: admin/inc/dtc_config.php:1137
 msgid ""
@@ -951,7 +951,7 @@ msgstr ""
 msgid "Byelorussian SSR"
 msgstr ""
 
-#: shared/drawlib/dtc_functions.php:859
+#: shared/drawlib/dtc_functions.php:840
 #, fuzzy
 msgid "Bytes"
 msgstr "anni"
@@ -2331,7 +2331,7 @@ msgstr "Hostname completo del pannello admin di DTC:"
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr ""
 
-#: shared/drawlib/dtc_functions.php:856
+#: shared/drawlib/dtc_functions.php:837
 msgid "GBytes"
 msgstr ""
 
@@ -3194,7 +3194,7 @@ msgstr "Disconnetti"
 msgid "Luxembourg"
 msgstr ""
 
-#: shared/drawlib/dtc_functions.php:857 shared/inc/forms/email.php:587
+#: shared/drawlib/dtc_functions.php:838 shared/inc/forms/email.php:587
 #: shared/inc/forms/email.php:594
 msgid "MBytes"
 msgstr ""
@@ -6517,19 +6517,21 @@ msgstr ""
 "Di seguito gli indirizzi ai quali puoi inviare una email per eseguire il "
 "rispettivo comando:\n"
 "\n"
-"  #name##DELIMITER#help@#domain# -> restituisce la lista dei comandi più comuni\n"
-"  #name##DELIMITER#list@#domain# -> restituisce la lista degli iscritti alla lista\n"
-"  #name##DELIMITER#get-N@#domain# -> restituisce il messaggio N della lista\n"
-"  #name##DELIMITER#owner@#domain# -> permette di inviare una email al proprietario "
-"della lista\n"
-"  #name##DELIMITER#unsubscribe@#domain# -> elimina l'indirizzo email del mittente "
-"dalla lista\n"
-"  #name##DELIMITER#subscribe@#domain# -> iscrive l'indirizzo email del mittente alla "
+"  #name##DELIMITER#help@#domain# -> restituisce la lista dei comandi più "
+"comuni\n"
+"  #name##DELIMITER#list@#domain# -> restituisce la lista degli iscritti alla "
 "lista\n"
-"  #name##DELIMITER#subscribe-digest@#domain# -> iscrive l'indirizzo email del mittente "
-"alla versione digest della lista\n"
-"  #name##DELIMITER#subscribe-nomail@#domain# -> iscrive l'indirizzo email del mittente "
-"alla versione nomail della lista\n"
+"  #name##DELIMITER#get-N@#domain# -> restituisce il messaggio N della lista\n"
+"  #name##DELIMITER#owner@#domain# -> permette di inviare una email al "
+"proprietario della lista\n"
+"  #name##DELIMITER#unsubscribe@#domain# -> elimina l'indirizzo email del "
+"mittente dalla lista\n"
+"  #name##DELIMITER#subscribe@#domain# -> iscrive l'indirizzo email del "
+"mittente alla lista\n"
+"  #name##DELIMITER#subscribe-digest@#domain# -> iscrive l'indirizzo email "
+"del mittente alla versione digest della lista\n"
+"  #name##DELIMITER#subscribe-nomail@#domain# -> iscrive l'indirizzo email "
+"del mittente alla versione nomail della lista\n"
 "\n"
 "Per ulteriori informazioni visita il sito ufficiale di mlmmj all'indirizzo "
 "http://mlmmj.mmj.dk"
@@ -6862,7 +6864,7 @@ msgstr ""
 msgid "is not same as the one I have in the database"
 msgstr ""
 
-#: shared/drawlib/dtc_functions.php:858
+#: shared/drawlib/dtc_functions.php:839
 msgid "kBytes"
 msgstr ""
 
