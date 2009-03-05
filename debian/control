@@ -31,6 +31,14 @@ Description: web control panel for admin and accounting hosting services (common
  .
  This package contains the common files.
 
+Package: dtc-dos-firewall
+Architecture: all
+Depends: iptables, lsb-base
+Description: a small anti-DoS firewall script for your web, ftp and mail servers
+ If running in a production environment, you might want to have a basic
+ firewall running on your server to avoid having DoS attack. This is not the
+ state-of-the-art, but just another attempt to make things a bit more smooth.
+
 Package: dtc-core
 Architecture: all
 Depends: dtc-common, debconf, mysql-client | mysql-client-4.1, mysql-server-5.0 | mysql-server | mysql-server-4.1
@@ -115,7 +123,7 @@ Description: dtc-xen VM statistics for the dtc web control panel
 
 Package: dtc-toaster
 Architecture: all
-Depends: awstats, dtc-postfix-courier, mailgraph, phpmyadmin, roundcube-sqlite | squirrelmail, roundcube | squirrelmail, ttf-arphic-ukai, ttf-dejavu, tumgreyspf, visitors, dkimproxy
+Depends: awstats, dtc-postfix-courier, mailgraph, phpmyadmin, roundcube-sqlite | squirrelmail, roundcube | squirrelmail, ttf-arphic-ukai, ttf-dejavu, tumgreyspf, visitors, dkimproxy, dtc-dos-firewall
 Description: web control panel for admin and accounting hosting services (metapackage)
  Domain Technologie Control (DTC) is a control panel aiming at commercial
  hosting. Using a web GUI for the administration and accounting all hosting

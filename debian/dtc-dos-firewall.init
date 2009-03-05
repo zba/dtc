@@ -36,40 +36,40 @@ accept-localhost-traffic () {
 limit-ssh-login-rate () {
 	# Anti DoS SSH : deny ssh for 300 seconds after 10 attempts
 	# This can't be too high because of the use of scp
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --update --seconds 300 --hitcount 10 -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --update --seconds 300 --hitcount 10 -j REJECT
 }
 
 limit-smtp-connection-rate () {
 	# max-rate to 15 connections per seconds
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 25 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 25 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 15 -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 25 -i eth0 -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 25 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 15 -j REJECT
 }
 
 limit-http-connection-rate () {
 	# max-rate to 20 connections per seconds
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 20 -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 20 -j REJECT
 }
 
 limit-pop-and-imap-connection-rate () {
 	# max-rate to 10 connections per seconds
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 110 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 110 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 10 -j REJECT
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 995 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 995 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 10 -j REJECT
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 143 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 143 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 10 -j REJECT
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 993 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 993 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 10 -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 110 -i eth0 -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 110 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 10 -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 995 -i eth0 -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 995 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 10 -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 143 -i eth0 -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 143 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 10 -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 993 -i eth0 -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 993 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 10 -j REJECT
 }
 
 limit-ftp-connection-rate () {
 	# max-rate to 5 connections per seconds for both ftp and ftp-data
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 20 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 20 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 5 -j REJECT
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 21 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-xen-in -p tcp --dport 21 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 5 -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 20 -i eth0 -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 20 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 5 -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 21 -i eth0 -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 21 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 5 -j REJECT
 }
 
 case "${1}" in
