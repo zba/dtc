@@ -430,11 +430,17 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 		chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /var/lib/php/session
 	fi
 
-	# Fixes for CentOS
+	# Fixes for CentOS (and maybe others)
 #	if [ "$UNIX_TYPE" = "redhat" ] ; then
-#		if [ -e /etc/squirrelmail ] ; then
-#			chown ${CONF_DTC_SYSTEM_USERNAME} /etc/squirrelmail/*
-#		fi
+		if [ -e /etc/squirrelmail/config.php ] ; then
+			chown ${CONF_DTC_SYSTEM_USERNAME} /etc/squirrelmail/config.php 
+		fi
+		if [ -e /etc/squirrelmail/default_pref ] ; then
+			chown ${CONF_DTC_SYSTEM_USERNAME} /etc/squirrelmail/default_pref
+		fi
+		if [ -e /etc/squirrelmail/sqspell_config.php ] ; then
+			chown /etc/squirrelmail/sqspell_config.php
+		fi
 #	fi
 	if [ -e /var/spool/squirrelmail/attach ] ; then
 		chown ${CONF_DTC_SYSTEM_USERNAME} /var/spool/squirrelmail/attach
