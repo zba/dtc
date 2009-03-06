@@ -1119,19 +1119,19 @@ msgstr "Procedi col trasferimento"
 
 #: client/cheques_and_transfers.php:55
 msgid "Cheques shall be sent to:"
-msgstr ""
+msgstr "Gli assegni saranno inviati a:"
 
 #: client/cheques_and_transfers.php:54
 msgid "Cheques shall be written to be paid only to:"
-msgstr ""
+msgstr "Gli assegni (non trasferibili) dovranno essere intestati a:"
 
 #: shared/drawlib/cc_code_popup.php:146
 msgid "Chile"
-msgstr ""
+msgstr "Cile"
 
 #: shared/drawlib/cc_code_popup.php:147
 msgid "China"
-msgstr ""
+msgstr "Cina"
 
 #: shared/inc/forms/packager.php:215
 msgid "Choose a package to install"
@@ -1189,7 +1189,7 @@ msgstr "ID cliente:"
 #: admin/inc/renewals.php:659 admin/inc/renewals.php:698
 #: admin/inc/renewals.php:739 admin/inc/renewals.php:813
 msgid "Client name not found!"
-msgstr ""
+msgstr "Nome del cliente non trovato!"
 
 #: client/login.php:6 email/login.php:6
 #, fuzzy
@@ -1207,7 +1207,7 @@ msgstr ""
 
 #: shared/inc/forms/ticket.php:163
 msgid "Closed"
-msgstr ""
+msgstr "Chiuso"
 
 #: shared/inc/forms/lists.php:399
 msgid "Closed list:"
@@ -1282,11 +1282,11 @@ msgstr "Configurazione per ogni dominio del"
 
 #: shared/inc/forms/root_admin.php:458
 msgid "Configuration of the VPSes"
-msgstr ""
+msgstr "Configurazione dei VPS"
 
 #: shared/inc/forms/root_admin.php:527
 msgid "Configuration of the dedicated servers"
-msgstr ""
+msgstr "Configurazione dei server dedicati"
 
 #: shared/inc/forms/root_admin.php:334
 #, fuzzy
@@ -1635,7 +1635,18 @@ msgid ""
 "authentication for that user, add the Nagios server's SSH public key to the "
 "DTC user's SSH keyring, and create an empty config file which must be "
 "writable by the user in the Nagios server."
-msgstr ""
+msgstr "DTC vi permette di auto-configurare un server di monitoring Nagios, "
+"consentendo ai vostri clienti VPS di conoscere lo stato dei propri servizi. "
+"La cosa funziona mediante la generazione di un file di configurazione per "
+"Nagios che viene copiato sul server remoto Nagios via scp, usando poi SSH "
+"per riavviare il servizio remoto Nagios.<br><br>\n"
+"Sfortunatamente viene richiesto qualche intervento manuale per impostare le "
+"vostre chiavi SSH: dovete aggiungere a mano un utente al vostro server "
+"Nagios e dargli un accesso sudo per consentirgli di riavviare il servizio "
+"Nagios. A seguire, dovete impostare la chiave pubblica di autenticazione "
+"per quell'utente, aggiungere al keyring SSH dell'utente DTC la chiave "
+"pubblica  del server Nagios e creare nel server Nagios un file di "
+"configurazione vuoto che deve essere scrivibile per l'utente."
 
 #: admin/inc/dtc_config.php:906
 msgid "Daemon"
@@ -1643,15 +1654,15 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:559
 msgid "Daily"
-msgstr ""
+msgstr "Quotidiano"
 
 #: shared/inc/forms/vps_graphs.php:41
 msgid "Daily VPS usage statistics:"
-msgstr ""
+msgstr "Statistiche quotidiane di utilizzo VPS"
 
 #: shared/inc/forms/vps_dom0graphs.php:41
 msgid "Daily Xen server usage statistics:"
-msgstr ""
+msgstr "Statistiche quotidiane di utilizzo server Xen"
 
 #: shared/inc/forms/admin_stats.php:83
 msgid "Database Name"
@@ -1718,11 +1729,11 @@ msgstr "Hostname del name server:"
 
 #: admin/inc/renewals.php:790
 msgid "Dedicated servers renewals"
-msgstr ""
+msgstr "Rinnovi dei server dedicati"
 
 #: admin/inc/renewals.php:580
 msgid "Dedicated servers: "
-msgstr ""
+msgstr "Server dedicati"
 
 #: admin/inc/dtc_config.php:1762 admin/inc/dtc_config.php:1767
 msgid "Default company invoicing:"
@@ -1798,7 +1809,7 @@ msgstr "Delimiter:"
 
 #: shared/inc/forms/email.php:247 shared/inc/forms/email.php:617
 msgid "Deliver messages locally in INBOX: "
-msgstr ""
+msgstr "Consegna i messaggi localmente nella INBOX: "
 
 #: shared/inc/forms/aliases.php:52
 msgid "Delivery Group:"
@@ -1806,7 +1817,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:162
 msgid "Denmark"
-msgstr ""
+msgstr "Danimarca"
 
 #: shared/inc/forms/lists.php:425
 msgid "Deny if no To: or Cc::"
@@ -2273,7 +2284,7 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:177
 msgid "Finland"
-msgstr ""
+msgstr "Finlandia"
 
 #: admin/inc/renewals.php:341 shared/inc/forms/my_account.php:209
 msgid "First name:"
@@ -2320,7 +2331,7 @@ msgstr ""
 
 #: shared/inc/forms/ticket.php:57
 msgid "Full description of the trouble:"
-msgstr ""
+msgstr "Descrizione del problema:"
 
 #: admin/inc/dtc_config.php:1034
 #, fuzzy
@@ -2650,7 +2661,7 @@ msgstr ""
 
 #: admin/deamons_state.php:239
 msgid "If no FTP user was created, please make at least one!"
-msgstr ""
+msgstr "Se non sono stati creati utente FTP, per favore creane almeno uno!"
 
 #: shared/inc/forms/lists.php:253
 msgid ""
