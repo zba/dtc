@@ -85,7 +85,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
 		}
 	}
 	if($commit_flag == "yes"){
-		$q = "CREATE DATABASE ". $newdb_name .";";
+		$q = "CREATE DATABASE IF NOT EXISTS ". $newdb_name .";";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$q = "INSERT INTO mysql.db ( Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Grant_priv,References_priv,Index_priv,Alter_priv,Lock_tables_priv)
 		VALUES ('%','". $newdb_name ."','".$_REQUEST["dbuser"]."','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y');";
