@@ -3691,9 +3691,9 @@ nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 		if [ ! "$UNIX_TYPE" = "debian" ] ; then
 			TMP_FILE=`${MKTEMP} DTC_install.crontab.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
-			echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
+			echo "*/10 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
 			echo "9 4 * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
-			echo "5 * * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; fetchmail -v -N -f /var/lib/dtc/etc/fetchmailrc --pidfile /tmp/fetchmail.pid" >> $TMP_FILE
+			echo "*/15 * * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; fetchmail -v -N -f /var/lib/dtc/etc/fetchmailrc --pidfile /tmp/fetchmail.pid" >> $TMP_FILE
 			echo "* * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
 			echo "9 3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
 			cat < $TMP_FILE >>$PATH_CRONTAB_CONF
@@ -3710,9 +3710,7 @@ reportingInstall () {
 		WGET=`which wget`
 	fi
 	
-	#erm, shouldnt be it -x "$WGET"? -x $WGET returns true if its empty *steveetm*
-	
-	if [ ""$conf_report_setup = "true" -a -x $WGET ] ; then
+	if [ ""$conf_report_setup = "true" -a -x "$WGET" ] ; then
 		echoIfVerbose "===> Reporting install using $WGET -b -q --output-document=/dev/null http://www.gplhost.com/dtc-install-stats.php?ostype=${UNIX_TYPE}"
 		$WGET -b -q --output-document=/dev/null "http://www.gplhost.com/dtc-install-stats.php?ostype=${UNIX_TYPE}" -o /dev/null >/dev/null
 	else
