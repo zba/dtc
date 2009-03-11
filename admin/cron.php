@@ -429,6 +429,12 @@ function cronMailSystem () {
 			system("chown $conf_dtc_system_username $conf_generated_file_path/postfix_relay_recipients");
 		}
 	}
+	/* Didnt want it to put to seperate function, because I think its fit well in mail system's cronjob */
+	if ($cronjob_table_content["gen_fetchmail"] == "yes") {
+	    echo "Generating fetchmailrc";
+	    fetchmail_generate();
+	}
+	
 	if($cronjob_table_content["qmail_newu"] == "yes"){
 		echo "Starting qmail-newu\n";
 		switch($conf_mta_type){

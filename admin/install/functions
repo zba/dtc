@@ -439,7 +439,8 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 			chown ${CONF_DTC_SYSTEM_USERNAME} /etc/squirrelmail/default_pref
 		fi
 		if [ -e /etc/squirrelmail/sqspell_config.php ] ; then
-			chown /etc/squirrelmail/sqspell_config.php
+			# ${CONF_DTC_SYSTEM_USERNAME} was missing, added it *steveetm*
+			chown ${CONF_DTC_SYSTEM_USERNAME} /etc/squirrelmail/sqspell_config.php
 		fi
 #	fi
 	if [ -e /var/spool/squirrelmail/attach ] ; then
@@ -2511,6 +2512,12 @@ maximal_queue_lifetime = 3d" >> $TMP_FILE
 			if [ ! -e ${PATH_POSTFIX_ETC}/maps/header_checks ] ; then
 				cp -f ${PATH_DTC_ADMIN}/postfix_checks/header_checks ${PATH_POSTFIX_ETC}/maps
 			fi
+			#relaying_stoplist missing from here *steveetm*
+			if [ ! -e ${PATH_POSTFIX_ETC}/maps/relaying_stoplist ] ; then
+				cp -f ${PATH_DTC_ADMIN}/postfix_checks/relaying_stoplist ${PATH_POSTFIX_ETC}/maps
+			fi
+			
+			
 #			postmap ${PATH_POSTFIX_ETC}'/maps/header_checks'
 #			postmap ${PATH_POSTFIX_ETC}'/maps/body_checks'
 #			postmap ${PATH_POSTFIX_ETC}'/maps/mime_header_checks'
@@ -3686,6 +3693,7 @@ nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 			echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
 			echo "00,10,20,30,40,50 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
 			echo "9 4 * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
+			echo "5 * * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; fetchmail -v -N -f /var/lib/dtc/etc/fetchmailrc --pidfile /tmp/fetchmail.pid" >> $TMP_FILE
 			echo "* * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
 			echo "9 3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
 			cat < $TMP_FILE >>$PATH_CRONTAB_CONF
@@ -3701,6 +3709,9 @@ reportingInstall () {
 	else
 		WGET=`which wget`
 	fi
+	
+	#erm, shouldnt be it -x "$WGET"? -x $WGET returns true if its empty *steveetm*
+	
 	if [ ""$conf_report_setup = "true" -a -x $WGET ] ; then
 		echoIfVerbose "===> Reporting install using $WGET -b -q --output-document=/dev/null http://www.gplhost.com/dtc-install-stats.php?ostype=${UNIX_TYPE}"
 		$WGET -b -q --output-document=/dev/null "http://www.gplhost.com/dtc-install-stats.php?ostype=${UNIX_TYPE}" -o /dev/null >/dev/null
@@ -3712,6 +3723,11 @@ reportingInstall () {
 startPhpCronScript () {
 	# Set the flags on the SQL table to make the cron job execute correctly
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE cron_job SET qmail_newu='yes',restart_qmail='yes',gen_qmail='yes',reload_named='yes',restart_apache='yes',gen_vhosts='yes',gen_named='yes' WHERE 1"
+	# Only start fetchmail cronjob if we have fetchmail installed *steveetm*
+	FETCHMAIL =`which fetchmail`
+	if [ -n "$FETCHMAIL" ] ; then
+	    $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE cron_job SET gen_fetchmail='yes' WHERE 1"
+	fi
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE domain SET generate_flag='yes' WHERE 1"
 	if [ ""$VERBOSE_INSTALL = "yes" ] ; then
 		echo "***********************************************************"

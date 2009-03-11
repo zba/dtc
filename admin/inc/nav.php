@@ -29,6 +29,11 @@ if(isset($_REQUEST["gen_stat_script"]) && $_REQUEST["gen_stat_script"] == 1){
 	stat_script_generate();
 	$console .= _("Stat script generated !") ;
 }
+if(isset($_REQUEST["gen_fetchmail_script"]) && $_REQUEST["gen_fetchmail_script"] == 1){
+	fetchmail_generate();
+	$console .= _("Fetchmail script generated !") ;
+}
+
 
 if($conf_demo_version == "true"){
 	$browse_files_button = "
@@ -44,7 +49,7 @@ $top_commands = "
 <table border=\"0\" width=\"100%\" height=\"1\">
 <tr><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_pro_vhost=1&gen_stat_script=1&gen_named_files=1&gen_backup_script=1&gen_email_account=1\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_pro_vhost=1&gen_stat_script=1&gen_named_files=1&gen_backup_script=1&gen_email_account=1&gen_fetchmail_script=1\">
 	<img border=\"0\" src=\"gfx/dtc/all_scripts.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">". _("ALL FILES AND SCRIPTS") ."</font></a>
 </div>
@@ -77,6 +82,12 @@ $top_commands = "
 	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_backup_script=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_backup.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">". _("BACKUP SCRIPTS") ."</font></a>
+</div>
+</td><td valign=\"bottom\">
+<div align=\"center\">
+	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_fetchmail_script=1\">
+	<img border=\"0\" src=\"gfx/dtc/generate_mail.gif\"><br>
+	<font face=\"Arial\" size=\"-2\">". _("FETCHMAIL SCRIPTS") ."</font></a>
 </div>
 </td></tr></table>
 $browse_files_button</font></b>";

@@ -62,5 +62,6 @@ require("genfiles/gen_backup_script.php");
 require("genfiles/gen_webalizer_stat.php");
 require("genfiles/gen_ssh_account.php");
 require("genfiles/gen_nagios.php");
+require("genfiles/gen_fetchmail.php");
 
 ?>

@@ -729,7 +729,8 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 		}
 		exec("cp -fulpRv $conf_chroot_path/* $admin_path/$domain_name/subdomains/www");
 		// create a link so that the user can log in via SSH to $admin_path or $admin_path/$domain_name
-		for ( explode( " " , "bin var lib lib64 sbin tmp usr dev etc" ) as $subdir) {
+		// typo renamed to foreach *steveetm*
+		foreach ( explode( " " , "bin var lib lib64 sbin tmp usr dev etc" ) as $subdir) {
 			createSymLink("subdomains/www/$subdir", "$admin_path/$domain_name/$subdir");
 			createSymLink("$domain_name/subdomains/www/$subdir", "$admin_path/$subdir");
 		}
