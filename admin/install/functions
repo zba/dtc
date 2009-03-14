@@ -1640,10 +1640,12 @@ sql_verbose: yes
  
 			cp -f $PATH_AUTH_SMTP $PATH_AUTH_SASLPASSWD
 			if [ "$UNIX_TYPE" = "debian" ] ; then
-				mv $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf-remove_by_DTC
+				if [ -e $PATH_POSTFIX_ETC/sasl/smtpd.conf ] ; then
+					mv $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf-remove_by_DTC
+				fi
 				ln -s $PATH_SASLLIB/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf 
 				if [ ! -e /var/spool/postfix/etc/sasldb2 ] ; then
-					ln -s /var/spool/postfix/etc/sasldb2 /etc/sasldb2
+					ln -s /etc/sasldb2 /var/spool/postfix/etc/sasldb2
 				fi
 			fi
 		else
@@ -2065,30 +2067,21 @@ modifySaslStartAndSaslStartup () {
 			TMP_FILE=`${MKTEMP} DTC_install.saslauthd.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.20 : Please don't touch this line !" > $TMP_FILE
 			echo "START=yes
-OPTIONS=\"-r -c\"" >> $TMP_FILE
+OPTIONS=\"-r -c -m /var/spool/postfix/var/run/saslauthd\"" >> $TMP_FILE
 			echo "# End of DTC configuration v0.20 : Please don't touch this line !" >> $TMP_FILE
 			# now to insert it at the end of the actual saslauthd startup file
 			cat < $TMP_FILE >>$PATH_SASL_START_CONF
 			rm $TMP_FILE
 		fi
 		if [ -f $PATH_SASL_STARTUP ] ; then
-			echoIfVerbose "modifying saslatuhd startup file"
+			echoIfVerbose "modifying saslauthd startup file"
 			if grep "Configured by DTC" $PATH_SASL_STARTUP >/dev/null ; then
 				echoIfVerbose "Already configured: skipping"
 			else
-				# create the direcotry for postfix to access SASL socket
-				mkdir -p $PATH_SASL_SOCKET
-				if grep "Configured by DTC" /etc/fstab >/dev/null ; then
-					echoIfVerbose "Already configured: skipping"
-				else
-					echo "# Configured by DTC v0.27 : Please don't touch this line !" >> /etc/fstab
-					echo "/var/run/saslauthd /var/spool/postfix/var/run/saslauthd/        none    bind" >>/etc/fstab
-					# CL: start saslautdh to create directories
-					echoIfVerbose "Starting SASLauthd"
-					/etc/init.d/saslauthd start
-					# now we can mount the SASLauthd directory
-					mount /var/spool/postfix/var/run/saslauthd/
-				fi
+				# create the directory for postfix to access SASL socket
+				dpkg-statoverride --force --add root sasl 710 /var/spool/postfix/var/run/saslauthd
+				echoIfVerbose "Starting SASLauthd"
+				/etc/init.d/saslauthd start
 			fi
 		fi
 	else
@@ -3032,16 +3025,14 @@ configProftpd () {
 			perl -i -p -e 's/AuthOrder/#AuthOrder/' $PATH_PROFTPD_CONF
 
 			TMP_FILE=`${MKTEMP} DTC_install.proftp.conf.XXXXXX` || exit 1
-			echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
-# This directive is not used anymore in newer version of proftpd
-#	echo "#UserReverseDNS	off" >> $TMP_FILE
+			echo "# Configured by DTC v0.30 : Please don't touch this line !" > $TMP_FILE
 			echo "AuthOrder		mod_sql.c mod_auth_pam.c* mod_auth_unix.c" >> $TMP_FILE
 			echo "IdentLookups	off" >> $TMP_FILE
 			echo "DefaultRoot	~" >> $TMP_FILE
-			echo "SQLAuthenticate	on" >> $TMP_FILE
-			echo "SQLConnectInfo	"$conf_mysql_db"@"$conf_mysql_host" dtcdaemons "${MYSQL_DTCDAEMONS_PASS} >> $TMP_FILE
-			echo "SQLAuthTypes	Plaintext" >> $TMP_FILE
-			echo "SQLUserInfo	ftp_access login password uid gid homedir shell" >> $TMP_FILE
+			echo "Include /etc/proftpd/sql-dtc.conf" >> $TMP_FILE
+			echo "Include /etc/proftpd/tls-dtc.conf" >> $TMP_FILE
+			echo "# End of DTC configuration v0.30 : please don't touch this line !" >> $TMP_FILE
+			TMP_FILE_TLS=`${MKTEMP} DTC_install.proftp.conf.tls.XXXXXX` || exit 1
 			if [ -e $PATH_DTC_ETC"/ssl/proftpd/new.cert.cert" ] ; then
 				if [ -e $PATH_DTC_ETC"/ssl/proftpd/new.cert.key" ] ; then
 					if [ ""$conf_gen_ssl_cert = "true" ] ; then
@@ -3054,10 +3045,16 @@ configProftpd () {
 	TLSRSACertificateFile "$PATH_DTC_ETC"/ssl/proftpd/new.cert.cert
 	TLSRSACertificateKeyFile "$PATH_DTC_ETC"/ssl/proftpd/new.cert.key
 	TLSVerifyClient on
-</IfModule>" >> $TMP_FILE
+</IfModule>" >> $TMP_FILE_TLS
 					fi
 				fi
 			fi
+			TMP_FILE_SQL=`${MKTEMP} DTC_install.proftp.conf.sql.XXXXXX` || exit 1
+			echo "<IfModule mod_sql.c>" > $TMP_FILE_SQL
+			echo "SQLAuthenticate	on" >> $TMP_FILE_SQL
+			echo "SQLConnectInfo	"$conf_mysql_db"@"$conf_mysql_host" dtcdaemons "${MYSQL_DTCDAEMONS_PASS} >> $TMP_FILE_SQL
+			echo "SQLAuthTypes	Plaintext" >> $TMP_FILE_SQL
+			echo "SQLUserInfo	ftp_access login password uid gid homedir shell" >> $TMP_FILE_SQL
 			echo "# // Transfer Log to Proftpd
 SQLLog RETR,STOR transfer1
 SQLNamedQuery transfer1 INSERT \"'%u', '%f', '%b', '%h', '%a', '%m', '%T',now(), 'c', NULL\" ftp_logs
@@ -3085,16 +3082,18 @@ SQLNamedQuery         ulbytescount UPDATE \"ul_bytes=ul_bytes+%b WHERE login='%u
 # // Count the uploaded files
 SQLLog STOR           ulcount
 SQLNamedQuery         ulcount UPDATE \"ul_count=ul_count+1 WHERE login='%u'\" ftp_access
-" >> $TMP_FILE
+" >> $TMP_FILE_SQL
 			if [ ${CONF_DTC_SYSTEM_GID} -lt 1000 ] ; then
-				echo "SQLMinUserGID 50" >>$PATH_PROFTPD_CONF
+				echo "SQLMinUserGID 50" >>$TMP_FILE_SQL
 			fi
 			if [ ${CONF_DTC_SYSTEM_UID} -lt 1000 ] ; then
-				echo "SQLMinUserUID 50" >>$PATH_PROFTPD_CONF
+				echo "SQLMinUserUID 50" >>$TMP_FILE_SQL
 			fi
-			echo "# End of DTC configuration v0.10 : please don't touch this line !" >> $TMP_FILE
+			echo "</IfModule>" >>$TMP_FILE_SQL
 
 			cat < $TMP_FILE >>$PATH_PROFTPD_CONF
+			mv $TMP_FILE_TLS /etc/proftpd/tls-dtc.conf
+			mv $TMP_FILE_SQL /etc/proftpd/sql-dtc.conf
 			rm $TMP_FILE
 			# This restarts proftpd if under debian like system
 			# work has to be done under other OS to restart the ftp daemon
@@ -3720,8 +3719,7 @@ startPhpCronScript () {
 	# Set the flags on the SQL table to make the cron job execute correctly
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE cron_job SET qmail_newu='yes',restart_qmail='yes',gen_qmail='yes',reload_named='yes',restart_apache='yes',gen_vhosts='yes',gen_named='yes' WHERE 1"
 	# Only start fetchmail cronjob if we have fetchmail installed *steveetm*
-	FETCHMAIL =`which fetchmail`
-	if [ -n "$FETCHMAIL" ] ; then
+	if [ `which fetchmail` ] ; then
 	    $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE cron_job SET gen_fetchmail='yes' WHERE 1"
 	fi
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE domain SET generate_flag='yes' WHERE 1"
