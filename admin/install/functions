@@ -2079,7 +2079,12 @@ OPTIONS=\"-r -c -m /var/spool/postfix/var/run/saslauthd\"" >> $TMP_FILE
 				echoIfVerbose "Already configured: skipping"
 			else
 				# create the directory for postfix to access SASL socket
-				dpkg-statoverride --force --add root sasl 710 /var/spool/postfix/var/run/saslauthd
+				if [ "$UNIX_TYPE" = "debian" ] ; then
+					dpkg-statoverride --force --add root sasl 710 /var/spool/postfix/var/run/saslauthd
+				else
+					chgrp sasl /var/spool/postfix/var/run/saslauthd || true
+					chmod 710 /var/spool/postfix/var/run/saslauthd || true
+				fi
 				echoIfVerbose "Starting SASLauthd"
 				/etc/init.d/saslauthd start
 			fi
