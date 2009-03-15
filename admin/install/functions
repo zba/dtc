@@ -3267,6 +3267,16 @@ createRRDFiles () {
 		if [ -e $PATH_DTC_ETC/memusage.rrd ] ; then
 			chmod 775 $PATH_DTC_ETC/memusage.rrd
 		fi
+		#
+		# Create the sales stats rrd
+		#
+		echoIfVerbose "-> Creating sales stats rrd"
+		if [ ! -e $PATH_DTC_ETC/stat_total_active_prods.rrd ] ; then
+			$PATH_DTC_ADMIN/admin/create_stat_total_active_prods_rrd.sh $PATH_DTC_ETC
+		fi
+		if [ -e $PATH_DTC_ETC/stat_total_active_prods.rrd ] ; then
+			chmod 775 $PATH_DTC_ETC/stat_total_active_prods.rrd
+		fi
 	fi
 	if [ -d /tmp/queuegraph ] ; then
 		rm -rf /tmp/queuegraph
@@ -3694,10 +3704,12 @@ nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 			TMP_FILE=`${MKTEMP} DTC_install.crontab.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
 			echo "*/10 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
-			echo "9 4 * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
+			echo "9 4  * * *   ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
 			echo "*/15 * * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; fetchmail -v -N -f /var/lib/dtc/etc/fetchmailrc --pidfile /tmp/fetchmail.pid" >> $TMP_FILE
-			echo "* * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
-			echo "9 3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
+			echo "*    * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
+			echo "34   2 * * * ${CONF_DTC_SYSTEM_USERNAME} cd /usr/share/dtc/admin && /usr/bin/php stat_total_active_prods.php 2>&1 >> /var/log/dtc.log" >> $TMP_FILE
+			echo "9    3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
+
 			cat < $TMP_FILE >>$PATH_CRONTAB_CONF
 			rm $TMP_FILE
 		fi
