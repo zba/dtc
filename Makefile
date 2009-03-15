@@ -270,7 +270,7 @@ CLIENT_PICTURES=client/enets_pay_icon.gif client/favicon.ico client/cheque.gif
 ALL_PICS=$(NEW_SITES_TEMPLATE_IMG) $(CLIENT_PICTURES)
 ################# EXECUTABLE SCRIPTS #################
 # Owned by root, ran by root
-ROOT_CRON_PHP_SCRIPT_FILES=admin/cron.php admin/reminders.php admin/restor_db.php admin/backup_db.php
+ROOT_CRON_PHP_SCRIPT_FILES=admin/cron.php admin/reminders.php admin/restor_db.php admin/backup_db.php stat_total_active_prods.php
 # Owned by root, executed as DTC
 DTC_CRON_PHP_SCRIPT_FILES=admin/accesslog.php admin/maint_apache.php
 # Owned by root, executed by root
@@ -282,7 +282,7 @@ admin/genfiles/gen_customer_ssl_cert.sh
 # Ran as root, by the cron job
 ROOT_CRON_SH_SCRIPT_FILES=admin/rrdtool.sh admin/updateChroot.sh admin/queuegraph/count_postfix.sh admin/queuegraph/count_qmail.sh \
 admin/queuegraph/createrrd.sh admin/cpugraph/createrrd.sh admin/cpugraph/get_cpu_load.sh admin/memgraph/createrrd.sh \
-admin/memgraph/get_meminfo.sh admin/netusegraph/createrrd.sh admin/netusegraph/get_net_usage.sh
+admin/memgraph/get_meminfo.sh admin/netusegraph/createrrd.sh admin/netusegraph/get_net_usage.sh admin/create_stat_total_active_prods_rrd.sh
 
 OTHER_SCRIPT_FILES=admin/sa-wrapper admin/dtc-chroot-shell
 
