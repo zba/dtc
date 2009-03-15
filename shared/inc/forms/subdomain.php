@@ -271,7 +271,11 @@ function drawAdminTools_Subdomain($admin,$domain){
 				"legend" => _("Dynamic IP update password: ") );
 
 	$txt .= dtcListItemsEdit($dsc);
+	$txt .= "<br>" . _("Windows users (and UNIX users running WINE) can update their IP address dynamically by downloading and installing the following open source DTC client:") . "<br>" .
+	"<a href=\"http://www.gplhost.com/DTC-Dynamic_IP_updater.exe\">DTC-Dynamic_IP_updater.exe</a>";
 	$txt .= helpLink("PmWiki/Subdomains");
+
+
 	return $txt;
 }
 
