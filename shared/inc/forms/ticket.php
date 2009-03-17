@@ -90,7 +90,7 @@ $popup_cats
 			$out .= "Server hostname related: ".$a_t["server_hostname"]."<br>";
 
 			if($a_t["closed"] == "yes"){
-				$out .= "<font color=\"red\">Replying to an already closed ticket will reopen it.</font><br>";
+				$out .= "<font color=\"red\">". _("Replying to an already closed ticket will reopen it."). "</font><br>";
 			}
 			
 			$out .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"0\">";
@@ -154,6 +154,7 @@ $popup_cats
 		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE adm_login='$adm_login' AND in_reply_of_id='0' ORDER BY date,time DESC;";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
+		$out .= "<font color=\"red\">". _("Replying to an already closed ticket will reopen it."). "</font><br>";
 		$out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">
 	<tr><td>". _("Date") ."</td><td>". _("Time") ."</td><td>". _("Status") ."</td><td>". _("Type") ."</td><td>". _("Hostname") ."</td><td>". _("Subject") ."</td></tr>";
 		for($i=0;$i<$n;$i++){
