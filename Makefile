@@ -270,7 +270,7 @@ CLIENT_PICTURES=client/enets_pay_icon.gif client/favicon.ico client/cheque.gif
 ALL_PICS=$(NEW_SITES_TEMPLATE_IMG) $(CLIENT_PICTURES)
 ################# EXECUTABLE SCRIPTS #################
 # Owned by root, ran by root
-ROOT_CRON_PHP_SCRIPT_FILES=admin/cron.php admin/reminders.php admin/restor_db.php admin/backup_db.php stat_total_active_prods.php
+ROOT_CRON_PHP_SCRIPT_FILES=admin/cron.php admin/reminders.php admin/restor_db.php admin/backup_db.php admin/stat_total_active_prods.php
 # Owned by root, executed as DTC
 DTC_CRON_PHP_SCRIPT_FILES=admin/accesslog.php admin/maint_apache.php
 # Owned by root, executed by root
