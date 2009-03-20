@@ -3272,7 +3272,7 @@ createRRDFiles () {
 		#
 		echoIfVerbose "-> Creating sales stats rrd"
 		if [ ! -e $PATH_DTC_ETC/stat_total_active_prods.rrd ] ; then
-			$PATH_DTC_ADMIN/admin/create_stat_total_active_prods_rrd.sh $PATH_DTC_ETC
+			$PATH_DTC_ADMIN/create_stat_total_active_prods_rrd.sh $PATH_DTC_ETC
 		fi
 		if [ -e $PATH_DTC_ETC/stat_total_active_prods.rrd ] ; then
 			chmod 775 $PATH_DTC_ETC/stat_total_active_prods.rrd
