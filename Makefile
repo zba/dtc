@@ -76,7 +76,7 @@ default:
 	@echo "*Please select one of the following targets:                     *"
 	@echo "*install-dtc-stats-daemon, install-dtc-common, bsd-ports-packages*"
 	@echo "*or make debian-pacakges                                         *"
-	@echo "*Note that debian users should NOT use make debian-pacakges      *"
+	@echo "*Note that debian users should NOT use make debian-packages      *"
 	@echo "*directly, but dpkg-buildpackage that will call it.              *"
 	@echo "******************************************************************"
 	@echo "and don't forget that you can set the following variables:"
