@@ -40,16 +40,10 @@ h1{text-decoration:none; text-align:center;}
             </p>
 </div>
         <div class="footer">
-            This website server is powered by Domain Technologie Control (DTC),
-            an open-source control panel<br />
-            <span class="italics">
-                Most of code done by:
-                <a target="_blank" href="http://thomas.goirand.fr">Thomas GOIRAND</a>, under
-                <a target="_blank" href="http://www.gnu.org">LGPL</a>. Please visit GPLHost
-                <a target="_blank" href="http://gplhost.com/hosting-vps.html">VPS hosting</a> services and
-                <a target="_blank" href="http://gplhost.com/software-dtc.html">DTC GPL control panel home</a>
-                for more info.
-</span>
+		<p>This website server is powered by Domain Technologie Control (DTC), the open-source control panel.</p>
+		<p><em>
+			Get your DTC setup for <strong>free</strong> with one of our <strong><a target="_blank" href="http://gplhost.com/hosting-vps.html" title="Virtual private server hosting" >VPS servers</a></strong> and dedicated hosting services; visit the <a target="_blank" href="http://gplhost.com/software-dtc.html">DTC control panel</a> to learn more and download it for your server.
+		</em></p>
         </div>
     </div>
 </div>
