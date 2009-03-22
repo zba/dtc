@@ -166,6 +166,7 @@ $dtc_database = array(
 			"named_slavezonefiles_path" => "varchar(255) NOT NULL default 'slave_zones' ",
 			"named_zonefiles_path" => "varchar(255) NOT NULL default 'zones' ",
 			"autogen_default_subdomains" => "enum('yes','no') NOT NULL default 'yes'",
+			"autogen_subdomain_list" => "varchar(255) NOT NULL default 'pop|imap|mail|smtp|ftp'",
 			"autogen_webmail_alias" => "enum('yes','no') NOT NULL default 'yes'",
 			"autogen_webmail_type" => "enum('squirrelmail','roundcube') NOT NULL default 'roundcube'",
 			"backup_script_path" => "varchar(255) NOT NULL default 'backup.bash' ",

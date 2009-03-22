@@ -1093,6 +1093,10 @@ function drawNamedConfig(){
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
+			"autogen_subdomain_list" => array(
+				"legend" => _("Auto-generate subdomain list (separated by |):"),
+				"type" => "text",
+				"size" => "50"),
 			"ip_allowed_dns_transfer" => array(
 				"legend" => _("List the DNS server IPs allowed to do zone<br>
 transfers separated by &quot;|&quot; (pipe)<br>

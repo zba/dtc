@@ -530,6 +530,7 @@ function named_generate(){
 	global $conf_dtc_system_username;
 	global $conf_dtc_system_groupname;
 	global $conf_autogen_default_subdomains;
+	global $conf_autogen_subdomain_list;
 	global $conf_default_zones_ttl;
 	global $conf_named_soa_refresh;
 	global $conf_named_soa_retry;
@@ -763,14 +764,17 @@ $more_mx_server
 				$this_site_file .= "$NSRECORDDEFAULT\n";
 				$this_site_file .= "$NSRECORD\n";
 			}
-
+			//
 			// Add all subdomains to it !
-			$is_pop_subdomain_set = "no";
-			$is_imap_subdomain_set = "no";
-			$is_smtp_subdomain_set = "no";
-			$is_mail_subdomain_set = "no";
-			$is_ftp_subdomain_set = "no";
-			$is_list_subdomain_set = "no";
+			//
+
+			// First, generate a list of "auto generated subdomains", preseed with "no"
+			$autosubs = array();
+			$list_autogen = explode("|",$conf_autogen_subdomain_list);
+			$n_autogen = sizeof($list_autogen);
+			for($autog=0;$autog<$n_autogen;$autog++){
+				$autosubs[$list_autogen[$autog]] = "no";
+			}
 			for($j=0;$j<$num_rows2;$j++){
 				$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 				$web_subname = $subdomain["subdomain_name"];
@@ -808,24 +812,11 @@ $more_mx_server
 //     $this_site_file .= "$seeb_alias\tIN\tCNAME      ".$subdomain['subdomain_name'].".".$subdomain['domain_name'].".\n";
 //}				
 // end of patch 3w_alias				
-				if($web_subname == "pop"){
-					$is_pop_subdomain_set = "yes";
+				// See if the subdomain overrides the default for the zone
+				if( isset($autosubs[ $web_subname ])){
+					$autosubs[ $web_subname ] = "yes";
 				}
-				if($web_subname == "imap"){
-					$is_imap_subdomain_set = "yes";
-				}
-				if($web_subname == "mail"){
-					$is_mail_subdomain_set = "yes";
-				}
-				if($web_subname == "smtp"){
-					$is_smtp_subdomain_set = "yes";
-				}
-				if($web_subname == "ftp"){
-					$is_ftp_subdomain_set = "yes";
-				}
-				if($web_subname == "list"){
-					$is_list_subdomain_set = "yes";
-				}
+
 				// if we have a srv_record here (ie a port, then we don't write the normal subdomain entry, just the SRV record
 			 	if (isset($subdomain["srv_record"]) && $subdomain["srv_record"] != ""){
 					$this_site_file .= "$web_subname	$sub_ttl	SRV	0	10	".$subdomain["srv_record"]."	".$subdomain["ip"]."\n";
@@ -850,35 +841,18 @@ $more_mx_server
 				}
 			}
 			if( $conf_autogen_default_subdomains == "yes" ){
-				if( $is_pop_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){
-					$this_site_file .= "pop	IN	A	$ip_to_write\n";
-				} else if ( $is_pop_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
-					$this_site_file .= "pop IN	CNAME	@\n";
-				}
-				if( $is_imap_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){
-					$this_site_file .= "imap	IN	A	$ip_to_write\n";
-				} else if ( $is_imap_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
-                        	        $this_site_file .= "imap	IN	CNAME	@\n";
-				}
-				if( $is_mail_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){
-					$this_site_file .= "mail	IN	A	$ip_to_write\n";
-				} else if ( $is_mail_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
-                        	        $this_site_file .= "mail        IN      CNAME	@\n";
-				}
-				if( $is_smtp_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){
-					$this_site_file .= "smtp	IN	A	$ip_to_write\n";
-				} else if ( $is_smtp_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
-					$this_site_file .= "smtp        IN      CNAME	@\n";
-				}
-				if( $is_ftp_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){
-					$this_site_file .= "ftp	IN	A	$ip_to_write\n";
-				} else if ( $is_ftp_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
-					$this_site_file .= "ftp        IN      CNAME	@\n";
-				}
-				if( $is_list_subdomain_set != "yes" && $conf_use_cname_for_subdomains != "yes"){
-					$this_site_file .= "list	IN	A	$ip_to_write\n";
-				} else if ( $is_list_subdomain_set != "yes" && $conf_use_cname_for_subdomains == "yes"){
-                        	        $this_site_file .= "list        IN      CNAME	@\n";
+				// For each subdomains not yet defined, but in autogen, add an entry
+				$autosubs_keys = array_keys($autosubs);
+				$n_autogen = sizeof($autosubs);
+				for($autog=0;$autog<$n_autogen;$autog++){
+					if($autosubs[ $autosubs_keys[$autog]] == "no"){
+						$zeautogen = $autosubs_keys[$autog];
+						if($conf_use_cname_for_subdomains == "yes"){
+							$this_site_file .= "$zeautogen	IN	CNAME	@\n";
+						}else{
+							$this_site_file .= "$zeautogen	IN	A	$ip_to_write\n";
+						}
+					}
 				}
 			}
 			if(isset($wildcard_dns_txt)){
