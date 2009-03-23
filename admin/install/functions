@@ -1394,7 +1394,24 @@ LogSQLCreateTables On
 LogSQLTransferLogFormat IAbhRrSsU
 Alias /dtc404/	$PATH_DTC_ETC/dtc404/
 ErrorDocument 404 /dtc404/404.php
-# End of DTC configuration v0.12 : please don't touch this line !" >>$PATH_HTTPD_CONF
+<IfModule mod_security.c>
+	SecFilterEngine  On
+	SecAuditEngine  RelevantOnly
+	SecFilterCheckUnicodeEncoding Off
+	SecFilter /etc/passwd
+	SecAuditLog  /var/log/apache2/security.log
+	SecFilterDebugLog  /var/log/apache2/modsec_debug.log
+	SecFilterDebugLevel  1
+	SecFilterScanPOST  On
+	SecFilterDefaultAction  \"deny,log,status:406\"
+	SecFilterForceByteRange 1 255
+	Include $PATH_DTC_ADMIN/mod-security/generic.conf
+	Include $PATH_DTC_ADMIN/mod-security/apps.conf
+	Include $PATH_DTC_ADMIN/mod-security/rootkit.conf
+	Include $PATH_DTC_ADMIN/mod-security/spamword.conf
+</IfModule>
+" >>$PATH_HTTPD_CONF
+		echo "# End of DTC configuration v0.12 : please don't touch this line !" >>$PATH_HTTPD_CONF
 		if [ -f $TMP_FILE ] ; then
 			rm -f $TMP_FILE
 		fi
