@@ -780,6 +780,9 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	LogSQLScoreSubdomain $web_subname
 	LogSQLScoreTable $conf_mysql_db.http_accounting
 	DirectoryIndex $conf_apache_directoryindex$custom_directives
+	<IfModule mod_security.c>
+		SecUploadDir $web_path/$domain_to_get/subdomains/$web_subname/tmp
+	</IfModule>
 </VirtualHost>
 
 ";
