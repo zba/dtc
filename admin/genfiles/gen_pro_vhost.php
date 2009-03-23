@@ -607,7 +607,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	<IfModule mod_bwshare.c>
 		BW_throttle_off 1
 	</IfModule>
-	<IfModule mod_security.c>
+	<IfModule mod_security2.c>
 		SecRuleEngine Off
         </IfModule>
 </VirtualHost>
