@@ -297,8 +297,12 @@ admin/install/interactive_installer admin/install/redhat_config
 
 PATCH_FILES=admin/patches/phpmyadmin_cookie.auth.lib.php.patch admin/patches/spamassassin_default_start.patch admin/patches/phpmyadmin_htaccess.patch \
 admin/postfix_checks/body_checks admin/postfix_checks/relaying_stoplist admin/postfix_checks/header_checks admin/postfix_checks/mime_header_checks \
-admin/mod-security/generic.conf admin/mod-security/apps.conf admin/mod-security/rootkit.conf admin/mod-security/spamword.conf
-
+admin/mod-security/modsecurity_crs_10_config.conf admin/mod-security/modsecurity_crs_20_protocol_violations.conf \
+admin/mod-security/modsecurity_crs_21_protocol_anomalies.conf admin/mod-security/modsecurity_crs_23_request_limits.conf \
+admin/mod-security/modsecurity_crs_30_http_policy.conf admin/mod-security/modsecurity_crs_35_bad_robots.conf \
+admin/mod-security/modsecurity_crs_40_generic_attacks.conf admin/mod-security/modsecurity_crs_45_trojans.conf \
+admin/mod-security/modsecurity_crs_50_outbound.conf
+                                                                        
 ##################### SQL TABLES #########################
 INSTALL_SQL_TABLES=admin/tables/admin.sql admin/tables/backup.sql admin/tables/clients.sql admin/tables/commande.sql \
 admin/tables/companies.sql admin/tables/completedorders.sql admin/tables/config.sql admin/tables/cron_job.sql admin/tables/dedicated.sql \

@@ -694,10 +694,11 @@ createHostingDirAndFiles () {
 		cp $PATH_DTC_SHARED/shared/404_template/logo.png $PATH_DTC_ETC"/expired_site/"
 	fi
 
-	# also copy it to the dtc404 directory
+	# also copy it to the dtc404 and 406 directory
 	if ! [ -e $PATH_DTC_ETC/dtc404/404.php ] ; then
 		mkdir -p $PATH_DTC_ETC/dtc404/
 		cp $PATH_DTC_SHARED/shared/404_template/404.php $PATH_DTC_ETC"/dtc404/"
+		cp $PATH_DTC_SHARED/shared/404_template/406.php $PATH_DTC_ETC"/dtc404/"
 	fi
 	if ! [ -e $PATH_DTC_ETC"/dtc404/logo.png" ] ; then
 		cp $PATH_DTC_SHARED/shared/404_template/logo.png $PATH_DTC_ETC"/dtc404/"
@@ -1394,21 +1395,22 @@ LogSQLCreateTables On
 LogSQLTransferLogFormat IAbhRrSsU
 Alias /dtc404/	$PATH_DTC_ETC/dtc404/
 ErrorDocument 404 /dtc404/404.php
+ErrorDocument 406 /dtc404/406.php
 <IfModule mod_security.c>
 	SecFilterEngine  On
 	SecAuditEngine  RelevantOnly
-	SecFilterCheckUnicodeEncoding Off
-	SecFilter /etc/passwd
 	SecAuditLog  /var/log/apache2/security.log
-	SecFilterDebugLog  /var/log/apache2/modsec_debug.log
-	SecFilterDebugLevel  1
-	SecFilterScanPOST  On
-	SecFilterDefaultAction  \"deny,log,status:406\"
-	SecFilterForceByteRange 1 255
-	Include $PATH_DTC_ADMIN/mod-security/generic.conf
-	Include $PATH_DTC_ADMIN/mod-security/apps.conf
-	Include $PATH_DTC_ADMIN/mod-security/rootkit.conf
-	Include $PATH_DTC_ADMIN/mod-security/spamword.conf
+	SecDebugLog  /var/log/apache2/modsec_debug.log
+	SecDebugLevel  1
+	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_10_config.conf
+	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_20_protocol_violations.conf
+	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_21_protocol_anomalies.conf
+	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_23_request_limits.conf
+	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_30_http_policy.conf     
+	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_35_bad_robots.conf      
+	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_40_generic_attacks.conf
+	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_45_trojans.conf
+	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_50_outbound.conf
 </IfModule>
 " >>$PATH_HTTPD_CONF
 		echo "# End of DTC configuration v0.12 : please don't touch this line !" >>$PATH_HTTPD_CONF
