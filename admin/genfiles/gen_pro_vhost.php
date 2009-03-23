@@ -766,7 +766,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		Allow from all
 	</Directory>
 $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
-	php_admin_value sendmail_from webmaster@$web_name
+	php_admin_value sendmail_from phpmailfunction$web_subname@$web_name
 	php_admin_value sendmail_path \"sendmail -t -i -f phpmailfunction$web_subname@$domain_to_get\"
 	php_value session.save_path $web_path/$domain_to_get/subdomains/$web_subname/tmp
 	<Location />
