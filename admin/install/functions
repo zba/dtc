@@ -1410,6 +1410,7 @@ ErrorDocument 406 /dtc404/406.php
 	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_35_bad_robots.conf      
 	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_40_generic_attacks.conf
 	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_45_trojans.conf
+	Include $PATH_DTC_ADMIN/mod-security/modsecurity_dtc_web_apps.conf
 </IfModule>
 " >>$PATH_HTTPD_CONF
 		echo "# End of DTC configuration v0.12 : please don't touch this line !" >>$PATH_HTTPD_CONF

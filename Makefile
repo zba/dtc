@@ -300,7 +300,8 @@ admin/postfix_checks/body_checks admin/postfix_checks/relaying_stoplist admin/po
 admin/mod-security/modsecurity_crs_10_config.conf admin/mod-security/modsecurity_crs_20_protocol_violations.conf \
 admin/mod-security/modsecurity_crs_21_protocol_anomalies.conf admin/mod-security/modsecurity_crs_23_request_limits.conf \
 admin/mod-security/modsecurity_crs_30_http_policy.conf admin/mod-security/modsecurity_crs_35_bad_robots.conf \
-admin/mod-security/modsecurity_crs_40_generic_attacks.conf admin/mod-security/modsecurity_crs_45_trojans.conf
+admin/mod-security/modsecurity_crs_40_generic_attacks.conf admin/mod-security/modsecurity_crs_45_trojans.conf \
+admin/mod-security/modsecurity_dtc_web_apps.conf
                                                                         
 ##################### SQL TABLES #########################
 INSTALL_SQL_TABLES=admin/tables/admin.sql admin/tables/backup.sql admin/tables/clients.sql admin/tables/commande.sql \
