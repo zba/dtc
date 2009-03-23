@@ -218,7 +218,7 @@ client/logPushlet.php client/xanjaxXHR.js client/cheques_and_transfers.php
 EMAIL_PHP_SCRIPT_FILES=email/api.php email/index.php email/login.php email/submit_to_sql_dtcemail.php
 
 SHARED_PHP_SCRIPT_FILES=shared/autoSQLconfig.php shared/cyradm.php shared/default_admin_site.php shared/dtc_lib.php \
-shared/dtc_stats_index.php shared/404_template/404.php shared/404_template/expired.php \
+shared/dtc_stats_index.php shared/404_template/404.php shared/404_template/406.php shared/404_template/expired.php \
 shared/404_template/index.php shared/drawlib/anotherDtc.php shared/drawlib/cc_code_popup.php shared/drawlib/dtc_functions.php \
 shared/drawlib/skinLib.php shared/drawlib/skin.php shared/drawlib/templates.php shared/drawlib/tree_menu.php \
 shared/dtcrm/draw_adddomain.php shared/dtcrm/draw_handle.php shared/dtcrm/draw_nameservers.php shared/dtcrm/draw.php shared/dtcrm/draw_register_forms.php \
