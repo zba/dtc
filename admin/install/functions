@@ -413,6 +413,9 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 		chown ${CONF_DTC_SYSTEM_USERNAME} /var/lib/mailgraph/mailgraph_virus.rrd
 	fi
 	# Roundcube
+	if [ -d /var/log/roundcube ] ; then
+		chown ${CONF_DTC_SYSTEM_USERNAME} /var/log/roundcube
+	fi
 	if [ -f /etc/roundcube/debian-db.php ] ; then
 		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /etc/roundcube/debian-db.php
 	fi
