@@ -1397,11 +1397,6 @@ Alias /dtc404/	$PATH_DTC_ETC/dtc404/
 ErrorDocument 404 /dtc404/404.php
 ErrorDocument 406 /dtc404/406.php
 <IfModule mod_security.c>
-	SecFilterEngine  On
-	SecAuditEngine  RelevantOnly
-	SecAuditLog  /var/log/apache2/security.log
-	SecDebugLog  /var/log/apache2/modsec_debug.log
-	SecDebugLevel  1
 	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_10_config.conf
 	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_20_protocol_violations.conf
 	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_21_protocol_anomalies.conf
