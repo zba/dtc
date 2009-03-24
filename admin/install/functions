@@ -600,7 +600,7 @@ createSubdomainDirAndFiles () {
 	TMP_PATH=$conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$1
 	for i in html logs cgi-bin ; do
 		mkdir -p $TMP_PATH"/"${i}
-		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${i}
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $TMP_PATH"/"${i}
 	done
 	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $TMP_PATH
 	# As this sometimes fails (rarely) when files exists, we happen a || true
