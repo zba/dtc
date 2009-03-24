@@ -34,11 +34,11 @@ h1{text-decoration:none; text-align:center;}
 </div>
         <div class="message">
             <p>
-            You have reached this page because the requested URL is forbiden on this server:
-            the security system has detected a possible attack on the server. If you are the
-            owner of this website, believe that the security is too tight, and that what you
-            are doing is legitimate, please get in touch with the server administrators to
-            request more relaxed rules for your website.<br /></p>
+            You might have reached this page because the requested URL is forbiden on this
+            server: the security system has detected a possible attack on the server. If you
+            are the owner of this website, believe that the security is too tight, and that
+            what you are doing is legitimate, please get in touch with the server administrators
+            to request more relaxed rules for your website.<br /></p>
 </div>
 <div class="footer">
 	<p>This website server is powered by Domain Technologie Control (DTC), the open-source control panel.</p>

@@ -1398,7 +1398,10 @@ LogSQLCreateTables On
 LogSQLTransferLogFormat IAbhRrSsU
 Alias /dtc404/	$PATH_DTC_ETC/dtc404/
 ErrorDocument 404 /dtc404/404.php
+ErrorDocument 400 /dtc404/406.php
 ErrorDocument 406 /dtc404/406.php
+ErrorDocument 500 /dtc404/406.php
+ErrorDocument 501 /dtc404/406.php
 <IfModule mod_security2.c>
 	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_10_config.conf
 	Include $PATH_DTC_ADMIN/mod-security/modsecurity_crs_20_protocol_violations.conf
