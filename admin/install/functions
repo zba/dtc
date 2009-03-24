@@ -1,5 +1,10 @@
 #!/bin/sh
 
+LIST_CHROOT_DIRS="bin var lib sbin tmp usr dev etc"
+if [ `uname -m` = "x86_64" ] ; then
+	LIST_CHROOT_DIRS="$LIST_CHROOT_DIRS lib64"
+fi
+
 if [ -z "$MKTEMP" ] ; then
 	MKTEMP="mktemp -t"
 fi
@@ -593,10 +598,11 @@ createSubdomainDirAndFiles () {
 	# Copy newly created chroot tree to the 3 vhosts created with this installer (mx and ns don't have apache vhosts generated)
 	echoIfVerbose "===> Installing chroot file environment for "$1"."$main_domain_name
 	TMP_PATH=$conf_hosting_path"/"$conf_adm_login"/"$main_domain_name"/subdomains/"$1
-	mkdir -p $TMP_PATH"/html"
-	mkdir -p $TMP_PATH"/logs"
-	mkdir -p $TMP_PATH"/cgi-bin"
-
+	for i in html logs cgi-bin ; do
+		mkdir -p $TMP_PATH"/"${i}
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${i}
+	done
+	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $TMP_PATH
 	# As this sometimes fails (rarely) when files exists, we happen a || true
 	# as this is not 100% needed when files are already there...
 	if [ "$UNIX_TYPE" = "freebsd" -o "$UNIX_TYPE" = "osx" ] ; then
@@ -604,78 +610,90 @@ createSubdomainDirAndFiles () {
 	else
 		cp -fupR  $conf_chroot_path/* $TMP_PATH"/" || true
 	fi
+	for i in $LIST_CHROOT_DIRS etc ; do
+		if [ -e $TMP_PATH"/"${i} ] ; then
+			chown -R ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $TMP_PATH"/"${i}
+		fi
+	done
 }
 
 createHostingDirAndFiles () {
 	# Create hosting directories for main site
 	echoIfVerbose "===> Creating directory for hosting "$main_domain_name
 	DOMAIN_FOLDER=$conf_hosting_path"/"$conf_adm_login"/"$main_domain_name
-	mkdir -p $DOMAIN_FOLDER"/Mailboxs"
-	mkdir -p $DOMAIN_FOLDER"/mysql"
-	createSubdomainDirAndFiles $dtc_admin_subdomain
-	createSubdomainDirAndFiles www
-	createSubdomainDirAndFiles 404
+	for i in Mailboxs mysql subdomains ; do
+		mkdir -p $DOMAIN_FOLDER"/"${i}
+	done
+	for i in $conf_hosting_path $conf_hosting_path"/"$conf_adm_login $DOMAIN_FOLDER $DOMAIN_FOLDER"/Mailboxs" $DOMAIN_FOLDER"/mysql" $DOMAIN_FOLDER"/subdomains" ; do
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${i}
+	done
+	for i in $dtc_admin_subdomain www 404 ; do
+		createSubdomainDirAndFiles ${i}
+	done
 	ADMIN_HOME=$DOMAIN_FOLDER"/subdomains/"$dtc_admin_subdomain"/html"
-	if ! [ -e "$ADMIN_HOME"/index.php -o -e "$ADMIN_HOME"/index.html ] ; then
+	if ! [ -e "$ADMIN_HOME"/index.php -o -e "$ADMIN_HOME"/index.html -o -e "$ADMIN_HOME"/index.htm ] ; then
 		cp $PATH_DTC_SHARED"/shared/default_admin_site.php" $ADMIN_HOME"/index.php"
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $ADMIN_HOME"/index.php"
 		if ! [ -f $ADMIN_HOME"/dtclogo.png" ] ; then
 			cp $PATH_DTC_SHARED"/shared/template/dtclogo.png" $ADMIN_HOME
+			chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $ADMIN_HOME"/dtclogo.png"
 		fi
 		if ! [ -f $ADMIN_HOME"/favicon.ico" ] ; then
 			cp $PATH_DTC_SHARED"/shared/template/favicon.ico" $ADMIN_HOME
+			chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $ADMIN_HOME"/favicon.ico"
 		fi
 	fi
 	# Copy a template site to the new main site
 	MAINSITE_HOME=$DOMAIN_FOLDER"/subdomains/www/html"
 	if ! [ -e $MAINSITE_HOME/index.php -o -e $MAINSITE_HOME/index.html -o -e $MAINSITE_HOME/index.htm ] ; then
 		cp $PATH_DTC_SHARED"/shared/template/index.php" $MAINSITE_HOME
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $MAINSITE_HOME/index.php
 		if ! [ -e $MAINSITE_HOME"/dtc_logo.gif" ] ; then
-			cp $PATH_DTC_SHARED"/shared/template/dtc_logo.gif" $MAINSITE_HOME
+			cp $PATH_DTC_SHARED"/shared/template/dtclogo.png" $MAINSITE_HOME
+			chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $MAINSITE_HOME/dtclogo.png
 		fi
 	fi
 
 	# symlink directories so that users can login with ssh to the admin account directory
-	if [ ! -e $conf_hosting_path/$conf_adm_login/bin ] ; then ln -s $main_domain_name/subdomains/www/bin  $conf_hosting_path/$conf_adm_login/bin; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/var ] ; then ln -s $main_domain_name/subdomains/www/var  $conf_hosting_path/$conf_adm_login/var; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/lib ] ; then ln -s $main_domain_name/subdomains/www/lib  $conf_hosting_path/$conf_adm_login/lib; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/sbin ] ; then ln -s $main_domain_name/subdomains/www/sbin  $conf_hosting_path/$conf_adm_login/sbin; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/tmp ] ; then ln -s $main_domain_name/subdomains/www/tmp  $conf_hosting_path/$conf_adm_login/tmp; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/usr ] ; then ln -s $main_domain_name/subdomains/www/usr  $conf_hosting_path/$conf_adm_login/usr; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/dev ] ; then ln -s $main_domain_name/subdomains/www/dev  $conf_hosting_path/$conf_adm_login/dev; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/etc ] ; then ln -s $main_domain_name/subdomains/www/etc  $conf_hosting_path/$conf_adm_login/etc; fi
-
+	for i in $LIST_CHROOT_DIRS ; do
+		if [ ! -e $conf_hosting_path/$conf_adm_login/${i} ; then
+			ln -s $main_domain_name/subdomains/www/${i} $conf_hosting_path/$conf_adm_login/${i}
+			chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/${i}
+		fi
+	done
 	# need this for freebsd: KC
-	if [ ! -e $conf_hosting_path/$conf_adm_login/libexec ] ; then ln -s $main_domain_name/subdomains/www/libexec  $conf_hosting_path/$conf_adm_login/libexec; fi
-
-	# also, so the user can login to the main domain names base directory
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/bin ] ; then ln -s subdomains/www/bin  $conf_hosting_path/$conf_adm_login/$main_domain_name/bin; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/var ] ; then ln -s subdomains/www/var  $conf_hosting_path/$conf_adm_login/$main_domain_name/var; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/lib ] ; then ln -s subdomains/www/lib  $conf_hosting_path/$conf_adm_login/$main_domain_name/lib; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/sbin ] ; then ln -s subdomains/www/sbin  $conf_hosting_path/$conf_adm_login/$main_domain_name/sbin; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/tmp ] ; then ln -s subdomains/www/tmp  $conf_hosting_path/$conf_adm_login/$main_domain_name/tmp; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/usr ] ; then ln -s subdomains/www/usr  $conf_hosting_path/$conf_adm_login/$main_domain_name/usr; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/dev ] ; then ln -s subdomains/www/dev  $conf_hosting_path/$conf_adm_login/$main_domain_name/dev; fi
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/etc ] ; then ln -s subdomains/www/etc  $conf_hosting_path/$conf_adm_login/$main_domain_name/etc; fi
-
-	# need for freebsd: KC
-	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/libexec ] ; then ln -s subdomains/www/libexec  $conf_hosting_path/$conf_adm_login/$main_domain_name/libexec; fi
-
-	if [ `uname -m` = "x86_64" ] ; then
-		if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/lib64 ] ; then ln -s $conf_hosting_path/$conf_adm_login/$main_domain_name/lib $conf_hosting_path/$conf_adm_login/$main_domain_name/lib64; fi
+	if [ ! -e $conf_hosting_path/$conf_adm_login/libexec ] ; then
+		ln -s $main_domain_name/subdomains/www/libexec $conf_hosting_path/$conf_adm_login/libexec
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/libexec
 	fi
 
+	# also, so the user can login to the main domain names base directory
+	for i in $LIST_CHROOT_DIRS ; do
+		if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/${i} ] ; then
+			ln -s subdomains/www/${i} $conf_hosting_path/$conf_adm_login/$main_domain_name/${i}
+			chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/${i}
+		fi
+	done
+
+	# need for freebsd: KC
+	if [ ! -e $conf_hosting_path/$conf_adm_login/$main_domain_name/libexec ] ; then
+		ln -s subdomains/www/libexec  $conf_hosting_path/$conf_adm_login/$main_domain_name/libexec
+		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/$main_domain_name/libexec
+	fi
 
 	# copy the 404 index.php file if none is found.
 	the_404_path="$conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/404/html"
 	if ! [ -e $the_404_path/index.html -o -e $the_404_path/index.php -o -e $the_404_path/index.htm ] ; then
 		if [ -e $PATH_DTC_SHARED/shared/404_template/index.php ] ; then
 			cp $PATH_DTC_SHARED/shared/404_template/index.php $the_404_path
+			chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $the_404_path/index.php
 		fi
 	fi
 	# Copy the 404 logo file
 	if ! [ -e $conf_hosting_path/$conf_adm_login/$main_domain_name/subdomains/404/html/logo.png ] ; then
 		if [ -e $PATH_DTC_SHARED/shared/404_template/logo.png ] ; then
 			cp $PATH_DTC_SHARED/shared/404_template/logo.png $the_404_path
+			chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $the_404_path/logo.png
 		fi
 	fi
 
@@ -683,6 +701,7 @@ createHostingDirAndFiles () {
 	if ! [ -e $the_404_path/404.php ] ; then
 		if [ -e $PATH_DTC_SHARED/shared/404_template/404.php ] ; then 
 			cp $PATH_DTC_SHARED/shared/404_template/404.php $the_404_path
+			chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $the_404_path/404.php
 		fi
 	fi
 
