@@ -44,6 +44,8 @@ limit-smtp-connection-rate () {
 	# max-rate to 15 connections per seconds
 	${IPTABLES} -A dtc-dos-in -p tcp --dport 25 -i eth0 -m state --state NEW -m recent --set
 	${IPTABLES} -A dtc-dos-in -p tcp --dport 25 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 15 -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 587 -i eth0 -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 587 -i eth0 -m state --state NEW -m recent --update --seconds 1 --hitcount 15 -j REJECT
 }
 
 limit-http-connection-rate () {
