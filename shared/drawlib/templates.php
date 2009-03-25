@@ -712,7 +712,7 @@ function dtcListItemsEdit($dsc){
 		$where_keys = array_keys($dsc["where_list"]);
 		for($i=0;$i<$nbr_where;$i++){
 			if($i != 0){
-				$added_insert .= ",";
+				$added_insert_names .= ",";
 				$added_insert_values .= ",";
 			}
 			$added_insert_names .= $where_keys[$i];
