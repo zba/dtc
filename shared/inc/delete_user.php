@@ -44,6 +44,7 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 	global $pro_mysql_subdomain_table;
 	global $pro_mysql_domain_table;
 	global $pro_mysql_list_table;
+	global $pro_mysql_fetchmail_table;
 	global $conf_demo_version;
 
 	global $conf_root_admin_random_pass;
@@ -66,6 +67,9 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 
 	// Delete all mail accounts
 	$adm_query = "DELETE FROM $pro_mysql_pop_table WHERE mbox_host='$deluserdomain';";
+	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
+
+	$adm_query = "DELETE FROM $pro_mysql_fetchmail_table WHERE domain_name='$deluserdomain';";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 
 	// Delete all mailboxs
