@@ -92,6 +92,9 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 	if($delete_directories == true && $conf_demo_version == "no"){
 		system("rm -rf $the_admin_path/$deluserdomain");
 	}
+	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',
+	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes',gen_fetchmail='yes' WHERE 1;";
+	mysql_query($adm_query);
 	triggerDomainListUpdate();
 }
 
@@ -168,7 +171,7 @@ function DTCdeleteAdmin ($adm_to_del) {
 
 	// Tell the cron job to activate the changes (in case there was some shared accounts. Todo: check if there is some...)
 	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',
-	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes' WHERE 1;";
+	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes',gen_fetchmail='yes' WHERE 1;";
 	mysql_query($adm_query);
 	triggerDomainListUpdate();
 }

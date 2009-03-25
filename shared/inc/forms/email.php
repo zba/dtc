@@ -1,5 +1,14 @@
 <?php
 
+fetchmailAccountsCreateCallback($id){
+	updateUsingCron("gen_fetchmail='yes'");
+}
+fetchmailAccountsDeleteCallback($id){
+	updateUsingCron("gen_fetchmail='yes'");
+}
+fetchmailAccountsEditCallback($id){
+	updateUsingCron("gen_fetchmail='yes'");
+}
 function drawImportedMail($mailbox){
 	global $adm_email_login;
 	global $adm_email_pass;
@@ -28,6 +37,9 @@ function drawImportedMail($mailbox){
 		"check_unique" => array( "pop3_email" ),
 		"check_unique_msg" => _("There is already a mailbox by that name") ,
 		"order_by" => "pop3_email",
+		"create_item_callback" => "fetchmailAccountsCreateCallback",
+		"delete_item_callback" => "fetchmailAccountsDeleteCallback",
+		"edit_item_callback" => "fetchmailAccountsEditCallback",
 		"cols" => array(
 			"id" => array(
 				"type" => "id",
@@ -565,7 +577,7 @@ function emailAccountsDeleteCallback ($id){
 	}
 	$q = "DELETE FROM $pro_mysql_fetchmail_table WHERE domain_user='".$v[id]."' AND domain_name='".$v[mbox_host]."';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
-
+	updateUsingCron("qmail_newu='yes',restart_qmail='yes',gen_qmail='yes'");
 	return "";
 }
 function drawAdminTools_Emails($domain){
