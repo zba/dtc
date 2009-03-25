@@ -6,7 +6,60 @@ function drawImportedMail($mailbox){
 	global $errTxt;
 	global $pro_mysql_fetchmail_table;
 
+	$mydomain = $mailbox["data"]["mbox_host"];
+	$myuserid = $mailbox["data"]["id"];
+
 	$out = "";
+	$dsc = array(
+		"title" => _("List of your fetchmail imported accounts:") ,
+		"new_item_title" => _("New fetchmail address") ,
+		"new_item_link" => _("new fetchmail address") ,
+		"edit_item_title" => _("Fetchmail configuration:") ,
+		"table_name" => $pro_mysql_fetchmail_table,
+		"action" => "fetchmail_table_editor",
+		"forward" => array("adm_email_login","adm_email_pass","addrlink"),
+		"id_fld" => "id",
+		"list_fld_show" => "pop3_email",
+		"max_item" => 3,
+		"num_item_txt" => _("Number of active fetchmail imported email:") ,
+		"where_list" => array(
+			"domain_name" => $mydomain,
+			"domain_user" => $myuserid),
+		"check_unique" => array( "pop3_email" ),
+		"check_unique_msg" => _("There is already a mailbox by that name") ,
+		"order_by" => "pop3_email",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => _("Login:") ),
+			"pop3_email" => array(
+				"type" => "text",
+				"check" => "email",
+				"legend" => _("Email to fetch:") ),
+			"pop3_server" => array (
+				"type" => "text",
+				"check" => "subdomain_or_ip",
+				"legend" => _("Mail server to import from:") ),
+			"pop3_login" => array(
+				"type" => "text",
+				"check" => "dtc_login_or_email",
+				"legend" => _("Login:") ),
+			"pop3_pass" => array(
+				"type" => "password",
+				"legend" => _("Password:") ),
+			"checkit" => array(
+				"type" => "checkbox",
+				"values" => array( "yes","no"),
+				"default" => "no",
+				"legend" => _("Use it:") ),
+			)
+		);
+        $out = dtcListItemsEdit($dsc);
+	return $out;
+
+
+/*	$out = "";
 
 	if(isset($errTxt) && $errTxt != ""){
 		$out .= "<font color=\"red\">$errTxt</font><br>";
@@ -88,6 +141,8 @@ function drawImportedMail($mailbox){
 	$out .= "</table>";
 
 	return $out;
+*/
+
 }
 
 function drawAntispamRules($mailbox){
