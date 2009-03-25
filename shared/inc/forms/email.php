@@ -1,12 +1,12 @@
 <?php
 
-fetchmailAccountsCreateCallback($id){
+function fetchmailAccountsCreateCallback($id){
 	updateUsingCron("gen_fetchmail='yes'");
 }
-fetchmailAccountsDeleteCallback($id){
+function fetchmailAccountsDeleteCallback($id){
 	updateUsingCron("gen_fetchmail='yes'");
 }
-fetchmailAccountsEditCallback($id){
+function fetchmailAccountsEditCallback($id){
 	updateUsingCron("gen_fetchmail='yes'");
 }
 function drawImportedMail($mailbox){
