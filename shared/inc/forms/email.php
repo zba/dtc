@@ -543,18 +543,19 @@ function emailAccountsEditCallback ($id){
 function emailAccountsDeleteCallback ($id){
 	global $cyrus_used;
 	global $pro_mysql_pop_table;
+	global $pro_mysql_fetchmail_table;
 
 	triggerMXListUpdate();
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
+	$q = "SELECT id, mbox_host FROM $pro_mysql_pop_table WHERE autoinc='$id';";
+	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Cannot find created email line ".__LINE__." file ".__FILE__);
+	}
+	$v = mysql_fetch_row($r);
 	if ($cyrus_used){
 		# login to cyradm
-		$q = "SELECT id, mbox_host FROM $pro_mysql_pop_table WHERE autoinc='$id';";
-		$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
-		$n = mysql_num_rows($r);
-		if($n != 1){
-			die("Cannot find created email line ".__LINE__." file ".__FILE__);
-		}
-                $v = mysql_fetch_row($r);
 		$cyr_conn = new cyradm;
 		$error=$cyr_conn -> imap_login();
 		if ($error!=0){
@@ -562,6 +563,9 @@ function emailAccountsDeleteCallback ($id){
 		}
 		$result=$cyr_conn->deletemb("user/" . $v[0]."@".$v[1]);
 	}
+	$q = "DELETE FROM $pro_mysql_fetchmail_table WHERE domain_user='".$v[id]."' AND domain_name='".$v[mbox_host]."';";
+	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+
 	return "";
 }
 function drawAdminTools_Emails($domain){
