@@ -137,7 +137,7 @@ findHtpasswdBinary () {
 
 
 searchPATH_PHP_CGI () {
-	echoIfVerbose "===> Seaching for php binary"
+	echoIfVerbose "===> Searching for php binary"
 	if [ -e /usr/bin/php ] ; then
 		PATH_PHP_CGI="/usr/bin/php"
 	else
