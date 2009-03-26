@@ -767,7 +767,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	</Directory>
 $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	php_admin_value sendmail_from phpmailfunction$web_subname@$web_name
-	php_admin_value sendmail_path \"sendmail -t -i -f phpmailfunction$web_subname@$domain_to_get\"
+	php_admin_value sendmail_path \"/usr/sbin/sendmail -t -i -f phpmailfunction$web_subname@$domain_to_get\"
 	php_value session.save_path $web_path/$domain_to_get/subdomains/$web_subname/tmp
 	<Location />
 		php_admin_value open_basedir \"$web_path:$conf_php_library_path:$conf_php_additional_library_path:\"
