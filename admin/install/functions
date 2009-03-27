@@ -656,7 +656,7 @@ createHostingDirAndFiles () {
 
 	# symlink directories so that users can login with ssh to the admin account directory
 	for i in $LIST_CHROOT_DIRS ; do
-		if [ ! -e $conf_hosting_path/$conf_adm_login/${i} ; then
+		if [ ! -e $conf_hosting_path/$conf_adm_login/${i} ] ; then
 			ln -s $main_domain_name/subdomains/www/${i} $conf_hosting_path/$conf_adm_login/${i}
 			chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $conf_hosting_path/$conf_adm_login/${i}
 		fi
