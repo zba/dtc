@@ -330,14 +330,13 @@ signature.txt messages_header.txt \
 logrotate.template
 
 CREATE_DIRS=admin/inc admin/genfiles admin/dtcrm admin/queuegraph admin/memgraph admin/netusegraph admin/cpugraph admin/install admin/tables \
-shared/gfx/menu shared/gfx/bar shared/gfx/skin/green2 shared/gfx/skin/muedgrey shared/gfx/skin/green_gpl/icons \
-shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/iglobal shared/gfx/skin/frame shared/gfx/skin/green shared/gfx/dtc shared/gfx/pagetop \
+shared/gfx/menu shared/gfx/bar shared/gfx/skin/bwoup/gfx/buttons shared/gfx/dtc shared/gfx/pagetop \
 shared/gfx/securepay shared/gfx/language/en/pub shared/gfx/language/fr/pub shared/gfx/language/ru/pub shared/gfx/language/nl/pub \
-shared/gfx/skin/tex shared/gfx/skin/ruffdogs_mozilla shared/gfx/skin/darkblue shared/gfx/skin/bwoup/gfx/config-icon \
-shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs shared/gfx/skin/bwoup/gfx/treeview shared/gfx/skin/bwoup/gfx/navbar \
-shared/inc/forms shared/inc/sql shared/404_template shared/drawlib shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars \
-shared/visitors_template shared/template shared/maxmind client/inc email/inc admin/patches shared/securepay/modules \
-shared/securepay/modules/paypal shared/securepay/modules/enets shared/securepay/modules/webmoney shared/securepay/modules/worldpay
+shared/gfx/skin/bwoup/gfx/config-icon shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs \
+shared/gfx/skin/bwoup/gfx/treeview shared/gfx/skin/bwoup/gfx/navbar shared/inc/forms shared/inc/sql shared/404_template shared/drawlib \
+shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars shared/visitors_template shared/template shared/maxmind client/inc email/inc \
+admin/patches shared/securepay/modules shared/securepay/modules/paypal shared/securepay/modules/enets shared/securepay/modules/webmoney \
+shared/securepay/modules/worldpay
 
 LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI zh_TW sr_RS lv_LV
 
