@@ -1074,6 +1074,8 @@ generateMySQLConfigPHPfile () {
 	echo "\$conf_mysql_db=\""$conf_mysql_db"\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
 	echo "\$conf_mysql_conf_ok=\"yes\";" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
 	echo "?>" >> $PATH_DTC_SHARED"/shared/mysql_config.php"
+	chmod 600 $PATH_DTC_SHARED"/shared/mysql_config.php"
+	chown ${CONF_DTC_SYSTEM_USERNAME} $PATH_DTC_SHARED"/shared/mysql_config.php"
 }
 
 
