@@ -584,12 +584,12 @@ function drawRenewalTables (){
 		// Show a quick history of payments
 		$year = date("Y");
 		$month = date("m");
-		$cur_year = $year - 1;
+		$cur_year = $year - 2;
 		$cur_month = $month;
 		$p_history = "";
 		$p_history .= "<table cellspacing=\"1\" cellpadding=\"1\" border=\"1\">
 		<tr><td>". _("Period") ."</td><td>". _("Amount") ."</td><td>"._("VAT collected")."</td><td>"._("Payment gateway cost")."</td><td>"._("Profit")."</td></tr>";
-		for($i=0;$i<13;$i++){
+		for($i=0;$i<25;$i++){
 			$q2 = "SELECT $pro_mysql_pay_table.paiement_total,$pro_mysql_pay_table.vat_rate,$pro_mysql_pay_table.paiement_cost
 			FROM $pro_mysql_pay_table,$pro_mysql_completedorders_table
 			WHERE $pro_mysql_pay_table.vat_rate!='0.00'
