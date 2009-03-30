@@ -969,7 +969,8 @@ function drawGeneralConfig(){
 			"autogen_webmail_type" => array(
 				"legend" => _("Type of webmail for the /webmail alias: "),
 				"type" => "radio",
-				"values" => array("Roundcube","Squirrelmail")),
+				"display_replace" => array("Roundcube","Squirrelmail"),
+				"values" => array("roundcube","squirrelmail")),
 			"apache_directoryindex" => array(
 				"legend" => _("Apache DirectoryIndex: "),
 				"size" => "50",
