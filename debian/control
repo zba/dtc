@@ -115,7 +115,7 @@ Description: web control panel for admin and accounting hosting services (more d
 
 Package: dtc-stats-daemon
 Architecture: all
-Depends: dtc-core | dtc-postfix-courier, lsb-base, php5-cli
+Depends: dtc-core | dtc-postfix-courier | dtc-cyrus, lsb-base, php5-cli
 Description: dtc-xen VM statistics for the dtc web control panel
  Domain Technologie Control (DTC) is a control panel aiming at commercial
  hosting. This small daemon will query all the dtc-xen servers that you have
