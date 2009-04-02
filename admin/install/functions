@@ -2447,7 +2447,7 @@ tumgreyspf unix  -      n       n       -       -       spawn
 				# CL do we use cyrus? 
 				if [ "${conf_use_cyrus}" = "true" ] ; then
 					if [ -x /usr/sbin/cyrdeliver ] ; then
-						TMP_CYRDELIVERPATH=/sbin/cyrdeliver
+						TMP_CYRDELIVERPATH=/usr/sbin/cyrdeliver
 					else
 						if [ -x "${LOCALBASE}/sbin/cyrdeliver" ] ; then
 							TMP_CYRDELIVERPATH=${LOCALBASE}/sbin/cyrdeliver
