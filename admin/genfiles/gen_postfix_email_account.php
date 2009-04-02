@@ -224,7 +224,7 @@ function mail_account_generate_postfix(){
 					if (!isset($home) || $home==""){
 						$console .= "Missing home variable for $id";
 					}
-					if(! is_dir($home) ){
+					if(! is_dir($home) && ($conf_use_cyrus != "yes")){
 						$PATH = getenv('PATH');
 						putenv("PATH=/usr/lib/courier-imap/bin:$PATH");
 						system("/bin/mkdir -p $home && maildirmake $home");
