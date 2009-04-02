@@ -221,7 +221,7 @@ function mail_account_generate_postfix(){
 					if ( $k==0 ) $domains_postmasters_file.= "# Mailboxes for : ".$domain_full_name."\n";
 					$spam_stuff_done = 0;
 					$homedir_created = 0;
-					if (!isset($home) || $home==""){
+					if (!isset($home) || $home=="" && $conf_use_cyrus != "yes"){
 						$console .= "Missing home variable for $id";
 					}
 					if(! is_dir($home) && ($conf_use_cyrus != "yes")){
