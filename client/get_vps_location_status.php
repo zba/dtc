@@ -34,42 +34,41 @@ function displayAvailableSpace(){
 	$j = 0;
 	for($i=0;$i<$n;$i++){
 		if($space[$i]["slots"] == 0){
-			if($full != ""){
-				$full .= " - ";
-			}
-			$full .= $space[$i]["name"];
+			$num_of_slots_loc = "FULL";
 		}else{
-			if($j % 2){
-				$available .= "<tr><td>".$space[$i]["name"]."</td><td><b>".$space[$i]["slots"]."</b></td></tr>";
-			}else{
-				$available .= "<tr><td bgcolor=\"#AAAAAA\">".$space[$i]["name"]."</td><td bgcolor=\"#AAAAAA\"><b>".$space[$i]["slots"]."</b></td></tr>";
-			}
-			$j++;
+                	$num_of_slots_loc = $space[$i]["slots"];
 		}
+		if($j % 2){
+			$available .= "<tr><td bgcolor=\"#F3F7F7\">".$space[$i]["name"]."</td><td bgcolor=\"#F3F7F7\"><b>".$num_of_slots_loc."</b></td></tr>";
+		}else{
+			$available .= "<tr><td bgcolor=\"#FFFFFF\">".$space[$i]["name"]."</td><td bgcolor=\"#FFFFFF\"><b>".$num_of_slots_loc."</b></td></tr>";
+		}
+		$j++;
 	}
-	$out .= "<b><u>Currently full:</b></u> $full<br>
-<b><u>Currently with space available:</b></u>
-<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">
-<tr><th>Location name</th><th>Number of slots available</th></tr>
+	$out .= "
+<table cellspacing=\"1\" cellpadding=\"5\" border=\"0\" bgcolor=\"#c6d9d9\" width=\"100%\">
+<tr><td align=\"center\" bgcolor=\"#8eb4b3\"><font color=\"#FFFFFF\">Location name</font></td>
+<td align=\"center\" bgcolor=\"#8eb4b3\"><font color=\"#FFFFFF\">Slots available</font></td></tr>
 $available
 </table>";
 	return $out;
 }
 
-echo "
-<style>
+echo "<html><head>
+<style type=\"text/css\">
 a:link{color:#277193;text-decoration: none;}
 a:visited{color:#277193;text-decoration: none;}
 a:hover{color:#105278;text-decoration: underline;}
 a:active{color:#105278;text-decoration: none;}
 
 body, h2, h3, h4, h5, h6, td {
-	font: 12px Helvetica, Arial, sans-serif;
-	color: #000000;
+	font-size: 11px;
+	font-family: Verdana, Geneva, Helvetica, Arial, sans-serif;
+	color: #366056;
 }
 </style>
-".displayAvailableSpace()."<br><br>
-
-<a target=\"_top\" href=\"https://".$_SERVER["HTTP_HOST"]."/dtc/new_account.php\">Register for a VPS hosting here</a>";
+</head>
+<body>".displayAvailableSpace()."</body></html>
+";
 
 ?>
