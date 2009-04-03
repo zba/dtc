@@ -569,7 +569,7 @@ function emailAccountsDeleteCallback ($id){
 	if($n != 1){
 		die("Cannot find created email line ".__LINE__." file ".__FILE__);
 	}
-	$v = mysql_fetch_row($r);
+	$v = mysql_fetch_array($r);
 	if ($cyrus_used){
 		# login to cyradm
 		$cyr_conn = new cyradm;
@@ -577,9 +577,9 @@ function emailAccountsDeleteCallback ($id){
 		if ($error!=0){
 			die ("imap_login Error $error");
 		}
-		$result=$cyr_conn->deletemb("user/" . $v[0]."@".$v[1]);
+		$result=$cyr_conn->deletemb("user/" . $v["id"]."@".$v["mbox_host"]);
 	}
-	$q = "DELETE FROM $pro_mysql_fetchmail_table WHERE domain_user='".$v[id]."' AND domain_name='".$v[mbox_host]."';";
+	$q = "DELETE FROM $pro_mysql_fetchmail_table WHERE domain_user='".$v["id"]."' AND domain_name='".$v["mbox_host"]."';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 	updateUsingCron("qmail_newu='yes',restart_qmail='yes',gen_qmail='yes'");
 	return "";
