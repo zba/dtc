@@ -46,7 +46,26 @@ function drawPasswordChange(){
 	global $adm_pass;
 	global $addrlink;
 
+	$pass_submit_err = "";
+
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_adm_pass"){
+		if(!isDTCPassword($_REQUEST["new_pass1"]) || !isDTCPassword($_REQUEST["new_pass2"])){
+			$pass_submit_err .= _("This is not a valid password!")."<br>\n";
+			$commit_flag = "no";
+		}
+		if($_REQUEST["new_pass1"] != $_REQUEST["new_pass2"]){
+			$pass_submit_err .= _("Password 1 does not match password 2!")."<br>\n";
+			$commit_flag = "no";
+		}
+		if($commit_flag == "yes"){
+			$q = "UPDATE $pro_mysql_admin_table SET adm_pass='".$_REQUEST["new_pass1"]."' WHERE adm_login='$adm_login';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+			$pass_submit_err .= _("Your administrator password has been changed!")."<br>\n";
+		}
+	}
+
 	$out = "<h3>". _("Change your password:") ."</h3><br>
+$pass_submit_err
 <form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 ".dtcFormTableAttrs()."
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">

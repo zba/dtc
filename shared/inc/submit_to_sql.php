@@ -591,22 +591,6 @@ function writeMlmmjQmailFile($boxpath){
 	}
 }
 
-// action=change_adm_pass&new_pass1=blabla&new_pass2=blabla
-if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_adm_pass"){
-	if(!isDTCPassword($_REQUEST["new_pass1"]) || !isDTCPassword($_REQUEST["new_pass2"])){
-		$submit_err .= "This is not a valid password!<br>\n";
-		$commit_flag = "no";
-	}
-	if($_REQUEST["new_pass1"] != $_REQUEST["new_pass2"]){
-		$submit_err .= "Password 1 does not match password 2!<br>\n";
-		$commit_flag = "no";
-	}
-	if($commit_flag == "yes"){
-		$q = "UPDATE $pro_mysql_admin_table SET adm_pass='".$_REQUEST["new_pass1"]."' WHERE adm_login='$adm_login';";
-		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-	}
-}
-
 if($panel_type!="email"){
 	require("$dtcshared_path/inc/sql/dns.php");
 	require("$dtcshared_path/inc/sql/database.php");
