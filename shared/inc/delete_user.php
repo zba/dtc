@@ -92,6 +92,16 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 	if($delete_directories == true && $conf_demo_version == "no"){
 		system("rm -rf $the_admin_path/$deluserdomain");
 	}
+
+	// We now check if there are still some domains in the admin account
+	// if there are none, then we shall delete the symlinks
+	$adm_query = "SELECT name FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
+	$r = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__);
+	$n = mysql_num_rows($r);
+	if($n == 0){
+		system("rm -rf $the_admin_path/lib $the_admin_path/dev $the_admin_path/etc $the_admin_path/sbin $the_admin_path/tmp $the_admin_path/usr $the_admin_path/var $the_admin_path/bin $the_admin_path/lib64 $the_admin_path/libexec");
+	}
+
 	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',
 	restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes',gen_fetchmail='yes' WHERE 1;";
 	mysql_query($adm_query);
