@@ -1084,11 +1084,11 @@ function drawNamedConfig(){
 				"legend" => _("IP of the master DNS to be written in the named.slavezones.conf:"),
 				"type" => "text",
 				"size" => "20"),
-			"use_cname_for_subdomains" => array(
+/*			"use_cname_for_subdomains" => array(
 				"legend" => _("Use CNAME instead of A record for subdomains:"),
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array(_("Yes"),_("No"))),
+				"display_replace" => array(_("Yes"),_("No"))), */
 			"autogen_default_subdomains" => array(
 				"legend" => _("Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"),
 				"type" => "radio",
