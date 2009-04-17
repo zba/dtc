@@ -18,7 +18,7 @@
 IPTABLES=/sbin/iptables
 
 if [ -f /etc/dtc/dtc-dos-firewall.conf ] ; then
-	. dtc-dos-firewall.conf
+	. /etc/dtc/dtc-dos-firewall.conf
 fi
 
 flush-input-chain () {
