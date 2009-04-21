@@ -535,7 +535,7 @@ function make_new_adm_domain_dir($path){
 
 	if(!file_exists("$path/subdomains/www/logs")){
 		mkdir("$path/subdomains/www/logs", 0750);
-		$console .= "mkdir $path/mailbox;<br>";
+		$console .= "mkdir $path/subdomains/www/logs;<br>";
 	}
 	umask($oldumask);
 }
