@@ -380,6 +380,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$domain_parking = $row["domain_parking"];
 		$domain_parking_type = $row["domain_parking_type"];
 		$domain_wildcard_dns = $row["wildcard_dns"];
+		$domain_default_sub_server_alias = $row["default_sub_server_alias"];
 
 		unset($backup_ip_addr);
 		if (isset($row["backup_ip_addr"])){
@@ -696,7 +697,9 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 							$server_alias_domain = $web_name;
 							// parking: redirect doesn't happen in this else branch
 						}
-						$vhost_more_conf .= "	ServerAlias $server_alias_domain\n";
+						if($domain_default_sub_server_alias == "yes"){
+							$vhost_more_conf .= "	ServerAlias $server_alias_domain\n";
+						}
 						if($domain_wildcard_dns == "yes"){
 							$vhost_more_conf .= "   ServerAlias *.$server_alias_domain\n";
 						}

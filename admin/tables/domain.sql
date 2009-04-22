@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS domain (
   sbox_protect enum('yes','no') default 'yes',
   owner varchar(64) NOT NULL default '',
   default_subdomain varchar(64) default 'www',
+  default_sub_server_alias enum('yes','no') default 'yes',
   generate_flag enum('yes','no') NOT NULL default 'yes',
   quota bigint(20) NOT NULL default '50',
   max_email int(11) NOT NULL default '9',

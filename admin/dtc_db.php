@@ -312,6 +312,7 @@ $dtc_database = array(
 			"sbox_protect" => "enum('yes','no') default 'yes' ",
 			"owner" => "varchar(64) NOT NULL ",
 			"default_subdomain" => "varchar(64) NULL default 'www' ",
+			"default_sub_server_alias" => "enum('yes','no') default 'yes'",
 			"generate_flag" => "enum('yes','no') NOT NULL default 'yes' ",
 			"quota" => "bigint(20) NOT NULL default '50' ",
 			"max_email" => "int(11) NOT NULL default '9' ",

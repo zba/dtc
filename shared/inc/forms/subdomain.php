@@ -128,6 +128,8 @@ function drawAdminTools_Subdomain($admin,$domain){
 		}
 	}
 	$txt .= "</select></td></tr>";
+
+	// Radio to choose wildcard or not
 	if($domain["wildcard_dns"] == "yes"){
 		$yes_flag = " checked ";
 		$no_flag = " ";
@@ -136,8 +138,19 @@ function drawAdminTools_Subdomain($admin,$domain){
 		$no_flag = " checked ";
 	}
 	$txt .= "<tr><td align=\"right\">". _("Use as wildcard for the domain:")." </td><td><input type=\"radio\" name=\"wildcard_dns\" value=\"yes\"$yes_flag>"._("Yes")."<input type=\"radio\" name=\"wildcard_dns\" value=\"no\"$no_flag>"._("No")."</td></tr>";
-	$txt .= "<tr><td></td><td><input type=\"hidden\" name=\"subdomaindefault\" value=\"Ok\"><input type=\"image\" src=\"gfx/stock_apply_20.png\"></td></tr></table></form>";
 
+	// Radio to activate the ServerAlias on the default subdomain
+	if($domain["default_sub_server_alias"] == "yes"){
+		$yes_flag = " checked ";
+		$no_flag = " ";
+	}else{
+		$yes_flag = " ";
+		$no_flag = " checked ";
+	}
+	$txt .= "<tr><td align=\"right\">". _("Generate a ServerAlias for the root of the domain:")." </td><td><input type=\"radio\" name=\"default_sub_server_alias\" value=\"yes\"$yes_flag>"._("Yes")."<input type=\"radio\" name=\"default_sub_server_alias\" value=\"no\"$no_flag>"._("No")."</td></tr>";
+
+	// Apply button
+	$txt .= "<tr><td></td><td><input type=\"hidden\" name=\"subdomaindefault\" value=\"Ok\"><input type=\"image\" src=\"gfx/stock_apply_20.png\"></td></tr></table></form>";
 	$txt .= $frm."";
 
 	$dsc = array(
