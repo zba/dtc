@@ -759,7 +759,7 @@ $more_mx_server
 					if( isIP($ad["ip"]) ){
 						$this_site_file .= "	IN	A	".$ad["ip"]."\n";
 					}else{
-						$this_site_file .= "	IN	A	".$ad["ip"].".\n";
+						$this_site_file .= "	IN	CNAME	".$ad["ip"].".\n";
 					}
 				}
 			}else{
