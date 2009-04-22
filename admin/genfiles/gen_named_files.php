@@ -744,9 +744,27 @@ $more_dns_server
 @	IN	MX	5	$thisdomain_mx1.
 $more_mx_server
 @	IN	TXT	\"$root_txt_record\"
-@	IN	TXT	\"$root_txt_record2\"
-	IN	A	$ip_to_write
-";
+@	IN	TXT	\"$root_txt_record2\"\n";
+
+			// Set the "root subdomain" IP as the same as the "default subdomain" IP
+			$qd = "SELECT ip FROM $pro_mysql_subdomain_table WHERE subdomain_name='$web_default_subdomain' AND domain_name='$domain_to_get';";
+			$rd = mysql_query($qd)or die("Cannot query $qd line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$nd = mysql_num_rows($rd);
+			if($nd == 1){
+				$ad = mysql_fetch_array($r);
+				if( $ad["ip"] == "default" ){
+					$this_site_file .= "	IN	A	$ip_to_write\n";
+				}else{
+					// In case of a CNAME, add a final dot
+					if( isIP($ad["ip"]) ){
+						$this_site_file .= "	IN	A	".$ad["ip"]."\n";
+					}else{
+						$this_site_file .= "	IN	A	".$ad["ip"].".\n";
+					}
+				}
+			}else{
+				$this_site_file .= "	IN	A	$ip_to_write\n";
+			}
 			// if we have the public.key for DomainKeys, write it into our zone file
 			if (file_exists($conf_domainkey_publickey_filepath) && $row["primary_mx"] == "default"){
 				$key_file_array = file($conf_domainkey_publickey_filepath, FILE_IGNORE_NEW_LINES);
