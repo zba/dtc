@@ -751,7 +751,7 @@ $more_mx_server
 			$rd = mysql_query($qd)or die("Cannot query $qd line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$nd = mysql_num_rows($rd);
 			if($nd == 1){
-				$ad = mysql_fetch_array($r);
+				$ad = mysql_fetch_array($rd);
 				if( $ad["ip"] == "default" ){
 					$this_site_file .= "	IN	A	$ip_to_write\n";
 				}else{
