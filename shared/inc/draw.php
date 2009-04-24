@@ -45,10 +45,12 @@ function drawPasswordChange(){
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
+	global $pro_mysql_admin_table;
 
 	$pass_submit_err = "";
 
 	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_adm_pass"){
+	        $commit_flag = "yes"; //Init the commit_flag
 		if(!isDTCPassword($_REQUEST["new_pass1"]) || !isDTCPassword($_REQUEST["new_pass2"])){
 			$pass_submit_err .= _("This is not a valid password!")."<br>\n";
 			$commit_flag = "no";
