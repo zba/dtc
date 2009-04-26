@@ -12,6 +12,7 @@ function renew_form(){
 	global $pro_mysql_vps_server_table;
 
 	global $conf_webmaster_email_addr;
+	global $conf_message_subject_header;
 	global $conf_this_server_country_code;
 
 	global $secpayconf_currency_letters;
