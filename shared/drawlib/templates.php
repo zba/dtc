@@ -89,7 +89,7 @@ function dtcDeleteButton(){
 	global $gfx_icn_path_delete;
 
 	if(isset($gfx_icn_path_delete)){
-		$delete = "<div class=\"btn_p_container\" onMouseOver=\"this.className='btn_p_container-hover';\" onMouseOut=\"this.className='btn_p_container';\"><input type=\"image\" src=\"".$gfx_icn_path_delete."\"></div>";
+		$delete = "<div class=\"btn_p_container\" onMouseOver=\"this.className='btn_p_container-hover';\" onMouseOut=\"this.className='btn_p_container';\"><input type=\"image\" src=\"".$gfx_icn_path_delete."\" onClick=\"return confirm('Are you sure to delete?')\"></div>";
 	}else{
 		$delete = "<input type=\"image\" src=\"gfx/stock_trash_24.png\">";
 	}
