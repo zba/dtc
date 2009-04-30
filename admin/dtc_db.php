@@ -242,7 +242,8 @@ $dtc_database = array(
 			"nagios_username" => "varchar(255) NOT NULL default ''",
 			"nagios_config_file_path" => "varchar(255) NOT NULL default ''",
 			"nagios_restart_command" => "varchar(255) NOT NULL default 'sudo /etc/init.d/nagios2 restart'",
-			"affiliate_return_domain" => "varchar(255) NOT NULL default 'www.example.com'"
+			"affiliate_return_domain" => "varchar(255) NOT NULL default 'www.example.com'",
+			"support_ticket_email" => "varchar(255) NOT NULL default 'support'"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"
@@ -1028,6 +1029,7 @@ $dtc_database = array(
 			"initial_ticket" => "enum('yes','no') NOT NULL default 'yes'",
 			"server_hostname" => "varchar(64) NOT NULL default ''",
 			"request_close" => "enum('yes','no') NOT NULL default 'no'",
+			"customer_email" => "varchar(255) NOT NULL default ''",
 			"closed" => "enum('yes','no') NOT NULL default 'no'"
 			),
 		"primary" => "(id)",

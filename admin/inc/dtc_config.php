@@ -478,6 +478,20 @@ function drawTicketConfig(){
 	global $sousrub;
 
 	$out = "<h3>"._("Support ticket configuration")."</h3>";
+
+	$dsc = array(
+		"title" => _("Ticket global parameters"),
+		"action" => "tik_global_param",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"support_ticket_email" => array(
+				"legend" => _("Support ticket email address: "),
+				"type" => "text",
+				"size" => "32")
+			)
+		);
+	out .= configEditorTemplate ($dsc);
+
 	$dsc = array(
 		"table_name" => $pro_mysql_tik_admins_table,
 		"title" => _("List of the administrators receiving request for support messages:"),

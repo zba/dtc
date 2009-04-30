@@ -3,6 +3,7 @@
 
 chdir(dirname(__FILE__));
 
+$panel_type="cronjob";
 require("../shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
 
@@ -20,11 +21,32 @@ function decodeEmail($input){
 	return $structure;
 }
 
-// $struct = decodeEmail($input);
+// Read the email from standard input
+$msg = "";
 $fp = fopen('php://stdin', 'r');
 while($line = fgets($fp, 4096) ){
-  echo $line;
+  $msg .= $line;
 }
+
+// Decode the msg using php-mail-mime
+$stt = decodeEmail($msg);
+
+// Check if the To: has the support ID number in it
+// emails are sent to something like: support-3bc8212a0@dtc.example.com
+
+// $struct->headers["to"]
+
+
+
+
+// If the To: doesn't match an existing ID, then we should search if the
+// email of the From: matches one of the existing customers
+
+
+
+
+// If nothing matches, then we want to create a new ticket associated with
+// this email address.
 
 
 

@@ -113,5 +113,6 @@ nagios_username varchar(255) NOT NULL default '',
 nagios_config_file_path varchar(255) NOT NULL default '',
 nagios_restart_command varchar(255) NOT NULL default 'sudo /etc/init.d/nagios2 restart',
 affiliate_return_domain varchar(255) NOT NULL default 'www.example.com',
+support_ticket_email varchar(255) NOT NULL default 'support',
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
