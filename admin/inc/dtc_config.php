@@ -1378,7 +1378,7 @@ function drawDTCpayConfig(){
 				"size" => "6",
 				"type" => "text"),
 			"cheques_to_label" => array (
-				"legend" => _("Flat fee for accepting cheques: "),
+				"legend" => _("Cheques Payable To: "),
 				"size" => "30",
 				"type" => "text"),
 			"cheques_send_address" => array (
