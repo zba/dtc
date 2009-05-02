@@ -490,7 +490,7 @@ function drawTicketConfig(){
 				"size" => "32")
 			)
 		);
-	out .= configEditorTemplate ($dsc);
+	$out .= configEditorTemplate ($dsc);
 
 	$dsc = array(
 		"table_name" => $pro_mysql_tik_admins_table,
