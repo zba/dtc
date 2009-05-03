@@ -286,7 +286,7 @@ function drawAdminTools_Subdomain($admin,$domain){
 	$txt .= dtcListItemsEdit($dsc);
 	$txt .= "<br>" . _("Windows users (and UNIX users running WINE) can update their IP address dynamically by downloading and installing the following open source DTC client:") . "<br>" .
 	"<a href=\"http://www.gplhost.com/DTC-Dynamic_IP_updater.exe\">DTC-Dynamic_IP_updater.exe</a><br>" .
-	_("For unix users, simple wget command in a cron will do. Something like this:") . "<br>" .
+	_("For unix users, a simple wget command in a cron joe like below will do. Something like this:") . "<br>" .
 	htmlspecialchars("wget https://". $conf_administrative_site . "/dtc/dynip.php?login=MYLOGIN&pass=MYPASS&domain=". $domain["name"] ."&ip=1.2.3.4") . "<br>";
 	$txt .= helpLink("PmWiki/Subdomains");
 
