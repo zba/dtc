@@ -71,8 +71,9 @@ if( ereg($tik_regexp,$email_to) ){
 	$ticket_hash = substr($email_to,$start,$end);
 	echo "Ticket hash: $ticket_hash\n";
 	if( isRandomNum($ticket_hash) ){
+		echo "Hash is random num, searching...\n";
 		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE hash='$ticket_hash';";
-		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__" sql said: ".mysql_error());
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n == 1){
 			// We have a match, we should consider inserting this ticket as a reply...
