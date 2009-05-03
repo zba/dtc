@@ -474,10 +474,21 @@ function drawSSLIPConfig(){
 function drawTicketConfig(){
 	global $pro_mysql_tik_admins_table;
 	global $pro_mysql_tik_cats_table;
+	global $pro_mysql_domain_table;
 	global $rub;
 	global $sousrub;
 
 	$out = "<h3>"._("Support ticket configuration")."</h3>";
+
+	$domains = array();
+	$domains[] = "default";
+	$q = "SELECT name FROM $pro_mysql_domain_table;";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$domains[] = $a["name"];
+	}
 
 	$dsc = array(
 		"title" => _("Ticket global parameters"),
@@ -487,7 +498,12 @@ function drawTicketConfig(){
 			"support_ticket_email" => array(
 				"legend" => _("Support ticket email address: "),
 				"type" => "text",
-				"size" => "32")
+				"size" => "32"),
+			"support_ticket_domain" => array(
+				"legend" => "@",
+				"type" => "popup",
+				"values" => $domains
+				)
 			)
 		);
 	$out .= configEditorTemplate ($dsc);
