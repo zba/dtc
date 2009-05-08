@@ -124,7 +124,7 @@ Description: dtc-xen VM statistics for the dtc web control panel
 
 Package: dtc-toaster
 Architecture: all
-Depends: awstats, dtc-postfix-courier, fetchmail, mailgraph, phpmyadmin, roundcube-sqlite | squirrelmail, roundcube | squirrelmail, ttf-arphic-ukai, ttf-dejavu, tumgreyspf, visitors, dkimproxy, dtc-dos-firewall
+Depends: awstats, dtc-postfix-courier, fetchmail, mailgraph, phpmyadmin, roundcube-sqlite | squirrelmail, roundcube | squirrelmail, tumgreyspf, visitors, dkimproxy, dtc-dos-firewall
 Description: web control panel for admin and accounting hosting services (metapackage)
  Domain Technologie Control (DTC) is a control panel aiming at commercial
  hosting. Using a web GUI for the administration and accounting all hosting
