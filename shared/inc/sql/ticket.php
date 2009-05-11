@@ -31,7 +31,7 @@ Server host name: ".$_REQUEST["server_hostname"]."
 // action=new_ticket&subject=test+subject&server_hostname=test.vpsserver.com%3A01&issue_cat_id=network&ticketbody=I+can%27t+connect+to+my+VPS%21
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_ticket"){
 	if( strlen($_REQUEST["subject"]) == 0){
-		echo "Subject line empty: cannot send ticket!";
+		echo _("Subject line empty: cannot send ticket!");
 	}else{
 		$hash = getRandomValue();
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,subject,text,cat_id,initial_ticket,server_hostname,hash)
@@ -43,7 +43,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_ticket"){
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_ticket_reply"){
 	if(!isRandomNum($_REQUEST["last_tik_id"]) || !isRandomNum($_REQUEST["tik_id"])){
-		echo "last_tick_id or tik_id is not a number: hacking attempt!";
+		echo _("last_tick_id or tik_id is not a number: hacking attempt!");
 	}else{
 		// Insert the new ticket
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,subject,text,cat_id,initial_ticket,server_hostname,in_reply_of_id,request_close)
