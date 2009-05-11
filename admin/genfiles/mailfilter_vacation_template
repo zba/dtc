@@ -18,6 +18,6 @@ if ( ! /^Precedence: (bulk|list|junk)/ && \
      ! /^Subject:.*Mail System Error.*Returned Mail/ && \
      ! /^X-Spam-Flag: YES/ )
 {
-	cc "| mailbot -t $RESPOND -d $RESPONDDB -D 1 -A 'From: $RECIPIENT' -s 'Auto Response: from $RECIPIENT' /usr/sbin/sendmail -t"
+	cc "| mailbot -t $RESPOND -c 'UTF-8' -d $RESPONDDB -D 1 -A 'From: $RECIPIENT' -s 'Auto Response: from $RECIPIENT' /usr/sbin/sendmail -t"
 
 }
