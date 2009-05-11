@@ -23,7 +23,7 @@ function numOfDays($date,$time="00:00:00"){
 	return $age;
 }
 
-function mailUserTicketReply($adm_login,$subject,$body,$closed="no"){
+function mailUserTicketReply($adm_login,$hash,$subject,$body,$closed="no"){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_client_table;
 	global $conf_webmaster_email_addr;
@@ -31,6 +31,17 @@ function mailUserTicketReply($adm_login,$subject,$body,$closed="no"){
 
 	global $conf_message_subject_header;
 	global $conf_main_domain;
+
+	global $conf_support_ticket_email;
+	global $conf_support_ticket_domain;
+	global $conf_recipient_delimiter;
+	global $conf_main_domain;
+
+	if($conf_support_ticket_domain == "default"){
+		$support_domain = $conf_main_domain;
+	}
+
+	$support_email = $conf_support_ticket_email.$conf_recipient_delimiter.$hash."@".$support_domain;
 
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
@@ -46,7 +57,7 @@ function mailUserTicketReply($adm_login,$subject,$body,$closed="no"){
 		return "Admin not found!";
 	}
 	$a = mysql_fetch_array($r);
-	$headers = "From: NO-REPLY-USE-DTC <no-reply@$conf_main_domain>";
+	$headers = "From: $conf_support_ticket_email@$support_domain <$support_email>";
 
 	$content = "Subject: ".stripslashes($subject)."
 
@@ -210,18 +221,18 @@ function drawNewAdminForm(){
 		}
 		if(isset($_REQUEST["answer"]) || isset($_REQUEST["answer_close"])){
 			$q2 = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,subject,text,cat_id,initial_ticket,server_hostname,closed)
-			VALUES ('','".$a["adm_login"]."','".date("Y-m-d")."','".date("H:i:s")."','".$_REQUEST["last_tik_id"]."','0','admin','".$a["subject"]."','".addslashes($_REQUEST["ticketbody"])."','".$a["cat_id"]."','".$a["id"]."','".$a["server_hostname"]."','$closed');";
+			VALUES ('','".$a["adm_login"]."','".date("Y-m-d")."','".date("H:i:s")."','".$_REQUEST["last_tik_id"]."','0','admin','".$a["subject"]."','".addslashes($_REQUEST["ticketbody"])."','".$a["cat_id"]."','no','".$a["server_hostname"]."','$closed');";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$ins_id = mysql_insert_id();
 			$q2 = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$ins_id' WHERE id='".$_REQUEST["last_tik_id"]."';";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$out .= "Ticket reply sent!<br>";
-			mailUserTicketReply($a["adm_login"],$a["subject"],$_REQUEST["ticketbody"],$closed);
+			mailUserTicketReply($a["adm_login"],$a["hash"],$a["subject"],$_REQUEST["ticketbody"],$closed);
 		}
 		if($closed == "yes"){
 			$q2 = "UPDATE $pro_mysql_tik_queries_table SET closed='yes' WHERE id='".$_REQUEST["tik_id"]."';";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-			mailUserTicketReply($a["adm_login"],"The ticket has been closed (without text reply)","The ticket has been closed (without text reply)");
+			mailUserTicketReply($a["adm_login"],$a["hash"],"The ticket has been closed (without text reply)","The ticket has been closed (without text reply)");
 		}
 	}
 

@@ -1,5 +1,9 @@
 <?php
 
+function findLastTicketID($hash){
+	$q = "SELECT ";
+}
+
 function getCustomizableMessage($file_name){
 	if(file_exists("/etc/dtc/$file_name")){
 		$fname = "/etc/dtc/$file_name";
