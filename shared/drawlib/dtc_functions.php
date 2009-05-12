@@ -1,5 +1,18 @@
 <?php
 
+// Create a random hash, making sure that it doesn't exists in the DB already
+function createSupportHash(){
+	global $pro_mysql_tik_queries_table;
+	$n = 1;
+	while($n != 0){
+		$hash = getRandomValue();
+		$q = "SELECT id FROM $pro_mysql_tik_queries_table WHERE hash='$hash';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+	}
+	return $hash;
+}
+
 // Returns 0 if not found, a valid ID otherwise
 function findLastTicketID($hash){
 	global $pro_mysql_tik_queries_table;

@@ -33,7 +33,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_ticket"){
 	if( strlen($_REQUEST["subject"]) == 0){
 		echo _("Subject line empty: cannot send ticket!");
 	}else{
-		$hash = getRandomValue();
+		$hash = createSupportHash();
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,subject,text,cat_id,initial_ticket,server_hostname,hash)
 		VALUES ('','$adm_login','".date("Y-m-d")."','".date("H:i:s")."','".addslashes($_REQUEST["subject"])."','".addslashes($_REQUEST["ticketbody"])."','".addslashes($_REQUEST["issue_cat_id"])."','yes','".addslashes($_REQUEST["server_hostname"])."','$hash');";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());

@@ -431,7 +431,12 @@ dtcFromOkDraw()."
 <tr><td>". _("Login") ."</td><td>". _("Age") ."</td><td>". _("Type") ."</td><td>". _("Subject") ."</td><td>". _("Last message from"). "</td><td>" ._("Last message age"). "</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
-			$waiting_new_users .= "<tr><td>".$a["adm_login"]."</td>";
+			if( strlen($a["customer_email"]) != 0){
+				$who = $a["customer_email"];
+			}else{
+				$who = $a["adm_login"];
+			}
+			$waiting_new_users .= "<tr><td>$who</td>";
 			$q2 = "SELECT * FROM $pro_mysql_tik_cats_table WHERE id='".$a["cat_id"]."'";
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
