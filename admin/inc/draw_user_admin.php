@@ -1,9 +1,4 @@
 <?php
-/**
- * @package DTC
- * @version $id:$
- * @return new admin menu
- */
 
 function calculateAge($date,$time){
 	$exp_date = explode("-",$date);
@@ -433,6 +428,9 @@ dtcFromOkDraw()."
 			$a = mysql_fetch_array($r);
 			if( strlen($a["customer_email"]) != 0){
 				$who = $a["customer_email"];
+				if( strlen($a["adm_login"]) != 0){
+					$who .= " / ".$a["adm_login"];
+				}
 			}else{
 				$who = $a["adm_login"];
 			}

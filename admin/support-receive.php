@@ -58,20 +58,15 @@ if( !isset($conf_support_ticket_domain) || $conf_support_ticket_domain == "defau
 }
 $tik_regexp = '^' . $conf_support_ticket_email . "[-+]([a-f0-9]*)@" . $tik_domain . '$';
 
-echo "Regexp: $tik_regexp, To: $email_to\n";
-
 // Check if the To: has the support ID number in it
 // emails are sent to something like: support-3bc8212a0@dtc.example.com
 // and that a record really exists for it
 if( ereg($tik_regexp,$email_to) ){
 	// If the To: match an existing ID of a previous ticket, then we should search for that ticket
-	echo "An old ticket? Searching the ID...\n";
 	$start = strlen($conf_support_ticket_email) + 1;
 	$end = strlen($email_to) - $start - strlen($tik_domain) - 1; // Size of the email - size of "support+" - size of "@domain.tld"
 	$ticket_hash = substr($email_to,$start,$end);
-	echo "Ticket hash: $ticket_hash\n";
 	if( isRandomNum($ticket_hash) ){
-		echo "Hash is random num, searching...\n";
 		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE hash='$ticket_hash';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
@@ -86,6 +81,7 @@ if( ereg($tik_regexp,$email_to) ){
 				$new_id = mysql_insert_id();
 				$q = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$new_id' WHERE id='$last_id';";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				mailTicketToAllAdmins($start_tik["subject"],$stt->body);
 				exit(0);
 			}
 		}
@@ -107,6 +103,7 @@ if($n == 1){
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject)
 		VALUES('','".$adm["adm_login"]."','".date('Y-m-d')."','".date('H-m-i')."','0','0','user','". mysql_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_escape_string($stt->headers["subject"]) ."');";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		mailTicketToAllAdmins($stt->headers["subject"],$stt->body);
 		exit(0);
 	}
 // If nothing matches, then we want to create a new ticket associated with
@@ -115,6 +112,7 @@ if($n == 1){
 	$q = "INSERT INTO $pro_mysql_tik_queries_table (id,customer_email,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject)
 	VALUES('','$email_from','".date('Y-m-d')."','".date('H-m-i')."','0','0','user','". mysql_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_escape_string($stt->headers["subject"]) ."');";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	mailTicketToAllAdmins($stt->headers["subject"],$stt->body);
 }
 exit(0);
 

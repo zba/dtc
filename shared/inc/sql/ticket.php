@@ -7,6 +7,10 @@ function mailTicketToAllAdmins($subject,$body){
 	global $conf_message_subject_header;
 	global $adm_login;
 
+	if(isset($_REQUEST["server_hostname"])){
+		$thehostname = "Server host name: ".$_REQUEST["server_hostname"];
+	}
+
 	$q = "SELECT * FROM $pro_mysql_tik_admins_table WHERE available='yes';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -18,7 +22,7 @@ Below is a copy of his message:
 **********
 Subject: ".stripslashes($subject)."
 Admin login: $adm_login
-Server host name: ".$_REQUEST["server_hostname"]."
+$thehostname
 
 ".stripslashes($body)."
 **********
