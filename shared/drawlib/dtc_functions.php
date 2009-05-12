@@ -1,7 +1,30 @@
 <?php
 
+// Returns 0 if not found, a valid ID otherwise
 function findLastTicketID($hash){
-	$q = "SELECT ";
+	global $pro_mysql_tik_queries_table;
+
+	$q = "SELECT id,reply_id FROM $pro_mysql_tik_queries_table WHERE hash='$hash';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		return 0;
+	}
+	$a = mysql_fetch_array($r);
+	if( $a["reply_id"] == 0){
+		return $a["id"];
+	}
+	$i = 100;
+	while($a["reply_id"] != 0 && $i-- != 0){
+		$q = "SELECT id,reply_id FROM $pro_mysql_tik_queries_table WHERE id='".$a["reply_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			return 0;
+		}
+		$a = mysql_fetch_array($r);
+	}
+	return $a["id"];
 }
 
 function getCustomizableMessage($file_name){

@@ -77,6 +77,14 @@ if( ereg($tik_regexp,$email_to) ){
 		$n = mysql_num_rows($r);
 		if($n == 1){
 			// We have a match, we should consider inserting this ticket as a reply...
+			$start_tik = mysql_fetch_array($r);
+			$last_id = findLastTicketID($ticket_hash);
+			$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket)
+			VALUES('','".$start_tik["adm_login"]."','".date('Y-m-d')."','".date('H-m-i')."','$last_id','0','user','". mysql_escape_string($stt->body) ."','no');";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$new_id = mysql_insert_id();
+			$q = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$new_id' WHERE id='$last_id';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			exit(0);
 		}
 	}
