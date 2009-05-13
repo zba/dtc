@@ -160,7 +160,7 @@ function mail_account_generate_postfix(){
 //Mail Group Aliases Start
 			if ( $conf_use_mail_alias_group == "yes" )
 			{
-				if ( $domain["domain_parking"] != "no-parking" )
+				if ( $primary_mx && $domain["domain_parking"] != "no-parking" )
 				{
 					// @domain1 -> @domain2
 					$domains_postmasters_file.= "# Mail Alias Groups for ".$domain["name"]."\n";
