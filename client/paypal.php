@@ -72,7 +72,10 @@ if (!$fp) {
 				logPay("Calling validate()");
 				// validatePaiement($item_number,$refund_amount,"online","paypal",$txn_id,$_POST["payment_gross"]);
 				// This should work better:
-				$refund_amount = $_REQUEST["mc_gross"] - $_REQUEST["mc_fee"];
+				//$refund_amount = $_REQUEST["mc_gross"] - $_REQUEST["mc_fee"];
+				
+				// Ensure amount tally according to cost before adding the paypal fees
+				$refund_amount = $_REQUEST["mc_gross"];
 				validatePaiement(mysql_escape_string($item_number),$refund_amount,"online","paypal",mysql_escape_string($_REQUEST["txn_id"]),mysql_escape_string($_REQUEST["mc_gross"]));
 			}
 		}elseif (strcmp ($res, "INVALID") == 0) {
