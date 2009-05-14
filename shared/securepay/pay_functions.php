@@ -79,17 +79,17 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 			if($vat_rate != 0){
 				$big_total = calculateVATtotal ($total,$vat_rate);
 				$vat = $big_total - $total;
-				$vat_total = "<td>".$vat." ".$secpayconf_currency_letters."</td>";
+				$vat_total = "<td align=\"center\">".$vat." ".$secpayconf_currency_letters."</td>";
 				$total = $big_total;
 			}else{
 				$vat_total = "";
 			}
-			$out .= "<tr><td>".$secpay_modules[$i]["display_icon"]($pay_id,$total,$item_name,$return_url)."</td>";
-			$out .= "<td>".$amount." ".$secpayconf_currency_letters."</td>";
-			$out .= "<td>".$cost." ".$secpayconf_currency_letters."</td>";
+			$out .= "<tr><td align=\"center\">".$secpay_modules[$i]["display_icon"]($pay_id,$total,$item_name,$return_url)."</td>";
+			$out .= "<td align=\"center\">".$amount." ".$secpayconf_currency_letters."</td>";
+			$out .= "<td align=\"center\">".$cost." ".$secpayconf_currency_letters."</td>";
 			$out .= $vat_total;
-			$out .= "<td>".$total." ".$secpayconf_currency_letters."</td>";
-			$out .= "<td>".$secpay_modules[$i]["instant_account"]."</td></tr>\n";
+			$out .= "<td align=\"center\">".$total." ".$secpayconf_currency_letters."</td>";
+			$out .= "<td align=\"center\">".$secpay_modules[$i]["instant_account"]."</td></tr>\n";
 		}
 	}
 
