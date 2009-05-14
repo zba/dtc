@@ -79,16 +79,16 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 			if($vat_rate != 0){
 				$big_total = calculateVATtotal ($total,$vat_rate);
 				$vat = $big_total - $total;
-				$vat_total = "<td align=\"center\">".$vat." ".$secpayconf_currency_letters."</td>";
+				$vat_total = "<td align=\"center\">".number_format($vat, 2)." ".$secpayconf_currency_letters."</td>";
 				$total = $big_total;
 			}else{
 				$vat_total = "";
 			}
 			$out .= "<tr><td align=\"center\">".$secpay_modules[$i]["display_icon"]($pay_id,$total,$item_name,$return_url)."</td>";
-			$out .= "<td align=\"center\">".$amount." ".$secpayconf_currency_letters."</td>";
-			$out .= "<td align=\"center\">".$cost." ".$secpayconf_currency_letters."</td>";
+			$out .= "<td align=\"center\">".number_format($amount, 2)." ".$secpayconf_currency_letters."</td>";
+			$out .= "<td align=\"center\">".number_format($cost, 2)." ".$secpayconf_currency_letters."</td>";
 			$out .= $vat_total;
-			$out .= "<td align=\"center\">".$total." ".$secpayconf_currency_letters."</td>";
+			$out .= "<td align=\"center\">".number_format($total, 2)." ".$secpayconf_currency_letters."</td>";
 			$out .= "<td align=\"center\">".$secpay_modules[$i]["instant_account"]."</td></tr>\n";
 		}
 	}
@@ -159,7 +159,9 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 
 	if($ar["valid"] != "no" && $ar["valid"] != "pending")die(logPay("Paiement already validated in file ".__FILE__." line ".__LINE__));
 	logPay("Ammount paid: $amount_paid");
-	if($amount_paid < $ar["refund_amount"])die(logPay("Amount paid on gateway lower than refund ammount file ".__FILE__." line ".__LINE__));
+	// Ensure the amt paid is inclusive of tax
+	$payable_amt = $ar["refund_amount"] + ( $ar["refund_amount"] * ( $ar["vat_rate"] / 100 ));
+	if($amount_paid < $payable_amt)die(logPay("Amount paid on gateway lower than refund ammount file ".__FILE__." line ".__LINE__));
 	if($total_payed != -1){
 		$cost = $total_payed - $amount_paid;
 		$total = $total_payed;
