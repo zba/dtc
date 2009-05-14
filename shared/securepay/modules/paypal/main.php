@@ -4,7 +4,9 @@
 function paypal_calculate_fee($amount){
 	global $secpayconf_paypal_flat;
 	global $secpayconf_paypal_rate;
-	$total = round((($amount+$secpayconf_paypal_flat+0.005) / (1 - ($secpayconf_paypal_rate/100))+0.005),2);
+	//$total = round((($amount+$secpayconf_paypal_flat+0.005) / (1 - ($secpayconf_paypal_rate/100))+0.005),2);
+	// This will allow 0.00 gateway cost where desird.
+	$total = number_format( $amount + $secpayconf_paypal_flat + ( $amount * ( $secpayconf_paypal_rate / 100 ) ) , 2, ".");
 	return $total;
 }
 
