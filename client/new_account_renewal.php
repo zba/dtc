@@ -57,7 +57,7 @@ function renew_form(){
 	$prod_id = $a["id"];
 
 	$form = "<b><u>". _("Renewal for login:") ."</u></b> ".$_REQUEST["adm_login"]."<br>";
-	$form .= "<b><u>". _("Product to renew:") ."</u></b> ".$a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)<br><br>";
+	$form .= "<b><u>". _("Product to renew:") ."</u></b> ".$a["name"]." (".number_format($a["price_dollar"], 2)." $secpayconf_currency_letters)<br><br>";
 
 	switch($_REQUEST["renew_type"]){
 	case "vps":

@@ -64,7 +64,7 @@ function paynowButton($pay_id,$amount,$item_name,$return_url,$vat_rate=0,$use_re
 	}
 
 	$out = "<table width=\"100%\" height=\"1\">";
-	$out .= "<tr><th>". _("Payment system") ."<br>(". _("click logo to choose payment method") .")</th>
+	$out .= "<tr><th>". _("Payment Method") ."</th>
 	<th width=\"18%\">". _("Amount") ."</th>
 	<th width=\"18%\">". _("Gateway cost") ."</th>
 	$vat_legend
