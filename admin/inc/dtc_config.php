@@ -1469,6 +1469,11 @@ function drawDTCpayConfig(){
 				"legend" => _("PayPal flat fee: "),
 				"type" => "text",
 				"size" => "6"),
+			"paypal_validate_with" => array(
+				"legend" => _("Validate payment if amount is greater or equal to: "),
+				"type" => "radio",
+				"values" => array("total","mc_gross"),
+				"display_replace" => array(_("Grand total"),_("Gross amount"))),
 			"paypal_sandbox" => array(
 				"legend" => _("Use the sandbox test server: "),
 				"type" => "radio",
