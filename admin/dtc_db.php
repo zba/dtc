@@ -922,6 +922,7 @@ $dtc_database = array(
 			"paypal_email" => "varchar(128) NOT NULL default 'palpay@gplhost.com' ",
 			"paypal_sandbox" => "enum('yes','no') NOT NULL default 'no' ",
 			"paypal_sandbox_email" => "varchar(255) NOT NULL ",
+			"paypal_validate_with" => "enum('total','mc_gross') NOT NULL default 'total'",
 			"use_paypal_recurring" => "enum('yes','no') NOT NULL default 'no' ",
 			"use_enets" => "enum('yes','no') NOT NULL default 'no'",
 			"use_enets_test" => "enum('yes','no') NOT NULL default 'yes'",

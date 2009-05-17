@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Use this script to get all the zones from DTC
+
+LOG=YOURLOGINHERE
+PASS=YOURPASSHERE
+DTCURL=dtc.example.com
+
+MKTEMP="mktemp -t"
+WGETOPT="-q --tries=3 --no-check-certificate"
+DESTFILE=/etc/bind/dtc-slavezones.conf
+TMP=`${MKTEMP}`
+
+if wget ${WGETOPT} "https://${DTCURL}/dtc/list_domains.php?login=${LOG}&pass=${PASS}&action=list_dns" --output-document=${TMP} ; then
+	mv ${TMP} ${DESTFILE}
+	chown bind:bind ${DESTFILE}
+	/usr/sbin/rndc reload >/dev/null
+else
+	echo "Error while getting slave zones list!"
+fi

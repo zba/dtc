@@ -58,6 +58,11 @@ if( !isset($conf_support_ticket_domain) || $conf_support_ticket_domain == "defau
 }
 $tik_regexp = '^' . $conf_support_ticket_email . "[-+]([a-f0-9]*)@" . $tik_domain . '$';
 
+// This is to avoid any hacking with support mail looping to itself.
+if( ereg($tik_regexp,$email_from) ){
+	exit(1);
+}
+
 // Check if the To: has the support ID number in it
 // emails are sent to something like: support-3bc8212a0@dtc.example.com
 // and that a record really exists for it
