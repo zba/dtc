@@ -110,11 +110,11 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "modify_dbuser_pass"){
 	}
 	// action=modify_dbuser_pass&dbuser=zigo&db_pass=bla
 	if(!isFtpLogin($_REQUEST["dbuser"])){
-		$submit_err .= $txt_dbsql_incorrect_db_login_form[$lang]."<br>\n";
+		$submit_err .= _("Incorrect MySQL db format: please enter another login and try again.")."<br>\n";
 		$commit_flag = "no";
 	}
 	if(!isDTCPassword($_REQUEST["db_pass"])){
-		$submit_err .= $txt_dbsql_password_are_made_only_with_standards_chars_and_numbers_and_size[$lang]."<br>\n";
+		$submit_err .= _("Incorrect MySQL password format: please enter another login and try again.")."<br>\n";
 		$commit_flag = "no";
 	}
 	if($commit_flag == "yes"){
@@ -122,7 +122,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "modify_dbuser_pass"){
 		$result = mysql_query($query)or die("Cannot execute query \"$query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$num_rows = mysql_num_rows($result);
 		if($num_rows < 1){
-			$submit_err .= $txt_dbsql_no_db_user_by_that_name_exists_in_the_db[$lang]."<br>\n";
+			$submit_err .= _("A MySQL user by that name already exists. Please choose another one.")."<br>\n";
 			$commit_flag = "no";
 		}
 	}
@@ -144,7 +144,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "del_dbuser"){
 	}
 	// action=del_dbuser&dbuser=zigo
 	if(!isFtpLogin($_REQUEST["dbuser"])){
-		$submit_err .= $txt_dbsql_incorrect_db_login_form[$lang]."<br>\n";
+		$submit_err .= _("Incorrect db login form")."<br>\n";
 		$commit_flag = "no";
 	}else{
 		$q = "SELECT * FROM mysql.db WHERE User='".$_REQUEST["dbuser"]."';";
@@ -214,7 +214,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_db_owner"){
 	}
 	// action=change_db_owner&dbname=clem&dbuser=zigo
 	if(!isFtpLogin($_REQUEST["dbuser"])){
-		$submit_err .= $txt_dbsql_incorrect_db_login_form[$lang]."<br>\n";
+		$submit_err .= _("Incorrect MySQL login format: please enter another login and try again.")."<br>\n";
 		$commit_flag = "no";
 	}
 	if(!isDatabase($_REQUEST["dbname"])){
@@ -265,7 +265,7 @@ if(isset($_REQUEST["change_mysql_password"]) && $_REQUEST["change_mysql_password
 
 	if($commit_flag == "yes"){
 		if(!isDTCPassword($_REQUEST["new_mysql_password"])){
-			$submit_err .= $txt_dbsql_password_are_made_only_with_standards_chars_and_numbers_and_size[$lang]."<br>\n";
+			$submit_err .= _("Incorrect MySQL password format: please enter another login and try again.")."<br>\n";
 			$commit_flag = "no";
 		}
 	}
