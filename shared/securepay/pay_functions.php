@@ -161,6 +161,8 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 	logPay("Ammount paid: $amount_paid");
 	// Ensure the amt paid is inclusive of tax
 	$payable_amt = $ar["refund_amount"] + ( $ar["refund_amount"] * ( $ar["vat_rate"] / 100 ));
+	// Round the amount to the nearest 2 decimals
+	$payable_amt = round($payable_amt, 2);
 	if($amount_paid < $payable_amt)die(logPay("Amount paid on gateway lower than refund ammount file ".__FILE__." line ".__LINE__));
 	if($total_payed != -1){
 		$cost = $total_payed - $amount_paid;
