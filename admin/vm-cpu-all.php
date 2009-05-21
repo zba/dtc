@@ -102,7 +102,7 @@ if( isset($_REQUEST["graph"]) ){
 			$plop = "STACK";
 		}
 		$color = $colors[ $i % $num_cols ];
-		$cmd .= "$plop:percentcpuzero$i#$color:cpu-xen".$xen_vps_numbers[$i]." ";
+		$cmd .= "$plop:percentcpuzero$i#$color:xen".substr($all_rrd_files[$i],3,2)." ";
 		$cmd .= "GPRINT:percentcpu$i:'AVERAGE:CPU\:%02.0lf%%\\j' ";
 	}
 //	echo $cmd;

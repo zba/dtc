@@ -106,7 +106,7 @@ if( isset($_REQUEST["graph"]) ){
 			$plop = "STACK";
 		}
 		$color = $colors[ $i % $num_cols ];
-		$cmd .= "$plop:fullnetzero$i#$color:Network\ xen".$xen_vps_numbers[$i]." ";
+		$cmd .= "$plop:fullnetzero$i#$color:Network\ xen".substr($all_rrd_files[$i],3,2)." ";
 		$cmd .= "GPRINT:fullnet$i:'AVERAGE:%02.0lf\\j' ";
 	}
 //	echo $cmd;
