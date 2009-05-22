@@ -235,6 +235,8 @@ function drawNewAdminForm(){
 		if($closed == "yes"){
 			$q2 = "UPDATE $pro_mysql_tik_queries_table SET closed='yes' WHERE id='".$_REQUEST["tik_id"]."';";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		}
+		if( isset($_REQUEST["close"]) ){
 			if( strlen($adm_login) != 0){
 				mailUserTicketReply($client["email"],$a["hash"],"The ticket has been closed (without text reply)","The ticket has been closed (without text reply)",$closed);
 			}
