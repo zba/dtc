@@ -86,6 +86,8 @@ function drawNewAdminForm(){
 	global $conf_site_root_host_path;
 	global $lang;
 
+	global $pro_mysql_admin_table;
+	global $pro_mysql_client_table;
 	global $pro_mysql_new_admin_table;
 	global $pro_mysql_pending_queries_table;
 	global $pro_mysql_pay_table;

@@ -1032,7 +1032,8 @@ $dtc_database = array(
 			"server_hostname" => "varchar(64) NOT NULL default ''",
 			"request_close" => "enum('yes','no') NOT NULL default 'no'",
 			"customer_email" => "varchar(255) NOT NULL default ''",
-			"closed" => "enum('yes','no') NOT NULL default 'no'"
+			"closed" => "enum('yes','no') NOT NULL default 'no'",
+			"hash" => "varchar(32) NOT NULL default ''"
 			),
 		"primary" => "(id)",
 		"index" => array(
