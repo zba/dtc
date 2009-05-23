@@ -9,6 +9,8 @@ function mailTicketToAllAdmins($subject,$body){
 
 	if(isset($_REQUEST["server_hostname"])){
 		$thehostname = "Server host name: ".$_REQUEST["server_hostname"];
+	}else{
+		$thehostname = "";
 	}
 
 	$q = "SELECT * FROM $pro_mysql_tik_admins_table WHERE available='yes';";
