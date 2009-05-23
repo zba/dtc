@@ -21,6 +21,7 @@ function numOfDays($date,$time="00:00:00"){
 function mailUserTicketReply($adm_email,$hash,$subject,$body,$closed="no"){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_client_table;
+	global $pro_mysql_tik_admins_table;
 	global $conf_webmaster_email_addr;
 	global $conf_administrative_site;
 
@@ -79,7 +80,35 @@ $support_email
 ";
 	}
 	mail($adm_email,"$conf_message_subject_header An administrator replied to your support ticket",$content,$headers);
-	mailTicketToAllAdmins("$conf_message_subject_header an administrator replied to a ticket",$content);
+
+	// Mail the ticket reply to all administrators
+	$adm_content = "Subject: ".stripslashes($subject)."
+
+Hello,
+
+An administrator has replied to a support ticket. Below is a copy of
+his reply to the customer:
+
+**********
+$body
+**********
+
+The administrator decided that the issue is:
+
+";
+	if($closed == "no"){
+		$adm_content .= "OPEN TO FURTHER DISCUSSION\n";
+	}else{
+		$adm_content .= "CLOSED\n";
+	}
+
+	$q = "SELECT * FROM $pro_mysql_tik_admins_table WHERE available='yes';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		mail($a["email"],"$conf_message_subject_header An administrator replied to a support ticket",$adm_content,$headers);
+	}
 }
 
 function drawNewAdminForm(){
