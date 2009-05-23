@@ -143,7 +143,7 @@ function drawNewAdminForm(){
 			return _("Cannot find ticket!");
 		}
 		$a = mysql_fetch_array($r);
-		$out .= _("Subject: ") .stripslashes($a["subject"])."<br>";
+		$out .= _("Subject: ") .htmlspecialchars(stripslashes($a["subject"]))."<br>";
 
 		$q2 = "SELECT * FROM $pro_mysql_tik_cats_table WHERE id='".$a["cat_id"]."';";
 		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -178,7 +178,7 @@ function drawNewAdminForm(){
 			}else{
 				$bg = " bgcolor=\"#FFFFAA\" ";
 			}
-			$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".nl2br(stripslashes($a["text"]))."</td></tr>";
+			$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".nl2br(htmlspecialchars(stripslashes($a["text"])))."</td></tr>";
 			if($a["request_close"] == "yes"){
 				$close_request = "yes";
 			}
@@ -459,7 +459,7 @@ dtcFromOkDraw()."
 		}
 		$waiting_new_users .= "</table>";
 	}
-	// Ticket manager
+	// Ticket manager: draw all open tickets
 	$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE closed='no' AND initial_ticket='yes' ORDER BY `date`,`time`;";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -489,7 +489,7 @@ dtcFromOkDraw()."
 				$cat = $a2["catname"];
 			}
 			$age = calculateAge($a["date"],$a["time"]);
-			$waiting_new_users .= "<td style=\"white-space:nowrap;\">$age</td><td>$cat</td><td style=\"white-space:nowrap;\"><a href=\"".$_SERVER["PHP_SELF"]."?subaction=resolv_ticket&tik_id=".$a["id"]."\">".stripslashes($a["subject"])."</a></td>";
+			$waiting_new_users .= "<td style=\"white-space:nowrap;\">$age</td><td>$cat</td><td style=\"white-space:nowrap;\"><a href=\"".$_SERVER["PHP_SELF"]."?subaction=resolv_ticket&tik_id=".$a["id"]."\">".htmlspecialchars(stripslashes($a["subject"]))."</a></td>";
 			$next_reply_id = $a["reply_id"];
 			$last_reply_text = "<font color=\"green\">". _("Admin"). "</font>";
 			$last_message_date = $a["date"];
