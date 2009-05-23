@@ -3072,7 +3072,7 @@ configProftpd () {
 
 			TMP_FILE=`${MKTEMP} DTC_install.proftp.conf.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.30 : Please don't touch this line !" > $TMP_FILE
-			echo "AuthOrder		mod_sql.c mod_auth_pam.c* mod_auth_unix.c" >> $TMP_FILE
+			echo "AuthOrder		mod_sql.c mod_auth_pam.c mod_auth_unix.c" >> $TMP_FILE
 			echo "IdentLookups	off" >> $TMP_FILE
 			echo "DefaultRoot	~" >> $TMP_FILE
 			echo "Include /etc/proftpd/sql-dtc.conf" >> $TMP_FILE
