@@ -51,7 +51,7 @@ $body
 
 ";
 
-	if($closed == "yes"){
+	if($closed == "no"){
 		$content .= "Note that the ticket is still open, meaning we are waiting
 for your answer. So please login to the control panel at the
 following URL:
