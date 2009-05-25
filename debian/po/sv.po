@@ -1,0 +1,11 @@
+--2009-05-25 19:23:26--  http://bugs.debian.org/cgi-bin/bugreport.cgi?msg=5;filename=sv.po;att=2;bug=513778
+Resolving bugs.debian.org... 137.82.84.77, 140.211.166.43
+Connecting to bugs.debian.org|137.82.84.77|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/octet-stream]
+Saving to: `bugreport.cgi?msg=5;filename=sv.po;att=2;bug=513778'
+
+     0K .......... .......... ..                               32.0K=0.7s
+
+2009-05-25 19:23:29 (32.0 KB/s) - `bugreport.cgi?msg=5;filename=sv.po;att=2;bug=513778' saved [23210]
+
