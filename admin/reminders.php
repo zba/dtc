@@ -335,7 +335,7 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 		$headers = "From: ".$conf_webmaster_email_addr;
 		mail($client["email"],"$conf_message_subject_header Your shared hosting expiration",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
-			$subject = $admin["adm_login"] . "'s shared hosting package expired " . $remaining_days . " ago";
+			$subject = $admin["adm_login"] . "'s shared hosting package expired " . -$remaining_days . " ago";
 			mail($conf_webmaster_email_addr,"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		}
 	}
