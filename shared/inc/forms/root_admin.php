@@ -121,7 +121,7 @@ function drawEditAdmin($admin){
 	$prodsid .= "</select>";
 
 	$user_data .= dtcFormLineDraw( _("Path:") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"changed_path\" value=\"$adm_path\">",0);
-	$user_data .= dtcFormLineDraw( _("Client ID:") ,"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"><a href=\"?rub=crm&id=$adm_id_client\">client</a>");
+	$user_data .= dtcFormLineDraw( _("Client ID:") ,"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"><a href=\"?rub=crm&id=$adm_id_client\">"._("client")."</a>");
 	$user_data .= dtcFormLineDraw( _("Disk quota (MB):") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"adm_quota\" value=\"$adm_quota\">",0);
 	$user_data .= dtcFormLineDraw( _("Allowed bandwidth per month (MB):") ,"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"bandwidth_per_month\" value=\"$bandwidth_per_month_mb\">");
 	$user_data .= dtcFormLineDraw( _("Expiry date:") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"expire\" value=\"$expire\">",0);
