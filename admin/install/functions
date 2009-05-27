@@ -2234,9 +2234,11 @@ echo "virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domai
 
 			if [ ""$conf_use_cyrus = "true" ] ; then
 				if [ "$UNIX_TYPE" = "debian" ] ; then
-					echo "virtual_transport = cyrus
-mailbox_transport = cyrus
+					echo "virtual_transport = lmtp:unix:/var/run/cyrus/socket/lmtp
+mailbox_transport = lmtp:unix:/var/run/cyrus/socket/lmtp
 # local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
+					# Fix the master.cf lmtp stuff
+					sed -i "s/lmtp      unix  -       -       -       -       -       lmtp/lmtp      unix  -       -       n       -       -       lmtp/" $TMP_FILE
 				else
 					echo "virtual_transport = cyrus
 mailbox_transport = lmtp:unix:/var/run/socket/lmtp
@@ -2315,6 +2317,8 @@ mech_list: login plain" >> $SASLTMP_FILE
 					if [ "$UNIX_TYPE" = "debian" ] ; then
 						echoIfVerbose "Adding postfix to the sasl group"
 						adduser postfix sasl
+						echoIfVerbose "Adding postfix to the mail group"
+						adduser postfix mail
 					else
 						echo "*** Please add Postfix to the sasl group so it has access to the saslauthd socket"
 					fi
