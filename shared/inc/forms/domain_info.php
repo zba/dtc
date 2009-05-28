@@ -118,6 +118,8 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	$out .= "<input type=\"radio\" name=\"domain_parking_type\" value=\"serveralias\" $serveralias_selected>" ._("ServerAlias")." ";
 	$out .= "<input type=\"image\" src=\"gfx/stock_apply_20.png\"></form>";
 	$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&action=export_domain&addrlink=".$_REQUEST["addrlink"]."\" target=\"_blank\">". _("Export this domain to a file") ."</a>";
+
+	$out .= "<br><br>".helpLink("UserDoc/Domain-General-Config");
 	return $out;
 }
 
