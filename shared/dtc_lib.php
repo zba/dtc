@@ -35,7 +35,11 @@ require("$dtcshared_path/inc/fetchmail.php");
 
 // The soap API to connect to xen servers
 if (!class_exists("nusoapclient")){
-	require_once("$dtcshared_path/inc/nusoap.php");
+	if( file_exists("/usr/share/php/nusoap/nusoap.php")){
+		require_once("/usr/share/php/nusoap/nusoap.php");
+	}else{
+		require_once("$dtcshared_path/inc/nusoap.php");
+	}
 }
 
 // The maxmind API
