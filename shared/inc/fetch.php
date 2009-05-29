@@ -324,12 +324,12 @@ function randomizePassword($adm_login,$adm_input_pass){
 	global $adm_random_pass;
 	global $conf_session_expir_minute;
 
+	global $gettext_lang;
+
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
-	$query = "SELECT * FROM $pro_mysql_admin_table
-WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass'
-OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query ($query);
 	if (!$result)
 	{
@@ -405,6 +405,11 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			return $ret;
 		}
 	}
+	if(isset($gettext_lang) && $panel_type == "client"){
+		$q = "UPDATE $pro_mysql_admin_table SET last_used_lang='$gettext_lang';";
+		$r = mysql_query($q);
+	}
+
 	$adm_pass = $rand;
 	$adm_realpass = $row["adm_pass"];
 }
