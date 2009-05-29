@@ -271,6 +271,44 @@ function HTTP_Post($URL,$data, $referrer=""){
 	return $result;
 }
 
+function HTTP_Get($URL,$data, $referrer=""){
+	$result = "";
+	// parsing the given URL
+	$URL_Info=parse_url($URL);
+
+	// Building referrer
+	if($referrer=="") // if not given use this script as referrer
+		$referrer=$_SERVER["SCRIPT_URI"];
+
+	// making string from $data
+	if (strlen($data)) {
+		foreach($data as $key=>$value)
+			$values[]="$key=".urlencode($value);
+		$data_string=implode("&",$values);
+	} else
+		$data_string='';
+
+	// Find out which port is needed - if not given use standard (=80)
+	if(!isset($URL_Info["port"]))
+		$URL_Info["port"]=80;
+
+	// building POST-request:
+	$request = "";
+	$request.="GET ".$URL_Info["path"]."?".$data_string." HTTP/1.1\n";
+	$request.="Host: ".$URL_Info["host"]."\n";
+	$request.="Referer: $referrer\n";
+	$request.="Connection: close\n";
+	$request.="\n\n";
+
+	$fp = fsockopen($URL_Info["host"],$URL_Info["port"]);
+	fputs($fp, $request);
+	while(!feof($fp)){
+		$result .= fgets($fp, 128);
+	}
+	fclose($fp);
+	return $result;
+}
+
 function logPay($txt){
 //	$fp = fopen("/tmp/paylog.txt","a");
 //	fwrite($fp,$txt."\n");
