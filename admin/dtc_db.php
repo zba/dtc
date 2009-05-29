@@ -28,7 +28,7 @@ $dtc_database = array(
 			"ob_head" => "varchar(64) NOT NULL ",
 			"ob_tail" => "varchar(64) NOT NULL ",
 			"ob_next" => "varchar(64) NOT NULL ",
-			"last_used_lang" => "varchar(32) NOT NULL default 'en_US'",
+			"last_used_lang" => "varchar(32) NOT NULL default 'en_US.UTF-8'",
 			"max_ssh" => "int(12) NOT NULL default '3' "
 			),
 		"primary" => "(adm_login)",

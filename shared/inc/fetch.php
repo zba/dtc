@@ -406,7 +406,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 		}
 	}
 	if(isset($gettext_lang) && $panel_type == "client"){
-		$q = "UPDATE $pro_mysql_admin_table SET last_used_lang='$gettext_lang';";
+		$q = "UPDATE $pro_mysql_admin_table SET last_used_lang='$gettext_lang' WHERE adm_login='$adm_login';";
 		$r = mysql_query($q);
 	}
 
