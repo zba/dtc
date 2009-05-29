@@ -1,5 +1,63 @@
 <?php
 
+// If the admin has en_US.UTF-8, and filename is registration_msg/vps_open,
+// then the function will try to open, in order:
+// * /etc/dtc/registration_msg/vps_open_en_US.UTF-8.txt
+// * /etc/dtc/registration_msg/vps_open_en_US.txt
+// * /etc/dtc/registration_msg/vps_open_en.txt
+// * /etc/dtc/registration_msg/vps_open.txt
+// which ever is found first...
+// Then this is repeated with other folders:
+// /usr/local/www/dtc/etc/ and /usr/share/dtc/etc/
+function readCustomizedMessage($filename,$adm_login){
+	$mylang = findLastUsedLangByUser($adm_login);
+
+	// 1st try /etc/dtc/filename_en_US.UTF-8.txt
+	if( file_exists( "/etc/dtc/" . $filename . "_" . $mylang . ".txt" ) ){
+		$to_open = "/etc/dtc/" . $filename . $mylang . ".txt";
+	// Then /etc/dtc/filename_en_US.txt
+	}else if( file_exists( "/etc/dtc/" . $filename . "_" . substr($mylang,0,5) . ".txt" ) ){
+		$to_open = "/etc/dtc/" . $filename . "_" . substr($mylang,0,5) . ".txt";
+	// Then /etc/dtc/filename_en.txt
+	}else if( file_exists( "/etc/dtc/" . $filename . "_" . substr($mylang,0,2) . ".txt" ) ){
+		$to_open = "/etc/dtc/" . $filename . "_" . substr($mylang,0,2) . ".txt";
+	// then /etc/dtc/filename.txt
+	}else if( file_exists( "/etc/dtc/" . $filename . ".txt" ) ){
+		$to_open = "/etc/dtc/" . $filename . ".txt";
+	// then /usr/local/www/dtc/etc/filename_en_US.UTF-8.txt
+	}else if( file_exists( "/usr/local/www/dtc/etc/" . $filename . "_" . $mylang . ".txt" ) ){
+		$to_open = "/usr/local/www/dtc/etc/" . $filename . "_" . $mylang . ".txt";
+	// then /usr/local/www/dtc/etc/filename_en_US.txt
+	}else if( file_exists( "/usr/local/www/dtc/etc/" . $filename . "_" . substr($mylang,0,5) . ".txt" ) ){
+		$to_open = "/usr/local/www/dtc/etc/" . $filename . "_" . substr($mylang,0,5) . ".txt";
+	// then /usr/local/www/dtc/etc/filename_en.txt
+	}else if( file_exists( "/usr/local/www/dtc/etc/" . $filename . "_" . substr($mylang,0,2) . ".txt" ) ){
+		$to_open = "/usr/local/www/dtc/etc/" . $filename . "_" . substr($mylang,0,2) . ".txt";
+	// then /usr/local/www/dtc/etc/filename.txt
+	}else if( file_exists( "/usr/local/www/dtc/etc/" . $filename . ".txt" ) ){
+		$to_open = "/usr/local/www/dtc/etc/" . $filename . ".txt";
+	// then /usr/share/dtc/etc/filename_en_US.UTF-8.txt
+	}else if( file_exists( "/usr/share/dtc/etc/" . $filename . "_" . $mylang . ".txt" ) ){
+		$to_open = "/usr/share/dtc/etc/" . $filename . "_" . $mylang . ".txt";
+	// then /usr/share/dtc/etc/filename_en_US.txt
+	}else if( file_exists( "/usr/share/dtc/etc/" . $filename . "_" . substr($mylang,0,5) . ".txt" ) ){
+		$to_open = "/usr/share/dtc/etc/" . $filename . "_" . substr($mylang,0,5) . ".txt";
+	// then /usr/share/dtc/etc/filename_en.txt
+	}else if( file_exists( "/usr/share/dtc/etc/" . $filename . "_" . substr($mylang,0,2) . ".txt" ) ){
+		$to_open = "/usr/share/dtc/etc/" . $filename . "_" . substr($mylang,0,2) . ".txt";
+	// then /usr/share/dtc/etc/filename.txt
+	}else if( file_exists( "/usr/share/dtc/etc/" . $filename . ".txt" ) ){
+		$to_open = "/usr/share/dtc/etc/" . $filename . ".txt";
+	// then it means we didn't find the file...
+	}else{
+		return _("Customized message language file not found.");
+	}
+	$fp = fopen($to_open, "r");
+	$content = fread($fp,filesize($to_open));
+	fclose($fp);
+	return $content;
+}
+
 // Create a random hash, making sure that it doesn't exists in the DB already
 function createSupportHash(){
 	global $pro_mysql_tik_queries_table;
@@ -159,7 +217,8 @@ function findLastUsedLangByUser($adm_login){
 			$a = mysql_fetch_array($r);
 			return $a["last_used_lang"];
 		}else{
-			return false;
+			// Fallback to default english...
+			return "en_US.UTF-8";
 		}
 	}
 }

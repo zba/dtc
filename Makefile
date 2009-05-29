@@ -319,16 +319,6 @@ admin/tables/vps.sql admin/tables/vps_stats.sql admin/tables/whitelist.sql admin
 admin/tables/spent_moneyout.sql  admin/tables/spent_providers.sql  admin/tables/spent_type.sql admin/tables/spent_bank.sql
 
 ##################### ETC FILES #########################
-TEXT_MESSAGES=reminders_msg/server_expired_already.txt reminders_msg/server_expired_last_warning.txt \
-reminders_msg/server_expired_shutdown.txt reminders_msg/server_expired_today.txt reminders_msg/server_will_expire.txt \
-reminders_msg/shared_expired_already.txt reminders_msg/shared_expired_last_warning.txt reminders_msg/shared_expired_shutdown.txt \
-reminders_msg/shared_expired_today.txt reminders_msg/shared_will_expire.txt reminders_msg/vps_expired_already.txt \
-reminders_msg/vps_expired_last_warning.txt reminders_msg/vps_expired_shutdown.txt reminders_msg/vps_expired_today.txt \
-reminders_msg/vps_will_expire.txt \
-registration_msg/dedicated_open.txt registration_msg/shared_open.txt registration_msg/vps_open.txt \
-signature.txt messages_header.txt \
-logrotate.template
-
 CREATE_DIRS=admin/inc admin/genfiles admin/dtcrm admin/queuegraph admin/memgraph admin/netusegraph admin/cpugraph admin/install admin/tables \
 shared/gfx/menu shared/gfx/bar shared/gfx/skin/bwoup/gfx/buttons shared/gfx/dtc shared/gfx/pagetop \
 shared/gfx/securepay shared/gfx/language/en/pub shared/gfx/language/fr/pub shared/gfx/language/ru/pub shared/gfx/language/nl/pub \
@@ -417,9 +407,8 @@ install-dtc-common:
 	$(INSTALL) -m $(NORMAL_FOLDER) -d $(GENFILES_DIRECTORY)/etc/zones $(GENFILES_DIRECTORY)/etc/slave_zones 
 
 	# Create the configuration folder
-	mkdir -p $(DTC_ETC_DIRECTORY)/reminders_msg
-	mkdir -p $(DTC_ETC_DIRECTORY)/registration_msg
-	for i in $(TEXT_MESSAGES) ; do $(INSTALL) -m $(PHP_RIGHTS) etc/dtc/$$i $(DTC_ETC_DIRECTORY)/$$i ; done
+	mkdir -p $(DTC_ETC_DIRECTORY)
+	cp -auxf etc/dtc/* $(DTC_ETC_DIRECTORY)
 
 	# Doc dir
 	$(INSTALL) -m $(NORMAL_FOLDER) -d $(DOC_DIR)

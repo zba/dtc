@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
 "Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
-"POT-Creation-Date: 2008-05-07 16:21+0800\n"
+"POT-Creation-Date: 2009-05-29 19:47+0800\n"
 "PO-Revision-Date: 2008-03-29 23:49+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
@@ -51,8 +51,8 @@ msgid ""
 msgstr ""
 "Trong mọi trường hợp đều, hãy kiểm tra xem mật khẩu người chủ đã được đặt "
 "cho MySQL. Mặc định là Debian cài đặt nó với mật khẩu trống. Để đặt mật khẩu "
-"người chủ MySQL, chạy câu lệnh « dpkg-reconfigure mysql-server-5.0 ». Hãy "
-"cẩn thận khi sử dụng câu lệnh này."
+"người chủ MySQL, chạy câu lệnh « dpkg-reconfigure mysql-server-5.0 ». Hãy cẩn "
+"thận khi sử dụng câu lệnh này."
 
 #. Type: string
 #. Description
@@ -391,8 +391,7 @@ msgid ""
 "the certificate, you need to remove all the files in /usr/share/dtc/etc/ssl."
 msgstr ""
 "Chứng nhận đã tạo trước sẽ không bao giờ bị ghi đè. Để tạo lại chứng nhận, "
-"bạn cần phải gỡ bỏ tất cả các tập tin khỏi thư mục « /usr/share/dtc/etc/ssl "
-"»."
+"bạn cần phải gỡ bỏ tất cả các tập tin khỏi thư mục « /usr/share/dtc/etc/ssl »."
 
 #. Type: password
 #. Description
@@ -452,35 +451,15 @@ msgstr "Địa chỉ thư điện tử cho chứng nhận SSL DTC:"
 msgid "DTC SSL certificate challenge password:"
 msgstr "Mật khẩu đáp ứng cho chứng nhận SSL DTC:"
 
-#. Type: boolean
-#. Description
-#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
-msgid "Update PEAR installation?"
-msgstr "Nâng cấp bản cài đặt PEAR không?"
-
-#. Type: boolean
-#. Description
-#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
-msgid ""
-"DTC can check the PEAR installation during its own installation process. "
-"This requires your server to be connected to the network. If you can't do so "
-"here, please check whether the Crypt_CBC and Auth_SASL PEAR modules are up-"
-"to-date. The relevant files are located in /usr/share/php."
-msgstr ""
-"DTC có khả năng kiểm tra bản cài đặt PEAR trong khi tự cài đặt. Tiến trình "
-"này cần thiết máy phục vụ của bạn có kết nối đến mạng. Gặp lỗi thì kiểm tra "
-"nếu hai mô-đun PEAR Crypt_CBC và Auth_SAS là hiện thời chưa. Các tập tin "
-"thích hợp nằm trong thư mục « /usr/share/php »."
-
 #. Type: string
 #. Description
-#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid "DNSBL (DNS BlackList) list:"
 msgstr "Danh sách DNSBL (DNS bị cấm):"
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid ""
 "Please enter the list of preferred DNSBL servers to add to your Postfix mail "
 "server configuration."
@@ -490,13 +469,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid "Local address extension character:"
 msgstr "Ký tự mở rộng địa chỉ cục bộ :"
 
 #. Type: select
 #. Description
-#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid ""
 "Please choose the character that will be used to define a local address "
 "extension. This MUST match what you have set in your postfix or qmail setup."
@@ -506,7 +485,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid ""
 "The recipient delimiter will be used for your mailing lists. Let's say you "
 "use the + char as delimiter, then your users will have to send a mail to list"
@@ -516,8 +495,8 @@ msgid ""
 "able to use an email of the form john-doe@example.com as - is the delimiter."
 msgstr ""
 "Dấu tách người nhận sẽ được dùng cho các hộp thư chung. Chẳng hạn, nếu bạn "
-"dùng dấu cộng « + » làm dấu tách thì các người dùng sẽ cần phải gửi thư cho "
-"« list+subscribe@máy.com ». Sự bất lợi khi chọn dấu cộng là một số MTA không "
+"dùng dấu cộng « + » làm dấu tách thì các người dùng sẽ cần phải gửi thư cho « "
+"list+subscribe@máy.com ». Sự bất lợi khi chọn dấu cộng là một số MTA không "
 "cho phép gửi thư chứa ký tự này trong địa chỉ người nhận (tức là một số đắp "
 "vá Qmail không tương thích), nhưng khi dùng dấu trừ « - » làm dấu tách, bạn "
 "sẽ không thể sử dụng địa chỉ thư có dạng « nguyen-van@máy.com » vì dấu trừ "
@@ -525,13 +504,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Subdomain name for the MX server:"
 msgstr "Tên miền phụ cho trình phục vụ MX:"
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid ""
 "Your mail server will need to use a subdomain name to accept mail. This "
 "subdomain will be configured in your mail server and your domain name server "
@@ -543,13 +522,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Network devices to monitor:"
 msgstr "Thiết bị mạng cần theo dõi:"
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid ""
 "Please enter all the network devices you wish to be monitored by the RRDTool "
 "graphing utility."
@@ -558,13 +537,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid "Allow to report anonymous statistics to GPLHost?"
 msgstr "Cho phép thông báo thống kê vô danh cho GPLHost không?"
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid ""
 "DTC installations can be reported to the GPLHost web site. The only "
 "collected data are the operating system name (Debian) and the IP address "
@@ -578,13 +557,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid "Skip mknod calls when building the chroot template?"
 msgstr "Bỏ qua cuộc gọi mknod khi xây dựng mẫu chroot không?"
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid ""
 "In some environments, such as Linux vServer, mknod cannot be executed. This "
 "option allows skipping the creation of the null, random and urandom devices "
@@ -605,7 +584,21 @@ msgid ""
 "using dtc-postfix-courier instead."
 msgstr ""
 "Cyrus là một phần mềm thay thế sự phát và chứa của Maildir. Để dùng Cyrus, "
-"tuy nhiên, bạn cần phải quen với trường hợp này. Nếu bạn dùng « dtc-toaster "
-"» hoặc « dtc-postfix-courier », bạn cũng không thể dùng Cyrus. Chỉ có thể "
-"dùng Cyrus với gói dtc, KHÔNG PHẢI nếu bạn dùng « dtc-postfix-courier » thay "
-"vào đó."
+"tuy nhiên, bạn cần phải quen với trường hợp này. Nếu bạn dùng « dtc-toaster » "
+"hoặc « dtc-postfix-courier », bạn cũng không thể dùng Cyrus. Chỉ có thể dùng "
+"Cyrus với gói dtc, KHÔNG PHẢI nếu bạn dùng « dtc-postfix-courier » thay vào "
+"đó."
+
+#~ msgid "Update PEAR installation?"
+#~ msgstr "Nâng cấp bản cài đặt PEAR không?"
+
+#~ msgid ""
+#~ "DTC can check the PEAR installation during its own installation process. "
+#~ "This requires your server to be connected to the network. If you can't do "
+#~ "so here, please check whether the Crypt_CBC and Auth_SASL PEAR modules "
+#~ "are up-to-date. The relevant files are located in /usr/share/php."
+#~ msgstr ""
+#~ "DTC có khả năng kiểm tra bản cài đặt PEAR trong khi tự cài đặt. Tiến "
+#~ "trình này cần thiết máy phục vụ của bạn có kết nối đến mạng. Gặp lỗi thì "
+#~ "kiểm tra nếu hai mô-đun PEAR Crypt_CBC và Auth_SAS là hiện thời chưa. Các "
+#~ "tập tin thích hợp nằm trong thư mục « /usr/share/php »."

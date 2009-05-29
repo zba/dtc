@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc 0.29.1-1\n"
 "Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
-"POT-Creation-Date: 2008-05-07 16:21+0800\n"
+"POT-Creation-Date: 2009-05-29 19:47+0800\n"
 "PO-Revision-Date: 2008-03-18 21:13+0200\n"
 "Last-Translator: Esko Arajärvi <edu@iki.fi>\n"
 "Language-Team: Finnish <debian-l10n-finnish@lists.debian.org>\n"
@@ -446,35 +446,15 @@ msgstr "DTC:n SSL-varmenteen sähköpostiosoite:"
 msgid "DTC SSL certificate challenge password:"
 msgstr "DTC:n SSL-varmenteen haastesalasana:"
 
-#. Type: boolean
-#. Description
-#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
-msgid "Update PEAR installation?"
-msgstr "Päivitetäänkö PEAR-asennus?"
-
-#. Type: boolean
-#. Description
-#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
-msgid ""
-"DTC can check the PEAR installation during its own installation process. "
-"This requires your server to be connected to the network. If you can't do so "
-"here, please check whether the Crypt_CBC and Auth_SASL PEAR modules are up-"
-"to-date. The relevant files are located in /usr/share/php."
-msgstr ""
-"DTC voi tarkistaa PEAR-asennuksen oman asennusprosessinsa aikana. Tämä "
-"vaatii, että palvelin on yhdistettynä verkkoon. Jos et voi tehdä tarkistusta "
-"tässä, tarkista, että PEAR-moduulit Crypt_CBC ja Auth_SASL ovat ajantasalla. "
-"Olennaiset tiedostot ovat hakemistossa /usr/share/php."
-
 #. Type: string
 #. Description
-#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid "DNSBL (DNS BlackList) list:"
 msgstr "DNSBL-lista (DNS-palvelimien musta lista):"
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid ""
 "Please enter the list of preferred DNSBL servers to add to your Postfix mail "
 "server configuration."
@@ -484,13 +464,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid "Local address extension character:"
 msgstr "Paikallisen osoitelaajennoksen merkki:"
 
 #. Type: select
 #. Description
-#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid ""
 "Please choose the character that will be used to define a local address "
 "extension. This MUST match what you have set in your postfix or qmail setup."
@@ -500,7 +480,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid ""
 "The recipient delimiter will be used for your mailing lists. Let's say you "
 "use the + char as delimiter, then your users will have to send a mail to list"
@@ -519,13 +499,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Subdomain name for the MX server:"
 msgstr "MX-palvelimen aliverkkoaluenimi:"
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid ""
 "Your mail server will need to use a subdomain name to accept mail. This "
 "subdomain will be configured in your mail server and your domain name server "
@@ -538,13 +518,13 @@ msgstr ""
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Network devices to monitor:"
 msgstr "Tarkkailtavat verkkolaitteet:"
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid ""
 "Please enter all the network devices you wish to be monitored by the RRDTool "
 "graphing utility."
@@ -554,13 +534,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid "Allow to report anonymous statistics to GPLHost?"
 msgstr "Sallitaanko nimettömien tilastojen lähetys GPLHostille?"
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid ""
 "DTC installations can be reported to the GPLHost web site. The only "
 "collected data are the operating system name (Debian) and the IP address "
@@ -574,13 +554,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid "Skip mknod calls when building the chroot template?"
 msgstr "Ohitetaanko mknod-kutsut rakennettaessa chroot-mallia?"
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid ""
 "In some environments, such as Linux vServer, mknod cannot be executed. This "
 "option allows skipping the creation of the null, random and urandom devices "
@@ -605,3 +585,17 @@ msgstr ""
 "toaster tai dtc-postfix-courier, älä valitse Cyrusia käyttöön tässä. Cyrus "
 "on käyttökelpoinen vain paketin dtc kanssa, eikä sitä voi käyttää, jos "
 "käytät pakettia dtc-postfix-courier."
+
+#~ msgid "Update PEAR installation?"
+#~ msgstr "Päivitetäänkö PEAR-asennus?"
+
+#~ msgid ""
+#~ "DTC can check the PEAR installation during its own installation process. "
+#~ "This requires your server to be connected to the network. If you can't do "
+#~ "so here, please check whether the Crypt_CBC and Auth_SASL PEAR modules "
+#~ "are up-to-date. The relevant files are located in /usr/share/php."
+#~ msgstr ""
+#~ "DTC voi tarkistaa PEAR-asennuksen oman asennusprosessinsa aikana. Tämä "
+#~ "vaatii, että palvelin on yhdistettynä verkkoon. Jos et voi tehdä "
+#~ "tarkistusta tässä, tarkista, että PEAR-moduulit Crypt_CBC ja Auth_SASL "
+#~ "ovat ajantasalla. Olennaiset tiedostot ovat hakemistossa /usr/share/php."

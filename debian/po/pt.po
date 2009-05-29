@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc 0.25.1-1\n"
 "Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
-"POT-Creation-Date: 2008-06-03 23:19+0200\n"
+"POT-Creation-Date: 2009-05-29 19:47+0800\n"
 "PO-Revision-Date: 2008-06-20 09:34+0100\n"
 "Last-Translator: Ricardo Silva <ardoric@gmail.com>\n"
 "Language-Team: Portuguese <traduz@debianpt.org>\n"
@@ -34,12 +34,11 @@ msgid ""
 "to use a remote database server)."
 msgstr ""
 "O DTC pode usar o ficheiro /etc/mysql/debian.cnf para criar automaticamente "
-"uma conta de super-utilizador do mysql para o DTC aceder e gerir a sua "
-"base de dados. Desta forma, não será colocada nenhuma questão sobre a palavra-"
-"chave de super-utilizador do MySQL, e tudo será automático, mas a contrapartida "
-"é que o servidor de MySQL usado será sempre o da máquina local (não poderá "
-"configurar o DTC para usar um servidor de bases de dados remoto)."
-
+"uma conta de super-utilizador do mysql para o DTC aceder e gerir a sua base "
+"de dados. Desta forma, não será colocada nenhuma questão sobre a palavra-"
+"chave de super-utilizador do MySQL, e tudo será automático, mas a "
+"contrapartida é que o servidor de MySQL usado será sempre o da máquina local "
+"(não poderá configurar o DTC para usar um servidor de bases de dados remoto)."
 
 #. Type: boolean
 #. Description
@@ -51,9 +50,10 @@ msgid ""
 "You've been warned!"
 msgstr ""
 "De qualquer das formas, por favor certifique-se que tem uma palavra-passe de "
-"super-utilizador no MySQL. Por omissão a Debian instala o MySQL com uma palavra-"
-"chave em branco. Para definir a sua palavra-chave de super-utilizador do MySQL "
-"corra o seguinte comando: dpkg-reconfigura mysql-server-5.0. Você foi avisado."
+"super-utilizador no MySQL. Por omissão a Debian instala o MySQL com uma "
+"palavra-chave em branco. Para definir a sua palavra-chave de super-"
+"utilizador do MySQL corra o seguinte comando: dpkg-reconfigura mysql-server-"
+"5.0. Você foi avisado."
 
 #. Type: string
 #. Description
@@ -459,35 +459,15 @@ msgstr "Endereço de email para o certificado SSL do DTC:"
 msgid "DTC SSL certificate challenge password:"
 msgstr "Palavra-chave de desafio do certificado SSL do DTC:"
 
-#. Type: boolean
-#. Description
-#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
-msgid "Update PEAR installation?"
-msgstr "Actualizar a instalação do PEAR?"
-
-#. Type: boolean
-#. Description
-#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
-msgid ""
-"DTC can check the PEAR installation during its own installation process. "
-"This requires your server to be connected to the network. If you can't do so "
-"here, please check whether the Crypt_CBC and Auth_SASL PEAR modules are up-"
-"to-date. The relevant files are located in /usr/share/php."
-msgstr ""
-"O DTC pode verificar a instalação do PEAR durante o seu próprio processo de "
-"instalação. Isto precisa que o servidor esteja ligado à rede. Se não o pode "
-"fazer aqui, por favor verifique se os módulos Crypt_CBC e Auth_SASL do PEAR "
-"estão actualizados. Os ficheiros relevantes estão em /usr/share/php."
-
 #. Type: string
 #. Description
-#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid "DNSBL (DNS BlackList) list:"
 msgstr "Lista DNSBL (DNS BlackList):"
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid ""
 "Please enter the list of preferred DNSBL servers to add to your Postfix mail "
 "server configuration."
@@ -497,24 +477,24 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid "Local address extension character:"
 msgstr "Caracter de extensão de um endereço local:"
 
 #. Type: select
 #. Description
-#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid ""
 "Please choose the character that will be used to define a local address "
 "extension. This MUST match what you have set in your postfix or qmail setup."
 msgstr ""
-"Por favor escolha o caracter que será usado para definir uma extensão de "
-"um endereço local. Este caracter TEM de ser igual ao que definiu na sua "
+"Por favor escolha o caracter que será usado para definir uma extensão de um "
+"endereço local. Este caracter TEM de ser igual ao que definiu na sua "
 "configuração do postfix ou do qmail."
 
 #. Type: select
 #. Description
-#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid ""
 "The recipient delimiter will be used for your mailing lists. Let's say you "
 "use the + char as delimiter, then your users will have to send a mail to list"
@@ -523,42 +503,42 @@ msgid ""
 "patches are incompatibles), but when using - as delimiter, you will not be "
 "able to use an email of the form john-doe@example.com as - is the delimiter."
 msgstr ""
-"O delimitador do receptor irá ser utilizado nas suas listas de correio electrónico. "
-"Imaginemos que usa o caracter + como delimitador, então os seus utilizadores terão "
-"de enviar correio para a list+subscribe@example.com. A contrapartida de escolher + "
-"é que alguns servidores de correio electrónico não permitem o uso deste caracter no "
-"receptor (nomeadamente algumas patches do qmail são incompatíveis), mas se usar - "
-"como delimitador, não poderá usar um email com a forma ze-dos-pipos@exemplo.com já "
-"que o - é o delimitador."
+"O delimitador do receptor irá ser utilizado nas suas listas de correio "
+"electrónico. Imaginemos que usa o caracter + como delimitador, então os seus "
+"utilizadores terão de enviar correio para a list+subscribe@example.com. A "
+"contrapartida de escolher + é que alguns servidores de correio electrónico "
+"não permitem o uso deste caracter no receptor (nomeadamente algumas patches "
+"do qmail são incompatíveis), mas se usar - como delimitador, não poderá usar "
+"um email com a forma ze-dos-pipos@exemplo.com já que o - é o delimitador."
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Subdomain name for the MX server:"
 msgstr "Nome do sub-domínio do servidor MX:"
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid ""
 "Your mail server will need to use a subdomain name to accept mail. This "
 "subdomain will be configured in your mail server and your domain name server "
 "by DTC. Any name is ok here."
 msgstr ""
-"O seu servidor de correio electrónico precisará de usar um nome de sub-domínio "
-"para poder aceitar correio. Este sub-domínio será configurado no seu servidor de "
-"correio electrónico e no seu servidor de nomes de domínio pelo DTC. Qualquer nome "
-"estará bem aqui."
+"O seu servidor de correio electrónico precisará de usar um nome de sub-"
+"domínio para poder aceitar correio. Este sub-domínio será configurado no seu "
+"servidor de correio electrónico e no seu servidor de nomes de domínio pelo "
+"DTC. Qualquer nome estará bem aqui."
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Network devices to monitor:"
 msgstr "Dispositivos rede a monitorizar:"
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid ""
 "Please enter all the network devices you wish to be monitored by the RRDTool "
 "graphing utility."
@@ -568,13 +548,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid "Allow to report anonymous statistics to GPLHost?"
 msgstr "Permitir envio de estatísticas anónimas para GPLHost?"
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid ""
 "DTC installations can be reported to the GPLHost web site. The only "
 "collected data are the operating system name (Debian) and the IP address "
@@ -588,13 +568,13 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid "Skip mknod calls when building the chroot template?"
 msgstr "Saltar chamadas ao mknod durante a construção do template chroot?"
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid ""
 "In some environments, such as Linux vServer, mknod cannot be executed. This "
 "option allows skipping the creation of the null, random and urandom devices "
@@ -616,6 +596,21 @@ msgid ""
 msgstr ""
 "Cyrus é um substituto para o sistema Maildir de entrega e armazenamento. Tem "
 "de saber o que está a fazer se quiser activar o uso do Cyrus. Se está a usar "
-"o dtc-toaster ou o dtc-postfix-courier, tem de responder para não usar o Cyrus "
-"aqui. O Cyrus só é utilizável com o pacote dtc e NÃO o é se estiver a usar o "
-"pacote dtc-postfix-courier."
+"o dtc-toaster ou o dtc-postfix-courier, tem de responder para não usar o "
+"Cyrus aqui. O Cyrus só é utilizável com o pacote dtc e NÃO o é se estiver a "
+"usar o pacote dtc-postfix-courier."
+
+#~ msgid "Update PEAR installation?"
+#~ msgstr "Actualizar a instalação do PEAR?"
+
+#~ msgid ""
+#~ "DTC can check the PEAR installation during its own installation process. "
+#~ "This requires your server to be connected to the network. If you can't do "
+#~ "so here, please check whether the Crypt_CBC and Auth_SASL PEAR modules "
+#~ "are up-to-date. The relevant files are located in /usr/share/php."
+#~ msgstr ""
+#~ "O DTC pode verificar a instalação do PEAR durante o seu próprio processo "
+#~ "de instalação. Isto precisa que o servidor esteja ligado à rede. Se não o "
+#~ "pode fazer aqui, por favor verifique se os módulos Crypt_CBC e Auth_SASL "
+#~ "do PEAR estão actualizados. Os ficheiros relevantes estão em /usr/share/"
+#~ "php."
