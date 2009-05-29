@@ -674,7 +674,7 @@ $dtc_database = array(
 			"date" => "date NOT NULL default '0000-00-00'",
 			"time" => "time NOT NULL default '00:00:00'",
 			"maxmind_output" => "text NOT NULL",
-			"last_used_lang" => "varchar(32) NOT NULL default 'en_US'",
+			"last_used_lang" => "varchar(32) NOT NULL default 'en_US.UTF-8'",
 			"add_service" => "enum('yes','no') NOT NULL default 'no'"
 			),
 		"primary" => "(id)"

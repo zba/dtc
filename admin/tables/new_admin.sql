@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS new_admin (
   shopper_ip varchar(16) NOT NULL default '',
   `date` date NOT NULL default '0000-00-00',
   `time` time NOT NULL default '00:00:00',
-  last_used_lang varchar(32) NOT NULL default 'en_US',
+  last_used_lang varchar(32) NOT NULL default 'en_US.UTF-8',
   add_service enum('yes','no') NOT NULL default 'no',
   PRIMARY KEY  (id)
 ) TYPE=MyISAM;
