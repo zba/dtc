@@ -409,6 +409,7 @@ install-dtc-common:
 	# Create the configuration folder
 	mkdir -p $(DTC_ETC_DIRECTORY)
 	cp -auxf etc/dtc/* $(DTC_ETC_DIRECTORY)
+	rm $(DTC_ETC_DIRECTORY)/dtc-dos-firewall.conf
 
 	# Doc dir
 	$(INSTALL) -m $(NORMAL_FOLDER) -d $(DOC_DIR)
