@@ -324,6 +324,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 	global $adm_random_pass;
 	global $conf_session_expir_minute;
 
+	global $panel_type;
 	global $gettext_lang;
 
 	$ret["err"] = 0;
