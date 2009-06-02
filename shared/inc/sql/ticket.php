@@ -1,6 +1,6 @@
 <?php
 
-function mailTicketToAllAdmins($subject,$body){
+function mailTicketToAllAdmins($subject,$body,$adm_login){
 	global $pro_mysql_tik_admins_table;
 	global $conf_webmaster_email_addr;
 
@@ -30,12 +30,13 @@ $thehostname
 **********
 ";
 		$headers = "From: ".$conf_webmaster_email_addr;
-		mail($a["email"],"$conf_message_subject_header A customer has submitted a support ticket",$content,$headers);
+		mail($a["email"],"$conf_message_subject_header $adm_login has submitted a support ticket",$content,$headers);
 	}
 }
 
 // action=new_ticket&subject=test+subject&server_hostname=test.vpsserver.com%3A01&issue_cat_id=network&ticketbody=I+can%27t+connect+to+my+VPS%21
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_ticket"){
+	checkLoginPass($adm_login,$adm_pass);
 	if( strlen($_REQUEST["subject"]) == 0){
 		echo _("Subject line empty: cannot send ticket!");
 	}else{
@@ -43,11 +44,12 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_ticket"){
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,subject,text,cat_id,initial_ticket,server_hostname,hash)
 		VALUES ('','$adm_login','".date("Y-m-d")."','".date("H:i:s")."','".addslashes($_REQUEST["subject"])."','".addslashes($_REQUEST["ticketbody"])."','".addslashes($_REQUEST["issue_cat_id"])."','yes','".addslashes($_REQUEST["server_hostname"])."','$hash');";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		mailTicketToAllAdmins($_REQUEST["subject"],$_REQUEST["ticketbody"]);
+		mailTicketToAllAdmins($_REQUEST["subject"],$_REQUEST["ticketbody"],$adm_login);
 	}
 }
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_ticket_reply"){
+	checkLoginPass($adm_login,$adm_pass);
 	if(!isRandomNum($_REQUEST["last_tik_id"]) || !isRandomNum($_REQUEST["tik_id"])){
 		echo _("last_tick_id or tik_id is not a number: hacking attempt!");
 	}else{
@@ -62,7 +64,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_ticket_reply"){
 		// Set the initial ticket as reopen in case it was closed
 		$q = "UPDATE $pro_mysql_tik_queries_table SET closed='no' WHERE id='".$_REQUEST["tik_id"]."';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		mailTicketToAllAdmins($_REQUEST["subject"],$_REQUEST["ticketbody"]);
+		mailTicketToAllAdmins($_REQUEST["subject"],$_REQUEST["ticketbody"],$adm_login);
 	}
 }
 
