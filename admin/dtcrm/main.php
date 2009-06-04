@@ -4,8 +4,7 @@ function DTCRMlistClients(){
 	if(isset($_REQUEST["id"]))
 		$id_client = $_REQUEST["id"];
 	global $pro_mysql_client_table;
-	global $pro_mysql_domain_table;
-
+	global $pro_mysql_admin_table;
 
 	// The popup value is stored in the session, let's manage it
 	if(isset($_REQUEST["clientlist_type"]) && $_REQUEST["clientlist_type"] != ""){
