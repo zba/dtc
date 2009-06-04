@@ -2343,7 +2343,7 @@ smtpd_tls_auth_only = no
 			else
 				echoIfVerbose "No saslpasswd2 found"
 				echo "smtpd_recipient_restrictions = permit_mynetworks," >> $TMP_FILE
-				echo "		check_client_access regexp:/etc/postfix/maps/relaying_stoplist" >> $TMP_FILE
+				echo "		check_client_access regexp:/etc/postfix/maps/relaying_stoplist," >> $TMP_FILE
 echo "                               $dnsbl_list
                                reject_unauth_destination" >> $TMP_FILE
 				if [ "$FOUND_DKIMPROXY" -eq 1 ] ; then
@@ -2358,8 +2358,7 @@ smtpd_helo_required = yes
 disable_vrfy_command = yes
 
 smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
-			check_client_access regexp:/etc/postfix/maps/relaying_stoplist
-			permit_sasl_authenticated,
+			check_client_access regexp:/etc/postfix/maps/relaying_stoplist,
 			reject_invalid_hostname,
 			reject_non_fqdn_sender,
 			reject_non_fqdn_recipient,
