@@ -1,5 +1,7 @@
 <?php
 
+require_once("authme.php");
+
 $rrd = '/var/lib/dtc/etc/memusage.rrd';
 $xpoints = 800;
 $ypoints = 160;

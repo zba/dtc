@@ -1320,7 +1320,7 @@ createApacheAdminProtectedDir () {
 	allow from all
 </FilesMatch>
 
-<Files (index.php|bw_per_month.php|deamons_state.php|maint_apache.php|vm-cpu.php|vm-net-all.php|vps_stats_hdd.php|cpugraph.php|logPushlet.php|memgraph.php|view_waitingusers.php|vm-io-all.php|vm-net.php|vps_stats_network.php|mailgraph.php|netusegraph.php|stat_total_active_prods.php|vm-cpu-all.php|vm-io.php|vps_stats_cpu.php|vps_stats_swap.php)>
+<Files (index.php|bw_per_month.php|deamons_state.php|vm-cpu.php|vm-net-all.php|vps_stats_hdd.php|cpugraph.php|logPushlet.php|memgraph.php|view_waitingusers.php|vm-io-all.php|vm-net.php|vps_stats_network.php|mailgraph.php|netusegraph.php|stat_total_active_prods.php|vm-cpu-all.php|vm-io.php|vps_stats_cpu.php|vps_stats_swap.php)>
 	Order allow,deny
 	allow from all
 </Files>

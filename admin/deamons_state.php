@@ -4,6 +4,8 @@ $panel_type = "none";
 require("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
 
+require_once("authme.php");
+
 Function DateDiff ($interval, $date1,$date2) {
 
 	// get the number of seconds between the two dates
