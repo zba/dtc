@@ -1,8 +1,8 @@
 <?php
 
-if( $_SERVER["REQUEST_URI"] != "/dtc/cpugraph.php"){
-	require_once("authme.php");
-}
+$panel_type="admin";
+require_once("../shared/autoSQLconfig.php");
+require_once("authme.php");
 
 $rrd = '/var/lib/dtc/etc/cpu.rrd';
 $xpoints = 800;

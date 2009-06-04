@@ -1,5 +1,7 @@
 <?php
 
+$panel_type="admin";
+require_once("../shared/autoSQLconfig.php");
 require_once("authme.php");
 
 $rrd = '/var/lib/dtc/etc/memusage.rrd';
