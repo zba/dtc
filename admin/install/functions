@@ -2197,6 +2197,9 @@ parent_domain_matches_subdomains=
 # disable mailbox size limit by default (user can add to postfix_config_snippets)
 mailbox_size_limit = 0
 " >> $TMP_FILE
+			if [ ! -e ${PATH_POSTFIX_ETC}/maps/relaying_stoplist ] ; then
+				cp -f ${PATH_DTC_ADMIN}/postfix_checks/relaying_stoplist ${PATH_POSTFIX_ETC}/maps
+			fi
 
 			FOUND_DKIMPROXY=0;
 			if [ -x /usr/sbin/amavisd-new -o -x /usr/local/sbin/amavisd-new -o -x /usr/local/bin/amavisd-new -o -x /usr/sbin/amavisd ] ; then
@@ -2339,8 +2342,9 @@ smtpd_tls_auth_only = no
 "
 			else
 				echoIfVerbose "No saslpasswd2 found"
-				echo "smtpd_recipient_restrictions = permit_mynetworks,
-                               $dnsbl_list
+				echo "smtpd_recipient_restrictions = permit_mynetworks," >> $TMP_FILE
+				echo "		check_client_access regexp:/etc/postfix/maps/relaying_stoplist" >> $TMP_FILE
+echo "                               $dnsbl_list
                                reject_unauth_destination" >> $TMP_FILE
 				if [ "$FOUND_DKIMPROXY" -eq 1 ] ; then
 #				if [ "$FOUND_DKFILTER" -eq 1 ] ; then
@@ -2354,6 +2358,7 @@ smtpd_helo_required = yes
 disable_vrfy_command = yes
 
 smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
+			check_client_access regexp:/etc/postfix/maps/relaying_stoplist
 			permit_sasl_authenticated,
 			reject_invalid_hostname,
 			reject_non_fqdn_sender,
@@ -2548,10 +2553,6 @@ maximal_queue_lifetime = 3d" >> $TMP_FILE
 			fi
 			if [ ! -e ${PATH_POSTFIX_ETC}/maps/header_checks ] ; then
 				cp -f ${PATH_DTC_ADMIN}/postfix_checks/header_checks ${PATH_POSTFIX_ETC}/maps
-			fi
-			#relaying_stoplist missing from here *steveetm*
-			if [ ! -e ${PATH_POSTFIX_ETC}/maps/relaying_stoplist ] ; then
-				cp -f ${PATH_DTC_ADMIN}/postfix_checks/relaying_stoplist ${PATH_POSTFIX_ETC}/maps
 			fi
 			
 			
