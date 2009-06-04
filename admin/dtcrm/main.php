@@ -4,6 +4,7 @@ function DTCRMlistClients(){
 	if(isset($_REQUEST["id"]))
 		$id_client = $_REQUEST["id"];
 	global $pro_mysql_client_table;
+	global $pro_mysql_domain_table;
 
 
 	// The popup value is stored in the session, let's manage it
@@ -41,7 +42,7 @@ function DTCRMlistClients(){
 		$row = mysql_fetch_array($result);
 		if($clientlist_type == "hide-no-admins"){
 			$qa = "SELECT adm_login FROM $pro_mysql_domain_table WHERE id_client='".$row["id"]."';";
-			$ra = mysql_query($qa)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error()); 
+			$ra = mysql_query($qa)or die("Cannot query $qa line ".__LINE__." file ".__FILE__." sql said: ".mysql_error()); 
 			$rn = mysql_num_rows($ra);
 			if($rn == 0){
 				$do_display = "no";
@@ -103,7 +104,7 @@ function DTCRMlistClients(){
 </select>
 <div class=\"box_wnb_nb_input_btn_container\" onMouseOver=\"this.className='box_wnb_nb_input_btn_container-hover';\" onMouseOut=\"this.className='box_wnb_nb_input_btn_container';\">
  <div class=\"box_wnb_nb_input_btn_left\"></div>
- <div class=\"box_wnb_nb_input_btn_mid\"><input class=\"box_wnb_nb_input_btn\" type=\"submit\" value=\"Ok\"></div>
+ <div class=\"box_wnb_nb_input_btn_mid\"><input class=\"box_wnb_nb_input_btn\" type=\"submit\" value=\""._("Ok")."\"></div>
  <div class=\"box_wnb_nb_input_btn_right\"></div>
 </div></form><br></div>
 <div class=\"voider\"></div>
