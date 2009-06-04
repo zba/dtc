@@ -1063,8 +1063,8 @@ setupDTCDatabase () {
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyradm','cyrus','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
 
 	# Set the first admin password
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO tik_admin (id,pseudo,tikadm_pass) VALUES('','${conf_adm_login}','${conf_adm_pass}')"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE tik_admin SET tikadm_pass='${conf_adm_pass}' WHERE pseudo='${conf_adm_login}'"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO tik_admins (id,pseudo,tikadm_pass) VALUES('','${conf_adm_login}','${conf_adm_pass}')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE tik_admins SET tikadm_pass='${conf_adm_pass}' WHERE pseudo='${conf_adm_login}'"
 }
 
 generateMySQLConfigPHPfile () {
