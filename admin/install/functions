@@ -1062,6 +1062,9 @@ setupDTCDatabase () {
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus@"${MX_MAIL}.${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyradm','cyrus','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
 
+	# Set the first admin password
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO tik_admin (id,pseudo,tikadm_pass) VALUES('','${conf_adm_login}','${conf_adm_pass}')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE tik_admin SET tikadm_pass='${conf_adm_pass}' WHERE pseudo='${conf_adm_login}'"
 }
 
 generateMySQLConfigPHPfile () {
@@ -1301,34 +1304,27 @@ enableApache2Modules () {
 }
 
 createApacheAdminProtectedDir () {
-	echoIfVerbose "-> Creating htpasswd and htaccess"
-	if [ ! -e "$conf_hosting_path" ] ; then
-		mkdir -p "$conf_hosting_path"
-	fi
-	# add the default password to .htpasswd if it doesn't exist already
-	HAS_HTPASS_LOGIN="no"
-	if [ -e $conf_hosting_path/.htpasswd ] ; then
-		if grep -q $conf_adm_login $conf_hosting_path/.htpasswd ; then
-			HAS_HTPASS_LOGIN="yes"
-		fi
-	fi
-	if [ ${HAS_HTPASS_LOGIN} = "yes" ] ; then
-		echoIfVerbose ".htpasswd exists, adding/replacing passwd with install config values of user '$conf_adm_login' and pass '$conf_adm_pass'"
-		$HTPASSWD -b "$conf_hosting_path"/.htpasswd "$conf_adm_login" "$conf_adm_pass"
-	else 
-		echoIfVerbose "Creating "$conf_hosting_path"/.htpasswd with username '$conf_adm_login' and password '$conf_adm_pass'"
-		$HTPASSWD -cb "$conf_hosting_path"/.htpasswd "$conf_adm_login" "$conf_adm_pass"
-	fi
+	echoIfVerbose "Creating "$PATH_DTC_ADMIN"/.htaccess file."
+	echo "<Files *>
+	Order deny,allow
+	deny from all
+</Files>
 
-	if [ -e $PATH_DTC_ADMIN/.htaccess ] ; then
-		echoIfVerbose "OK, you have your "$PATH_DTC_ADMIN"/.htaccess setup already!"
-	else
-		echoIfVerbose "Creating "$PATH_DTC_ADMIN"/.htaccess file."
-		echo "AuthName \"DTC root control panel login!\"
-AuthType Basic
-AuthUserFile "$conf_hosting_path"/.htpasswd
-require valid-user" >$PATH_DTC_ADMIN/.htaccess
-	fi
+<FilesMatch \"^$\">
+	Order allow,deny
+	allow from all
+</FilesMatch>
+
+<FilesMatch \".(|gif|jpg|jpeg|png|ico|css)\$\">
+	Order allow,deny
+	allow from all
+</FilesMatch>
+
+<Files (index.php|bw_per_month.php|deamons_state.php|maint_apache.php|vm-cpu.php|vm-net-all.php|vps_stats_hdd.php|cpugraph.php|logPushlet.php|memgraph.php|view_waitingusers.php|vm-io-all.php|vm-net.php|vps_stats_network.php|mailgraph.php|netusegraph.php|stat_total_active_prods.php|vm-cpu-all.php|vm-io.php|vps_stats_cpu.php|vps_stats_swap.php)>
+	Order allow,deny
+	allow from all
+</Files>
+" >$PATH_DTC_ADMIN/.htaccess
 }
 
 modifyHTTPD_CONF () {

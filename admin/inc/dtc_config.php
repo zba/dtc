@@ -527,6 +527,9 @@ function drawTicketConfig(){
 			"email" => array(
 				"type" => "text",
 				"legend" => _("Email addr")),
+			"tikadm_pass" => array(
+				"type" => "password",
+				"legend" => _("Password")),
 			"available" => array(
 				"type" => "radio",
 				"legend" => _("Available"),

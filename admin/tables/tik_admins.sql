@@ -4,5 +4,7 @@ CREATE TABLE IF NOT EXISTS tik_admins (
   `realname` varchar(64) NOT NULL default '',
   `email` varchar(128) NOT NULL default '',
   `available` enum('yes','no') NOT NULL default 'yes',
-  PRIMARY KEY  (id)
+  `tikadm_pass` varchar(255) NOT NULL default '',
+  PRIMARY KEY  (id),
+  UNIQUE KEY `pseudo` (`pseudo`)
 ) TYPE=MyISAM;

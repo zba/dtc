@@ -1015,6 +1015,20 @@ $dtc_database = array(
 			"p_addr" => "(ip_addr)"
 			),
 		),
+	"tik_admins" => array (
+		"vars" => array(
+			"id" => "int(11) NOT NULL auto_increment",
+			"pseudo" => "varchar(64) NOT NULL default ''",
+			"realname" => "varchar(64) NOT NULL default ''",
+			"email" => "varchar(128) NOT NULL default ''",
+			"available" => "enum('yes','no') NOT NULL default 'yes'",
+			"tikadm_pass" => "varchar(255) NOT NULL default ''"
+			),
+		"primary" => "(id)",
+		"keys" => array(
+			"pseudo" => "(pseudo)"
+			)
+		),
 	"tik_queries" => array (
 		"vars" => array(
 			"id" => "int(11) NOT NULL auto_increment",
