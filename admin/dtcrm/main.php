@@ -41,7 +41,7 @@ function DTCRMlistClients(){
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result);
 		if($clientlist_type == "hide-no-admins"){
-			$qa = "SELECT adm_login FROM $pro_mysql_domain_table WHERE id_client='".$row["id"]."';";
+			$qa = "SELECT adm_login FROM $pro_mysql_admin_table WHERE id_client='".$row["id"]."';";
 			$ra = mysql_query($qa)or die("Cannot query $qa line ".__LINE__." file ".__FILE__." sql said: ".mysql_error()); 
 			$rn = mysql_num_rows($ra);
 			if($rn == 0){
