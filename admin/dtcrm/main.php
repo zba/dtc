@@ -19,7 +19,6 @@ function DTCRMlistClients(){
 		}
 	}
 
-
 	$text = "<div style=\"white-space: nowrap\" nowrap>
 <a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=0\">". _("New customer") ."</a>
 </a><br><br>";
@@ -93,10 +92,11 @@ function DTCRMlistClients(){
 		$selectedlist_show_all = "";
 	}else{
 		$selectedlist_hide_no_admin = "";
-		$selectedlist_hide_no_admin = " selected";
+		$selectedlist_show_all = " selected";
 	}
        $list_prefs = "<div class=\"box_wnb_nb_content\">
 <div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">". _("Show:")  ."<br>
+<input type=\"hidden\" name=\"rub\" value=\"crm\">
 <select class=\"box_wnb_nb_input\" name=\"clientlist_type\">
 <option value=\"hide-no-admins\"$selectedlist_hide_no_admin>". _("Hide client without admin") ."
 <option value=\"show-all\"$selectedlist_show_all>"._("Show all")."
@@ -107,7 +107,7 @@ function DTCRMlistClients(){
  <div class=\"box_wnb_nb_input_btn_right\"></div>
 </div></form><br></div>
 <div class=\"voider\"></div>
-</div><br>
+</div>
 ";
 
 	return $list_prefs . $out;
