@@ -148,9 +148,11 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		$inside = str_replace("__DTC_VERSION__","V$conf_dtc_version R$conf_dtc_release - $conf_unix_type",$inside);
 		$inside = str_replace("__DTC_LINK__",$links,$inside);
 		$inside = str_replace("__AUTH_USER__",_("Logged as:") . " " . $_SERVER["PHP_AUTH_USER"],$inside);
+		$inside .= "<script language=\"JavaScript\" type=\"text/javascript\" src=\"gfx/wz_tooltip.js\"></script>";
 		return $inside;
 	}else{
 		return "
+<script language=\"JavaScript\" type=\"text/javascript\" src=\"gfx/wz_tooltip.js\"></script>
 <table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\">
 <tr>
 	<td $nowrap><center><a href=\"http://www.gplhost.com/software-dtc.html\"><img border=\"0\" alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"></a><br>
@@ -162,40 +164,6 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 </table>
 ";
 	}
-
-	$inside = "<style>
-.logo {
-	background-image:url(gfx/pagetop/logofond.gif);
-	background-repeat:repeat-x;
-	font-family:Arial;
-	font-weight:bold;
-	color:#868686;
-	height:59px;
-}
-.logotitle {
-	font-size:16px;
-	padding-top:20px;
-}
-.logosub {
-	font-size:9px;
-	padding-top:4px;
-}
-A .logosub {
-	font-size:9px;
-	padding-top:4px;
-}
-</style>
-<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\"><tr>
-	<td valign=\"top\" width=\"100%\">
-	<img src=gfx/pagetop/logostart.gif align=left hspace=0><div class=logo>
-	<img src=gfx/pagetop/logoend.gif align=right hspace=0>
-	<div class=logotitle>Domain Technologie Control - <font style=\"font-size:12px\">Prenez le controle de votre nom de domaine</font></div>
-	<div class=logosub>V$conf_dtc_version R$conf_dtc_release - $conf_unix_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$links</div></td>
-	<td>&nbsp;$zeLanguage</td>
-</tr></table>
-	";
-
-	return $inside;
 }
 
 function anotherPage($title,$meta,$java_script,$onloads,$banner,$menu,$content,$footer){

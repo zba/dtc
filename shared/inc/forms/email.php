@@ -634,6 +634,7 @@ function drawAdminTools_Emails($domain){
 				"legend" => _("Login:") ),
 			"memo" => array (
 				"type" => "text",
+				"help" => _("This text is just a memo for yourself, and will not really be used."),
 				"legend" => _("Name:") ),
 			"passwd" => array(
 				"type" => "password",
@@ -641,10 +642,12 @@ function drawAdminTools_Emails($domain){
 				"legend" => _("Password:") ),
 			"spam_mailbox_enable" => array(
 				"type" => "checkbox",
+				"help" => _("If selected, spams will be sent in a SPAM folder and wont reach your inbox. Later you can check this folder with the webmail or using IMAP."),
 				"values" => array( "yes","no"),
 				"legend" => _("Enable SPAM filtering: ") ),
 			"spam_mailbox" => array(
 				"type" => "text",
+				"help" => _("Name of the SPAM folder to receive the spam (the above option has to be activated)."),
 				"default" => "SPAM",
 				"legend" => _("SPAM mailbox destination: ") ),
 			)

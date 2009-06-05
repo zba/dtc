@@ -742,7 +742,7 @@ function resubscribe_VPS_server_list_users($list_name){
 		unlink($file_list[$i]);
 	}
 
-	$q = "SELECT $pro_mysql_client_table.email
+	$q = "SELECT DISTINCT $pro_mysql_client_table.email
 	FROM $pro_mysql_vps_server_lists_table,$pro_mysql_vps_table,$pro_mysql_admin_table,$pro_mysql_client_table
 	WHERE $pro_mysql_vps_server_lists_table.list_name = '$list_name'
 	AND $pro_mysql_vps_server_lists_table.hostname = $pro_mysql_vps_table.vps_server_hostname
