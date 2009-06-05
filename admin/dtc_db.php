@@ -186,8 +186,6 @@ $dtc_database = array(
 			"hide_password" => "enum('yes','no') NOT NULL default 'no' ",
 			"session_expir_minute" => "int(9) NOT NULL default '10' ",
 			"dns_type" => "enum('bind','djb') NOT NULL default 'bind' ",
-			"root_admin_random_pass" => "varchar(128) NOT NULL ",
-			"pass_expire" => "int(12) NOT NULL default '1' ",
 			"srs_user" => "varchar(128) NOT NULL ",
 			"srs_live_key" => "varchar(255) NOT NULL ",
 			"srs_test_key" => "varchar(255) NOT NULL ",
@@ -244,7 +242,10 @@ $dtc_database = array(
 			"nagios_restart_command" => "varchar(255) NOT NULL default 'sudo /etc/init.d/nagios2 restart'",
 			"affiliate_return_domain" => "varchar(255) NOT NULL default 'www.example.com'",
 			"support_ticket_email" => "varchar(255) NOT NULL default 'support'",
-			"support_ticket_domain" => "varchar(255) NOT NULL default 'default'"
+			"support_ticket_domain" => "varchar(255) NOT NULL default 'default'",
+			"all_customers_list_email" => "varchar(255) NOT NULL default 'support'",
+			"all_customers_list_domain" => "varchar(255) NOT NULL default 'default'"
+
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

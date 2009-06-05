@@ -28,6 +28,9 @@ function drawDTCConfigMenu(){
 		"general" => array(
 			"text" => gettext("General"),
 			"icon" => "box_wnb_nb_picto-general.gif"),
+		"ticket" => array(
+			"text" => gettext("Support ticket and auth"),
+			"icon" => "box_wnb_nb_picto-supportickets.gif"),
 		"ip" => array(
 			"text" => gettext("IP addresses and network"),
 			"icon" => "box_wnb_nb_picto-ipaddresses.gif"),
@@ -52,9 +55,6 @@ function drawDTCConfigMenu(){
 		"ftpbackup" => array(
 			"text" => gettext("FTP backup"),
 			"icon" => "box_wnb_nb_picto-ftpbackup.gif"),
-		"ticket" => array(
-			"text" => gettext("Support ticket"),
-			"icon" => "box_wnb_nb_picto-supportickets.gif"),
 		"vps" => array(
 			"text" => gettext("VPS servers"),
 			"icon" => "box_wnb_nb_picto-vpsservers.gif"),
@@ -477,8 +477,7 @@ function drawTicketConfig(){
 	global $pro_mysql_domain_table;
 	global $rub;
 	global $sousrub;
-
-	$out = "<h3>"._("Support ticket configuration")."</h3>";
+	global $conf_all_customers_list_domain;
 
 	$domains = array();
 	$domains[] = "default";
@@ -489,6 +488,49 @@ function drawTicketConfig(){
 		$a = mysql_fetch_array($r);
 		$domains[] = $a["name"];
 	}
+
+	$all_lists = array();
+	$domains[] = _("no list selected");
+	$q = "SELECT * FROM $pro_mysql_list_table WHERE domain='$conf_all_customers_list_domain';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$all_lists[] = $a["name"];
+	}
+
+	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"rub\" value=\"$rub\">
+<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+<input type=\"hidden\" name=\"resubscript_all_users\" value=\"".$_REQUEST["now"]."\">
+<input type=\"hidden\" name=\"action\" value=\"edit_custom_rdns_text\">
+<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+<div class=\"input_btn_left\"></div>
+<div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Resubscribe all users")."\"></div>
+<div class=\"input_btn_right\"></div></div></form>
+";
+
+	$dsc = array(
+		"title" => _("Mailing list for sending email to all customers"),
+		"action" => "tik_global_param",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"support_ticket_email" => array(
+				"legend" => _("All customers list address: "),
+				"type" => "popup",
+				"values" => $all_lists
+				)
+			"support_ticket_domain" => array(
+				"legend" => "@",
+				"type" => "popup",
+				"values" => $domains
+				)
+			)
+		);
+	$out .= configEditorTemplate ($dsc);
+
+
+	$out .= "<h3>"._("Support ticket configuration")."</h3>";
 
 	$dsc = array(
 		"title" => _("Ticket global parameters"),
