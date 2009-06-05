@@ -360,7 +360,7 @@ install-dtc-common:
 	for i in $(CREATE_DIRS) ; do $(INSTALL_DIR) -m $(NORMAL_FOLDER) $(APP_INST_DIR)/$$i ; done
 	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(MAN_DIR)/man8
 
-	@ echo "-> Intalling scripts"
+	@ echo "-> Installing scripts"
 	@for i in $(WEB_SCRIPT_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 	@echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""$(UNIX_TYPE)"\"; ?>" >$(APP_INST_DIR)/shared/dtc_version.php
 	@for i in $(PATCH_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
