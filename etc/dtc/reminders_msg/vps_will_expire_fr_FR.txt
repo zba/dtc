@@ -1,12 +1,12 @@
 
-Subject: Votre VPS va bientôt expirer.
+Subject: Votre VPS va bientÃ´t expirer.
 
 Bonjour %%%FIRST_NAME%%%,
 
 Votre serveur virtuel Xen (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
 va expirer dans %%%REMAINING_DAYS%%% jours, le : %%%EXPIRATION_DATE%%%.
 
-Veuillez vous connecter sur votre panneau de contrôle à l'adresse :
+Veuillez vous connecter sur votre panneau de contrÃ´le Ã  l'adresse :
 
 %%%DTC_CLIENT_URL%%%
 

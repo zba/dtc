@@ -1,17 +1,17 @@
-Le compte d'hébergement que vous avez commandé est maintenant prêt à être utilisé. Notez que cela peut prendre environ 10 minutes, jusqu'à ce que 
-votre nom de domaine soit installé sur nos DNS et serveur apache (une tâche cron est exécutée toutes les 10 minutes pour les nouveaux comptes mail, 
+Le compte d'hÃ©bergement que vous avez commandÃ© est maintenant prÃªt Ã  Ãªtre utilisÃ©. Notez que cela peut prendre environ 10 minutes, jusqu'Ã  ce que 
+votre nom de domaine soit installÃ© sur nos DNS et serveur apache (une tÃ¢che cron est exÃ©cutÃ©e toutes les 10 minutes pour les nouveaux comptes mail, 
 les domaines et les sous-domaines. Vous n'avez pas besoin d'attendre pour  utiliser vos comptes ftp.).
 
-Notez également que vos fichiers doivent être envoyés par ftp dans le dossier suivant : 
+Notez Ã©galement que vos fichiers doivent Ãªtre envoyÃ©s par ftp dans le dossier suivant : 
 
 /var/www/sites/YOU-USERNAME/your-domain.com/subdomains/www/html
 
-Lors de la création d'un nouveau compte FTP, vous ne verrez que la première partie du chemin, ce qui correspond à :
+Lors de la crÃ©ation d'un nouveau compte FTP, vous ne verrez que la premiÃ¨re partie du chemin, ce qui correspond Ã  :
 
 /var/www/sites/YOU-USERNAME
 
 
-Vous pouvez vous connecter au panneau de contrôle en utilisant les informations suivantes : 
+Vous pouvez vous connecter au panneau de contrÃ´le en utilisant les informations suivantes :Â 
 
 
 %%%DTC_LOGIN_INFO%%%

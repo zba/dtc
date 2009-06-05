@@ -1,12 +1,12 @@
 
-Subject: Votre serveur dédié va bientôt expirer.
+Subject: Votre serveur dÃ©diÃ© va bientÃ´t expirer.
 
 Bonjour %%%FIRST_NAME%%%,
 
-Votre serveur dédié %%%SERVER_HOSTNAME%%%
+Votre serveur dÃ©diÃ© %%%SERVER_HOSTNAME%%%
 va expirer dans %%%REMAINING_DAYS%%% jours, le : %%%EXPIRATION_DATE%%%.
 
-Veuillez vous connecter à votre panneau de contrôle à :
+Veuillez vous connecter Ã  votre panneau de contrÃ´le Ã  :
 
 %%%DTC_CLIENT_URL%%%
 

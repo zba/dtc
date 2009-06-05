@@ -1,8 +1,8 @@
-Le serveur dédié que vous avez commandé est à présent validée.
-Notez que nous pouvons avoir un délais lors de la commande d'un serveur dédié. N'hésitez pas à nous contacter pour savoir combien de temps cela peut 
-prendre, jusqu'à sa mise en ligne. 
+Le serveur dÃ©diÃ© que vous avez commandÃ© est Ã  prÃ©sent validÃ©e.
+Notez que nous pouvons avoir un dÃ©lais lors de la commande d'un serveur dÃ©diÃ©. N'hÃ©sitez pas Ã  nous contacter pour savoir combien de temps cela peut 
+prendre, jusqu'Ã  sa mise en ligne. 
 
-A partir de maintenant, vous pouvez vous connecter à notre panneau de contrôle pour effectuer le renouvellement de votre contrat ou pour envoyer des 
+A partir de maintenant, vous pouvez vous connecter Ã  notre panneau de contrÃ´le pour effectuer le renouvellement de votre contrat ou pour envoyer des 
 tickets de support.
 
 Voici les informations de connexion dont vous avez besoin :

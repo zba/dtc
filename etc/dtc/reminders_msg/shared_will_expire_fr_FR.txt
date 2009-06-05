@@ -1,12 +1,12 @@
 
-Subject: Votre compte d'hébergement va expirer bientôt.
+Subject: Votre compte d'hÃ©bergement va expirer bientÃ´t.
 
 Bonjour %%%FIRST_NAME%%%,
 
-Votre compte d'hébergement va expirer dans %%%REMAINING_DAYS%%% jours, le :
+Votre compte d'hÃ©bergement va expirer dans %%%REMAINING_DAYS%%% jours, le :
 %%%EXPIRATION_DATE%%%.
 
-Veuillez vous connecter à votre panneau de contrôle à l'adresse :
+Veuillez vous connecter Ã  votre panneau de contrÃ´le Ã  l'adresse :
 
 %%%DTC_CLIENT_URL%%%
 

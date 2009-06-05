@@ -1,14 +1,14 @@
 
-Subject: Supression de votre compte d'hÈbergement.
+Subject: Supression de votre compte d'h√©bergement.
 
 Bonjour %%%FIRST_NAME%%%,
 
-Votre compte d'hÈbergement avec le nom d'utilisateur %%%DTC_ADM_LOGIN%%% a expirÈ
+Votre compte d'h√©bergement avec le nom d'utilisateur %%%DTC_ADM_LOGIN%%% a expir√©
 il y a %%%EXPIRED_DAYS%%% jours, le: %%%EXPIRATION_DATE%%%.
 
-Nous vous avons dÈj‡ envoyÈ plusieurs messages pour vous demander de renouveler votre compte d'hÈbergement, cependant vous ne l'avez pas fait.
-Nous sommes dÈsolÈs, mais nous allons effacer votre compte ainsi que toutes les donnÈes qu'il contient aujourd'hui.
-Nous avons besoin de cet espace pour le mettre ‡ disposition des autres clients.
+Nous vous avons d√©j√† envoy√© plusieurs messages pour vous demander de renouveler votre compte d'h√©bergement, cependant vous ne l'avez pas fait.
+Nous sommes d√©sol√©s, mais nous allons effacer votre compte ainsi que toutes les donn√©es qu'il contient aujourd'hui.
+Nous avons besoin de cet espace pour le mettre √† disposition des autres clients.
 
 
 %%%SIGNATURE%%%
