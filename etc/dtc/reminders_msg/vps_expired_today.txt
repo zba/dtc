@@ -12,8 +12,7 @@ Please login into your control panel at
 
 with your login %%%DTC_ADM_LOGIN%%% click on your VPS tab, and renew it.
 
-We will keep your VPS up few days to give you the time to
-renew your contract. After the grace period your account
-will be deleted.
+We will keep your VPS up few days to give you the time to renew your
+contract. After the grace period your account will be deleted.
 
 %%%SIGNATURE%%%

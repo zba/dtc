@@ -3,6 +3,11 @@
 // Those are supposed to be filled at eatch queries, therefore they
 // are global variables.
 
+$send_email_header = "Content-Type: text/plain; charset=\"UTF-8\"\n";
+// I'm not sure wich of the following 2 I should use when using UTF-8 ...
+//$send_email_header .= "Content-Transfer-Encoding: 8bit\n";
+$send_email_header .= "Content-Transfer-Encoding: quoted-printable\n";
+
 if(isset($_REQUEST["rub"])){
 	if(!ereg("^([a-z0-9]+)([.a-z_0-9-]*)([a-z0-9]+)\$",$_REQUEST["rub"]) && $_REQUEST["rub"] != ""){
 		die("Rub parameter not correct: XSS attempt?");
