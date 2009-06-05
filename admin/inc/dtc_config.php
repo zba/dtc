@@ -505,7 +505,7 @@ function drawTicketConfig(){
 
 	$dsc = array(
 		"title" => _("Mailing list for sending email to all customers"),
-		"action" => "tik_global_param",
+		"action" => "tik_global_param_list",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
 			"all_customers_list_email" => array(
