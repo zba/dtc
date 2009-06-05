@@ -478,6 +478,9 @@ function drawTicketConfig(){
 	global $rub;
 	global $sousrub;
 	global $conf_all_customers_list_domain;
+	global $pro_mysql_list_table;
+
+	$out = "";
 
 	$domains = array();
 	$domains[] = "default";
@@ -499,28 +502,18 @@ function drawTicketConfig(){
 		$all_lists[] = $a["name"];
 	}
 
-	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
-<input type=\"hidden\" name=\"rub\" value=\"$rub\">
-<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
-<input type=\"hidden\" name=\"resubscript_all_users\" value=\"".$_REQUEST["now"]."\">
-<input type=\"hidden\" name=\"action\" value=\"edit_custom_rdns_text\">
-<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
-<div class=\"input_btn_left\"></div>
-<div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Resubscribe all users")."\"></div>
-<div class=\"input_btn_right\"></div></div></form>
-";
 
 	$dsc = array(
 		"title" => _("Mailing list for sending email to all customers"),
 		"action" => "tik_global_param",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
-			"support_ticket_email" => array(
+			"all_customers_list_email" => array(
 				"legend" => _("All customers list address: "),
 				"type" => "popup",
 				"values" => $all_lists
-				)
-			"support_ticket_domain" => array(
+				),
+			"all_customers_list_domain" => array(
 				"legend" => "@",
 				"type" => "popup",
 				"values" => $domains
@@ -528,6 +521,16 @@ function drawTicketConfig(){
 			)
 		);
 	$out .= configEditorTemplate ($dsc);
+	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"rub\" value=\"$rub\">
+<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+<input type=\"hidden\" name=\"resubscript_all_users\" value=\"now\">
+<input type=\"hidden\" name=\"action\" value=\"edit_custom_rdns_text\">
+<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+<div class=\"input_btn_left\"></div>
+<div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Resubscribe all users")."\"></div>
+<div class=\"input_btn_right\"></div></div></form><br><br>
+";
 
 
 	$out .= "<h3>"._("Support ticket configuration")."</h3>";
