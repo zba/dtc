@@ -356,7 +356,7 @@ install-dtc-stats-daemon:
 
 install-dtc-common:
 	# PHP scripts files served by web server
-	@echo "-> Creating detination folders"
+	@echo "-> Creating destination folders"
 	for i in $(CREATE_DIRS) ; do $(INSTALL_DIR) -m $(NORMAL_FOLDER) $(APP_INST_DIR)/$$i ; done
 	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(MAN_DIR)/man8
 
