@@ -147,7 +147,7 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		$inside = str_replace("__DTC_LANGUAGES_LINKS__",$zeLanguage,$inside);
 		$inside = str_replace("__DTC_VERSION__","V$conf_dtc_version R$conf_dtc_release - $conf_unix_type",$inside);
 		$inside = str_replace("__DTC_LINK__",$links,$inside);
-		$inside = str_replace("__AUTH_USER__",$_SERVER["PHP_AUTH_USER"],$inside);
+		$inside = str_replace("__AUTH_USER__",_("Logged as:") . " " . $_SERVER["PHP_AUTH_USER"],$inside);
 		return $inside;
 	}else{
 		return "
