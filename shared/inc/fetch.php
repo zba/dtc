@@ -318,7 +318,7 @@ function fetchAdminStats($admin){
 
 function randomizePassword($adm_login,$adm_input_pass){
 	global $pro_mysql_admin_table;
-	global $pro_mysql_config_table;
+	global $pro_mysql_tik_admins_table;
 	global $adm_realpass;
 	global $adm_pass;
 	global $adm_random_pass;
@@ -341,7 +341,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 	$num_rows = mysql_num_rows($result);
 
 	if($num_rows != 1){
-		$q = "SELECT * FROM $pro_mysql_config_table WHERE root_admin_random_pass='$adm_input_pass' AND pass_expire > '".mktime()."';";
+		$q = "SELECT * FROM $pro_mysql_tik_admins_table WHERE pass_next_req='$adm_input_pass' AND pass_expire > '".mktime()."';";
 		$r = mysql_query($q);
 		if (!$r)
 		{
@@ -350,7 +350,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 			return $ret;
 		}
 		$n = mysql_num_rows($r);
-		if($n == 1){
+		if($n >= 0){
 			$is_root_admin = "yes";
 			$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 			$result = mysql_query ($query);
@@ -388,7 +388,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 	$adm_random_pass = $rand;
 	$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
 	if($is_root_admin == "yes"){
-		$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
+		$q = "UPDATE $pro_mysql_tik_admins_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE pseudo='".$_SERVER["PHP_AUTH_USER"]."';";
 		$r = mysql_query($q);
 		if (!$r)
 		{
@@ -406,6 +406,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 			return $ret;
 		}
 	}
+	// Save the last used language, so we know for future email sendings what to use.
 	if(isset($gettext_lang) && $panel_type == "client"){
 		$q = "UPDATE $pro_mysql_admin_table SET last_used_lang='$gettext_lang' WHERE adm_login='$adm_login';";
 		$r = mysql_query($q);

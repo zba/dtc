@@ -51,11 +51,8 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 	global $conf_root_admin_random_pass;
 	global $conf_pass_expire;
 
-	if($conf_root_admin_random_pass == $adm_pass &&  $conf_pass_expire > mktime()){
-		$adm_query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
-	}else{
-		$adm_query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
-	}
+	checkLoginPassAndDomain($adm_login,$adm_pass,$deluserdomain);
+	$adm_query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 	$result = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__."sql said ".mysql_error());
 	$num_rows = mysql_num_rows($result);
 	if($num_rows != 1) die("User not found for deletion of domain $deluserdomain !!!");
