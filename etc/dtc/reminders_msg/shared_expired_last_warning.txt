@@ -3,7 +3,7 @@ Subject: Last warning before deletion of your hosting account
 
 Hello %%%FIRST_NAME%%%,
 
-Your shared hosting accout has expired %%%EXPIRED_DAYS%%% days ago, on the:
+Your shared hosting account has expired %%%EXPIRED_DAYS%%% days ago, on the:
 %%%EXPIRATION_DATE%%%.
 
 Please login into your control panel at

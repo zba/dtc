@@ -6,7 +6,7 @@ Bonjour %%%FIRST_NAME%%%,
 Votre serveur virtuel Xen (VPS) %%%SERVER_HOSTNAME%%%
 a expiré il y a %%%EXPIRED_DAYS%%% jours, le : %%%EXPIRATION_DATE%%%.
 
-Veuillez vous connecter à votre panneau d'administration DTC à :
+Veuillez vous connecter à votre panneau de contrôle DTC à :
 
 %%%DTC_CLIENT_URL%%%
 
