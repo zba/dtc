@@ -18,7 +18,7 @@ function numOfDays($date,$time="00:00:00"){
 	return $age;
 }
 
-function mailUserTicketReply($adm_email,$hash,$subject,$body,$closed="no"){
+function mailUserTicketReply($adm_email,$hash,$subject,$body,$closed="no",$adm_login=""){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_client_table;
 	global $pro_mysql_tik_admins_table;
@@ -33,53 +33,37 @@ function mailUserTicketReply($adm_email,$hash,$subject,$body,$closed="no"){
 	global $conf_recipient_delimiter;
 	global $conf_main_domain;
 
+	global $send_email_header;
+
 	if($conf_support_ticket_domain == "default"){
 		$support_domain = $conf_main_domain;
 	}
 
 	$support_email = $conf_support_ticket_email.$conf_recipient_delimiter.$hash."@".$support_domain;
-	$headers = "From: $conf_support_ticket_email@$support_domain <$support_email>";
+	$headers = $send_email_header;
+	$headers .= "From: $conf_support_ticket_email@$support_domain <$support_email>";
+	$header_admin_reply = readCustomizedMessage("tickets/header_admin_reply",$adm_login);
 	$content = "Subject: ".stripslashes($subject)."
 
-Hello,
-
-An administrator has replied to your support ticket.
-Below is a copy of the reply sent by the administrator.
-
+$header_admin_reply
 **********
 $body
 **********
-
 ";
 
 	if($closed == "no"){
-		$content .= "Note that the ticket is still open, meaning we are waiting
-for your answer. So please login to the control panel at the
-following URL:
-
-http://$conf_administrative_site/dtc/
-
-with your login, then go in the support ticket tab and type your reply.
-You can also just hit reply with your email client, or write to:
-
-$support_email
-";
+		$text_filename = "tickets/footer_admin_reply_no_close";
 	}else{
-		$content .= "Note that the ticket has been closed, meaning that there is
-no need for another reply. If you are still needing help, then
-you must open a new support ticket, or write in this ticket to
-reopen it. To do so, login to the control panel at the
-following address:
-
-http://$conf_administrative_site/dtc/
-
-with your login, then go in the support ticket tab and type your reply.
-You can also just hit reply with your email client, or write to:
-
-$support_email
-";
+		$text_filename = "tickets/footer_admin_reply_close";
 	}
-	mail($adm_email,"$conf_message_subject_header An administrator replied to your support ticket",$content,$headers);
+	$footer_admin_reply = readCustomizedMessage($text_filename,$adm_login);
+	$footer_admin_reply = str_replace("%%%DTC_CLIENT_URL%%%","http://$conf_administrative_site/dtc/",$footer_admin_reply);
+	$footer_admin_reply = str_replace("%%%SUPPORT_EMAIL_ADDRESS%%%",$support_email,$footer_admin_reply);
+
+	$content .= $footer_admin_reply;
+
+	$tocustomer_subject = readCustomizedMessage("tickets/subject_admin_reply",$adm_login);
+	mail($adm_email,$conf_message_subject_header." An administrator ".$tocustomer_subject,$content,$headers);
 
 	// Mail the ticket reply to all administrators
 	$adm_content = "Subject: ".stripslashes($subject)."
@@ -244,8 +228,9 @@ function drawNewAdminForm(){
 				return "Admin not found!";
 			}
 			$client = mysql_fetch_array($r);
+		}else{
+			$adm_login = "";
 		}
-
 		if(isset($_REQUEST["answer"]) || isset($_REQUEST["answer_close"])){
 			$q2 = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,subject,text,cat_id,initial_ticket,server_hostname,closed)
 			VALUES ('','".$a["adm_login"]."','".date("Y-m-d")."','".date("H:i:s")."','".$_REQUEST["last_tik_id"]."','0','admin','".$a["subject"]."','".addslashes($_REQUEST["ticketbody"])."','".$a["cat_id"]."','no','".$a["server_hostname"]."','$closed');";
@@ -255,10 +240,10 @@ function drawNewAdminForm(){
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$out .= "Ticket reply sent!<br>";
 			if( strlen($adm_login) != 0){
-				mailUserTicketReply($client["email"],$a["hash"],$a["subject"],$_REQUEST["ticketbody"],$closed);
+				mailUserTicketReply($client["email"],$a["hash"],$a["subject"],$_REQUEST["ticketbody"],$closed,$adm_login);
 			}
 			if( strlen($a["customer_email"]) != 0){
-				mailUserTicketReply($a["customer_email"],$a["hash"],$a["subject"],$_REQUEST["ticketbody"],$closed);
+				mailUserTicketReply($a["customer_email"],$a["hash"],$a["subject"],$_REQUEST["ticketbody"],$closed,$adm_login);
 			}
 		}
 		if($closed == "yes"){
@@ -267,10 +252,10 @@ function drawNewAdminForm(){
 		}
 		if( isset($_REQUEST["close"]) ){
 			if( strlen($adm_login) != 0){
-				mailUserTicketReply($client["email"],$a["hash"],"The ticket has been closed (without text reply)","The ticket has been closed (without text reply)",$closed);
+				mailUserTicketReply($client["email"],$a["hash"],"The ticket has been closed (without text reply)","The ticket has been closed (without text reply)",$closed,$adm_login);
 			}
 			if( strlen($a["customer_email"]) != 0){
-				mailUserTicketReply($a["customer_email"],$a["hash"],"The ticket has been closed (without text reply)","The ticket has been closed (without text reply)",$closed);
+				mailUserTicketReply($a["customer_email"],$a["hash"],"The ticket has been closed (without text reply)","The ticket has been closed (without text reply)",$closed,$adm_login);
 			}
 		}
 	}

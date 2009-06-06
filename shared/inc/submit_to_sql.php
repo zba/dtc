@@ -36,6 +36,8 @@ function validateRenewal($renew_id){
 	global $conf_webmaster_email_addr;
 	global $conf_message_subject_header;
 
+	global $send_email_header;
+
 	$q = "SELECT * FROM $pro_mysql_pending_renewal_table WHERE id='$renew_id';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -165,7 +167,8 @@ Date: ".$renew_entry["renew_date"]." ".$renew_entry["renew_time"]."
 
 ";
 
-	$headers = "From: ".$conf_webmaster_email_addr;
+	$headers = $send_email_header;
+	$headers .= "From: ".$conf_webmaster_email_addr;
 	mail($conf_webmaster_email_addr,"$conf_message_subject_header Renewal approved!",$txt_renewal_approved,$headers);
 
 	$q = "SELECT id_client FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."'";

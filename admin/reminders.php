@@ -63,6 +63,8 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 	global $conf_message_subject_header;
 	global $dtcshared_path;
 
+	global $send_email_header;
+
 	$now_timestamp = mktime();
 	$one_day = 3600 * 24;
 	$q = "SELECT * FROM $pro_mysql_vps_table WHERE expire_date='".date("Y-m-d",$now_timestamp + $one_day*$remaining_days)."';";
@@ -106,7 +108,8 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 		$msg_2_send = str_replace("%%%VPS_NUMBER%%%",$vps["vps_xen_name"],$msg_2_send);
 		$msg_2_send = str_replace("%%%VPS_NODE%%%",$vps["vps_server_hostname"],$msg_2_send);
 
-		$headers = "From: ".$conf_webmaster_email_addr;
+		$headers = $send_email_header;
+		$headers .= "From: ".$conf_webmaster_email_addr;
 		mail($client["email"],"$conf_message_subject_header Your VPS expiration",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
 			$subject = $admin["adm_login"] . "'s VPS " . $vps["vps_server_hostname"] . ":" . $vps["vps_xen_name"] . " expired " . $remaining_days . " ago";
@@ -148,6 +151,8 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 	global $conf_message_subject_header;
 	global $dtcshared_path;
 
+	global $send_email_header;
+
 	$now_timestamp = mktime();
 	$one_day = 3600 * 24;
 	$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE expire_date='".date("Y-m-d",$now_timestamp + $one_day*$remaining_days)."';";
@@ -185,6 +190,7 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 		$msg_2_send = getCustomizedReminder($msg_2_send,$client["christname"],$remaining_days,$dedicated["expire_date"],$admin["adm_login"]);
 		$msg_2_send = str_replace("%%%SERVER_HOSTNAME%%%",$dedicated["server_hostname"],$msg_2_send);
 
+		$headers = $send_email_header;
 		$headers = "From: ".$conf_webmaster_email_addr;
 		mail($client["email"],"$conf_message_subject_header Your dedicated server expiration",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
@@ -229,6 +235,8 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 	global $conf_message_subject_header;
 	global $dtcshared_path;
 
+	global $send_email_header;
+
 	$now_timestamp = mktime();
 	$one_day = 3600 * 24;
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE expire='".date("Y-m-d",$now_timestamp + $one_day*$remaining_days)."';";
@@ -258,7 +266,8 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 		$msg_2_send = readCustomizedMessage($file,$admin["adm_login"]);
 		$msg_2_send = getCustomizedReminder($msg_2_send,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
 
-		$headers = "From: ".$conf_webmaster_email_addr;
+		$headers = $send_email_header;
+		$headers .= "From: ".$conf_webmaster_email_addr;
 		mail($client["email"],"$conf_message_subject_header Your shared hosting expiration",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
 			$subject = $admin["adm_login"] . "'s shared hosting package expired " . -$remaining_days . " ago";
