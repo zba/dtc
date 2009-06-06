@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-06 23:02+0800\n"
+"POT-Creation-Date: 2009-06-06 23:07+0800\n"
 "PO-Revision-Date: 2009-03-07 02:16+0100\n"
 "Last-Translator: Sebastian Pachla <seeb@seeb.net.pl>\n"
 "Language-Team: Sebastian Pachla <seeb@seeb.net.pl>\n"
@@ -2388,7 +2388,7 @@ msgid "Haiti"
 msgstr "Haiti"
 
 #: shared/inc/forms/root_admin.php:558
-msgid "Hard drive size in GBytes."
+msgid "Hard drive size in MBytes."
 msgstr ""
 
 #: admin/dtcrm/product_manager.php:52 admin/dtcrm/product_manager.php:152

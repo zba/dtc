@@ -555,7 +555,7 @@ function drawDomainConfig($admin){
 					"legend" => _("Expiration") ),
 				"hddsize" => array(
 					"type" => "text",
-					"help" => _("Hard drive size in GBytes."),
+					"help" => _("Hard drive size in MBytes."),
 					"size" => "5",
 					"legend" => "HDD"),
 				"ramsize" => array(

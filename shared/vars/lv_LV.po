@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Domain Technologie Control (DTC) - git 2008.11.19\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-06 23:02+0800\n"
+"POT-Creation-Date: 2009-06-06 23:07+0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Coool (Nauris Ešenvalds) <coool@vivonet.lv>\n"
 "Language-Team: Coool (Nauris Ešenvalds) <coool@vivonet.lv>\n"
@@ -2258,7 +2258,7 @@ msgid "Haiti"
 msgstr "Haiti"
 
 #: shared/inc/forms/root_admin.php:558
-msgid "Hard drive size in GBytes."
+msgid "Hard drive size in MBytes."
 msgstr ""
 
 #: admin/dtcrm/product_manager.php:52 admin/dtcrm/product_manager.php:152
