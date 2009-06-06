@@ -59,7 +59,7 @@ function dtcFormLineDraw($text,$control,$alternate_color=1,$help_text=""){
 	}
 
 	if($help_text != ""){
-		$jshelp = " onmouseover=\"Tip('". $help_text ."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" ";
+		$jshelp = " onmouseover=\"Tip('". addslashes($help_text) ."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" ";
 	}else{
 		$jshelp = "";
 	}
@@ -359,7 +359,7 @@ function dtcDatagrid($dsc){
 		}
 		if($do_display == "yes"){
 			if( isset($dsc["cols"][ $keys[$i] ]["help"]) ){
-				$jshelp = " onmouseover=\"Tip('". $dsc["cols"][ $keys[$i] ]["help"] ."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" ";
+				$jshelp = " onmouseover=\"Tip('". addslashes($dsc["cols"][ $keys[$i] ]["help"]) ."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" ";
 			}else{
 				$jshelp = "";
 			}
