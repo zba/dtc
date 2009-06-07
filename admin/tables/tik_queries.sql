@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS tik_queries (
   `customer_email` varchar(255) NOT NULL default '',
   `closed` enum('yes','no') NOT NULL default 'no',
   `hash` varchar(32) NOT NULL default '',
+  `admin_name` varchar(256) NOT NULL default 'dtc',
   PRIMARY KEY  (id),
   INDEX in_reply (in_reply_of_id),
   INDEX reply_id (reply_id),

@@ -111,7 +111,7 @@ $popup_cats
 				}else{
 					$bg = " bgcolor=\"#FFFFAA\" ";
 				}
-				$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".nl2br(stripslashes($a["text"]))."</td></tr>";
+				$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i><br>"._("Reply from:")." ".$a["realname"]."</td><td$bg>".nl2br(stripslashes($a["text"]))."</td></tr>";
 			}
 			$out .= "</table>";
 			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">

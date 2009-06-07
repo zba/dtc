@@ -34,6 +34,7 @@ function mailUserTicketReply($adm_email,$hash,$subject,$body,$closed="no",$adm_l
 	global $conf_main_domain;
 
 	global $send_email_header;
+	global $pro_mysql_tik_admins_table;
 
 	if($conf_support_ticket_domain == "default"){
 		$support_domain = $conf_main_domain;
@@ -63,7 +64,16 @@ $body
 	$content .= $footer_admin_reply;
 
 	$tocustomer_subject = readCustomizedMessage("tickets/subject_admin_reply",$adm_login);
-	mail($adm_email,$conf_message_subject_header." An administrator ".$tocustomer_subject,$content,$headers);
+
+	$q = "SELECT * FROM $pro_mysql_tik_admins_table WHERE pseudo='".$_SERVER["PHP_AUTH_USER"]."';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Ticket admin not found line ".__LINE__." file ".__FILE__);
+	}
+	$a = mysql_fetch_array($r);
+	$realname = $a["realname"];
+	mail($adm_email,$conf_message_subject_header." ".$realname." ".$tocustomer_subject,$content,$headers);
 
 	// Mail the ticket reply to all administrators
 	$adm_content = "Subject: ".stripslashes($subject)."
@@ -91,7 +101,7 @@ The administrator decided that the issue is:
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		mail($a["email"],"$conf_message_subject_header An administrator replied to a support ticket",$adm_content,$headers);
+		mail($a["email"],"$conf_message_subject_header ".$_SERVER["PHP_AUTH_USER"]." replied to a support ticket",$adm_content,$headers);
 	}
 }
 
@@ -162,7 +172,7 @@ function drawNewAdminForm(){
 			}else{
 				$bg = " bgcolor=\"#FFFFAA\" ";
 			}
-			$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i></td><td$bg>".nl2br(htmlspecialchars(stripslashes($a["text"])))."</td></tr>";
+			$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i><br>"._("Reply from:")." ".$a["realname"]."</td><td$bg>".nl2br(htmlspecialchars(stripslashes($a["text"])))."</td></tr>";
 			if($a["request_close"] == "yes"){
 				$close_request = "yes";
 			}
@@ -232,8 +242,17 @@ function drawNewAdminForm(){
 			$adm_login = "";
 		}
 		if(isset($_REQUEST["answer"]) || isset($_REQUEST["answer_close"])){
-			$q2 = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,subject,text,cat_id,initial_ticket,server_hostname,closed)
-			VALUES ('','".$a["adm_login"]."','".date("Y-m-d")."','".date("H:i:s")."','".$_REQUEST["last_tik_id"]."','0','admin','".$a["subject"]."','".addslashes($_REQUEST["ticketbody"])."','".$a["cat_id"]."','no','".$a["server_hostname"]."','$closed');";
+			$q = "SELECT * FROM $pro_mysql_tik_admins_table WHERE pseudo='".$_SERVER["PHP_AUTH_USER"]."';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			if($n != 1){
+				die("Ticket admin not found line ".__LINE__." file ".__FILE__);
+			}
+			$a = mysql_fetch_array($r);
+			$pseudo = $a["pseudo"];
+
+			$q2 = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,subject,text,cat_id,initial_ticket,server_hostname,closed,admin_name)
+			VALUES ('','".$a["adm_login"]."','".date("Y-m-d")."','".date("H:i:s")."','".$_REQUEST["last_tik_id"]."','0','admin','".$a["subject"]."','".addslashes($_REQUEST["ticketbody"])."','".$a["cat_id"]."','no','".$a["server_hostname"]."','$closed','$pseudo');";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$ins_id = mysql_insert_id();
 			$q2 = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$ins_id' WHERE id='".$_REQUEST["last_tik_id"]."';";
