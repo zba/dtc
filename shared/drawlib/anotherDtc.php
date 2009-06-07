@@ -122,7 +122,10 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	global $conf_dtc_version;
 	global $conf_dtc_release;
 	global $conf_unix_type;
-	
+	global $adm_login;
+	global $adm_email_login;
+	global $panel_type;	
+
 	global $conf_skin;
 	global $dtcshared_path;
 	
@@ -138,6 +141,16 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	}
 
 
+	if($panel_type == "admin"){
+		$display_user = $_SERVER["PHP_AUTH_USER"];
+	}else if($panel_type == "client"){
+		$display_user = $adm_login;
+	}else if($panel_type == "email"){
+		$display_user = $adm_email_login;
+	}else{
+		$display_user = "";
+	}
+
 	$pagetop_filename = $dtcshared_path.'/gfx/skin/'.$conf_skin.'/pagetop.html';
 	if(file_exists($pagetop_filename)){
 		$fp = fopen($pagetop_filename,"r");
@@ -147,7 +160,7 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		$inside = str_replace("__DTC_LANGUAGES_LINKS__",$zeLanguage,$inside);
 		$inside = str_replace("__DTC_VERSION__","V$conf_dtc_version R$conf_dtc_release - $conf_unix_type",$inside);
 		$inside = str_replace("__DTC_LINK__",$links,$inside);
-		$inside = str_replace("__AUTH_USER__",_("Logged as:") . " " . $_SERVER["PHP_AUTH_USER"],$inside);
+		$inside = str_replace("__AUTH_USER__",_("Logged as:") . " " . $display_user,$inside);
 		$inside .= "<script language=\"JavaScript\" type=\"text/javascript\" src=\"gfx/wz_tooltip.js\"></script>";
 		return $inside;
 	}else{
