@@ -172,7 +172,12 @@ function drawNewAdminForm(){
 			}else{
 				$bg = " bgcolor=\"#FFFFAA\" ";
 			}
-			$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i><br>"._("Reply from:")." ".$a["realname"]."</td><td$bg>".nl2br(htmlspecialchars(stripslashes($a["text"])))."</td></tr>";
+			if($a["admin_or_user"] == "admin"){
+                        	$replied_by = "<br>"._("Replied by:")." ".$a["admin_name"];
+			}else{
+				$replied_by = "";
+			}
+			$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i>".$replied_by."</td><td$bg>".nl2br(htmlspecialchars(stripslashes($a["text"])))."</td></tr>";
 			if($a["request_close"] == "yes"){
 				$close_request = "yes";
 			}

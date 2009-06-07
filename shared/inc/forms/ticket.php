@@ -111,7 +111,21 @@ $popup_cats
 				}else{
 					$bg = " bgcolor=\"#FFFFAA\" ";
 				}
-				$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i><br>"._("Reply from:")." ".$a["realname"]."</td><td$bg>".nl2br(stripslashes($a["text"]))."</td></tr>";
+				if($a["admin_or_user"] == "admin"){
+					$qr = "SELECT * FROM $pro_mysql_tik_admins_table WHERE pseudo='".$a["admin_name"]."';";
+					$rr = mysql_query($qr)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+					$nr = mysql_num_rows($rr);
+					if($nr == 1){
+						$ar = mysql_fetch_array($rr);
+						$realname = $ar["realname"];
+					}else{
+						$realname = _("Not found!");
+					}
+					$replied_by = "<br>"._("Replied by:")." ".$realname;
+				}else{
+					$replied_by = "";
+				}
+				$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i>".$replied_by."</td><td$bg>".nl2br(stripslashes($a["text"]))."</td></tr>";
 			}
 			$out .= "</table>";
 			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
