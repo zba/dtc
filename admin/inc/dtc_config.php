@@ -561,7 +561,7 @@ function drawTicketConfig(){
 			$n = mysql_num_rows($r);
 			for($i=0;$i<$n;$i++){
 				$a = mysql_fetch_array($r);
-				$fname = substr($a["email"],0,1);
+				$fname = strtolower( substr($a["email"],0,1) );
 				if($fname == $old_file || $old_file == ""){
 					$addr_list .= $a["email"]."\n";
 				}else{
@@ -569,13 +569,12 @@ function drawTicketConfig(){
 					$fp = fopen($fullpath,"w+");
 					fwrite($fp,$addr_list);
 					fclose($fp);
-					echo "Wrote $fullpath";
 					$addr_list = $a["email"]."\n";
 				}
 				$old_file = $fname;
 			}
 			if($n > 0){
-				$fullpath = $fullpath."/".substr($a["email"],0,1);
+				$fullpath = $subs_path."/".substr($a["email"],0,1);
 				$fp = fopen($fullpath,"w+");
 				fwrite($fp,$addr_list);
 				fclose($fp);
