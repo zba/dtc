@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-06 23:07+0800\n"
+"POT-Creation-Date: 2009-06-08 17:23+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Feher Sandor <sfeher@bluesystem.hu>\n"
 "Language-Team: Hungarian <LL@li.org>\n"
@@ -386,8 +386,8 @@ msgid "Act as backup mail server for the following servers:"
 msgstr "Tartalék mail szerverként viselkedjen a következő szervereknek :"
 
 #: admin/inc/renewals.php:428 admin/inc/renewals.php:722
-#: admin/inc/draw_user_admin.php:290 admin/inc/draw_user_admin.php:350
-#: admin/inc/draw_user_admin.php:369 shared/inc/forms/database.php:41
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:374
+#: admin/inc/draw_user_admin.php:393 shared/inc/forms/database.php:41
 #: shared/inc/forms/database.php:82 shared/inc/forms/my_account.php:130
 #: shared/inc/forms/reseller.php:24
 msgid "Action"
@@ -397,7 +397,7 @@ msgstr "Művelet"
 msgid "Activate FTP backups:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:335 admin/inc/draw_user_admin.php:355
+#: admin/inc/draw_user_admin.php:359 admin/inc/draw_user_admin.php:379
 msgid "Add"
 msgstr ""
 
@@ -440,7 +440,7 @@ msgstr ""
 msgid "Add a new company:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:264
+#: admin/inc/draw_user_admin.php:288
 msgid "Add a new user"
 msgstr ""
 
@@ -514,7 +514,7 @@ msgstr "A fő MX szerver címe :"
 msgid "Address:"
 msgstr "Cím:"
 
-#: admin/inc/draw_user_admin.php:479
+#: admin/inc/draw_user_admin.php:503
 msgid "Admin"
 msgstr ""
 
@@ -523,7 +523,7 @@ msgstr ""
 msgid "Admin editor"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:144
+#: admin/inc/draw_user_admin.php:154
 msgid "Admin login: "
 msgstr ""
 
@@ -539,7 +539,7 @@ msgstr ""
 msgid "Afghanistan"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:455
+#: admin/inc/draw_user_admin.php:479
 msgid "Age"
 msgstr ""
 
@@ -831,7 +831,7 @@ msgstr "IP cím"
 msgid "Bank amount"
 msgstr "Az ön hosting hozzáférése:"
 
-#: admin/inc/draw_user_admin.php:290 admin/inc/draw_user_admin.php:369
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:393
 msgid "Bank validated"
 msgstr ""
 
@@ -972,7 +972,7 @@ msgstr "Az adatbázisai listája:"
 msgid "Cannot fetch user line"
 msgstr "Az adatbázisai listája:"
 
-#: admin/inc/draw_user_admin.php:388
+#: admin/inc/draw_user_admin.php:412
 msgid "Cannot find payment!"
 msgstr ""
 
@@ -980,20 +980,20 @@ msgstr ""
 msgid "Cannot find product id!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:301 admin/inc/draw_user_admin.php:302
+#: admin/inc/draw_user_admin.php:325 admin/inc/draw_user_admin.php:326
 msgid "Cannot find product in db!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:377
+#: admin/inc/draw_user_admin.php:401
 msgid "Cannot find product!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:430
+#: admin/inc/draw_user_admin.php:454
 msgid "Cannot find server in db!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:127 admin/inc/draw_user_admin.php:154
-#: admin/inc/draw_user_admin.php:207
+#: admin/inc/draw_user_admin.php:137 admin/inc/draw_user_admin.php:164
+#: admin/inc/draw_user_admin.php:222
 msgid "Cannot find ticket!"
 msgstr ""
 
@@ -1187,11 +1187,11 @@ msgstr "Ügyfél panel:"
 msgid "Client panel:"
 msgstr "Ügyfél panel:"
 
-#: admin/inc/draw_user_admin.php:195
+#: admin/inc/draw_user_admin.php:210
 msgid "Close without reply"
 msgstr ""
 
-#: shared/inc/forms/ticket.php:164
+#: shared/inc/forms/ticket.php:178
 msgid "Closed"
 msgstr ""
 
@@ -1307,7 +1307,7 @@ msgstr ""
 msgid "Congo, The Democratic Republic Of"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:532
+#: admin/inc/draw_user_admin.php:556
 msgid "Console output"
 msgstr ""
 
@@ -1659,8 +1659,8 @@ msgstr "Az adatbázisok lemezterület felhasználása:"
 msgid "Databases:"
 msgstr "Adatbázis fájlok:"
 
-#: admin/inc/draw_user_admin.php:290 shared/inc/forms/invoices.php:42
-#: shared/inc/forms/my_account.php:233 shared/inc/forms/ticket.php:159
+#: admin/inc/draw_user_admin.php:314 shared/inc/forms/invoices.php:42
+#: shared/inc/forms/my_account.php:233 shared/inc/forms/ticket.php:173
 msgid "Date"
 msgstr "Dátum"
 
@@ -1715,8 +1715,8 @@ msgstr "Alapértelmezett aldomain: "
 msgid "Defaut TTL for your zonefiles:"
 msgstr ""
 
-#: admin/inc/renewals.php:485 admin/inc/draw_user_admin.php:336
-#: admin/inc/draw_user_admin.php:356 shared/inc/forms/database.php:57
+#: admin/inc/renewals.php:485 admin/inc/draw_user_admin.php:360
+#: admin/inc/draw_user_admin.php:380 shared/inc/forms/database.php:57
 #: shared/inc/forms/database.php:105 shared/inc/forms/domain_stats.php:104
 msgid "Delete"
 msgstr "Töröl"
@@ -1860,7 +1860,7 @@ msgid "Do you want to transfer an existing domain or register a new domain?"
 msgstr ""
 "Szeretne áttranszferálni egy létező domaint vagy újat szeretne regisztrálni ?"
 
-#: shared/drawlib/anotherDtc.php:134
+#: shared/drawlib/anotherDtc.php:137
 msgid "Documentation"
 msgstr ""
 
@@ -1879,12 +1879,12 @@ msgstr "Domain név"
 msgid "Domain config"
 msgstr "Domain név"
 
-#: admin/inc/draw_user_admin.php:350 shared/inc/forms/admin_stats.php:104
+#: admin/inc/draw_user_admin.php:374 shared/inc/forms/admin_stats.php:104
 #: shared/inc/forms/root_admin.php:344
 msgid "Domain name"
 msgstr "Domain név"
 
-#: admin/inc/draw_user_admin.php:290
+#: admin/inc/draw_user_admin.php:314
 msgid "Domain name / VPS server hostname"
 msgstr ""
 
@@ -2282,7 +2282,7 @@ msgstr "Keresztnév:"
 msgid "First name: "
 msgstr "Keresztnév:"
 
-#: admin/inc/draw_user_admin.php:142
+#: admin/inc/draw_user_admin.php:152
 msgid "First query date: "
 msgstr ""
 
@@ -2577,7 +2577,7 @@ msgstr "Csak hoszting"
 msgid "Hosting product manager"
 msgstr ""
 
-#: admin/inc/dtc_config.php:853 shared/inc/forms/ticket.php:159
+#: admin/inc/dtc_config.php:853 shared/inc/forms/ticket.php:173
 msgid "Hostname"
 msgstr ""
 
@@ -3028,11 +3028,11 @@ msgstr ""
 msgid "Last boot date: "
 msgstr "Az adatbázisai listája:"
 
-#: admin/inc/draw_user_admin.php:455
+#: admin/inc/draw_user_admin.php:479
 msgid "Last message age"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:455
+#: admin/inc/draw_user_admin.php:479
 msgid "Last message from"
 msgstr ""
 
@@ -3199,14 +3199,14 @@ msgstr ""
 msgid "Location of user's database: "
 msgstr "Az adatbázisai listája:"
 
-#: shared/drawlib/anotherDtc.php:150
+#: shared/drawlib/anotherDtc.php:163
 msgid "Logged as:"
 msgstr ""
 
 #: admin/inc/renewals.php:652 admin/inc/renewals.php:683
 #: admin/inc/renewals.php:717 admin/inc/renewals.php:798
-#: admin/inc/draw_user_admin.php:290 admin/inc/draw_user_admin.php:350
-#: admin/inc/draw_user_admin.php:369 admin/inc/draw_user_admin.php:455
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:374
+#: admin/inc/draw_user_admin.php:393 admin/inc/draw_user_admin.php:479
 #: admin/inc/dtc_config.php:457 admin/inc/dtc_config.php:1296
 #: admin/inc/dtc_config.php:1323 admin/inc/dtc_config.php:1348
 #: admin/inc/dtc_config.php:1375 admin/inc/dtc_config.php:1400
@@ -3226,7 +3226,7 @@ msgstr "Belépési információk"
 msgid "Login successfull. Please select a menu entry on the left..."
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:268 shared/inc/forms/aliases.php:42
+#: admin/inc/draw_user_admin.php:292 shared/inc/forms/aliases.php:42
 #: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:92
 #: shared/inc/forms/email.php:47 shared/inc/forms/email.php:59
 #: shared/inc/forms/email.php:628 shared/inc/forms/email.php:634
@@ -3438,7 +3438,7 @@ msgstr ""
 msgid "Max memory: "
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:277
+#: admin/inc/draw_user_admin.php:301
 msgid "MaxMind says"
 msgstr ""
 
@@ -3644,7 +3644,7 @@ msgstr "Névszerver gazdanév: "
 msgid "Nagios monitoring"
 msgstr "Ország"
 
-#: admin/inc/draw_user_admin.php:290 admin/dtcrm/product_manager.php:125
+#: admin/inc/draw_user_admin.php:314 admin/dtcrm/product_manager.php:125
 #: admin/dtcrm/product_manager.php:217 admin/dtcrm/product_manager.php:290
 msgid "Name"
 msgstr ""
@@ -3844,8 +3844,8 @@ msgstr ""
 msgid "Niue"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:175 admin/inc/draw_user_admin.php:327
-#: admin/inc/draw_user_admin.php:397 admin/inc/dtc_config.php:466
+#: admin/inc/draw_user_admin.php:190 admin/inc/draw_user_admin.php:351
+#: admin/inc/draw_user_admin.php:421 admin/inc/dtc_config.php:466
 #: admin/inc/dtc_config.php:643 admin/inc/dtc_config.php:681
 #: admin/inc/dtc_config.php:874 admin/inc/dtc_config.php:928
 #: admin/inc/dtc_config.php:1013 admin/inc/dtc_config.php:1018
@@ -3871,7 +3871,7 @@ msgstr ""
 #: shared/inc/forms/root_admin.php:236 shared/inc/forms/root_admin.php:354
 #: shared/inc/forms/root_admin.php:360 shared/inc/forms/subdomain.php:140
 #: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:193
-#: shared/inc/forms/subdomain.php:207 shared/inc/forms/ticket.php:130
+#: shared/inc/forms/subdomain.php:207 shared/inc/forms/ticket.php:144
 #: shared/securepay/modules/cheque/main.php:56
 #: shared/securepay/modules/wiretransfer/main.php:56
 msgid "No"
@@ -3910,7 +3910,7 @@ msgstr ""
 msgid "No dedicated server expired"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:347
+#: admin/inc/draw_user_admin.php:371
 msgid "No domain waiting!"
 msgstr "Nincs várakozó domain!"
 
@@ -3926,15 +3926,15 @@ msgstr ""
 msgid "No past payments for this period"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:315
+#: admin/inc/draw_user_admin.php:339
 msgid "No pay ID!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:366
+#: admin/inc/draw_user_admin.php:390
 msgid "No pending renewals!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:452
+#: admin/inc/draw_user_admin.php:476
 msgid "No pending support tickets!"
 msgstr ""
 
@@ -3961,7 +3961,7 @@ msgid ""
 "Please select a new one."
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:287
+#: admin/inc/draw_user_admin.php:311
 msgid "No user waiting!"
 msgstr "Nincs várakozó felhasználó!"
 
@@ -3983,6 +3983,7 @@ msgstr ""
 
 #: shared/inc/forms/dedicated.php:39 shared/inc/forms/invoices.php:58
 #: shared/inc/forms/invoices.php:59 shared/inc/forms/invoices.php:60
+#: shared/inc/forms/ticket.php:122
 msgid "Not found!"
 msgstr ""
 
@@ -4079,7 +4080,7 @@ msgstr "Az adatbázisok száma:"
 msgid "Ok"
 msgstr ""
 
-#: shared/inc/forms/ticket.php:153
+#: shared/inc/forms/ticket.php:167
 msgid "Old tickets:"
 msgstr ""
 
@@ -4099,7 +4100,7 @@ msgstr ""
 msgid "Online DTC help"
 msgstr "Online DTC súgó"
 
-#: shared/inc/forms/ticket.php:166
+#: shared/inc/forms/ticket.php:180
 msgid "Open"
 msgstr ""
 
@@ -4234,7 +4235,7 @@ msgid ""
 "between 6 and 16 chars long."
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:269 client/login.php:16
+#: admin/inc/draw_user_admin.php:293 client/login.php:16
 #: shared/inc/draw.php:503 shared/inc/forms/database.php:41
 #: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:93
 #: shared/inc/forms/email.php:62 shared/inc/forms/email.php:642
@@ -4281,7 +4282,7 @@ msgid ""
 "this:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:270 shared/inc/forms/root_admin.php:123
+#: admin/inc/draw_user_admin.php:294 shared/inc/forms/root_admin.php:123
 #: shared/inc/forms/ssh.php:81
 msgid "Path:"
 msgstr "Elérési út:"
@@ -4329,7 +4330,7 @@ msgid "Payment complete. Proceed to checkout"
 msgstr "Sikeres fizetés. Ellenőrzöm"
 
 #: admin/inc/renewals.php:229 admin/inc/renewals.php:427
-#: admin/inc/draw_user_admin.php:369
+#: admin/inc/draw_user_admin.php:393
 #, fuzzy
 msgid "Payment date"
 msgstr "Fizetési átjáró"
@@ -4362,8 +4363,8 @@ msgstr "Fizetési átjáró"
 msgid "Paypal"
 msgstr ""
 
-#: admin/deamons_state.php:94 admin/inc/draw_user_admin.php:325
-#: admin/inc/draw_user_admin.php:400
+#: admin/deamons_state.php:94 admin/inc/draw_user_admin.php:349
+#: admin/inc/draw_user_admin.php:424
 msgid "Pending"
 msgstr ""
 
@@ -4473,6 +4474,10 @@ msgstr ""
 "Kérem válasszon 3 kapcsolattartót, akiket az adott domain regisztrációjakor "
 "fel kíván tüntetni "
 
+#: client/new_account_form.php:451
+msgid "Please select!"
+msgstr ""
+
 #: shared/inc/forms/my_account.php:203
 msgid "Please tell us if the following is not correct:"
 msgstr "Kérem jelezze felénk, ha az alábbiak nem stimmelnek:"
@@ -4538,8 +4543,8 @@ msgstr "Név regisztráció indítása "
 msgid "Proceed to transfer"
 msgstr "Transzfer indítása"
 
-#: admin/inc/renewals.php:425 admin/inc/draw_user_admin.php:290
-#: admin/inc/draw_user_admin.php:369 client/new_account_form.php:566
+#: admin/inc/renewals.php:425 admin/inc/draw_user_admin.php:314
+#: admin/inc/draw_user_admin.php:393 client/new_account_form.php:566
 #: shared/dtcrm/draw.php:86 shared/inc/forms/invoices.php:42
 #: shared/inc/forms/root_admin.php:578
 msgid "Product"
@@ -4810,15 +4815,19 @@ msgstr ""
 msgid "Renewals management"
 msgstr ""
 
-#: shared/inc/forms/ticket.php:93 shared/inc/forms/ticket.php:157
+#: admin/inc/draw_user_admin.php:176 shared/inc/forms/ticket.php:124
+msgid "Replied by:"
+msgstr ""
+
+#: shared/inc/forms/ticket.php:93 shared/inc/forms/ticket.php:171
 msgid "Replying to an already closed ticket will reopen it."
 msgstr ""
 
-#: shared/inc/forms/ticket.php:129
+#: shared/inc/forms/ticket.php:143
 msgid "Request to close the issue:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:171
+#: admin/inc/draw_user_admin.php:186
 msgid "Request to close the ticket: "
 msgstr ""
 
@@ -4973,11 +4982,11 @@ msgstr ""
 msgid "SSL Port: "
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:421
+#: admin/inc/draw_user_admin.php:445
 msgid "SSL Token purchase"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:424
+#: admin/inc/draw_user_admin.php:448
 msgid "SSL Token renewal"
 msgstr ""
 
@@ -5086,11 +5095,11 @@ msgstr ""
 msgid "Selling conditions not accepted!"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:185
+#: admin/inc/draw_user_admin.php:200
 msgid "Send reply"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:190
+#: admin/inc/draw_user_admin.php:205
 msgid "Send reply and close ticket"
 msgstr ""
 
@@ -5133,7 +5142,7 @@ msgid ""
 "Server did not send OK after connect, maybe wrong server or server is down: "
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:143
+#: admin/inc/draw_user_admin.php:153
 msgid "Server hostname related: "
 msgstr ""
 
@@ -5170,7 +5179,7 @@ msgstr "A szerver válasza: "
 msgid "Server statistic graphs"
 msgstr "Statisztika"
 
-#: admin/inc/draw_user_admin.php:435
+#: admin/inc/draw_user_admin.php:459
 #, fuzzy
 msgid "Server:"
 msgstr "Az elsődleges dns szerver címe:"
@@ -5207,7 +5216,7 @@ msgstr ""
 msgid "Seychelles"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:418
+#: admin/inc/draw_user_admin.php:442
 msgid "Shared"
 msgstr ""
 
@@ -5338,7 +5347,7 @@ msgstr ""
 msgid "Statistics:"
 msgstr ""
 
-#: shared/inc/forms/ticket.php:159
+#: shared/inc/forms/ticket.php:173
 #, fuzzy
 msgid "Status"
 msgstr "Megye:"
@@ -5405,8 +5414,8 @@ msgstr "Aldomainjei a(z) "
 msgid "Subdomains:"
 msgstr "Aldomain-ek:"
 
-#: admin/inc/draw_user_admin.php:455 shared/inc/forms/ticket.php:45
-#: shared/inc/forms/ticket.php:159
+#: admin/inc/draw_user_admin.php:479 shared/inc/forms/ticket.php:45
+#: shared/inc/forms/ticket.php:173
 msgid "Subject"
 msgstr ""
 
@@ -5422,11 +5431,11 @@ msgstr ""
 msgid "Subject:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:130
+#: admin/inc/draw_user_admin.php:140
 msgid "Subject: "
 msgstr ""
 
-#: shared/inc/forms/ticket.php:133 shared/inc/forms/ticket.php:148
+#: shared/inc/forms/ticket.php:147 shared/inc/forms/ticket.php:162
 msgid "Submit new support issue"
 msgstr ""
 
@@ -5558,7 +5567,7 @@ msgid ""
 "have conflicts (and prevent apache from restarting)!"
 msgstr ""
 
-#: shared/drawlib/anotherDtc.php:146 shared/drawlib/anotherDtc.php:161
+#: shared/drawlib/anotherDtc.php:159 shared/drawlib/anotherDtc.php:174
 msgid "Take control of your domain name"
 msgstr "Vegye kézbe domainje irányítását"
 
@@ -5812,7 +5821,7 @@ msgstr ""
 msgid "Ticket not found!"
 msgstr ""
 
-#: shared/inc/forms/ticket.php:159
+#: shared/inc/forms/ticket.php:173
 msgid "Time"
 msgstr ""
 
@@ -5976,12 +5985,12 @@ msgstr ""
 msgid "Tuvalu"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:369 admin/inc/draw_user_admin.php:455
-#: shared/inc/forms/ticket.php:159
+#: admin/inc/draw_user_admin.php:393 admin/inc/draw_user_admin.php:479
+#: shared/inc/forms/ticket.php:173
 msgid "Type"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:136 admin/inc/draw_user_admin.php:471
+#: admin/inc/draw_user_admin.php:146 admin/inc/draw_user_admin.php:495
 msgid "Type not found!"
 msgstr ""
 
@@ -6006,7 +6015,7 @@ msgstr ""
 msgid "Type of zone generation"
 msgstr "Konfigurációs generálása"
 
-#: admin/inc/draw_user_admin.php:141 admin/inc/dtc_config.php:1683
+#: admin/inc/draw_user_admin.php:151 admin/inc/dtc_config.php:1683
 msgid "Type:"
 msgstr ""
 
@@ -6210,7 +6219,7 @@ msgstr ""
 msgid "Used quota: "
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:507 admin/inc/monitor.php:15
+#: admin/inc/draw_user_admin.php:531 admin/inc/monitor.php:15
 #: shared/inc/forms/database.php:41 shared/inc/forms/database.php:82
 msgid "User"
 msgstr ""
@@ -6233,7 +6242,7 @@ msgstr "Változtassa meg a jelszavát:"
 msgid "User administration"
 msgstr "Domain név regisztráció"
 
-#: admin/inc/draw_user_admin.php:282
+#: admin/inc/draw_user_admin.php:306
 msgid "User and domain waiting for addition:"
 msgstr "A következő felhasználók illetve domainek várnak jóváhagyásra:"
 
@@ -6397,7 +6406,7 @@ msgstr ""
 msgid "VPS: "
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:410
+#: admin/inc/draw_user_admin.php:434
 msgid "VPS: Cannot find VPS in db!"
 msgstr ""
 
@@ -6431,7 +6440,7 @@ msgstr ""
 msgid "Vietnam"
 msgstr "Lista neve"
 
-#: admin/inc/draw_user_admin.php:334
+#: admin/inc/draw_user_admin.php:358
 msgid "View details"
 msgstr ""
 
@@ -6608,8 +6617,8 @@ msgstr ""
 msgid "Yemen, Republic of"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:173 admin/inc/draw_user_admin.php:323
-#: admin/inc/draw_user_admin.php:393 admin/inc/dtc_config.php:466
+#: admin/inc/draw_user_admin.php:188 admin/inc/draw_user_admin.php:347
+#: admin/inc/draw_user_admin.php:417 admin/inc/dtc_config.php:466
 #: admin/inc/dtc_config.php:643 admin/inc/dtc_config.php:681
 #: admin/inc/dtc_config.php:874 admin/inc/dtc_config.php:928
 #: admin/inc/dtc_config.php:1013 admin/inc/dtc_config.php:1018
@@ -6635,7 +6644,7 @@ msgstr ""
 #: shared/inc/forms/root_admin.php:235 shared/inc/forms/root_admin.php:354
 #: shared/inc/forms/root_admin.php:360 shared/inc/forms/subdomain.php:140
 #: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:193
-#: shared/inc/forms/subdomain.php:207 shared/inc/forms/ticket.php:129
+#: shared/inc/forms/subdomain.php:207 shared/inc/forms/ticket.php:143
 #: shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:78
 #: shared/securepay/modules/worldpay/main.php:77

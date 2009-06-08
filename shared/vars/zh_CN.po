@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-06 23:07+0800\n"
+"POT-Creation-Date: 2009-06-08 17:23+0800\n"
 "PO-Revision-Date: 2009-02-15 22:58+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Chinese <zh_CN@li.org>\n"
@@ -373,8 +373,8 @@ msgid "Act as backup mail server for the following servers:"
 msgstr "对下列服务器作为备份邮件服务器:"
 
 #: admin/inc/renewals.php:428 admin/inc/renewals.php:722
-#: admin/inc/draw_user_admin.php:290 admin/inc/draw_user_admin.php:350
-#: admin/inc/draw_user_admin.php:369 shared/inc/forms/database.php:41
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:374
+#: admin/inc/draw_user_admin.php:393 shared/inc/forms/database.php:41
 #: shared/inc/forms/database.php:82 shared/inc/forms/my_account.php:130
 #: shared/inc/forms/reseller.php:24
 msgid "Action"
@@ -384,7 +384,7 @@ msgstr "操作"
 msgid "Activate FTP backups:"
 msgstr "激活的FTP备份："
 
-#: admin/inc/draw_user_admin.php:335 admin/inc/draw_user_admin.php:355
+#: admin/inc/draw_user_admin.php:359 admin/inc/draw_user_admin.php:379
 msgid "Add"
 msgstr "添加"
 
@@ -424,7 +424,7 @@ msgstr "添加新公司"
 msgid "Add a new company:"
 msgstr "添加新公司:"
 
-#: admin/inc/draw_user_admin.php:264
+#: admin/inc/draw_user_admin.php:288
 msgid "Add a new user"
 msgstr "添加新用户"
 
@@ -491,7 +491,7 @@ msgstr "主MX服务器的地址："
 msgid "Address:"
 msgstr "地址："
 
-#: admin/inc/draw_user_admin.php:479
+#: admin/inc/draw_user_admin.php:503
 msgid "Admin"
 msgstr "管理员"
 
@@ -500,7 +500,7 @@ msgstr "管理员"
 msgid "Admin editor"
 msgstr "编辑管理员信息"
 
-#: admin/inc/draw_user_admin.php:144
+#: admin/inc/draw_user_admin.php:154
 msgid "Admin login: "
 msgstr "管理员登陆："
 
@@ -516,7 +516,7 @@ msgstr ""
 msgid "Afghanistan"
 msgstr "阿富汗"
 
-#: admin/inc/draw_user_admin.php:455
+#: admin/inc/draw_user_admin.php:479
 msgid "Age"
 msgstr "年龄"
 
@@ -791,7 +791,7 @@ msgstr "银行地址"
 msgid "Bank amount"
 msgstr "银行amount"
 
-#: admin/inc/draw_user_admin.php:290 admin/inc/draw_user_admin.php:369
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:393
 msgid "Bank validated"
 msgstr "有效的支付"
 
@@ -927,7 +927,7 @@ msgstr "无法关闭用户数据库"
 msgid "Cannot fetch user line"
 msgstr "无法读取用户"
 
-#: admin/inc/draw_user_admin.php:388
+#: admin/inc/draw_user_admin.php:412
 msgid "Cannot find payment!"
 msgstr "没有找到付款记录"
 
@@ -935,20 +935,20 @@ msgstr "没有找到付款记录"
 msgid "Cannot find product id!"
 msgstr "在数据库中没有发现该款产品ID！"
 
-#: admin/inc/draw_user_admin.php:301 admin/inc/draw_user_admin.php:302
+#: admin/inc/draw_user_admin.php:325 admin/inc/draw_user_admin.php:326
 msgid "Cannot find product in db!"
 msgstr "在数据库中没有发现该款产品！"
 
-#: admin/inc/draw_user_admin.php:377
+#: admin/inc/draw_user_admin.php:401
 msgid "Cannot find product!"
 msgstr "没有发现该款产品！"
 
-#: admin/inc/draw_user_admin.php:430
+#: admin/inc/draw_user_admin.php:454
 msgid "Cannot find server in db!"
 msgstr "在数据库中无法找到服务器!"
 
-#: admin/inc/draw_user_admin.php:127 admin/inc/draw_user_admin.php:154
-#: admin/inc/draw_user_admin.php:207
+#: admin/inc/draw_user_admin.php:137 admin/inc/draw_user_admin.php:164
+#: admin/inc/draw_user_admin.php:222
 msgid "Cannot find ticket!"
 msgstr "没有找到相应的标签!"
 
@@ -1135,11 +1135,11 @@ msgstr "用户面板"
 msgid "Client panel:"
 msgstr "用户面板："
 
-#: admin/inc/draw_user_admin.php:195
+#: admin/inc/draw_user_admin.php:210
 msgid "Close without reply"
 msgstr "立即关闭"
 
-#: shared/inc/forms/ticket.php:164
+#: shared/inc/forms/ticket.php:178
 msgid "Closed"
 msgstr "已关闭"
 
@@ -1245,7 +1245,7 @@ msgstr "刚果"
 msgid "Congo, The Democratic Republic Of"
 msgstr "刚果民主共和国"
 
-#: admin/inc/draw_user_admin.php:532
+#: admin/inc/draw_user_admin.php:556
 msgid "Console output"
 msgstr "Console 输出"
 
@@ -1596,8 +1596,8 @@ msgstr "数据库磁盘使用率："
 msgid "Databases:"
 msgstr "数据库："
 
-#: admin/inc/draw_user_admin.php:290 shared/inc/forms/invoices.php:42
-#: shared/inc/forms/my_account.php:233 shared/inc/forms/ticket.php:159
+#: admin/inc/draw_user_admin.php:314 shared/inc/forms/invoices.php:42
+#: shared/inc/forms/my_account.php:233 shared/inc/forms/ticket.php:173
 msgid "Date"
 msgstr "日期"
 
@@ -1649,8 +1649,8 @@ msgstr "默认子域名："
 msgid "Defaut TTL for your zonefiles:"
 msgstr "默认 TTL 对于您的 zonefiles:"
 
-#: admin/inc/renewals.php:485 admin/inc/draw_user_admin.php:336
-#: admin/inc/draw_user_admin.php:356 shared/inc/forms/database.php:57
+#: admin/inc/renewals.php:485 admin/inc/draw_user_admin.php:360
+#: admin/inc/draw_user_admin.php:380 shared/inc/forms/database.php:57
 #: shared/inc/forms/database.php:105 shared/inc/forms/domain_stats.php:104
 msgid "Delete"
 msgstr "删除"
@@ -1790,7 +1790,7 @@ msgstr "不要更改它，除非您知道您正在做什么。"
 msgid "Do you want to transfer an existing domain or register a new domain?"
 msgstr "您要过户一个现存的域名还是注册一个新的？"
 
-#: shared/drawlib/anotherDtc.php:134
+#: shared/drawlib/anotherDtc.php:137
 msgid "Documentation"
 msgstr "文档"
 
@@ -1807,12 +1807,12 @@ msgstr "域名工具"
 msgid "Domain config"
 msgstr "域名配置"
 
-#: admin/inc/draw_user_admin.php:350 shared/inc/forms/admin_stats.php:104
+#: admin/inc/draw_user_admin.php:374 shared/inc/forms/admin_stats.php:104
 #: shared/inc/forms/root_admin.php:344
 msgid "Domain name"
 msgstr "域名"
 
-#: admin/inc/draw_user_admin.php:290
+#: admin/inc/draw_user_admin.php:314
 msgid "Domain name / VPS server hostname"
 msgstr "域名/VPS服务器主机名"
 
@@ -2196,7 +2196,7 @@ msgstr "名："
 msgid "First name: "
 msgstr "名："
 
-#: admin/inc/draw_user_admin.php:142
+#: admin/inc/draw_user_admin.php:152
 msgid "First query date: "
 msgstr "第一次咨询的日期:"
 
@@ -2490,7 +2490,7 @@ msgstr "仅托管"
 msgid "Hosting product manager"
 msgstr "托管产品管理员"
 
-#: admin/inc/dtc_config.php:853 shared/inc/forms/ticket.php:159
+#: admin/inc/dtc_config.php:853 shared/inc/forms/ticket.php:173
 msgid "Hostname"
 msgstr "主机名"
 
@@ -2952,11 +2952,11 @@ msgstr "老挝人民共和国"
 msgid "Last boot date: "
 msgstr "上次启动日期："
 
-#: admin/inc/draw_user_admin.php:455
+#: admin/inc/draw_user_admin.php:479
 msgid "Last message age"
 msgstr "最后一条信息是多久以前"
 
-#: admin/inc/draw_user_admin.php:455
+#: admin/inc/draw_user_admin.php:479
 msgid "Last message from"
 msgstr "最后一条信息从"
 
@@ -3116,14 +3116,14 @@ msgstr "位置不是有效的主机名。"
 msgid "Location of user's database: "
 msgstr "用户数据库的位置："
 
-#: shared/drawlib/anotherDtc.php:150
+#: shared/drawlib/anotherDtc.php:163
 msgid "Logged as:"
 msgstr ""
 
 #: admin/inc/renewals.php:652 admin/inc/renewals.php:683
 #: admin/inc/renewals.php:717 admin/inc/renewals.php:798
-#: admin/inc/draw_user_admin.php:290 admin/inc/draw_user_admin.php:350
-#: admin/inc/draw_user_admin.php:369 admin/inc/draw_user_admin.php:455
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:374
+#: admin/inc/draw_user_admin.php:393 admin/inc/draw_user_admin.php:479
 #: admin/inc/dtc_config.php:457 admin/inc/dtc_config.php:1296
 #: admin/inc/dtc_config.php:1323 admin/inc/dtc_config.php:1348
 #: admin/inc/dtc_config.php:1375 admin/inc/dtc_config.php:1400
@@ -3143,7 +3143,7 @@ msgstr "登录信息"
 msgid "Login successfull. Please select a menu entry on the left..."
 msgstr "登录成功.请在左边选择一个菜单进入。。。"
 
-#: admin/inc/draw_user_admin.php:268 shared/inc/forms/aliases.php:42
+#: admin/inc/draw_user_admin.php:292 shared/inc/forms/aliases.php:42
 #: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:92
 #: shared/inc/forms/email.php:47 shared/inc/forms/email.php:59
 #: shared/inc/forms/email.php:628 shared/inc/forms/email.php:634
@@ -3346,7 +3346,7 @@ msgstr "邮件系统可使用的最大内存空间："
 msgid "Max memory: "
 msgstr "最大内存："
 
-#: admin/inc/draw_user_admin.php:277
+#: admin/inc/draw_user_admin.php:301
 msgid "MaxMind says"
 msgstr "MaxMind 答复"
 
@@ -3548,7 +3548,7 @@ msgstr "Nagios主机名: "
 msgid "Nagios monitoring"
 msgstr "Nagios监控"
 
-#: admin/inc/draw_user_admin.php:290 admin/dtcrm/product_manager.php:125
+#: admin/inc/draw_user_admin.php:314 admin/dtcrm/product_manager.php:125
 #: admin/dtcrm/product_manager.php:217 admin/dtcrm/product_manager.php:290
 msgid "Name"
 msgstr "名称"
@@ -3736,8 +3736,8 @@ msgstr "尼日利亚"
 msgid "Niue"
 msgstr "纽埃"
 
-#: admin/inc/draw_user_admin.php:175 admin/inc/draw_user_admin.php:327
-#: admin/inc/draw_user_admin.php:397 admin/inc/dtc_config.php:466
+#: admin/inc/draw_user_admin.php:190 admin/inc/draw_user_admin.php:351
+#: admin/inc/draw_user_admin.php:421 admin/inc/dtc_config.php:466
 #: admin/inc/dtc_config.php:643 admin/inc/dtc_config.php:681
 #: admin/inc/dtc_config.php:874 admin/inc/dtc_config.php:928
 #: admin/inc/dtc_config.php:1013 admin/inc/dtc_config.php:1018
@@ -3763,7 +3763,7 @@ msgstr "纽埃"
 #: shared/inc/forms/root_admin.php:236 shared/inc/forms/root_admin.php:354
 #: shared/inc/forms/root_admin.php:360 shared/inc/forms/subdomain.php:140
 #: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:193
-#: shared/inc/forms/subdomain.php:207 shared/inc/forms/ticket.php:130
+#: shared/inc/forms/subdomain.php:207 shared/inc/forms/ticket.php:144
 #: shared/securepay/modules/cheque/main.php:56
 #: shared/securepay/modules/wiretransfer/main.php:56
 msgid "No"
@@ -3801,7 +3801,7 @@ msgstr "没有找到完整的订单"
 msgid "No dedicated server expired"
 msgstr "没有已过期的独立主机"
 
-#: admin/inc/draw_user_admin.php:347
+#: admin/inc/draw_user_admin.php:371
 msgid "No domain waiting!"
 msgstr "没有待添加的域名！"
 
@@ -3817,15 +3817,15 @@ msgstr "禁止域名停放"
 msgid "No past payments for this period"
 msgstr "这个期间内没有以前的付款"
 
-#: admin/inc/draw_user_admin.php:315
+#: admin/inc/draw_user_admin.php:339
 msgid "No pay ID!"
 msgstr "没有 pay ID!"
 
-#: admin/inc/draw_user_admin.php:366
+#: admin/inc/draw_user_admin.php:390
 msgid "No pending renewals!"
 msgstr "没有等待的续约！"
 
-#: admin/inc/draw_user_admin.php:452
+#: admin/inc/draw_user_admin.php:476
 msgid "No pending support tickets!"
 msgstr "没有未解决的支持标签！"
 
@@ -3851,7 +3851,7 @@ msgid ""
 "Please select a new one."
 msgstr "该用户在数据库中不存在，或者这个用户不归您所有，请重新输入一个。"
 
-#: admin/inc/draw_user_admin.php:287
+#: admin/inc/draw_user_admin.php:311
 msgid "No user waiting!"
 msgstr "没有等待的用户！"
 
@@ -3874,6 +3874,7 @@ msgstr "没有产品"
 
 #: shared/inc/forms/dedicated.php:39 shared/inc/forms/invoices.php:58
 #: shared/inc/forms/invoices.php:59 shared/inc/forms/invoices.php:60
+#: shared/inc/forms/ticket.php:122
 msgid "Not found!"
 msgstr "没有找到！"
 
@@ -3964,7 +3965,7 @@ msgstr "数据库的数量："
 msgid "Ok"
 msgstr "Ok"
 
-#: shared/inc/forms/ticket.php:153
+#: shared/inc/forms/ticket.php:167
 msgid "Old tickets:"
 msgstr "已往的标签："
 
@@ -3984,7 +3985,7 @@ msgstr "每个IP pool 一个zonefile"
 msgid "Online DTC help"
 msgstr "DTC在线帮助文档"
 
-#: shared/inc/forms/ticket.php:166
+#: shared/inc/forms/ticket.php:180
 msgid "Open"
 msgstr "开放"
 
@@ -4120,7 +4121,7 @@ msgid ""
 "between 6 and 16 chars long."
 msgstr "密码应该仅有字母和数字组成(a-zA-Z0-9)，并且长度应该在6到16个字符之间。"
 
-#: admin/inc/draw_user_admin.php:269 client/login.php:16
+#: admin/inc/draw_user_admin.php:293 client/login.php:16
 #: shared/inc/draw.php:503 shared/inc/forms/database.php:41
 #: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:93
 #: shared/inc/forms/email.php:62 shared/inc/forms/email.php:642
@@ -4168,7 +4169,7 @@ msgstr ""
 "DTC 将被限定来产生其配置文件 对于 daemons的路径。<br>\n"
 "下边的每一个 (qmail， apache 和 named) 路径将被连结到这个:"
 
-#: admin/inc/draw_user_admin.php:270 shared/inc/forms/root_admin.php:123
+#: admin/inc/draw_user_admin.php:294 shared/inc/forms/root_admin.php:123
 #: shared/inc/forms/ssh.php:81
 msgid "Path:"
 msgstr "路径："
@@ -4211,7 +4212,7 @@ msgid "Payment complete. Proceed to checkout"
 msgstr "付款完毕，正在校验"
 
 #: admin/inc/renewals.php:229 admin/inc/renewals.php:427
-#: admin/inc/draw_user_admin.php:369
+#: admin/inc/draw_user_admin.php:393
 msgid "Payment date"
 msgstr "付款日期"
 
@@ -4240,8 +4241,8 @@ msgstr "付费类型编辑"
 msgid "Paypal"
 msgstr "贝宝"
 
-#: admin/deamons_state.php:94 admin/inc/draw_user_admin.php:325
-#: admin/inc/draw_user_admin.php:400
+#: admin/deamons_state.php:94 admin/inc/draw_user_admin.php:349
+#: admin/inc/draw_user_admin.php:424
 msgid "Pending"
 msgstr "待定"
 
@@ -4345,6 +4346,11 @@ msgid ""
 "domain name."
 msgstr "请选择3个您希望用来注册这个域名的联系人。"
 
+#: client/new_account_form.php:451
+#, fuzzy
+msgid "Please select!"
+msgstr "没有选择VPS所在的位置！"
+
 #: shared/inc/forms/my_account.php:203
 msgid "Please tell us if the following is not correct:"
 msgstr "请告诉我们下列信息是否正确："
@@ -4408,8 +4414,8 @@ msgstr "进行域名注册"
 msgid "Proceed to transfer"
 msgstr "进行转让"
 
-#: admin/inc/renewals.php:425 admin/inc/draw_user_admin.php:290
-#: admin/inc/draw_user_admin.php:369 client/new_account_form.php:566
+#: admin/inc/renewals.php:425 admin/inc/draw_user_admin.php:314
+#: admin/inc/draw_user_admin.php:393 client/new_account_form.php:566
 #: shared/dtcrm/draw.php:86 shared/inc/forms/invoices.php:42
 #: shared/inc/forms/root_admin.php:578
 msgid "Product"
@@ -4668,15 +4674,19 @@ msgstr "续约"
 msgid "Renewals management"
 msgstr "续约管理"
 
-#: shared/inc/forms/ticket.php:93 shared/inc/forms/ticket.php:157
+#: admin/inc/draw_user_admin.php:176 shared/inc/forms/ticket.php:124
+msgid "Replied by:"
+msgstr ""
+
+#: shared/inc/forms/ticket.php:93 shared/inc/forms/ticket.php:171
 msgid "Replying to an already closed ticket will reopen it."
 msgstr ""
 
-#: shared/inc/forms/ticket.php:129
+#: shared/inc/forms/ticket.php:143
 msgid "Request to close the issue:"
 msgstr "申请关闭这个问题："
 
-#: admin/inc/draw_user_admin.php:171
+#: admin/inc/draw_user_admin.php:186
 msgid "Request to close the ticket: "
 msgstr "申请关闭这个标签："
 
@@ -4825,11 +4835,11 @@ msgstr "SSL IPs 续约："
 msgid "SSL Port: "
 msgstr "SSL 端口: "
 
-#: admin/inc/draw_user_admin.php:421
+#: admin/inc/draw_user_admin.php:445
 msgid "SSL Token purchase"
 msgstr "SSL Token 购买"
 
-#: admin/inc/draw_user_admin.php:424
+#: admin/inc/draw_user_admin.php:448
 msgid "SSL Token renewal"
 msgstr "SSL Token 续约"
 
@@ -4940,11 +4950,11 @@ msgstr "查看销售条款 URL："
 msgid "Selling conditions not accepted!"
 msgstr "销售条款未被接受！"
 
-#: admin/inc/draw_user_admin.php:185
+#: admin/inc/draw_user_admin.php:200
 msgid "Send reply"
 msgstr "提交答复"
 
-#: admin/inc/draw_user_admin.php:190
+#: admin/inc/draw_user_admin.php:205
 msgid "Send reply and close ticket"
 msgstr "提交答复并关闭标签"
 
@@ -4985,7 +4995,7 @@ msgid ""
 "Server did not send OK after connect, maybe wrong server or server is down: "
 msgstr "连接以后，服务器没有发送OK，也许应用了错误服务器或者服务器不工作: "
 
-#: admin/inc/draw_user_admin.php:143
+#: admin/inc/draw_user_admin.php:153
 msgid "Server hostname related: "
 msgstr "相关的服务器主机名"
 
@@ -5018,7 +5028,7 @@ msgstr "服务器返回信息："
 msgid "Server statistic graphs"
 msgstr "服务器统计图"
 
-#: admin/inc/draw_user_admin.php:435
+#: admin/inc/draw_user_admin.php:459
 msgid "Server:"
 msgstr "服务器："
 
@@ -5051,7 +5061,7 @@ msgstr "创建 VPS (LVM)硬盘: "
 msgid "Seychelles"
 msgstr "塞舌尔群岛"
 
-#: admin/inc/draw_user_admin.php:418
+#: admin/inc/draw_user_admin.php:442
 msgid "Shared"
 msgstr "共享"
 
@@ -5175,7 +5185,7 @@ msgstr "域名统计："
 msgid "Statistics:"
 msgstr "统计:"
 
-#: shared/inc/forms/ticket.php:159
+#: shared/inc/forms/ticket.php:173
 msgid "Status"
 msgstr "状态"
 
@@ -5239,8 +5249,8 @@ msgstr "的子域名"
 msgid "Subdomains:"
 msgstr "子域名："
 
-#: admin/inc/draw_user_admin.php:455 shared/inc/forms/ticket.php:45
-#: shared/inc/forms/ticket.php:159
+#: admin/inc/draw_user_admin.php:479 shared/inc/forms/ticket.php:45
+#: shared/inc/forms/ticket.php:173
 msgid "Subject"
 msgstr "主题"
 
@@ -5257,11 +5267,11 @@ msgstr "主题的前缀："
 msgid "Subject:"
 msgstr "主题："
 
-#: admin/inc/draw_user_admin.php:130
+#: admin/inc/draw_user_admin.php:140
 msgid "Subject: "
 msgstr "主题："
 
-#: shared/inc/forms/ticket.php:133 shared/inc/forms/ticket.php:148
+#: shared/inc/forms/ticket.php:147 shared/inc/forms/ticket.php:162
 msgid "Submit new support issue"
 msgstr "提交一个新支持问题"
 
@@ -5397,7 +5407,7 @@ msgstr ""
 "如果不想出现冲突，请注意不要添加控制面板SSL IP本身(这可能会使apache无法重开"
 "始)!"
 
-#: shared/drawlib/anotherDtc.php:146 shared/drawlib/anotherDtc.php:161
+#: shared/drawlib/anotherDtc.php:159 shared/drawlib/anotherDtc.php:174
 msgid "Take control of your domain name"
 msgstr "轻松管理您的域名"
 
@@ -5660,7 +5670,7 @@ msgstr "记录参数"
 msgid "Ticket not found!"
 msgstr "标签未找到！"
 
-#: shared/inc/forms/ticket.php:159
+#: shared/inc/forms/ticket.php:173
 msgid "Time"
 msgstr "时间"
 
@@ -5819,12 +5829,12 @@ msgstr "土库和该柯斯群岛"
 msgid "Tuvalu"
 msgstr "图瓦卢"
 
-#: admin/inc/draw_user_admin.php:369 admin/inc/draw_user_admin.php:455
-#: shared/inc/forms/ticket.php:159
+#: admin/inc/draw_user_admin.php:393 admin/inc/draw_user_admin.php:479
+#: shared/inc/forms/ticket.php:173
 msgid "Type"
 msgstr "类型"
 
-#: admin/inc/draw_user_admin.php:136 admin/inc/draw_user_admin.php:471
+#: admin/inc/draw_user_admin.php:146 admin/inc/draw_user_admin.php:495
 msgid "Type not found!"
 msgstr "没有找到相关的类型！"
 
@@ -5848,7 +5858,7 @@ msgstr "/webmail 别名的种类："
 msgid "Type of zone generation"
 msgstr "zone 生成的类型"
 
-#: admin/inc/draw_user_admin.php:141 admin/inc/dtc_config.php:1683
+#: admin/inc/draw_user_admin.php:151 admin/inc/dtc_config.php:1683
 msgid "Type:"
 msgstr "类型:"
 
@@ -6039,7 +6049,7 @@ msgstr "被使用"
 msgid "Used quota: "
 msgstr "已使用的配额空间："
 
-#: admin/inc/draw_user_admin.php:507 admin/inc/monitor.php:15
+#: admin/inc/draw_user_admin.php:531 admin/inc/monitor.php:15
 #: shared/inc/forms/database.php:41 shared/inc/forms/database.php:82
 msgid "User"
 msgstr "用户"
@@ -6060,7 +6070,7 @@ msgstr "用户MySql 的根目录密码："
 msgid "User administration"
 msgstr "用户管理"
 
-#: admin/inc/draw_user_admin.php:282
+#: admin/inc/draw_user_admin.php:306
 msgid "User and domain waiting for addition:"
 msgstr "待添加的用户和域名："
 
@@ -6217,7 +6227,7 @@ msgstr "VPS xen的数量 "
 msgid "VPS: "
 msgstr "VPS: "
 
-#: admin/inc/draw_user_admin.php:410
+#: admin/inc/draw_user_admin.php:434
 msgid "VPS: Cannot find VPS in db!"
 msgstr "VPS: 在数据库中没有找到VPS的相关配置"
 
@@ -6249,7 +6259,7 @@ msgstr "Vhost"
 msgid "Vietnam"
 msgstr "越南"
 
-#: admin/inc/draw_user_admin.php:334
+#: admin/inc/draw_user_admin.php:358
 msgid "View details"
 msgstr "查看详情"
 
@@ -6430,8 +6440,8 @@ msgstr "每年的Xen 服务器使用量统计:"
 msgid "Yemen, Republic of"
 msgstr "也门共和国"
 
-#: admin/inc/draw_user_admin.php:173 admin/inc/draw_user_admin.php:323
-#: admin/inc/draw_user_admin.php:393 admin/inc/dtc_config.php:466
+#: admin/inc/draw_user_admin.php:188 admin/inc/draw_user_admin.php:347
+#: admin/inc/draw_user_admin.php:417 admin/inc/dtc_config.php:466
 #: admin/inc/dtc_config.php:643 admin/inc/dtc_config.php:681
 #: admin/inc/dtc_config.php:874 admin/inc/dtc_config.php:928
 #: admin/inc/dtc_config.php:1013 admin/inc/dtc_config.php:1018
@@ -6457,7 +6467,7 @@ msgstr "也门共和国"
 #: shared/inc/forms/root_admin.php:235 shared/inc/forms/root_admin.php:354
 #: shared/inc/forms/root_admin.php:360 shared/inc/forms/subdomain.php:140
 #: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:193
-#: shared/inc/forms/subdomain.php:207 shared/inc/forms/ticket.php:129
+#: shared/inc/forms/subdomain.php:207 shared/inc/forms/ticket.php:143
 #: shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:78
 #: shared/securepay/modules/worldpay/main.php:77

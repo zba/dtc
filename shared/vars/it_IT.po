@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-06 23:07+0800\n"
+"POT-Creation-Date: 2009-06-08 17:23+0800\n"
 "PO-Revision-Date: 2009-03-10 14:40+0800\n"
 "Last-Translator: Francesco Rana <francesco.rana@sentia.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -415,8 +415,8 @@ msgid "Act as backup mail server for the following servers:"
 msgstr "Usa come backup mail server per i seguenti servers:"
 
 #: admin/inc/renewals.php:428 admin/inc/renewals.php:722
-#: admin/inc/draw_user_admin.php:290 admin/inc/draw_user_admin.php:350
-#: admin/inc/draw_user_admin.php:369 shared/inc/forms/database.php:41
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:374
+#: admin/inc/draw_user_admin.php:393 shared/inc/forms/database.php:41
 #: shared/inc/forms/database.php:82 shared/inc/forms/my_account.php:130
 #: shared/inc/forms/reseller.php:24
 msgid "Action"
@@ -426,7 +426,7 @@ msgstr "Azione"
 msgid "Activate FTP backups:"
 msgstr "Attiva i backup via FTP:"
 
-#: admin/inc/draw_user_admin.php:335 admin/inc/draw_user_admin.php:355
+#: admin/inc/draw_user_admin.php:359 admin/inc/draw_user_admin.php:379
 msgid "Add"
 msgstr "Aggiungi"
 
@@ -469,7 +469,7 @@ msgstr "Aggiungi una nuova azienda"
 msgid "Add a new company:"
 msgstr "Aggiungi una nuova azienda"
 
-#: admin/inc/draw_user_admin.php:264
+#: admin/inc/draw_user_admin.php:288
 msgid "Add a new user"
 msgstr "Aggiungi un nuovo utente"
 
@@ -542,7 +542,7 @@ msgstr "Indirizzo del tuo MX server primario :"
 msgid "Address:"
 msgstr "Indirizzo:"
 
-#: admin/inc/draw_user_admin.php:479
+#: admin/inc/draw_user_admin.php:503
 msgid "Admin"
 msgstr ""
 
@@ -551,7 +551,7 @@ msgstr ""
 msgid "Admin editor"
 msgstr "Editor dell'admin"
 
-#: admin/inc/draw_user_admin.php:144
+#: admin/inc/draw_user_admin.php:154
 msgid "Admin login: "
 msgstr ""
 
@@ -567,7 +567,7 @@ msgstr ""
 msgid "Afghanistan"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:455
+#: admin/inc/draw_user_admin.php:479
 msgid "Age"
 msgstr "Et&agrave;"
 
@@ -865,7 +865,7 @@ msgstr "Indirizzo IP"
 msgid "Bank amount"
 msgstr "Tuo account hosting:"
 
-#: admin/inc/draw_user_admin.php:290 admin/inc/draw_user_admin.php:369
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:393
 msgid "Bank validated"
 msgstr ""
 
@@ -1006,7 +1006,7 @@ msgstr "Lista dei tuoi database:"
 msgid "Cannot fetch user line"
 msgstr "Lista dei tuoi database:"
 
-#: admin/inc/draw_user_admin.php:388
+#: admin/inc/draw_user_admin.php:412
 msgid "Cannot find payment!"
 msgstr "Non riesco a trovare il pagamento!"
 
@@ -1014,20 +1014,20 @@ msgstr "Non riesco a trovare il pagamento!"
 msgid "Cannot find product id!"
 msgstr "Non riesco a trovare l'id del prodotto!"
 
-#: admin/inc/draw_user_admin.php:301 admin/inc/draw_user_admin.php:302
+#: admin/inc/draw_user_admin.php:325 admin/inc/draw_user_admin.php:326
 msgid "Cannot find product in db!"
 msgstr "Non riesco a trovare il prodotto nel db!"
 
-#: admin/inc/draw_user_admin.php:377
+#: admin/inc/draw_user_admin.php:401
 msgid "Cannot find product!"
 msgstr "Non riesco a trovare il prodotto!"
 
-#: admin/inc/draw_user_admin.php:430
+#: admin/inc/draw_user_admin.php:454
 msgid "Cannot find server in db!"
 msgstr "Non riesco a trovare il server nel db!"
 
-#: admin/inc/draw_user_admin.php:127 admin/inc/draw_user_admin.php:154
-#: admin/inc/draw_user_admin.php:207
+#: admin/inc/draw_user_admin.php:137 admin/inc/draw_user_admin.php:164
+#: admin/inc/draw_user_admin.php:222
 msgid "Cannot find ticket!"
 msgstr "Non riesco a trovare la segnalazione!"
 
@@ -1224,11 +1224,11 @@ msgstr "Panello cliente:"
 msgid "Client panel:"
 msgstr "Panello cliente:"
 
-#: admin/inc/draw_user_admin.php:195
+#: admin/inc/draw_user_admin.php:210
 msgid "Close without reply"
 msgstr ""
 
-#: shared/inc/forms/ticket.php:164
+#: shared/inc/forms/ticket.php:178
 msgid "Closed"
 msgstr "Chiuso"
 
@@ -1341,7 +1341,7 @@ msgstr ""
 msgid "Congo, The Democratic Republic Of"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:532
+#: admin/inc/draw_user_admin.php:556
 msgid "Console output"
 msgstr ""
 
@@ -1719,8 +1719,8 @@ msgstr "Uso disco database:"
 msgid "Databases:"
 msgstr "Files database:"
 
-#: admin/inc/draw_user_admin.php:290 shared/inc/forms/invoices.php:42
-#: shared/inc/forms/my_account.php:233 shared/inc/forms/ticket.php:159
+#: admin/inc/draw_user_admin.php:314 shared/inc/forms/invoices.php:42
+#: shared/inc/forms/my_account.php:233 shared/inc/forms/ticket.php:173
 msgid "Date"
 msgstr "Data"
 
@@ -1775,8 +1775,8 @@ msgstr "Sottodominio di default: "
 msgid "Defaut TTL for your zonefiles:"
 msgstr ""
 
-#: admin/inc/renewals.php:485 admin/inc/draw_user_admin.php:336
-#: admin/inc/draw_user_admin.php:356 shared/inc/forms/database.php:57
+#: admin/inc/renewals.php:485 admin/inc/draw_user_admin.php:360
+#: admin/inc/draw_user_admin.php:380 shared/inc/forms/database.php:57
 #: shared/inc/forms/database.php:105 shared/inc/forms/domain_stats.php:104
 msgid "Delete"
 msgstr "Cancella"
@@ -1918,7 +1918,7 @@ msgstr "Non cambiare a meno che tu non sappia quello che stai facendo."
 msgid "Do you want to transfer an existing domain or register a new domain?"
 msgstr "Vuoi trasferire un dominio esistente o registrare un nuovo dominio?"
 
-#: shared/drawlib/anotherDtc.php:134
+#: shared/drawlib/anotherDtc.php:137
 msgid "Documentation"
 msgstr "Manuale uso"
 
@@ -1936,12 +1936,12 @@ msgstr "Nome a dominio"
 msgid "Domain config"
 msgstr "Configurazione domini"
 
-#: admin/inc/draw_user_admin.php:350 shared/inc/forms/admin_stats.php:104
+#: admin/inc/draw_user_admin.php:374 shared/inc/forms/admin_stats.php:104
 #: shared/inc/forms/root_admin.php:344
 msgid "Domain name"
 msgstr "Nome a dominio"
 
-#: admin/inc/draw_user_admin.php:290
+#: admin/inc/draw_user_admin.php:314
 msgid "Domain name / VPS server hostname"
 msgstr ""
 
@@ -2343,7 +2343,7 @@ msgstr "Nome:"
 msgid "First name: "
 msgstr "Nome:"
 
-#: admin/inc/draw_user_admin.php:142
+#: admin/inc/draw_user_admin.php:152
 msgid "First query date: "
 msgstr ""
 
@@ -2640,7 +2640,7 @@ msgstr "Solo hosting"
 msgid "Hosting product manager"
 msgstr "Manager dei prodotti Hosting"
 
-#: admin/inc/dtc_config.php:853 shared/inc/forms/ticket.php:159
+#: admin/inc/dtc_config.php:853 shared/inc/forms/ticket.php:173
 msgid "Hostname"
 msgstr ""
 
@@ -3113,11 +3113,11 @@ msgstr ""
 msgid "Last boot date: "
 msgstr "Data dell'ultimo boot: "
 
-#: admin/inc/draw_user_admin.php:455
+#: admin/inc/draw_user_admin.php:479
 msgid "Last message age"
 msgstr "Durata dell'ultimo messaggio"
 
-#: admin/inc/draw_user_admin.php:455
+#: admin/inc/draw_user_admin.php:479
 msgid "Last message from"
 msgstr "Ultimo messaggio da"
 
@@ -3285,14 +3285,14 @@ msgstr "L'ubicazione non &egrave; un hostname valido."
 msgid "Location of user's database: "
 msgstr "Ubicazione dei database dell'utente: "
 
-#: shared/drawlib/anotherDtc.php:150
+#: shared/drawlib/anotherDtc.php:163
 msgid "Logged as:"
 msgstr ""
 
 #: admin/inc/renewals.php:652 admin/inc/renewals.php:683
 #: admin/inc/renewals.php:717 admin/inc/renewals.php:798
-#: admin/inc/draw_user_admin.php:290 admin/inc/draw_user_admin.php:350
-#: admin/inc/draw_user_admin.php:369 admin/inc/draw_user_admin.php:455
+#: admin/inc/draw_user_admin.php:314 admin/inc/draw_user_admin.php:374
+#: admin/inc/draw_user_admin.php:393 admin/inc/draw_user_admin.php:479
 #: admin/inc/dtc_config.php:457 admin/inc/dtc_config.php:1296
 #: admin/inc/dtc_config.php:1323 admin/inc/dtc_config.php:1348
 #: admin/inc/dtc_config.php:1375 admin/inc/dtc_config.php:1400
@@ -3313,7 +3313,7 @@ msgid "Login successfull. Please select a menu entry on the left..."
 msgstr ""
 "Login eseguita. Per favore seleziona una voce nel men&ugrave; a sinistra..."
 
-#: admin/inc/draw_user_admin.php:268 shared/inc/forms/aliases.php:42
+#: admin/inc/draw_user_admin.php:292 shared/inc/forms/aliases.php:42
 #: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:92
 #: shared/inc/forms/email.php:47 shared/inc/forms/email.php:59
 #: shared/inc/forms/email.php:628 shared/inc/forms/email.php:634
@@ -3524,7 +3524,7 @@ msgstr "Massima memoria dei messaggi:"
 msgid "Max memory: "
 msgstr "Memoria massima: "
 
-#: admin/inc/draw_user_admin.php:277
+#: admin/inc/draw_user_admin.php:301
 msgid "MaxMind says"
 msgstr ""
 
@@ -3736,7 +3736,7 @@ msgstr "Hostname del server Nagios:"
 msgid "Nagios monitoring"
 msgstr "Controllo di Nagios"
 
-#: admin/inc/draw_user_admin.php:290 admin/dtcrm/product_manager.php:125
+#: admin/inc/draw_user_admin.php:314 admin/dtcrm/product_manager.php:125
 #: admin/dtcrm/product_manager.php:217 admin/dtcrm/product_manager.php:290
 msgid "Name"
 msgstr "Nome"
@@ -3935,8 +3935,8 @@ msgstr ""
 msgid "Niue"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:175 admin/inc/draw_user_admin.php:327
-#: admin/inc/draw_user_admin.php:397 admin/inc/dtc_config.php:466
+#: admin/inc/draw_user_admin.php:190 admin/inc/draw_user_admin.php:351
+#: admin/inc/draw_user_admin.php:421 admin/inc/dtc_config.php:466
 #: admin/inc/dtc_config.php:643 admin/inc/dtc_config.php:681
 #: admin/inc/dtc_config.php:874 admin/inc/dtc_config.php:928
 #: admin/inc/dtc_config.php:1013 admin/inc/dtc_config.php:1018
@@ -3962,7 +3962,7 @@ msgstr ""
 #: shared/inc/forms/root_admin.php:236 shared/inc/forms/root_admin.php:354
 #: shared/inc/forms/root_admin.php:360 shared/inc/forms/subdomain.php:140
 #: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:193
-#: shared/inc/forms/subdomain.php:207 shared/inc/forms/ticket.php:130
+#: shared/inc/forms/subdomain.php:207 shared/inc/forms/ticket.php:144
 #: shared/securepay/modules/cheque/main.php:56
 #: shared/securepay/modules/wiretransfer/main.php:56
 msgid "No"
@@ -4001,7 +4001,7 @@ msgstr "Nessun ordine completato trovato."
 msgid "No dedicated server expired"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:347
+#: admin/inc/draw_user_admin.php:371
 msgid "No domain waiting!"
 msgstr "Nessun dominio in attesa!"
 
@@ -4017,15 +4017,15 @@ msgstr "Nessun parking"
 msgid "No past payments for this period"
 msgstr "Nessun pagamento precedente per questo periodo"
 
-#: admin/inc/draw_user_admin.php:315
+#: admin/inc/draw_user_admin.php:339
 msgid "No pay ID!"
 msgstr "Nessun ID di pagamento!"
 
-#: admin/inc/draw_user_admin.php:366
+#: admin/inc/draw_user_admin.php:390
 msgid "No pending renewals!"
 msgstr "Nessun rinnovo in attesa!"
 
-#: admin/inc/draw_user_admin.php:452
+#: admin/inc/draw_user_admin.php:476
 msgid "No pending support tickets!"
 msgstr "Nessuna richiesta di supporto in attesa!"
 
@@ -4053,7 +4053,7 @@ msgstr ""
 "Nessun utente con questo nome esisten nel database, oppure non hai la "
 "propriet&agrave; di questo utente db. Per favore scegline un\\'altro."
 
-#: admin/inc/draw_user_admin.php:287
+#: admin/inc/draw_user_admin.php:311
 msgid "No user waiting!"
 msgstr "Nessun utente in attesa!"
 
@@ -4076,6 +4076,7 @@ msgstr "Nessun prodotto"
 
 #: shared/inc/forms/dedicated.php:39 shared/inc/forms/invoices.php:58
 #: shared/inc/forms/invoices.php:59 shared/inc/forms/invoices.php:60
+#: shared/inc/forms/ticket.php:122
 msgid "Not found!"
 msgstr "Non trovato!"
 
@@ -4172,7 +4173,7 @@ msgstr "Numero di database:"
 msgid "Ok"
 msgstr "Ok"
 
-#: shared/inc/forms/ticket.php:153
+#: shared/inc/forms/ticket.php:167
 msgid "Old tickets:"
 msgstr "Vecchie richieste:"
 
@@ -4192,7 +4193,7 @@ msgstr ""
 msgid "Online DTC help"
 msgstr "Aiuto in linea DTC"
 
-#: shared/inc/forms/ticket.php:166
+#: shared/inc/forms/ticket.php:180
 msgid "Open"
 msgstr "Aperto"
 
@@ -4335,7 +4336,7 @@ msgstr ""
 "Il formato della password non è corretto: inserisci solo lettere e numero "
 "(min. 4 max. 16 caratteri)."
 
-#: admin/inc/draw_user_admin.php:269 client/login.php:16
+#: admin/inc/draw_user_admin.php:293 client/login.php:16
 #: shared/inc/draw.php:503 shared/inc/forms/database.php:41
 #: shared/inc/forms/domain_stats.php:85 shared/inc/forms/domain_stats.php:93
 #: shared/inc/forms/email.php:62 shared/inc/forms/email.php:642
@@ -4383,7 +4384,7 @@ msgid ""
 "this:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:270 shared/inc/forms/root_admin.php:123
+#: admin/inc/draw_user_admin.php:294 shared/inc/forms/root_admin.php:123
 #: shared/inc/forms/ssh.php:81
 msgid "Path:"
 msgstr "Percorso:"
@@ -4431,7 +4432,7 @@ msgid "Payment complete. Proceed to checkout"
 msgstr "Pagamento effettuato, lasciami continuare."
 
 #: admin/inc/renewals.php:229 admin/inc/renewals.php:427
-#: admin/inc/draw_user_admin.php:369
+#: admin/inc/draw_user_admin.php:393
 #, fuzzy
 msgid "Payment date"
 msgstr "Gateway per pagamento"
@@ -4464,8 +4465,8 @@ msgstr "Gateway per pagamento"
 msgid "Paypal"
 msgstr ""
 
-#: admin/deamons_state.php:94 admin/inc/draw_user_admin.php:325
-#: admin/inc/draw_user_admin.php:400
+#: admin/deamons_state.php:94 admin/inc/draw_user_admin.php:349
+#: admin/inc/draw_user_admin.php:424
 msgid "Pending"
 msgstr "Pendente"
 
@@ -4576,6 +4577,11 @@ msgstr ""
 "Per favore seleziona i tre contatti che vuoi usare per  registrare il nome a "
 "dominio."
 
+#: client/new_account_form.php:451
+#, fuzzy
+msgid "Please select!"
+msgstr "Non hai selezionato una destinazione VPS!"
+
 #: shared/inc/forms/my_account.php:203
 msgid "Please tell us if the following is not correct:"
 msgstr "Per favore informaci se le informazioni seguenti non sono corrette:"
@@ -4642,8 +4648,8 @@ msgstr "Procedi alla registrazione del nome"
 msgid "Proceed to transfer"
 msgstr "Procedi col trasferimento"
 
-#: admin/inc/renewals.php:425 admin/inc/draw_user_admin.php:290
-#: admin/inc/draw_user_admin.php:369 client/new_account_form.php:566
+#: admin/inc/renewals.php:425 admin/inc/draw_user_admin.php:314
+#: admin/inc/draw_user_admin.php:393 client/new_account_form.php:566
 #: shared/dtcrm/draw.php:86 shared/inc/forms/invoices.php:42
 #: shared/inc/forms/root_admin.php:578
 msgid "Product"
@@ -4920,15 +4926,19 @@ msgstr ""
 msgid "Renewals management"
 msgstr "Gestione aggiornamenti"
 
-#: shared/inc/forms/ticket.php:93 shared/inc/forms/ticket.php:157
+#: admin/inc/draw_user_admin.php:176 shared/inc/forms/ticket.php:124
+msgid "Replied by:"
+msgstr ""
+
+#: shared/inc/forms/ticket.php:93 shared/inc/forms/ticket.php:171
 msgid "Replying to an already closed ticket will reopen it."
 msgstr ""
 
-#: shared/inc/forms/ticket.php:129
+#: shared/inc/forms/ticket.php:143
 msgid "Request to close the issue:"
 msgstr "Richiesta di chiudere il problema"
 
-#: admin/inc/draw_user_admin.php:171
+#: admin/inc/draw_user_admin.php:186
 msgid "Request to close the ticket: "
 msgstr "Richiesta di chiudere la segnalazione"
 
@@ -5081,11 +5091,11 @@ msgstr ""
 msgid "SSL Port: "
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:421
+#: admin/inc/draw_user_admin.php:445
 msgid "SSL Token purchase"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:424
+#: admin/inc/draw_user_admin.php:448
 msgid "SSL Token renewal"
 msgstr ""
 
@@ -5198,11 +5208,11 @@ msgstr "condizioni di vendita"
 msgid "Selling conditions not accepted!"
 msgstr "Le condizioni di vendita non sono valide!"
 
-#: admin/inc/draw_user_admin.php:185
+#: admin/inc/draw_user_admin.php:200
 msgid "Send reply"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:190
+#: admin/inc/draw_user_admin.php:205
 msgid "Send reply and close ticket"
 msgstr ""
 
@@ -5245,7 +5255,7 @@ msgid ""
 "Server did not send OK after connect, maybe wrong server or server is down: "
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:143
+#: admin/inc/draw_user_admin.php:153
 msgid "Server hostname related: "
 msgstr ""
 
@@ -5281,7 +5291,7 @@ msgstr "Il server ha risposto: "
 msgid "Server statistic graphs"
 msgstr "Grafico delle statistiche del server"
 
-#: admin/inc/draw_user_admin.php:435
+#: admin/inc/draw_user_admin.php:459
 #, fuzzy
 msgid "Server:"
 msgstr "Indirizzo server DNS primario:"
@@ -5318,7 +5328,7 @@ msgstr ""
 msgid "Seychelles"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:418
+#: admin/inc/draw_user_admin.php:442
 msgid "Shared"
 msgstr ""
 
@@ -5450,7 +5460,7 @@ msgstr "Statistiche dominio:"
 msgid "Statistics:"
 msgstr "Statistiche"
 
-#: shared/inc/forms/ticket.php:159
+#: shared/inc/forms/ticket.php:173
 #, fuzzy
 msgid "Status"
 msgstr "Provincia:"
@@ -5517,8 +5527,8 @@ msgstr "Sottodomini di "
 msgid "Subdomains:"
 msgstr "Sottodomini:"
 
-#: admin/inc/draw_user_admin.php:455 shared/inc/forms/ticket.php:45
-#: shared/inc/forms/ticket.php:159
+#: admin/inc/draw_user_admin.php:479 shared/inc/forms/ticket.php:45
+#: shared/inc/forms/ticket.php:173
 msgid "Subject"
 msgstr ""
 
@@ -5534,11 +5544,11 @@ msgstr "Prefisso del subject:"
 msgid "Subject:"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:130
+#: admin/inc/draw_user_admin.php:140
 msgid "Subject: "
 msgstr ""
 
-#: shared/inc/forms/ticket.php:133 shared/inc/forms/ticket.php:148
+#: shared/inc/forms/ticket.php:147 shared/inc/forms/ticket.php:162
 msgid "Submit new support issue"
 msgstr ""
 
@@ -5676,7 +5686,7 @@ msgid ""
 "have conflicts (and prevent apache from restarting)!"
 msgstr ""
 
-#: shared/drawlib/anotherDtc.php:146 shared/drawlib/anotherDtc.php:161
+#: shared/drawlib/anotherDtc.php:159 shared/drawlib/anotherDtc.php:174
 msgid "Take control of your domain name"
 msgstr "Prendi il controllo del tuo dominio"
 
@@ -5933,7 +5943,7 @@ msgstr ""
 msgid "Ticket not found!"
 msgstr ""
 
-#: shared/inc/forms/ticket.php:159
+#: shared/inc/forms/ticket.php:173
 msgid "Time"
 msgstr ""
 
@@ -6101,12 +6111,12 @@ msgstr ""
 msgid "Tuvalu"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:369 admin/inc/draw_user_admin.php:455
-#: shared/inc/forms/ticket.php:159
+#: admin/inc/draw_user_admin.php:393 admin/inc/draw_user_admin.php:479
+#: shared/inc/forms/ticket.php:173
 msgid "Type"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:136 admin/inc/draw_user_admin.php:471
+#: admin/inc/draw_user_admin.php:146 admin/inc/draw_user_admin.php:495
 msgid "Type not found!"
 msgstr "Tipo non trovato!"
 
@@ -6131,7 +6141,7 @@ msgstr ""
 msgid "Type of zone generation"
 msgstr "Generazione di configurazione"
 
-#: admin/inc/draw_user_admin.php:141 admin/inc/dtc_config.php:1683
+#: admin/inc/draw_user_admin.php:151 admin/inc/dtc_config.php:1683
 msgid "Type:"
 msgstr "Tipo: "
 
@@ -6335,7 +6345,7 @@ msgstr ""
 msgid "Used quota: "
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:507 admin/inc/monitor.php:15
+#: admin/inc/draw_user_admin.php:531 admin/inc/monitor.php:15
 #: shared/inc/forms/database.php:41 shared/inc/forms/database.php:82
 msgid "User"
 msgstr ""
@@ -6357,7 +6367,7 @@ msgstr "Nuova password SSH: "
 msgid "User administration"
 msgstr "Amministrazione utente"
 
-#: admin/inc/draw_user_admin.php:282
+#: admin/inc/draw_user_admin.php:306
 msgid "User and domain waiting for addition:"
 msgstr "Utenti e domini in attesa:"
 
@@ -6526,7 +6536,7 @@ msgstr ""
 msgid "VPS: "
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:410
+#: admin/inc/draw_user_admin.php:434
 msgid "VPS: Cannot find VPS in db!"
 msgstr ""
 
@@ -6560,7 +6570,7 @@ msgstr ""
 msgid "Vietnam"
 msgstr "Nome lista"
 
-#: admin/inc/draw_user_admin.php:334
+#: admin/inc/draw_user_admin.php:358
 msgid "View details"
 msgstr ""
 
@@ -6739,8 +6749,8 @@ msgstr ""
 msgid "Yemen, Republic of"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:173 admin/inc/draw_user_admin.php:323
-#: admin/inc/draw_user_admin.php:393 admin/inc/dtc_config.php:466
+#: admin/inc/draw_user_admin.php:188 admin/inc/draw_user_admin.php:347
+#: admin/inc/draw_user_admin.php:417 admin/inc/dtc_config.php:466
 #: admin/inc/dtc_config.php:643 admin/inc/dtc_config.php:681
 #: admin/inc/dtc_config.php:874 admin/inc/dtc_config.php:928
 #: admin/inc/dtc_config.php:1013 admin/inc/dtc_config.php:1018
@@ -6766,7 +6776,7 @@ msgstr ""
 #: shared/inc/forms/root_admin.php:235 shared/inc/forms/root_admin.php:354
 #: shared/inc/forms/root_admin.php:360 shared/inc/forms/subdomain.php:140
 #: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:193
-#: shared/inc/forms/subdomain.php:207 shared/inc/forms/ticket.php:129
+#: shared/inc/forms/subdomain.php:207 shared/inc/forms/ticket.php:143
 #: shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:78
 #: shared/securepay/modules/worldpay/main.php:77
