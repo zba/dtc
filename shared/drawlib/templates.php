@@ -1444,6 +1444,11 @@ function dtcListItemsEdit($dsc){
 			$out .= dtcFormTableAttrs();
 			for($j=0;$j<$nbr_fld;$j++){
 				$the_fld = $dsc["cols"][ $keys[$j] ];
+				if( isset($dsc["cols"][ $keys[$j] ]["help"])){
+                                	$help = $dsc["cols"][ $keys[$j] ]["help"];
+				}else{
+					$help = "";
+				}
 				switch($the_fld["type"]){
 				case "id":
 					$out .= "<input type=\"hidden\" name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\">";
