@@ -400,7 +400,7 @@ Addr: ".$_REQUEST["address1"]." ".$_REQUEST["address2"]." ".$_REQUEST["address3"
 Zipcode: $esc_zipcode
 City: ".$_REQUEST["city"]."
 State: ".$_REQUEST["state"]."
-Contry: ".$_REQUEST["country"]."
+Country: ".$_REQUEST["country"]."
 Shopper ip: ".$_SERVER["REMOTE_ADDR"]."
 Product id: $the_prod
 Customer note: ".$_REQUEST["custom_notes"]."
