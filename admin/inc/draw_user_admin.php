@@ -247,14 +247,14 @@ function drawNewAdminForm(){
 			$adm_login = "";
 		}
 		if(isset($_REQUEST["answer"]) || isset($_REQUEST["answer_close"])){
-			$q = "SELECT * FROM $pro_mysql_tik_admins_table WHERE pseudo='".$_SERVER["PHP_AUTH_USER"]."';";
-			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-			$n = mysql_num_rows($r);
-			if($n != 1){
+			$qps = "SELECT * FROM $pro_mysql_tik_admins_table WHERE pseudo='".$_SERVER["PHP_AUTH_USER"]."';";
+			$rps = mysql_query($qps)or die("Cannot query $qps line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$nps = mysql_num_rows($rps);
+			if($nps != 1){
 				die("Ticket admin not found line ".__LINE__." file ".__FILE__);
 			}
-			$a = mysql_fetch_array($r);
-			$pseudo = $a["pseudo"];
+			$aps = mysql_fetch_array($rps);
+			$pseudo = $aps["pseudo"];
 
 			$q2 = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,subject,text,cat_id,initial_ticket,server_hostname,closed,admin_name)
 			VALUES ('','".$a["adm_login"]."','".date("Y-m-d")."','".date("H:i:s")."','".$_REQUEST["last_tik_id"]."','0','admin','".$a["subject"]."','".addslashes($_REQUEST["ticketbody"])."','".$a["cat_id"]."','no','".$a["server_hostname"]."','$closed','$pseudo');";
