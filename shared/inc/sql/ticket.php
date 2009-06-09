@@ -3,6 +3,7 @@
 function mailTicketToAllAdmins($subject,$body,$adm_login){
 	global $pro_mysql_tik_admins_table;
 	global $conf_webmaster_email_addr;
+	global $send_email_header;
 
 	global $conf_message_subject_header;
 	global $adm_login;
@@ -29,7 +30,8 @@ $thehostname
 ".stripslashes($body)."
 **********
 ";
-		$headers = "From: ".$conf_webmaster_email_addr;
+		$headers = $send_email_header;
+		$headers .= "From: ".$conf_webmaster_email_addr;
 		mail($a["email"],"$conf_message_subject_header $adm_login has submitted a support ticket",$content,$headers);
 	}
 }
