@@ -50,8 +50,9 @@ NAT.
 - Main side IP: Note that you can use IP that the server does not have (in the case you only
 want to use them for named default conf for example).<br><br>
 
-- Host IP addresses: lister ici les différentes adresses IP pour lesquels vous désirer les voir apparaitre dans l\'interface administrateur.
-Vous devez absolument avoir au moins spécifier l\'adresse IP principale.<br><br>
+- Host IP addresses: list here the different IP addresses that you'd like to
+see in the administrator interface.  You must specify at least the primary IP address.<br><br>
+
 
 - Full hostname of the DTC admin panel: This tells what subdomain will be used to
 have Alias to /usr/share/dtc/admin and client folder. Becarefull, this subdomain
@@ -69,17 +70,17 @@ can be overrided by subdomain, NS or MX configuration for each domains.<br><br>
 
 <PRE>
 $TTL 7200
-@               IN      SOA     [ns1.domaine.com]. webmaster.domaine.com. (
+@               IN      SOA     [ns1.example.com]. webmaster.example.com. (
 						2003092022; serial
                         1H ; refresh
                         60M ; retry
                         1W ; expire
                         24H ; default_ttl
                         )
-@	IN	NS	[ns1.domaine.com].
-@	IN	NS	[ns2.domaine.com].
+@	IN	NS	[ns1.example.com].
+@	IN	NS	[ns2.example.com].
 
-@	IN	MX	5	[mx.domaine.com].
+@	IN	MX	5	[mx.example.com].
 
 	IN	A	1.2.3.4
 pop	IN	A	1.2.3.4
