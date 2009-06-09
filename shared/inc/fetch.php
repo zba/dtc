@@ -372,6 +372,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 			$ret["err"] = -1;
 			return $ret;
 		}
+		$is_root_admin = "yes";
 	}else{
 		$is_root_admin = "no";
 	}
@@ -387,7 +388,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 	$rand = getRandomValue();
 	$adm_random_pass = $rand;
 	$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
-	if($is_root_admin == "yes"){
+	if($panel_type == "admin" && $is_root_admin == "yes"){
 		$q = "UPDATE $pro_mysql_tik_admins_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE pseudo='".$_SERVER["PHP_AUTH_USER"]."';";
 		$r = mysql_query($q);
 		if (!$r)
