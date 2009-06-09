@@ -11,7 +11,7 @@ function login_emailpanel_form(){
 <form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 <table>
 <tr>
-	<td align=\"right\">". _("Login: ") ."</td>
+	<td align=\"right\">". _("Email: ") ."</td>
 	<td><input type=\"text\" name=\"adm_email_login\" value=\"\"></td>
 </tr><tr>
 	<td align=\"right\">". _("Password: ") ."</td>
