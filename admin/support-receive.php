@@ -81,7 +81,7 @@ if( ereg($tik_regexp,$email_to) ){
 			$last_id = findLastTicketID($ticket_hash);
 			if($last_id != 0){
 				$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket)
-				VALUES('','".$start_tik["adm_login"]."','".date('Y-m-d')."','".date('H-m-i')."','$last_id','0','user','". mysql_escape_string($stt->body) ."','no');";
+				VALUES('','".$start_tik["adm_login"]."','".date('Y-m-d')."','".date('H-m-i')."','$last_id','0','user','". mysql_real_escape_string($stt->body) ."','no');";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$new_id = mysql_insert_id();
 				$q = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$new_id' WHERE id='$last_id';";
@@ -106,7 +106,7 @@ if($n == 1){
 	if($n == 1){
 		$adm = mysql_fetch_array($r);
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject)
-		VALUES('','".$adm["adm_login"]."','".date('Y-m-d')."','".date('H-m-i')."','0','0','user','". mysql_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_escape_string($stt->headers["subject"]) ."');";
+		VALUES('','".$adm["adm_login"]."','".date('Y-m-d')."','".date('H-m-i')."','0','0','user','". mysql_real_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."');";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		mailTicketToAllAdmins($stt->headers["subject"],$stt->body);
 		exit(0);
@@ -115,7 +115,7 @@ if($n == 1){
 // this email address.
 }else{
 	$q = "INSERT INTO $pro_mysql_tik_queries_table (id,customer_email,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject)
-	VALUES('','$email_from','".date('Y-m-d')."','".date('H-m-i')."','0','0','user','". mysql_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_escape_string($stt->headers["subject"]) ."');";
+	VALUES('','$email_from','".date('Y-m-d')."','".date('H-m-i')."','0','0','user','". mysql_real_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."');";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	mailTicketToAllAdmins($stt->headers["subject"],$stt->body);
 }
