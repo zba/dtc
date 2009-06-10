@@ -213,7 +213,7 @@ CLIENT_PHP_SCRIPT_FILES=client/bw_per_month.php client/dynip.php client/enets-no
 client/invoice.php client/list_domains.php client/login.php client/new_account_form.php client/new_account.php \
 client/new_account_renewal.php client/paypal.php client/secpaycallback_worldpay.php client/webmoney.php \
 client/get_vps_location_status.php \
-client/logPushlet.php client/xanjaxXHR.js client/cheques_and_transfers.php
+client/logPushlet.php client/xanjaxXHR.js client/cheques_and_transfers.php recover_pass.php
 
 EMAIL_PHP_SCRIPT_FILES=email/api.php email/index.php email/login.php email/submit_to_sql_dtcemail.php
 
