@@ -26,7 +26,8 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "recover_lost_pass"){
 			$msg = headAndTailEmailMessage($msg);
 
 			// Send the email
-			$headers = "From: ".$conf_webmaster_email_addr;
+			$headers = $send_email_header;
+			$headers .= "From: ".$conf_webmaster_email_addr;
 			mail($a["email"],"$conf_message_subject_header" . _("Your account password"),$msg,$headers);
 
 			$recover_txt .= "<br><br>" . _("An email with your password has been sent to your address.") . "<br><br>";
