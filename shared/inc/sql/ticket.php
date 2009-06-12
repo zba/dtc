@@ -6,7 +6,6 @@ function mailTicketToAllAdmins($subject,$body,$adm_login){
 	global $send_email_header;
 
 	global $conf_message_subject_header;
-	global $adm_login;
 
 	if(isset($_REQUEST["server_hostname"])){
 		$thehostname = "Server host name: ".$_REQUEST["server_hostname"];

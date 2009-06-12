@@ -86,7 +86,7 @@ if( ereg($tik_regexp,$email_to) ){
 				$new_id = mysql_insert_id();
 				$q = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$new_id' WHERE id='$last_id';";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-				mailTicketToAllAdmins($start_tik["subject"],$stt->body);
+				mailTicketToAllAdmins($start_tik["subject"],$stt->body,$start_tik["adm_login"]);
 				exit(0);
 			}
 		}
@@ -108,7 +108,7 @@ if($n == 1){
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject)
 		VALUES('','".$adm["adm_login"]."','".date('Y-m-d')."','".date('H-m-i')."','0','0','user','". mysql_real_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."');";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-		mailTicketToAllAdmins($stt->headers["subject"],$stt->body);
+		mailTicketToAllAdmins($stt->headers["subject"],$stt->body,$adm["adm_login"]);
 		exit(0);
 	}
 // If nothing matches, then we want to create a new ticket associated with
@@ -117,7 +117,7 @@ if($n == 1){
 	$q = "INSERT INTO $pro_mysql_tik_queries_table (id,customer_email,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject)
 	VALUES('','$email_from','".date('Y-m-d')."','".date('H-m-i')."','0','0','user','". mysql_real_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."');";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-	mailTicketToAllAdmins($stt->headers["subject"],$stt->body);
+	mailTicketToAllAdmins($stt->headers["subject"],$stt->body,$email_from);
 }
 exit(0);
 
