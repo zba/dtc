@@ -370,8 +370,8 @@ install-dtc-common:
 	@for i in $(USER_ALSO) ; do $(INSTALL) -m $(DTC_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 	@for i in $(INSTALL_FOLDER_SCRIPTS) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 
-	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/$$i $(APP_INST_DIR)/admin/$$i ; done
-	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/$$i $(APP_INST_DIR)/client/$$i ; done
+	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) admin/$$i $(APP_INST_DIR)/admin/$$i ; done
+	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) admin/$$i $(APP_INST_DIR)/client/$$i ; done
 
 	# The SQL table scripts
 	@for i in $(INSTALL_SQL_TABLES) ; do $(INSTALL) -m $(ROOT_ONLY_READ) $$i $(APP_INST_DIR)/$$i ; done
