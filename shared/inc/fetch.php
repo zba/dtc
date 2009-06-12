@@ -462,7 +462,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	$row = mysql_fetch_array($result);
 	if (!$row){
 		$ret["err"] = 2;
-		$ret["mesg"]= _("Cannot fetch user line")." ".__LINE__." "._("file")." ".__FILE__." "._("either your login and password pair is not valid, either your session expired (timed out).");
+		$ret["mesg"]= _("Cannot fetch user:")." "._("either your login and password pair is not valid, either your session expired (timed out).");
 		return $ret;
 	}
 
