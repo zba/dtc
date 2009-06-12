@@ -2160,7 +2160,10 @@ modifyPostfixConfig () {
 		then
 			echoIfVerbose "Postfix main.cf has been configured before, not adding virtual mailbox options"
 		else
-			if grep "recipient_delimiter = +" "$PATH_POSTFIX_ETC/main.cf" >/dev/null; then
+			if [ ! -d ${PATH_POSTFIX_ETC}/maps ] ; then
+				mkdir -p ${PATH_POSTFIX_ETC}/maps
+			fi
+if grep "recipient_delimiter = +" "$PATH_POSTFIX_ETC/main.cf" >/dev/null; then
 				if [ "$conf_recipient_delim" = "-" ] ; then
 					echoIfVerbose "Changing recipient delimiter from + to -"
 					TMP_FILE=`${MKTEMP} DTC_install.main.cf.XXXXXX` || exit 1
@@ -2538,9 +2541,6 @@ pickup fifo n - n 60 1 pickup
 			echo "bounce_queue_lifetime = 3d
 maximal_queue_lifetime = 3d" >> $TMP_FILE
 			# Now we add the header, mime and body checks
-			if [ ! -d ${PATH_POSTFIX_ETC}/maps ] ; then
-				mkdir -p ${PATH_POSTFIX_ETC}/maps
-			fi
 			if [ ! -e ${PATH_POSTFIX_ETC}/maps/header_checks ] ; then
 				cp -f ${PATH_DTC_ADMIN}/postfix_checks/header_checks ${PATH_POSTFIX_ETC}/maps
 			fi
