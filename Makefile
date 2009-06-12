@@ -324,7 +324,7 @@ shared/gfx/menu shared/gfx/bar shared/gfx/skin/bwoup/gfx/buttons shared/gfx/dtc 
 shared/gfx/securepay shared/gfx/language/en/pub shared/gfx/language/fr/pub shared/gfx/language/ru/pub shared/gfx/language/nl/pub \
 shared/gfx/skin/bwoup/gfx/config-icon shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs \
 shared/gfx/skin/bwoup/gfx/treeview shared/gfx/skin/bwoup/gfx/navbar shared/inc/forms shared/inc/sql shared/404_template shared/drawlib \
-shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars shared/visitors_template shared/template shared/maxmind client/inc email/inc \
+shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars shared/visitors_template shared/template shared/maxmind \
 admin/patches shared/securepay/modules shared/securepay/modules/paypal shared/securepay/modules/enets shared/securepay/modules/webmoney \
 shared/securepay/modules/worldpay
 

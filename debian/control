@@ -12,7 +12,7 @@ Homepage: http://www.gplhost.com/software-dtc.html
 
 Package: dtc-common
 Architecture: all
-Depends: apache2, bind9, bzip2, ca-certificates, chrootuid, courier-maildrop | cyrus-imapd-2.2, file, gawk, libapache2-mod-log-sql-mysql, libapache2-mod-php5, libnss-mysql-bg | libnss-mysql, libnusoap-php, libpam-mysql | libsasl2-modules-sql, libpam-unix2, locales, lsb-release, mhonarc, mime-support, mlmmj, mysql-client, ncftp, net-tools, openssl, php5, php5-cli, php5-gd, php5-mysql, php-pear, php-fpdf, php-crypt-cbc, php-mail-mime, php5-curl, php-xml-serializer, pure-ftpd-mysql | proftpd-mysql | proftpd-mod-mysql, rrdtool, sasl2-bin, sbox-dtc, spamassassin, spamc, ssh, sudo, unzip, webalizer, zip
+Depends: ${misc:Depends}, apache2, bind9, bzip2, ca-certificates, chrootuid, courier-maildrop | cyrus-imapd-2.2, file, gawk, libapache2-mod-log-sql-mysql, libapache2-mod-php5, libnss-mysql-bg | libnss-mysql, libnusoap-php, libpam-mysql | libsasl2-modules-sql, libpam-unix2, locales, lsb-release, mhonarc, mime-support, mlmmj, mysql-client, ncftp, net-tools, openssl, php5, php5-cli, php5-gd, php5-mysql, php-pear, php-fpdf, php-crypt-cbc, php-mail-mime, php5-curl, php-xml-serializer, pure-ftpd-mysql | proftpd-mysql | proftpd-mod-mysql, rrdtool, sasl2-bin, sbox-dtc, spamassassin, spamc, ssh, sudo, unzip, webalizer, zip
 Recommends: libapache2-mod-bwshare
 Conflicts: dtc (<< 0.25.1), dtc-postfix-courier (<< 0.25.1)
 Suggests: dtc-postfix-courier | dtc-cyrus
@@ -23,7 +23,7 @@ Description: web control panel for admin and accounting hosting services (common
  database, mailing lists, and FTP accounts to users for the domain names they
  own.
  .
- DTC manages a mysql database containing all the hosting informations,
+ DTC manages a MySQL database containing all the hosting informations,
  and configure your server's services and apllication for doing virtual hosting
  (DTC is compabible with a huge list of applications). It also connects to
  dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
@@ -34,7 +34,7 @@ Description: web control panel for admin and accounting hosting services (common
 
 Package: dtc-dos-firewall
 Architecture: all
-Depends: iptables, lsb-base
+Depends: ${misc:Depends}, iptables, lsb-base
 Description: a small anti-DoS firewall script for your web, ftp and mail servers
  If running in a production environment, you might want to have a basic
  firewall running on your server to avoid having DoS attack. This is not the
@@ -42,7 +42,7 @@ Description: a small anti-DoS firewall script for your web, ftp and mail servers
 
 Package: dtc-core
 Architecture: all
-Depends: dtc-common, debconf, mysql-client
+Depends: ${misc:Depends}, dtc-common, debconf, mysql-client
 Suggests: courier-authmysql, courier-authlib-mysql, dovecot, postfix, qmail, postfix-tls, libsasl2-2, libsasl2-modules, mysql-server, mysqmail, awstats, courier-base, sqwebmail, cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2
 Conflicts: dtc-postfix-courier, dtc-cyrus
 Replaces: dtc-postfix-courier, dtc-cyrus
@@ -53,7 +53,7 @@ Description: web control panel for admin and accounting hosting services (fewer 
  database, mailing lists, and FTP accounts to users for the domain names they
  own.
  .
- DTC manages a mysql database containing all the hosting informations,
+ DTC manages a MySQL database containing all the hosting informations,
  and configure your server's services and apllication for doing virtual hosting
  (DTC is compabible with a huge list of applications). It also connects to
  dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
@@ -65,7 +65,7 @@ Description: web control panel for admin and accounting hosting services (fewer 
 
 Package: dtc-cyrus
 Architecture: all
-Depends: amavisd-new, clamav, clamav-daemon, clamav-freshclam, dtc-common, debconf, mysql-client, mysql-server, libsasl2-2, libsasl2-modules , cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2, cyrus-imapd-2.2, cyrus-pop3d-2.2, libsasl2-modules-sql | libpam-mysql
+Depends: ${misc:Depends}, amavisd-new, clamav, clamav-daemon, clamav-freshclam, dtc-common, debconf, mysql-client, mysql-server, libsasl2-2, libsasl2-modules , cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2, cyrus-imapd-2.2, cyrus-pop3d-2.2, libsasl2-modules-sql | libpam-mysql
 Suggests: courier-authmysql, courier-authlib-mysql, dovecot, postfix, qmail, postfix-tls, mysqmail, awstats, courier-base, sqwebmail
 Conflicts: dtc-postfix-courier, dtc-core
 Replaces: dtc-postfix-courier, dtc-core
@@ -76,7 +76,7 @@ Description: web control panel for admin and accounting hosting services (cyrus 
  database, mailing lists, and FTP accounts to users for the domain names they
  own.
  .
- DTC manages a mysql database containing all the hosting informations,
+ DTC manages a MySQL database containing all the hosting informations,
  and configure your server's services and apllication for doing virtual hosting
  (DTC is compabible with a huge list of applications). It also connects to
  dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
@@ -89,7 +89,7 @@ Description: web control panel for admin and accounting hosting services (cyrus 
 
 Package: dtc-postfix-courier
 Architecture: all
-Depends: amavisd-new, clamav, clamav-daemon, clamav-freshclam, dtc-common, courier-maildrop, courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, debconf, lsb-release, libsasl2-modules, mysql-client, mysql-server, openssl, patch, postfix (>= 2.0), postfix-mysql, postfix-tls (>= 2.0) | postfix (>= 2.2.10)
+Depends: ${misc:Depends}, amavisd-new, clamav, clamav-daemon, clamav-freshclam, dtc-common, courier-maildrop, courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, debconf, lsb-release, libsasl2-modules, mysql-client, mysql-server, openssl, patch, postfix (>= 2.0), postfix-mysql, postfix-tls (>= 2.0) | postfix (>= 2.2.10)
 Conflicts: dtc-core, dtc-cyrus
 Replaces: dtc-core, dtc-cyrus
 Suggests: mysqmail
@@ -101,7 +101,7 @@ Description: web control panel for admin and accounting hosting services (more d
  database, mailing lists, and FTP accounts to users for the domain names they
  own.
  .
- DTC manages a mysql database containing all the hosting informations,
+ DTC manages a MySQL database containing all the hosting informations,
  and configure your server's services and apllication for doing virtual hosting
  (DTC is compabible with a huge list of applications). It also connects to
  dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
@@ -115,7 +115,7 @@ Description: web control panel for admin and accounting hosting services (more d
 
 Package: dtc-stats-daemon
 Architecture: all
-Depends: dtc-core | dtc-postfix-courier | dtc-cyrus, lsb-base, php5-cli
+Depends: ${misc:Depends}, dtc-core | dtc-postfix-courier | dtc-cyrus, lsb-base, php5-cli
 Description: dtc-xen VM statistics for the dtc web control panel
  Domain Technologie Control (DTC) is a control panel aiming at commercial
  hosting. This small daemon will query all the dtc-xen servers that you have
@@ -124,7 +124,7 @@ Description: dtc-xen VM statistics for the dtc web control panel
 
 Package: dtc-toaster
 Architecture: all
-Depends: awstats, dtc-postfix-courier, fetchmail, libnet-xwhois-perl, mailgraph, phpmyadmin, roundcube-sqlite | squirrelmail, roundcube | squirrelmail, tumgreyspf, visitors, dkimproxy, dtc-dos-firewall
+Depends: ${misc:Depends}, awstats, dtc-postfix-courier, fetchmail, libnet-xwhois-perl, mailgraph, phpmyadmin, roundcube-sqlite | squirrelmail, roundcube | squirrelmail, tumgreyspf, visitors, dkimproxy, dtc-dos-firewall
 Description: web control panel for admin and accounting hosting services (metapackage)
  Domain Technologie Control (DTC) is a control panel aiming at commercial
  hosting. Using a web GUI for the administration and accounting all hosting
@@ -132,7 +132,7 @@ Description: web control panel for admin and accounting hosting services (metapa
  database, mailing lists, and FTP accounts to users for the domain names they
  own.
  .
- DTC manages a mysql database containing all the hosting informations,
+ DTC manages a MySQL database containing all the hosting informations,
  and configure your server's services and apllication for doing virtual hosting
  (DTC is compabible with a huge list of applications). It also connects to
  dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
@@ -144,12 +144,13 @@ Description: web control panel for admin and accounting hosting services (metapa
 
 Package: dtc-autodeploy
 Architecture: all
+Depends: ${misc:Depends}
 Description: Autodeploy the DTC in a single non-interactive debconf command
  This package helps to setup DTC if you don't want even a single question to
  do the full setup.
  .
  After apt-get install dtc-autodeploy, simply type dtc_autodeploy -password-
- and this tiny package will setup ssh, mysql and dtc root with -password-, set
+ and this tiny package will setup ssh, MySQL and dtc root with -password-, set
  debconf priority as non-interactive, install DTC and all it's dependencies
  with preset answers, then switch back debconf priority to medium. This is
  mostly useful if you want to do fully automated servers preset with DTC.
