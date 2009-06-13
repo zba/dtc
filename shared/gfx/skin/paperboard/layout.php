@@ -817,7 +817,7 @@ function skin_LayoutAdminPage (){
 		}else{
 			$rand = getRandomValue();
 			$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
-			$q = "UPDATE $pro_mysql_tik_admins_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE tik_admin='".$_SERVER["PHP_AUTH_USER"]."';";
+			$q = "UPDATE $pro_mysql_tik_admins_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE pseudo='".$_SERVER["PHP_AUTH_USER"]."';";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
 		}
 		$skinedConsole = '<table cellpadding="0" cellspacing="0" class="console">
