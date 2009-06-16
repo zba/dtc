@@ -118,7 +118,7 @@ Server said: <i>" . $regz["response_text"] . "</i>");
 	$domupdate_query = "UPDATE $pro_mysql_domain_table SET generate_flag='yes' WHERE name='$edit_domain' LIMIT 1;";
 	$domupdate_result = mysql_query ($domupdate_query)or die("Cannot execute query \"$domupdate_query\"");
 
-	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes'");
+	updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes',restart_qmail='yes',qmail_newu='yes',gen_qmail='yes',gen_fetchmail='yes'");
 	triggerDomainListUpdate();
 }
 
