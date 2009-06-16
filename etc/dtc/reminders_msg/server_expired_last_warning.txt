@@ -18,4 +18,4 @@ understand that we can't keep your server running as we need the space
 for other customers, and that hosting has to be paid in advance. If you
 don't renew, your server will be shutdown in 3 days.
 
-%%SIGNATURE%%%
+%%%SIGNATURE%%%

@@ -20,4 +20,4 @@ d'autres clients, et l'hébergement doit être payé à l'avance.
 
 Si vous ne le renouvelez pas, votre serveur sera arrêté dans 3 jours. 
 
-%%SIGNATURE%%%
+%%%SIGNATURE%%%
