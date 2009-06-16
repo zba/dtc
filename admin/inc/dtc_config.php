@@ -29,7 +29,7 @@ function drawDTCConfigMenu(){
 			"text" => gettext("General"),
 			"icon" => "box_wnb_nb_picto-general.gif"),
 		"ticket" => array(
-			"text" => gettext("Support ticket and auth"),
+			"text" => gettext("Support and auth"),
 			"icon" => "box_wnb_nb_picto-supportickets.gif"),
 		"ip" => array(
 			"text" => gettext("IP addresses and network"),
@@ -44,7 +44,7 @@ function drawDTCConfigMenu(){
 			"text" => _("Nagios host"),
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"dedicatedip" => array(
-			"text" => _("Dedicated server IP addresses"),
+			"text" => _("Dedicated server IPs"),
 			"icon" => "box_wnb_nb_picto-dedicatedservers.gif"),
 		"zonefile" => array(
 			"text" => gettext("Named zonefiles"),
