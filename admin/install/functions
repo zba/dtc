@@ -2019,28 +2019,29 @@ modifyClamavConf () {
 			perl -i -p -e 's/^1;[^\n]*\n//' $PATH_CLAMAV_CONF
 		fi
 
-		if grep "Configured by DTC" "$PATH_CLAMAV_CONF" >/dev/null; then
-			echoIfVerbose "$PATH_CLAMAV_CONF already configured..."
-	        else
-			echoIfVerbose "Inserting configuration into $PATH_CLAMAV_CONF"
-
-	                TMP_FILE=`${MKTEMP} dtc_install.clamav.conf.XXXXXX` || exit 1
-	                echo "# Configured by DTC $VERSION" >> $TMP_FILE
-			if [ "$UNIX_TYPE" = "debian" ] ; then
-				DEBIAN_VERSION=`lsb_release -c -s`
-				if [ "$DEBIAN_VERSION" = "sarge" ] ; then
-					echo "AllowSupplementaryGroups" >> $TMP_FILE
-				fi
-			fi
-			echo "LocalSocket /var/run/clamav/clamd.ctl" >> $TMP_FILE
-	                echo "# End of DTC configuration $VERSION" >> $TMP_FILE
-
-	                # now to insert it at the end of the actual clamav.conf
-	                cat < $TMP_FILE >>$PATH_CLAMAV_CONF
-	                rm -f $TMP_FILE
-	        fi
-	        # Finaly restart the daemon
-	        restartDaemonMultiUnix clamav-daemon
+		# We don't need that code anymore, as clamav is now configured correctly by default
+#		if grep "Configured by DTC" "$PATH_CLAMAV_CONF" >/dev/null; then
+#			echoIfVerbose "$PATH_CLAMAV_CONF already configured..."
+#	        else
+#			echoIfVerbose "Inserting configuration into $PATH_CLAMAV_CONF"
+#
+#	                TMP_FILE=`${MKTEMP} dtc_install.clamav.conf.XXXXXX` || exit 1
+#	                echo "# Configured by DTC $VERSION" >> $TMP_FILE
+#			if [ "$UNIX_TYPE" = "debian" ] ; then
+#				DEBIAN_VERSION=`lsb_release -c -s`
+#				if [ "$DEBIAN_VERSION" = "sarge" ] ; then
+#					echo "AllowSupplementaryGroups" >> $TMP_FILE
+#				fi
+#			fi
+#			echo "LocalSocket /var/run/clamav/clamd.ctl" >> $TMP_FILE
+#	                echo "# End of DTC configuration $VERSION" >> $TMP_FILE
+#
+#	                # now to insert it at the end of the actual clamav.conf
+#	                cat < $TMP_FILE >>$PATH_CLAMAV_CONF
+#	                rm -f $TMP_FILE
+#	        fi
+#	        # Finaly restart the daemon
+#	        restartDaemonMultiUnix clamav-daemon
 	fi
 }
 
@@ -4796,16 +4797,12 @@ conf_cert_challenge_pass=\"${conf_cert_challenge_pass}\"
 
 applyAllDTCPatches () {
 	if [ "$UNIX_TYPE" = "debian" ] ; then
-		dtcPatchFile /usr/share/phpmyadmin/.htaccess ${PATH_DTC_ADMIN}/patches/phpmyadmin_htaccess.patch 31601e916ccfa49e96470f70f3e28c6c 4a3cf4183860ab55051964cb5d488c85
-		dtcPatchFile /usr/share/phpmyadmin/libraries/auth/cookie.auth.lib.php ${PATH_DTC_ADMIN}/patches/phpmyadmin_cookie.auth.lib.php.patch 65b6ba514c3a2393861bb9ef7f79d03b 45a23f493b8909c0d018eea6c55c3230
 		dtcPatchFile /etc/default/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
 	fi
 }
 
 deApplyAllDTCPatches () {
 	if [ "$UNIX_TYPE" = "debian" ] ; then
-		dtcUnpatchFile /usr/share/phpmyadmin/.htaccess ${PATH_DTC_ADMIN}/patches/phpmyadmin_htaccess.patch 31601e916ccfa49e96470f70f3e28c6c 4a3cf4183860ab55051964cb5d488c85
-		dtcUnpatchFile /usr/share/phpmyadmin/libraries/auth/cookie.auth.lib.php ${PATH_DTC_ADMIN}/patches/phpmyadmin_cookie.auth.lib.php.patch 65b6ba514c3a2393861bb9ef7f79d03b 45a23f493b8909c0d018eea6c55c3230
 		dtcUnpatchFile /etc/default/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
 	fi
 }

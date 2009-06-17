@@ -589,7 +589,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 	Alias /dtcemail $conf_dtcemail_path
 	Alias /dtcadmin $conf_dtcadmin_path
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
-	Alias /awstats-icon /usr/share/awstats/icon
+	Alias /awstats-icon $conf_tools_prefix/awstats/icon
 	Alias /squirrelmail ".$conf_tools_prefix."/squirrelmail
 	Alias /roundcube /var/lib/roundcube
 	php_admin_value sendmail_from webmaster@$web_name
