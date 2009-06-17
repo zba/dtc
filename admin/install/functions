@@ -1448,6 +1448,9 @@ ErrorDocument 501 /dtc404/406.php
 	fi
 	touch ${PATH_DTC_ETC}/logrotate
 	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_ETC}/logrotate
+	# The cband folder containing score boards for all users
+	mkdir -p ${PATH_DTC_ETC}/cband_scores
+	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_ETC}/cband_scores
 }
 
 # need to make sure we are loading LOG_SQL in the /etc/conf.d/apache2 if that file exists
@@ -2041,7 +2044,7 @@ modifyClamavConf () {
 #	                rm -f $TMP_FILE
 #	        fi
 #	        # Finaly restart the daemon
-#	        restartDaemonMultiUnix clamav-daemon
+	        restartDaemonMultiUnix clamav-daemon
 	fi
 }
 

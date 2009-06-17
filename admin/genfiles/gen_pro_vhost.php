@@ -365,6 +365,36 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		}
 	}
 
+	#############################
+	# mod_cband user generation #
+	#############################
+	$vhost_file .= "<IfModule mod_cband.c>\n";
+	$q = "SELECT DISTINCT adm_login,$pro_mysql_product_table.bandwidth FROM $pro_mysql_domain_table,$pro_mysql_admin_table,$pro_mysql_product_table
+WHERE $pro_mysql_domain_table.owner=$pro_mysql_admin_table.adm_login
+AND $pro_mysql_product_table.id=$pro_mysql_admin_table.prod_id
+AND $pro_mysql_admin_table.prod_id != '0'
+AND $pro_mysql_admin_table.id_client != '0'";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$vhost_file .= "
+<CBandUser ".$a["adm_login"].">
+	CBandSpeed 10Mbps 10 30
+	CBandRemoteSpeed 2Mbps 3 3
+	CBandLimit ".$a["bandwidth"]."M
+	CBandPeriod 4W
+	CBandPeriodSlice 1W
+	CBandExceededSpeed 32kbps 2 5
+	CBandUserScoreboard /var/lib/dtc/cband_scores/".$a["adm_login"]."
+</CBandUser>
+";
+	}
+	$vhost_file .= "</IfModule>\n";
+	#################################
+	# end mod_cband user generation #
+	#################################
+
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result) or die ("Cannot fetch user");
 		$web_name = $row["name"];
@@ -785,6 +815,9 @@ $vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	DirectoryIndex $conf_apache_directoryindex$custom_directives
 	<IfModule mod_security.c>
 		SecUploadDir $web_path/$domain_to_get/subdomains/$web_subname/tmp
+	</IfModule>
+	<IfModule mod_cband.c>
+		CBandUser $web_owner
 	</IfModule>
 </VirtualHost>
 
