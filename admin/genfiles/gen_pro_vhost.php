@@ -161,6 +161,7 @@ function pro_vhost_generate(){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_subdomain_table;
 	global $pro_mysql_ssl_ips_table;
+	global $pro_mysql_product_table;
 
 	global $conf_db_version;
 	global $conf_unix_type;
