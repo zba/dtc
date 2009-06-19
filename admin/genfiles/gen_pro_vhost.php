@@ -387,7 +387,7 @@ AND $pro_mysql_admin_table.id_client != '0'";
 	CBandPeriod 4W
 	CBandPeriodSlice 1W
 	CBandExceededSpeed 32kbps 2 5
-	CBandUserScoreboard /var/lib/dtc/cband_scores/".$a["adm_login"]."
+	CBandUserScoreboard /var/lib/dtc/etc/cband_scores/".$a["adm_login"]."
 </CBandUser>
 ";
 	}
