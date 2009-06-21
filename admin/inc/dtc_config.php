@@ -1072,7 +1072,7 @@ function drawGeneralConfig(){
 				"display_replace" => array(_("Yes"),_("No"))),
 			"use_awstats" => array(
 				"type" => "radio",
-				"legend" => "<a href=\"http://dtcsupport.gplhost.com/PmWiki/Why-not-using-awstats\">AWStats armful?</a>" . _("Use awstats: "),
+				"legend" => "(<a href=\"http://dtcsupport.gplhost.com/PmWiki/Why-not-using-awstats\">AWStats armful?</a>) " . _("Use awstats: "),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
 			"use_visitors" => array(
