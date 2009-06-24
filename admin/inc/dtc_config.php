@@ -381,7 +381,16 @@ function drawIPPoolConfig(){
 				"legend" => _("IPs addrs")),
 			"netmask" => array(
 				"type" => "text",
-				"legend" => _("Netmask")),
+				"legend" => _("Netmask"),
+			"broadcast" => array(
+				"type" => "text",
+				"legend" => _("Broadcast")),
+			"gateway" => array(
+				"type" => "text",
+				"legend" => _("Gateway")),
+			"dns" => array(
+				"type" => "text",
+				"legend" => _("DNS")),
 			"zone_type" => array(
 				"type" => "popup",
 				"legend" => _("Type of zone generation"),
