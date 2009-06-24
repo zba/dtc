@@ -925,6 +925,7 @@ function drawVPSServerConfig(){
 					"legend" => "id"),
 				"vps_xen_name" => array(
 					"type" => "text",
+					"help" => _("Names of your VPS should always be like 01, 02, 03 ... (including the leading zero)."),
 					"legend" => _("VPS xen number")),
 				"ip_addr" => array(
 					"type" => "text",
