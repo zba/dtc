@@ -40,6 +40,25 @@ Description: a small anti-DoS firewall script for your web, ftp and mail servers
  firewall running on your server to avoid having DoS attack. This is not the
  state-of-the-art, but just another attempt to make things a bit more smooth.
 
+Package: dtc-postfix-dovecot
+Architecture: all
+Depends: dtc-core, dovecot-imapd, dovecot-pop3d, libsasl2-modules, courier-authlib-mysql, postfix, postfix-tls, courier-maildrop, mysql-server
+Description: A meta package to setup a minimal DTC server with Dovecot
+ Domain Technologie Control (DTC) is a control panel aiming at commercial
+ hosting. Using a web GUI for the administration and accounting all hosting
+ services, DTC can delegate the task of creating subdomains, email, ssh,
+ database, mailing lists, and FTP accounts to users for the domain names they
+ own.
+ .
+ DTC manages a MySQL database containing all the hosting informations,
+ and configure your server's services and apllication for doing virtual hosting
+ (DTC is compabible with a huge list of applications). It also connects to
+ dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
+ does the billing in general (including billing of dedicated servers), has
+ integrated support tickets and more.
+ .
+ This package contains the minimal dependency possible to run dovecot.
+
 Package: dtc-core
 Architecture: all
 Depends: ${misc:Depends}, dtc-common, debconf, mysql-client
