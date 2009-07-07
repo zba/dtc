@@ -39,8 +39,12 @@ if($flag == 0 || sizeof($matches) != 1){
 }
 $email_from = $matches[0][0];
 
-// TODO: Check the Cc as well
+// Do nothing if there's a mail from an auto-responder
+if( isset($stt->headers["X-AutoReply-From"]) || isset($stt->headers["X-Mail-Autoreply") ){
+	exit 0
+}
 
+// TODO: Check the Cc as well
 // Get the To: header email
 $flag = preg_match_all("/[\._a-zA-Z0-9+-]+@[\._a-zA-Z0-9-]+/i", $stt->headers["to"], $matches);
 if($flag == 0){
