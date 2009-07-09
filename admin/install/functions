@@ -2571,6 +2571,7 @@ maximal_queue_lifetime = 3d" >> $TMP_FILE
 body_checks = regexp:/etc/postfix/maps/body_checks
 mime_header_checks = regexp:/etc/postfix/maps/mime_header_checks
 smtpd_client_restrictions = permit_mynetworks,
+	permit_sasl_authenticated,
 	check_client_access regexp:/etc/postfix/maps/relaying_stoplist,
 	permit
 " >> $TMP_FILE
