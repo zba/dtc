@@ -378,7 +378,7 @@ function drawIPPoolConfig(){
 				"legend" => _("Location")),
 			"ip_addr" => array(
 				"type" => "text",
-				"legend" => _("IPs addrs")),
+				"legend" => _("Network")),
 			"netmask" => array(
 				"type" => "text",
 				"size" => "12",
