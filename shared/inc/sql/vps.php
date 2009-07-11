@@ -225,15 +225,28 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 		$commit_flag = "no";
 		$submit_err = _("Cannot get VPS IP addresses information line ") .__LINE__. _(" file ") .__FILE__;
 	}
-	$vps_all_ips = "";
+	$NICS = "";
 	for($i=0;$i<$n;$i++){
 		$iparray = mysql_fetch_array($r);
-		if($i == 0){
-			$ze_vps_ip = $iparray;
+		$vps_ip = $iparray["ip_addr"];
+		$pool_id = $iparray["ip_pool_id"];
+		$q2 = "SELECT * FROM $pro_mysql_ip_pool_table WHERE id='$pool_id';";
+		$r2 = mysql_query($q2)or die("Cannot execute query \"".$q2."\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		if($n2 != 1){
+			$commit_flag = "no";
+			$submit_err = _("Cannot get VPS IP pool addresses information line ") .__LINE__. _(" file ") .__FILE__;
 		}else{
-			$vps_all_ips .= " ";
+			$a2 = mysql_fetch_array($r2);
+			$nic = $vps_ip . "," . $a2["netmask"] . "," . $a2["broadcast"];
+			if($i == 0){
+				$gateway = $a2["gateway"];
+				$dns = $a2["dns"];
+				$NICS = $nic;
+			}else{
+				$NICS .= "+".$nic;
+			}
 		}
-		$vps_all_ips .= $iparray["ip_addr"];
 	}
 
 	if($commit_flag == "yes"){
@@ -246,20 +259,20 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 		$q = "UPDATE $pro_mysql_vps_table SET operatingsystem='".$_REQUEST["os_type"]."' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		if($_REQUEST["os_type"] != "netbsd"){
-		// On this one we pass only "XX" and not "xenXX" as parameter !
-			$image_type = "lvm";
-			if (isVPSNodeLVMEnabled($vps_node) == "no")
-			{
+			if (isVPSNodeLVMEnabled($vps_node) == "no"){
 				$image_type = "vbd";	
+			}else{
+				$image_type = "lvm";
 			}
+			// On this one we pass only "XX" and not "xenXX" as parameter !
 			$r = $soap_client->call("reinstallVPSos",array(
 				"vpsname" => $vps_name,
 				"ostype" => $_REQUEST["os_type"],
-				"hddsize" => $ze_vps["hddsize"],
 				"ramsize" => $ze_vps["ramsize"],
-				"ipaddr" => $vps_all_ips,
 				"password" => $_REQUEST["root_password"],
-                                "imagetype" => $image_type),"","","");
+				"nics" => $NICS,
+				"gateway" => $gateway,
+				"dns" => $dns),"","","");
 		}
 	}
 }
