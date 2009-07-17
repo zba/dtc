@@ -563,7 +563,7 @@ function emailAccountsDeleteCallback ($id){
 
 	triggerMXListUpdate();
 	updateUsingCron("gen_qmail='yes', qmail_newu='yes'");
-	$q = "SELECT id, mbox_host FROM $pro_mysql_pop_table WHERE autoinc='$id';";
+	$q = "SELECT id, mbox_host, home FROM $pro_mysql_pop_table WHERE autoinc='$id';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
@@ -579,6 +579,8 @@ function emailAccountsDeleteCallback ($id){
 		}
 		$result=$cyr_conn->deletemb("user/" . $v["id"]."@".$v["mbox_host"]);
 	}
+	$cmd = "rm -rf " . $v["home"];
+	exec($cmd,$exec_out,$return_val);
 	$q = "DELETE FROM $pro_mysql_fetchmail_table WHERE domain_user='".$v["id"]."' AND domain_name='".$v["mbox_host"]."';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 	updateUsingCron("qmail_newu='yes',restart_qmail='yes',gen_qmail='yes'");
