@@ -968,6 +968,9 @@ $dtc_database = array(
 			"delivery_id_text" => "varchar(128) NOT NULL "
 			),
 		"primary" => "(id)",
+		"unique" => array(
+			"delivery_id_text" => "(delivery_id_text)"
+			),
 		"keys" => array(
 			"bounce_qp" => "(bounce_qp)",
 			"newmsg_id" => "(newmsg_id)"

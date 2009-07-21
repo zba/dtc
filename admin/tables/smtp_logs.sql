@@ -14,6 +14,7 @@ CREATE TABLE  IF NOT EXISTS smtp_logs (
   PRIMARY KEY  (id),
   UNIQUE KEY bounce_qp (bounce_qp),
   UNIQUE KEY newmsg_id (newmsg_id),
+  UNIQUE KEY delivery_id_text (delivery_id_text),
   KEY sender_domain (sender_domain),
   KEY delivery_domain (delivery_domain)
 ) TYPE=MyISAM;
