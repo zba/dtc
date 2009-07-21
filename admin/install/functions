@@ -507,6 +507,7 @@ dtcGenDebianLocales () {
 		debianSetLocale se_NO
 		debianSetLocale sr_RS
 		debianSetLocale pt_PT
+		debianSetLocale pt_BR
 		debianSetLocale es_ES
 		debianSetLocale fi_FI
 		debianSetLocale lv_LV

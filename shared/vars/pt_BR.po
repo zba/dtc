@@ -2910,7 +2910,7 @@ msgstr "Login ssh incorreto: esta não é uma boa seqüência para um login ssh,
 msgid "Incorrect SSH login form: please enter another login and try "
 "again.<br>\n"
 msgstr "Login SSH incorreto: digite outro login e tente novamente. <br> "
-"<br>"
+"<br>\n"
 
 #: shared/inc/sql/ssh.php:106
 msgid "Incorrect SSH password: from 6 to 16 chars, a-z A-Z "
@@ -2921,7 +2921,7 @@ msgstr "Senha SSH incorreta: De 6 a 16 caracteres, "
 #: shared/inc/sql/ssh.php:53
 msgid "Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9<br>\n"
 msgstr "Senha SSH incorreta: De 6 a 16 caracteres, "
-"a-z·A-Z·0-9<br>"
+"a-z·A-Z·0-9<br>\n"
 
 #: shared/inc/sql/subdomain.php:6
 msgid "Incorrect sub-domain format."
@@ -3493,7 +3493,7 @@ msgstr "Configurar as contas de correio: "
 #: shared/inc/sql/email.php:23
 msgid "Mailbox does not exists in database!<br>\n"
 msgstr "A caixa de correio não existe no banco de "
-"dados!<br>"
+"dados!<br>\n"
 
 #: shared/inc/forms/email.php:679
 msgid "Mailbox max files quota: "
@@ -4450,7 +4450,7 @@ msgid "Password consist of only letters and numbers (a-zA-Z0-9) and should "
 "be between 6 and 16 chars long.<br>\n"
 msgstr "A senha deve consistir em apenas de letras e números (a-zA-Z0-9) e "
 "deve ter entre 6 e 16 caracteres de comprimento. <br> "
-"<br>"
+"<br>\n"
 
 #: client/new_account_form.php:68
 msgid "Password format incorrect. Please use letters and numbers only and "
