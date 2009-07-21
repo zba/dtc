@@ -328,7 +328,7 @@ shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars shared/visitors_template sha
 admin/patches shared/securepay/modules shared/securepay/modules/paypal shared/securepay/modules/enets shared/securepay/modules/webmoney \
 shared/securepay/modules/worldpay
 
-LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI zh_TW sr_RS lv_LV
+LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT pt_BR es_ES fi_FI zh_TW sr_RS lv_LV
 
 l12n:
 	@echo "===> Managing localizations binaries"
