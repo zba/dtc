@@ -2531,6 +2531,7 @@ dkimsign    unix  -       -       n       -       5      smtp
 # service for accepting messages FROM the DomainKeys signing filter
 #
 127.0.0.1:10029 inet  n  -      n       -       5      smtpd
+    -o smtpd_use_tls=no
     -o content_filter=
     -o receive_override_options=no_unknown_recipient_checks,no_header_body_checks
     -o smtpd_helo_restrictions=
