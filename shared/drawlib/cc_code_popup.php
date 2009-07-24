@@ -353,6 +353,8 @@ $cc_code_array = array(
 "ZW"=> _("Zimbabwe")
 	);
 
+asort($cc_code_array);
+
 function cc_code_popup($default="US"){
 	global $cc_code_array;
 
