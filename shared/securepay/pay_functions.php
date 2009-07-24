@@ -33,7 +33,7 @@ function calculateVATtotal ($amount,$vat_rate){
 	if($vat_rate == 0){
 		$big_total = $amount;
 	}else{
-		$big_total = round($amount / (1 - ($vat_rate/100)),2);
+		$big_total = round($amount * (1 + ($vat_rate/100)),2);
 	}
 	return $big_total;
 }
