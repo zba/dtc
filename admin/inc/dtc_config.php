@@ -323,6 +323,7 @@ function drawDedicatedIPConfig(){
 		"table_name" => $pro_mysql_dedicated_ips_table,
 		"title" => _("Dedicated server IP address pool editor"),
 		"action" => "dedicated_ip_list",
+		"order_by" => "dedicated_server_hostname,ip_addr",
 		"forward" => array("rub","sousrub"),
 		"update_check_callback" => "checkIPAssigned",
 		"insert_check_callback" => "checkIPAssigned",
