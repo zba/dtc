@@ -119,9 +119,8 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_vps_to_user"){
 	}
 	$a = mysql_fetch_array($r);
 
-	$q = "UPDATE $pro_mysql_vps_ip_table SET vps_xen_name='".$a["vps_xen_name"]."', available='no' WHERE ip_addr='".$_REQUEST["vps_server_ip"]."';";
+	$q = "UPDATE $pro_mysql_vps_ip_table SET available='no' WHERE vps_xen_name='".$a["vps_xen_name"]."' AND vps_server_hostname='".$a["vps_server_hostname"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-
 
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["product_id"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
