@@ -798,7 +798,7 @@ function addVPSToUser($adm_login,$vps_server_hostname,$product_id,$operating_sys
 		die("Cannot find product line ".__LINE__." file ".__FILE__);
 	}
 	$product = mysql_fetch_array($r);
-	$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE available='yes' AND vps_server_hostname='$vps_server_hostname' LIMIT 1;";
+	$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE available='yes' AND vps_server_hostname='$vps_server_hostname';";
 	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
