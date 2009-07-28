@@ -8,19 +8,9 @@ db_version 2.0
 . /usr/share/dtc/admin/install/debian_config
 . /usr/share/dtc/admin/install/functions
 
-db_get dtc/conf_apache_version
 debianGetDebconfValues
 if [ "$UNIX_TYPE" = "debian" ] ; then
 	db_stop
-fi
-
-if [ ""$conf_apache_version = "2" ] ; then
-	PATH_HTTPD_CONF=/etc/apache2/apache2.conf
-	PATH_APACHE_PID_FILE=/var/run/apache2.pid
-else
-	PATH_APACHE_PID_FILE=/var/run/apache.pid
-	PATH_HTTPD_CONF=/etc/apache/httpd.conf
-	PATH_HTTPD_MODULES_CONF=/etc/apache/modules.conf
 fi
 
 DTCinstallPackage

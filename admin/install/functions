@@ -4843,14 +4843,9 @@ DTCinstallPackage () {
 			modifyPHP_INI_EXTENSIONS
 		fi
 	fi
-	if [ ! "$UNIX_TYPE" = "debian" ] ; then
-		changeMySQLPassword
-	else
-		if [ "$DEBIAN_VERSION" = "3.1" ] ; then
-			changeMySQLPassword
-		fi
+	if [ "$UNIX_TYPE" = "debian" ] ; then
+		saveConfig
 	fi
-	saveConfig
 }
 
 DTCuninstallPackage () {
