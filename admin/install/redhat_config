@@ -36,7 +36,7 @@ PATH_HTTPD_CONF=/etc/httpd/conf/httpd.conf
 PATH_AWSTATS_ETC=/etc/awstats
 PATH_AMAVISD_CONF=/etc/amavisd.conf
 PATH_CLAMAV_CONF=/etc/clamd.conf
-PATH_PUREFTPD_CONF="/etc/pure-ftpd.conf"
+PATH_PUREFTPD_CONF="/etc/pure-ftpd/pure-ftpd.conf"
 
 PATH_DTC_ETC=/var/lib/dtc/etc
 PATH_DTC_SHARED=/usr/share/dtc

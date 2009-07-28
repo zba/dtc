@@ -33,6 +33,7 @@ INSTALL_DIR?=install -d
 # Set defaults (as for Debian as normal platform)
 DTC_APP_DIR?=/usr/share
 DTC_GEN_DIR?=/var/lib
+INIT_DIR?=/etc/rc.d/init.d
 CONFIG_DIR?=/etc
 DTC_DOC_DIR?=/usr/share/doc
 MANUAL_DIR?=/usr/share/man
@@ -75,7 +76,7 @@ default:
 	@echo "******************************************************************"
 	@echo "*Please select one of the following targets:                     *"
 	@echo "*install-dtc-stats-daemon, install-dtc-common, bsd-ports-packages*"
-	@echo "*or make debian-packages                                         *"
+	@echo "*install-dtc-dos-firewall or make debian-packages                *"
 	@echo "*Note that debian users should NOT use make debian-packages      *"
 	@echo "*directly, but dpkg-buildpackage that will call it.              *"
 	@echo "******************************************************************"
@@ -349,10 +350,14 @@ i18n:
 	@cd shared/vars && for i in $(LOCALE_TRANS) ; do echo -n $$i" " ; msgfmt -c -v -o locale/$$i/LC_MESSAGES/messages.mo $$i.po ; done && cd ../..
 
 install-dtc-stats-daemon:
-	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(APP_INST_DIR)/admin
 	$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php
-	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(DESTDIR)$(CONFIG_DIR)/init.d
-	$(INSTALL) -m 0644 etc/init.d/dtc-stats-daemon $(DESTDIR)$(CONFIG_DIR)/init.d/dtc-stats-daemon
+	if [ $(UNIX_TYPE) = "redhat" ] ; then \
+		$(INSTALL) -m 0755 etc/init.d/dtc-stats-daemon $(DESTDIR)$(INIT_DIR)/dtc-stats-daemon ; fi
+
+install-dtc-dos-firewall:
+	$(INSTALL) -m 0644 etc/dtc/dtc-dos-firewall.conf $(DESTDIR)$(CONFIG_DIR)/dtc/dtc-dos-firewall.conf
+	if [ $(UNIX_TYPE) = "redhat" ] ; then \
+		$(INSTALL) -m 0755 etc/init.d/dtc-dos-firewall $(DESTDIR)$(INIT_DIR) ; fi
 
 install-dtc-common:
 	# PHP scripts files served by web server

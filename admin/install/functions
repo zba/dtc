@@ -1754,7 +1754,19 @@ modifyNamedConf () {
 	#
 	# include $PATH_DTC_ETC/named.zones in $PATH_NAMED_CONF
 	#
-	echoIfVerbose "===> Adding inclusion to named.conf"
+	echoIfVerbose "===> Configuring named.conf"
+	if [ "$UNIX_TYPE" = "redhat" ] ; then
+		for i in conf root.hints rfc1912.zones ; do
+			if [ ! -e /etc/named.${i} ] ; then
+				cp /usr/share/doc/bind-9.3.4/sample/etc/named.${i} /etc
+			fi
+		done
+		if grep "use /usr/sbin/dns-keygen to generate TSIG keys" $PATH_NAMED_CONF >/dev/null ; then
+			NAMED_KEY=`/usr/sbin/dns-keygen`
+			sed -i "s/use \/usr\/sbin\/dns-keygen to generate TSIG keys/${NAMED_KEY}/" $PATH_NAMED_CONF
+		fi
+	fi
+
 	# need to detect named chroot for gentoo
 	NAMED_CHROOT=
 	if [ -e /etc/conf.d/named ] ; then
@@ -1763,7 +1775,7 @@ modifyNamedConf () {
 	fi
 	# check to see if NAMED_CHROOT is / 
 	# if so, then we need not do all this hooha below
-	if [ ""$NAMED_CHROOT = "/" ] ; then
+	if [ "${NAMED_CHROOT}" = "/" ] ; then
 		NAMED_CHROOT=
 	fi
 
@@ -1799,18 +1811,30 @@ modifyNamedConf () {
 		fi
 	fi
 
-	if grep "Configured by DTC" $PATH_NAMED_CONF >/dev/null
-	then
+	if grep "Configured by DTC" $PATH_NAMED_CONF 2>&1 >/dev/null ; then
 		echoIfVerbose "named.conf has been configured before : skipping include insertion !"
 	else
-		if ! [ -f $PATH_NAMED_CONF.DTC.backup ]
-		then
+		if ! [ -f $PATH_NAMED_CONF.DTC.backup ] ; then
 			cp -f $PATH_NAMED_CONF $PATH_NAMED_CONF.DTC.backup
 		fi
 		line1="// Configured by DTC v0.10 : please don't touch this line !"
 		line2="include \"$PATH_DTC_ETC/named.conf\";"
-		if grep -q "view.*external.*" $PATH_NAMED_CONF ; then
-			sed -i "s/.*view.*external.*/\0\n$line1\n$line2/" $PATH_NAMED_CONF
+		if grep -q "view  .*\"external\".*" $PATH_NAMED_CONF ; then
+			LINE_NUM=`grep -n "view  .*\"external\".*" $PATH_NAMED_CONF | tail -n 1 | cut -d":" -f1`
+			LINE_NUM_TWO=$((${LINE_NUM} + 1 ))
+			NEXT_LINE=`head -n ${LINE_NUM_TWO} $PATH_NAMED_CONF | tail -n 1`
+			if [ "${NEXT_LINE}" = "{" ] ; then
+				TMP_FILE=`${MKTEMP} DTC_install.named.conf.XXXXXX` || exit 1
+				head -n ${LINE_NUM_TWO} $PATH_NAMED_CONF >${TMP_FILE}
+				echo $line1 >>${TMP_FILE}
+				echo $line2 >>${TMP_FILE}
+				NUM_LINES=`cat /etc/named.conf | wc -l`
+				TAIL=$((${NUM_LINES} - ${LINE_NUM_TWO} ))
+				TAIL=$((${TAIL} - 1 ))
+				tail -n ${TAIL} /etc/named.conf >>${TMP_FILE}
+				cat <${TMP_FILE} >$PATH_NAMED_CONF
+				rm ${TMP_FILE}
+			fi
 		else
 			TMP_FILE=`${MKTEMP} DTC_install.named.conf.XXXXXX` || exit 1
 			echo $line1 > $TMP_FILE
@@ -1820,6 +1844,7 @@ modifyNamedConf () {
 			[ -f $TMP_FILE ] && rm -f $TMP_FILE
 		fi
 		if [ "$UNIX_TYPE" = "redhat" ] ; then
+			touch $PATH_DTC_ETC/named.conf
 			chown named.named $PATH_DTC_ETC/named.conf
 		fi
 	fi

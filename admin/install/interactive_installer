@@ -228,7 +228,7 @@ installerQuestions () {
 	fi
 	# Host configuration
 	if [ -z ""${main_domain_name} ] ; then
-		main_domain_name="example.com"
+		main_domain_name=`hostname -d`
 	fi
 	echo "### YOUR SERVER CONFIGURATION ###"
 	echo ""

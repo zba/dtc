@@ -10,8 +10,6 @@ BuildRoot:%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: symlinks make gettext
 
 Requires: /usr/bin/perl perl(MIME::Parser) perl(MIME::Tools) perl(strict) cpio httpd mod_ssl sudo php-cli php mysql php-gd php-pear php-mysql bzip2 file gawk mod_log_sql openssh-clients cyrus-sasl-lib mailcap net-tools openssl patch php-fpdf php-pear-Crypt-CBC php-pear-Mail-Mime rrdtool unzip zip pam_mysql nss_mysql sbox vixie-cron gettext chrootuid, which, anacron, cyrus-sasl-md5, cyrus-sasl-plain
-# FIXME create multideps package, those should be pulled by it: amavisd-new clamav clamd spamassassin - these are not core dependencies but should be in psotfix-courier or whatever
-# FIXME package-multideps like %package postfix-courier with the extra deps
 # FIXME remember to check for ncftp to be nuked by thomas
 Prereq: /usr/sbin/useradd
 Summary: web control panel for admin and accounting hosting services (common files)
@@ -78,7 +76,7 @@ state-of-the-art, but just another attempt to make things a bit more smooth.
 %package stats-daemon
 Summary: DTC-Xen VM statistics for the DTC web control panel
 Group: System Environment/Daemons
-Requires: dtc
+Requires: dtc, redhat-lsb
 %description stats-daemon
 Domain Technologie Control (DTC) is a control panel aiming at commercial
 hosting. This small daemon will query all the dtc-xen servers that you have
@@ -92,10 +90,19 @@ CPU. This information is then stored in DTC for your customer accounting.
 echo "No build needed"
 
 %install
+
+set -e
+
 %{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}
 make install-dtc-common DESTDIR=%{buildroot} UNIX_TYPE=redhat MANUAL_DIR=%{_mandir} DTC_APP_DIR=%{_datadir} \
-	DTC_GEN_DIR=%{_localstatedir}/lib CONFIG_DIR=%{_sysconfdir} DTC_DOC_DIR=%{_datadir}/doc BIN_DIR=%{_bindir}
+	DTC_GEN_DIR=%{_localstatedir}/lib CONFIG_DIR=%{_sysconfdir} DTC_DOC_DIR=%{_defaultdocdir} BIN_DIR=%{_bindir}
+
+make install-dtc-stats-daemon DESTDIR=%{buildroot} UNIX_TYPE=redhat MANUAL_DIR=%{_mandir} DTC_APP_DIR=%{_datadir} \
+	DTC_GEN_DIR=%{_localstatedir}/lib CONFIG_DIR=%{_sysconfdir} DTC_DOC_DIR=%{_defaultdocdir} BIN_DIR=%{_bindir} INIT_DIR=%{_initrddir}
+
+make install-dtc-dos-firewall DESTDIR=%{buildroot} UNIX_TYPE=redhat MANUAL_DIR=%{_mandir} DTC_APP_DIR=%{_datadir} \
+	DTC_GEN_DIR=%{_localstatedir}/lib CONFIG_DIR=%{_sysconfdir} DTC_DOC_DIR=%{_defaultdocdir} BIN_DIR=%{_bindir} INIT_DIR=%{_initrddir}
 
 symlinks -crs %{buildroot}
 
@@ -125,7 +132,7 @@ echo "************************************************************************"
 %{__rm} -rf %{buildroot} 2>&1 >/dev/null
 
 %files
-%defattr(0644, root, root, 0755)
+#%defattr(0644, root, root, 0755)
 %{_datadir}/dtc/admin/*
 %{_datadir}/dtc/client/*
 %{_datadir}/dtc/email/*
@@ -133,17 +140,24 @@ echo "************************************************************************"
 %{_datadir}/dtc/doc
 %{_defaultdocdir}/dtc
 %{_mandir}/man?/*
+%config %{_localstatedir}/lib/dtc
+%docdir %{_defaultdocdir}/dtc
 %config %{_sysconfdir}/cron.d/dtc
 %config %{_sysconfdir}/logrotate.d/dtc
 %config %{_sysconfdir}/logrotate.d/dtc-vhosts
-%config %{_sysconfdir}/dtc
-%config %{_localstatedir}/lib/dtc
-%docdir %{_defaultdocdir}/dtc
+%config %{_sysconfdir}/dtc/logrotate.template
+%config(noreplace) %{_sysconfdir}/dtc/reminders_msg
+%config(noreplace) %{_sysconfdir}/dtc/registration_msg
+%config(noreplace) %{_sysconfdir}/dtc/tickets
+%config(noreplace) %{_sysconfdir}/dtc/*.txt
 
 %files core
 %files postfix-courier
 %files stats-daemon
+%config %{_initrddir}/dtc-stats-daemon
 %files dos-firewall
+%config(noreplace) %{_sysconfdir}/dtc/dtc-dos-firewall.conf
+%config %{_initrddir}/dtc-dos-firewall
 
 %changelog
 * Tue Dec 16 2008 Manuel Amador (Rudd-O) <rudd-o@rudd-o.com> 0.29.15-12.gplhost
