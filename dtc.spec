@@ -1,26 +1,89 @@
-Summary: Domain Technologie Control
-Name: dtc-core
+Name: dtc
 Version: 0.30.1
 Release: 11.gplhost
-License: Other
+License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
 BuildArch: noarch
-
 Source: dtc-%{version}.tar.gz
-
 BuildRoot:%{_tmppath}/%{name}-%{version}-%{release}-root
-
 BuildRequires: symlinks make gettext
-Requires: /bin/bash /bin/sh /usr/bin/env /usr/bin/perl perl(MIME::Parser) perl(MIME::Tools) perl(strict) httpd mod_ssl sudo php-cli php mysql mysql-server php-gd php-pear php-mysql bind bzip2 file gawk mod_log_sql openssh-clients cyrus-sasl-lib mailcap mlmmj net-tools openssl patch php-fpdf php-pear-Crypt-CBC rrdtool unzip zip pam_mysql nss_mysql sbox vixie-cron gettext chrootuid, which, anacron, cyrus-sasl-md5, cyrus-sasl-plain
+
+Requires: /usr/bin/perl perl(MIME::Parser) perl(MIME::Tools) perl(strict) cpio httpd mod_ssl sudo php-cli php mysql php-gd php-pear php-mysql bzip2 file gawk mod_log_sql openssh-clients cyrus-sasl-lib mailcap net-tools openssl patch php-fpdf php-pear-Crypt-CBC php-pear-Mail-Mime rrdtool unzip zip pam_mysql nss_mysql sbox vixie-cron gettext chrootuid, which, anacron, cyrus-sasl-md5, cyrus-sasl-plain
 # FIXME create multideps package, those should be pulled by it: amavisd-new clamav clamd spamassassin - these are not core dependencies but should be in psotfix-courier or whatever
 # FIXME package-multideps like %package postfix-courier with the extra deps
 # FIXME remember to check for ncftp to be nuked by thomas
 Prereq: /usr/sbin/useradd
-
+Summary: web control panel for admin and accounting hosting services (common files)
+Group: System Environment/Daemons
 %description
-Domain Technologie Control is a Web-based management panel for heavy-duty
-Web hosting, network service and Xen virtual machine management.
+Domain Technologie Control (DTC) is a control panel aiming at commercial
+hosting. Using a web GUI for the administration and accounting all hosting
+services, DTC can delegate the task of creating subdomains, email, ssh,
+database, mailing lists, and FTP accounts to users for the domain names they
+own.
+DTC manages a MySQL database containing all the hosting informations,
+and configure your server's services and apllication for doing virtual hosting
+(DTC is compabible with a huge list of applications). It also connects to
+dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
+does the billing in general (including billing of dedicated servers), has
+integrated support tickets and more.
+This package contains the common files.
+
+%package core
+Summary: web control panel for admin and accounting hosting services (minimal depends)
+Group: System Environment/Daemons
+Requires: dtc
+%description core
+Domain Technologie Control (DTC) is a control panel aiming at commercial
+hosting. Using a web GUI for the administration and accounting all hosting
+services, DTC can delegate the task of creating subdomains, email, ssh,
+database, mailing lists, and FTP accounts to users for the domain names they
+own.
+DTC manages a MySQL database containing all the hosting informations,
+and configure your server's services and apllication for doing virtual hosting
+(DTC is compabible with a huge list of applications). It also connects to
+dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
+does the billing in general (including billing of dedicated servers), has
+integrated support tickets and more.
+This package contains only strictly needed.
+
+%package postfix-courier
+Summary: web control panel for admin and accounting hosting services (more depends)
+Group: System Environment/Daemons
+Requires: dtc, awstats, mysql-server, bind, mlmmj, pure-ftpd, webalizer, amavisd-new, postfix, spamassassin, clamav, clamav-db, clamd, fetchmail, perl-Net-Whois, dtc-dos-firewall
+%description postfix-courier
+Domain Technologie Control (DTC) is a control panel aiming at commercial
+hosting. Using a web GUI for the administration and accounting all hosting
+services, DTC can delegate the task of creating subdomains, email, ssh,
+database, mailing lists, and FTP accounts to users for the domain names they
+own.
+DTC manages a MySQL database containing all the hosting informations,
+and configure your server's services and apllication for doing virtual hosting
+(DTC is compabible with a huge list of applications). It also connects to
+dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
+does the billing in general (including billing of dedicated servers), has
+integrated support tickets and more.
+This package contains more dependencies to have the maximum setup.
+
+%package dos-firewall
+Summary: a small anti-DoS firewall script for your web, ftp and mail servers
+Group: System Environment/Daemons
+Requires: iptables
+%description dos-firewall
+If running in a production environment, you might want to have a basic
+firewall running on your server to avoid having DoS attack. This is not the
+state-of-the-art, but just another attempt to make things a bit more smooth.
+
+%package stats-daemon
+Summary: DTC-Xen VM statistics for the DTC web control panel
+Group: System Environment/Daemons
+Requires: dtc
+%description stats-daemon
+Domain Technologie Control (DTC) is a control panel aiming at commercial
+hosting. This small daemon will query all the dtc-xen servers that you have
+configured in DTC and fetch the statistics from them: I/O stats, network and
+CPU. This information is then stored in DTC for your customer accounting.
 
 %prep
 %setup -n dtc
@@ -31,7 +94,9 @@ echo "No build needed"
 %install
 %{__rm} -rf %{buildroot}
 mkdir -p %{buildroot}
-make DESTDIR=%{buildroot} UNIX_TYPE=redhat install-dtc-common
+make install-dtc-common DESTDIR=%{buildroot} UNIX_TYPE=redhat MANUAL_DIR=%{_mandir} DTC_APP_DIR=%{_datadir} \
+	DTC_GEN_DIR=%{_localstatedir}/lib CONFIG_DIR=%{_sysconfdir} DTC_DOC_DIR=%{_datadir}/doc BIN_DIR=%{_bindir}
+
 symlinks -crs %{buildroot}
 
 %pre
@@ -41,14 +106,23 @@ if [ "$1" = "1" ] ; then  # first install
 	/usr/sbin/useradd -r -m -s /bin/bash -g dtcgrp dtc 2> /dev/null || :
 fi
 
+%post
+
+set -e
+
+. /usr/share/dtc/admin/install/redhat_config
+. /usr/share/dtc/admin/install/functions
+DTCinstallPackage
+
+echo "************************************************************************"
+echo "* Warning! DTC setup is not completed. The postinst didn't do it all.  *"
+echo "To finish the installation: execute /usr/share/dtc/admin/install/install"
+echo "************************************************************************"
+
 %postun
-if [ "$1" = "0" ] ; then  # last uninstall
-	/usr/sbin/userdel -r dtc
-	/usr/sbin/groupdel dtcgrp
-fi
 
 %clean
-%{__rm} -rf %{buildroot}
+%{__rm} -rf %{buildroot} 2>&1 >/dev/null
 
 %files
 %defattr(0644, root, root, 0755)
@@ -65,25 +139,11 @@ fi
 %config %{_sysconfdir}/dtc
 %config %{_localstatedir}/lib/dtc
 %docdir %{_defaultdocdir}/dtc
-# ROOT_ONLY
-%attr(0750, root, root) %{_datadir}/dtc/admin/install/*
-%attr(0750, root, root) %{_datadir}/dtc/admin/checkbind.sh
-%attr(0750, root, root) %{_datadir}/dtc/admin/cron.php
-%attr(0750, root, root) %{_datadir}/dtc/admin/reminders.php
-# USER_ALSO
-%attr(0755, root, root) %{_datadir}/dtc/admin/sa-wrapper
-%attr(0755, root, root) %{_datadir}/dtc/admin/dtc-chroot-shell
-%attr(0755, root, root) %{_datadir}/dtc/admin/accesslog.php
-%attr(0755, root, root) %{_datadir}/dtc/admin/maint_apache.php
-%attr(0755, root, root) %{_datadir}/dtc/admin/checkbind.sh
-%attr(0755, root, root) %{_datadir}/dtc/admin/ip_change.sh
-%attr(0755, root, root) %{_datadir}/dtc/admin/genfiles/change_debconf_domain.sh
-%attr(0755, root, root) %{_datadir}/dtc/admin/genfiles/change_debconf_ip.sh
-%attr(0755, root, root) %{_datadir}/dtc/admin/genfiles/gen_customer_ssl_cert.sh
-%attr(0755, root, root) %{_datadir}/dtc/admin/*graph/*.sh
-%attr(0755, root, root) %{_datadir}/dtc/admin/rrdtool.sh
-%attr(0755, root, root) %{_datadir}/dtc/admin/updateChroot.sh
 
+%files core
+%files postfix-courier
+%files stats-daemon
+%files dos-firewall
 
 %changelog
 * Tue Dec 16 2008 Manuel Amador (Rudd-O) <rudd-o@rudd-o.com> 0.29.15-12.gplhost
