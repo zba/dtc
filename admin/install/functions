@@ -408,7 +408,7 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /etc/phpmyadmin/htpasswd.setup
 	fi
 
-	if [ "${UNIX_TYPE}" = "redhat" -a -f /usr/share/phpmyadmin/config.inc/php ] ; then
+	if [ "${UNIX_TYPE}" = "redhat" -a -f /usr/share/phpmyadmin/config.inc.php ] ; then
 		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /usr/share/phpmyadmin/config.inc/php
 		gen_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
 		sed -i "s/cfg\['blowfish_secret'\] = ''/cfg\['blowfish_secret'\] = '${gen_pass}'/" /usr/share/phpmyadmin/config.inc.php
