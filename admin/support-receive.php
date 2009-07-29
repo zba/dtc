@@ -40,8 +40,8 @@ if($flag == 0 || sizeof($matches) != 1){
 $email_from = $matches[0][0];
 
 // Do nothing if there's a mail from an auto-responder
-if( isset($stt->headers["X-AutoReply-From"]) || isset($stt->headers["X-Mail-Autoreply") ){
-	exit 0
+if( isset($stt->headers["X-AutoReply-From"]) || isset($stt->headers["X-Mail-Autoreply"]) ){
+	exit(0);
 }
 
 // TODO: Check the Cc as well
@@ -82,6 +82,11 @@ if( ereg($tik_regexp,$email_to) ){
 		if($n == 1){
 			// We have a match, we should consider inserting this ticket as a reply...
 			$start_tik = mysql_fetch_array($r);
+
+			// Reopen the ticket if it was closed
+			$q = "UPDATE $pro_mysql_tik_queries_table SET closed='no' WHERE hash='$ticket_hash';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
 			$last_id = findLastTicketID($ticket_hash);
 			if($last_id != 0){
 				$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket)
