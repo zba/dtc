@@ -49,7 +49,7 @@ This package contains only strictly needed.
 %package postfix-courier
 Summary: web control panel for admin and accounting hosting services (more depends)
 Group: System Environment/Daemons
-Requires: dtc, awstats, courier-authlib-userdb, courier-authlib-mysql, courier-imap, mysql-server, bind, mlmmj, pure-ftpd, webalizer, amavisd-new, postfix, spamassassin, clamav, clamav-db, clamd, fetchmail, perl-Net-Whois, phpmyadmin, php-mcrypt, dtc-dos-firewall
+Requires: dtc, awstats, courier-authlib-userdb, courier-authlib-mysql, courier-imap, dkimproxy, mysql-server, bind, mlmmj, pure-ftpd, webalizer, amavisd-new, postfix, spamassassin, clamav, clamav-db, clamd, fetchmail, perl-Net-Whois, phpmyadmin, php-mcrypt, dtc-dos-firewall
 %description postfix-courier
 Domain Technologie Control (DTC) is a control panel aiming at commercial
 hosting. Using a web GUI for the administration and accounting all hosting
@@ -133,7 +133,58 @@ echo "************************************************************************"
 
 %files
 #%defattr(0644, root, root, 0755)
-%{_datadir}/dtc/admin/*
+%{_datadir}/dtc/admin/404.php
+%{_datadir}/dtc/admin/accesslog.php
+%{_datadir}/dtc/admin/authme.php
+%{_datadir}/dtc/admin/backup_db.php
+%{_datadir}/dtc/admin/bw_per_month.php
+%{_datadir}/dtc/admin/checkbind.sh
+%{_datadir}/dtc/admin/cpugraph
+%{_datadir}/dtc/admin/cpugraph.php
+%{_datadir}/dtc/admin/create_stat_total_active_prods_rrd.sh
+%{_datadir}/dtc/admin/cron.php
+%{_datadir}/dtc/admin/deamons_state.php
+%{_datadir}/dtc/admin/dtc-chroot-shell
+%{_datadir}/dtc/admin/dtc_db.php
+%{_datadir}/dtc/admin/dtcrm
+%{_datadir}/dtc/admin/genfiles
+%{_datadir}/dtc/admin/gfx
+%{_datadir}/dtc/admin/inc
+%{_datadir}/dtc/admin/index.php
+%{_datadir}/dtc/admin/install
+%{_datadir}/dtc/admin/ip_change.sh
+%{_datadir}/dtc/admin/logPushlet.php
+%{_datadir}/dtc/admin/mailgraph.php
+%{_datadir}/dtc/admin/maint_apache.php
+%{_datadir}/dtc/admin/memgraph
+%{_datadir}/dtc/admin/memgraph.php
+%{_datadir}/dtc/admin/mod-security
+%{_datadir}/dtc/admin/netusegraph
+%{_datadir}/dtc/admin/netusegraph.php
+%{_datadir}/dtc/admin/patches
+%{_datadir}/dtc/admin/patch_saslatuhd_startup
+%{_datadir}/dtc/admin/postfix_checks
+%{_datadir}/dtc/admin/queuegraph
+%{_datadir}/dtc/admin/reminders.php
+%{_datadir}/dtc/admin/restor_db.php
+%{_datadir}/dtc/admin/rrdtool.sh
+%{_datadir}/dtc/admin/sa-wrapper
+%{_datadir}/dtc/admin/stat_total_active_prods.php
+%{_datadir}/dtc/admin/support-receive.php
+%{_datadir}/dtc/admin/tables
+%{_datadir}/dtc/admin/updateChroot.sh
+%{_datadir}/dtc/admin/view_waitingusers.php
+%{_datadir}/dtc/admin/vm-cpu-all.php
+%{_datadir}/dtc/admin/vm-cpu.php
+%{_datadir}/dtc/admin/vm-io-all.php
+%{_datadir}/dtc/admin/vm-io.php
+%{_datadir}/dtc/admin/vm-net-all.php
+%{_datadir}/dtc/admin/vm-net.php
+%{_datadir}/dtc/admin/vps_stats_cpu.php
+%{_datadir}/dtc/admin/vps_stats_hdd.php
+%{_datadir}/dtc/admin/vps_stats_network.php
+%{_datadir}/dtc/admin/vps_stats_swap.php
+%{_datadir}/dtc/admin/xanjaxXHR.js
 %{_datadir}/dtc/client/*
 %{_datadir}/dtc/email/*
 %{_datadir}/dtc/shared/*
@@ -155,6 +206,7 @@ echo "************************************************************************"
 %files postfix-courier
 %files stats-daemon
 %config %{_initrddir}/dtc-stats-daemon
+%{_datadir}/dtc/admin/dtc-stats-daemon.php
 %files dos-firewall
 %config(noreplace) %{_sysconfdir}/dtc/dtc-dos-firewall.conf
 %config %{_initrddir}/dtc-dos-firewall
