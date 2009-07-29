@@ -412,6 +412,9 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /usr/share/phpmyadmin/config.inc/php
 		gen_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
 		sed -i "s/cfg\['blowfish_secret'\] = ''/cfg\['blowfish_secret'\] = '${gen_pass}'/" /usr/share/phpmyadmin/config.inc.php
+		if [ -e /etc/httpd/conf.d/phpmyadmin.conf ] ; then
+			sed -i "s/Allow from 127.0.0.1/Allow from all/" /etc/httpd/conf.d/phpmyadmin.conf
+		fi
 	fi
 
 	# Mailgraph stuffs...
