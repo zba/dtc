@@ -1,8 +1,8 @@
-dtc (0.30.1-1) unstable; urgency=low
+dtc (0.30.2-1) unstable; urgency=low
 
   * New upstream release.
 
- -- Thomas Goirand <thomas@goirand.fr>  Tue,  8 Jul 2008 20:22:01 +0800
+ -- Thomas Goirand <thomas@goirand.fr>  Thu, 30 Jul 2009 04:18:57 +0800
 
 dtc (0.29.6-1) unstable; urgency=low
 
