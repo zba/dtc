@@ -504,7 +504,7 @@ function isSSHKey($ssh_key){
 
 // Check for email addr we allow to create using DTC
 function isMailbox($mailbox){
-	$reg = "^([a-zA-Z0-9])|([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$";
+	$reg = "^([a-z0-9])|([a-z0-9]+)([._a-z0-9-]+)\$";
 	if(!ereg($reg,$mailbox))	return false;
 	else			return true;
 }

@@ -407,6 +407,13 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 	if [ -f /etc/phpmyadmin/htpasswd.setup ] ; then
 		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /etc/phpmyadmin/htpasswd.setup
 	fi
+
+	if [ "${UNIX_TYPE}" = "redhat" -a -f /usr/share/phpmyadmin/config.inc/php ] ; then
+		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /usr/share/phpmyadmin/config.inc/php
+		gen_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
+		sed -i "s/cfg\['blowfish_secret'\] = ''/cfg\['blowfish_secret'\] = '${gen_pass}'/" /usr/share/phpmyadmin/config.inc.php
+	fi
+
 	# Mailgraph stuffs...
 	if [ -d /var/lib/mailgraph ] ; then
 		chown ${CONF_DTC_SYSTEM_USERNAME} /var/lib/mailgraph
@@ -2643,6 +2650,10 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 			cat $SASLTMP_FILE > $PATH_POSTFIX_ETC/sasl/smtpd.conf
 		fi 
 		rm $SASLTMP_FILE
+	fi
+	# By default, CentOS setup is wrong with maildrop not being SUID
+	if [ "$UNIX_TYPE" = "redhat" -a /usr/bin/maildrop ] ; then
+		chmod +s /usr/bin/maildrop
 	fi
 }
 
