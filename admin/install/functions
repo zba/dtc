@@ -1451,6 +1451,12 @@ ErrorDocument 501 /dtc404/406.php
 		fi
 		echo "" >/etc/apache2/ports.conf
 	fi
+
+	if [ "$UNIX_TYPE" = "redhat" -a -f /etc/httpd/conf.d/mod_log_sql.conf ] ; then
+		sed -i "s/#LoadModule log_sql_module modules\/mod_log_sql.so/LoadModule log_sql_module modules\/mod_log_sql.so/" /etc/httpd/conf.d/mod_log_sql.conf
+		sed -i "s/#LoadModule log_sql_mysql_module modules\/mod_log_sql_mysql.so/LoadModule log_sql_mysql_module modules\/mod_log_sql_mysql.so/" /etc/httpd/conf.d/mod_log_sql.conf
+	fi
+
 	touch ${PATH_DTC_ETC}/logrotate
 	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_ETC}/logrotate
 	# The cband folder containing score boards for all users
