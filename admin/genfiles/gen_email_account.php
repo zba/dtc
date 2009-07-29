@@ -29,7 +29,7 @@ function genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$
 
 PATH=/usr/lib/courier-imap/bin:\$PATH
 
-DEFAULT="$HOME/Maildir"
+DEFAULT="\$HOME/Maildir"
 
 if (/^X-DTC-LoopDetected:\s*(.*)/:h)
 {
