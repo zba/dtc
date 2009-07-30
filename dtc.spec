@@ -213,9 +213,6 @@ echo "************************************************************************"
 %config %{_initrddir}/dtc-dos-firewall
 
 %changelog
-* Tue Jul 8 2008 Thomas Goirand <thomas@goirand.fr> 0.30.2
-- Updated package to 0.30.2
-
 * Tue Dec 16 2008 Manuel Amador (Rudd-O) <rudd-o@rudd-o.com> 0.29.15-12.gplhost
 - Updated package to 0.29.15
 
