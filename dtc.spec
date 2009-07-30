@@ -154,6 +154,7 @@ echo "************************************************************************"
 %{_datadir}/dtc/admin/install
 %{_datadir}/dtc/admin/ip_change.sh
 %{_datadir}/dtc/admin/logPushlet.php
+%{_datadir}/dtc/admin/dkfilter.patch
 %{_datadir}/dtc/admin/mailgraph.php
 %{_datadir}/dtc/admin/maint_apache.php
 %{_datadir}/dtc/admin/memgraph
