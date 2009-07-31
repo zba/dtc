@@ -1,6 +1,6 @@
 Name: dtc
 Version: 0.30.3
-Release: 0.1.20090730
+Release: 0.2.20090730
 License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
@@ -76,7 +76,7 @@ state-of-the-art, but just another attempt to make things a bit more smooth.
 %package stats-daemon
 Summary: DTC-Xen VM statistics for the DTC web control panel
 Group: System Environment/Daemons
-Requires: dtc, redhat-lsb
+Requires: dtc
 %description stats-daemon
 Domain Technologie Control (DTC) is a control panel aiming at commercial
 hosting. This small daemon will query all the dtc-xen servers that you have
