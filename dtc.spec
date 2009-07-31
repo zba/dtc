@@ -1,6 +1,6 @@
 Name: dtc
 Version: 0.30.3
-Release: 0.2.20090730
+Release: 0.3.20090730
 License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
@@ -113,26 +113,11 @@ if [ "$1" = "1" ] ; then  # first install
 	/usr/sbin/useradd -r -m -s /bin/bash -g dtcgrp dtc 2> /dev/null || :
 fi
 
-%post
-
-set -e
-
-. /usr/share/dtc/admin/install/redhat_config
-. /usr/share/dtc/admin/install/functions
-DTCinstallPackage
-
-echo "************************************************************************"
-echo "* Warning! DTC setup is not completed. The postinst didn't do it all.  *"
-echo "To finish the installation: execute /usr/share/dtc/admin/install/install"
-echo "************************************************************************"
-
-%postun
-
 %clean
 %{__rm} -rf %{buildroot} 2>&1 >/dev/null
 
 %files
-#%defattr(0644, root, root, 0755)
+%defattr(0644, root, root, 0755)
 %{_datadir}/dtc/admin/404.php
 %{_datadir}/dtc/admin/accesslog.php
 %{_datadir}/dtc/admin/authme.php
@@ -213,6 +198,10 @@ echo "************************************************************************"
 %config %{_initrddir}/dtc-dos-firewall
 
 %changelog
+* Thu Jul 30 2009 Manuel Amador (Rudd-O) <rudd-o@rudd-o.com> 0.30.3-0.3.20090730
+- Restored defattr in files
+- Made it so the postinst phase is silent
+
 * Thu Jul 30 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.3-0.2.20090730
 - Pre-release
 
