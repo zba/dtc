@@ -2658,6 +2658,12 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 	if [ "$UNIX_TYPE" = "redhat" -a /usr/bin/maildrop ] ; then
 		chmod +s /usr/bin/maildrop
 	fi
+	# Configure dkimproxy_out in CentOS
+	if [ "$UNIX_TYPE" = "redhat" -a -f /etc/sysconfig/dkimproxy_out ] ; then
+		echo "# options to dkimproxy_out
+		OPTIONS=\"--domain=\`cat /var/lib/dtc/etc/local_domains | tr \\\\\\r\\\\\\n ,,\`\"
+"
+	fi
 }
 
 prepareMlmmjSpool () {
