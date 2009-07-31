@@ -9,8 +9,8 @@
 # MANUAL_DIR=/usr/share/man
 
 # Version and release are set here:
-VERS=0.30.2
-RELS=1
+VERS=0.30.3
+RELS=0
 
 VERSION=$(VERS)"-"$(RELS)
 CURDIR?=`pwd`
