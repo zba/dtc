@@ -117,7 +117,7 @@ fi
 %{__rm} -rf %{buildroot} 2>&1 >/dev/null
 
 %files
-%defattr(0644, root, root, 0755)
+%defattr(-, root, root, -)
 %{_datadir}/dtc/admin/*
 %{_datadir}/dtc/client/*
 %{_datadir}/dtc/email/*
