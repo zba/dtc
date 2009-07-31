@@ -3056,17 +3056,36 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 		fi
 
 		/usr/local/etc/rc.d/pure-ftpd start
-	# Debian uses a directory structure with many files (and maybe other distro)
+	elif [ "$UNIX_TYPE" = "redhat" -a ""$conf_ftp_type = "pureftpd" ] ; then
+		TMP_FILE=`${MKTEMP} DTC_pure-ftpd.conf.XXXXXX` || exit 1
+		grep -v MySQLConfigFile ${PATH_PUREFTPD_CONF} >${TMP_FILE}
+		cat <${TMP_FILE} >${PATH_PUREFTPD_CONF}
+		rm -f ${TMP_FILE}
+		echo "MySQLConfigFile /etc/pure-ftpd/pureftpd-mysql-dtc.conf"
 	else	
 		PURE_FTPD_ETC="/etc/pure-ftpd"
 		if [ -e $PURE_FTPD_ETC ] ; then
+			if [ "$UNIX_TYPE" = "redhat" -a ""$conf_ftp_type = "pureftpd" ] ; then
+				# This will activate the MySQL config in CentOS.
+				# FIXME: This also removes some useful comments, so it's not optimum
+				TMP_FILE=`${MKTEMP} DTC_pure-ftpd.conf.XXXXXX` || exit 1
+				grep -v MySQLConfigFile ${PATH_PUREFTPD_CONF} >${TMP_FILE}
+				cat <${TMP_FILE} >${PATH_PUREFTPD_CONF}
+				rm -f ${TMP_FILE}
+				echo "MySQLConfigFile /etc/pure-ftpd/pureftpd-mysql-dtc.conf"
+			fi
 			if [ -e /etc/pure-ftpd/conf/ ] ; then
 				echo "yes" >/etc/pure-ftpd/conf/ChrootEveryone
 			fi
 
-			
+			# Debian uses a directory structure with many files (and maybe other distro)
+			PURE_DBCONFIG_FILE=""
 			if [ -e $PURE_FTPD_ETC/db/ ] ; then
-				echo "# Configured by DTC v0.10 : Please don't touch this line !
+				PURE_DBCONFIG_FILE=$PURE_FTPD_ETC/db/mysql.conf
+			else
+				PURE_DBCONFIG_FILE=$PURE_FTPD_ETC/pureftpd-mysql-dtc.conf
+			fi
+			echo "# Configured by DTC v0.10 : Please don't touch this line !
 
 MYSQLServer $conf_mysql_host
 MYSQLUser dtcdaemons
@@ -3078,24 +3097,16 @@ MYSQLGetUID     SELECT uid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
-" >$PURE_FTPD_ETC/db/mysql.conf;
+" >${PURE_DBCONFIG_FILE}
+			# If running in Debian, try to determine if using standalone or daemon
+			if [ "$UNIX_TYPE" = "debian" -f /etc/default/pure-ftpd-common ] ; then
+				PURE_DEFAULT_FILE=`cat /etc/default/pure-ftpd-common | grep STANDALONE_OR_INETD= | cut -d= -f1`
+				if [ ${PURE_DEFAULT_FILE} = "standalone" ] ; then
+					restartDaemonMultiUnix pure-ftpd-mysql
+				fi
+			else
 				restartDaemonMultiUnix pure-ftpd-mysql
 				restartDaemonMultiUnix pure-ftpd
-			# This works for slackware
-			else
-				echo "# Configured by DTC v0.10 : Please don't touch this line !
-
-MYSQLServer $conf_mysql_host
-MYSQLUser dtcdaemons
-MYSQLPassword ${MYSQL_DTCDAEMONS_PASS}
-MYSQLDatabase $conf_mysql_db
-MYSQLCrypt cleartext
-MYSQLGetPW      SELECT password FROM ftp_access WHERE login=\"\L\"
-MYSQLGetUID     SELECT uid FROM ftp_access WHERE login=\"\L\"
-MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
-MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
-
-" >$PURE_FTPD_ETC/pureftpd-mysql-dtc.conf;
 			fi
 		fi
 	fi
