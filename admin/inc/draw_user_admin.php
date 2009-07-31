@@ -264,7 +264,7 @@ function drawNewAdminForm(){
 			$pseudo = $aps["pseudo"];
 
 			$q2 = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,subject,text,cat_id,initial_ticket,server_hostname,closed,admin_name)
-			VALUES ('','".$a["adm_login"]."','".date("Y-m-d")."','".date("H:i:s")."','".$_REQUEST["last_tik_id"]."','0','admin','".$a["subject"]."','".addslashes($_REQUEST["ticketbody"])."','".$a["cat_id"]."','no','".$a["server_hostname"]."','$closed','$pseudo');";
+			VALUES ('','".$a["adm_login"]."','".date("Y-m-d")."','".date("H:i:s")."','".$_REQUEST["last_tik_id"]."','0','admin','".mysql_real_escape_string($a["subject"])."','".mysql_real_escape_string($_REQUEST["ticketbody"])."','".$a["cat_id"]."','no','".$a["server_hostname"]."','$closed','$pseudo');";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$ins_id = mysql_insert_id();
 			$q2 = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$ins_id' WHERE id='".$_REQUEST["last_tik_id"]."';";
