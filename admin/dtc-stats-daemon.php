@@ -80,6 +80,7 @@ Who's up to the challenge?
 
 
 chdir(dirname(__FILE__));
+if (!is_file("../shared/autoSQLconfig.php")) { chdir("../share/dtc/admin"); }
 
 $panel_type="cronjob";
 require("../shared/autoSQLconfig.php"); // Our main configuration file
