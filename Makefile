@@ -38,6 +38,7 @@ CONFIG_DIR?=/etc
 DTC_DOC_DIR?=/usr/share/doc
 MANUAL_DIR?=/usr/share/man
 BIN_DIR?=/usr/bin
+SBIN_DIR?=/usr/sbin
 UNIX_TYPE?=debian
 
 # /usr/share
@@ -52,6 +53,8 @@ DOC_DIR = $(DESTDIR)$(DTC_DOC_DIR)/dtc
 MAN_DIR = $(DESTDIR)$(MANUAL_DIR)
 # /usr/bin
 BINARY_DIR = $(DESTDIR)$(BIN_DIR)
+# /usr/sbin
+SBINARY_DIR = $(DESTDIR)$(SBIN_DIR)
 
 PHP_RIGHTS=0644
 ROOT_SCRIPTS_RIGHTS=0750
@@ -350,9 +353,13 @@ i18n:
 	@cd shared/vars && for i in $(LOCALE_TRANS) ; do echo -n $$i" " ; msgfmt -c -v -o locale/$$i/LC_MESSAGES/messages.mo $$i.po ; done && cd ../..
 
 install-dtc-stats-daemon:
-	$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php
-	if [ $(UNIX_TYPE) = "redhat" ] ; then \
-		$(INSTALL) -m 0755 etc/init.d/dtc-stats-daemon $(DESTDIR)$(INIT_DIR)/dtc-stats-daemon ; fi
+	if [ $(UNIX_TYPE) = "redhat" ] ; then
+		$(INSTALL) -m 0755 etc/init.d/dtc-stats-daemon $(DESTDIR)$(INIT_DIR)/dtc-stats-daemon
+		$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(SBINARY_DIR)/dtc-stats-daemon
+	else
+		$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php
+	fi
+	
 
 install-dtc-dos-firewall:
 	$(INSTALL) -m 0644 etc/dtc/dtc-dos-firewall.conf $(DESTDIR)$(CONFIG_DIR)/dtc/dtc-dos-firewall.conf
