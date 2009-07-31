@@ -100,8 +100,6 @@ make install-dtc-common DESTDIR=%{buildroot} UNIX_TYPE=redhat MANUAL_DIR=%{_mand
 
 make install-dtc-stats-daemon DESTDIR=%{buildroot} UNIX_TYPE=redhat MANUAL_DIR=%{_mandir} DTC_APP_DIR=%{_datadir} \
 	DTC_GEN_DIR=%{_localstatedir}/lib CONFIG_DIR=%{_sysconfdir} DTC_DOC_DIR=%{_defaultdocdir} BIN_DIR=%{_bindir} INIT_DIR=%{_initrddir}
-mv %{buildroot}/%{_datadir}/dtc/admin/dtc-stats-daemon.php \
-%{buildroot}/%{_sbindir}/dtc-stats-daemon
 
 make install-dtc-dos-firewall DESTDIR=%{buildroot} UNIX_TYPE=redhat MANUAL_DIR=%{_mandir} DTC_APP_DIR=%{_datadir} \
 	DTC_GEN_DIR=%{_localstatedir}/lib CONFIG_DIR=%{_sysconfdir} DTC_DOC_DIR=%{_defaultdocdir} BIN_DIR=%{_bindir} INIT_DIR=%{_initrddir}
