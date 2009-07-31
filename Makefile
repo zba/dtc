@@ -353,11 +353,11 @@ i18n:
 	@cd shared/vars && for i in $(LOCALE_TRANS) ; do echo -n $$i" " ; msgfmt -c -v -o locale/$$i/LC_MESSAGES/messages.mo $$i.po ; done && cd ../..
 
 install-dtc-stats-daemon:
-	if [ $(UNIX_TYPE) = "redhat" ] ; then
-		$(INSTALL) -m 0755 etc/init.d/dtc-stats-daemon $(DESTDIR)$(INIT_DIR)/dtc-stats-daemon
-		$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(SBINARY_DIR)/dtc-stats-daemon
-	else
-		$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php
+	if [ $(UNIX_TYPE) = redhat ] ; then \
+		$(INSTALL) -m 0755 etc/init.d/dtc-stats-daemon $(DESTDIR)$(INIT_DIR)/dtc-stats-daemon ; \
+		$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(SBINARY_DIR)/dtc-stats-daemon ; \
+	else \
+		$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php ; \
 	fi
 	
 
