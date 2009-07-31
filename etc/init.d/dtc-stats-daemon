@@ -6,29 +6,34 @@
 #
 # chkconfig: 345 95 5
 # description: dtc-xen VM statistics for the dtc web control panel
-# processname: /usr/share/dtc/admin/dtc-stats-daemon
-
-MY_DAEMON=/usr/share/dtc/admin/dtc-stats-daemon.php
+# processname: dtc-stats-daemon
 
 test -x ${MY_DAEMON} || exit 0
 
 . /etc/rc.d/init.d/functions
 . /lib/lsb/init-functions
 
+export PATH="/sbin:/usr/sbin:$PATH"
+MY_DAEMON=/usr/sbin/dtc-stats-daemon
+
 RETVAL=0
+
+status $MY_DAEMON >/dev/null 2>&1
+running=$?
 
 case "$1" in
 start)
-#	start_daemon "Starting dtc-xen statistic daemon" "dtc-stats-daemon"
+        [ $running -eq 0 ] && exit 0
 	daemon ${MY_DAEMON}
 	RETVAL=$?
-#	log_end_msg ${RETVAL}
+        [ $RETVAL -eq 0 ] && touch /var/lock/subsys/dtc-stats-daemon
 	exit $RETVAL
 ;;
 stop)
-#	log_daemon_msg "Stoping dtc-xen statistic daemon" "dtc-stats-daemon"
+        [ $running -eq 0 ] || exit 0
 	killproc ${MY_DAEMON}
-#	log_end_msg $?
+	RETVAL=$?
+        [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/dtc-stats-daemon
 ;;
 status)
 	status ${MY_DAEMON}
