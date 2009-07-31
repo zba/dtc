@@ -9,3 +9,9 @@ et tapez votre réponse. Vous pouvez aussi simplement utiliser la
 fonction "répondre" avec votre client de messagerie, ou écrire à: 
 
 %%%SUPPORT_EMAIL_ADDRESS%%%
+
+Si vous répondez par email, merci de ne PAS changez l'adresse, le numéro
+qu'elle comporte est tres important, et permet de lier votre email a son
+ancien ticket de support! Aussi, n'incluez PAS notre réponse dans le
+corp du méssage, nous avons l'historique des messages envoyés.
+

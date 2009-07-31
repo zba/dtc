@@ -15,3 +15,8 @@ client de messagerie, ou écrire à l'adresse :
 %%%SUPPORT_EMAIL_ADDRESS%%%
 
 ce qui rouvrira également le ticket.
+
+Si vous répondez par email, merci de ne PAS changez l'adresse, le numéro
+qu'elle comporte est tres important, et permet de lier votre email a son
+ancien ticket de support! Aussi, n'incluez PAS notre réponse dans le
+corp du méssage, nous avons l'historique des messages envoyés.
