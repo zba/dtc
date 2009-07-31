@@ -1,6 +1,6 @@
 Name: dtc
-Version: 0.30.2
-Release: 11.gplhost
+Version: 0.30.3
+Release: 0.1.20090730
 License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
