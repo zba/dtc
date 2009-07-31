@@ -1,6 +1,6 @@
 Name: dtc
 Version: 0.30.3
-Release: 0.3.20090730
+Release: 0.4.20090730
 License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
@@ -146,9 +146,10 @@ fi
 %config %{_initrddir}/dtc-dos-firewall
 
 %changelog
-* Thu Jul 30 2009 Manuel Amador (Rudd-O) <rudd-o@rudd-o.com> 0.30.3-0.3.20090730
+* Thu Jul 30 2009 Manuel Amador (Rudd-O) <rudd-o@rudd-o.com> 0.30.3-0.4.20090730
 - Restored defattr in files
 - Made it so the postinst phase is silent
+- dtc-stats-daemon goes into /usr/sbin
 
 * Thu Jul 30 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.3-0.2.20090730
 - Pre-release

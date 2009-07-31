@@ -1781,6 +1781,18 @@ modifyNamedConf () {
 				cp /usr/share/doc/bind-9.3.4/sample/etc/named.${i} /etc
 			fi
 		done
+		VAR_NAMED_FOLDER=/usr/share/doc/bind-9.3.4/sample/var/named
+		if [ -e "${VAR_NAMED_FOLDER}" ] ; then
+			OLD_CWD=`pwd`
+			cd /usr/share/doc/bind-9.3.4/sample/var/named/slaves
+			for i in `ls *` ; do
+				if [ ! -e /var/named/${i} ] ; then
+					cp -rf ${i} /var/named
+				fi
+			done
+		else
+			echo "WARNING! Folder ${VAR_NAMED_FOLDER} does not exists in your system!!!"
+		fi
 		if grep "use /usr/sbin/dns-keygen to generate TSIG keys" $PATH_NAMED_CONF >/dev/null ; then
 			NAMED_KEY=`/usr/sbin/dns-keygen`
 			sed -i "s/use \/usr\/sbin\/dns-keygen to generate TSIG keys/${NAMED_KEY}/" $PATH_NAMED_CONF
