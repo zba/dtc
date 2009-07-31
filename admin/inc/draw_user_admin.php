@@ -96,12 +96,19 @@ The administrator decided that the issue is:
 		$adm_content .= "CLOSED\n";
 	}
 
+	// Use email if login is empty (case of an admin email not in the DB)
+	if ( $adm_login == "" ){
+		$subject_line_adm_name = $adm_email;
+	}else{
+		$subject_line_adm_name = $adm_login;
+	}
+
 	$q = "SELECT * FROM $pro_mysql_tik_admins_table WHERE available='yes';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		mail($a["email"],"$conf_message_subject_header ".$_SERVER["PHP_AUTH_USER"]." replied to a support ticket",$adm_content,$headers);
+		mail($a["email"],"$conf_message_subject_header ".$_SERVER["PHP_AUTH_USER"]." replied to the support ticket of ".$subject_line_adm_name,$adm_content,$headers);
 	}
 }
 
