@@ -1,5 +1,5 @@
 Name: dtc
-Version: 0.30.3
+Version: 0.30.4
 Release: 0.4.20090730
 License: LGPL
 Group: System Environment/Daemons
@@ -146,6 +146,9 @@ fi
 %config %{_initrddir}/dtc-dos-firewall
 
 %changelog
+* Sat Aug 01 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090801
+- CentOS beta version
+
 * Thu Jul 30 2009 Manuel Amador (Rudd-O) <rudd-o@rudd-o.com> 0.30.3-0.4.20090730
 - Restored defattr in files
 - Made it so the postinst phase is silent
