@@ -1785,11 +1785,12 @@ modifyNamedConf () {
 		if [ -e "${VAR_NAMED_FOLDER}" ] ; then
 			OLD_CWD=`pwd`
 			cd ${VAR_NAMED_FOLDER}
-			for i in `ls *` ; do
+			for i in * ; do
 				if [ ! -e /var/named/${i} ] ; then
 					cp -rf ${i} /var/named
 				fi
 			done
+			cd ${OLD_CWD}
 		else
 			echo "WARNING! Folder ${VAR_NAMED_FOLDER} does not exists in your system!!!"
 		fi
