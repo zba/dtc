@@ -1784,7 +1784,7 @@ modifyNamedConf () {
 		VAR_NAMED_FOLDER=/usr/share/doc/bind-9.3.4/sample/var/named
 		if [ -e "${VAR_NAMED_FOLDER}" ] ; then
 			OLD_CWD=`pwd`
-			cd /usr/share/doc/bind-9.3.4/sample/var/named/slaves
+			cd ${VAR_NAMED_FOLDER}
 			for i in `ls *` ; do
 				if [ ! -e /var/named/${i} ] ; then
 					cp -rf ${i} /var/named
@@ -1862,7 +1862,6 @@ modifyNamedConf () {
 				echo $line2 >>${TMP_FILE}
 				NUM_LINES=`cat /etc/named.conf | wc -l`
 				TAIL=$((${NUM_LINES} - ${LINE_NUM_TWO} ))
-				TAIL=$((${TAIL} - 1 ))
 				tail -n ${TAIL} /etc/named.conf >>${TMP_FILE}
 				cat <${TMP_FILE} >$PATH_NAMED_CONF
 				rm ${TMP_FILE}
@@ -3099,7 +3098,7 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
 " >${PURE_DBCONFIG_FILE}
 			# If running in Debian, try to determine if using standalone or daemon
-			if [ "$UNIX_TYPE" = "debian" -f /etc/default/pure-ftpd-common ] ; then
+			if [ "$UNIX_TYPE" = "debian" -o -f /etc/default/pure-ftpd-common ] ; then
 				PURE_DEFAULT_FILE=`cat /etc/default/pure-ftpd-common | grep STANDALONE_OR_INETD= | cut -d= -f1`
 				if [ ${PURE_DEFAULT_FILE} = "standalone" ] ; then
 					restartDaemonMultiUnix pure-ftpd-mysql
