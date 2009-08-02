@@ -1,6 +1,6 @@
 Name: dtc
 Version: 0.30.4
-Release: 0.4.20090730
+Release: 0.4.20090802
 License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
@@ -145,7 +145,13 @@ fi
 %config(noreplace) %{_sysconfdir}/dtc/dtc-dos-firewall.conf
 %config %{_initrddir}/dtc-dos-firewall
 
+%post -n dtc-stats-daemon
+mkdir %{_var}/lib/dtc/dtc-xenservers-rrds
+
 %changelog
+* Sun Aug 02 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090802
+- Fixed the dtc-stats-daemon init.d script and daemon
+
 * Sat Aug 01 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090801
 - CentOS beta version
 

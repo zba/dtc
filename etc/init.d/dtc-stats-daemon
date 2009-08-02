@@ -6,12 +6,12 @@
 #
 # chkconfig: 345 95 5
 # description: dtc-xen VM statistics for the dtc web control panel
-# processname: dtc-stats-daemon
+# pidfile: /var/run/dtc-stats-daemon.pid
 
 test -x ${MY_DAEMON} || exit 0
 
 . /etc/rc.d/init.d/functions
-. /lib/lsb/init-functions
+#. /lib/lsb/init-functions
 
 export PATH="/sbin:/usr/sbin:$PATH"
 MY_DAEMON=/usr/sbin/dtc-stats-daemon
@@ -23,17 +23,22 @@ running=$?
 
 case "$1" in
 start)
+	echo -n $"Starting dtc-stats-daemon: "
         [ $running -eq 0 ] && exit 0
 	daemon ${MY_DAEMON}
+	# 2>&1 >/var/log/dtc-stats-daemon.log
+	echo ""
 	RETVAL=$?
         [ $RETVAL -eq 0 ] && touch /var/lock/subsys/dtc-stats-daemon
 	exit $RETVAL
 ;;
 stop)
+	echo -n $"Stopping dtc-stats-daemon: "
         [ $running -eq 0 ] || exit 0
 	killproc ${MY_DAEMON}
 	RETVAL=$?
         [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/dtc-stats-daemon
+	echo ""
 ;;
 status)
 	status ${MY_DAEMON}
