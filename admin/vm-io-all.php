@@ -4,15 +4,23 @@ $panel_type = "none";
 require_once("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
 
-if( $_SERVER["REQUEST_URI"] != "/dtc/vm-io-all.php"){
-	require_once("authme.php");
-}
-
 if(!isHostnameOrIP($_REQUEST["vps_server_hostname"])){
 	die("VPS node name has wrong format: dying.");
 }
 if(!checkSubdomainFormat($_REQUEST["vps_name"])){
 	die("VPS name has wrong format: dying.");
+}
+
+if( $_SERVER["SCRIPT_NAME"] != "/dtc/vm-io-all.php"){
+	require_once("authme.php");
+}else{
+	checkLoginPass($adm_login,$adm_pass);
+	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_login' AND vps_server_hostname='".$_REQUEST["vps_server_hostname"]."' AND vps_xen_name='".$_REQUEST["vps_name"]."'";
+	$r = mysql_query($q)or die();
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die( _("Access not granted line ") .__LINE__. _(" file ") .__FILE__ );
+	}
 }
 
 // Date in the past
