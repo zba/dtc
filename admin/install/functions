@@ -1873,6 +1873,22 @@ modifyNamedConf () {
 				cat <${TMP_FILE} >$PATH_NAMED_CONF
 				rm ${TMP_FILE}
 			fi
+			if grep -q "view \"localhost_resolver\"" $PATH_NAMED_CONF ; then
+				LINE_NUM=`grep -n "view \"localhost_resolver\"" $PATH_NAMED_CONF | tail -n 1 | cut -d":" -f1`
+				LINE_NUM_TWO=$((${LINE_NUM} + 1 ))
+				NEXT_LINE=`head -n ${LINE_NUM_TWO} $PATH_NAMED_CONF | tail -n 1`
+				if [ "${NEXT_LINE}" = "{" ] ; then
+					TMP_FILE=`${MKTEMP} DTC_install.named.conf.XXXXXX` || exit 1
+					head -n ${LINE_NUM_TWO} $PATH_NAMED_CONF >${TMP_FILE}
+					echo $line1 >>${TMP_FILE}
+					echo $line2 >>${TMP_FILE}
+					NUM_LINES=`cat /etc/named.conf | wc -l`
+					TAIL=$((${NUM_LINES} - ${LINE_NUM_TWO} ))
+					tail -n ${TAIL} /etc/named.conf >>${TMP_FILE}
+					cat <${TMP_FILE} >$PATH_NAMED_CONF
+					rm ${TMP_FILE}
+				fi
+			fi
 		else
 			TMP_FILE=`${MKTEMP} DTC_install.named.conf.XXXXXX` || exit 1
 			echo $line1 > $TMP_FILE
