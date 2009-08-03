@@ -1790,6 +1790,12 @@ modifyNamedConf () {
 					cp -rf ${i} /var/named
 				fi
 			done
+			cd slaves
+			for i in * ; do
+				if [ ! -e /var/named/slaves/${i} ] ; then
+					cp -rf ${i} /var/named/slaves
+				fi
+			done
 			cd ${OLD_CWD}
 		else
 			echo "WARNING! Folder ${VAR_NAMED_FOLDER} does not exists in your system!!!"
