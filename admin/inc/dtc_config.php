@@ -28,6 +28,9 @@ function drawDTCConfigMenu(){
 		"general" => array(
 			"text" => gettext("General"),
 			"icon" => "box_wnb_nb_picto-general.gif"),
+		"ticket" => array(
+			"text" => gettext("Support and auth"),
+			"icon" => "box_wnb_nb_picto-supportickets.gif"),
 		"ip" => array(
 			"text" => gettext("IP addresses and network"),
 			"icon" => "box_wnb_nb_picto-ipaddresses.gif"),
@@ -41,7 +44,7 @@ function drawDTCConfigMenu(){
 			"text" => _("Nagios host"),
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"dedicatedip" => array(
-			"text" => _("Dedicated server IP addresses"),
+			"text" => _("Dedicated server IPs"),
 			"icon" => "box_wnb_nb_picto-dedicatedservers.gif"),
 		"zonefile" => array(
 			"text" => gettext("Named zonefiles"),
@@ -52,9 +55,6 @@ function drawDTCConfigMenu(){
 		"ftpbackup" => array(
 			"text" => gettext("FTP backup"),
 			"icon" => "box_wnb_nb_picto-ftpbackup.gif"),
-		"ticket" => array(
-			"text" => gettext("Support ticket"),
-			"icon" => "box_wnb_nb_picto-supportickets.gif"),
 		"vps" => array(
 			"text" => gettext("VPS servers"),
 			"icon" => "box_wnb_nb_picto-vpsservers.gif"),
@@ -323,6 +323,7 @@ function drawDedicatedIPConfig(){
 		"table_name" => $pro_mysql_dedicated_ips_table,
 		"title" => _("Dedicated server IP address pool editor"),
 		"action" => "dedicated_ip_list",
+		"order_by" => "dedicated_server_hostname,ip_addr",
 		"forward" => array("rub","sousrub"),
 		"update_check_callback" => "checkIPAssigned",
 		"insert_check_callback" => "checkIPAssigned",
@@ -378,10 +379,23 @@ function drawIPPoolConfig(){
 				"legend" => _("Location")),
 			"ip_addr" => array(
 				"type" => "text",
-				"legend" => _("IPs addrs")),
+				"legend" => _("Network")),
 			"netmask" => array(
 				"type" => "text",
+				"size" => "12",
 				"legend" => _("Netmask")),
+			"broadcast" => array(
+				"type" => "text",
+				"size" => "12",
+				"legend" => _("Broadcast")),
+			"gateway" => array(
+				"type" => "text",
+				"size" => "12",
+				"legend" => _("Gateway")),
+			"dns" => array(
+				"type" => "text",
+				"size" => "12",
+				"legend" => _("DNS")),
 			"zone_type" => array(
 				"type" => "popup",
 				"legend" => _("Type of zone generation"),
@@ -477,8 +491,13 @@ function drawTicketConfig(){
 	global $pro_mysql_domain_table;
 	global $rub;
 	global $sousrub;
+	global $conf_all_customers_list_domain;
+	global $conf_all_customers_list_email;
+	global $pro_mysql_list_table;
+	global $pro_mysql_domain_table;
+	global $pro_mysql_client_table;
 
-	$out = "<h3>"._("Support ticket configuration")."</h3>";
+	$out = "";
 
 	$domains = array();
 	$domains[] = "default";
@@ -489,6 +508,106 @@ function drawTicketConfig(){
 		$a = mysql_fetch_array($r);
 		$domains[] = $a["name"];
 	}
+
+	$all_lists = array();
+	$domains[] = _("no list selected");
+	$q = "SELECT * FROM $pro_mysql_list_table WHERE domain='$conf_all_customers_list_domain';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$all_lists[] = $a["name"];
+	}
+
+
+	$dsc = array(
+		"title" => _("Mailing list for sending email to all customers"),
+		"action" => "tik_global_param_list",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"all_customers_list_email" => array(
+				"legend" => _("All customers list address: "),
+				"type" => "popup",
+				"values" => $all_lists
+				),
+			"all_customers_list_domain" => array(
+				"legend" => "@",
+				"type" => "popup",
+				"values" => $domains
+				)
+			)
+		);
+	$out .= configEditorTemplate ($dsc);
+
+	if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "resubscript_all_users"){
+		$q = "SELECT owner FROM $pro_mysql_domain_table WHERE name='$conf_all_customers_list_domain';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			die("No domain by this name: $conf_all_customers_list_domain line ".__LINE__." file ".__FILE__);
+		}
+		$a = mysql_fetch_array($r);
+		$admpath = getAdminPath($a["owner"]);
+		$subs_path = $admpath . "/$conf_all_customers_list_domain/lists/" . $conf_all_customers_list_domain . "_" . $conf_all_customers_list_email . "/subscribers.d";
+		if( !is_dir($subs_path)){
+			$out .= "<font color=\"red\">" . _("Could not find the folder"). " " . $subs_path . " " . _("when resubscribing all users.") . "</font>";
+		}else{
+			// First we list all files in the subscriber.d folder
+			$file_list = array();
+			if ($dh = opendir($subs_path)) {
+				while (($file = readdir($dh)) !== false) {
+					$fullpath = $subs_path . "/" . $file;
+					if(filetype($fullpath) != "dir"){
+						$file_list[] = $fullpath;
+					}
+				}
+			}
+			// Then we delete them all
+			$n = sizeof($file_list);
+			for($i=0;$i<$n;$i++){
+				unlink($file_list[$i]);
+			}
+			// Then we get a list of all the users and we subscribe them
+			$old_file = "";
+			$addr_list = "";
+			$q = "SELECT DISTINCT email FROM $pro_mysql_client_table ORDER BY email";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			for($i=0;$i<$n;$i++){
+				$a = mysql_fetch_array($r);
+				$fname = strtolower( substr($a["email"],0,1) );
+				if($fname == $old_file || $old_file == ""){
+					$addr_list .= $a["email"]."\n";
+				}else{
+					$fullpath = $subs_path."/".$old_file;
+					$fp = fopen($fullpath,"w+");
+					fwrite($fp,$addr_list);
+					fclose($fp);
+					$addr_list = $a["email"]."\n";
+				}
+				$old_file = $fname;
+			}
+			if($n > 0){
+				$fullpath = $subs_path."/".substr($a["email"],0,1);
+				$fp = fopen($fullpath,"w+");
+				fwrite($fp,$addr_list);
+				fclose($fp);
+			}
+		}
+	}
+	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"rub\" value=\"$rub\">
+<input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
+<input type=\"hidden\" name=\"action\" value=\"resubscript_all_users\">
+<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+<div class=\"input_btn_left\"></div>
+<div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Resubscribe all users")."\"></div>
+<div class=\"input_btn_right\"></div></div></form><br><br>
+"._("Note that you should always click on the above button to resubscribe all of your users before sending an email to the list")."<br>
+";
+
+
+	$out .= "<h3>"._("Support ticket configuration")."</h3>";
 
 	$dsc = array(
 		"title" => _("Ticket global parameters"),
@@ -527,6 +646,9 @@ function drawTicketConfig(){
 			"email" => array(
 				"type" => "text",
 				"legend" => _("Email addr")),
+			"tikadm_pass" => array(
+				"type" => "password",
+				"legend" => _("Password")),
 			"available" => array(
 				"type" => "radio",
 				"legend" => _("Available"),
@@ -664,7 +786,7 @@ function checkIPAssigned(){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 0){
-			$a = mysql_array($r);
+			$a = mysql_fetch_array($r);
 			$action_error_txt = _("The IP address $test_ip is already assigned to a VPS: cannot assign this one!");
 			$action_error_txt .= "<br>xen" . $a["vps_xen_name"] . " " . $a["vps_server_hostname"];
 			$ret_val = false;
@@ -804,6 +926,7 @@ function drawVPSServerConfig(){
 					"legend" => "id"),
 				"vps_xen_name" => array(
 					"type" => "text",
+					"help" => _("Names of your VPS should always be like 01, 02, 03 ... (including the leading zero)."),
 					"legend" => _("VPS xen number")),
 				"ip_addr" => array(
 					"type" => "text",
@@ -964,7 +1087,7 @@ function drawGeneralConfig(){
 				"display_replace" => array(_("Yes"),_("No"))),
 			"use_awstats" => array(
 				"type" => "radio",
-				"legend" => _("Use awstats: "),
+				"legend" => "(<a href=\"http://dtcsupport.gplhost.com/PmWiki/Why-not-using-awstats\">AWStats armful?</a>) " . _("Use awstats: "),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
 			"use_visitors" => array(

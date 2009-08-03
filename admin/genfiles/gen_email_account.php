@@ -29,6 +29,8 @@ function genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$
 
 PATH=/usr/lib/courier-imap/bin:\$PATH
 
+DEFAULT="\$HOME/Maildir"
+
 if (/^X-DTC-LoopDetected:\s*(.*)/:h)
 {
         exit
@@ -106,7 +108,7 @@ MAILDIR=\$DEFAULT\n");
 	if($vacation_flag == "yes"){
 		$mlfilter_content_filename = "genfiles/mailfilter_vacation_template";
 		$mlfilter_content_handle = fopen($mlfilter_content_filename, "r");
-		$mlfilter_content = fread($mlfilter_content_handle, filesize($mlfilter_content_filename));
+		$mlfilter_content .= fread($mlfilter_content_handle, filesize($mlfilter_content_filename));
 		fclose($mlfilter_content_handle);
 		// The following commented thing is replaced by the above that get rid of the double \n at end of lines
 		//$mlfilter_content .= "\n".implode("\n",file("genfiles/mailfilter_vacation_template"))."\n";

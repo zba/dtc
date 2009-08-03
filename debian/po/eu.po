@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc_template_eu\n"
 "Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
-"POT-Creation-Date: 2008-06-03 23:19+0200\n"
+"POT-Creation-Date: 2009-05-29 19:47+0800\n"
 "PO-Revision-Date: 2008-06-21 13:57+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
@@ -35,11 +35,11 @@ msgid ""
 "to use a remote database server)."
 msgstr ""
 "DTC-k /etc/mysql/debian.cnf erabil dezake mysql supererabiltzailea "
-"automatikoki sortzeko (DTC-ek MySQL eta DTC-ren datu-baseetara "
-"sarbidetzeko eta kudeatzeko). Honela, MySQL-ko supererabiltzailearen "
-"pasahitzik ez zaizu eskatuko, horren ordainean ordea MySQL zerbitzariak "
-"beti ordenagailu lokalean kokatuta egon beharko du (ezingo duzu DTC "
-"konfiguratu urruneko datu-base zerbitzari batekin erabiltzeko)."
+"automatikoki sortzeko (DTC-ek MySQL eta DTC-ren datu-baseetara sarbidetzeko "
+"eta kudeatzeko). Honela, MySQL-ko supererabiltzailearen pasahitzik ez zaizu "
+"eskatuko, horren ordainean ordea MySQL zerbitzariak beti ordenagailu "
+"lokalean kokatuta egon beharko du (ezingo duzu DTC konfiguratu urruneko datu-"
+"base zerbitzari batekin erabiltzeko)."
 
 #. Type: boolean
 #. Description
@@ -53,8 +53,7 @@ msgstr ""
 "Edozein modutan, ziurtatu ezazu MySQL-ko supererabiltzailearen pasahitza "
 "ezarrita dagoela. Lehenetsi gisa, Debian-ek pasahitz hutsa ezartzen du. "
 "MySQL-ko supererabiltzailearen pasahitza konfiguratzeko exekutatu honako "
-"komandoa: dpkg-reconfigure mysql-server-5.0. "
-"Jakinean zaude!"
+"komandoa: dpkg-reconfigure mysql-server-5.0. Jakinean zaude!"
 
 #. Type: string
 #. Description
@@ -80,9 +79,10 @@ msgstr "MySQL-ko administratzailea:"
 msgid ""
 "Please enter the login name of a MySQL user with administrative privileges. "
 "DTC will use it to grant privileges for the tables to its users."
-msgstr "Sartu MySQL-ko administratzaile baimenak dituen erabiltzaile baten "
-"saio-hasierako izena. DTC-k hura erabiliko du taulen baimenak bere "
-"erabiltzaileei emateko."
+msgstr ""
+"Sartu MySQL-ko administratzaile baimenak dituen erabiltzaile baten saio-"
+"hasierako izena. DTC-k hura erabiliko du taulen baimenak bere erabiltzaileei "
+"emateko."
 
 #. Type: password
 #. Description
@@ -108,8 +108,8 @@ msgstr "DTC datu-basearen izena:"
 msgid ""
 "Please enter the name of the database to use for storing all DTC hosting "
 "information."
-msgstr "Sartu datu-basearen izena (DTC-k edukiko duen informazio guztia "
-"gordetzeko)."
+msgstr ""
+"Sartu datu-basearen izena (DTC-k edukiko duen informazio guztia gordetzeko)."
 
 #. Type: boolean
 #. Description
@@ -124,9 +124,9 @@ msgid ""
 "By default, the mysql-server package does not require a password for the "
 "MySQL root user. This can be changed during the configuration of the DTC "
 "package."
-msgstr "Lehenetsi gisa, mysql-server paketeak ez du MySQL-ko "
-"supererabiltzailearen (root) pasahitzik behar. DTC paketearen "
-"konfigurazioan zehar alda daiteke."
+msgstr ""
+"Lehenetsi gisa, mysql-server paketeak ez du MySQL-ko supererabiltzailearen "
+"(root) pasahitzik behar. DTC paketearen konfigurazioan zehar alda daiteke."
 
 #. Type: string
 #. Description
@@ -142,9 +142,9 @@ msgid ""
 "will be used to install the root admin and customer web control panel of DTC "
 "(under one of this domain's subdomains)."
 msgstr ""
-"Sartu aurreneko domeinua DTC-k kudeatzeko. Domeinuaren izen hau "
-"DTC-ren root administratzailearen eta bezeroaren web kontrol-panela "
-"instalatzeko erabiliko da (domeinu honetako azpidomeinu batean)."
+"Sartu aurreneko domeinua DTC-k kudeatzeko. Domeinuaren izen hau DTC-ren root "
+"administratzailearen eta bezeroaren web kontrol-panela instalatzeko "
+"erabiliko da (domeinu honetako azpidomeinu batean)."
 
 #. Type: string
 #. Description
@@ -190,7 +190,8 @@ msgstr "Ostatutako domeinuen bide-izena:"
 msgid ""
 "Please enter the directory to be used by DTC to store files for all hosted "
 "domains."
-msgstr "Sartu direktorioa DTC-k ostatuta dauden domeinu guztien fitxategiak "
+msgstr ""
+"Sartu direktorioa DTC-k ostatuta dauden domeinu guztien fitxategiak "
 "gordetzeko."
 
 #. Type: string
@@ -204,7 +205,8 @@ msgid ""
 msgstr ""
 "/var/www aukeratzen baduzu (Apache zerbitzariaren erroko dokumentuen "
 "direktorio lehenetsia da), direktorio horretan kokatuta dauden fitxategi "
-"guztiak publikoki atzi daitezke. Hori dela eta, Apache-ren konfigurazioan " "DocumentRoot aldatzea biziki gomendatzen da (baldin eta /var/www aukeratu "
+"guztiak publikoki atzi daitezke. Hori dela eta, Apache-ren konfigurazioan "
+"DocumentRoot aldatzea biziki gomendatzen da (baldin eta /var/www aukeratu "
 "baduzu ostatutako domeinuen bide-izen gisa)."
 
 #. Type: string
@@ -219,8 +221,9 @@ msgstr "Chroot inguruneko txantiloiaren bide-izena:"
 msgid ""
 "Please enter the directory to be used by DTC to build the cgi-bin chroot "
 "environment template."
-msgstr "Sartu direktorioa DTC-k erabiltzeko (cgi-bin chroot inguruneko "
-"txantiloia eraikitzeko)."
+msgstr ""
+"Sartu direktorioa DTC-k erabiltzeko (cgi-bin chroot inguruneko txantiloia "
+"eraikitzeko)."
 
 #. Type: string
 #. Description
@@ -236,9 +239,9 @@ msgid ""
 "the administrator for the domain name containing the control panel "
 "installation."
 msgstr ""
-"DTC domeinu bakoitzak administratzaile bat eduki behar du. "
-"Sartu administratzailearen saio-hasierako izena (instalazioko "
-"kontrol-panela duen domeinuaren izenarentzako)."
+"DTC domeinu bakoitzak administratzaile bat eduki behar du. Sartu "
+"administratzailearen saio-hasierako izena (instalazioko kontrol-panela duen "
+"domeinuaren izenarentzako)."
 
 #. Type: password
 #. Description
@@ -254,8 +257,9 @@ msgid ""
 "control panel must be managed manually through a .htpasswd file in the root "
 "path."
 msgstr ""
-"Aukeratu domeinu nagusiko administratzailearen pasahitza. "
-"Kontrol-panelerako sarbidea eskuz kudeatu behar da erroko bide-izenean " "dagoen .htpasswd fitxategiaren bidez."
+"Aukeratu domeinu nagusiko administratzailearen pasahitza. Kontrol-panelerako "
+"sarbidea eskuz kudeatu behar da erroko bide-izenean dagoen .htpasswd "
+"fitxategiaren bidez."
 
 #. Type: select
 #. Description
@@ -287,8 +291,9 @@ msgstr "Erabili Cyrus posta-sistema?"
 msgid ""
 "Please choose this option if you are using Cyrus for mail delivery, IMAP and "
 "MTA. This option is only compatible with Postfix."
-msgstr "Hautatu aukera hau Cyrus erabiltzen baduzu (IMAP, MTA eta posta "
-"bidaltzeko). Aukera hau Postfix-ekin soilik da bateragarria."
+msgstr ""
+"Hautatu aukera hau Cyrus erabiltzen baduzu (IMAP, MTA eta posta bidaltzeko). "
+"Aukera hau Postfix-ekin soilik da bateragarria."
 
 #. Type: select
 #. Description
@@ -333,11 +338,11 @@ msgid ""
 "(NAT). If the server uses a dynamic public IP address, NAT and port "
 "forwarding are mandatory for DTC."
 msgstr ""
-"Aukera hau honako kasuan soilik hauta daiteke: zerbitzaria zuzenean Internetera "
-"konektatuta ez dagoenean, baizik eta suebaki baten bidez (sareko helbideen "
-"itzulpena egiten duena) konektatzen bada. Zerbitzariak IP helbide publiko "
-"dinamiko bat erabiltzen badu NAT eta ataken bideraketa derrigorrezkoak dira "
-"DTC-rentzako."
+"Aukera hau honako kasuan soilik hauta daiteke: zerbitzaria zuzenean "
+"Internetera konektatuta ez dagoenean, baizik eta suebaki baten bidez (sareko "
+"helbideen itzulpena egiten duena) konektatzen bada. Zerbitzariak IP helbide "
+"publiko dinamiko bat erabiltzen badu NAT eta ataken bideraketa "
+"derrigorrezkoak dira DTC-rentzako."
 
 #. Type: string
 #. Description
@@ -372,15 +377,16 @@ msgid ""
 msgstr ""
 "Aukera hau hautatzen baduzu, DTC-k berak sinatutako SSL ziurtagiria sortuko "
 "du eta SSL erabiliko da panela arakatzeko. SSL ere aktibatu egingo da eta "
-"sortutako Apache-ren konfigurazioak HTTPS URLak aktiba ditzake "
-"kontrol-panelarentzako."
+"sortutako Apache-ren konfigurazioak HTTPS URLak aktiba ditzake kontrol-"
+"panelarentzako."
 
 #. Type: boolean
 #. Description
 #: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
 msgid "This certificate can be changed for a root CA certificate later."
-msgstr "Geroago, ziurtagiri hau alda daiteke supererabiltzailearen "
-"ZE (CA) ziurtagiri batengatik."
+msgstr ""
+"Geroago, ziurtagiri hau alda daiteke supererabiltzailearen ZE (CA) "
+"ziurtagiri batengatik."
 
 #. Type: boolean
 #. Description
@@ -418,8 +424,8 @@ msgid ""
 "Please enter the 2-letter country code for the generated certificate. This "
 "should usually be the code for the country the server is located in."
 msgstr ""
-"Sartu 2 hizkiko herrialdearen kodea sortutako ziurtagiriarentzako. "
-"Normalean zerbitzaria kokatuta dagoen herrialdearen kodea izaten da."
+"Sartu 2 hizkiko herrialdearen kodea sortutako ziurtagiriarentzako. Normalean "
+"zerbitzaria kokatuta dagoen herrialdearen kodea izaten da."
 
 #. Type: string
 #. Description
@@ -451,36 +457,15 @@ msgstr "Helbide elektronikoa DTC SSL ziurtagiriarentzako:"
 msgid "DTC SSL certificate challenge password:"
 msgstr "DTC SSL ziurtagiriaren erronka-pasahitza:"
 
-#. Type: boolean
-#. Description
-#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
-msgid "Update PEAR installation?"
-msgstr "Eguneratu PEAR instalazioa?"
-
-#. Type: boolean
-#. Description
-#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
-msgid ""
-"DTC can check the PEAR installation during its own installation process. "
-"This requires your server to be connected to the network. If you can't do so "
-"here, please check whether the Crypt_CBC and Auth_SASL PEAR modules are up-"
-"to-date. The relevant files are located in /usr/share/php."
-msgstr ""
-"Bere instalazioko prozesuan zehar DTC-k PEAR-en instalazioa begiratu dezake. "
-"Zerbitzaria sarera konektatuta egotea eskatzen du honek. Unean ezinezkoa "
-"bada, ziurtatu zaitez Crypt_CBC eta Auth_SASL PEAR moduluak eguneratuta "
-"daudela. Fitxategi hauek /usr/share/php direktoriopean kokatuta egon beharko "
-"lukete."
-
 #. Type: string
 #. Description
-#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid "DNSBL (DNS BlackList) list:"
 msgstr "DNSBL (DNS BlackList) zerrenda:"
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
 msgid ""
 "Please enter the list of preferred DNSBL servers to add to your Postfix mail "
 "server configuration."
@@ -490,24 +475,24 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid "Local address extension character:"
 msgstr "Helbide lokalen luzepenaren karakterea:"
 
 #. Type: select
 #. Description
-#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid ""
 "Please choose the character that will be used to define a local address "
 "extension. This MUST match what you have set in your postfix or qmail setup."
 msgstr ""
 "Helbide lokaleko luzapen bat definitzeko erabiliko den karakterea aukeratu. "
-"Postfix edo qmail zerbitzariaren konfigurazioan ezarritakoarekin bat etorri behar "
-"du."
+"Postfix edo qmail zerbitzariaren konfigurazioan ezarritakoarekin bat etorri "
+"behar du."
 
 #. Type: select
 #. Description
-#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
 msgid ""
 "The recipient delimiter will be used for your mailing lists. Let's say you "
 "use the + char as delimiter, then your users will have to send a mail to list"
@@ -516,77 +501,78 @@ msgid ""
 "patches are incompatibles), but when using - as delimiter, you will not be "
 "able to use an email of the form john-doe@example.com as - is the delimiter."
 msgstr ""
-"Hartzailearen mugatzailea posta-zerrendetan erabiliko da. Demagun "
-"+ karakterea erabiltzen duzula mugatzaile gisa, orduan erabiltzaileek "
-"+harpidetu@adibidea.org zerrendara bidali beharko dute mezu bat. Tamalez "
-"+ karakterea aukeratzean MTA batzuek ez dute onartuko karaktere hau hartzailean "
-"erabiltzea (batik bat qmail-en bateragarriak ez diren zenbait adabakitan), "
-"baina - karakterea erabiltzen baduzu ezin izango duzu "
-"enbata-hondamendieta@adibidea.org moduko mezurik erabili (mugatzailea "
-"- ikurra delako)."
+"Hartzailearen mugatzailea posta-zerrendetan erabiliko da. Demagun + "
+"karakterea erabiltzen duzula mugatzaile gisa, orduan erabiltzaileek "
+"+harpidetu@adibidea.org zerrendara bidali beharko dute mezu bat. Tamalez + "
+"karakterea aukeratzean MTA batzuek ez dute onartuko karaktere hau "
+"hartzailean erabiltzea (batik bat qmail-en bateragarriak ez diren zenbait "
+"adabakitan), baina - karakterea erabiltzen baduzu ezin izango duzu enbata-"
+"hondamendieta@adibidea.org moduko mezurik erabili (mugatzailea - ikurra "
+"delako)."
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid "Subdomain name for the MX server:"
 msgstr "Azpidomeinuaren izena MX zerbitzariarentzako:"
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
 msgid ""
 "Your mail server will need to use a subdomain name to accept mail. This "
 "subdomain will be configured in your mail server and your domain name server "
 "by DTC. Any name is ok here."
 msgstr ""
 "Posta-zerbitzariak azpidomeinu bat erabili behar du mezuak onartzeko. "
-"Azpidomeinu hau DTC-k konfiguratuko du posta-zerbitzarian eta domeinu-izenen " "zerbitzarian (DNS). Edozein izen baliozkoa da hor."
+"Azpidomeinu hau DTC-k konfiguratuko du posta-zerbitzarian eta domeinu-izenen "
+"zerbitzarian (DNS). Edozein izen baliozkoa da hor."
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid "Network devices to monitor:"
 msgstr "Sareko gailuak monitorizatzeko:"
 
 #. Type: string
 #. Description
-#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
 msgid ""
 "Please enter all the network devices you wish to be monitored by the RRDTool "
 "graphing utility."
 msgstr ""
-"RRDTool tresna grafikoarekin monitorizatzea nahi dituzun sareko gailu guztiak "
-"sartu."
+"RRDTool tresna grafikoarekin monitorizatzea nahi dituzun sareko gailu "
+"guztiak sartu."
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid "Allow to report anonymous statistics to GPLHost?"
 msgstr "Baimendu estatistika anonimoak bidaltzea GPLHost-era?"
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
 msgid ""
 "DTC installations can be reported to the GPLHost web site. The only "
 "collected data are the operating system name (Debian) and the IP address "
 "(used as a unique identifier only). An Internet connection and the wget "
 "binary are required to report the statistics."
 msgstr ""
-"DTC instalazioari buruzko txostena GPLHost webgunera bidal daiteke. "
-"Bilduko diren datuak sistema eragilearen izena (Debian) eta IP helbidea "
+"DTC instalazioari buruzko txostena GPLHost webgunera bidal daiteke. Bilduko "
+"diren datuak sistema eragilearen izena (Debian) eta IP helbidea "
 "(identifikatzaile esklusibo gisa erabiltzeko) izango dira. Interneteko "
 "konexioa eta wget aplikazioa behar dira estatistikak bidaltzeko."
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid "Skip mknod calls when building the chroot template?"
 msgstr "Saltatu mknod deiak chroot txantiloia eraikitzean?"
 
 #. Type: boolean
 #. Description
-#: ../dtc-core.templates:33001 ../dtc-postfix-courier.templates:33001
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
 msgid ""
 "In some environments, such as Linux vServer, mknod cannot be executed. This "
 "option allows skipping the creation of the null, random and urandom devices "
@@ -609,7 +595,21 @@ msgstr ""
 "Cyrus posta-sistema mezuak jasotzeko eta gordetzeko Maildir sistemaren "
 "ordezkoa da. Zertan ari zaren ongi jakin behar duzu Cyrus-en erabilpena "
 "aktibatzeko. dtc-toaster edo dtc-postfix-courier erabiltzen ari bazara, "
-"hemen Cyrus ez erabiltzea erantzun behar duzu. Cyrus sistema ezin da "
-"dtc-postfix-courier paketearekin batera erabili, dtc paketearekin soilik "
-"erabil daiteke."
+"hemen Cyrus ez erabiltzea erantzun behar duzu. Cyrus sistema ezin da dtc-"
+"postfix-courier paketearekin batera erabili, dtc paketearekin soilik erabil "
+"daiteke."
 
+#~ msgid "Update PEAR installation?"
+#~ msgstr "Eguneratu PEAR instalazioa?"
+
+#~ msgid ""
+#~ "DTC can check the PEAR installation during its own installation process. "
+#~ "This requires your server to be connected to the network. If you can't do "
+#~ "so here, please check whether the Crypt_CBC and Auth_SASL PEAR modules "
+#~ "are up-to-date. The relevant files are located in /usr/share/php."
+#~ msgstr ""
+#~ "Bere instalazioko prozesuan zehar DTC-k PEAR-en instalazioa begiratu "
+#~ "dezake. Zerbitzaria sarera konektatuta egotea eskatzen du honek. Unean "
+#~ "ezinezkoa bada, ziurtatu zaitez Crypt_CBC eta Auth_SASL PEAR moduluak "
+#~ "eguneratuta daudela. Fitxategi hauek /usr/share/php direktoriopean "
+#~ "kokatuta egon beharko lukete."

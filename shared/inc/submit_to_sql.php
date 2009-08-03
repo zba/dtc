@@ -36,6 +36,8 @@ function validateRenewal($renew_id){
 	global $conf_webmaster_email_addr;
 	global $conf_message_subject_header;
 
+	global $send_email_header;
+
 	$q = "SELECT * FROM $pro_mysql_pending_renewal_table WHERE id='$renew_id';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
@@ -165,7 +167,8 @@ Date: ".$renew_entry["renew_date"]." ".$renew_entry["renew_time"]."
 
 ";
 
-	$headers = "From: ".$conf_webmaster_email_addr;
+	$headers = $send_email_header;
+	$headers .= "From: ".$conf_webmaster_email_addr;
 	mail($conf_webmaster_email_addr,"$conf_message_subject_header Renewal approved!",$txt_renewal_approved,$headers);
 
 	$q = "SELECT id_client FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."'";
@@ -233,6 +236,7 @@ function validateWaitingUser($waiting_login_id){
 	if($n != 1)die("I can't find username with id $waiting_login_id in the userwaiting table line: ".__LINE__." file: ".__FILE__."!");
 	$a = mysql_fetch_array($r);
 	$waiting_login = $a["reqadm_login"];
+	$last_used_lang = $a["last_used_lang"];
 
 	// Check if there is a user by that name
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$waiting_login';";
@@ -296,8 +300,8 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
         }
         if($a["add_service"] != "yes"){
 		$adm_query = "INSERT INTO $pro_mysql_admin_table
-(adm_login        ,adm_pass         ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,allow_add_domain,max_email$admtbl_added1) VALUES
-('$waiting_login','".$a["reqadm_pass"]."','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','".$a2["nbr_database"]."','".$a2["allow_add_domain"]."','".$a2["nbr_email"]."'$admtbl_added2);";
+(adm_login        ,adm_pass              ,last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,allow_add_domain,max_email$admtbl_added1) VALUES
+('$waiting_login','".$a["reqadm_pass"]."','$last_used_lang','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','".$a2["nbr_database"]."','".$a2["allow_add_domain"]."','".$a2["nbr_email"]."'$admtbl_added2);";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	}else{
 		if($a2["heb_type"] == "shared"){
@@ -349,41 +353,20 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 		}
 
 		// Read the (customizable) registration message to send
-		if(file_exists("/etc/dtc/registration_msg/vps_open.txt")){
-			$fname = "/etc/dtc/registration_msg/vps_open.txt";
-		}else{
-			$fname = "$dtcshared_path/registration_msg/vps_open.txt";
-		}
-		$fp = fopen($fname,"r");
-		$txt_welcome_message = fread($fp,filesize($fname));
-		fclose($fp);
+		$txt_welcome_message = readCustomizedMessage("registration_msg/vps_open",$waiting_login);
 	}else if($a2["heb_type"] == "server"){
 		// As there is currently no dedicated server provision system, we just do this:
 		$country = $conf_this_server_country_code;
 		addDedicatedToUser($waiting_login,$a["domain_name"],$a2["id"]);
 
 		// Read the (customizable) registration message to send
-		if(file_exists("/etc/dtc/registration_msg/dedicated_open.txt")){
-			$fname = "/etc/dtc/registration_msg/dedicated_open.txt";
-		}else{
-			$fname = "$dtcshared_path/registration_msg/dedicated_open.txt";
-		}
-		$fp = fopen($fname,"r");
-		$txt_welcome_message = fread($fp,filesize($fname));
-		fclose($fp);
+		$txt_welcome_message = readCustomizedMessage("registration_msg/dedicated_open",$waiting_login);
         }else{
         	$country = $conf_this_server_country_code;
 		addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);
 
 		// Read the (customizable) registration message to send
-		if(file_exists("/etc/dtc/registration_msg/shared_open.txt")){
-			$fname = "/etc/dtc/registration_msg/shared_open.txt";
-		}else{
-			$fname = "$dtcshared_path/registration_msg/shared_open.txt";
-		}
-		$fp = fopen($fname,"r");
-		$txt_welcome_message = fread($fp,filesize($fname));
-		fclose($fp);
+		$txt_welcome_message = readCustomizedMessage("registration_msg/shared_open",$waiting_login);
 
 		$q = "UPDATE $pro_mysql_domain_table SET max_email='".$a2["nbr_email"]."',quota='".$a2["quota_disk"]."' WHERE name='".$a["domain_name"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -393,18 +376,7 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
 	$txt_userwaiting_account_activated_subject = "$conf_message_subject_header Account $waiting_login has been activated!";
 
 	// Manage the signature of all registration messages
-	if(file_exists("/etc/dtc/signature.txt")){
-		$fname = "/etc/dtc/signature.txt";
-	}else{
-		$fname = "/usr/local/www/dtc/etc/signature.txt";
-	}
-	if(file_exists($fname)){
-		$fp = fopen($fname,"r");
-		$signature = fread($fp,filesize($fname));
-		fclose($fp);
-	}else{
-		$signature = "";
-	}
+	$signature = readCustomizedMessage("signature",$waiting_login);
 	$msg_2_send = str_replace("%%%SIGNATURE%%%",$signature,$txt_welcome_message);
 
 	// Manage the login info part of the message
@@ -419,18 +391,7 @@ Password: ".$a["reqadm_pass"];
 	$msg_2_send = str_replace("%%%DTC_LOGIN_INFO%%%",$dtc_login_info,$msg_2_send);
 
 	// Manage the header of the messages
-	if(file_exists("/etc/dtc/messages_header.txt")){
-		$fname = "/etc/dtc/messages_header.txt";
-	}else{
-		$fname = "/usr/local/www/dtc/etc/messages_header.txt";
-	}
-	if(file_exists($fname)){
-		$fp = fopen($fname,"r");
-		$head = fread($fp,filesize($fname));
-		fclose($fp);
-	}else{
-		$head = "";
-	}
+	$head = readCustomizedMessage("messages_header",$waiting_login);
 	$msg_2_send = $head."
 ".$msg_2_send;
 

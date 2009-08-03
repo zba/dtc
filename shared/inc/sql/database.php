@@ -85,7 +85,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
 		}
 	}
 	if($commit_flag == "yes"){
-		$q = "CREATE DATABASE IF NOT EXISTS ". $newdb_name .";";
+		$q = "CREATE DATABASE IF NOT EXISTS `". $newdb_name ."`;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$q = "INSERT INTO mysql.db ( Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Grant_priv,References_priv,Index_priv,Alter_priv,Lock_tables_priv)
 		VALUES ('%','". $newdb_name ."','".$_REQUEST["dbuser"]."','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y');";
@@ -243,39 +243,6 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_db_owner"){
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$q = "FLUSH PRIVILEGES;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-	}
-	if($conf_user_mysql_type=="distant"){
-		mysql_close($newid) or die("Cannot disconnect to user database");
-		connect2base();
-	}
-}
-
-if(isset($_REQUEST["change_mysql_password"]) && $_REQUEST["change_mysql_password"] == "Ok"){
-	checkLoginPass($adm_login,$adm_pass);
-	if($conf_user_mysql_type=="distant"){
-		$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user SQL host");
-	}
-	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
-	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
-	$num_rows = mysql_num_rows($result);
-	if($num_rows != 1){
-		$submit_err .= _("User or password is incorrect!") ."<br>\n";
-		$commit_flag = "no";
-	}
-
-	if($commit_flag == "yes"){
-		if(!isDTCPassword($_REQUEST["new_mysql_password"])){
-			$submit_err .= _("Incorrect MySQL password format: please enter another login and try again.")."<br>\n";
-			$commit_flag = "no";
-		}
-	}
-
-	if($commit_flag == "yes"){
-		mysql_select_db("mysql")or die("Cannot select db mysql for account management !!!");
-		$query = "UPDATE user SET Password=PASSWORD('".$_REQUEST["new_mysql_password"]."') WHERE User='$adm_login';";
-		mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
-		mysql_query("FLUSH PRIVILEGES");
-		mysql_select_db($conf_mysql_db)or die("Cannot select db \"$conf_mysql_db\" !!!");
 	}
 	if($conf_user_mysql_type=="distant"){
 		mysql_close($newid) or die("Cannot disconnect to user database");

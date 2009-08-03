@@ -1,11 +1,23 @@
 <?php
 
-$pro_mysql_product_table = "product";
-
 function DTCRMlistClients(){
 	if(isset($_REQUEST["id"]))
 		$id_client = $_REQUEST["id"];
 	global $pro_mysql_client_table;
+	global $pro_mysql_admin_table;
+
+	// The popup value is stored in the session, let's manage it
+	if(isset($_REQUEST["clientlist_type"]) && $_REQUEST["clientlist_type"] != ""){
+		$_SESSION["cur_clientlist_type"] = $_REQUEST["clientlist_type"];
+		$clientlist_type = $_REQUEST["clientlist_type"];
+	}else{
+		if(isset($_SESSION["cur_clientlist_type"]) && $_SESSION["cur_clientlist_type"] != ""){
+			$clientlist_type = $_SESSION["cur_clientlist_type"];
+		}else{
+			$clientlist_type = "hide-no-admins";
+			$_SESSION["cur_clientlist_type"] = "hide-no-admins";
+		}
+	}
 
 	$text = "<div style=\"white-space: nowrap\" nowrap>
 <a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=0\">". _("New customer") ."</a>
@@ -26,39 +38,79 @@ function DTCRMlistClients(){
 		"selected" => $selected);
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result);
-		if(!isset($id_client) || $row["id"] != $_REQUEST["id"]){
-			$text .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"]."\">";
-			$url = $_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"];
-			$selected = "no";
-		}else{
-			$url = $_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"];
-			$selected = "yes";
-		}
-		if($row["is_company"] == "yes"){
-			if(strlen($row["company_name"]) > 15){
-				$company = substr($row["company_name"],0,14)."...: ";
+		if($clientlist_type == "hide-no-admins"){
+			$qa = "SELECT adm_login FROM $pro_mysql_admin_table WHERE id_client='".$row["id"]."';";
+			$ra = mysql_query($qa)or die("Cannot query $qa line ".__LINE__." file ".__FILE__." sql said: ".mysql_error()); 
+			$rn = mysql_num_rows($ra);
+			if($rn == 0){
+				$do_display = "no";
 			}else{
-				$company = $row["company_name"].": ";
+				$do_display = "yes";
 			}
 		}else{
-			$company = "";
+			$do_display = "yes";
 		}
-		$text .= $company.$row["familyname"].", ".$row["christname"]."";
-		if(!isset($id_client) || $row["id"] != $_REQUEST["id"]){
-			$text .= "</a>";
+		if($do_display == "yes"){
+			if(!isset($id_client) || $row["id"] != $_REQUEST["id"]){
+				$text .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"]."\">";
+				$url = $_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"];
+				$selected = "no";
+			}else{
+				$url = $_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"];
+				$selected = "yes";
+			}
+			if($row["is_company"] == "yes"){
+				if(strlen($row["company_name"]) > 15){
+					$company = substr($row["company_name"],0,14)."...: ";
+				}else{
+					$company = $row["company_name"].": ";
+				}
+			}else{
+				$company = "";
+			}
+			$text .= $company.$row["familyname"].", ".$row["christname"]."";
+			if(!isset($id_client) || $row["id"] != $_REQUEST["id"]){
+				$text .= "</a>";
+			}
+			$text .= "<br>";
+			$client_list[] = array(
+				"text" => $company.$row["familyname"].", ".$row["christname"],
+				"link" => $url,
+				"selected" => $selected);
 		}
-		$text .= "<br>";
-		$client_list[] = array(
-			"text" => $company.$row["familyname"].", ".$row["christname"],
-			"link" => $url,
-			"selected" => $selected);
 	}
 	$text .= "</div>";
 	if(function_exists("skin_DisplayClientList")){
-		return skin_DisplayClientList($client_list);
+		$out = skin_DisplayClientList($client_list);
 	}else{
-		return $text;
+		$out = $text;
 	}
+
+	// A popup to select to print all customers or not display the one without admins
+	if($clientlist_type == "hide-no-admins"){
+		$selectedlist_hide_no_admin = " selected";
+		$selectedlist_show_all = "";
+	}else{
+		$selectedlist_hide_no_admin = "";
+		$selectedlist_show_all = " selected";
+	}
+       $list_prefs = "<div class=\"box_wnb_nb_content\">
+<div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">". _("Show:")  ."<br>
+<input type=\"hidden\" name=\"rub\" value=\"crm\">
+<select class=\"box_wnb_nb_input\" name=\"clientlist_type\">
+<option value=\"hide-no-admins\"$selectedlist_hide_no_admin>". _("Hide client without admin") ."
+<option value=\"show-all\"$selectedlist_show_all>"._("Show all")."
+</select>
+<div class=\"box_wnb_nb_input_btn_container\" onMouseOver=\"this.className='box_wnb_nb_input_btn_container-hover';\" onMouseOut=\"this.className='box_wnb_nb_input_btn_container';\">
+ <div class=\"box_wnb_nb_input_btn_left\"></div>
+ <div class=\"box_wnb_nb_input_btn_mid\"><input class=\"box_wnb_nb_input_btn\" type=\"submit\" value=\""._("Ok")."\"></div>
+ <div class=\"box_wnb_nb_input_btn_right\"></div>
+</div></form><br></div>
+<div class=\"voider\"></div>
+</div>
+";
+
+	return $list_prefs . $out;
 }
 
 function DTCRMclientAdmins(){
@@ -196,64 +248,6 @@ cc_code_popup($row["country"])."</select>",0);
 </div></td></tr>
 </table>
 </form>";
-	return $text;
-}
-
-function DTCRMshowClientCommands($cid){
-	global $pro_mysql_client_table;
-	global $pro_mysql_product_table;
-	global $pro_mysql_command_table;
-
-	$query = "SELECT * FROM $pro_mysql_command_table WHERE id_client='$cid'";
-	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error);
-	$num_rows = mysql_num_rows($result);
-	$text = "<br><table border=\"1\"><tr>
-<td>". _("What") ."</td>
-<td>". _("Domain name") ."</td>
-<td>". _("Price") ."</td>
-<td>". _("Quantity") ."</td>
-<td>". _("Date") ."</td>
-<td>". _("Expiry date") ."</td>
-<td>". _("Action") ."</td></tr>";
-	for($i=0;$i<$num_rows;$i++){
-		$row = mysql_fetch_array($result);
-		$query2 = "SELECT * FROM $pro_mysql_product_table WHERE id='".$row["product_id"]."';";
-		$result2 = mysql_query($query2)or die("Cannot query \"$query2\" !!!".mysql_error);
-		$row2 = mysql_fetch_array($result2);
-		if(($i % 2) == 0) $color = " bgcolor=\"#777777\" "; else $color = "";
-		$text .= "<tr>
-<td $color>".$row2["name"]."</td>
-<td $color>".$row["domain_name"]."</td>
-<td $color><form action=\"".$_SERVER["PHP_SELF"]."\">
-<input type=\"hidden\" name=\"cmd_id\" value=\"".$row["id"]."\">
-<input type=\"hidden\" name=\"id\" value=\"".$_REQUEST["id"]."\">
-<input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
-<input type=\"text\" size=\"5\" name=\"price\" value=\"".$row["price"]."\"></td>
-<td $color><input type=\"text\" size=\"5\" name=\"quantity\" value=\"".$row["quantity"]."\"></td>
-<td $color><input type=\"hidden\" name=\"action\" value=\"modify_client_cmd\">
-<input type=\"text\" size=\"10\" name=\"cmd_date\" value=\"".$row["date"]."\"></td>
-<td $color><input type=\"text\" size=\"10\" name=\"cmd_expir\" value=\"".$row["expir"]."\"></td>
-<td $color><input type=\"submit\" name=\"ed_command\" value=\"Save\"><input type=\"submit\" name=\"del_command\" value=\"Del\"></td></form>
-	</tr>";
-	}
-	$text .= "</table>";
-
-	$text .= "<br><br><form action=\"".$_SERVER["PHP_SELF"]."\">
-<input type=\"hidden\" name=\"rub\" value=\"crm\">
-<input type=\"hidden\" name=\"id\" value=\"$cid\">
-<input type=\"hidden\" name=\"action\" value=\"add_cmd_to_client\">
-<select name=\"add_new_command\">";
-	$query = "SELECT * FROM $pro_mysql_product_table ORDER BY name";
-	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error);
-	$num_rows = mysql_num_rows($result);
-	for($i=0;$i<$num_rows;$i++){
-		$row = mysql_fetch_array($result);
-		$text .= "<option value=\"".$row["id"]."\">".$row["name"]."</option>";
-	}
-	$text .= "</select><br>
-".$txt_domain_tbl_config_dom_name[$lang]."<input type=\"text\" name=\"add_newcmd_domain_name\" value=\"\"><input type=\"submit\" value=\"Add\">
-</form>";
-
 	return $text;
 }
 

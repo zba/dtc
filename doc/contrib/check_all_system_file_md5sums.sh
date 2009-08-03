@@ -22,7 +22,7 @@ for i in `ls /var/lib/dpkg/info/*.md5sums` ; do
 			echo -n "."
 		else
 			echo "File $FILE_NAME has md5 not ok!"
-			read
+			read whateveritsjustapause
 		fi
 	done
 done

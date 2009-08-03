@@ -400,7 +400,7 @@ Addr: ".$_REQUEST["address1"]." ".$_REQUEST["address2"]." ".$_REQUEST["address3"
 Zipcode: $esc_zipcode
 City: ".$_REQUEST["city"]."
 State: ".$_REQUEST["state"]."
-Contry: ".$_REQUEST["country"]."
+Country: ".$_REQUEST["country"]."
 Shopper ip: ".$_SERVER["REMOTE_ADDR"]."
 Product id: $the_prod
 Customer note: ".$_REQUEST["custom_notes"]."
@@ -448,7 +448,7 @@ function registration_form(){
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE $heb_type_condition AND renew_prod_id='0' AND private='no' ORDER BY id";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-	$prod_popup .= "<option value=\"-1\">Please select!</optioon>";
+	$prod_popup .= "<option value=\"-1\">"._("Please select!")."</optioon>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$p_jscript .= " prod_popup_htype[".$a["id"]."] = '".$a["heb_type"]."';\n";

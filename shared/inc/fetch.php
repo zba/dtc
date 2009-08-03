@@ -318,18 +318,19 @@ function fetchAdminStats($admin){
 
 function randomizePassword($adm_login,$adm_input_pass){
 	global $pro_mysql_admin_table;
-	global $pro_mysql_config_table;
+	global $pro_mysql_tik_admins_table;
 	global $adm_realpass;
 	global $adm_pass;
 	global $adm_random_pass;
 	global $conf_session_expir_minute;
 
+	global $panel_type;
+	global $gettext_lang;
+
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
-	$query = "SELECT * FROM $pro_mysql_admin_table
-WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass'
-OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query ($query);
 	if (!$result)
 	{
@@ -340,7 +341,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$num_rows = mysql_num_rows($result);
 
 	if($num_rows != 1){
-		$q = "SELECT * FROM $pro_mysql_config_table WHERE root_admin_random_pass='$adm_input_pass' AND pass_expire > '".mktime()."';";
+		$q = "SELECT * FROM $pro_mysql_tik_admins_table WHERE pass_next_req='$adm_input_pass' AND pass_expire > '".mktime()."';";
 		$r = mysql_query($q);
 		if (!$r)
 		{
@@ -349,7 +350,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			return $ret;
 		}
 		$n = mysql_num_rows($r);
-		if($n == 1){
+		if($n >= 0){
 			$is_root_admin = "yes";
 			$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 			$result = mysql_query ($query);
@@ -371,6 +372,7 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			$ret["err"] = -1;
 			return $ret;
 		}
+		$is_root_admin = "yes";
 	}else{
 		$is_root_admin = "no";
 	}
@@ -386,8 +388,8 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$rand = getRandomValue();
 	$adm_random_pass = $rand;
 	$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
-	if($is_root_admin == "yes"){
-		$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
+	if($panel_type == "admin" && $is_root_admin == "yes"){
+		$q = "UPDATE $pro_mysql_tik_admins_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE pseudo='".$_SERVER["PHP_AUTH_USER"]."';";
 		$r = mysql_query($q);
 		if (!$r)
 		{
@@ -405,6 +407,12 @@ OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 			return $ret;
 		}
 	}
+	// Save the last used language, so we know for future email sendings what to use.
+	if(isset($gettext_lang) && $panel_type == "client"){
+		$q = "UPDATE $pro_mysql_admin_table SET last_used_lang='$gettext_lang' WHERE adm_login='$adm_login';";
+		$r = mysql_query($q);
+	}
+
 	$adm_pass = $rand;
 	$adm_realpass = $row["adm_pass"];
 }
@@ -454,7 +462,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	$row = mysql_fetch_array($result);
 	if (!$row){
 		$ret["err"] = 2;
-		$ret["mesg"]= _("Cannot fetch user line")." ".__LINE__." "._("file")." ".__FILE__." "._("either your login and password pair is not valid, either your session expired (timed out).");
+		$ret["mesg"]= _("Cannot fetch user:")." "._("either your login and password pair is not valid, either your session expired (timed out).");
 		return $ret;
 	}
 

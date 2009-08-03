@@ -1,0 +1,16 @@
+
+Subject: Votre VPS va bientôt expirer.
+
+Bonjour %%%FIRST_NAME%%%,
+
+Votre serveur virtuel Xen (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+va expirer dans %%%REMAINING_DAYS%%% jours, le : %%%EXPIRATION_DATE%%%.
+
+Veuillez vous connecter sur votre panneau de contrôle à l'adresse :
+
+%%%DTC_CLIENT_URL%%%
+
+avec votre nom d'utilisateur %%%DTC_ADM_LOGIN%%%, cliquez sur l'onglet
+de votre VPS, et effectuez le renouvellement.
+
+%%%SIGNATURE%%%

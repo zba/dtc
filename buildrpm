@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+cd ` dirname "$0" `
+ver=`grep Version: dtc.spec | awk ' { print $2 } ' `
+cd ..
+echo "Compressing the DTC source code..."
+tar --exclude dtc/.git -czf dtc-$ver.tar.gz dtc
+rpmbuild -ta dtc-$ver.tar.gz

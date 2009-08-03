@@ -444,6 +444,7 @@ function skin_LayoutAdminPage (){
 	global $adm_pass;
 	global $conf_session_expir_minute;
 	global $pro_mysql_config_table;
+	global $pro_mysql_tik_admins_table;
 	global $conf_skin;
 
 	global $top_commands;
@@ -543,7 +544,7 @@ function skin_LayoutAdminPage (){
 		}else{
 			$rand = getRandomValue();
 			$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
-			$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
+			$q = "UPDATE $pro_mysql_tik_admins_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE pseudo='".$_SERVER["PHP_AUTH_USER"]."';";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
 		}
 		$skinedConsole = '<table cellpadding="0" cellspacing="0" class="console">

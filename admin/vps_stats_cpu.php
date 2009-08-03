@@ -6,6 +6,10 @@ $panel_type = "none";
 require_once("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
 
+if( $_SERVER["REQUEST_URI"] != "/dtc/vps_stats_cpu.php"){
+	require_once("authme.php");
+}
+
 if(!isHostnameOrIP($_REQUEST["vps_node"])){
 	die("VPS node name has wrong format: dying.");
 }

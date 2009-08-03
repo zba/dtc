@@ -1,0 +1,14 @@
+Le serveur dédié que vous avez commandé est à présent validée.
+Notez que nous pouvons avoir un délais lors de la commande d'un serveur
+dédié. N'hésitez pas à nous contacter pour savoir combien de temps cela
+peut  prendre, jusqu'à sa mise en ligne. 
+
+A partir de maintenant, vous pouvez vous connecter à notre panneau de
+contrôle pour effectuer le renouvellement de votre contrat ou pour
+envoyer des  tickets de support.
+
+Voici les informations de connexion dont vous avez besoin :
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%%

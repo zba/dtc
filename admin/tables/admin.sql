@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS admin (
   ob_head varchar(64) NOT NULL default '',
   ob_tail varchar(64) NOT NULL default '',
   ob_next varchar(64) NOT NULL default '',
-  last_used_lang varchar(32) NOT NULL default 'en_US',
+  last_used_lang varchar(32) NOT NULL default 'en_US.UTF-8',
   PRIMARY KEY  (adm_login),
   UNIQUE KEY adm_login (adm_login),
   UNIQUE KEY path (path)

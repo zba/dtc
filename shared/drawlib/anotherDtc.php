@@ -53,6 +53,9 @@ function anotherLanguageSelection(){
 <td valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=hu&rub=$rub\">
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/hu.gif\">&nbsp;HU</a></td>
+<td align=\"right\" valign=\"center\" nowrap>
+	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=pt_BR&rub=$rub\">BR
+	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/pt_br.gif\"></a></td>
 </tr><tr><td align=\"right\" valign=\"center\" nowrap>
 	<a href=\"".$_SERVER["PHP_SELF"]."?change_language=es&rub=$rub\">ES
 	<img width=\"16\" height=\"11\" alt=\"*\" border=\"0\" src=\"gfx/language/es.gif\"></a></td>
@@ -122,7 +125,10 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	global $conf_dtc_version;
 	global $conf_dtc_release;
 	global $conf_unix_type;
-	
+	global $adm_login;
+	global $adm_email_login;
+	global $panel_type;	
+
 	global $conf_skin;
 	global $dtcshared_path;
 	
@@ -138,6 +144,16 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	}
 
 
+	if($panel_type == "admin"){
+		$display_user = $_SERVER["PHP_AUTH_USER"];
+	}else if($panel_type == "client"){
+		$display_user = $adm_login;
+	}else if($panel_type == "email"){
+		$display_user = $adm_email_login;
+	}else{
+		$display_user = "";
+	}
+
 	$pagetop_filename = $dtcshared_path.'/gfx/skin/'.$conf_skin.'/pagetop.html';
 	if(file_exists($pagetop_filename)){
 		$fp = fopen($pagetop_filename,"r");
@@ -147,9 +163,12 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		$inside = str_replace("__DTC_LANGUAGES_LINKS__",$zeLanguage,$inside);
 		$inside = str_replace("__DTC_VERSION__","V$conf_dtc_version R$conf_dtc_release - $conf_unix_type",$inside);
 		$inside = str_replace("__DTC_LINK__",$links,$inside);
+		$inside = str_replace("__AUTH_USER__",_("Logged as:") . " " . $display_user,$inside);
+		$inside .= "<script language=\"JavaScript\" type=\"text/javascript\" src=\"gfx/wz_tooltip.js\"></script>";
 		return $inside;
 	}else{
 		return "
+<script language=\"JavaScript\" type=\"text/javascript\" src=\"gfx/wz_tooltip.js\"></script>
 <table cellpadding=\"2\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\">
 <tr>
 	<td $nowrap><center><a href=\"http://www.gplhost.com/software-dtc.html\"><img border=\"0\" alt=\"Domain Teck Control\" src=\"gfx/dtc_logo_small.gif\"></a><br>
@@ -161,40 +180,6 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 </table>
 ";
 	}
-
-	$inside = "<style>
-.logo {
-	background-image:url(gfx/pagetop/logofond.gif);
-	background-repeat:repeat-x;
-	font-family:Arial;
-	font-weight:bold;
-	color:#868686;
-	height:59px;
-}
-.logotitle {
-	font-size:16px;
-	padding-top:20px;
-}
-.logosub {
-	font-size:9px;
-	padding-top:4px;
-}
-A .logosub {
-	font-size:9px;
-	padding-top:4px;
-}
-</style>
-<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\" height=\"1\"><tr>
-	<td valign=\"top\" width=\"100%\">
-	<img src=gfx/pagetop/logostart.gif align=left hspace=0><div class=logo>
-	<img src=gfx/pagetop/logoend.gif align=right hspace=0>
-	<div class=logotitle>Domain Technologie Control - <font style=\"font-size:12px\">Prenez le controle de votre nom de domaine</font></div>
-	<div class=logosub>V$conf_dtc_version R$conf_dtc_release - $conf_unix_type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$links</div></td>
-	<td>&nbsp;$zeLanguage</td>
-</tr></table>
-	";
-
-	return $inside;
 }
 
 function anotherPage($title,$meta,$java_script,$onloads,$banner,$menu,$content,$footer){

@@ -1,0 +1,29 @@
+
+Subject: Dernier avertissement avant l'arrêt de votre VPS.
+
+Bonjour %%%FIRST_NAME%%%,
+
+Votre serveur virtuel Xen (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+a expiré il y a %%%EXPIRED_DAYS%%% jours, le : %%%EXPIRATION_DATE%%%.
+
+Veuillez vous connecter à votre panneau de contrôle à l'adresse :
+%%%DTC_CLIENT_URL%%%
+
+avec votre nom d'utilisateur %%%DTC_ADM_LOGIN%%%, cliquez sur l'onglet
+de votre VPS, et effectuer le renouvellement.
+
+Attention, ceci est notre dernier avertissement avant que nous
+détruisions les données de votre VPS.
+
+Nous l'avons déjà arrêté, et vous ne pourrez plus le redémarrer tant
+que  ce dernier n'est pas renouvelé.
+
+Veuillez noter que  nous ne pouvons pas garder votre VPS actif sans
+renouvellement de votre part, car nous avons besoin de cet espace pour
+d'autres  clients, et que l'hébergement doit être payé à l'avance.
+
+Si vous ne renouvelez pas votre VPS,  toutes les données seront
+détruites dans les 3 jours à venir, et sachez que vous ne pourrez plus
+le récupérer.
+
+%%%SIGNATURE%%%

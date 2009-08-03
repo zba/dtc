@@ -28,6 +28,14 @@ while($line = fgets($fp, 4096) ){
 	$msg .= $line;
 }
 
+$DEBUG_ME = 0;
+if($DEBUG_ME == 1){
+	mkdir("/tmp/support/");
+	$debug_fp = fopen("/tmp/support/".date('Y-m-d')."_".date('H-m-i')."_".getRandomValue().".txt","r+");
+	fwrite($debug_fp,$msg);
+	fclose($debug_fp);
+}
+
 // Decode the msg using php-mail-mime
 $stt = decodeEmail($msg);
 
@@ -39,8 +47,12 @@ if($flag == 0 || sizeof($matches) != 1){
 }
 $email_from = $matches[0][0];
 
-// TODO: Check the Cc as well
+// Do nothing if there's a mail from an auto-responder
+if( isset($stt->headers["X-AutoReply-From"]) || isset($stt->headers["X-Mail-Autoreply"]) ){
+	exit(0);
+}
 
+// TODO: Check the Cc as well
 // Get the To: header email
 $flag = preg_match_all("/[\._a-zA-Z0-9+-]+@[\._a-zA-Z0-9-]+/i", $stt->headers["to"], $matches);
 if($flag == 0){
@@ -78,15 +90,20 @@ if( ereg($tik_regexp,$email_to) ){
 		if($n == 1){
 			// We have a match, we should consider inserting this ticket as a reply...
 			$start_tik = mysql_fetch_array($r);
+
+			// Reopen the ticket if it was closed
+			$q = "UPDATE $pro_mysql_tik_queries_table SET closed='no' WHERE hash='$ticket_hash';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
 			$last_id = findLastTicketID($ticket_hash);
 			if($last_id != 0){
 				$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket)
-				VALUES('','".$start_tik["adm_login"]."','".date('Y-m-d')."','".date('H-m-i')."','$last_id','0','user','". mysql_escape_string($stt->body) ."','no');";
+				VALUES('','".$start_tik["adm_login"]."','".date('Y-m-d')."','".date('H:m:i')."','$last_id','0','user','". mysql_real_escape_string($stt->body) ."','no');";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$new_id = mysql_insert_id();
 				$q = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$new_id' WHERE id='$last_id';";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-				mailTicketToAllAdmins($start_tik["subject"],$stt->body);
+				mailTicketToAllAdmins($start_tik["subject"],$stt->body,$start_tik["adm_login"]);
 				exit(0);
 			}
 		}
@@ -106,18 +123,18 @@ if($n == 1){
 	if($n == 1){
 		$adm = mysql_fetch_array($r);
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject)
-		VALUES('','".$adm["adm_login"]."','".date('Y-m-d')."','".date('H-m-i')."','0','0','user','". mysql_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_escape_string($stt->headers["subject"]) ."');";
+		VALUES('','".$adm["adm_login"]."','".date('Y-m-d')."','".date('H:m:i')."','0','0','user','". mysql_real_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."');";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-		mailTicketToAllAdmins($stt->headers["subject"],$stt->body);
+		mailTicketToAllAdmins($stt->headers["subject"],$stt->body,$adm["adm_login"]);
 		exit(0);
 	}
 // If nothing matches, then we want to create a new ticket associated with
 // this email address.
 }else{
 	$q = "INSERT INTO $pro_mysql_tik_queries_table (id,customer_email,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject)
-	VALUES('','$email_from','".date('Y-m-d')."','".date('H-m-i')."','0','0','user','". mysql_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_escape_string($stt->headers["subject"]) ."');";
+	VALUES('','$email_from','".date('Y-m-d')."','".date('H:m:i')."','0','0','user','". mysql_real_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."');";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-	mailTicketToAllAdmins($stt->headers["subject"],$stt->body);
+	mailTicketToAllAdmins($stt->headers["subject"],$stt->body,$email_from);
 }
 exit(0);
 

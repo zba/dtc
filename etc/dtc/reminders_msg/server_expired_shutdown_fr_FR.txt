@@ -1,0 +1,17 @@
+
+Subject: Arrêt de votre serveur dédié.
+
+Bonjour %%%FIRST_NAME%%%,
+
+Votre serveur dédié %%%SERVER_HOSTNAME%%%
+a expiré il y a %%%EXPIRED_DAYS%%% jours, le : %%%EXPIRATION_DATE%%%.
+
+Nous vous avons déjà envoyé plusieurs messages afin de vous demander de
+renouveler votre serveur,mais vous ne l'avez pas fait.
+Nous sommes désolés, mais nous allons arrêter votre serveur aujourd'hui.
+Vos données restent sur notre serveur, jusqu'à ce que quelqu'un d'autre 
+prenne de l'espace pour une autre machine.
+Si vous souhaitez redémarrer votre serveur, connectez-vous sur votre
+panneau d'administration DTC pour le renouveler.
+
+%%%SIGNATURE%%%

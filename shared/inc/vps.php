@@ -23,7 +23,7 @@ function connectToVPSServer($vps_node){
 	}
 	$a = mysql_fetch_array($r);
 	$port = 8089;
-	$soap_client = new nusoapclient("https://$vps_node:$port/");
+	$soap_client = new nusoap_client("https://$vps_node:$port/");
 	$err = $soap_client->getError();
 	if($err){
 		echo "Error: ".$err;

@@ -1,46 +1,56 @@
 #!/bin/bash
+#
+#       /etc/rc.d/init.d/dtc-stats-daemon
+#
+# Starts the dtc-stats-daemon daemon
+#
+# chkconfig: 345 95 5
+# description: dtc-xen VM statistics for the dtc web control panel
+# pidfile: /var/run/dtc-stats-daemon.pid
 
-### BEGIN INIT INFO
-# Provides:          dtc-stats-daemon
-# Required-Start:    $all
-# Required-Stop:
-# Should-Start:      $local_fs
-# Should-Stop:       $local_fs
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Short-Description: dtc-xen VM statistics for the dtc web control panel
-# Description:       Domain Technologie Control (DTC) is a control panel for hosting. This small
-#                    daemon will query all the dtc-xen servers that you have configured in DTC and
-#                    fetch the statistics from them: I/O stats, network and CPU. This  information
-#                    is then stored in DTC for your customer accounting.
-### END INIT INFO
+test -x ${MY_DAEMON} || exit 0
 
-. /lib/lsb/init-functions
+. /etc/rc.d/init.d/functions
+#. /lib/lsb/init-functions
+
+export PATH="/sbin:/usr/sbin:$PATH"
+MY_DAEMON=/usr/sbin/dtc-stats-daemon
+
+RETVAL=0
+
+status $MY_DAEMON >/dev/null 2>&1
+running=$?
 
 case "$1" in
-	start)
-		log_daemon_msg "Starting dtc-xen statistic daemon" "dtc-stats-daemon"
-		start-stop-daemon --start -b --quiet --pidfile /var/run/dtc-stats-daemon.pid --make-pidfile --exec "/usr/share/dtc/admin/dtc-stats-daemon.php"
-		log_end_msg $?
-		echo "."
-        ;;
-
-	stop)
-		log_daemon_msg "Stoping dtc-xen statistic daemon" "dtc-stats-daemon"
-		start-stop-daemon --stop --oknodo --pidfile /var/run/dtc-stats-daemon.pid
-		log_end_msg $?
-	;;
-
-	restart|reload|force-reload)
-		$0 stop
-		sleep 1
-		$0 start
-	;;
-
-	*)
-		echo 'Usage: /etc/init.d/dtc-stats-daemon {start|stop|restart|reload}'
-		exit 1
-
+start)
+	echo -n $"Starting dtc-stats-daemon: "
+        [ $running -eq 0 ] && exit 0
+	daemon ${MY_DAEMON}
+	# 2>&1 >/var/log/dtc-stats-daemon.log
+	echo ""
+	RETVAL=$?
+        [ $RETVAL -eq 0 ] && touch /var/lock/subsys/dtc-stats-daemon
+	exit $RETVAL
+;;
+stop)
+	echo -n $"Stopping dtc-stats-daemon: "
+        [ $running -eq 0 ] || exit 0
+	killproc ${MY_DAEMON}
+	RETVAL=$?
+        [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/dtc-stats-daemon
+	echo ""
+;;
+status)
+	status ${MY_DAEMON}
+;;
+restart|reload|force-reload)
+	$0 stop
+	sleep 1
+	$0 start
+;;
+*)
+	echo "Usage: $0 {start|stop|restart|reload|status}"
+	exit 1
 esac
 
 exit 0

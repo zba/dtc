@@ -264,6 +264,12 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 $q = "ALTER TABLE vps_stats CHANGE `diskio_count` `diskio_count` bigint(22) default NULL";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
+// Set the correct default last_used_lang feild
+$q = "ALTER TABLE new_admin CHANGE last_used_lang last_used_lang varchar(32) NOT NULL default 'en_US.UTF-8'";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+$q = "ALTER TABLE admin CHANGE last_used_lang last_used_lang varchar(32) NOT NULL default 'en_US.UTF-8'";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
 // Change domain parking types
 $q = "ALTER TABLE `domain` CHANGE `domain_parking_type` `domain_parking_type` enum('redirect','same_docroot','serveralias') NOT NULL default 'redirect'";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());

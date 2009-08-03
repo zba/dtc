@@ -28,7 +28,7 @@ $dtc_database = array(
 			"ob_head" => "varchar(64) NOT NULL ",
 			"ob_tail" => "varchar(64) NOT NULL ",
 			"ob_next" => "varchar(64) NOT NULL ",
-			"last_used_lang" => "varchar(32) NOT NULL default 'en_US'",
+			"last_used_lang" => "varchar(32) NOT NULL default 'en_US.UTF-8'",
 			"max_ssh" => "int(12) NOT NULL default '3' "
 			),
 		"primary" => "(adm_login)",
@@ -186,8 +186,6 @@ $dtc_database = array(
 			"hide_password" => "enum('yes','no') NOT NULL default 'no' ",
 			"session_expir_minute" => "int(9) NOT NULL default '10' ",
 			"dns_type" => "enum('bind','djb') NOT NULL default 'bind' ",
-			"root_admin_random_pass" => "varchar(128) NOT NULL ",
-			"pass_expire" => "int(12) NOT NULL default '1' ",
 			"srs_user" => "varchar(128) NOT NULL ",
 			"srs_live_key" => "varchar(255) NOT NULL ",
 			"srs_test_key" => "varchar(255) NOT NULL ",
@@ -244,7 +242,10 @@ $dtc_database = array(
 			"nagios_restart_command" => "varchar(255) NOT NULL default 'sudo /etc/init.d/nagios2 restart'",
 			"affiliate_return_domain" => "varchar(255) NOT NULL default 'www.example.com'",
 			"support_ticket_email" => "varchar(255) NOT NULL default 'support'",
-			"support_ticket_domain" => "varchar(255) NOT NULL default 'default'"
+			"support_ticket_domain" => "varchar(255) NOT NULL default 'default'",
+			"all_customers_list_email" => "varchar(255) NOT NULL default 'support'",
+			"all_customers_list_domain" => "varchar(255) NOT NULL default 'default'"
+
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"
@@ -587,6 +588,9 @@ $dtc_database = array(
 			"location" => "varchar(255) NOT NULL default ''",
 			"ip_addr" => "varchar(16) NOT NULL default ''",
 			"netmask" => "varchar(16) NOT NULL default ''",
+			"gateway" => "varchar(16) NOT NULL default ''",
+			"broadcast" => "varchar(16) NOT NULL default ''",
+			"dns" => "varchar(16) NOT NULL default ''",
 			"zone_type" => "enum('support_ticket','ip_per_ip','one_zonefile') default 'one_zonefile'",
 			"custom_part" => "text NOT NULL"
 			),
@@ -674,7 +678,7 @@ $dtc_database = array(
 			"date" => "date NOT NULL default '0000-00-00'",
 			"time" => "time NOT NULL default '00:00:00'",
 			"maxmind_output" => "text NOT NULL",
-			"last_used_lang" => "varchar(32) NOT NULL default 'en_US'",
+			"last_used_lang" => "varchar(32) NOT NULL default 'en_US.UTF-8'",
 			"add_service" => "enum('yes','no') NOT NULL default 'no'"
 			),
 		"primary" => "(id)"
@@ -702,7 +706,7 @@ $dtc_database = array(
 			"new_account" => "enum('yes','no') NOT NULL default 'no' ",
 			"product_id" => "int(11) NOT NULL default '0'",
 			"vat_rate" => "decimal(9,2) NOT NULL default '0.00'",
-			"vat_total" => "int(11) NOT NULL default '0'",
+			"vat_total" => "decimal(9,2) NOT NULL default '0'",
 			"hash_check_key" => "varchar(255) NOT NULL default '0'",
 			),
 		"primary" => "(id)",
@@ -964,6 +968,9 @@ $dtc_database = array(
 			"delivery_id_text" => "varchar(128) NOT NULL "
 			),
 		"primary" => "(id)",
+		"unique" => array(
+			"delivery_id_text" => "(delivery_id_text)"
+			),
 		"keys" => array(
 			"bounce_qp" => "(bounce_qp)",
 			"newmsg_id" => "(newmsg_id)"
@@ -1015,6 +1022,22 @@ $dtc_database = array(
 			"p_addr" => "(ip_addr)"
 			),
 		),
+	"tik_admins" => array (
+		"vars" => array(
+			"id" => "int(11) NOT NULL auto_increment",
+			"pseudo" => "varchar(64) NOT NULL default ''",
+			"realname" => "varchar(64) NOT NULL default ''",
+			"email" => "varchar(128) NOT NULL default ''",
+			"available" => "enum('yes','no') NOT NULL default 'yes'",
+			"tikadm_pass" => "varchar(255) NOT NULL default ''",
+			"pass_next_req" => "varchar(128) NOT NULL default '0'",
+			"pass_expire" => "int(12) NOT NULL default '0'"
+			),
+		"primary" => "(id)",
+		"keys" => array(
+			"pseudo" => "(pseudo)"
+			)
+		),
 	"tik_queries" => array (
 		"vars" => array(
 			"id" => "int(11) NOT NULL auto_increment",
@@ -1032,7 +1055,9 @@ $dtc_database = array(
 			"server_hostname" => "varchar(64) NOT NULL default ''",
 			"request_close" => "enum('yes','no') NOT NULL default 'no'",
 			"customer_email" => "varchar(255) NOT NULL default ''",
-			"closed" => "enum('yes','no') NOT NULL default 'no'"
+			"closed" => "enum('yes','no') NOT NULL default 'no'",
+			"hash" => "varchar(32) NOT NULL default ''",
+			"admin_name" => "varchar(256) NOT NULL default 'dtc'"
 			),
 		"primary" => "(id)",
 		"index" => array(

@@ -3,8 +3,8 @@
 require_once("../shared/autoSQLconfig.php");
 $panel_type="admin";
 require_once("$dtcshared_path/dtc_lib.php");
-// Admin include files
-require_once("genfiles/genfiles.php");
+
+require_once("authme.php");
 
 include("inc/submit_root_querys.php");
 include("inc/nav.php");

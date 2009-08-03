@@ -1,0 +1,34 @@
+Le compte d'hébergement du serveur virtuel que vous avez commandé a été
+validé. Votre système d'exploitation est en cours de configuration. vous 
+pouvez vous connecter dans le panneau de contrôle en utilisant les
+informations ci-dessous.
+
+Si vous souhaitez que notre équipe effectue l'installation de DTC à
+l'intérieur de votre VPS, veuillez ouvrir un ticket de support au sein
+de ce nouveau compte.
+Quand DTC sera installé, faites attention de ne pas confondre entre les
+deux panneaux de contrôle. Celui installé dans votre vps, et celui de
+notre société à utiliser avec votre compte client. Ceux-ci sont deux
+panneau de configuration avec des buts différents. Par exemple,
+n'envoyez pas de tickets de support dans le panneau de contrôle de votre
+VPS, car il ne nous parviendra jamais. Pour ceci, veuillez utiliser
+votre nom d'utilisateur de votre compte client, que nous vous avons
+attribué sur notre panneau d'administration.
+Une fois que le système d'exploitation sera installé, vous devrez
+cliquer sur votre VPS dans le panneau de contrôle pour le démarrer. Dès
+que le VPS est démarré, il faut vous connecter sur la console
+physique en utilisant SSH (après avoir configuré votre mot de passe).
+Une fois connecté sur la  console de votre VPS, loguez-vous sur le
+compte root puis changez y le mot de passe. Ensuite, vous pouvez
+installer ssh et finir la configuration  de votre VPS. 
+
+Une procédure complète se trouve à l'adresse suivante : 
+
+http://dtcsupport.gplhost.com/PmWiki/Setup-A-VPS-Once-DTC-Xen-Installed-It
+
+Voici vos informations pour vous connecter sur le panneau de contrôle
+DTC:
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%%

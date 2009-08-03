@@ -1,5 +1,63 @@
 <?php
 
+// If the admin has en_US.UTF-8, and filename is registration_msg/vps_open,
+// then the function will try to open, in order:
+// * /etc/dtc/registration_msg/vps_open_en_US.UTF-8.txt
+// * /etc/dtc/registration_msg/vps_open_en_US.txt
+// * /etc/dtc/registration_msg/vps_open_en.txt
+// * /etc/dtc/registration_msg/vps_open.txt
+// which ever is found first...
+// Then this is repeated with other folders:
+// /usr/local/www/dtc/etc/ and /usr/share/dtc/etc/
+function readCustomizedMessage($filename,$adm_login){
+	$mylang = findLastUsedLangByUser($adm_login);
+
+	// 1st try /etc/dtc/filename_en_US.UTF-8.txt
+	if( file_exists( "/etc/dtc/" . $filename . "_" . $mylang . ".txt" ) ){
+		$to_open = "/etc/dtc/" . $filename . $mylang . ".txt";
+	// Then /etc/dtc/filename_en_US.txt
+	}else if( file_exists( "/etc/dtc/" . $filename . "_" . substr($mylang,0,5) . ".txt" ) ){
+		$to_open = "/etc/dtc/" . $filename . "_" . substr($mylang,0,5) . ".txt";
+	// Then /etc/dtc/filename_en.txt
+	}else if( file_exists( "/etc/dtc/" . $filename . "_" . substr($mylang,0,2) . ".txt" ) ){
+		$to_open = "/etc/dtc/" . $filename . "_" . substr($mylang,0,2) . ".txt";
+	// then /etc/dtc/filename.txt
+	}else if( file_exists( "/etc/dtc/" . $filename . ".txt" ) ){
+		$to_open = "/etc/dtc/" . $filename . ".txt";
+	// then /usr/local/www/dtc/etc/filename_en_US.UTF-8.txt
+	}else if( file_exists( "/usr/local/www/dtc/etc/" . $filename . "_" . $mylang . ".txt" ) ){
+		$to_open = "/usr/local/www/dtc/etc/" . $filename . "_" . $mylang . ".txt";
+	// then /usr/local/www/dtc/etc/filename_en_US.txt
+	}else if( file_exists( "/usr/local/www/dtc/etc/" . $filename . "_" . substr($mylang,0,5) . ".txt" ) ){
+		$to_open = "/usr/local/www/dtc/etc/" . $filename . "_" . substr($mylang,0,5) . ".txt";
+	// then /usr/local/www/dtc/etc/filename_en.txt
+	}else if( file_exists( "/usr/local/www/dtc/etc/" . $filename . "_" . substr($mylang,0,2) . ".txt" ) ){
+		$to_open = "/usr/local/www/dtc/etc/" . $filename . "_" . substr($mylang,0,2) . ".txt";
+	// then /usr/local/www/dtc/etc/filename.txt
+	}else if( file_exists( "/usr/local/www/dtc/etc/" . $filename . ".txt" ) ){
+		$to_open = "/usr/local/www/dtc/etc/" . $filename . ".txt";
+	// then /usr/share/dtc/etc/filename_en_US.UTF-8.txt
+	}else if( file_exists( "/usr/share/dtc/etc/" . $filename . "_" . $mylang . ".txt" ) ){
+		$to_open = "/usr/share/dtc/etc/" . $filename . "_" . $mylang . ".txt";
+	// then /usr/share/dtc/etc/filename_en_US.txt
+	}else if( file_exists( "/usr/share/dtc/etc/" . $filename . "_" . substr($mylang,0,5) . ".txt" ) ){
+		$to_open = "/usr/share/dtc/etc/" . $filename . "_" . substr($mylang,0,5) . ".txt";
+	// then /usr/share/dtc/etc/filename_en.txt
+	}else if( file_exists( "/usr/share/dtc/etc/" . $filename . "_" . substr($mylang,0,2) . ".txt" ) ){
+		$to_open = "/usr/share/dtc/etc/" . $filename . "_" . substr($mylang,0,2) . ".txt";
+	// then /usr/share/dtc/etc/filename.txt
+	}else if( file_exists( "/usr/share/dtc/etc/" . $filename . ".txt" ) ){
+		$to_open = "/usr/share/dtc/etc/" . $filename . ".txt";
+	// then it means we didn't find the file...
+	}else{
+		return "Customized message language file not found. Get in touch with your administrator.";
+	}
+	$fp = fopen($to_open, "r");
+	$content = fread($fp,filesize($to_open));
+	fclose($fp);
+	return $content;
+}
+
 // Create a random hash, making sure that it doesn't exists in the DB already
 function createSupportHash(){
 	global $pro_mysql_tik_queries_table;
@@ -159,7 +217,8 @@ function findLastUsedLangByUser($adm_login){
 			$a = mysql_fetch_array($r);
 			return $a["last_used_lang"];
 		}else{
-			return false;
+			// Fallback to default english...
+			return "en_US.UTF-8";
 		}
 	}
 }
@@ -271,6 +330,44 @@ function HTTP_Post($URL,$data, $referrer=""){
 	return $result;
 }
 
+function HTTP_Get($URL,$data, $referrer=""){
+	$result = "";
+	// parsing the given URL
+	$URL_Info=parse_url($URL);
+
+	// Building referrer
+	if($referrer=="") // if not given use this script as referrer
+		$referrer=$_SERVER["SCRIPT_URI"];
+
+	// making string from $data
+	if (strlen($data)) {
+		foreach($data as $key=>$value)
+			$values[]="$key=".urlencode($value);
+		$data_string=implode("&",$values);
+	} else
+		$data_string='';
+
+	// Find out which port is needed - if not given use standard (=80)
+	if(!isset($URL_Info["port"]))
+		$URL_Info["port"]=80;
+
+	// building POST-request:
+	$request = "";
+	$request.="GET ".$URL_Info["path"]."?".$data_string." HTTP/1.1\n";
+	$request.="Host: ".$URL_Info["host"]."\n";
+	$request.="Referer: $referrer\n";
+	$request.="Connection: close\n";
+	$request.="\n\n";
+
+	$fp = fsockopen($URL_Info["host"],$URL_Info["port"]);
+	fputs($fp, $request);
+	while(!feof($fp)){
+		$result .= fgets($fp, 128);
+	}
+	fclose($fp);
+	return $result;
+}
+
 function logPay($txt){
 //	$fp = fopen("/tmp/paylog.txt","a");
 //	fwrite($fp,$txt."\n");
@@ -308,6 +405,7 @@ function checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_domain_table;
 	global $pro_mysql_config_table;
+	global $pro_mysql_tik_admins_table;
 
 	if(strlen($adm_pass) > 16){
 	}
@@ -316,7 +414,7 @@ function checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name){
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
 	if($num_rows != 1){
-		$query = "SELECT * FROM $pro_mysql_config_table WHERE root_admin_random_pass='$adm_pass' AND pass_expire > '".mktime()."';";
+		$query = "SELECT * FROM $pro_mysql_tik_admins_table WHERE pass_next_req='$adm_pass' AND pass_expire > '".mktime()."';";
 		$result = mysql_query($query)or die("Cannot execute query \"$query\" !".mysql_error());
 		$num_rows = mysql_num_rows($result);
 		if($num_rows != 1){
@@ -339,12 +437,13 @@ function checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name){
 function checkLoginPass($adm_login,$adm_pass){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_config_table;
+	global $pro_mysql_tik_admins_table;
 
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
 	if($num_rows != 1){
-		$query = "SELECT * FROM $pro_mysql_config_table WHERE root_admin_random_pass='$adm_pass' AND pass_expire > '".mktime()."';";
+		$query = "SELECT * FROM $pro_mysql_tik_admins_table WHERE pass_next_req='$adm_pass' AND pass_expire > '".mktime()."';";
 		$result = mysql_query($query)or die("Cannot execute query \"$query\" !".mysql_error());
 		$num_rows = mysql_num_rows($result);
 		if($num_rows != 1){
@@ -383,7 +482,7 @@ function checkSubdomainFormat($name){
 	if($name == ""){
 		return false;
 	}
-	if(ereg("^([a-z0-9\_]+)([.a-z0-9\_-]*)([.a-z0-9]+)\$",$name))
+	if(ereg("^([a-z0-9]+)([.a-z0-9-]*)([.a-z0-9]+)\$",$name))
 		return true;
 	else{
 		if(ereg("^([a-z0-9])\$",$name))
@@ -405,7 +504,7 @@ function isSSHKey($ssh_key){
 
 // Check for email addr we allow to create using DTC
 function isMailbox($mailbox){
-	$reg = "^([a-zA-Z0-9])|([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$";
+	$reg = "^([a-z0-9])|([a-z0-9]+)([._a-z0-9-]+)\$";
 	if(!ereg($reg,$mailbox))	return false;
 	else			return true;
 }
@@ -643,7 +742,7 @@ function resubscribe_VPS_server_list_users($list_name){
 		unlink($file_list[$i]);
 	}
 
-	$q = "SELECT $pro_mysql_client_table.email
+	$q = "SELECT DISTINCT $pro_mysql_client_table.email
 	FROM $pro_mysql_vps_server_lists_table,$pro_mysql_vps_table,$pro_mysql_admin_table,$pro_mysql_client_table
 	WHERE $pro_mysql_vps_server_lists_table.list_name = '$list_name'
 	AND $pro_mysql_vps_server_lists_table.hostname = $pro_mysql_vps_table.vps_server_hostname
@@ -706,7 +805,7 @@ function addVPSToUser($adm_login,$vps_server_hostname,$product_id,$operating_sys
 		 die("Cannot find available IP and Xen name in $vps_server_hostname line ".__LINE__." file ".__FILE__);
 	}
 	$vps_ip = mysql_fetch_array($r);
-	$q = "UPDATE $pro_mysql_vps_ip_table SET available='no' WHERE ip_addr='".$vps_ip["ip_addr"]."';";
+	$q = "UPDATE $pro_mysql_vps_ip_table SET available='no' WHERE vps_xen_name='".$vps_ip["vps_xen_name"]."' AND vps_server_hostname='".$vps_ip["vps_server_hostname"]."';";
 	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	$exp_date = calculateExpirationDate(date("Y-m-d"),$product["period"]);
@@ -738,12 +837,8 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 	global $conf_pass_expire;
 	global $conf_unix_type;
 
-	if($conf_root_admin_random_pass == $adm_pass &&  $conf_pass_expire > mktime()){
-		$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
-	}else{
-		$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
-	}
-
+	checkLoginPass($adm_login,$adm_pass);
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 	$result = mysql_query($query)or die("Cannot query : \"$query\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$numrows = mysql_num_rows($result);
 	if($numrows != 1){

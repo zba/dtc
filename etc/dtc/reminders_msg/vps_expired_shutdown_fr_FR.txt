@@ -1,0 +1,20 @@
+
+Subject: Arrêt de votre VPS.
+
+Bonjour %%%FIRST_NAME%%%,
+
+Votre serveur virtuel Xen (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+a expiré il y a %%%EXPIRED_DAYS%%% jours, le : %%%EXPIRATION_DATE%%%.
+
+Nous vous avons déjà envoyé plusieurs messages pour vous demander de
+renouveler votre VPS, mais aucun renouvellement de votre part n'a été
+effectué.
+
+Nous sommes désolés, mais nous allons arrêter votre VPS aujourd'hui.
+Toutes vos données seront effacées de notre serveur, afin de rendre
+disponible cet espace à d'autres clients.
+
+Si vous désirez redémarrer votre VPS,  veuillez le renouveler via
+votre panneau de contrôle.
+
+%%%SIGNATURE%%%

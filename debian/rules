@@ -14,6 +14,9 @@ clean:
 		debian/dtc-cyrus.postinst debian/dtc-cyrus.config debian/dtc-cyrus.prerm
 	$(MAKE) clean
 
+	# As per advice from Christian Perrier
+	debconf-updatepo
+
 install:
 	dh_testdir
 	dh_testroot
@@ -33,6 +36,10 @@ install:
 	$(MAKE) install-dtc-common DESTDIR=$(CURDIR)/debian/dtc-common
 	rm -f $(CURDIR)/debian/dtc-common/usr/share/doc/dtc/LICENSE.gz
 	rm -f $(CURDIR)/debian/dtc-common/usr/share/doc/dtc/README.gentoo
+	# The Debian package of DTC now depends on the libphp-nusoap
+	# package, so we don't need to include the lib file in this Debian
+	# package now.
+	rm -f $(CURDIR)/debian/dtc-common/usr/share/dtc/shared/inc/nusoap.php
 	$(MAKE) install-dtc-stats-daemon DESTDIR=$(CURDIR)/debian/dtc-stats-daemon
 
 binary-indep: install
@@ -41,7 +48,7 @@ binary-indep: install
 	dh_installchangelogs doc/changelog
 	dh_install
 	dh_installdocs
-	dh_installmenu -n
+	dh_installman
 	dh_installdebconf
 	dh_installinit
 	dh_compress

@@ -25,17 +25,11 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_child_account"){
 		}
 	}
 
-	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
-
-        if($conf_root_admin_random_pass == $adm_pass &&  $conf_pass_expire > mktime()){
-                $q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
-        }else{
-                $q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
-        }
-
+	checkLoginPass($adm_login,$adm_pass);
+	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
-	if($n < 1)	die("Cannot find user $adm_login line ".__LINE__." file ".__FILE__);
+	if($n != 1)	die("Cannot find user $adm_login line ".__LINE__." file ".__FILE__);
 	$a = mysql_fetch_array($r);
 	if($commit_flag == "yes"){
 		// Create the admin's path

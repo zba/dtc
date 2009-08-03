@@ -9,8 +9,8 @@
 # MANUAL_DIR=/usr/share/man
 
 # Version and release are set here:
-VERS=0.30.1
-RELS=1
+VERS=0.30.4
+RELS=0
 
 VERSION=$(VERS)"-"$(RELS)
 CURDIR?=`pwd`
@@ -33,10 +33,12 @@ INSTALL_DIR?=install -d
 # Set defaults (as for Debian as normal platform)
 DTC_APP_DIR?=/usr/share
 DTC_GEN_DIR?=/var/lib
+INIT_DIR?=/etc/rc.d/init.d
 CONFIG_DIR?=/etc
 DTC_DOC_DIR?=/usr/share/doc
 MANUAL_DIR?=/usr/share/man
 BIN_DIR?=/usr/bin
+SBIN_DIR?=/usr/sbin
 UNIX_TYPE?=debian
 
 # /usr/share
@@ -51,6 +53,8 @@ DOC_DIR = $(DESTDIR)$(DTC_DOC_DIR)/dtc
 MAN_DIR = $(DESTDIR)$(MANUAL_DIR)
 # /usr/bin
 BINARY_DIR = $(DESTDIR)$(BIN_DIR)
+# /usr/sbin
+SBINARY_DIR = $(DESTDIR)$(SBIN_DIR)
 
 PHP_RIGHTS=0644
 ROOT_SCRIPTS_RIGHTS=0750
@@ -75,7 +79,7 @@ default:
 	@echo "******************************************************************"
 	@echo "*Please select one of the following targets:                     *"
 	@echo "*install-dtc-stats-daemon, install-dtc-common, bsd-ports-packages*"
-	@echo "*or make debian-packages                                         *"
+	@echo "*install-dtc-dos-firewall or make debian-packages                *"
 	@echo "*Note that debian users should NOT use make debian-packages      *"
 	@echo "*directly, but dpkg-buildpackage that will call it.              *"
 	@echo "******************************************************************"
@@ -191,7 +195,7 @@ bsd-ports-packages:
 ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES=admin/404.php admin/bw_per_month.php admin/index.php admin/cpugraph.php admin/mailgraph.php admin/deamons_state.php \
 admin/view_waitingusers.php admin/memgraph.php admin/netusegraph.php admin/vps_stats_cpu.php \
 admin/vps_stats_hdd.php admin/vps_stats_network.php admin/vps_stats_swap.php admin/patch_saslatuhd_startup admin/dtc_db.php admin/dkfilter.patch \
-admin/logPushlet.php admin/xanjaxXHR.js
+admin/logPushlet.php admin/xanjaxXHR.js admin/authme.php
 
 ADMIN_GENFILE_PHP_SCRIPT_FILES=admin/genfiles/gen_awstats.php admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_perso_vhost.php \
 admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_backup_script.php admin/genfiles/gen_pro_vhost.php \
@@ -213,7 +217,7 @@ CLIENT_PHP_SCRIPT_FILES=client/bw_per_month.php client/dynip.php client/enets-no
 client/invoice.php client/list_domains.php client/login.php client/new_account_form.php client/new_account.php \
 client/new_account_renewal.php client/paypal.php client/secpaycallback_worldpay.php client/webmoney.php \
 client/get_vps_location_status.php \
-client/logPushlet.php client/xanjaxXHR.js client/cheques_and_transfers.php
+client/logPushlet.php client/xanjaxXHR.js client/cheques_and_transfers.php client/recover_pass.php
 
 EMAIL_PHP_SCRIPT_FILES=email/api.php email/index.php email/login.php email/submit_to_sql_dtcemail.php
 
@@ -319,26 +323,16 @@ admin/tables/vps.sql admin/tables/vps_stats.sql admin/tables/whitelist.sql admin
 admin/tables/spent_moneyout.sql  admin/tables/spent_providers.sql  admin/tables/spent_type.sql admin/tables/spent_bank.sql
 
 ##################### ETC FILES #########################
-TEXT_MESSAGES=reminders_msg/server_expired_already.txt reminders_msg/server_expired_last_warning.txt \
-reminders_msg/server_expired_shutdown.txt reminders_msg/server_expired_today.txt reminders_msg/server_will_expire.txt \
-reminders_msg/shared_expired_already.txt reminders_msg/shared_expired_last_warning.txt reminders_msg/shared_expired_shutdown.txt \
-reminders_msg/shared_expired_today.txt reminders_msg/shared_will_expire.txt reminders_msg/vps_expired_already.txt \
-reminders_msg/vps_expired_last_warning.txt reminders_msg/vps_expired_shutdown.txt reminders_msg/vps_expired_today.txt \
-reminders_msg/vps_will_expire.txt \
-registration_msg/dedicated_open.txt registration_msg/shared_open.txt registration_msg/vps_open.txt \
-signature.txt messages_header.txt \
-logrotate.template
-
 CREATE_DIRS=admin/inc admin/genfiles admin/dtcrm admin/queuegraph admin/memgraph admin/netusegraph admin/cpugraph admin/install admin/tables \
 shared/gfx/menu shared/gfx/bar shared/gfx/skin/bwoup/gfx/buttons shared/gfx/dtc shared/gfx/pagetop \
 shared/gfx/securepay shared/gfx/language/en/pub shared/gfx/language/fr/pub shared/gfx/language/ru/pub shared/gfx/language/nl/pub \
 shared/gfx/skin/bwoup/gfx/config-icon shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs \
 shared/gfx/skin/bwoup/gfx/treeview shared/gfx/skin/bwoup/gfx/navbar shared/inc/forms shared/inc/sql shared/404_template shared/drawlib \
-shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars shared/visitors_template shared/template shared/maxmind client/inc email/inc \
+shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars shared/visitors_template shared/template shared/maxmind \
 admin/patches shared/securepay/modules shared/securepay/modules/paypal shared/securepay/modules/enets shared/securepay/modules/webmoney \
 shared/securepay/modules/worldpay
 
-LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT es_ES fi_FI zh_TW sr_RS lv_LV
+LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT pt_BR es_ES fi_FI zh_TW sr_RS lv_LV
 
 l12n:
 	@echo "===> Managing localizations binaries"
@@ -359,18 +353,26 @@ i18n:
 	@cd shared/vars && for i in $(LOCALE_TRANS) ; do echo -n $$i" " ; msgfmt -c -v -o locale/$$i/LC_MESSAGES/messages.mo $$i.po ; done && cd ../..
 
 install-dtc-stats-daemon:
-	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(APP_INST_DIR)/admin
-	$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php
-	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(DESTDIR)$(CONFIG_DIR)/init.d
-	$(INSTALL) -m 0644 etc/init.d/dtc-stats-daemon $(DESTDIR)$(CONFIG_DIR)/init.d/dtc-stats-daemon
+	if [ $(UNIX_TYPE) = redhat ] ; then \
+		$(INSTALL) -m 0755 etc/init.d/dtc-stats-daemon $(DESTDIR)$(INIT_DIR)/dtc-stats-daemon ; \
+		$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(SBINARY_DIR)/dtc-stats-daemon ; \
+	else \
+		$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php ; \
+	fi
+	
+
+install-dtc-dos-firewall:
+	$(INSTALL) -m 0644 etc/dtc/dtc-dos-firewall.conf $(DESTDIR)$(CONFIG_DIR)/dtc/dtc-dos-firewall.conf
+	if [ $(UNIX_TYPE) = "redhat" ] ; then \
+		$(INSTALL) -m 0755 etc/init.d/dtc-dos-firewall $(DESTDIR)$(INIT_DIR) ; fi
 
 install-dtc-common:
 	# PHP scripts files served by web server
-	@echo "-> Creating detination folders"
+	@echo "-> Creating destination folders"
 	for i in $(CREATE_DIRS) ; do $(INSTALL_DIR) -m $(NORMAL_FOLDER) $(APP_INST_DIR)/$$i ; done
 	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(MAN_DIR)/man8
 
-	@ echo "-> Intalling scripts"
+	@ echo "-> Installing scripts"
 	@for i in $(WEB_SCRIPT_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 	@echo "<?php \$$conf_dtc_version=\""$(VERS)"\"; \$$conf_dtc_release=\""$(RELS)"\"; \$$conf_unix_type=\""$(UNIX_TYPE)"\"; ?>" >$(APP_INST_DIR)/shared/dtc_version.php
 	@for i in $(PATCH_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
@@ -380,8 +382,8 @@ install-dtc-common:
 	@for i in $(USER_ALSO) ; do $(INSTALL) -m $(DTC_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 	@for i in $(INSTALL_FOLDER_SCRIPTS) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 
-	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/$$i $(APP_INST_DIR)/admin/$$i ; done
-	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/$$i $(APP_INST_DIR)/client/$$i ; done
+	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) admin/$$i $(APP_INST_DIR)/admin/$$i ; done
+	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) admin/$$i $(APP_INST_DIR)/client/$$i ; done
 
 	# The SQL table scripts
 	@for i in $(INSTALL_SQL_TABLES) ; do $(INSTALL) -m $(ROOT_ONLY_READ) $$i $(APP_INST_DIR)/$$i ; done
@@ -417,9 +419,9 @@ install-dtc-common:
 	$(INSTALL) -m $(NORMAL_FOLDER) -d $(GENFILES_DIRECTORY)/etc/zones $(GENFILES_DIRECTORY)/etc/slave_zones 
 
 	# Create the configuration folder
-	mkdir -p $(DTC_ETC_DIRECTORY)/reminders_msg
-	mkdir -p $(DTC_ETC_DIRECTORY)/registration_msg
-	for i in $(TEXT_MESSAGES) ; do $(INSTALL) -m $(PHP_RIGHTS) etc/dtc/$$i $(DTC_ETC_DIRECTORY)/$$i ; done
+	mkdir -p $(DTC_ETC_DIRECTORY)
+	cp -auxf etc/dtc/* $(DTC_ETC_DIRECTORY)
+	rm $(DTC_ETC_DIRECTORY)/dtc-dos-firewall.conf
 
 	# Doc dir
 	$(INSTALL) -m $(NORMAL_FOLDER) -d $(DOC_DIR)

@@ -1,0 +1,19 @@
+
+Subject: Votre compte d'hébergement expire aujourd'hui.
+
+Bonjour %%%FIRST_NAME%%%,
+
+Votre compte d'hébergement expire aujourd'hui, le : %%%EXPIRATION_DATE%%%.
+
+Veuillez vous connecter à votre panneau de contrôle à l'adresse :
+
+%%%DTC_CLIENT_URL%%%
+
+avec votre nom d'utilisateur %%%DTC_ADM_LOGIN%%%, cliquez sur l'onglet
+"mon compte", et effectuer le renouvellement.
+
+Nous conserverons votre compte d'hébergement pendant quelques jours pour
+vous donner le temps de renouveler votre contrat. Après cette période,
+votre compte sera effacé, ainsi que toutes les données qu'il contient.
+
+%%%SIGNATURE%%%

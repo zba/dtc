@@ -3,7 +3,8 @@ Subject: Your shared hosting account has expired
 
 Hello %%%FIRST_NAME%%%,
 
-Your shared hosting account has expired %%%EXPIRED_DAYS%%% days ago, on the: %%%EXPIRATION_DATE%%%.
+Your shared hosting account has expired %%%EXPIRED_DAYS%%% days ago, on the:
+%%%EXPIRATION_DATE%%%.
 
 Please login into your control panel at
 

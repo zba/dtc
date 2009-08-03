@@ -9,6 +9,8 @@ chdir(dirname(__FILE__));
 require("../shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
 
+require_once("authme.php");
+
 $date_now = date("Y-m-d");
 
 // Total VPS

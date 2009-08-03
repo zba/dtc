@@ -50,8 +50,9 @@ CHALLENGE_PASS=$gen_pass
 echo "Checking dirs"
 
 if [ ! -e $MY_PATH/$COMMON_NAME.cert.new ] ; then
-	if [ ! -e $MY_PATH/$COMMON_NAME.cert.key ] ; then	
-		pushd $MY_PATH
+	if [ ! -e $MY_PATH/$COMMON_NAME.cert.key ] ; then
+		OLDCWD=`pwd`
+		cd $MY_PATH
 		echo $pwd
 		CERTPASS_TMP_FILE=`${MKTEMP} certfilepass.XXXXXX` || exit 1
 		echo  $SSL_PASSPHRASE >$CERTPASS_TMP_FILE
@@ -67,6 +68,6 @@ if [ ! -e $MY_PATH/$COMMON_NAME.cert.new ] ; then
 		$OPENSSL rsa -passin file:$CERTPASS_TMP_FILE -in privkey.pem -out $COMMON_NAME.cert.key
 		$OPENSSL x509 -in $COMMON_NAME.cert.csr -out $COMMON_NAME.cert.cert -req -signkey $COMMON_NAME.cert.key -days 3650
 		/bin/rm $CERTPASS_TMP_FILE
-		popd
+		cd $OLDCWD
 	fi
 fi

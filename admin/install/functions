@@ -407,6 +407,16 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 	if [ -f /etc/phpmyadmin/htpasswd.setup ] ; then
 		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /etc/phpmyadmin/htpasswd.setup
 	fi
+
+	if [ "${UNIX_TYPE}" = "redhat" -a -f /usr/share/phpmyadmin/config.inc.php ] ; then
+		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /usr/share/phpmyadmin/config.inc.php
+		gen_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
+		sed -i "s/cfg\['blowfish_secret'\] = ''/cfg\['blowfish_secret'\] = '${gen_pass}'/" /usr/share/phpmyadmin/config.inc.php
+		if [ -e /etc/httpd/conf.d/phpmyadmin.conf ] ; then
+			sed -i "s/Allow from 127.0.0.1/Allow from all/" /etc/httpd/conf.d/phpmyadmin.conf
+		fi
+	fi
+
 	# Mailgraph stuffs...
 	if [ -d /var/lib/mailgraph ] ; then
 		chown ${CONF_DTC_SYSTEM_USERNAME} /var/lib/mailgraph
@@ -507,6 +517,7 @@ dtcGenDebianLocales () {
 		debianSetLocale se_NO
 		debianSetLocale sr_RS
 		debianSetLocale pt_PT
+		debianSetLocale pt_BR
 		debianSetLocale es_ES
 		debianSetLocale fi_FI
 		debianSetLocale lv_LV
@@ -1033,6 +1044,10 @@ setupDTCDatabase () {
 	# grant select to fetchmail
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'fetchmail', '', NOW(NULL), 'Select', 'Select')"
 
+	# grant rights for mysqmail
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'domain', '', NOW(NULL), 'Select', 'Select')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.tables_priv (Host, Db, User, Table_name, Grantor, Timestamp, Table_priv, Column_priv) VALUES ('%', '"$conf_mysql_db"', 'dtcdaemons', 'email_accounting', '', NOW(NULL), 'Select,Insert,Update,Delete,References,Index', 'Select')"
+
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="FLUSH PRIVILEGES"
 
 	# Setup good values depending on Unix distribution
@@ -1062,6 +1077,13 @@ setupDTCDatabase () {
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyrus','cyrus@"${MX_MAIL}.${main_domain_name}"','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO pop_access (id,fullemail,passwd,crypt) VALUES('cyradm','cyrus','"${conf_cyrus_pass}"',ENCRYPT('"${conf_cyrus_pass}"'))"
 
+	# Set the first admin password
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO tik_admins (id,pseudo,tikadm_pass) VALUES('','${conf_adm_login}','${conf_adm_pass}')"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE tik_admins SET tikadm_pass='${conf_adm_pass}' WHERE pseudo='${conf_adm_login}'"
+
+	if [ "${UNIX_TYPE}" = "redhat" ] ; then
+		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET domainkey_publickey_filepath='/etc/pki/tls/certs/dkimproxy.crt'"
+	fi
 }
 
 generateMySQLConfigPHPfile () {
@@ -1301,34 +1323,27 @@ enableApache2Modules () {
 }
 
 createApacheAdminProtectedDir () {
-	echoIfVerbose "-> Creating htpasswd and htaccess"
-	if [ ! -e "$conf_hosting_path" ] ; then
-		mkdir -p "$conf_hosting_path"
-	fi
-	# add the default password to .htpasswd if it doesn't exist already
-	HAS_HTPASS_LOGIN="no"
-	if [ -e $conf_hosting_path/.htpasswd ] ; then
-		if grep -q $conf_adm_login $conf_hosting_path/.htpasswd ; then
-			HAS_HTPASS_LOGIN="yes"
-		fi
-	fi
-	if [ ${HAS_HTPASS_LOGIN} = "yes" ] ; then
-		echoIfVerbose ".htpasswd exists, adding/replacing passwd with install config values of user '$conf_adm_login' and pass '$conf_adm_pass'"
-		$HTPASSWD -b "$conf_hosting_path"/.htpasswd "$conf_adm_login" "$conf_adm_pass"
-	else 
-		echoIfVerbose "Creating "$conf_hosting_path"/.htpasswd with username '$conf_adm_login' and password '$conf_adm_pass'"
-		$HTPASSWD -cb "$conf_hosting_path"/.htpasswd "$conf_adm_login" "$conf_adm_pass"
-	fi
+	echoIfVerbose "Creating "$PATH_DTC_ADMIN"/.htaccess file."
+	echo "<Files *>
+	Order deny,allow
+	deny from all
+</Files>
 
-	if [ -e $PATH_DTC_ADMIN/.htaccess ] ; then
-		echoIfVerbose "OK, you have your "$PATH_DTC_ADMIN"/.htaccess setup already!"
-	else
-		echoIfVerbose "Creating "$PATH_DTC_ADMIN"/.htaccess file."
-		echo "AuthName \"DTC root control panel login!\"
-AuthType Basic
-AuthUserFile "$conf_hosting_path"/.htpasswd
-require valid-user" >$PATH_DTC_ADMIN/.htaccess
-	fi
+<FilesMatch \"^$\">
+	Order allow,deny
+	allow from all
+</FilesMatch>
+
+<FilesMatch \".(|gif|jpg|jpeg|png|ico|css)\$\">
+	Order allow,deny
+	allow from all
+</FilesMatch>
+
+<Files (index.php|bw_per_month.php|deamons_state.php|vm-cpu.php|vm-net-all.php|vps_stats_hdd.php|cpugraph.php|logPushlet.php|memgraph.php|view_waitingusers.php|vm-io-all.php|vm-net.php|vps_stats_network.php|mailgraph.php|netusegraph.php|stat_total_active_prods.php|vm-cpu-all.php|vm-io.php|vps_stats_cpu.php|vps_stats_swap.php)>
+	Order allow,deny
+	allow from all
+</Files>
+" >$PATH_DTC_ADMIN/.htaccess
 }
 
 modifyHTTPD_CONF () {
@@ -1450,8 +1465,17 @@ ErrorDocument 501 /dtc404/406.php
 		fi
 		echo "" >/etc/apache2/ports.conf
 	fi
+
+	if [ "$UNIX_TYPE" = "redhat" -a -f /etc/httpd/conf.d/mod_log_sql.conf ] ; then
+		sed -i "s/#LoadModule log_sql_module modules\/mod_log_sql.so/LoadModule log_sql_module modules\/mod_log_sql.so/" /etc/httpd/conf.d/mod_log_sql.conf
+		sed -i "s/#LoadModule log_sql_mysql_module modules\/mod_log_sql_mysql.so/LoadModule log_sql_mysql_module modules\/mod_log_sql_mysql.so/" /etc/httpd/conf.d/mod_log_sql.conf
+	fi
+
 	touch ${PATH_DTC_ETC}/logrotate
 	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_ETC}/logrotate
+	# The cband folder containing score boards for all users
+	mkdir -p ${PATH_DTC_ETC}/cband_scores
+	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} ${PATH_DTC_ETC}/cband_scores
 }
 
 # need to make sure we are loading LOG_SQL in the /etc/conf.d/apache2 if that file exists
@@ -1733,6 +1757,10 @@ auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" hos
 			fi #if [ -e /etc/pam.d/ ]
 		fi
 	fi
+	# Fix the sasldb2 link
+	if [ ! -e /etc/sasldb2 ] ; then
+		ln -sf /var/spool/postfix/etc/sasldb2 /etc/sasldb2 
+	fi
 }
 
 modifyNamedConf () {
@@ -1746,7 +1774,38 @@ modifyNamedConf () {
 	#
 	# include $PATH_DTC_ETC/named.zones in $PATH_NAMED_CONF
 	#
-	echoIfVerbose "===> Adding inclusion to named.conf"
+	echoIfVerbose "===> Configuring named.conf"
+	if [ "$UNIX_TYPE" = "redhat" ] ; then
+		for i in conf root.hints rfc1912.zones ; do
+			if [ ! -e /etc/named.${i} ] ; then
+				cp /usr/share/doc/bind-9.3.4/sample/etc/named.${i} /etc
+			fi
+		done
+		VAR_NAMED_FOLDER=/usr/share/doc/bind-9.3.4/sample/var/named
+		if [ -e "${VAR_NAMED_FOLDER}" ] ; then
+			OLD_CWD=`pwd`
+			cd ${VAR_NAMED_FOLDER}
+			for i in * ; do
+				if [ ! -e /var/named/${i} ] ; then
+					cp -rf ${i} /var/named
+				fi
+			done
+			cd slaves
+			for i in * ; do
+				if [ ! -e /var/named/slaves/${i} ] ; then
+					cp -rf ${i} /var/named/slaves
+				fi
+			done
+			cd ${OLD_CWD}
+		else
+			echo "WARNING! Folder ${VAR_NAMED_FOLDER} does not exists in your system!!!"
+		fi
+		if grep "use /usr/sbin/dns-keygen to generate TSIG keys" $PATH_NAMED_CONF >/dev/null ; then
+			NAMED_KEY=`/usr/sbin/dns-keygen`
+			sed -i "s/use \/usr\/sbin\/dns-keygen to generate TSIG keys/${NAMED_KEY}/" $PATH_NAMED_CONF
+		fi
+	fi
+
 	# need to detect named chroot for gentoo
 	NAMED_CHROOT=
 	if [ -e /etc/conf.d/named ] ; then
@@ -1755,7 +1814,7 @@ modifyNamedConf () {
 	fi
 	# check to see if NAMED_CHROOT is / 
 	# if so, then we need not do all this hooha below
-	if [ ""$NAMED_CHROOT = "/" ] ; then
+	if [ "${NAMED_CHROOT}" = "/" ] ; then
 		NAMED_CHROOT=
 	fi
 
@@ -1791,18 +1850,45 @@ modifyNamedConf () {
 		fi
 	fi
 
-	if grep "Configured by DTC" $PATH_NAMED_CONF >/dev/null
-	then
+	if grep "Configured by DTC" $PATH_NAMED_CONF 2>&1 >/dev/null ; then
 		echoIfVerbose "named.conf has been configured before : skipping include insertion !"
 	else
-		if ! [ -f $PATH_NAMED_CONF.DTC.backup ]
-		then
+		if ! [ -f $PATH_NAMED_CONF.DTC.backup ] ; then
 			cp -f $PATH_NAMED_CONF $PATH_NAMED_CONF.DTC.backup
 		fi
 		line1="// Configured by DTC v0.10 : please don't touch this line !"
 		line2="include \"$PATH_DTC_ETC/named.conf\";"
-		if grep -q "view.*external.*" $PATH_NAMED_CONF ; then
-			sed -i "s/.*view.*external.*/\0\n$line1\n$line2/" $PATH_NAMED_CONF
+		if grep -q "view  .*\"external\".*" $PATH_NAMED_CONF ; then
+			LINE_NUM=`grep -n "view  .*\"external\".*" $PATH_NAMED_CONF | tail -n 1 | cut -d":" -f1`
+			LINE_NUM_TWO=$((${LINE_NUM} + 1 ))
+			NEXT_LINE=`head -n ${LINE_NUM_TWO} $PATH_NAMED_CONF | tail -n 1`
+			if [ "${NEXT_LINE}" = "{" ] ; then
+				TMP_FILE=`${MKTEMP} DTC_install.named.conf.XXXXXX` || exit 1
+				head -n ${LINE_NUM_TWO} $PATH_NAMED_CONF >${TMP_FILE}
+				echo $line1 >>${TMP_FILE}
+				echo $line2 >>${TMP_FILE}
+				NUM_LINES=`cat /etc/named.conf | wc -l`
+				TAIL=$((${NUM_LINES} - ${LINE_NUM_TWO} ))
+				tail -n ${TAIL} /etc/named.conf >>${TMP_FILE}
+				cat <${TMP_FILE} >$PATH_NAMED_CONF
+				rm ${TMP_FILE}
+			fi
+			if grep -q "view \"localhost_resolver\"" $PATH_NAMED_CONF ; then
+				LINE_NUM=`grep -n "view \"localhost_resolver\"" $PATH_NAMED_CONF | tail -n 1 | cut -d":" -f1`
+				LINE_NUM_TWO=$((${LINE_NUM} + 1 ))
+				NEXT_LINE=`head -n ${LINE_NUM_TWO} $PATH_NAMED_CONF | tail -n 1`
+				if [ "${NEXT_LINE}" = "{" ] ; then
+					TMP_FILE=`${MKTEMP} DTC_install.named.conf.XXXXXX` || exit 1
+					head -n ${LINE_NUM_TWO} $PATH_NAMED_CONF >${TMP_FILE}
+					echo $line1 >>${TMP_FILE}
+					echo $line2 >>${TMP_FILE}
+					NUM_LINES=`cat /etc/named.conf | wc -l`
+					TAIL=$((${NUM_LINES} - ${LINE_NUM_TWO} ))
+					tail -n ${TAIL} /etc/named.conf >>${TMP_FILE}
+					cat <${TMP_FILE} >$PATH_NAMED_CONF
+					rm ${TMP_FILE}
+				fi
+			fi
 		else
 			TMP_FILE=`${MKTEMP} DTC_install.named.conf.XXXXXX` || exit 1
 			echo $line1 > $TMP_FILE
@@ -1812,6 +1898,7 @@ modifyNamedConf () {
 			[ -f $TMP_FILE ] && rm -f $TMP_FILE
 		fi
 		if [ "$UNIX_TYPE" = "redhat" ] ; then
+			touch $PATH_DTC_ETC/named.conf
 			chown named.named $PATH_DTC_ETC/named.conf
 		fi
 	fi
@@ -2023,27 +2110,28 @@ modifyClamavConf () {
 			perl -i -p -e 's/^1;[^\n]*\n//' $PATH_CLAMAV_CONF
 		fi
 
-		if grep "Configured by DTC" "$PATH_CLAMAV_CONF" >/dev/null; then
-			echoIfVerbose "$PATH_CLAMAV_CONF already configured..."
-	        else
-			echoIfVerbose "Inserting configuration into $PATH_CLAMAV_CONF"
-
-	                TMP_FILE=`${MKTEMP} dtc_install.clamav.conf.XXXXXX` || exit 1
-	                echo "# Configured by DTC $VERSION" >> $TMP_FILE
-			if [ "$UNIX_TYPE" = "debian" ] ; then
-				DEBIAN_VERSION=`lsb_release -c -s`
-				if [ "$DEBIAN_VERSION" = "sarge" ] ; then
-					echo "AllowSupplementaryGroups" >> $TMP_FILE
-				fi
-			fi
-			echo "LocalSocket /var/run/clamav/clamd.ctl" >> $TMP_FILE
-	                echo "# End of DTC configuration $VERSION" >> $TMP_FILE
-
-	                # now to insert it at the end of the actual clamav.conf
-	                cat < $TMP_FILE >>$PATH_CLAMAV_CONF
-	                rm -f $TMP_FILE
-	        fi
-	        # Finaly restart the daemon
+		# We don't need that code anymore, as clamav is now configured correctly by default
+#		if grep "Configured by DTC" "$PATH_CLAMAV_CONF" >/dev/null; then
+#			echoIfVerbose "$PATH_CLAMAV_CONF already configured..."
+#	        else
+#			echoIfVerbose "Inserting configuration into $PATH_CLAMAV_CONF"
+#
+#	                TMP_FILE=`${MKTEMP} dtc_install.clamav.conf.XXXXXX` || exit 1
+#	                echo "# Configured by DTC $VERSION" >> $TMP_FILE
+#			if [ "$UNIX_TYPE" = "debian" ] ; then
+#				DEBIAN_VERSION=`lsb_release -c -s`
+#				if [ "$DEBIAN_VERSION" = "sarge" ] ; then
+#					echo "AllowSupplementaryGroups" >> $TMP_FILE
+#				fi
+#			fi
+#			echo "LocalSocket /var/run/clamav/clamd.ctl" >> $TMP_FILE
+#	                echo "# End of DTC configuration $VERSION" >> $TMP_FILE
+#
+#	                # now to insert it at the end of the actual clamav.conf
+#	                cat < $TMP_FILE >>$PATH_CLAMAV_CONF
+#	                rm -f $TMP_FILE
+#	        fi
+#	        # Finaly restart the daemon
 	        restartDaemonMultiUnix clamav-daemon
 	fi
 }
@@ -2164,7 +2252,10 @@ modifyPostfixConfig () {
 		then
 			echoIfVerbose "Postfix main.cf has been configured before, not adding virtual mailbox options"
 		else
-			if grep "recipient_delimiter = +" "$PATH_POSTFIX_ETC/main.cf" >/dev/null; then
+			if [ ! -d ${PATH_POSTFIX_ETC}/maps ] ; then
+				mkdir -p ${PATH_POSTFIX_ETC}/maps
+			fi
+if grep "recipient_delimiter = +" "$PATH_POSTFIX_ETC/main.cf" >/dev/null; then
 				if [ "$conf_recipient_delim" = "-" ] ; then
 					echoIfVerbose "Changing recipient delimiter from + to -"
 					TMP_FILE=`${MKTEMP} DTC_install.main.cf.XXXXXX` || exit 1
@@ -2201,6 +2292,9 @@ parent_domain_matches_subdomains=
 # disable mailbox size limit by default (user can add to postfix_config_snippets)
 mailbox_size_limit = 0
 " >> $TMP_FILE
+			if [ ! -e ${PATH_POSTFIX_ETC}/maps/relaying_stoplist ] ; then
+				cp -f ${PATH_DTC_ADMIN}/postfix_checks/relaying_stoplist ${PATH_POSTFIX_ETC}/maps
+			fi
 
 			FOUND_DKIMPROXY=0;
 			if [ -x /usr/sbin/amavisd-new -o -x /usr/local/sbin/amavisd-new -o -x /usr/local/bin/amavisd-new -o -x /usr/sbin/amavisd ] ; then
@@ -2234,9 +2328,11 @@ echo "virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domai
 
 			if [ ""$conf_use_cyrus = "true" ] ; then
 				if [ "$UNIX_TYPE" = "debian" ] ; then
-					echo "virtual_transport = cyrus
-mailbox_transport = cyrus
+					echo "virtual_transport = lmtp:unix:/var/run/cyrus/socket/lmtp
+mailbox_transport = lmtp:unix:/var/run/cyrus/socket/lmtp
 # local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
+					# Fix the master.cf lmtp stuff
+					sed -i "s/lmtp      unix  -       -       -       -       -       lmtp/lmtp      unix  -       -       n       -       -       lmtp/" $TMP_FILE
 				else
 					echo "virtual_transport = cyrus
 mailbox_transport = lmtp:unix:/var/run/socket/lmtp
@@ -2315,6 +2411,8 @@ mech_list: login plain" >> $SASLTMP_FILE
 					if [ "$UNIX_TYPE" = "debian" ] ; then
 						echoIfVerbose "Adding postfix to the sasl group"
 						adduser postfix sasl
+						echoIfVerbose "Adding postfix to the mail group"
+						adduser postfix mail
 					else
 						echo "*** Please add Postfix to the sasl group so it has access to the saslauthd socket"
 					fi
@@ -2339,8 +2437,9 @@ smtpd_tls_auth_only = no
 "
 			else
 				echoIfVerbose "No saslpasswd2 found"
-				echo "smtpd_recipient_restrictions = permit_mynetworks,
-                               $dnsbl_list
+				echo "smtpd_recipient_restrictions = permit_mynetworks," >> $TMP_FILE
+				echo "		check_client_access regexp:/etc/postfix/maps/relaying_stoplist," >> $TMP_FILE
+echo "                               $dnsbl_list
                                reject_unauth_destination" >> $TMP_FILE
 				if [ "$FOUND_DKIMPROXY" -eq 1 ] ; then
 #				if [ "$FOUND_DKFILTER" -eq 1 ] ; then
@@ -2353,8 +2452,10 @@ smtpd_tls_auth_only = no
 smtpd_helo_required = yes
 disable_vrfy_command = yes
 
+smtp_tls_security_level = may
+
 smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
-			permit_sasl_authenticated,
+			check_client_access regexp:/etc/postfix/maps/relaying_stoplist,
 			reject_invalid_hostname,
 			reject_non_fqdn_sender,
 			reject_non_fqdn_recipient,
@@ -2509,6 +2610,7 @@ dkimsign    unix  -       -       n       -       5      smtp
 # service for accepting messages FROM the DomainKeys signing filter
 #
 127.0.0.1:10029 inet  n  -      n       -       5      smtpd
+    -o smtpd_use_tls=no
     -o content_filter=
     -o receive_override_options=no_unknown_recipient_checks,no_header_body_checks
     -o smtpd_helo_restrictions=
@@ -2534,9 +2636,6 @@ pickup fifo n - n 60 1 pickup
 			echo "bounce_queue_lifetime = 3d
 maximal_queue_lifetime = 3d" >> $TMP_FILE
 			# Now we add the header, mime and body checks
-			if [ ! -d ${PATH_POSTFIX_ETC}/maps ] ; then
-				mkdir -p ${PATH_POSTFIX_ETC}/maps
-			fi
 			if [ ! -e ${PATH_POSTFIX_ETC}/maps/header_checks ] ; then
 				cp -f ${PATH_DTC_ADMIN}/postfix_checks/header_checks ${PATH_POSTFIX_ETC}/maps
 			fi
@@ -2549,10 +2648,6 @@ maximal_queue_lifetime = 3d" >> $TMP_FILE
 			if [ ! -e ${PATH_POSTFIX_ETC}/maps/header_checks ] ; then
 				cp -f ${PATH_DTC_ADMIN}/postfix_checks/header_checks ${PATH_POSTFIX_ETC}/maps
 			fi
-			#relaying_stoplist missing from here *steveetm*
-			if [ ! -e ${PATH_POSTFIX_ETC}/maps/relaying_stoplist ] ; then
-				cp -f ${PATH_DTC_ADMIN}/postfix_checks/relaying_stoplist ${PATH_POSTFIX_ETC}/maps
-			fi
 			
 			
 #			postmap ${PATH_POSTFIX_ETC}'/maps/header_checks'
@@ -2563,6 +2658,7 @@ maximal_queue_lifetime = 3d" >> $TMP_FILE
 body_checks = regexp:/etc/postfix/maps/body_checks
 mime_header_checks = regexp:/etc/postfix/maps/mime_header_checks
 smtpd_client_restrictions = permit_mynetworks,
+	permit_sasl_authenticated,
 	check_client_access regexp:/etc/postfix/maps/relaying_stoplist,
 	permit
 " >> $TMP_FILE
@@ -2595,6 +2691,16 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 			cat $SASLTMP_FILE > $PATH_POSTFIX_ETC/sasl/smtpd.conf
 		fi 
 		rm $SASLTMP_FILE
+	fi
+	# By default, CentOS setup is wrong with maildrop not being SUID
+	if [ "$UNIX_TYPE" = "redhat" -a /usr/bin/maildrop ] ; then
+		chmod +s /usr/bin/maildrop
+	fi
+	# Configure dkimproxy_out in CentOS
+	if [ "$UNIX_TYPE" = "redhat" -a -f /etc/sysconfig/dkimproxy_out ] ; then
+		echo "# options to dkimproxy_out
+OPTIONS=\"--domain=\`cat /var/lib/dtc/etc/local_domains | tr \\\\\\r\\\\\\n ,,\`\"
+" >/etc/sysconfig/dkimproxy_out
 	fi
 }
 
@@ -2972,17 +3078,36 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 		fi
 
 		/usr/local/etc/rc.d/pure-ftpd start
-	# Debian uses a directory structure with many files (and maybe other distro)
+	elif [ "$UNIX_TYPE" = "redhat" -a ""$conf_ftp_type = "pureftpd" ] ; then
+		TMP_FILE=`${MKTEMP} DTC_pure-ftpd.conf.XXXXXX` || exit 1
+		grep -v MySQLConfigFile ${PATH_PUREFTPD_CONF} >${TMP_FILE}
+		cat <${TMP_FILE} >${PATH_PUREFTPD_CONF}
+		rm -f ${TMP_FILE}
+		echo "MySQLConfigFile /etc/pure-ftpd/pureftpd-mysql-dtc.conf"
 	else	
 		PURE_FTPD_ETC="/etc/pure-ftpd"
 		if [ -e $PURE_FTPD_ETC ] ; then
+			if [ "$UNIX_TYPE" = "redhat" -a ""$conf_ftp_type = "pureftpd" ] ; then
+				# This will activate the MySQL config in CentOS.
+				# FIXME: This also removes some useful comments, so it's not optimum
+				TMP_FILE=`${MKTEMP} DTC_pure-ftpd.conf.XXXXXX` || exit 1
+				grep -v MySQLConfigFile ${PATH_PUREFTPD_CONF} >${TMP_FILE}
+				cat <${TMP_FILE} >${PATH_PUREFTPD_CONF}
+				rm -f ${TMP_FILE}
+				echo "MySQLConfigFile /etc/pure-ftpd/pureftpd-mysql-dtc.conf"
+			fi
 			if [ -e /etc/pure-ftpd/conf/ ] ; then
 				echo "yes" >/etc/pure-ftpd/conf/ChrootEveryone
 			fi
 
-			
+			# Debian uses a directory structure with many files (and maybe other distro)
+			PURE_DBCONFIG_FILE=""
 			if [ -e $PURE_FTPD_ETC/db/ ] ; then
-				echo "# Configured by DTC v0.10 : Please don't touch this line !
+				PURE_DBCONFIG_FILE=$PURE_FTPD_ETC/db/mysql.conf
+			else
+				PURE_DBCONFIG_FILE=$PURE_FTPD_ETC/pureftpd-mysql-dtc.conf
+			fi
+			echo "# Configured by DTC v0.10 : Please don't touch this line !
 
 MYSQLServer $conf_mysql_host
 MYSQLUser dtcdaemons
@@ -2994,24 +3119,16 @@ MYSQLGetUID     SELECT uid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
 MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 
-" >$PURE_FTPD_ETC/db/mysql.conf;
+" >${PURE_DBCONFIG_FILE}
+			# If running in Debian, try to determine if using standalone or daemon
+			if [ "$UNIX_TYPE" = "debian" -o -f /etc/default/pure-ftpd-common ] ; then
+				PURE_DEFAULT_FILE=`cat /etc/default/pure-ftpd-common | grep STANDALONE_OR_INETD= | cut -d= -f1`
+				if [ ${PURE_DEFAULT_FILE} = "standalone" ] ; then
+					restartDaemonMultiUnix pure-ftpd-mysql
+				fi
+			else
 				restartDaemonMultiUnix pure-ftpd-mysql
 				restartDaemonMultiUnix pure-ftpd
-			# This works for slackware
-			else
-				echo "# Configured by DTC v0.10 : Please don't touch this line !
-
-MYSQLServer $conf_mysql_host
-MYSQLUser dtcdaemons
-MYSQLPassword ${MYSQL_DTCDAEMONS_PASS}
-MYSQLDatabase $conf_mysql_db
-MYSQLCrypt cleartext
-MYSQLGetPW      SELECT password FROM ftp_access WHERE login=\"\L\"
-MYSQLGetUID     SELECT uid FROM ftp_access WHERE login=\"\L\"
-MYSQLGetGID     SELECT gid FROM ftp_access WHERE login=\"\L\"
-MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
-
-" >$PURE_FTPD_ETC/pureftpd-mysql-dtc.conf;
 			fi
 		fi
 	fi
@@ -3072,7 +3189,7 @@ configProftpd () {
 
 			TMP_FILE=`${MKTEMP} DTC_install.proftp.conf.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.30 : Please don't touch this line !" > $TMP_FILE
-			echo "AuthOrder		mod_sql.c mod_auth_pam.c* mod_auth_unix.c" >> $TMP_FILE
+			echo "AuthOrder		mod_sql.c mod_auth_pam.c mod_auth_unix.c" >> $TMP_FILE
 			echo "IdentLookups	off" >> $TMP_FILE
 			echo "DefaultRoot	~" >> $TMP_FILE
 			echo "Include /etc/proftpd/sql-dtc.conf" >> $TMP_FILE
@@ -3742,17 +3859,19 @@ nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 
 		# If not using Debian, install this directly
 		if [ ! "$UNIX_TYPE" = "debian" ] ; then
-			TMP_FILE=`${MKTEMP} DTC_install.crontab.XXXXXX` || exit 1
-			echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
-			echo "*/10 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
-			echo "9 4  * * *   ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
-			echo "*/15 * * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; fetchmail -v -N -f /var/lib/dtc/etc/fetchmailrc --pidfile /tmp/fetchmail.pid" >> $TMP_FILE
-			echo "*    * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
-			echo "34   2 * * * ${CONF_DTC_SYSTEM_USERNAME} cd /usr/share/dtc/admin && /usr/bin/php stat_total_active_prods.php 2>&1 >> /var/log/dtc.log" >> $TMP_FILE
-			echo "9    3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
+			if [ ! "$UNIX_TYPE" = "redhat" ] ; then
+				TMP_FILE=`${MKTEMP} DTC_install.crontab.XXXXXX` || exit 1
+				echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
+				echo "*/10 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
+				echo "9 4  * * *   ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
+				echo "*/15 * * * * ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; fetchmail -v -N -f /var/lib/dtc/etc/fetchmailrc --pidfile /tmp/fetchmail.pid" >> $TMP_FILE
+				echo "*    * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
+				echo "34   2 * * * ${CONF_DTC_SYSTEM_USERNAME} cd /usr/share/dtc/admin && /usr/bin/php stat_total_active_prods.php 2>&1 >> /var/log/dtc.log" >> $TMP_FILE
+				echo "9    3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
 
-			cat < $TMP_FILE >>$PATH_CRONTAB_CONF
-			rm $TMP_FILE
+				cat < $TMP_FILE >>$PATH_CRONTAB_CONF
+				rm $TMP_FILE
+			fi
 		fi
 
 	fi
@@ -3945,9 +4064,16 @@ createChrootTemplate () {
 		cp -pf /lib/sftp-server lib/
 	fi
 
+	# Debian location for the sftp-server
 	if [ -e /usr/lib/openssh/sftp-server ] ; then
 		mkdir -p usr/lib/openssh
 		cp -pf /usr/lib/openssh/sftp-server usr/lib/openssh
+	fi
+
+	# CentOS location
+	if [ -e /usr/libexec/openssh/sftp-server ] ; then
+		mkdir -p usr/libexec/openssh
+		cp -pf /usr/libexec/openssh/sftp-server usr/libexec/openssh
 	fi
 
 	if [ -e /usr/bin/scp ] ; then
@@ -4069,6 +4195,26 @@ createChrootTemplate () {
 					ln -s lib lib64
 				fi
 			fi
+			# Some libs for CentOS
+			if [ -e /lib/libdl.so.2 ] ; then
+				cp -pf /lib/libdl.so.2 lib
+			fi
+			if [ -e /lib64/libdl.so.2 ] ; then
+				cp -pf /lib64/libdl.so.2 lib
+			fi
+			if [ -e /lib/libc.so.6 ] ; then
+				cp -pf /lib/libc.so.6 lib
+			fi
+			if [ -e /lib64/libc.so.6 ] ; then
+				cp -pf /lib64/libc.so.6 lib
+			fi
+			if [ -e /lib/libtermcap.so.2 ] ; then
+				cp -pf /lib/libtermcap.so.2 lib
+			fi
+			if [ -e /lib64/libtermcap.so.2 ] ; then
+				cp -pf /lib64/libtermcap.so.2 lib
+			fi
+
 			if [ -e /lib/ld-linux.so.2 ] ; then
 				cp -pf /lib/ld-linux.so.2 lib/
 			fi
@@ -4796,16 +4942,12 @@ conf_cert_challenge_pass=\"${conf_cert_challenge_pass}\"
 
 applyAllDTCPatches () {
 	if [ "$UNIX_TYPE" = "debian" ] ; then
-		dtcPatchFile /usr/share/phpmyadmin/.htaccess ${PATH_DTC_ADMIN}/patches/phpmyadmin_htaccess.patch 31601e916ccfa49e96470f70f3e28c6c 4a3cf4183860ab55051964cb5d488c85
-		dtcPatchFile /usr/share/phpmyadmin/libraries/auth/cookie.auth.lib.php ${PATH_DTC_ADMIN}/patches/phpmyadmin_cookie.auth.lib.php.patch 65b6ba514c3a2393861bb9ef7f79d03b 45a23f493b8909c0d018eea6c55c3230
 		dtcPatchFile /etc/default/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
 	fi
 }
 
 deApplyAllDTCPatches () {
 	if [ "$UNIX_TYPE" = "debian" ] ; then
-		dtcUnpatchFile /usr/share/phpmyadmin/.htaccess ${PATH_DTC_ADMIN}/patches/phpmyadmin_htaccess.patch 31601e916ccfa49e96470f70f3e28c6c 4a3cf4183860ab55051964cb5d488c85
-		dtcUnpatchFile /usr/share/phpmyadmin/libraries/auth/cookie.auth.lib.php ${PATH_DTC_ADMIN}/patches/phpmyadmin_cookie.auth.lib.php.patch 65b6ba514c3a2393861bb9ef7f79d03b 45a23f493b8909c0d018eea6c55c3230
 		dtcUnpatchFile /etc/default/spamassassin ${PATH_DTC_ADMIN}/patches/spamassassin_default_start.patch  0bfc320c160847ca4525f957833b345e ac43b86acaa45965020a3492991f684d
 	fi
 }
@@ -4830,14 +4972,9 @@ DTCinstallPackage () {
 			modifyPHP_INI_EXTENSIONS
 		fi
 	fi
-	if [ ! "$UNIX_TYPE" = "debian" ] ; then
-		changeMySQLPassword
-	else
-		if [ "$DEBIAN_VERSION" = "3.1" ] ; then
-			changeMySQLPassword
-		fi
+	if [ "$UNIX_TYPE" = "debian" ] ; then
+		saveConfig
 	fi
-	saveConfig
 }
 
 DTCuninstallPackage () {

@@ -1,0 +1,22 @@
+Notez que le ticket a été fermé, ce qui signifie qu'il n'y a plus besoin
+d'y répondre. Si vous avez toujours besoin d'aide, veuillez créer un
+nouveau ticket de support ou réécrivez dans ce dernier pour le rouvrir.
+Pour ce faire, connectez-vous au panneau de contrôle à l'adresse
+suivante :
+
+%%%DTC_CLIENT_URL%%%
+
+avec votre nom d'utilisateur, puis allez dans l'onglet ticket de support
+et écrivez votre réponse.
+
+Vous pouvez aussi simplement utiliser la  fonction "répondre" de votre
+client de messagerie, ou écrire à l'adresse : 
+
+%%%SUPPORT_EMAIL_ADDRESS%%%
+
+ce qui rouvrira également le ticket.
+
+Si vous répondez par email, merci de ne PAS changez l'adresse, le numéro
+qu'elle comporte est tres important, et permet de lier votre email a son
+ancien ticket de support! Aussi, n'incluez PAS notre réponse dans le
+corp du méssage, nous avons l'historique des messages envoyés.

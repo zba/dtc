@@ -111,7 +111,6 @@ $txt .= "</td></tr>
 	}
 	$txt .= "</b></font></font>";
 	
-	$txt .= "<script language=\"JavaScript\" type=\"text/javascript\" src=\"gfx/wz_tooltip.js\"></script>";
 	return $txt;
 }
 

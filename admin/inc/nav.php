@@ -131,7 +131,7 @@ function listTypePopup(){
 </select>
 <div class=\"box_wnb_nb_input_btn_container\" onMouseOver=\"this.className='box_wnb_nb_input_btn_container-hover';\" onMouseOut=\"this.className='box_wnb_nb_input_btn_container';\">
  <div class=\"box_wnb_nb_input_btn_left\"></div>
- <div class=\"box_wnb_nb_input_btn_mid\"><input class=\"box_wnb_nb_input_btn\" type=\"submit\" value=\"Ok\"></div>
+ <div class=\"box_wnb_nb_input_btn_mid\"><input class=\"box_wnb_nb_input_btn\" type=\"submit\" value=\""._("Ok")."\"></div>
  <div class=\"box_wnb_nb_input_btn_right\"></div>
 </div></form><br></div>
 <div class=\"voider\"></div>

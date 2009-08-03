@@ -1,0 +1,19 @@
+
+Subject: Votre compte d'hébergement a expiré.
+
+Bonjour %%%FIRST_NAME%%%,
+
+Votre compte d'hébergement a expiré il y a %%%EXPIRED_DAYS%%% jours, le :
+%%%EXPIRATION_DATE%%%.
+
+Veuillez vous connecter à votre panneau de contrôle à :
+
+%%%DTC_CLIENT_URL%%%
+
+avec votre nom d'utilisateur %%%DTC_ADM_LOGIN%%%, puis cliquez sur "mon
+compte", et effectuez le renouvellement.
+
+Nous conserverons votre compte d'hébergement pendant quelques jours pour
+vous donner le temps de renouveler votre contrat.
+
+%%%SIGNATURE%%%

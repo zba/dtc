@@ -11,6 +11,18 @@ if(!checkSubdomainFormat($_REQUEST["vps_name"])){
 	die("VPS name has wrong format: dying.");
 }
 
+if( $_SERVER["SCRIPT_NAME"] != "/dtc/vm-net-all.php"){
+	require_once("authme.php");
+}else{
+	checkLoginPass($adm_login,$adm_pass);
+	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_login' AND vps_server_hostname='".$_REQUEST["vps_server_hostname"]."' AND vps_xen_name='".$_REQUEST["vps_name"]."'";
+	$r = mysql_query($q)or die();
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die( _("Access not granted line ") .__LINE__. _(" file ") .__FILE__ );
+	}
+}
+
 // Date in the past
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 
@@ -106,7 +118,7 @@ if( isset($_REQUEST["graph"]) ){
 			$plop = "STACK";
 		}
 		$color = $colors[ $i % $num_cols ];
-		$cmd .= "$plop:fullnetzero$i#$color:Network\ xen".$xen_vps_numbers[$i]." ";
+		$cmd .= "$plop:fullnetzero$i#$color:Network\ xen".substr($all_rrd_files[$i],3,2)." ";
 		$cmd .= "GPRINT:fullnet$i:'AVERAGE:%02.0lf\\j' ";
 	}
 //	echo $cmd;

@@ -4,6 +4,10 @@ $panel_type = "none";
 require_once("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
 
+if( $_SERVER["REQUEST_URI"] != "/dtc/bw_per_month.php"){
+	require_once("authme.php");
+}
+
 session_name("wallid");
 header ("Content-type: image/png");
 

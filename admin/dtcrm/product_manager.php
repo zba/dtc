@@ -8,17 +8,6 @@ function productManager(){
         	get_secpay_conf();
         }
 
-	// Build the product ID popup
-        $qp = "SELECT id FROM $pro_mysql_product_table WHERE renew_prod_id='0'";
-        $rp = mysql_query($qp)or die("Cannot query \"$qp\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-        $np = mysql_num_rows($rp);
-        $renew_id_popup = array();
-        $renew_id_popup[] = 0;
-	for($j=0;$j<$np;$j++){
-		$ap = mysql_fetch_array($rp);
-		$renew_id_popup[] = $ap["id"];
-	}
-
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
         	"title" => _("Product list editor") ." (shared)",
@@ -38,6 +27,7 @@ function productManager(){
 				),
 			"period" => array(
 				"type" => "text",
+				"help" => _("Period for the product with format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, write 0001-02-03. "),
 				"legend" => _("Period") ,
 				"size" => "10"
 				),
@@ -53,11 +43,13 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
+				"help" => _("This is the amount of money that you will give back to the affiliate account that made the sell possible."),
 				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),
 			"quota_disk" => array(
 				"type" => "text",
+				"help" => _("Hard drive space in MBytes."),
 				"legend" => _("Disk") ,
 				"size" => "4"
 				),
@@ -91,6 +83,24 @@ function productManager(){
         	);
 	$out = dtcDatagrid($dsc);
 
+	// Build the product ID popup
+        $qp = "SELECT id,name FROM $pro_mysql_product_table WHERE renew_prod_id='0' AND heb_type='vps'";
+        $rp = mysql_query($qp)or die("Cannot query \"$qp\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+        $np = mysql_num_rows($rp);
+        $renew_id_popup = array();
+        $renew_id_popup[] = 0;
+        $renew_id_replace = array();
+        $renew_id_replace[] = _("Not a renewal product");
+	for($j=0;$j<$np;$j++){
+		$ap = mysql_fetch_array($rp);
+		$renew_id_popup[] = $ap["id"];
+		if(strlen($ap["name"]) > 20){
+			$renew_id_replace[] = $ap["id"]. ": " .substr($ap["name"],0,17)."...";
+		}else{
+			$renew_id_replace[] = $ap["id"]. ": " .$ap["name"];
+		}
+	}
+
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
         	"title" => _("Product list editor") ." (VPS)",
@@ -105,9 +115,10 @@ function productManager(){
 				),
 			"renew_prod_id" => array(
 				"type" => "popup",
+				"help" => _("If you set the renewal ID, then this entry will be considered as a renewal product for the matching ID."),
 				"legend" => _("Renewal-ID") ,
 				"values" => $renew_id_popup,
-				"display_replace" => array("No-renew")
+				"display_replace" => $renew_id_replace
 				),
 			"name" => array(
 				"type" => "text",
@@ -116,6 +127,7 @@ function productManager(){
 				),
 			"period" => array(
 				"type" => "text",
+				"help" => _("Period for the product with format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, write 0001-02-03. "),
 				"legend" => _("Period") ,
 				"size" => "10"
 				),
@@ -131,21 +143,25 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
+				"help" => _("This is the amount of money that you will give back to the affiliate account that made the sell possible."),
 				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),
 			"quota_disk" => array(
 				"type" => "text",
+				"help" => _("Hard drive space in MBytes."),
 				"legend" => _("Disk") ,
 				"size" => "4"
 				),
 			"memory_size" => array(
 				"type" => "text",
+				"help" => _("Memory size in MBytes."),
 				"legend" => _("RAM") ,
 				"size" => "4"
 				),
 			"bandwidth" => array(
 				"type" => "text",
+				"help" => _("Bandwidth per month in GBytes."),
 				"legend" => _("Traffic") ,
 				"size" => "5"
 				),
@@ -158,6 +174,24 @@ function productManager(){
         		)
         	);
 	$out .= dtcDatagrid($dsc);
+
+	// Build the product ID popup
+        $qp = "SELECT id,name FROM $pro_mysql_product_table WHERE renew_prod_id='0' AND heb_type='server'";
+        $rp = mysql_query($qp)or die("Cannot query \"$qp\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+        $np = mysql_num_rows($rp);
+        $renew_id_popup = array();
+        $renew_id_popup[] = 0;
+        $renew_id_replace = array();
+        $renew_id_replace[] = _("Not a renewal product");
+	for($j=0;$j<$np;$j++){
+		$ap = mysql_fetch_array($rp);
+		$renew_id_popup[] = $ap["id"];
+		if(strlen($ap["name"]) > 20){
+			$renew_id_replace[] = $ap["id"]. ": " .substr($ap["name"],0,17)."...";
+		}else{
+			$renew_id_replace[] = $ap["id"]. ": " .$ap["name"];
+		}
+	}
 
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
@@ -173,9 +207,10 @@ function productManager(){
 				),
 			"renew_prod_id" => array(
 				"type" => "popup",
+				"help" => _("If you set the renewal ID, then this entry will be considered as a renewal product for the matching ID."),
 				"legend" => _("Renewal-ID") ,
 				"values" => $renew_id_popup,
-				"display_replace" => array("No-renew")
+				"display_replace" => $renew_id_replace
 				),
 			"name" => array(
 				"type" => "text",
@@ -184,6 +219,7 @@ function productManager(){
 				),
 			"period" => array(
 				"type" => "text",
+				"help" => _("Period for the product with format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, write 0001-02-03. "),
 				"legend" => _("Period") ,
 				"size" => "10"
 				),
@@ -199,21 +235,25 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
+				"help" => _("This is the amount of money that you will give back to the affiliate account that made the sell possible."),
 				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),
 			"quota_disk" => array(
 				"type" => "text",
+				"help" => _("Hard drive space in MBytes."),
 				"legend" => _("Disk") ,
 				"size" => "4"
 				),
 			"memory_size" => array(
 				"type" => "text",
+				"help" => _("Memory size in MBytes."),
 				"legend" => "RAM",
 				"size" => "4"
 				),
 			"bandwidth" => array(
 				"type" => "text",
+				"help" => _("Bandwidth per month in GBytes."),
 				"legend" => _("Traffic") ,
 				"size" => "5"
 				),
@@ -252,6 +292,7 @@ function productManager(){
 				),
 			"period" => array(
 				"type" => "text",
+				"help" => _("Period for the product with format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, write 0001-02-03. "),
 				"legend" => _("Period") ,
 				"size" => "10"
 				),
@@ -267,6 +308,7 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
+				"help" => _("This is the amount of money that you will give back to the affiliate account that made the sell possible."),
 				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),

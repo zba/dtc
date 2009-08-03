@@ -204,6 +204,7 @@ $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 
 		if($client["is_company"] == "yes"){
 			$out .= _("Company name:") .$client["company_name"]."<br>";
+			$out .= _("VAT / GST number:") .$client["vat_num"]."<br>";
 		}
 
 		$out .= _("First name:")	.$client["christname"]."<br>";

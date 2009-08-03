@@ -228,7 +228,7 @@ installerQuestions () {
 	fi
 	# Host configuration
 	if [ -z ""${main_domain_name} ] ; then
-		main_domain_name="example.com"
+		main_domain_name=`hostname -d`
 	fi
 	echo "### YOUR SERVER CONFIGURATION ###"
 	echo ""
@@ -254,12 +254,17 @@ installerQuestions () {
 		dtc_admin_subdomain=$answer
 	fi
 
+	if [ -x /sbin/ifconfig ] ; then
+		IFCONFIG=/sbin/ifconfig
+	else
+		IFCONFIG=ifconfig
+	fi
 	if [ ""$UNIX_TYPE = "freebsd" -o ""$UNIX_TYPE = "osx" ]; then
 		echo "***FIX ME*** Installer in OS X and BSD version don't have IP addr detection yet!"
 		guessed_ip_addr=""
 	else
 		echo "Trying to guess your current IP..."
-		guessed_ip_addr=`ifconfig | head -n 2 | tail -n 1 | cut -f2 -d":" | cut -f1 -d" "`
+		guessed_ip_addr=`${IFCONFIG} | head -n 2 | tail -n 1 | cut -f2 -d":" | cut -f1 -d" "`
 	fi
 
 	# conf_use_nated_vhosts
@@ -318,8 +323,10 @@ installerQuestions () {
 		echo -n "What is your external (public) IP addresse ?: "
 		read conf_ip_addr
 	else
+		if [ -z "${conf_ip_addr}" -a -n "${guessed_ip_addr}" ] ; then
+			conf_ip_addr=${guessed_ip_addr}
+		fi
 		echo -n "What is your IP addresse ? [${conf_ip_addr}]: "
-
 		read answer
 		if [ ! -z ${answer} ] ; then
 			conf_ip_addr=${answer}
@@ -339,7 +346,7 @@ installerQuestions () {
 
 	# conf_chroot_path
 	if [ -z ""$conf_chroot_path ] ; then
-		conf_chroot_path="/var/www/chroot"
+		conf_chroot_path="/var/lib/dtc/chroot_template"
 	fi
 	echo ""
 	echo "Path where to build the chroot environment."
@@ -377,16 +384,16 @@ installerQuestions () {
 	if [ ""$UNIX_TYPE = "freebsd" -o ""$UNIX_TYPE = "osx" ]; then
 		echo "***FIX ME*** OS X and FreeBSD don't have interface detection yet!"
 	else
-		NBRLINES=`grep -v "lo:" /proc/net/dev | wc -l`
+		NBRLINES=`grep -v "lo:" /proc/net/dev | grep -v sit0 | wc -l`
 		NBRIFACE=$((${NBRLINES} - 2 ))
 		CNT=${NBRIFACE}
 		ALL_IFACES=''
 		while [ ${CNT} -gt 0 ] ; do
-			ALL_IFACES=${ALL_IFACES}' '`grep -v "lo:" /proc/net/dev | tail -n ${CNT} | cut -f 1 -d':' | gawk -F ' ' '{print $1}' | head -n 1`
+			ALL_IFACES=${ALL_IFACES}' '`grep -v "lo:" /proc/net/dev | grep -v sit0 | tail -n ${CNT} | cut -f 1 -d':' | gawk -F ' ' '{print $1}' | head -n 1`
 			CNT=$((${CNT} - 1 ))
 		done
 	fi
-	if [ -z ""$conf_eth2monitor ] ; then
+	if [ -z "$conf_eth2monitor" ] ; then
 		conf_eth2monitor=$ALL_IFACES
 	fi
 	echo ""
@@ -394,7 +401,7 @@ installerQuestions () {
 	echo "enter all the interfaces you wish to see in the total traffic."
 	echo -n 'Enter the iface you wish to monitor ['$conf_eth2monitor']: '
 	read answer
-	if [ ! -z ""$answer ]; then
+	if [ ! -z "$answer" ]; then
 		conf_eth2monitor=$answer
 	fi
 
@@ -426,21 +433,21 @@ installerQuestions () {
 	echo ""
 	echo "Choose the recpient delimiter character. This MUST match what"
 	echo "you have setup in Qmail or Postfix."
-	if [ "${conf_recipient_delim}" = "+" ] ; then
-		echo -n "MTA recipient delimiter (default +) [+/-]:"
-		read answer
-		if [ -z "$answer" ] ; then
-			conf_recipient_delim="+"
-		else
-			conf_recipient_delim="-"
-		fi
-	else
+	if [ "${conf_recipient_delim}" = "-" ] ; then
 		echo -n "MTA recipient delimiter (default -) [+/-]:"
 		read answer
 		if [ -z "$answer" ] ; then
 			conf_recipient_delim="-"
 		else
 			conf_recipient_delim="+"
+		fi
+	else
+		echo -n "MTA recipient delimiter (default +) [+/-]:"
+		read answer
+		if [ -z "$answer" ] ; then
+			conf_recipient_delim="+"
+		else
+			conf_recipient_delim="-"
 		fi
 	fi
 
@@ -460,7 +467,7 @@ installerQuestions () {
 	echo "to skip the creation of the dev null, random and urandom devices"
 	echo "durring the chroot template creation."
 	if [ ""$conf_omit_dev_mknod = "true" ] ; then
-		echo "Skip mknod? [Yn]";
+		echo -n "Skip mknod? [Yn]";
 		read answer
 		if [ -z ""$answer ] ; then
 			conf_omit_dev_mknod="true"
@@ -492,7 +499,10 @@ installerQuestions () {
 	else
 		conf_gen_ssl_cert="false"
 	fi
-	if [ ""$conf_gen_ssl_cert = "true" ] ; then
+	if [ "$conf_gen_ssl_cert" = "true" ] ; then
+		if [ -z "${conf_cert_passphrase}" ] ; then
+			conf_cert_passphrase=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
+		fi
 		echo ""
 		echo -n "Certificate pass phrase [${conf_cert_passphrase}]: "
 		read answer
@@ -545,6 +555,9 @@ installerQuestions () {
 			conf_cert_email=$answer
 		fi
 
+		if [ -z "${conf_cert_challenge_pass}" ] ; then
+			conf_cert_challenge_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
+		fi
 		echo -n "Certificate challenge pass [${conf_cert_challenge_pass}]: "
 		read answer
 		if [ ! -z ""$answer ] ; then

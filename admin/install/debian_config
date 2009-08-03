@@ -54,8 +54,7 @@ debianGetDebconfValues () {
 	db_get dtc/conf_admpass
 	conf_adm_pass=$RET
 
-	db_get dtc/conf_apache_version
-	conf_apache_version=$RET
+	conf_apache_version=2
 
 	db_get dtc/conf_gen_ssl_cert
 	conf_gen_ssl_cert=$RET
@@ -91,6 +90,7 @@ debianGetDebconfValues () {
 	conf_report_setup=$RET
 	db_unregister dtc/conf_mysqlpass
 	db_unregister dtc/conf_mysql_change_root
+	db_unregister dtc/conf_admlogin
 	db_unregister dtc/conf_admpass
 }
 
@@ -99,6 +99,9 @@ CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
 PATH_NAMED_CONF=/etc/bind/named.conf
 PATH_QMAIL_NEWU=/var/qmail/bin/qmail-newu
 PATH_QMAIL_CTRL=/etc/qmail
+PATH_HTTPD_CONF=/etc/apache2/apache2.conf
+PATH_APACHE_PID_FILE=/var/run/apache2.pid
+
 # This is needed to support Etch and newer
 if [ -f /etc/proftpd/proftpd.conf ] ; then
 	PATH_PROFTPD_CONF=/etc/proftpd/proftpd.conf

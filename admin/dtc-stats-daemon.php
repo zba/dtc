@@ -78,50 +78,40 @@ Who's up to the challenge?
 
 */
 
-
+// cd to /usr/share/dtc/admin so we can do the includes later on
 chdir(dirname(__FILE__));
+if (!is_file("../shared/autoSQLconfig.php")) { chdir("../share/dtc/admin"); }
 
 $panel_type="cronjob";
 require("../shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
 
-// Daemon for pulling stats from dtc-xen servers
-// Damien Mascord <damien@gplhost.com>
-
-// setup syslog params
-define_syslog_variables();
-// open syslog, include the process ID and also send
-// the log to standard error, and use a user defined
-// logging mechanism
-openlog("dtc-stats-daemon", LOG_PID | LOG_PERROR, LOG_LOCAL0);
-
-/**
- * Run the current script as a daemon.  Used mostly (always?) for command line scripts.
- *
- * @author      Matt Curry <matt@mcurry.net>
- * @version     1.0.0
- */
- 
 function daemonize() {
-   $child = pcntl_fork();
-   if($child) {
-       exit; // kill parent
-   }
-   posix_setsid(); // become session leader
-   chdir("/");
-   umask(0); // clear umask
-   return posix_getpid();
+	$child = pcntl_fork();
+	if($child) {
+		exit(0); // kill parent
+	}
+	posix_setsid(); // become session leader
+	umask(0); // clear umask
+	return posix_getpid();
 }
 
 // daemonize the process so it's sits in the background
-// daemonize();
+// we don't do it in Debian since there, we use start-stop-daemon that does all the job
+if( !file_exists("/etc/debian_version")){
+	$pid = daemonize();
+	$fp = fopen("/var/run/dtc-stats-daemon.pid","w");
+	fwrite($fp,$pid."\n");
+	fclose($fp);
+}
 
+$log_fp = fopen("/var/log/dtc-stats-daemon.log","a+");
 
 error_reporting(E_ALL);
 
-$conf_time_delay_in_seconds=60;
+$conf_time_delay_in_seconds=62;
 
-syslog(LOG_INFO, "dtc-stats-daemon starting up...");
+fwrite($log_fp, date("Y-m-d H:m:i")." dtc-stats-daemon starting up...\n");
 
 $last_loop = 0;
 // loop until we want to shutdown... 
@@ -133,22 +123,32 @@ while (!$shutdown){
 		// if the time elapsed is less than 10 minutes, sleep until it is
 		if ($time_elapsed_since_last_run < $conf_time_delay_in_seconds){
 			$time_to_sleep = $conf_time_delay_in_seconds - $time_elapsed_since_last_run;
-			echo "Time since last run $time_elapsed_since_last_run seconds: sleeping for " . $time_to_sleep . " seconds...\n";
+			fwrite($log_fp, date("Y-m-d H:m:i")." Time since last run $time_elapsed_since_last_run seconds: sleeping for " . $time_to_sleep . " seconds...\n");
 			sleep ($time_to_sleep);
 		}else{
-			echo "Less than one minute since last run: will continue without sleeping...\n";
+			fwrite($log_fp, date("Y-m-d H:m:i")." Less than one minute since last run: will continue without sleeping...\n");
 		}
 	}
 	$last_loop = time();
 
 	if (!mysql_ping()) {
-	    echo 'Lost connection to DB!';
-            syslog(LOG_WARNING, "Lost connection to DB! Will retry later...");
-	    continue;
+		fwrite($log_fp, date("Y-m-d H:m:i")." Lost connection to DB! Trying to reconnect...\n");
+		$ressource_id = mysql_connect($conf_mysql_host, $conf_mysql_login, $conf_mysql_pass);
+		if($ressource_id === FALSE){
+			fwrite($log_fp, date("Y-m-d H:m:i")." ".mysql_error()."\n");
+			continue;
+		}else{
+			fwrite($log_fp, date("Y-m-d H:m:i")." Reconnect successful!\n");
+			$ressource_db = mysql_select_db($conf_mysql_db);
+			if($ressource_db === FALSE){
+				fwrite($log_fp, date("Y-m-d H:m:i")." ".mysql_error()."\n");
+			}
+		}
 	}
 
 	$vps_query = "SELECT * FROM $pro_mysql_vps_server_table;";
 	if( ($vps_servers_result = mysql_query($vps_query)) === FALSE){
+		fwrite($log_fp, date("Y-m-d H:m:i")." ".mysql_error()."\n");
 		continue;
 	}
 	//die("Cannot query $query !!!".mysql_error());
@@ -160,12 +160,12 @@ while (!$shutdown){
 		$vps_servers_row = mysql_fetch_array($vps_servers_result);
 		$vps_server = $vps_servers_row['hostname'];
 
-		echo "Fetching stats from server $i/$vps_servers_num_rows: $vps_server...";
+		fwrite($log_fp, date("Y-m-d H:m:i")." Fetching stats from server $i/$vps_servers_num_rows: $vps_server...\n");
 		$soap_client = connectToVPSServer($vps_server);
 		$r = $soap_client->call("getCollectedPerformanceData",array("count" => 256),"","","");
 		$err = $soap_client->getError();
 		if ($err) {
-			echo $err;
+			fwrite($log_fp, date("Y-m-d H:m:i")." ".$err);
 			break;
 		}
 		//
@@ -177,14 +177,14 @@ while (!$shutdown){
 			mkdir("/var/lib/dtc/dtc-xenservers-rrds/$vps_server",0755);
 		}
 		if( !is_array($r) ){
-			echo "No data in this fetch!\n";
+			fwrite($log_fp, date("Y-m-d H:m:i")." No data in this fetch!\n");
 			break;
 		}
 
 		// Records are ordered by timestamps, we need something ordered by VPS name,
 		// so we do the maths...
 		$num_records = sizeof($r);
-		echo "now ordering $num_records record(s)...";
+		fwrite($log_fp, date("Y-m-d H:m:i")." Now ordering $num_records record(s)...\n");
 		for($rec=0;$rec<$num_records;$rec++){
 			$cur = $r[$rec];
 			// If there is no VPS running, then $cur is not an array: we have to test that!
@@ -201,7 +201,7 @@ while (!$shutdown){
 		// Now for each VPS, let's record all data collected
 		$num_vps = sizeof($all_recs);
 		$keys = array_keys($all_recs);
-		echo "$num_vps VPS...";
+		fwrite($log_fp, date("Y-m-d H:m:i")." $num_vps VPS...");
 		for($vps=0;$vps<$num_vps;$vps++){
 			$vps_name = $keys[$vps];
 			$vps_number = substr($vps_name,3);
@@ -316,10 +316,12 @@ WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='x
 				//die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			}
 		}
-		echo "recorded\n";
+		fwrite($log_fp, " recorded\n");
 	}
 	mysql_free_result($vps_servers_result);
 }
-syslog(LOG_INFO, "dtc-stats-daemon shutting down...");
+fclose($log_fp);
+fwrite($log_fp, date("Y-m-d H:m:i")." dtc-stats-daemon shutting down...\n");
+unlink("/var/run/dtc-stats-daemon.pid");
 
 ?> 
