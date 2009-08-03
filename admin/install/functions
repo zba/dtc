@@ -2472,6 +2472,7 @@ smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
 			if [ -x /usr/bin/tumgreyspf -o -x ${LOCALBASE}/bin/tumgreyspf ] ; then
 				echo "smtpd_sender_restrictions = permit_mynetworks,
 				permit_sasl_authenticated,
+				reject_unauth_destination,
 				check_policy_service unix:private/tumgreyspf,
 				permit
 " >> $TMP_FILE
