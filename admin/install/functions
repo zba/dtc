@@ -4040,9 +4040,16 @@ createChrootTemplate () {
 		cp -pf /lib/sftp-server lib/
 	fi
 
+	# Debian location for the sftp-server
 	if [ -e /usr/lib/openssh/sftp-server ] ; then
 		mkdir -p usr/lib/openssh
 		cp -pf /usr/lib/openssh/sftp-server usr/lib/openssh
+	fi
+
+	# CentOS location
+	if [ -e /usr/libexec/openssh/sftp-server ] ; then
+		mkdir -p usr/libexec/openssh
+		cp -pf /usr/libexec/openssh/sftp-server usr/libexec/openssh
 	fi
 
 	if [ -e /usr/bin/scp ] ; then
@@ -4164,6 +4171,26 @@ createChrootTemplate () {
 					ln -s lib lib64
 				fi
 			fi
+			# Some libs for CentOS
+			if [ -e /lib/libdl.so.2 ] ; then
+				cp -pf /lib/libdl.so.2 lib
+			fi
+			if [ -e /lib64/libdl.so.2 ] ; then
+				cp -pf /lib64/libdl.so.2 lib
+			fi
+			if [ -e /lib/libc.so.6 ] ; then
+				cp -pf /lib/libc.so.6 lib
+			fi
+			if [ -e /lib64/libc.so.6 ] ; then
+				cp -pf /lib64/libc.so.6 lib
+			fi
+			if [ -e /lib/libtermcap.so.2 ] ; then
+				cp -pf /lib/libtermcap.so.2 lib
+			fi
+			if [ -e /lib64/libtermcap.so.2 ] ; then
+				cp -pf /lib64/libtermcap.so.2 lib
+			fi
+
 			if [ -e /lib/ld-linux.so.2 ] ; then
 				cp -pf /lib/ld-linux.so.2 lib/
 			fi
