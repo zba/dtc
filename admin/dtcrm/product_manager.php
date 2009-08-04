@@ -71,6 +71,7 @@ function productManager(){
 			"allow_add_domain" => array(
 				"type" => "popup",
 				"legend" => _("Add domain") ,
+				"help" => _("If set to yes, the the admin can add a domain, if set to check, then it will go through moderation, set to no, no domain addition to account is possible by the admin."),
 				"values" => array("check","no","yes")
 				),
 			"private" => array(
@@ -285,6 +286,7 @@ function productManager(){
 			"renew_prod_id" => array(
 				"type" => "popup",
 				"legend" => _("Renewal-ID") ,
+				"help" => _("There must be ONLY ONE SSL product at any time, with only ONE renewal product."),
 				"values" => $renew_id_popup,
 				"display_replace" => array("No-renew")
 				),
