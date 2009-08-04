@@ -71,11 +71,13 @@ function productManager(){
 			"allow_add_domain" => array(
 				"type" => "popup",
 				"legend" => _("Add domain") ,
+				"help" => _("If set to yes, the the admin can add a domain, if set to check, then it will go through moderation, set to no, no domain addition to account is possible by the admin."),
 				"values" => array("check","no","yes")
 				),
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
+				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
@@ -161,13 +163,14 @@ function productManager(){
 				),
 			"bandwidth" => array(
 				"type" => "text",
-				"help" => _("Bandwidth per month in GBytes."),
+				"help" => _("Bandwidth per month in MBytes."),
 				"legend" => _("Traffic") ,
 				"size" => "5"
 				),
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
+				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
@@ -260,6 +263,7 @@ function productManager(){
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
+				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
@@ -282,6 +286,7 @@ function productManager(){
 			"renew_prod_id" => array(
 				"type" => "popup",
 				"legend" => _("Renewal-ID") ,
+				"help" => _("There must be ONLY ONE SSL product at any time, with only ONE renewal product."),
 				"values" => $renew_id_popup,
 				"display_replace" => array("No-renew")
 				),
@@ -315,6 +320,7 @@ function productManager(){
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
+				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")

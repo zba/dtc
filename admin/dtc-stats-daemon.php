@@ -133,6 +133,7 @@ while (!$shutdown){
 
 	if (!mysql_ping()) {
 		fwrite($log_fp, date("Y-m-d H:m:i")." Lost connection to DB! Trying to reconnect...\n");
+		mysql_close();
 		$ressource_id = mysql_connect($conf_mysql_host, $conf_mysql_login, $conf_mysql_pass);
 		if($ressource_id === FALSE){
 			fwrite($log_fp, date("Y-m-d H:m:i")." ".mysql_error()."\n");
