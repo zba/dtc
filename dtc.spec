@@ -1,6 +1,6 @@
 Name: dtc
 Version: 0.30.4
-Release: 0.4.20090802
+Release: 0.4.20090804
 License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
@@ -150,6 +150,9 @@ fi
 mkdir %{_var}/lib/dtc/dtc-xenservers-rrds
 
 %changelog
+* Tue Aug 04 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090804
+- Fixed the dtc-stats-daemon last issues
+
 * Sun Aug 02 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090802
 - Fixed the dtc-stats-daemon init.d script and daemon
 
