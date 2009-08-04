@@ -140,6 +140,7 @@ fi
 %files postfix-courier
 %files stats-daemon
 %config %{_initrddir}/dtc-stats-daemon
+%config %{_sysconfdir}/logrotate.d/dtc-stats-daemon
 %{_sbindir}/dtc-stats-daemon
 %files dos-firewall
 %config(noreplace) %{_sysconfdir}/dtc/dtc-dos-firewall.conf

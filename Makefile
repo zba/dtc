@@ -359,7 +359,7 @@ install-dtc-stats-daemon:
 	else \
 		$(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) admin/dtc-stats-daemon.php $(APP_INST_DIR)/admin/dtc-stats-daemon.php ; \
 	fi
-	
+	$(INSTALL) -m 0644 etc/logrotate.d/dtc-stats-daemon $(DESTDIR)$(CONFIG_DIR)/logrotate.d/dtc-stats-daemon
 
 install-dtc-dos-firewall:
 	$(INSTALL) -m 0644 etc/dtc/dtc-dos-firewall.conf $(DESTDIR)$(CONFIG_DIR)/dtc/dtc-dos-firewall.conf
