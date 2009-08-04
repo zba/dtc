@@ -76,6 +76,7 @@ function productManager(){
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
+				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
@@ -161,13 +162,14 @@ function productManager(){
 				),
 			"bandwidth" => array(
 				"type" => "text",
-				"help" => _("Bandwidth per month in GBytes."),
+				"help" => _("Bandwidth per month in MBytes."),
 				"legend" => _("Traffic") ,
 				"size" => "5"
 				),
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
+				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
@@ -260,6 +262,7 @@ function productManager(){
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
+				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
@@ -315,6 +318,7 @@ function productManager(){
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
+				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")

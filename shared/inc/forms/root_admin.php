@@ -479,6 +479,7 @@ function drawDomainConfig($admin){
 				"start_date" => array(
 					"type" => "text",
 					"size" => "10",
+					"help" => _("Format: YYYY-MM-DD."),
 					"legend" => _("Registration") ),
 				"expire_date" => array(
 					"type" => "text",
@@ -498,7 +499,8 @@ function drawDomainConfig($admin){
 				"bandwidth_per_month_gb" => array(
 					"type" => "text",
 					"size" => "5",
-					"legend" => _("Bandwidth per month in GBytes.") ),
+					"help" => _("Bandwidth per month in MBytes."),
+					"legend" => _("Bandwidth") ),
 				"product_id" => array(
 					"type" => "popup",
 					"legend" => _("Product ID") ,
