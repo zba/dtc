@@ -610,6 +610,9 @@ AND $pro_mysql_admin_table.id_client != '0'";
 					$vhost_file .= "	SSLEngine on
 	SSLCertificateFile ".$conf_generated_file_path."/ssl/new.cert.cert
 	SSLCertificateKeyFile ".$conf_generated_file_path."/ssl/new.cert.key\n";
+					if (file_exists($conf_generated_file_path."/ssl/new.cert.ca")) {
+						$vhost_file .= "	SSLCertificateChainFile ".$conf_generated_file_path."/ssl/new.cert.ca\n";
+					}
 				}
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
@@ -781,6 +784,9 @@ AND $pro_mysql_admin_table.id_client != '0'";
 							$vhost_file .= "	SSLEngine on\n";
 							$vhost_file .= "	SSLCertificateFile $ssl_cert_folder_path/".$web_subname.".".$domain_to_get.".cert.cert\n";
 							$vhost_file .= "	SSLCertificateKeyFile $ssl_cert_folder_path/".$web_subname.".".$domain_to_get.".cert.key\n";
+		                                        if (file_exists("$ssl_cert_folder_path/".$web_subname.".".$domain_to_get.".cert.ca")) {
+                		                                $vhost_file .= "        SSLCertificateChainFile $ssl_cert_folder_path/".$web_subname.".".$domain_to_get.".cert.ca\n";
+                                		        }
 							break;
 						}
 						$vhost_file .= "	ServerName $web_subname.$web_name

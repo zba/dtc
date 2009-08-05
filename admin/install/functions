@@ -1538,6 +1538,7 @@ generateOpenSSLApacheCert () {
 					openssl rsa -passin file:$CERTPASS_TMP_FILE -in privkey.pem -out new.cert.key
 					openssl x509 -in new.cert.csr -out new.cert.cert -req -signkey new.cert.key -days 3650
 					rm $CERTPASS_TMP_FILE
+					echo "To make use of certificate chains as described in http://www.modssl.org/docs/2.8/ssl_reference.html#ToC12, place the chain certificate file into this directory and name it new.cert.ca. It will then be included through a SSLCertificateChainFile directive." >certificate-chain-file.readme 
 					# Copy the certificates to make them available for qmail
 					if [ -d /var/qmail/control ] ; then
 						if ! [ -e /var/qmail/control/servercert.pem ] ; then
