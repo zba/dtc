@@ -152,6 +152,7 @@ mkdir %{_var}/lib/dtc/dtc-xenservers-rrds
 %changelog
 * Thu Aug 06 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090806
 - Fixed the setup of pure-ftpd
+- Added inet_interfaces = all in postfix main.cf
 
 * Tue Aug 04 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090804
 - Fixed the dtc-stats-daemon last issues
