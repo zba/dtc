@@ -216,8 +216,11 @@ searchDebianVersion () {
 
 searchPATH_PHP_INI_APACHE () {
 	echoIfVerbose "-> Searching for php.ini for the apache $conf_apache_version module and php ${PHPMAJOR}"
+	# If already set, don't do anything
+	if [ -f "${PATH_PHP_INI_APACHE}" ] ; then
+		echo -n ""
 	# This one is for slackware
-	if [ -f "$PATH_PHP_INI" ] ; then
+	elif [ -f "$PATH_PHP_INI" ] ; then
 		PATH_PHP_INI_APACHE=$PATH_PHP_INI
 	# This one is for FreeBSD
 	elif [ -f /usr/local/etc/php.ini ] ; then

@@ -101,6 +101,8 @@ PATH_QMAIL_NEWU=/var/qmail/bin/qmail-newu
 PATH_QMAIL_CTRL=/etc/qmail
 PATH_HTTPD_CONF=/etc/apache2/apache2.conf
 PATH_APACHE_PID_FILE=/var/run/apache2.pid
+conf_apache_version=2
+PATH_PHP_INI_APACHE=/etc/php5/apache2/php.ini
 
 # This is needed to support Etch and newer
 if [ -f /etc/proftpd/proftpd.conf ] ; then
