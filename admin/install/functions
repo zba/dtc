@@ -3081,10 +3081,11 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 		/usr/local/etc/rc.d/pure-ftpd start
 	elif [ "$UNIX_TYPE" = "redhat" -a ""$conf_ftp_type = "pureftpd" ] ; then
 		TMP_FILE=`${MKTEMP} DTC_pure-ftpd.conf.XXXXXX` || exit 1
-		grep -v MySQLConfigFile ${PATH_PUREFTPD_CONF} >${TMP_FILE}
+		grep -v MySQLConfigFile ${PATH_PUREFTPD_CONF} | grep -v MinUID >${TMP_FILE}
 		cat <${TMP_FILE} >${PATH_PUREFTPD_CONF}
 		rm -f ${TMP_FILE}
-		echo "MySQLConfigFile /etc/pure-ftpd/pureftpd-mysql-dtc.conf"
+		echo "MySQLConfigFile /etc/pure-ftpd/pureftpd-mysql-dtc.conf" >>${PATH_PUREFTPD_CONF}
+		echo "MinUID 100" >>${PATH_PUREFTPD_CONF}
 	else	
 		PURE_FTPD_ETC="/etc/pure-ftpd"
 		if [ -e $PURE_FTPD_ETC ] ; then
