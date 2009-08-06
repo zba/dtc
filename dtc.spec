@@ -1,6 +1,6 @@
 Name: dtc
 Version: 0.30.4
-Release: 0.4.20090804
+Release: 0.4.20090806
 License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
@@ -150,6 +150,9 @@ fi
 mkdir %{_var}/lib/dtc/dtc-xenservers-rrds
 
 %changelog
+* Thu Aug 06 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090806
+- Fixed the setup of pure-ftpd
+
 * Tue Aug 04 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090804
 - Fixed the dtc-stats-daemon last issues
 
