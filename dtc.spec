@@ -49,7 +49,7 @@ This package contains only strictly needed.
 %package postfix-courier
 Summary: web control panel for admin and accounting hosting services (more depends)
 Group: System Environment/Daemons
-Requires: maildrop, dtc, awstats, courier-authlib-userdb, courier-authlib-mysql, courier-imap, dkimproxy, mysql-server, bind, mlmmj, pure-ftpd, webalizer, amavisd-new, postfix, spamassassin, clamav, clamav-db, clamd, fetchmail, perl-Net-Whois, phpmyadmin, php-mcrypt, dtc-dos-firewall
+Requires: squirrelmail, maildrop, dtc, awstats, courier-authlib-userdb, courier-authlib-mysql, courier-imap, dkimproxy, mysql-server, bind, mlmmj, pure-ftpd, webalizer, amavisd-new, postfix, spamassassin, clamav, clamav-db, clamd, fetchmail, perl-Net-Whois, phpmyadmin, php-mcrypt, dtc-dos-firewall
 %description postfix-courier
 Domain Technologie Control (DTC) is a control panel aiming at commercial
 hosting. Using a web GUI for the administration and accounting all hosting
