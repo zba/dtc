@@ -17,9 +17,13 @@ else
 	fi
 fi
 
-$RRDTOOL create $DTC_ETC/stat_total_active_prods.rrd --step 86400 \
-	DS:shared:GAUGE:172800:0:U \
-	DS:vps:GAUGE:172800:0:U \
-	DS:dedicated:GAUGE:172800:0:U \
-	RRA:AVERAGE:0.5:1:365 \
-	RRA:AVERAGE:0.5:365:3650
+$RRDTOOL create $DTC_ETC/stat_total_active_prods.rrd --step 60 \
+	DS:shared:GAUGE:900:0:67108864 \
+	DS:vps:GAUGE:900:0:67108864 \
+	DS:dedicated:GAUGE:900:0:67108864 \
+	RRA:AVERAGE:0.5:1:20160 \
+	RRA:AVERAGE:0.5:30:2016 \
+	RRA:AVERAGE:0.5:60:105120 \
+	RRA:MAX:0.5:1:1440 \
+	RRA:MAX:0.5:30:2016 \
+	RRA:MAX:0.5:60:105120

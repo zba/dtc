@@ -1342,7 +1342,7 @@ createApacheAdminProtectedDir () {
 	allow from all
 </FilesMatch>
 
-<Files (index.php|bw_per_month.php|deamons_state.php|vm-cpu.php|vm-net-all.php|vps_stats_hdd.php|cpugraph.php|logPushlet.php|memgraph.php|view_waitingusers.php|vm-io-all.php|vm-net.php|vps_stats_network.php|mailgraph.php|netusegraph.php|stat_total_active_prods.php|vm-cpu-all.php|vm-io.php|vps_stats_cpu.php|vps_stats_swap.php)>
+<Files (index.php|bw_per_month.php|deamons_state.php|vm-cpu.php|vm-net-all.php|vps_stats_hdd.php|cpugraph.php|logPushlet.php|memgraph.php|view_waitingusers.php|vm-io-all.php|vm-net.php|vps_stats_network.php|mailgraph.php|netusegraph.php|active_prods_graph.php|vm-cpu-all.php|vm-io.php|vps_stats_cpu.php|vps_stats_swap.php)>
 	Order allow,deny
 	allow from all
 </Files>
@@ -3884,7 +3884,7 @@ nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 				echo "*    * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
 				echo "34   2 * * * ${CONF_DTC_SYSTEM_USERNAME} cd /usr/share/dtc/admin && /usr/bin/php stat_total_active_prods.php 2>&1 >> /var/log/dtc.log" >> $TMP_FILE
 				echo "9    3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
-
+				echo "*    * * * * dtc  [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php stat_total_active_prods.php 2>&1 >> /var/log/dtc.log" >> $TMP_FILE
 				cat < $TMP_FILE >>$PATH_CRONTAB_CONF
 				rm $TMP_FILE
 			fi

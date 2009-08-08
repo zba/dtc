@@ -635,11 +635,14 @@ function drawRenewalTables (){
 		}
 		$p_history .= "</table>";
 
+		$p_active_prods = "<img src=\"active_prods_graph.php?graph=year\"><br>
+<img src=\"active_prods_graph.php?graph=month\">";
 
 		// Layout the recuring stat and the effective payment statistics
-		$out .= "<table cellspacing=\"1\" cellpadding=\"4\" border=\"0\">
-		<tr><td>$p_history</td>
-		<td valign=\"top\">$p_renewal</td></tr></table>";
+		$out .= "<table cellspacing=\"1\" cellpadding=\"4\" border=\"0\" width=\"100%\">
+		<tr valign=\"top\"><td valign=\"top\" width=\"50%\">$p_history</td>
+		<td valign=\"top\">$p_renewal</td>
+		<td valign=\"top\">$p_active_prods</td></tr></table>";
 
 		$out .= "<h3>". _("Shared hosting renewals:") ."</h3>";
 		$q = "SELECT * FROM $pro_mysql_admin_table WHERE expire < '".date("Y-m-d")."' AND id_client!='0' AND expire !='0000-00-00' ORDER BY expire;";
