@@ -2230,6 +2230,13 @@ OPTIONS=\"-r -c -m /var/spool/postfix/var/run/saslauthd\"" >> $TMP_FILE
 			echo "if you plan to use sasl_mysql just ignore this";
 		fi
 	fi
+	# Fixes broken link of the sasldb2
+	if ! [ -f /etc/sasldb2 ] ; then
+		if [ -h /etc/sasldb2 ] ; then
+			rm /etc/sasldb2
+		fi
+		ln -s ${PATH_DTC_ETC}/sasldb2 /etc/sasldb2
+	fi
 }
 
 modifyPostfixConfig () {
@@ -5045,7 +5052,6 @@ DTCsetupDaemons () {
 	changeApacheUserAndGroup
 	modifyHTTPD_CONF
 	modifyETC_CONFD_APACHE2
-	modifyCyrusImapdConf
 	modifyNamedConf
 	linkQmailFilesToGenerated
 	setupAmavisConf
@@ -5053,6 +5059,7 @@ DTCsetupDaemons () {
 	modifyCyrusPath
 	modifySaslStartAndSaslStartup
 	modifyPostfixConfig
+	modifyCyrusImapdConf
 	prepareMlmmjSpool
 	modifyCourierConfig
 	modifyDovecotConfig
