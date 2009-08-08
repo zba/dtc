@@ -1,6 +1,6 @@
 Name: dtc
 Version: 0.30.4
-Release: 0.4.20090806
+Release: 0.4.20090808
 License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
@@ -150,6 +150,10 @@ fi
 mkdir %{_var}/lib/dtc/dtc-xenservers-rrds
 
 %changelog
+* Sat Aug 08 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090808
+- Fixed the sasldb2 link
+- Fixed the restart of dkimproxy in the cron.php
+
 * Thu Aug 06 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090806
 - Fixed the setup of pure-ftpd
 - Added inet_interfaces = all in postfix main.cf
