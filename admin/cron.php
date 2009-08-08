@@ -493,7 +493,9 @@ function cronMailSystem () {
 
 			if( file_exists ("/etc/init.d/dkimproxy") ){
 				echo "Reloading dkfilter to reload it's domains...\n";
-				system("/etc/init.d/dkimproxy force-reload");
+				system("/etc/init.d/dkimproxy stop");
+				sleep(1);
+				system("/etc/init.d/dkimproxy start");
 			}
 			
 			echo "Starting postfix queue...\n";
