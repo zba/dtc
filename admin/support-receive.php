@@ -31,7 +31,7 @@ while($line = fgets($fp, 4096) ){
 $DEBUG_ME = 0;
 if($DEBUG_ME == 1){
 	mkdir("/tmp/support/");
-	$debug_fp = fopen("/tmp/support/".date('Y-m-d')."_".date('H-m-i')."_".getRandomValue().".txt","r+");
+	$debug_fp = fopen("/tmp/support/".date('Y-m-d')."_".date('H-m-i')."_".getRandomValue().".txt","w+");
 	fwrite($debug_fp,$msg);
 	fclose($debug_fp);
 }
