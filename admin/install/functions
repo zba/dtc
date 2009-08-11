@@ -2303,6 +2303,9 @@ parent_domain_matches_subdomains=
 # Bind on all interfaces by default (needed on CentOS)
 inet_interfaces = all
 
+# Sets the sasldb2 path
+smtpd_sasl_path=$PATH_DTC_ETC/sasldb2
+
 # disable mailbox size limit by default (user can add to postfix_config_snippets)
 mailbox_size_limit = 0
 " >> $TMP_FILE
