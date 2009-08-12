@@ -38,33 +38,33 @@ if(isset($_REQUEST["new_dns_and_mx_config"]) && $_REQUEST["new_dns_and_mx_config
 		$new_dns_6 = $new_dns_6 = "";
 	}
 
-	if(isset($_REQUEST["new_mx_1"]) && isHostnameOrIP( str_to_lower($_REQUEST["new_mx_1"]) )){
-		$new_mx_1 = str_to_lower($_REQUEST["new_mx_1"]);
+	if(isset($_REQUEST["new_mx_1"]) && isHostnameOrIP( strtolower($_REQUEST["new_mx_1"]) )){
+		$new_mx_1 = strtolower($_REQUEST["new_mx_1"]);
 	}else{
 		$new_mx_1 = "default";
 	}
-	if(isset($_REQUEST["new_mx_2"]) && isHostnameOrIP( str_to_lower($_REQUEST["new_mx_2"]) )){
-		$new_mx_2 = str_to_lower($_REQUEST["new_mx_2"]);
+	if(isset($_REQUEST["new_mx_2"]) && isHostnameOrIP( strtolower($_REQUEST["new_mx_2"]) )){
+		$new_mx_2 = strtolower($_REQUEST["new_mx_2"]);
 	}else{
 		$new_mx_2 = "default";
 	}
-	if(isset($_REQUEST["new_mx_3"]) && isHostnameOrIP( str_to_lower($_REQUEST["new_mx_3"]) )){
-		$new_mx_3 = str_to_lower($_REQUEST["new_mx_3"]) ;
+	if(isset($_REQUEST["new_mx_3"]) && isHostnameOrIP( strtolower($_REQUEST["new_mx_3"]) )){
+		$new_mx_3 = strtolower($_REQUEST["new_mx_3"]) ;
 	}else{
 		$new_mx_3 = "";
 	}
-	if(isset($_REQUEST["new_mx_4"]) && isHostnameOrIP( str_to_lower($_REQUEST["new_mx_4"]) )){
-		$new_mx_4 = str_to_lower($_REQUEST["new_mx_4"]);
+	if(isset($_REQUEST["new_mx_4"]) && isHostnameOrIP( strtolower($_REQUEST["new_mx_4"]) )){
+		$new_mx_4 = strtolower($_REQUEST["new_mx_4"]);
 	}else{
 		$new_mx_4 = "";
 	}
-	if(isset($_REQUEST["new_mx_5"]) && isHostnameOrIP( str_to_lower($_REQUEST["new_mx_5"]) )){
-		$new_mx_5 = str_to_lower($_REQUEST["new_mx_5"]);
+	if(isset($_REQUEST["new_mx_5"]) && isHostnameOrIP( strtolower($_REQUEST["new_mx_5"]) )){
+		$new_mx_5 = strtolower($_REQUEST["new_mx_5"]);
 	}else{
 		$new_mx_5 = "";
 	}
-	if(isset($_REQUEST["new_mx_6"]) && isHostnameOrIP( str_to_lower($_REQUEST["new_mx_6"]) )){
-		$new_mx_6 = str_to_lower($_REQUEST["new_mx_6"]);
+	if(isset($_REQUEST["new_mx_6"]) && isHostnameOrIP( strtolower($_REQUEST["new_mx_6"]) )){
+		$new_mx_6 = strtolower($_REQUEST["new_mx_6"]);
 	}else{
 		$new_mx_6 = "";
 	}
