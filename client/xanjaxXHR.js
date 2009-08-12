@@ -32,7 +32,8 @@ function logPushlet(url,JSONtext,xml){
  var list=objfyJSON(JSONtext);
  if (list.callSID)
 	xanGet(logPushlet,ajaxPath+ajaxAuth+list.callSID);
- document.getElementById('reinstall_os_log').lastChild.data=list.lastlog.replace(/\n\n/g,"\n\r");
+var data = list.lastlog.replace(/\n\n/g,"\n\r").replace(/&/g,"&amp;").replace(/>/g,"&gt;").replace(/</g,"&lt;");
+ document.getElementById('reinstall_os_log').lastChild.data=data;
 } // FIXME can remove "replace()" if no double linefeeds
 
 function xanjaxHttpRequest(reqHandler){
