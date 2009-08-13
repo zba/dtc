@@ -517,7 +517,7 @@ dtcGenDebianLocales () {
 		debianSetLocale zh_CN
 		debianSetLocale zh_TW
 		debianSetLocale pl_PL
-		debianSetLocale se_NO
+		debianSetLocale sv_SE
 		debianSetLocale sr_RS
 		debianSetLocale pt_PT
 		debianSetLocale pt_BR
