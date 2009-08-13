@@ -982,3 +982,10 @@ html body .c_back {
 	-opera-border-radius: 9px;
 	border: 1px solid #e8e8e8;
 }
+
+/* required so log lines not spaced or inset*/
+#reinstall_os_log {
+	overflow: scroll;
+	width: 40em;
+	height: 30em;
+}
