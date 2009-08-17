@@ -1,0 +1,18 @@
+
+Ämne: Ditt delade hosting konto har löpt ut
+
+Hej %%%FIRST_NAME%%%,
+
+Ditt delade hosting konto har löpt ut för %%%EXPIRED_DAYS%%% dagar sen, den:
+%%%EXPIRATION_DATE%%%.
+
+Var god logga in på din kontrollpanel på:
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login %%%DTC_ADM_LOGIN%%%, klicka på "mitt konto", och förnya det.
+
+Vi kommer att hålla ditt delade konto aktivt ett par dagar för att ge dig tid att
+förnya ditt abonnemang.
+
+%%%SIGNATURE%%%

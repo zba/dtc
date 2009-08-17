@@ -1,0 +1,19 @@
+
+Ämne: Ditt konto för delad hosting upphör idag
+
+Hej %%%FIRST_NAME%%%,
+
+Ditt konto för delad hosting upphör idag, den:
+
+%%%EXPIRATION_DATE%%%
+
+Var god logga in på din kontrollpanel på
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login %%%DTC_ADM_LOGIN%%%, klicka sedan på mitt konto fliken, och
+förnya det.
+Vi kommer att hålla ditt hosting konto aktivt ett par dagar för att ge dig tid 
+för att förnya ditt abonnemang. Efter denna period kommer din server att stängas ner.
+
+%%%SIGNATURE%%%

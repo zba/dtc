@@ -1,0 +1,11 @@
+Din beställning av dedikerad server är nu validerad. Notera att det är
+en viss leveranstid för dedikerade servrar. Vill du veta hur länge det
+tar innan din server är online ber vi dig kontakta oss.
+
+Från och med nu kan du logga in i din kontrollpanel för att förnya
+ditt avtal, eller skicka supportärenden. Här är inloggningsinformation
+som du behöver:
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%%

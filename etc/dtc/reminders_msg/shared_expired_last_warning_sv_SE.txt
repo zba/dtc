@@ -1,0 +1,21 @@
+
+Ämne: Sista påminnelsen innan borttagning av ditt hosting konto
+
+Hej %%%FIRST_NAME%%%,
+
+Ditt konto för delad hosting har löpt ut för %%%EXPIRED_DAYS%%% dagar sedan, den:
+%%%EXPIRATION_DATE%%%.
+
+Var god logga in på din kontrollpanel på:
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login %%%DTC_ADM_LOGIN%%%, klicka på mitt konto fliken, och 
+förnya den.
+
+Detta är den sista påminnelsen innan vi stänger av ditt konto för delad hosting. 
+Vi ber dig att ha förståelse för att vi inte kan fortsätta att drifta din server då 
+vi behöver utrymmet för andra kunder, och att hosting måste betalas i förskott. 
+Om du inte förnyar ditt abonnemang måste vi radera ditt konto med all dess data.
+
+%%%SIGNATURE%%%

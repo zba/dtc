@@ -1,0 +1,19 @@
+Ditt konto för delad hosting som du beställt är nu klart att användas.
+Notera att det kan ta upp till 10 minutes innan ditt domännamn är aktivt
+på vår DNS och apache server (Ett cron jobb körs var 10:e minut för e-post,
+domäner och subdomäner, men du behöver inte vänta på dina ftp-konton).
+
+Notera att dina filer skall laddas upp till följande sökväg:
+
+/var/www/sites/DITT-ANVÄNDARNAMN/din-domän.com/subdomains/www/html
+
+Vid skapande av ett nytt ftp-konto kommer inte den första delen av sökvägen
+att synas, utan det kommer att se ut på följande sätt:
+
+/var/www/sites/DITT-ANVÄNDARNAMN
+
+Du kan logga in på kontrollpanelen med följande inloggningsinformation:
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%%
