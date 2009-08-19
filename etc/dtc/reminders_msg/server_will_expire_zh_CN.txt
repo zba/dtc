@@ -1,0 +1,15 @@
+
+主题：您的独立服务器即将过期
+
+您好 %%%FIRST_NAME%%%,
+
+您的独立服务器%%%SERVER_HOSTNAME%%%将于%%%REMAINING_DAYS%%%后过期，
+过期日期：%%%EXPIRATION_DATE%%%。
+
+请登录到您的控制面板在
+
+%%%DTC_CLIENT_URL%%%
+
+使用您的用户名 %%%DTC_ADM_LOGIN%%%，点击您的服务器，然后续约。
+
+%%%SIGNATURE%%%

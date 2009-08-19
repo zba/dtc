@@ -1,0 +1,13 @@
+
+主题：您的VPS已经终止服务
+
+您好 %%%FIRST_NAME%%%,
+
+您的 Xen Virtual Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%于
+%%%EXPIRED_DAYS%%%天前已经过期，过期日期：%%%EXPIRATION_DATE%%%。
+
+我们已经给您发送了终止服务警示信息来提示您续约，可是您没有进行续约操作。
+我们很抱歉今天必须删除您的VPS。我们将保留您的数据一直到其他
+客户使用这个空间。如果您希望重新开启您的VPS，请现在续约。
+
+%%%SIGNATURE%%%

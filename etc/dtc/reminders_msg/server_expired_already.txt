@@ -10,7 +10,7 @@ Please login into your control panel at
 
 %%%DTC_CLIENT_URL%%%
 
-with your login %%%DTC_ADM_LOGIN%%%, click on your VPS tab, and renew it.
+with your login %%%DTC_ADM_LOGIN%%%, click on your server tab, and renew it.
 
 We will keep your dedicated server up few days to give you the time to
 renew your contract.
