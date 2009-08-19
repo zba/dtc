@@ -446,10 +446,13 @@ install-dtc-common:
 dist:
 	./dist
 
+deb:
+	./deb
+
 rpm:
 	$(MAKE) dist
 	VERS=`head -n 1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'-' -f1` ; \
 	PKGNAME=`head -n 1 debian/changelog | cut -d' ' -f1` ; \
 	cd .. ; rpmbuild -ta $${PKGNAME}-$${VERS}.tar.gz
 
-.PHONY: clean dist rpm install-dtc-common install-dtc-dos-firewall install-dtc-stats-daemon i18n l12n bsd-ports-packages debian-packages
+.PHONY: clean dist rpm install-dtc-common install-dtc-dos-firewall install-dtc-stats-daemon i18n l12n bsd-ports-packages debian-packages deb
