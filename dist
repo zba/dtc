@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -e
+set -x
+
+VERS=`head -n 1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'-' -f1`
+PKGNAME=`head -n 1 debian/changelog | cut -d' ' -f1`
+
+if [ -e /etc/redhat-release ] ; then
+	MKTEMP="mktemp -d -p /tmp"
+else
+	MKTEMP="mktemp -d -t"
+fi
+TMPDIR=`${MKTEMP} ${PKGNAME}.XXXXXX`
+
+DIRNAME=${PKGNAME}-${VERS}
+
+MYCWD=`pwd`
+mkdir -p ${TMPDIR}/${DIRNAME}
+cp -auxf * ${TMPDIR}/${DIRNAME}
+sed -i "s/__VERSION__/${VERS}/" ${TMPDIR}/${DIRNAME}/${PKGNAME}.spec
+rm -rf ${TMPDIR}/${DIRNAME}/debian
+rm -rf ${TMPDIR}/${DIRNAME}/.git
+cd ${TMPDIR}
+tar -czf ${DIRNAME}.tar.gz ${DIRNAME}
+cd ${MYCWD}
+mv ${TMPDIR}/${DIRNAME}.tar.gz ..
+rm -rf ${TMPDIR}
