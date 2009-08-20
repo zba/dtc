@@ -985,6 +985,12 @@ input,select,textarea {
 }
 
 /* required so log lines not spaced or inset*/
+#reinstall_os_log {
+        overflow: scroll;
+        width: 40em;
+        height: 30em;
+}
+
 #reinstall_os_log li {
 	list-style-type: none;
 	margin: 0% 5% 0% 5%;

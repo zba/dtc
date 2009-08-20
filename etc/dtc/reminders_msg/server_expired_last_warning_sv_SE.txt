@@ -1,0 +1,20 @@
+
+Ämne: Sista påminnelsen innan den dedikerade server stängs av
+
+Hej %%%FIRST_NAME%%%,
+
+Din Virtual Server (VPS) %%%SERVER_HOSTNAME%%%
+har löpt ut för %%%EXPIRED_DAYS%%% dagar sedan, den : %%%EXPIRATION_DATE%%%.
+
+Var god logga in på din kontrollpanel på:
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login %%%DTC_ADM_LOGIN%%%, klicka sedan på din server flik, och förnya den.
+
+Detta är den sista påminnelsen innan vi stänger av din server. Vi ber dig att ha 
+förståelse för att vi inte kan fortsätta att drifta din server då vi behöver utrymmet
+för andra kunder, och att hosting måste betalas i förskott. Om du inte förnyar ditt
+abonnemang kommer din server att stängas av om 3 dagar.
+
+%%%SIGNATURE%%%

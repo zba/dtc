@@ -26,7 +26,7 @@ $txt_langname = array(
 	"zh" => "UTF-8",
 	"zh_TW" => "UTF-8",
 	"pl" => "UTF-8",
-	"se" => "iso-8859-15",
+	"sv" => "UTF-8",
 	"sr" => "UTF-8",
 	"pt" => "UTF-8",
 	"pt_BR" => "UTF-8",
@@ -93,8 +93,8 @@ if($panel_type!="cronjob"){
 		if($_REQUEST["change_language"] == "pl"){
 		  $lang = "pl";
 		}
-		if($_REQUEST["change_language"] == "se"){
-		  $lang = "se";
+		if($_REQUEST["change_language"] == "sv"){
+		  $lang = "sv";
 		}
 		if($_REQUEST["change_language"] == "es"){
 		  $lang = "es";
@@ -192,9 +192,9 @@ case "pl_PL":
 case "pl":
 	$gettext_lang = "pl_PL.UTF-8";
 	break;
-case "se_NO":
-case "se":
-	$gettext_lang = "se_NO.UTF-8";
+case "sv_SE":
+case "sv":
+	$gettext_lang = "sv_SE.UTF-8";
 	break;
 case "sr_RS":
 case "sr":

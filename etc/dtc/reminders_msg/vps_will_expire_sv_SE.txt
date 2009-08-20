@@ -1,0 +1,15 @@
+
+Ämne: Din VPS kommer att löpa ut snart
+
+Hej %%%FIRST_NAME%%%,
+
+Din Xen Virtual Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+kommer att löpa ut om %%%REMAINING_DAYS%%% dagar, den: %%%EXPIRATION_DATE%%%.
+
+Var god logga in på din kontrollpanel på:
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login %%%DTC_ADM_LOGIN%%% klicka på din VPS flik, och förnya den.
+
+%%%SIGNATURE%%%

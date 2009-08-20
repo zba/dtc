@@ -9,8 +9,6 @@ chdir(dirname(__FILE__));
 require("../shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
 
-require_once("authme.php");
-
 $date_now = date("Y-m-d");
 
 // Total VPS
@@ -110,7 +108,8 @@ if ( file_exists("/usr/bin/rrdtool") ){
 	die( "Could not find the rrdtool binary in file ".__FILE__ );
 }
 
-$cmd = "$RRDTOOL update $conf_generated_file_path/stat_total_active_prods.rrd N:$total_vps:$total_shared:$total_dedicated";
+$cmd = "$RRDTOOL update $conf_generated_file_path/stat_total_active_prods.rrd N:$total_shared:$total_vps:$total_dedicated";
+// echo $cmd."\n";
 $result = exec($cmd,$lines,$return_val);
 
 ?>

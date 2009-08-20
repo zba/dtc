@@ -31,7 +31,7 @@ while($line = fgets($fp, 4096) ){
 $DEBUG_ME = 0;
 if($DEBUG_ME == 1){
 	mkdir("/tmp/support/");
-	$debug_fp = fopen("/tmp/support/".date('Y-m-d')."_".date('H-m-i')."_".getRandomValue().".txt","r+");
+	$debug_fp = fopen("/tmp/support/".date('Y-m-d')."_".date('H-m-i')."_".getRandomValue().".txt","w+");
 	fwrite($debug_fp,$msg);
 	fclose($debug_fp);
 }
@@ -45,7 +45,6 @@ if($flag == 0 || sizeof($matches) != 1){
 	echo("No email found in From! :(\n");
 	exit(1);
 }
-$email_from = $matches[0][0];
 
 // Do nothing if there's a mail from an auto-responder
 if( isset($stt->headers["X-AutoReply-From"]) || isset($stt->headers["X-Mail-Autoreply"]) ){
@@ -60,7 +59,6 @@ if($flag == 0){
 	exit(1);
 }
 $email_to = $matches[0][0];
-echo "From: $email_from To: $email_to\n";
 
 // Build the support ticket email regexp
 if( !isset($conf_support_ticket_domain) || $conf_support_ticket_domain == "default"){
@@ -69,6 +67,16 @@ if( !isset($conf_support_ticket_domain) || $conf_support_ticket_domain == "defau
 	$tik_domain = $conf_support_ticket_domain;
 }
 $tik_regexp = '^' . $conf_support_ticket_email . "[-+]([a-f0-9]*)@" . $tik_domain . '$';
+
+// Select the first match that looks like an existing ticket reply, otherwise the first entry will do.
+$email_from = $matches[0][0];
+$n = sizeof($matches[0]);
+for($i = 0;$i<$n;$i++){
+	if( ereg($tik_regexp,$matches[0][$i]) ){
+		$email_to = $matches[0][$i];
+	}
+}
+echo "From: $email_from To: $email_to\n";
 
 // This is to avoid any hacking with support mail looping to itself.
 if( ereg($tik_regexp,$email_from) ){

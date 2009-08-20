@@ -1,0 +1,14 @@
+
+Ämne: Nedstängning av din dedikerade server
+
+Hej %%%FIRST_NAME%%%,
+
+Din dedikerade server %%%SERVER_HOSTNAME%%%
+har löpt ut för %%%EXPIRED_DAYS%%% dagar sedan, den: %%%EXPIRATION_DATE%%%.
+
+Vi har skickat dig påminnelser om detta tidigare för att be dig att förnya ditt
+abonnemang, men du gjorde inte det. Vi är därför tvungna att stänga ner din server
+idag. Din data kommer att finnas på vår server tills någon annan börjar använda utrymmet.
+Önskar du att starta om din server, ber vi dig att förnya abonnemanget.
+
+%%%SIGNATURE%%%

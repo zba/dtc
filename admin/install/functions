@@ -216,8 +216,11 @@ searchDebianVersion () {
 
 searchPATH_PHP_INI_APACHE () {
 	echoIfVerbose "-> Searching for php.ini for the apache $conf_apache_version module and php ${PHPMAJOR}"
+	# If already set, don't do anything
+	if [ -f "${PATH_PHP_INI_APACHE}" ] ; then
+		echo -n ""
 	# This one is for slackware
-	if [ -f "$PATH_PHP_INI" ] ; then
+	elif [ -f "$PATH_PHP_INI" ] ; then
 		PATH_PHP_INI_APACHE=$PATH_PHP_INI
 	# This one is for FreeBSD
 	elif [ -f /usr/local/etc/php.ini ] ; then
@@ -514,7 +517,7 @@ dtcGenDebianLocales () {
 		debianSetLocale zh_CN
 		debianSetLocale zh_TW
 		debianSetLocale pl_PL
-		debianSetLocale se_NO
+		debianSetLocale sv_SE
 		debianSetLocale sr_RS
 		debianSetLocale pt_PT
 		debianSetLocale pt_BR
@@ -1339,7 +1342,7 @@ createApacheAdminProtectedDir () {
 	allow from all
 </FilesMatch>
 
-<Files (index.php|bw_per_month.php|deamons_state.php|vm-cpu.php|vm-net-all.php|vps_stats_hdd.php|cpugraph.php|logPushlet.php|memgraph.php|view_waitingusers.php|vm-io-all.php|vm-net.php|vps_stats_network.php|mailgraph.php|netusegraph.php|stat_total_active_prods.php|vm-cpu-all.php|vm-io.php|vps_stats_cpu.php|vps_stats_swap.php)>
+<Files (index.php|bw_per_month.php|deamons_state.php|vm-cpu.php|vm-net-all.php|vps_stats_hdd.php|cpugraph.php|logPushlet.php|memgraph.php|view_waitingusers.php|vm-io-all.php|vm-net.php|vps_stats_network.php|mailgraph.php|netusegraph.php|active_prods_graph.php|vm-cpu-all.php|vm-io.php|vps_stats_cpu.php|vps_stats_swap.php)>
 	Order allow,deny
 	allow from all
 </Files>
@@ -2227,6 +2230,13 @@ OPTIONS=\"-r -c -m /var/spool/postfix/var/run/saslauthd\"" >> $TMP_FILE
 			echo "if you plan to use sasl_mysql just ignore this";
 		fi
 	fi
+	# Fixes broken link of the sasldb2
+	if ! [ -f /etc/sasldb2 ] ; then
+		if [ -h /etc/sasldb2 ] ; then
+			rm /etc/sasldb2
+		fi
+		ln -s ${PATH_DTC_ETC}/sasldb2 /etc/sasldb2
+	fi
 }
 
 modifyPostfixConfig () {
@@ -2289,6 +2299,12 @@ if grep "recipient_delimiter = +" "$PATH_POSTFIX_ETC/main.cf" >/dev/null; then
 			fi
 			echo "# disable the following functionality by default (otherwise can't match subdomains correctly)
 parent_domain_matches_subdomains=
+
+# Bind on all interfaces by default (needed on CentOS)
+inet_interfaces = all
+
+# Sets the sasldb2 path
+smtpd_sasl_path=$PATH_DTC_ETC/sasldb2
 
 # disable mailbox size limit by default (user can add to postfix_config_snippets)
 mailbox_size_limit = 0
@@ -3082,10 +3098,11 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 		/usr/local/etc/rc.d/pure-ftpd start
 	elif [ "$UNIX_TYPE" = "redhat" -a ""$conf_ftp_type = "pureftpd" ] ; then
 		TMP_FILE=`${MKTEMP} DTC_pure-ftpd.conf.XXXXXX` || exit 1
-		grep -v MySQLConfigFile ${PATH_PUREFTPD_CONF} >${TMP_FILE}
+		grep -v MySQLConfigFile ${PATH_PUREFTPD_CONF} | grep -v MinUID >${TMP_FILE}
 		cat <${TMP_FILE} >${PATH_PUREFTPD_CONF}
 		rm -f ${TMP_FILE}
-		echo "MySQLConfigFile /etc/pure-ftpd/pureftpd-mysql-dtc.conf"
+		echo "MySQLConfigFile /etc/pure-ftpd/pureftpd-mysql-dtc.conf" >>${PATH_PUREFTPD_CONF}
+		echo "MinUID 100" >>${PATH_PUREFTPD_CONF}
 	else	
 		PURE_FTPD_ETC="/etc/pure-ftpd"
 		if [ -e $PURE_FTPD_ETC ] ; then
@@ -3870,7 +3887,7 @@ nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 				echo "*    * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
 				echo "34   2 * * * ${CONF_DTC_SYSTEM_USERNAME} cd /usr/share/dtc/admin && /usr/bin/php stat_total_active_prods.php 2>&1 >> /var/log/dtc.log" >> $TMP_FILE
 				echo "9    3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
-
+				echo "*    * * * * dtc  [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php stat_total_active_prods.php 2>&1 >> /var/log/dtc.log" >> $TMP_FILE
 				cat < $TMP_FILE >>$PATH_CRONTAB_CONF
 				rm $TMP_FILE
 			fi
@@ -5038,7 +5055,6 @@ DTCsetupDaemons () {
 	changeApacheUserAndGroup
 	modifyHTTPD_CONF
 	modifyETC_CONFD_APACHE2
-	modifyCyrusImapdConf
 	modifyNamedConf
 	linkQmailFilesToGenerated
 	setupAmavisConf
@@ -5046,6 +5062,7 @@ DTCsetupDaemons () {
 	modifyCyrusPath
 	modifySaslStartAndSaslStartup
 	modifyPostfixConfig
+	modifyCyrusImapdConf
 	prepareMlmmjSpool
 	modifyCourierConfig
 	modifyDovecotConfig

@@ -1,0 +1,13 @@
+
+Ämne: Raderande av ditt konto för delad hosting
+
+Hej %%%FIRST_NAME%%%,
+
+Ditt konto för delad hosting med login %%%DTC_ADM_LOGIN%%% har löpt ut för
+%%%EXPIRED_DAYS%%% dagar sedan, den: %%%EXPIRATION_DATE%%%.
+
+Vi har skickat dig påminnelser om detta tidigare för att be dig att förnya ditt
+abonnemang, men du gjorde inte det. Vi är därför tvungna att stänga ner ditt konto
+idag och radera datan på ditt konto för att ha utrymme tillgängligt för andra kunder.
+
+%%%SIGNATURE%%%

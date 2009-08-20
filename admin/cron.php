@@ -59,6 +59,8 @@ function searchApachectl () {
 			$APACHECTL = "/usr/local/sbin/apachectl2";
 		}else if(file_exists("/usr/local/sbin/apachectl")){
                 	 $APACHECTL = "/usr/local/sbin/apachectl";
+		}else if(file_exists("/usr/sbin/apachectl")){
+                	 $APACHECTL = "/usr/sbin/apachectl";
 		}
 	}else{
 		if(file_exists("/usr/sbin/apachectl")){
@@ -270,6 +272,13 @@ function get_apache_pid() {
 	global $conf_generated_file_path;
 	$pid = @file_get_contents("$conf_generated_file_path/apache.pid");
 	if ($pid) { return (int) $pid; }
+}
+
+if( !function_exists(posix_kill)){
+	function posix_kill($pid, $sig=1){
+		system('kill -'.$sig.' '. $pid, $st); 
+		return !$st;
+	}
 }
 
 function restartApache () {
@@ -493,7 +502,9 @@ function cronMailSystem () {
 
 			if( file_exists ("/etc/init.d/dkimproxy") ){
 				echo "Reloading dkfilter to reload it's domains...\n";
-				system("/etc/init.d/dkimproxy force-reload");
+				system("/etc/init.d/dkimproxy stop");
+				sleep(1);
+				system("/etc/init.d/dkimproxy start");
 			}
 			
 			echo "Starting postfix queue...\n";

@@ -364,7 +364,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 
 	$out .= "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\">
 <tr><td bgcolor=\"black\"><font color=\"white\">$vps_node:$vps_name</font></td>
-<tr><td bgcolor=\"black\"><font color=\"white\"><pre id=\"reinstall_os_log\" class=\"reinstall_os_log\" style=\"overflow: auto\"><font color=\"red\">dtc-xen</font>@<font color=\"blue\">$vps_node</font>&gt;_ #<br>...</pre></font></td>
+<tr><td bgcolor=\"black\"><font color=\"white\"><pre id=\"reinstall_os_log\" class=\"reinstall_os_log\"><font color=\"red\">dtc-xen</font>@<font color=\"blue\">$vps_node</font>&gt;_ #<br>...</pre></font></td>
 </table>";
 
 	$out .= "

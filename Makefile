@@ -332,7 +332,7 @@ shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars shared/visitors_template sha
 admin/patches shared/securepay/modules shared/securepay/modules/paypal shared/securepay/modules/enets shared/securepay/modules/webmoney \
 shared/securepay/modules/worldpay
 
-LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL se_NO pt_PT pt_BR es_ES fi_FI zh_TW sr_RS lv_LV
+LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL sv_SE pt_PT pt_BR es_ES fi_FI zh_TW sr_RS lv_LV
 
 l12n:
 	@echo "===> Managing localizations binaries"
@@ -442,3 +442,17 @@ install-dtc-common:
 
 	rm -rf $(DOC_DIR)/LICENSE
 	rm -rf $(DOC_DIR)/LICENSE.gz
+
+dist:
+	./dist
+
+deb:
+	./deb
+
+rpm:
+	$(MAKE) dist
+	VERS=`head -n 1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'-' -f1` ; \
+	PKGNAME=`head -n 1 debian/changelog | cut -d' ' -f1` ; \
+	cd .. ; rpmbuild -ta $${PKGNAME}-$${VERS}.tar.gz
+
+.PHONY: clean dist rpm install-dtc-common install-dtc-dos-firewall install-dtc-stats-daemon i18n l12n bsd-ports-packages debian-packages deb

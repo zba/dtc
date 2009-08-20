@@ -167,7 +167,7 @@ while (!$shutdown){
 		$err = $soap_client->getError();
 		if ($err) {
 			fwrite($log_fp, date("Y-m-d H:m:i")." ".$err);
-			break;
+			continue;
 		}
 		//
 		// Save collected datas in /var/lib/dtc/dtc-xenservers-rrds
@@ -179,7 +179,7 @@ while (!$shutdown){
 		}
 		if( !is_array($r) ){
 			fwrite($log_fp, date("Y-m-d H:m:i")." No data in this fetch!\n");
-			break;
+			continue;
 		}
 
 		// Records are ordered by timestamps, we need something ordered by VPS name,

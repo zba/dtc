@@ -1,0 +1,14 @@
+
+Ämne: Nedstängning av din VPS
+
+Hej %%%FIRST_NAME%%%,
+
+Din Xen Virtual Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+har löpt ut för %%%EXPIRED_DAYS%%% dagar sedan, den: %%%EXPIRATION_DATE%%%.
+
+Vi har skickat dig påminnelser om detta tidigare för att be dig att förnya ditt
+abonnemang, men du gjorde inte det. Vi är därför tvungna att stänga ner din VPS
+idag. Din data kommer raderas på vår server så att någon annan kan använda utrymmet.
+Önskar du att starta om din VPS, ber vi dig att förnya abonnemanget.
+
+%%%SIGNATURE%%%

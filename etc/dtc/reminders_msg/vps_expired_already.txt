@@ -3,9 +3,6 @@ Subject: Your VPS has expired
 
 Hello %%%FIRST_NAME%%%,
 
-This is an automated message sent by the Domain Technologie
-Control (DTC) robot.
-
 Your Xen Virtual Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
 has expired %%%EXPIRED_DAYS%%% days ago, on the: %%%EXPIRATION_DATE%%%.
 

@@ -1,0 +1,26 @@
+Ditt Virtual Server hosting konto är godkänt och konfigureras.
+För tillfället konfigureras din operativsystem. Du kan logga in
+via kontrollpanelen med de inloggningsuppgifter du finner nedan.
+
+Önskar du att vårt team skall installera DTC på din VPS, så ber vi dig
+att beställa det genom att skicka ett supportärende med hjälp av ditt nya konto.
+Om så är fallet, så var uppmärksam på att det då finns två kontrollpaneler: 
+en under din VPS, och en annan med ditt företags kundlogin.
+Dessa är två olika kontrollpaneler med olika syften. Skicka tex inte ett 
+supportärende under kontrollpanelen i din VPS, för det kommer inte att nå oss.
+Använd istället då ditt företags login i kundkontrollpanelen.
+
+När väl operativsystemet är konfigurerat, så kommer du att behöva klicka på
+kontrollpanelen för att boota upp din VPS. När den sen bootar up behöver du
+logga in på den fysiska konsollen med ssh (efter att du skapat ditt lösenord).
+När du sedan är inloggad på din fysiska konsollen för din VPS, logga in som root
+och byt lösenordet för root. Därefter kan du installera ssh på den och avsluta
+installationen. Den fulla proceduren på hur du gör beskrivs på denna länk:
+
+http://dtcsupport.gplhost.com/PmWiki/Setup-A-VPS-Once-DTC-Xen-Installed-It
+
+Här är din inloggningsinformation för DTC kontrollpanel:
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%%

@@ -1,0 +1,18 @@
+
+Ämne: Din dedikerade server har löpt ut
+
+Hej %%%FIRST_NAME%%%,
+
+Din dedikerade server %%%SERVER_HOSTNAME%%%
+har löpt ut för %%%EXPIRED_DAYS%%% dagar sedan, den: %%%EXPIRATION_DATE%%%.
+
+Var god logga in på din kontrollpanel på
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login %%%DTC_ADM_LOGIN%%%, klicka sedan på din VPS flik, och förnya den.
+
+Vi kommer att ha din dedikerade server igång ett par dagar för att ge dig möjlighet
+att förnya ditt abonnemang.
+
+%%%SIGNATURE%%%

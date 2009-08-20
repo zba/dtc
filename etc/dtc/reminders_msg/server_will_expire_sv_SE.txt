@@ -1,0 +1,15 @@
+
+Ämne: Din dedikerade server kommer att löpa ut snart
+
+Hej %%%FIRST_NAME%%%,
+
+Din dedikerade server %%%SERVER_HOSTNAME%%%
+kommer att löpa ut om %%%REMAINING_DAYS%%% dagar, den: %%%EXPIRATION_DATE%%%.
+
+Var god logga in på din kontrollpanel på:
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login %%%DTC_ADM_LOGIN%%% klicka på din VPS flik, och förnya den.
+
+%%%SIGNATURE%%%

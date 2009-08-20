@@ -1,0 +1,16 @@
+﻿
+Ämne: Ditt hosting konto löper ut snart
+
+Hej %%%FIRST_NAME%%%,
+
+Ditt konto för delad hosting kommer att löpa ut om %%%REMAINING_DAYS%%% dagar, den:
+%%%EXPIRATION_DATE%%%.
+
+Var god logga in på din kontrollpanel på
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login %%%DTC_ADM_LOGIN%%% klicka sedan på mitt konto fliken, och
+förnya det.
+
+%%%SIGNATURE%%%

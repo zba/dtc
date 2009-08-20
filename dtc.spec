@@ -1,6 +1,6 @@
 Name: dtc
 Version: 0.30.4
-Release: 0.4.20090804
+Release: 0.4.20090808
 License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
@@ -49,7 +49,7 @@ This package contains only strictly needed.
 %package postfix-courier
 Summary: web control panel for admin and accounting hosting services (more depends)
 Group: System Environment/Daemons
-Requires: maildrop, dtc, awstats, courier-authlib-userdb, courier-authlib-mysql, courier-imap, dkimproxy, mysql-server, bind, mlmmj, pure-ftpd, webalizer, amavisd-new, postfix, spamassassin, clamav, clamav-db, clamd, fetchmail, perl-Net-Whois, phpmyadmin, php-mcrypt, dtc-dos-firewall
+Requires: squirrelmail, maildrop, dtc, awstats, courier-authlib-userdb, courier-authlib-mysql, courier-imap, dkimproxy, mysql-server, bind, mlmmj, pure-ftpd, webalizer, amavisd-new, postfix, spamassassin, clamav, clamav-db, clamd, fetchmail, perl-Net-Whois, phpmyadmin, php-mcrypt, dtc-dos-firewall
 %description postfix-courier
 Domain Technologie Control (DTC) is a control panel aiming at commercial
 hosting. Using a web GUI for the administration and accounting all hosting
@@ -150,6 +150,14 @@ fi
 mkdir %{_var}/lib/dtc/dtc-xenservers-rrds
 
 %changelog
+* Sat Aug 08 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090808
+- Fixed the sasldb2 link
+- Fixed the restart of dkimproxy in the cron.php
+
+* Thu Aug 06 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090806
+- Fixed the setup of pure-ftpd
+- Added inet_interfaces = all in postfix main.cf
+
 * Tue Aug 04 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090804
 - Fixed the dtc-stats-daemon last issues
 

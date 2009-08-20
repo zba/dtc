@@ -31,7 +31,8 @@ Upstream Authors:
 	- Yuri Kozlov <kozlov.y@gmail.com> (Russian)
 	- Feher Sandor <sfeher@bluesystem.hu> (Hungarian)
 	- Jose Toscano <josetg81wireless@yahoo.es> and
-	  Jorge Mendez <solutions@todoimporta.com> (Espanol)
+	  Jorge Mendez <solutions@todoimporta.com> and
+	  Patricio Lopez <lankaster.lopez@gmail.com> (Espanol)
 	- Sebastian Pachla <seeb@seeb.net.pl> (Polish)
 	- Andrea Polte <andreapolte@gmx.de> and
 	  Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net> (German)
@@ -41,6 +42,7 @@ Upstream Authors:
 	- My lovely wife Cao Wei <caowei@gplhost.com> (Simplified Chinese).
 	- Bogdan Ignjatovic <iboki@yahoo.com> (Serbian)
 	- Rodrigo Moglia <rmoglia@gmail.com> (Brasilian Portuguese)
+	- Frederic Boije <frederic.boije@gmail.com> (Swedish)
 
 	A big up to all my sponsors so far in Debian: Roberto C. Sanchez,
 	Daniel Baumann, and many others.

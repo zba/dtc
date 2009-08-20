@@ -38,35 +38,55 @@ if(isset($_REQUEST["new_dns_and_mx_config"]) && $_REQUEST["new_dns_and_mx_config
 		$new_dns_6 = $new_dns_6 = "";
 	}
 
-	if(isset($_REQUEST["new_mx_1"]) && isHostnameOrIP($_REQUEST["new_mx_1"])){
-		$new_mx_1 = $_REQUEST["new_mx_1"];
+	if(isset($_REQUEST["new_mx_1"]) && isHostnameOrIP( strtolower($_REQUEST["new_mx_1"]) )){
+		$new_mx_1 = strtolower($_REQUEST["new_mx_1"]);
 	}else{
 		$new_mx_1 = "default";
 	}
-	if(isset($_REQUEST["new_mx_2"]) && isHostnameOrIP($_REQUEST["new_mx_2"])){
-		$new_mx_2 = $_REQUEST["new_mx_2"];
+	if(isset($_REQUEST["new_mx_2"]) && isHostnameOrIP( strtolower($_REQUEST["new_mx_2"]) )){
+		$new_mx_2 = strtolower($_REQUEST["new_mx_2"]);
 	}else{
 		$new_mx_2 = "default";
 	}
-	if(isset($_REQUEST["new_mx_3"]) && isHostnameOrIP($_REQUEST["new_mx_3"])){
-		$new_mx_3 = $_REQUEST["new_mx_3"];
+	if(isset($_REQUEST["new_mx_3"]) && isHostnameOrIP( strtolower($_REQUEST["new_mx_3"]) )){
+		$new_mx_3 = strtolower($_REQUEST["new_mx_3"]) ;
 	}else{
 		$new_mx_3 = "";
 	}
-	if(isset($_REQUEST["new_mx_4"]) && isHostnameOrIP($_REQUEST["new_mx_4"])){
-		$new_mx_4 = $_REQUEST["new_mx_4"];
+	if(isset($_REQUEST["new_mx_4"]) && isHostnameOrIP( strtolower($_REQUEST["new_mx_4"]) )){
+		$new_mx_4 = strtolower($_REQUEST["new_mx_4"]);
 	}else{
 		$new_mx_4 = "";
 	}
-	if(isset($_REQUEST["new_mx_5"]) && isHostnameOrIP($_REQUEST["new_mx_5"])){
-		$new_mx_5 = $_REQUEST["new_mx_5"];
+	if(isset($_REQUEST["new_mx_5"]) && isHostnameOrIP( strtolower($_REQUEST["new_mx_5"]) )){
+		$new_mx_5 = strtolower($_REQUEST["new_mx_5"]);
 	}else{
 		$new_mx_5 = "";
 	}
-	if(isset($_REQUEST["new_mx_6"]) && isHostnameOrIP($_REQUEST["new_mx_6"])){
-		$new_mx_6 = $_REQUEST["new_mx_6"];
+	if(isset($_REQUEST["new_mx_6"]) && isHostnameOrIP( strtolower($_REQUEST["new_mx_6"]) )){
+		$new_mx_6 = strtolower($_REQUEST["new_mx_6"]);
 	}else{
 		$new_mx_6 = "";
+	}
+
+	// Trims the eventual last . of the string for MX, as this is a common mistake
+	if( substr($new_mx_1, strlen($new_mx_1)-1 ) == "."){
+		$new_mx_1 = substr($new_mx_1,0,strlen($new_mx_1)-1);
+	}
+	if( substr($new_mx_2, strlen($new_mx_2)-1 ) == "."){
+		$new_mx_2 = substr($new_mx_2,0,strlen($new_mx_2)-1);
+	}
+	if( substr($new_mx_3, strlen($new_mx_3)-1 ) == "."){
+		$new_mx_3 = substr($new_mx_3,0,strlen($new_mx_3)-1);
+	}
+	if( substr($new_mx_4, strlen($new_mx_4)-1 ) == "."){
+		$new_mx_4 = substr($new_mx_4,0,strlen($new_mx_4)-1);
+	}
+	if( substr($new_mx_5, strlen($new_mx_5)-1 ) == "."){
+		$new_mx_5 = substr($new_mx_5,0,strlen($new_mx_5)-1);
+	}
+	if( substr($new_mx_6, strlen($new_mx_6)-1 ) == "."){
+		$new_mx_6 = substr($new_mx_6,0,strlen($new_mx_6)-1);
 	}
 
 	if($new_dns_2 != "default" && isset($new_dns_2) && $new_dns_2 != ""){
