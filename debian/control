@@ -108,7 +108,7 @@ Description: web control panel for admin and accounting hosting services (cyrus 
 
 Package: dtc-postfix-courier
 Architecture: all
-Depends: ${misc:Depends}, amavisd-new, clamav, clamav-daemon, clamav-freshclam, dtc-common, courier-maildrop, courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, debconf, libsasl2-modules, mysql-client, mysql-server, mysqmail-courier-logger, mysqmail-pure-ftpd-logger, mysqmail-postfix-logger, postfix (>= 2.0), postfix-mysql, postfix-tls (>= 2.0) | postfix (>= 2.2.10), spamassassin, spamc
+Depends: ${misc:Depends}, amavisd-new, clamav, clamav-daemon, clamav-freshclam, dtc-common, courier-maildrop, courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, debconf, libsasl2-modules, mysql-client, mysql-server, postfix (>= 2.0), postfix-mysql, postfix-tls (>= 2.0) | postfix (>= 2.2.10), spamassassin, spamc
 Conflicts: dtc-core, dtc-cyrus
 Replaces: dtc-core, dtc-cyrus
 Suggests: mysqmail
