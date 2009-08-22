@@ -18,7 +18,11 @@ PATH_DOVECOT_CONF=/etc/dovecot.conf
 PATH_CRONTAB_CONF=/etc/crontab
 PATH_COURIER_CONF_PATH=/etc/courier
 PATH_COURIER_AUTHD_CONF_PATH=/etc/courier
-PATH_APACHE_PID_FILE=/var/run/httpd.pid
+if [ -d /var/run/httpd ] ; then
+	PATH_APACHE_PID_FILE=/var/run/httpd/httpd.pid
+else
+	PATH_APACHE_PID_FILE=/var/run/httpd.pid
+fi
 
 if [ ! -f $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc ]; then
         if [ -f /etc/authlib/authdaemonrc ]; then
