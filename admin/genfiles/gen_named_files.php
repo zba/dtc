@@ -498,6 +498,66 @@ $allow_trans_str	allow-query { any; };
 	fclose($filep);
 }
 
+// Generates all the zonefiles for the VPSes on each nodes, so there's already a correct IP and hostname
+// for the VPS that is configured by default, without doing anything.
+function nodes_vps_generate(){
+	global $pro_mysql_vps_server_table;
+	global $pro_mysql_vps_table;
+	global $conf_default_zones_ttl;
+	global $conf_named_soa_refresh;
+	global $conf_named_soa_retry;
+	global $conf_named_soa_expire;
+	global $conf_named_soa_default_ttl;
+	global $conf_addr_primary_dns;
+	global $conf_addr_secondary_dns;
+	global $pro_mysql_vps_table;
+	global $conf_generated_file_path;
+
+	global $conf_webmaster_email_addr;
+
+	$bind_formated_webmaster_email_addr = str_replace('@',".",$conf_webmaster_email_addr).".";
+
+	$q = "SELECT hostname,dom0_ips FROM $pro_mysql_vps_server_table;";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n > 0){
+		mkdir("$conf_generated_file_path/nodes_zones");
+	}
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$srv_hostname = $a["hostname"];
+
+		$node_zfile = "\$TTL $conf_default_zones_ttl
+@	IN	SOA	$conf_addr_primary_dns. $bind_formated_webmaster_email_addr (
+			$todays_serial; serial
+			$conf_named_soa_refresh ; refresh
+			$conf_named_soa_retry ; retry
+			$conf_named_soa_expire ; expire
+			$conf_named_soa_default_ttl ; default_ttl
+			)
+@	IN	NS	$thisdomain_dns1.
+@	IN	NS	$thisdomain_dns2."."\n";
+		// Set the first IP of the dom0 IP list as the node name
+		$ips = explode("|",$a["dom0_ips"]);
+		$ip_dom0 = $ips[0];
+		$node_zfile .= "	IN	NS	".$ip_dom0."\n";
+
+		$q2 = "SELECT vps_xen_name FROM $pro_mysql_vps_table WHERE vps_server_hostname='".$pro_mysql_vps_table."';";
+		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		for($j=0;$j<$n2;$j++){
+			$a2 = mysql_fetch_array($r2);
+			$vps_xen_name = $a2["vps_xen_name"];
+			$node_zfile .= "xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_dom0."\n";
+			$node_zfile .= "dtc.xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_dom0."\n";
+			$node_zfile .= "mx.xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_dom0."\n";
+		}
+		$filep = fopen("$conf_generated_file_path/$conf_named_slavefile_path/$srv_hostname","w+");
+		fwrite($filep,$node_zfile);
+		fclose($filep);
+	}
+}
+
 function named_generate(){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_admin_table;
@@ -934,6 +994,8 @@ $more_mx_server
 
 	// Call the reverse DNS function now...
 	rnds_generate();
+
+	nodes_vps_generate();
 
 	return true;
 }
