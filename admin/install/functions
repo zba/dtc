@@ -1762,8 +1762,11 @@ auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" hos
 		fi
 	fi
 	# Fix the sasldb2 link
+	if [ -e /etc/sasldb2 ] ; then
+		rm /etc/sasldb2
+	fi
 	if [ ! -e /etc/sasldb2 ] ; then
-		ln -sf /var/spool/postfix/etc/sasldb2 /etc/sasldb2 
+		ln -sf /var/lib/dtc/etc/sasldb2 /etc/sasldb2 
 	fi
 }
 
