@@ -3144,7 +3144,7 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 " >${PURE_DBCONFIG_FILE}
 			# If running in Debian, try to determine if using standalone or daemon
 			if [ "$UNIX_TYPE" = "debian" -o -f /etc/default/pure-ftpd-common ] ; then
-				PURE_DEFAULT_FILE=`cat /etc/default/pure-ftpd-common | grep STANDALONE_OR_INETD= | cut -d= -f1`
+				PURE_DEFAULT_FILE=`cat /etc/default/pure-ftpd-common | grep STANDALONE_OR_INETD= | cut -d= -f2`
 				if [ ${PURE_DEFAULT_FILE} = "standalone" ] ; then
 					restartDaemonMultiUnix pure-ftpd-mysql
 				fi
