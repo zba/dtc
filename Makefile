@@ -271,7 +271,7 @@ $(PAYMENT_API_PHP_SCRIPT_FILES)
 ################ PICTURES ##################
 NEW_SITES_TEMPLATE_IMG=shared/template/dtc_logo.gif shared/template/dtclogo.png shared/template/favicon.ico shared/template/logo_dtc.gif
 
-CLIENT_PICTURES=client/enets_pay_icon.gif client/favicon.ico client/cheque.gif
+CLIENT_PICTURES=client/enets_pay_icon.gif client/favicon.ico client/cheque.gif client/wire.gif
 
 ALL_PICS=$(NEW_SITES_TEMPLATE_IMG) $(CLIENT_PICTURES)
 ################# EXECUTABLE SCRIPTS #################
