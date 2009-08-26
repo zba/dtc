@@ -205,6 +205,16 @@ class zPDF extends FPDF{
 		$this->Ln();$this->Ln();
 		$right = $this->GetY();
 		$this->SetXY(10,max($left,$right));
+
+		// VAT calculation
+		if($use_vat == "yes"){
+			$without_vat = round(($pay["paiement_total"] / (1 + ($pay["vat_rate"] / 100))),2);
+			$vat = $pay["paiement_total"] - $without_vat;
+		}else{
+			$without_vat = $pay["paiement_total"];
+			$vat = $pay["paiement_total"] - $without_vat;
+		}
+		$gateway_cost = $without_vat - $product["price_dollar"];
 		
 		// The table
 		$this->SetFont('Arial','B',11);
@@ -225,15 +235,13 @@ class zPDF extends FPDF{
 		$date_expire = calculateExpirationDate($completedorder["last_expiry_date"],$product["period"]);
 		$this->Cell(20,7,$date_expire,"1",0,"L");
 		$this->Cell(15,7,$product["price_dollar"]." ".$secpayconf_currency_letters,"1",0,"L");
-		$this->Cell(25,7,$pay["paiement_cost"]." ".$secpayconf_currency_letters,"1",0,"L");
+		// $this->Cell(25,7,$pay["paiement_cost"]." ".$secpayconf_currency_letters,"1",0,"L");
+		$this->Cell(25,7,$gateway_cost." ".$secpayconf_currency_letters,"1",0,"L");
 		$this->Cell(30,7,$pay["paiement_total"]." ".$secpayconf_currency_letters,"1",0,"L");
 		$this->Ln();
 
-		// VAT calculation
+		// Print the VAT total, etc.
 		if($use_vat == "yes"){
-			$without_vat = round(($pay["paiement_total"] / (1 + ($pay["vat_rate"] / 100))),2);
-			$vat = $pay["paiement_total"] - $without_vat;
-
 			$this->SetX(120);
 			$this->SetFont('Arial','B',12);
 			$this->Cell(50,7,"Total VAT (".$pay["vat_rate"]."%):","1",0,"L");
