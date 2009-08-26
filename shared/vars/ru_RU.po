@@ -4,13 +4,14 @@
 #
 # Thomas Goirand <thomas@goirand.fr>, 2002-2007.
 # Yuri Kozlov <kozlov.y@gmail.com>, 2008.
+# Agnislav Onufrijchuk <agnislav@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: git_21mar2008\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-04 09:10+0800\n"
 "PO-Revision-Date: 2008-03-21 22:24+0300\n"
-"Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
+"Last-Translator: Agnislav Onufrijchuk <agnislav@gmail.com>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +65,7 @@ msgstr " осталось, чтобы заплатить"
 
 #: shared/inc/forms/vps_installation.php:286
 msgid " using the password of your physical console."
-msgstr ""
+msgstr " используя пароль от физической консоли"
 
 #: shared/dtcrm/draw_handle.php:256
 msgid "+1.XXXXXXXXXX format"
@@ -326,7 +327,7 @@ msgstr ""
 #: shared/inc/sql/database.php:125
 #, fuzzy
 msgid "A MySQL user by that name already exists. Please choose another one."
-msgstr "База данных с таким именем существует, выберите другое имя."
+msgstr "Пользователь MySQL с таким именем существует, выберите другое имя."
 
 #: shared/inc/sql/database.php:71
 msgid "A database by that name exists, please choose another name."
@@ -347,11 +348,11 @@ msgstr "APACHE VHOST"
 
 #: admin/inc/dtc_config.php:1511
 msgid "Accept cheques: "
-msgstr ""
+msgstr "Принимать чеки: "
 
 #: admin/inc/dtc_config.php:1529
 msgid "Accept wire transfers to bank: "
-msgstr ""
+msgstr "Принимать безналичные платежи: "
 
 #: shared/inc/forms/lists.php:435
 msgid "Access list:"
@@ -366,14 +367,12 @@ msgid "Access not granted line "
 msgstr "Доступ не разрешён к строке "
 
 #: admin/inc/renewals.php:262
-#, fuzzy
 msgid "Account name"
-msgstr "Название продукта"
+msgstr "Название счёта"
 
 #: admin/inc/renewals.php:273
-#, fuzzy
 msgid "Account number"
-msgstr "Номер телефона:"
+msgstr "Номер счёта"
 
 #: admin/inc/dtc_config.php:1399
 msgid "Act as backup DNS server for the following servers:"
@@ -402,7 +401,7 @@ msgstr "Добавить"
 
 #: shared/inc/forms/lists.php:407
 msgid "Add To: header:"
-msgstr "Добавить To: заголовок:"
+msgstr "Добавить заголовок To: "
 
 #: shared/inc/forms/root_admin.php:223
 msgid "Add a VPS for this admin:"
@@ -421,18 +420,16 @@ msgid "Add a domain name to my account"
 msgstr "Добавить доменное имя в мой аккаунт"
 
 #: shared/inc/draw.php:154
-#, fuzzy
 msgid "Add a domain or service"
-msgstr "Добавить домен для этого пользователя:"
+msgstr "Добавить домен или услугу"
 
 #: shared/inc/draw.php:483
-#, fuzzy
 msgid "Add a domain or service:"
-msgstr "Добавить домен для этого пользователя:"
+msgstr "Добавить домен или услугу:"
 
 #: admin/inc/dtc_config.php:1850
 msgid "Add a new company"
-msgstr "Добавление новой компании"
+msgstr "Добавить новую компанию"
 
 #: admin/inc/dtc_config.php:1849
 msgid "Add a new company:"
@@ -440,7 +437,7 @@ msgstr "Добавить новую компанию:"
 
 #: admin/inc/draw_user_admin.php:295
 msgid "Add a new user"
-msgstr "Добавление нового пользователя"
+msgstr "Добавить нового пользователя"
 
 #: shared/gfx/skin/default_layout.php:426
 msgid "Add a virtual administrator"
@@ -448,12 +445,11 @@ msgstr "Добавить виртуального администратора"
 
 #: admin/dtcrm/main.php:134
 msgid "Add an administrator to this customer:"
-msgstr "Добавить администратора этому заказчику:"
+msgstr "Добавить администратора этому клиенту:"
 
 #: shared/dtcrm/draw_adddomain.php:67 shared/dtcrm/draw_adddomain.php:99
-#, fuzzy
 msgid "Add another service to your account:"
-msgstr "Добавить доменное имя в мой аккаунт"
+msgstr "Добавить другую услугу в ваш аккаунт:"
 
 #: admin/dtcrm/product_manager.php:73
 msgid "Add domain"
@@ -478,9 +474,8 @@ msgid "Address (line1): "
 msgstr "Адрес (строка1): "
 
 #: admin/inc/renewals.php:350
-#, fuzzy
 msgid "Address (line2):"
-msgstr "Адрес (строка2): "
+msgstr "Адрес (строка2):"
 
 #: admin/dtcrm/main.php:218 client/new_account_form.php:638
 #: shared/dtcrm/draw_handle.php:60 shared/dtcrm/draw_handle.php:92
@@ -489,9 +484,8 @@ msgid "Address (line2): "
 msgstr "Адрес (строка2): "
 
 #: admin/inc/renewals.php:353
-#, fuzzy
 msgid "Address (line3):"
-msgstr "Адрес (строка3): "
+msgstr "Адрес (строка3):"
 
 #: admin/dtcrm/main.php:219 client/new_account_form.php:641
 #: shared/dtcrm/draw_handle.php:61 shared/dtcrm/draw_handle.php:93
@@ -526,8 +520,9 @@ msgid "Admins list"
 msgstr "Список администраторов"
 
 #: admin/inc/dtc_config.php:1480
+#, fuzzy
 msgid "Affiliation"
-msgstr ""
+msgstr "Партнёрство"
 
 #: shared/drawlib/cc_code_popup.php:103
 msgid "Afghanistan"
@@ -548,19 +543,19 @@ msgstr "Алжир"
 #: admin/inc/dtc_config.php:529
 #, fuzzy
 msgid "All customers list address: "
-msgstr "Реквизиты заказчика"
+msgstr "E-mail адреса всех клиентов: "
 
 #: shared/inc/forms/root_admin.php:133
 msgid "Allow addition of FTP logins:"
-msgstr "Разрешить дополнительные FTP-логины:"
+msgstr "Разрешить добавление учётных записей FTP:"
 
 #: shared/inc/forms/root_admin.php:132
 msgid "Allow addition of SSH logins:"
-msgstr "Разрешить дополнительные SSH-логины:"
+msgstr "Разрешить добавление учётных записей SSH:"
 
 #: admin/inc/dtc_config.php:1473
 msgid "Allow registration of subdomain of the main domain: "
-msgstr ""
+msgstr "Разрешить регистрацию поддоменов основного домена: "
 
 #: shared/inc/forms/root_admin.php:134
 msgid "Allow the use of the package installer:"
@@ -620,7 +615,7 @@ msgstr ""
 
 #: client/recover_pass.php:33
 msgid "An email with your password has been sent to your address."
-msgstr ""
+msgstr "Письмо с паролем было отослано на ваш e-mail."
 
 #: shared/drawlib/cc_code_popup.php:107
 msgid "Andorra"
@@ -652,7 +647,7 @@ msgstr "Антигуа и Барбуда"
 
 #: admin/inc/dtc_config.php:1128
 msgid "Apache DirectoryIndex: "
-msgstr ""
+msgstr "Apache DirectoryIndex: "
 
 #: admin/inc/dtc_config.php:1796
 msgid "Apache file names"
@@ -679,13 +674,12 @@ msgid "Archive"
 msgstr "Архив"
 
 #: shared/inc/forms/root_admin.php:197
-#, fuzzy
 msgid ""
 "Are you sure you want to delete this VPS? This will also delete the "
 "partitions!"
 msgstr ""
-"Вы уверены, что хотите удалить этот домен? Это приведёт к удалению всех "
-"имеющихся файлов в этом домене!!!"
+"Вы уверены, что хотите удалить этот виртуальный сервер? Это приведёт к "
+"удалению всех его разделов!"
 
 #: shared/inc/forms/root_admin.php:151
 msgid ""
@@ -729,11 +723,13 @@ msgstr "Австрия"
 
 #: admin/inc/dtc_config.php:1246
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
-msgstr "Создать субдомены по умолчанию (mail, pop, imap, smtp, ftp, list):"
+msgstr ""
+"Автоматически создавать основные поддомены (mail, pop, imap, smtp, "
+"ftp, list):"
 
 #: admin/inc/dtc_config.php:1251
 msgid "Auto-generate subdomain list (separated by |):"
-msgstr ""
+msgstr "Автоматически создавать поддомены (разделённые |):"
 
 #: admin/inc/dtc_config.php:478 admin/inc/dtc_config.php:654
 #: admin/inc/dtc_config.php:941
@@ -750,7 +746,7 @@ msgstr "СЦЕНАРИИ РЕЗЕРВНОГО КОПИРОВАНИЯ"
 
 #: shared/inc/sql/vps.php:355
 msgid "BSD kernel type is not correct line "
-msgstr "Неправильный строка с типом ядра BSD "
+msgstr "Неправильная строка с типом ядра BSD "
 
 #: admin/inc/monitor.php:15
 msgid "BW Quota"
@@ -777,7 +773,6 @@ msgid "Bahrain"
 msgstr "Бахрейн"
 
 #: shared/inc/forms/root_admin.php:503
-#, fuzzy
 msgid "Bandwidth"
 msgstr "Полоса/месяц"
 
@@ -791,14 +786,12 @@ msgid "Bandwidth per month"
 msgstr "Полоса в месяц"
 
 #: admin/dtcrm/product_manager.php:259 shared/inc/forms/root_admin.php:570
-#, fuzzy
 msgid "Bandwidth per month in GBytes."
-msgstr "Полоса в месяц"
+msgstr "Полоса в месяц, Гб."
 
 #: admin/dtcrm/product_manager.php:166 shared/inc/forms/root_admin.php:502
-#, fuzzy
 msgid "Bandwidth per month in MBytes."
-msgstr "Полоса в месяц"
+msgstr "Полоса в месяц, Мб"
 
 #: shared/dtcrm/draw.php:86
 msgid "Bandwidth/month"
@@ -809,33 +802,29 @@ msgid "Bangladesh"
 msgstr "Бангладеш"
 
 #: admin/inc/renewals.php:216
-#, fuzzy
 msgid "Bank account"
-msgstr "Мгновенный аккаунт"
+msgstr "Банковский счёт"
 
 #: admin/inc/dtc_config.php:1538
-#, fuzzy
 msgid "Bank account details: "
-msgstr "Мгновенный аккаунт"
+msgstr "Данные о банковском счёте: "
 
 #: admin/inc/renewals.php:48 admin/inc/renewals.php:50
-#, fuzzy
 msgid "Bank accounts & payments"
-msgstr "Предыдущие платежи"
+msgstr "Банковские счета и платежи"
 
 #: admin/inc/renewals.php:251
 msgid "Bank accounts edition"
-msgstr ""
+msgstr "Редактирование банковских счетов"
 
 #: admin/inc/renewals.php:280
-#, fuzzy
 msgid "Bank address"
-msgstr "IP-адрес"
+msgstr "Адрес банка"
 
 #: admin/inc/renewals.php:220
 #, fuzzy
 msgid "Bank amount"
-msgstr "Мгновенный аккаунт"
+msgstr "Сумма на счету"
 
 #: admin/inc/draw_user_admin.php:321 admin/inc/draw_user_admin.php:400
 msgid "Bank validated"
@@ -874,13 +863,12 @@ msgid "Bolivia"
 msgstr "Боливия"
 
 #: shared/inc/forms/vps_installation.php:312
-#, fuzzy
 msgid "Boot device: "
-msgstr "Конечная стоимость: "
+msgstr "Загрузочное устройство: "
 
 #: shared/inc/forms/vps_installation.php:288
 msgid "Boot on hard drive"
-msgstr ""
+msgstr "Загрузка с жёсткого диска"
 
 #: shared/inc/forms/vps_installation.php:198
 msgid "Boot up (xm start)"
@@ -915,9 +903,8 @@ msgid "British Indian Ocean Territory"
 msgstr "Британская территория в Индийском океане"
 
 #: admin/inc/dtc_config.php:390
-#, fuzzy
 msgid "Broadcast"
-msgstr "Продукт"
+msgstr "Broadcast"
 
 #: admin/inc/nav.php:40
 msgid "Browse all generated files"
@@ -941,7 +928,7 @@ msgstr "Бурунди"
 
 #: shared/drawlib/cc_code_popup.php:138
 msgid "Byelorussian SSR"
-msgstr "Белоруссия"
+msgstr "Беларусь"
 
 #: shared/drawlib/dtc_functions.php:976
 msgid "Bytes"
@@ -976,9 +963,8 @@ msgid "Cannot close user database"
 msgstr "Не удалось закрыть пользовательскую базу данных"
 
 #: shared/inc/fetch.php:465
-#, fuzzy
 msgid "Cannot fetch user:"
-msgstr "Не удалось получить пользовательскую строку"
+msgstr "Не удалось получить данные о пользователе:"
 
 #: admin/inc/draw_user_admin.php:419
 msgid "Cannot find payment!"
@@ -1010,9 +996,8 @@ msgid "Cannot get VPS IP addresses information line "
 msgstr "Не удалось получить информационную строку с IP-адресами VPS "
 
 #: shared/inc/sql/vps.php:238
-#, fuzzy
 msgid "Cannot get VPS IP pool addresses information line "
-msgstr "Не удалось получить информационную строку с IP-адресами VPS "
+msgstr "Не удалось получить строку с IP-адресами VPS "
 
 #: shared/inc/sql/vps.php:216 shared/inc/sql/vps.php:365
 msgid "Cannot get VPS information line "
@@ -1025,7 +1010,6 @@ msgstr ""
 "раз."
 
 #: client/new_account.php:225
-#, fuzzy
 msgid "Cannot reselect client: registration failed!"
 msgstr ""
 "Не удалось повторно выбрать пользователя: регистрация завершилась неудачно!"
@@ -1061,7 +1045,7 @@ msgstr "Кабо-Верде"
 
 #: admin/inc/renewals.php:195
 msgid "Cash"
-msgstr ""
+msgstr "Наличные"
 
 #: shared/inc/forms/email.php:725
 msgid "Catch-all email set to deliver to"
@@ -1093,16 +1077,15 @@ msgstr "Смена ядра NetBSD"
 
 #: shared/inc/forms/vps_installation.php:167 shared/inc/forms/dedicated.php:95
 msgid "Change RDNS"
-msgstr ""
+msgstr "Изменить RDNS"
 
 #: shared/inc/draw.php:69 shared/inc/forms/email.php:280
 msgid "Change your password:"
 msgstr "Смена пароля:"
 
 #: admin/inc/renewals.php:195
-#, fuzzy
 msgid "Check"
-msgstr "Чили"
+msgstr "Чек"
 
 #: shared/inc/forms/email.php:702
 msgid "Check to send a bounce message (vacation): "
@@ -1115,20 +1098,19 @@ msgstr "Проверка файловой системы..."
 
 #: admin/inc/dtc_config.php:1520
 msgid "Cheques Payable To: "
-msgstr ""
+msgstr "Чеки погашаемы: "
 
 #: admin/inc/dtc_config.php:1506
-#, fuzzy
 msgid "Cheques and wire transfers:"
-msgstr "Продолжить перенос"
+msgstr "Чеки и безналичные платежи:"
 
 #: client/cheques_and_transfers.php:55
 msgid "Cheques shall be sent to:"
-msgstr ""
+msgstr "Чеки должны быть отосланы:"
 
 #: client/cheques_and_transfers.php:54
 msgid "Cheques shall be written to be paid only to:"
-msgstr ""
+msgstr "Чеки должны иметь ограничение на обналичивание только для:"
 
 #: shared/drawlib/cc_code_popup.php:146
 msgid "Chile"
@@ -1167,22 +1149,20 @@ msgid "Client"
 msgstr "Клиент"
 
 #: admin/inc/renewals.php:425
-#, fuzzy
 msgid "Client ID"
-msgstr "ID клиента:"
+msgstr "ID клиента"
 
 #: shared/inc/forms/root_admin.php:124
 msgid "Client ID:"
 msgstr "ID клиента:"
 
 #: admin/inc/renewals.php:426
-#, fuzzy
 msgid "Client country"
-msgstr "Страна сервиса"
+msgstr "Страна клиента"
 
 #: client/new_account_form.php:736
 msgid "Client info"
-msgstr "Информация о клиенте:"
+msgstr "Информация о клиенте"
 
 #: shared/gfx/skin/default_layout.php:369 shared/gfx/skin/bwoup/layout.php:638
 #: shared/gfx/skin/bwoup/layout.php:640
@@ -1195,9 +1175,8 @@ msgid "Client name not found!"
 msgstr "Имя клиента не найдено!"
 
 #: client/login.php:6 client/recover_pass.php:8 email/login.php:6
-#, fuzzy
 msgid "Client panel"
-msgstr "Клиентская панель:"
+msgstr "Клиентская панель"
 
 #: client/recover_pass.php:65 shared/gfx/skin/default_layout.php:63
 #: shared/gfx/skin/default_layout.php:72 shared/gfx/skin/bwoup/layout.php:253
@@ -1264,14 +1243,12 @@ msgid "Company name: "
 msgstr "Название компании: "
 
 #: admin/inc/renewals.php:181
-#, fuzzy
 msgid "Company paid"
-msgstr "Название компании"
+msgstr "Компания-получатель"
 
 #: admin/inc/renewals.php:176
-#, fuzzy
 msgid "Company paying"
-msgstr "Название компании"
+msgstr "Компания-плательщик"
 
 #: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:427
 #: shared/gfx/skin/bwoup/layout.php:429
@@ -1362,14 +1339,12 @@ msgid "Could not connect to the VPS SOAP Server."
 msgstr "Не удалось подключиться к VPS SOAP серверу."
 
 #: shared/inc/sql/vps.php:319
-#, fuzzy
 msgid "Could not fetch the VPS data."
-msgstr "Не удалось найти VPS сервер в базе данных"
+msgstr "Не удалось найти данные о VPS."
 
 #: client/recover_pass.php:20
-#, fuzzy
 msgid "Could not find such login into our database!"
-msgstr "Не удалось найти VPS сервер в базе данных"
+msgstr "Не удалось найти учётную запись в базе данных"
 
 #: client/new_account_form.php:112
 msgid "Could not find the VPS server in database"
@@ -1382,26 +1357,23 @@ msgstr ""
 #: admin/inc/dtc_config.php:553
 #, fuzzy
 msgid "Could not find the folder"
-msgstr "Не удалось найти VPS сервер в базе данных"
+msgstr "Не удалось найти каталог"
 
 #: client/cheques_and_transfers.php:34
-#, fuzzy
 msgid "Could not find your registration in the database."
-msgstr "Не удалось найти VPS сервер в базе данных"
+msgstr "Не удалось найти вашу регистрацию в базе данных"
 
 #: shared/inc/forms/subdomain.php:11 shared/inc/forms/subdomain.php:65
 msgid "Could not found subdomain in table for folder deletion"
 msgstr "Не удалось найти субдомен в таблице для удаления папки"
 
 #: shared/inc/vps.php:64
-#, fuzzy
 msgid "Could not get installed .iso files. Error: "
-msgstr "Не удалось получить состояние удалённой стороны: неизвестная ошибка: "
+msgstr "Не удалось получить установленные iso-файлы. Ошибка: "
 
 #: shared/inc/sql/vps.php:294
-#, fuzzy
 msgid "Could not get installed ISO files!"
-msgstr "Не удалось получить состояние удалённой стороны: неизвестная ошибка: "
+msgstr "Не удалось получить установленные iso-файлы!"
 
 #: shared/inc/forms/vps_monitoring.php:126
 #: shared/inc/forms/vps_installation.php:74
@@ -1427,13 +1399,12 @@ msgstr ""
 "SOAP серверу (ошибка HTTP)."
 
 #: shared/inc/vps.php:74
-#, fuzzy
 msgid "Could not get virtual machine info. Error: "
-msgstr "Не удалось получить состояние удалённой стороны: неизвестная ошибка: "
+msgstr "Не удалось получить информацию о виртуальной машине. Ошибка: "
 
 #: shared/securepay/pay_functions.php:17
 msgid "Could not list modules in"
-msgstr ""
+msgstr "Не удалось получить список модулей в"
 
 #: shared/inc/forms/dns.php:82
 msgid "Could not load zonefile: permission denied or file not existant?"
@@ -1515,9 +1486,8 @@ msgid "Cuba"
 msgstr "Куба"
 
 #: admin/inc/renewals.php:211 admin/inc/renewals.php:283
-#, fuzzy
 msgid "Currency"
-msgstr "Знак валюты: "
+msgstr "Валюта"
 
 #: admin/inc/dtc_config.php:1500
 msgid "Currency letters: "
@@ -1651,14 +1621,12 @@ msgid "Daily"
 msgstr "Ежедневно"
 
 #: shared/inc/forms/vps_graphs.php:41
-#, fuzzy
 msgid "Daily VPS usage statistics:"
-msgstr "Статистика почтовой очереди"
+msgstr "Ежедневная статистика использования VPS"
 
 #: shared/inc/forms/vps_dom0graphs.php:41
-#, fuzzy
 msgid "Daily Xen server usage statistics:"
-msgstr "Статистика почтовой очереди"
+msgstr "Ежедневная статистика использования Xen-сервера:"
 
 #: shared/inc/forms/admin_stats.php:83
 msgid "Database Name"
@@ -1690,9 +1658,8 @@ msgid "Date"
 msgstr "Дата"
 
 #: admin/inc/renewals.php:721
-#, fuzzy
 msgid "Days of expiration"
-msgstr "Предупреждения после наступления срока: "
+msgstr "Дней после наступления срока: "
 
 #: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:505
 msgid "Deamons states"
@@ -1703,16 +1670,16 @@ msgid ""
 "Dear customer, You or somebody else tried the recovery password procedure. "
 "Here is your password: %%%RECOVERED_PASSWORD%%%"
 msgstr ""
+"Уважаемый клиент, Вы или кто-то ещё запустили процедуру восстановления пароля."
+"Ваш пароль: %%%RECOVERED_PASSWORD%%%"
 
 #: admin/inc/dtc_config.php:324
-#, fuzzy
 msgid "Dedicated server IP address pool editor"
-msgstr "Сроки истечения работы с выделенным сервером:"
+msgstr "Редактор списка IP-адресов для выделенных серверов"
 
 #: admin/inc/dtc_config.php:47
-#, fuzzy
 msgid "Dedicated server IPs"
-msgstr "Выделенные серверы: "
+msgstr "IP-адреса выделенных серверов"
 
 #: shared/inc/forms/dedicated.php:41
 msgid "Dedicated server contract:"
@@ -1723,13 +1690,12 @@ msgid "Dedicated server expiration dates:"
 msgstr "Сроки истечения работы с выделенным сервером:"
 
 #: admin/inc/dtc_config.php:346
-#, fuzzy
 msgid "Dedicated server hostname"
-msgstr "Контракт на выделенный сервер:"
+msgstr "Hostname выделенного сервера"
 
 #: admin/inc/renewals.php:790
 msgid "Dedicated servers renewals"
-msgstr "Простои выделенных серверов"
+msgstr "Продления выделенных серверов"
 
 #: admin/inc/renewals.php:580
 msgid "Dedicated servers: "
@@ -1745,7 +1711,7 @@ msgstr "Субдомен по умолчанию: "
 
 #: admin/inc/dtc_config.php:1261
 msgid "Defaut TTL for your zonefiles:"
-msgstr ""
+msgstr "TTL по-умолчанию для ваших файлов зон:"
 
 #: admin/inc/renewals.php:485 admin/inc/draw_user_admin.php:367
 #: admin/inc/draw_user_admin.php:387 shared/inc/forms/database.php:57
@@ -2049,9 +2015,8 @@ msgid "Email max"
 msgstr "Макс почты"
 
 #: client/login.php:6 client/recover_pass.php:9 email/login.php:7
-#, fuzzy
 msgid "Email panel"
-msgstr "Панель управления почтой: "
+msgstr "Панель управления почтой"
 
 #: shared/gfx/skin/default_layout.php:24 shared/gfx/skin/default_layout.php:34
 #: shared/gfx/skin/bwoup/layout.php:53 shared/gfx/skin/bwoup/layout.php:61
@@ -2060,7 +2025,7 @@ msgstr "Панель управления почтой: "
 
 #: shared/inc/forms/email.php:51
 msgid "Email to fetch:"
-msgstr ""
+msgstr "E-mail, для которого получить почту:"
 
 #: admin/inc/nav.php:20
 msgid "Email user and domain files generated !"
@@ -2110,9 +2075,8 @@ msgid "Error"
 msgstr "Ошибка"
 
 #: shared/inc/forms/vps_installation.php:157
-#, fuzzy
 msgid "Error line "
-msgstr "Ошибка: "
+msgstr "Ошибка в строке "
 
 #: shared/inc/sql/vps.php:153
 msgid "Error: "
@@ -2164,14 +2128,12 @@ msgid "Expiry date:"
 msgstr "Дата окончания:"
 
 #: shared/inc/forms/my_account.php:92
-#, fuzzy
 msgid "Export all my domains configuration to a file"
-msgstr "Экспортировать этот домен в файл"
+msgstr "Экспортировать настройки всех доменов в файл"
 
 #: shared/inc/forms/my_account.php:91
-#, fuzzy
 msgid "Export configuration:"
-msgstr "Настройка почтового ящика:"
+msgstr "Экспортировать настройки:"
 
 #: shared/inc/forms/domain_info.php:120
 msgid "Export this domain to a file"
@@ -2214,18 +2176,16 @@ msgid "FTP password:"
 msgstr "Пароль FTP:"
 
 #: shared/inc/forms/vps_monitoring.php:264
-#, fuzzy
 msgid "FTP: "
-msgstr "Факс: "
+msgstr "FTP: "
 
 #: shared/drawlib/cc_code_popup.php:174
 msgid "Falkland Islands (Malvinas)"
 msgstr "Фолклендские (Мальвинские) острова"
 
 #: admin/inc/renewals.php:344
-#, fuzzy
 msgid "Familly name:"
-msgstr "Фамилия: "
+msgstr "Фамилия:"
 
 #: admin/dtcrm/main.php:211 client/new_account_form.php:605
 #: shared/dtcrm/draw_handle.php:57 shared/dtcrm/draw_handle.php:89
@@ -2258,12 +2218,12 @@ msgstr "Fetchmail"
 #: shared/inc/forms/email.php:26
 #, fuzzy
 msgid "Fetchmail configuration:"
-msgstr "Настройка почтового ящика:"
+msgstr "Настройка Fetchmail"
 
 #: admin/inc/nav.php:34
 #, fuzzy
 msgid "Fetchmail script generated !"
-msgstr "Сгенерирован сценарий статистики!"
+msgstr "Сгенерирован сценарий для Fetchmail!"
 
 #: shared/drawlib/cc_code_popup.php:176
 msgid "Fiji"
@@ -2368,9 +2328,8 @@ msgid "Gambia"
 msgstr "Гамбия"
 
 #: admin/inc/dtc_config.php:394
-#, fuzzy
 msgid "Gateway"
-msgstr "Услуги пункта оплаты"
+msgstr "Шлюз"
 
 #: shared/securepay/pay_functions.php:69
 msgid "Gateway cost"
@@ -2387,7 +2346,7 @@ msgstr "Общая информация "
 #: shared/inc/forms/subdomain.php:150
 #, fuzzy
 msgid "Generate a ServerAlias for the root of the domain:"
-msgstr "Генерировать запись vhost для этого субдомена:"
+msgstr "Генерировать ServerAlias для корня домена:"
 
 #: admin/inc/dtc_config.php:1118
 msgid "Generate a global /webmail alias: "
