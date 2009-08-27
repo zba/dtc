@@ -439,11 +439,11 @@ msgstr "Benutzer hinzufügen"
 
 #: shared/gfx/skin/default_layout.php:426
 msgid "Add a virtual administrator"
-msgstr "virtuellen Administrator hinzufügen"
+msgstr "einen Benutzer hinzufügen"
 
 #: admin/dtcrm/main.php:134
 msgid "Add an administrator to this customer:"
-msgstr "Administrator diesem Kunden hinzufügen:"
+msgstr "Diesem Kunden einen Benutzer hinzufügen:"
 
 #: shared/dtcrm/draw_adddomain.php:67
 #: shared/dtcrm/draw_adddomain.php:99
@@ -1298,7 +1298,7 @@ msgstr "Konfiguration der Domains"
 
 #: shared/gfx/skin/default_layout.php:402
 msgid "Configuration of the virtual administrator"
-msgstr "Konfiguration des virtuellen Administrators"
+msgstr "Konfiguration des Benutzers"
 
 #: shared/inc/forms/dns.php:85
 msgid "Configure your domain name:"
@@ -1566,7 +1566,7 @@ msgstr "Land des Kunden"
 #: shared/gfx/skin/bwoup/layout.php:402
 #: shared/gfx/skin/bwoup/layout.php:404
 msgid "Customer management"
-msgstr "Kundenmanagement"
+msgstr "Kundenverwaltung"
 
 #: shared/gfx/skin/default_layout.php:131
 #: shared/gfx/skin/bwoup/layout.php:493
@@ -1581,7 +1581,7 @@ msgstr "Kundenadresse"
 
 #: shared/gfx/skin/default_layout.php:122
 msgid "Customer's administrators"
-msgstr "Administratoren des Kunden"
+msgstr "Benutzer des Kunden"
 
 #: shared/gfx/skin/default_layout.php:135
 #: shared/gfx/skin/bwoup/layout.php:497
@@ -2085,7 +2085,7 @@ msgstr "E-Mail-Center"
 #: shared/gfx/skin/bwoup/layout.php:53
 #: shared/gfx/skin/bwoup/layout.php:61
 msgid "Email panel: "
-msgstr "E-Mail-Center"
+msgstr "E-Mail-Center: "
 
 #: shared/inc/forms/email.php:51
 msgid "Email to fetch:"
@@ -2610,7 +2610,7 @@ msgstr "Hier können Sie in Byte spezifizieren, wie groß eine Mail sein darf, d
 
 #: admin/dtcrm/main.php:101
 msgid "Hide client without admin"
-msgstr "Kunden ohne Administrator verstecken"
+msgstr "Kunden ohne Benutzer verstecken"
 
 #: shared/inc/forms/lists.php:267
 msgid "Hide email addresses to avoid spam."
@@ -3106,7 +3106,7 @@ msgstr "Kirgistan"
 
 #: admin/inc/renewals.php:174
 msgid "Label"
-msgstr ""
+msgstr "Titel"
 
 #: client/new_account.php:36
 #: client/cheques_and_transfers.php:18
@@ -3415,7 +3415,7 @@ msgstr "Der zum Versenden benutzte Mail-Server."
 
 #: admin/deamons_state.php:134
 msgid "Mail-newu"
-msgstr ""
+msgstr "qmail-newu"
 
 #: shared/inc/forms/email.php:610
 msgid "Mailbox configuration:"
@@ -3923,7 +3923,7 @@ msgstr "Neue Subdomain"
 #: admin/inc/nav.php:177
 #: admin/inc/nav.php:181
 msgid "New virtual admin"
-msgstr "Neuer Administrator"
+msgstr "Neuer Benutzer"
 
 #: admin/deamons_state.php:139
 msgid "Next cronjob"
@@ -4017,7 +4017,7 @@ msgstr "Keine abgelaufenen SSL-IP-Adressen"
 #: shared/inc/forms/my_account.php:168
 msgid "No SSL token available: contact your administrator to request it."
 msgstr "Kein SSL-Token verfügbar, bitte kontaktieren Sie Ihren Administrator, "
-"umeinen zu beantragen."
+"um einen zu beantragen."
 
 #: admin/inc/renewals.php:714
 msgid "No VPS expired"
@@ -4595,14 +4595,14 @@ msgstr "Bitte geben Sie den Domainnamen an, der übertragen werden soll:"
 msgid ""
 "Please login with username and password in order to access the DTC admin "
 "interface."
-msgstr ""
+msgstr "Bitte melden Sie sich mit Ihrem Benutzernamen und Passwort an, um den DTC-Administrator-Bereich zu nutzen."
 
 #: shared/gfx/skin/default_layout.php:142
 #: shared/gfx/skin/bwoup/layout.php:504
 msgid ""
 "Please note that you need to create at least one email and one FTP account "
 "in order to have the daemon status working!"
-msgstr ""
+msgstr "Bitte beachten Sie, dass Sie mindestens ein E-Mail- und ein FTP-Konto anlegen müssen, damit die Serverüberwachung funktioniert!"
 
 #: client/new_account.php:304
 #: client/new_account.php:399
@@ -4653,7 +4653,7 @@ msgstr "Portugal"
 
 #: admin/inc/dtc_config.php:1100
 msgid "Prepend admin name to db names: "
-msgstr ""
+msgstr "Benutzernamen den Datenbanknamen voranstellen:"
 
 #: admin/dtcrm/product_manager.php:36
 #: admin/dtcrm/product_manager.php:138
@@ -4941,7 +4941,7 @@ msgstr "Betreff der Erinnerungs- und Registrations-E-Mails:"
 
 #: admin/dtcrm/main.php:123
 msgid "Remove an administrator for this customer:"
-msgstr "Administrator für diesen Kunden entfernen:"
+msgstr "Einen Benutzer dieses Kundens entfernen:"
 
 #: shared/inc/forms/my_account.php:118
 msgid "Renew my account"
@@ -6411,7 +6411,7 @@ msgstr "MySQL root-Passwort:"
 #: shared/gfx/skin/default_layout.php:393
 #: shared/gfx/skin/bwoup/layout.php:568
 msgid "User administration"
-msgstr "Benutzerverwaltung"
+msgstr "Benutzer & Domains"
 
 #: admin/inc/draw_user_admin.php:313
 msgid "User and domain waiting for addition:"
