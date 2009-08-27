@@ -30,7 +30,7 @@ while($line = fgets($fp, 4096) ){
 
 $DEBUG_ME = 0;
 if($DEBUG_ME == 1){
-	mkdir("/tmp/support/");
+	@mkdir("/tmp/support/");
 	$debug_fp = fopen("/tmp/support/".date('Y-m-d')."_".date('H-m-i')."_".getRandomValue().".txt","w+");
 	fwrite($debug_fp,$msg);
 	fclose($debug_fp);
@@ -45,6 +45,7 @@ if($flag == 0 || sizeof($matches) != 1){
 	echo("No email found in From! :(\n");
 	exit(1);
 }
+$email_from = $matches[0][0];
 
 // Do nothing if there's a mail from an auto-responder
 if( isset($stt->headers["X-AutoReply-From"]) || isset($stt->headers["X-Mail-Autoreply"]) ){
@@ -58,7 +59,6 @@ if($flag == 0){
 	echo("No email found in To! :(\n");
 	exit(1);
 }
-$email_to = $matches[0][0];
 
 // Build the support ticket email regexp
 if( !isset($conf_support_ticket_domain) || $conf_support_ticket_domain == "default"){
@@ -68,20 +68,55 @@ if( !isset($conf_support_ticket_domain) || $conf_support_ticket_domain == "defau
 }
 $tik_regexp = '^' . $conf_support_ticket_email . "[-+]([a-f0-9]*)@" . $tik_domain . '$';
 
-// Select the first match that looks like an existing ticket reply, otherwise the first entry will do.
-$email_from = $matches[0][0];
+$email_to = $matches[0][0];
 $n = sizeof($matches[0]);
 for($i = 0;$i<$n;$i++){
 	if( ereg($tik_regexp,$matches[0][$i]) ){
 		$email_to = $matches[0][$i];
 	}
 }
-echo "From: $email_from To: $email_to\n";
+
+//echo "From: $email_from To: $email_to\n";
 
 // This is to avoid any hacking with support mail looping to itself.
 if( ereg($tik_regexp,$email_from) ){
+	echo "From email is the one of our support ticket, we can't allow this!";
 	exit(1);
 }
+
+if(isset($stt->parts)){
+	// If the email is a multipart mime message, search for the text version
+	unset($text_part);
+	unset($html_part);
+	$n_parts = sizeof($stt->parts);
+	for($i=0;$i<$n_parts;$i++){
+		if($stt->parts[$i]->ctype_primary == "text" && $stt->parts[$i]->ctype_secondary == "plain"){
+//			echo "Plain part is $i\n";
+			$text_part = $i;
+		}
+		if($stt->parts[$i]->ctype_primary == "text" && $stt->parts[$i]->ctype_secondary == "html"){
+//			echo "Html part is $i\n";
+			$html_part = $i;
+		}
+	}
+	if( !isset($text_part) && !isset($html_part)){
+		echo "We only support multipart messages in HTML and PLAIN format!";
+		exit(1);
+	}
+	if( !isset($text_part) ){
+		$body = strip_tags( $stt->parts[$html_part]->body , "<p><a><br><b>");
+	}else{
+		$body = $stt->parts[$text_part]->body;
+		$charset = $stt->parts[$text_part]->ctype_parameters["charset"];
+	}
+}else{
+	$body = $stt->body;
+	$charset = $stt->ctype_parameters["charset"];
+}
+//echo "$charset\n";
+$body = mb_convert_encoding($body,"UTF-8",strtoupper($charset));
+//echo $body;
+//exit(1);
 
 // Check if the To: has the support ID number in it
 // emails are sent to something like: support-3bc8212a0@dtc.example.com
@@ -106,17 +141,19 @@ if( ereg($tik_regexp,$email_to) ){
 			$last_id = findLastTicketID($ticket_hash);
 			if($last_id != 0){
 				$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket)
-				VALUES('','".$start_tik["adm_login"]."','".date('Y-m-d')."','".date('H:m:i')."','$last_id','0','user','". mysql_real_escape_string($stt->body) ."','no');";
+				VALUES('','".$start_tik["adm_login"]."','".date('Y-m-d')."','".date('H:m:i')."','$last_id','0','user','". mysql_real_escape_string($body) ."','no');";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$new_id = mysql_insert_id();
 				$q = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$new_id' WHERE id='$last_id';";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-				mailTicketToAllAdmins($start_tik["subject"],$stt->body,$start_tik["adm_login"]);
+				mailTicketToAllAdmins($start_tik["subject"],$body,$start_tik["adm_login"]);
 				exit(0);
 			}
 		}
 	}
 }
+
+
 echo "Not an old ticket, searching for a matching customer\n";
 $q = "SELECT id FROM $pro_mysql_client_table WHERE email='$email_from';";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -131,18 +168,18 @@ if($n == 1){
 	if($n == 1){
 		$adm = mysql_fetch_array($r);
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject)
-		VALUES('','".$adm["adm_login"]."','".date('Y-m-d')."','".date('H:m:i')."','0','0','user','". mysql_real_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."');";
+		VALUES('','".$adm["adm_login"]."','".date('Y-m-d')."','".date('H:m:i')."','0','0','user','". mysql_real_escape_string($body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."');";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-		mailTicketToAllAdmins($stt->headers["subject"],$stt->body,$adm["adm_login"]);
+		mailTicketToAllAdmins($stt->headers["subject"],$body,$adm["adm_login"]);
 		exit(0);
 	}
 // If nothing matches, then we want to create a new ticket associated with
 // this email address.
 }else{
 	$q = "INSERT INTO $pro_mysql_tik_queries_table (id,customer_email,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject)
-	VALUES('','$email_from','".date('Y-m-d')."','".date('H:m:i')."','0','0','user','". mysql_real_escape_string($stt->body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."');";
+	VALUES('','$email_from','".date('Y-m-d')."','".date('H:m:i')."','0','0','user','". mysql_real_escape_string($body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."');";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-	mailTicketToAllAdmins($stt->headers["subject"],$stt->body,$email_from);
+	mailTicketToAllAdmins($stt->headers["subject"],$body,$email_from);
 }
 exit(0);
 

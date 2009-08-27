@@ -414,6 +414,7 @@ $vps_mail_add1
 }
 
 function registration_form(){
+	global $conf_this_server_country_code;
         global $conf_skin;
 
 	global $pro_mysql_product_table;
@@ -561,6 +562,8 @@ function registration_form(){
 	}
 	$tld_popup .= domainNamePopup($frm_domain_tld);
 
+	$rek = "<font color=\"red\">*</font>";
+
 	$prod_popup = "<table>
 <tr>
 	<td style=\"white-space: nowrap;text-align: right;\">". _("Product") .": </td><td>".$prod_popup."</td>
@@ -581,13 +584,13 @@ function registration_form(){
 
 	$login_info = "<table>
 <tr>
-	<td style=\"white-space: nowrap;text-align: right;\">"._("Login: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">"._("Login: ") . $rek ."</td>
 	<td><input type=\"text\" name=\"reqadm_login\" value=\"$frm_login\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Password: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Password: ") . $rek ."</td>
 	<td><input type=\"password\" name=\"reqadm_pass\" value=\"\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Confirm pass: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Confirm pass: ") . $rek ."</td>
 	<td><input type=\"password\" name=\"reqadm_pass2\" value=\"\"></td>
 </tr></table>";
 #	$login_skined = skin("frame",$login_info,"");
@@ -602,13 +605,13 @@ function registration_form(){
 	}
 	$client_info = "<table>
 <tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Familly name: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Familly name: ") . $rek ."</td>
 	<td><input type=\"text\" name=\"familyname\" value=\"$frm_family_name\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("First name: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("First name: ") . $rek ."</td>
 	<td><input type=\"text\" name=\"firstname\" value=\"$frm_firstname\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Is it a company: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Is it a company: ") . $rek ."</td>
 	<td><input type=\"radio\" name=\"iscomp\" value=\"yes\"$compyes>"._("Yes")."
 <input type=\"radio\" name=\"iscomp\" value=\"no\"$compno>"._("No")."</td>
 </tr><tr>
@@ -618,10 +621,10 @@ function registration_form(){
 	<td style=\"white-space: nowrap;text-align: right;\">". _("VAT/GST Number: ") ."</td>
 	<td><input type=\"text\" name=\"vat_num\" value=\"$frm_vat_num\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Email: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Email: ") . $rek ."</td>
 	<td><input type=\"text\" name=\"email\" value=\"$frm_email\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Phone number: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Phone number: ") . $rek ."</td>
 	<td><input type=\"text\" name=\"phone\" value=\"$frm_phone\"></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">". _("Fax: ") ."</td>
@@ -630,9 +633,13 @@ function registration_form(){
 
 	$client_skined = $client_info;
 
+	if(($frm_country == "" && !isset($db_product)) || ($frm_country == "" && $db_product["heb_type"] == "shared")){
+		$frm_country = $conf_this_server_country_code;
+	}
+
 	$client_addr = "<table>
 <tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Address (line1): ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Address (line1): ") . $rek ."</td>
 	<td><input type=\"text\" name=\"address1\" value=\"$frm_addr1\"></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">". _("Address (line2): ") ."</td>
@@ -641,23 +648,23 @@ function registration_form(){
 	<td style=\"white-space: nowrap;text-align: right;\">". _("Address (line3): ") ."</td>
 	<td><input type=\"text\" name=\"address3\" value=\"$frm_addr3\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Zipcode: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Zipcode: ") . $rek ."</td>
 	<td><input type=\"text\" name=\"zipcode\" value=\"$frm_zipcode\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("City: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("City: ") . $rek ."</td>
 	<td><input type=\"text\" name=\"city\" value=\"$frm_city\"></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">". _("State: ") ."</td>
 	<td><input type=\"text\" name=\"state\" value=\"$frm_state\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Country: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Country: ") . $rek ."</td>
 	<td><select name=\"country\">".cc_code_popup($frm_country)."</select></td>
 </tr></table>";
 #	$addr_skined = skin("frame",$client_addr,"");
 	$addr_skined = $client_addr;
 
 	if($conf_selling_conditions_url != "none"){
-		$conditions = "<input type=\"checkbox\" name=\"condition\" value=\"yes\"> ". _("I agree to the") ." <a href=\"$conf_selling_conditions_url\">". _("selling conditions") ."</a>";
+		$conditions = "<input type=\"checkbox\" name=\"condition\" value=\"yes\"> " . $rek  . _("I agree to the") ." <a href=\"$conf_selling_conditions_url\">". _("selling conditions") ."</a>";
 	}else{
 		$conditions = "";
 	}
@@ -724,7 +731,9 @@ function hostingProductChanged(){
 	}
 }
 
-</script>
+</script><br>
+<br>
+<i>" . _("Feilds with a <font color=\"red\">*</font> are mandatory.") . "</i><br>
 <form name=\"newuser_form\" action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
 <input type=\"hidden\" name=\"action\" value=\"new_user_request\">
 <table>
@@ -745,7 +754,7 @@ $conditions
 	<td><input type=\"submit\" name=\"Login\" value=\"Register\"></td>
 </tr>
 </table>
-</form>";
+</form>" ;
 
 //	return $login_skined;
 	return $HTML_admin_edit_data;

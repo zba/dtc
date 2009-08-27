@@ -1,0 +1,20 @@
+
+Assunto: Ultimo aviso antes do desligamento efetivo
+
+Olá %%%FIRST_NAME%%%,
+
+O seu servidor dedicado %%%SERVER_HOSTNAME%%%
+expirou a %%%EXPIRED_DAYS%%% dias atraz, no dia: %%%EXPIRATION_DATE%%%.
+
+Por favor logue-se no painel de controle em:
+
+%%%DTC_CLIENT_URL%%%
+
+com o seu login %%%DTC_ADM_LOGIN%%%, e clique na tab servidores para renova-lo.
+
+Este é o seu último aviso antes de desligar o seu servidor.
+Por favor entenda que este espaço pode ser necessário a outros clientes.
+Então precisamos de sua contribuição para manter o servidor on-line.
+Se você não renova-lo o mesmo será removido em 3 dias.
+
+%%%SIGNATURE%%%

@@ -1,0 +1,15 @@
+Observação: o ticket permanece aberto, provavelmente aguardando a sua
+posição. Por favor, logue-se no painel de controle no seguinte endereço:
+
+%%%DTC_CLIENT_URL%%%
+
+Uma vez logado, va para a tab de ticket de suporte a digite a sua resposta.
+Você pode responder apartir de seu programa de correio simplesmente escrevendo para:
+
+%%%SUPPORT_EMAIL_ADDRESS%%%
+
+Se você está respondendo por correio eletrônico, por favor, não altere o endereço do
+destinatário. O número que está incluído neste endereço é muito importante, e
+ajuda a relacionar a sua mensagem com o respectivo ticket de suporte! 
+Além disso, por favor, não inclua os textos anteriores da conversação 
+na mensagem pois eles já estão disponíveis no histórico do ticket.

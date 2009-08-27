@@ -274,7 +274,7 @@ function get_apache_pid() {
 	if ($pid) { return (int) $pid; }
 }
 
-if( !function_exists(posix_kill)){
+if( !function_exists("posix_kill")){
 	function posix_kill($pid, $sig=1){
 		system('kill -'.$sig.' '. $pid, $st); 
 		return !$st;

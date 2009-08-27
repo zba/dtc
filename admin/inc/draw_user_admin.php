@@ -196,7 +196,7 @@ function drawNewAdminForm(){
 		}else{
 			$out .= "<font color=\"#FF0000\">"._("No")."</font><br>";
 		}
-		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
 		<input type=\"hidden\" name=\"subaction\" value=\"ticket_reply\">
 		<textarea cols=\"100\" rows=\"10\" wrap=\"physical\" name=\"ticketbody\"></textarea><br>
 		<input type=\"hidden\" name=\"tik_id\" value=\"".$_REQUEST["tik_id"]."\">

@@ -1,0 +1,18 @@
+
+Assunto: Seu servidor dedicado expirou.
+
+Olá %%%FIRST_NAME%%%,
+
+O seu servidor dedicado %%%SERVER_HOSTNAME%%%
+expirou a %%%EXPIRED_DAYS%%% dias atraz, no dia: %%%EXPIRATION_DATE%%%.
+
+Por favor logue-se no painel de controle em:
+
+%%%DTC_CLIENT_URL%%%
+
+com o seu login %%%DTC_ADM_LOGIN%%%, e clique na tab servidores para renova-lo.
+
+Seu servidor dedicado será mantido no ar somente por mais alguns dias para dar tempo 
+o suficiente de renovar o seu contrato.
+
+%%%SIGNATURE%%%
