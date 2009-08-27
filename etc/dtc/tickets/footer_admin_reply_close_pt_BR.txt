@@ -1,0 +1,24 @@
+Observação: o ticket foi fechado, o que significa que não há necessidade de
+responde-lo. Se você ainda precisar de ajuda, você deve abrir um novo ticket
+de suporte. Ou escrever neste ticket para reabri-lo. Para fazer isso logue-se
+no painel de controle no seguinte endereço:
+
+%%%DTC_CLIENT_URL%%%
+
+Uma vez logado, va para a tab de ticket de suporte a digite a sua resposta.
+Você pode responder apartir de seu programa de correio simplesmente escrevendo para:
+
+%%%SUPPORT_EMAIL_ADDRESS%%%
+
+esta ação também poderá reabrir o ticket.
+
+If you are answering by email, please do not change the address of the
+reply. The number that is included in this address is very important, and
+helps to link your email to the old ticket! Also, please do not include our
+reply in the body of your message, as we already keep a history of it.
+
+Se você está respondendo por correio eletrônico, por favor, não altere o endereço do
+destinatário. O número que está incluído neste endereço é muito importante, e
+ajuda a relacionar a sua mensagem com o respectivo ticket de suporte! 
+Além disso, por favor, não inclua os textos anteriores da conversação 
+na mensagem pois eles já estão disponíveis no histórico do ticket.

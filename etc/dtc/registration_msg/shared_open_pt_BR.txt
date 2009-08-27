@@ -1,0 +1,20 @@
+The shared hosting account you have ordered is now ready to be used.
+Note that it can take up to 10 minutes until your domain name is setup
+on our DNS and apache server (a cron job runs each 10 minutes for new
+mail, domains and subdomains, but you don't need to wait for your ftp
+accounts).
+
+Note that your files should be uploaded in:
+
+/var/www/sites/YOU-USERNAME/your-domain.com/subdomains/www/html
+
+And when creating a new ftp account, you wont see the first part of the
+path, so it will be relative to:
+
+/var/www/sites/YOU-USERNAME
+
+You can login to the control panel using the following informations:
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%%

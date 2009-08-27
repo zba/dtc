@@ -1,0 +1,21 @@
+
+Subject: Last warning before VPS shutdown
+
+Hello %%%FIRST_NAME%%%,
+
+Seu servidor virtual Xen(VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+expirou a %%%EXPIRED_DAYS%%% dias atrás, na data: %%%EXPIRATION_DATE%%%.
+
+Por favor logue-se no painel de controle em: 
+
+%%%DTC_CLIENT_URL%%%
+
+com o seu login %%%DTC_ADM_LOGIN%%%, clique na aba "VPS", para renova-lo.
+
+Este é o seu último aviso antes de remover o seu VPS.
+Por favor entenda que este espaço pode ser necessário a outros clientes.
+Então precisamos de sua contribuição para manter o servidor on-line.
+Se você não renova-lo o mesmo será destruido em 3 dias sem chances de recuperação.
+
+
+%%%SIGNATURE%%%

@@ -1,0 +1,15 @@
+
+Assunto: Seu servidor VPS está expirando
+
+Hello %%%FIRST_NAME%%%,
+
+Seu servidor virtual XEN VPS %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+vai expirar em %%%REMAINING_DAYS%%% dias, na data: %%%EXPIRATION_DATE%%%.
+
+Por favor logue-se no painel de controle em: 
+
+%%%DTC_CLIENT_URL%%%
+
+com o seu login %%%DTC_ADM_LOGIN%%%, clique na aba "VPS", para renova-lo.
+
+%%%SIGNATURE%%%

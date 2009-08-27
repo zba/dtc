@@ -1,0 +1,20 @@
+
+Assunto: Ultimo aviso antes de remover sua conta de hospedagem
+
+Olá %%%FIRST_NAME%%%,
+
+Sua conta de hospedagem compartilhada espirou em %%%EXPIRED_DAYS%%% dias atrás, na data:
+%%%EXPIRATION_DATE%%%.
+
+Por favor logue-se no painel de controle em:   
+
+%%%DTC_CLIENT_URL%%%
+
+com o seu login %%%DTC_ADM_LOGIN%%%, clique em "minha conta", para renova-la.
+
+Este é o seu último aviso antes de remover a sua conta de hospedagem.
+Por favor entenda que este espaço pode ser necessário a outros clientes.
+Então precisamos de sua contribuição para manter sua conta on-line.
+Se você não renovar sua conta a mesma será removida.
+
+%%%SIGNATURE%%%
