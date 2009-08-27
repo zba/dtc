@@ -1,0 +1,18 @@
+
+Subject: Ihr Webhosting-Paket läuft heute ab
+
+Sehr geehrte Damen und Herren,
+
+Ihr Webhostng-Paket läuft heute, d.h. am %%%EXPIRATION_DATE%%% ab.
+
+Bitte melden Sie sich im Kundencenter unter
+
+%%%DTC_CLIENT_URL%%%
+
+mit Ihrem Benutzernamen %%%DTC_ADM_LOGIN%%% an, klicken Sie auf 
+"Mein Konto", und verlängern Sie Ihr Paket.
+
+Wir lassen Ihr Webhosting-Paket noch ein paar Tage online, um Ihnen 
+Gelegenheit zur Verlängerung zu geben.
+
+%%%SIGNATURE%%%

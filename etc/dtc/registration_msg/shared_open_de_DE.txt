@@ -1,0 +1,22 @@
+Ihr bestelltes Webhosting-Paket ist nun bereit zur Nutzung. Es kann bis zu
+10 Minuten dauern, bis Ihre Domain in den DNS- und Webservern aktiviert ist
+und damit Domains, Subdomains und E-Mail-Adressen nutzbar sind. FTP-Konten
+werden sofort aktiv. Bei .de-Domains dauert die erstmalige Registrierung 
+bis zu 4 Stunden.
+
+Bitte beachten Sie, dass Sie Ihre Webseite in den folgenden Ordner
+hochladen sollten:
+
+/var/www/sites/IHR-BENUTZERNAME/your-domain.com/subdomains/www/html
+
+Beim Erzeugen von FTP-Konten ist der erste Teil des Pfades nicht sichtbar,
+er ist also relativ zu:
+
+/var/www/sites/IHR-BENUTZERNAME
+
+Zur Anmeldung im Kundencenter benutzen Sie bitte die folgenden 
+Login-Informationen:
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%%
