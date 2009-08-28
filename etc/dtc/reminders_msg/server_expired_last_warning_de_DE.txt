@@ -11,12 +11,12 @@ Bitte melden Sie sich im Kundencenter unter
 %%%DTC_CLIENT_URL%%%
 
 mit Ihrem Benutzernamen %%%DTC_ADM_LOGIN%%% an, gehen Sie in den Server-
-Bereich, und verl둵gern Ihren Server.
+Bereich, und verl채ngern Ihren Server.
 
 Dies ist die letzte Warnung vor der Abschaltung Ihres Servers. Bitte 
-haben Sie Verst둵dnis daf웦, dass wir bei Nichtverl둵gerung den Server 
-nicht mehr online halten k쉗nen, und dass die Geb웘ren im Voraus zu
-entrichten sind. Wenn Sie Ihren Server nicht verl둵gern, werden wir ihn
+haben Sie Verst채ndnis daf체r, dass wir bei Nichtverl채ngerung den Server 
+nicht mehr online halten k철nnen, und dass die Geb체hren im Voraus zu
+entrichten sind. Wenn Sie Ihren Server nicht verl채ngern, werden wir ihn
 in 3 Tagen abschalten.
 
 %%%SIGNATURE%%%

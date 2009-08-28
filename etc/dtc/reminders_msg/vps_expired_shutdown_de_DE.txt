@@ -7,9 +7,9 @@ Ihr virtueller Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
 ist vor %%%EXPIRED_DAYS%%% tagen, d.h. am %%%EXPIRATION_DATE%%% abgelaufen.
 
 Wir haben Ihnen bereits einige Nachrichten geschickt, in denen wir Sie um
-die Verlängerung gebeten haben. Bitte haben Sie Verständnis dafür, dass
+die Verl√§ngerung gebeten haben. Bitte haben Sie Verst√§ndnis daf√ºr, dass
 wir Ihren VPS heute abschalten. Ihre Daten werden dabei unwideruflich 
-verloren gehen. Wenn Sie Ihren VPS wieder starten möchten, so verlängern Sie
+verloren gehen. Wenn Sie Ihren VPS wieder starten m√∂chten, so verl√§ngern Sie
 ihn bitte.
 
 %%%SIGNATURE%%%

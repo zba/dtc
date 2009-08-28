@@ -1,5 +1,5 @@
 
-Subject: L쉝chen Ihres Webhosting-Pakets
+Subject: L철schen Ihres Webhosting-Pakets
 
 Sehr geehrte Damen und Herren,
 
@@ -7,8 +7,8 @@ Ihr Webhosting-Paket mit dem Benutzernamen %%%DTC_ADM_LOGIN%%% ist vor
 %%%EXPIRED_DAYS%%% Tagen, d.h. am %%%EXPIRATION_DATE%%% abgelaufen.
 
 Wir haben Ihnen bereits zuvor einige Nachrichten geschickt, in denen wir
-Ihnen den Ablauf Ihres Webhosting-Pakets angek웢digt haben. Bitte haben
-Sie Verst둵dnis daf웦, dass wir Ihr Paket nun abschalten und die Server-
-Kapazit둻en f웦 andere Kunden freigeben.
+Ihnen den Ablauf Ihres Webhosting-Pakets angek체ndigt haben. Bitte haben
+Sie Verst채ndnis daf체r, dass wir Ihr Paket nun abschalten und die Server-
+Kapazit채ten f체r andere Kunden freigeben.
 
 %%%SIGNATURE%%%

@@ -1,5 +1,5 @@
 
-Subject: Letzte Warnung vor dem Löschen Ihres Webhosting-Pakets
+Subject: Letzte Warnung vor dem L√∂schen Ihres Webhosting-Pakets
 
 Sehr geehrte Damen und Herren,
 
@@ -10,13 +10,13 @@ Bitte melden Sie sich im Kundencenter unter
 %%%DTC_CLIENT_URL%%%
 
 mit Ihrem Benutzernamen %%%DTC_ADM_LOGIN%%% an, klicken Sie auf "Mein Konto",
-und verlängern Sie Ihr Paket.
+und verl√§ngern Sie Ihr Paket.
 
-Dies ist die letzte Warnung vor dem Löschen Ihres Webhosting-Pakets. 
-Bitte haben Sie Verständnis dafür, dass wir Ihr Paket nicht online lassen
-können, da wir die Kapazitäten für weitere Kunden benötigen, und dass 
-die Gebühren im Voraus zu entrichten sind. Wenn Sie Ihr Paket nicht 
-verlängern, werden wir Ihr Kundenkonto löschen. Dabei gehen alle Webinhalte
+Dies ist die letzte Warnung vor dem L√∂schen Ihres Webhosting-Pakets. 
+Bitte haben Sie Verst√§ndnis daf√ºr, dass wir Ihr Paket nicht online lassen
+k√∂nnen, da wir die Kapazit√§ten f√ºr weitere Kunden ben√∂tigen, und dass 
+die Geb√ºhren im Voraus zu entrichten sind. Wenn Sie Ihr Paket nicht 
+verl√§ngern, werden wir Ihr Kundenkonto l√∂schen. Dabei gehen alle Webinhalte
 und E-Mails verloren.
 
 %%%SIGNATURE%%%
