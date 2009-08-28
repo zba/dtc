@@ -321,7 +321,7 @@ msgstr "Dieser Datenbank-Benutzername ist bereits vergeben; bitte wählen Sie ei
 #: shared/inc/sql/database.php:71
 msgid "A database by that name exists, please choose another name."
 msgstr "Dieser Datenbank-Name ist bereits vergeben; bitte wählen Sie einen "
-"anderenNamen."
+"anderen Namen."
 
 #: shared/inc/sql/database.php:34
 msgid "A user with that name exists in the database, please select a new one."
@@ -532,7 +532,7 @@ msgstr "Benutzer und Domains"
 
 #: admin/inc/dtc_config.php:1480
 msgid "Affiliation"
-msgstr ""
+msgstr "Partnerprogramm"
 
 #: shared/drawlib/cc_code_popup.php:103
 msgid "Afghanistan"
@@ -1941,7 +1941,7 @@ msgstr "Dateien dieser Domain:"
 
 #: admin/inc/dtc_config.php:1485
 msgid "Domain name for affiliation return URL:"
-msgstr ""
+msgstr "Domain-Name für die Weiterleitungs-URL nach erfolgreicher Registrierung"
 
 #: shared/dtcrm/draw_adddomain.php:139
 msgid "Domain name is not in correct format. Please enter another name."
@@ -6267,11 +6267,11 @@ msgstr "Mein Konto upgraden:"
 #: admin/inc/renewals.php:54
 #: admin/inc/renewals.php:56
 msgid "Upstream provider editor"
-msgstr ""
+msgstr "externe Dienstleister"
 
 #: admin/inc/renewals.php:311
 msgid "Upstream provider list edition"
-msgstr ""
+msgstr "externe Dienstleister bearbeiten"
 
 #: shared/drawlib/cc_code_popup.php:338
 msgid "Uruguay"
