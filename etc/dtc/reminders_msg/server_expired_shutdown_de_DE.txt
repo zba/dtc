@@ -7,9 +7,9 @@ Ihr dedizierter Server %%%SERVER_HOSTNAME%%%
 ist vor %%%EXPIRED_DAYS%%% Tagen, d.h. am %%%EXPIRATION_DATE%%% abgeschaltet worden.
 
 Wir haben Ihnen bereits zuvor einige Nachrichten geschickt, in denen wir 
-Sie um die Verl둵gerung gebeten haben. Bitte haben Sie Verst둵dnis daf웦, 
+Sie um die Verl채ngerung gebeten haben. Bitte haben Sie Verst채ndnis daf체r, 
 dass wir Ihren Server nun abgeschaltet haben. Ihre Daten verbleiben auf dem 
-Server, bis wir ihn f웦 einen anderen Kunden neu einrichten. Wenn Sie Ihren
-Server wieder online bringen wollen, verl둵gern Sie ihn bitte.
+Server, bis wir ihn f체r einen anderen Kunden neu einrichten. Wenn Sie Ihren
+Server wieder online bringen wollen, verl채ngern Sie ihn bitte.
 
 %%%SIGNATURE%%%

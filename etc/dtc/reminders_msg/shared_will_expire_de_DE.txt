@@ -1,5 +1,5 @@
 
-Subject: Ihr Webhosting-Paket wird in Kürze ablaufen
+Subject: Ihr Webhosting-Paket wird in K√ºrze ablaufen
 
 Sehr geehrte Damen und Herren,
 
@@ -10,6 +10,6 @@ Bitte melden Sie sich im Kundencenter unter
 %%%DTC_CLIENT_URL%%%
 
 mit Ihrem Benutzernamen %%%DTC_ADM_LOGIN%%% an, klicken Sie auf "Mein Konto",
-und verlängern Sie Ihr Paket.
+und verl√§ngern Sie Ihr Paket.
 
 %%%SIGNATURE%%%

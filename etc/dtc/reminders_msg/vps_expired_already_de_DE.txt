@@ -11,9 +11,9 @@ Bitte melden Sie sich im Kundencenter unter
 %%%DTC_CLIENT_URL%%%
 
 mit Ihrem Benutzernamen %%%DTC_ADM_LOGIN%%% an, gehen Sie in den VPS-Bereich,
-und verlängern Ihren virtuellen Server.
+und verl√§ngern Ihren virtuellen Server.
 
 Ihr VPS wird noch ein paar Tage online bleiben, um Ihnen Gelegenheit zur
-Verlängerung zu geben.
+Verl√§ngerung zu geben.
 
 %%%SIGNATURE%%%
