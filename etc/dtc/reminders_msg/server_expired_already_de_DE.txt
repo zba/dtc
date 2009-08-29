@@ -4,7 +4,7 @@ Subject: Ihr dedizierter Server ist abgelaufen
 Sehr geehrte Damen und Herren,
 
 Ihr dedizierter Server %%%SERVER_HOSTNAME%%%
-ist vor %%%EXPIRED_DAYS%%% Tagen, d.h. am %%%EXPIRATION_DATE%%% abgelaufen.
+ist vor %%%EXPIRED_DAYS%%%, d.h. am %%%EXPIRATION_DATE%%% abgelaufen.
 
 Bitte melden Sie sich im Kundencenter unter
 

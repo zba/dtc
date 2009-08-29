@@ -1,25 +1,25 @@
-Ihre Bestellung eines virtuellen Servers (VPS) wurde durchgeführt. Gegenwärtig 
+Ihre Bestellung eines virtuellen Servers (VPS) wurde durchgefÃ¼hrt. GegenwÃ¤rtig 
 wird das Betriebssystem aufgespielt. Mit den unten angegebenen Informationen
-können Sie sich im Kundencenter anmelden.
+kÃ¶nnen Sie sich im Kundencenter anmelden.
 
 Wenn Sie DTC oder ein anderes Betriebssystem auf Ihrem VPS installieren 
 wollen, so installieren Sie ihn einfach mit den entsprechenden Optionen neu. 
-Das Setupskript wird dann beim nächsten Neustart DTC installieren. 
+Das Setupskript wird dann beim nÃ¤chsten Neustart DTC installieren. 
 Falls Sie DTC auf Ihrem Server einsetzen, verwechseln Sie bitte nicht 
 die beiden DTC-Kundencenter: Das DTC auf Ihrem VPS und das DTC unserer Firma.
 Diese beiden Kundencenter dienen zwei unterschiedlichen Zwecken. Beispiels-
 weise sollten Sie keine Supporttickets aus Ihrem DTC heraus absenden, da sie
-unsere Firma nicht erreichen würden. Nutzen Sie dazu das DTC unserer Firma.
+unsere Firma nicht erreichen wÃ¼rden. Nutzen Sie dazu das DTC unserer Firma.
 
-Sobald die Installation des Betriebssystems abgeschlossen ist müssen Sie 
-Ihren VPS durch Klick in unserem Kundencenter hochfahren. Danach müssen Sie
+Sobald die Installation des Betriebssystems abgeschlossen ist mÃ¼ssen Sie 
+Ihren VPS durch Klick in unserem Kundencenter hochfahren. Danach mÃ¼ssen Sie
 sich an der physischen Konsole per SSH anmelden. Melden Sie sich dann als root
-an. Dann können Sie SSH installieren und die Installation abschließen. Eine
-vollständige Beschreibung des Verfahrens finden Sie hier:
+an. Dann kÃ¶nnen Sie SSH installieren und die Installation abschlieÃŸen. Eine
+vollstÃ¤ndige Beschreibung des Verfahrens finden Sie hier:
 
 http://dtcsupport.gplhost.com/PmWiki/Setup-A-VPS-Once-DTC-Xen-Installed-It
 
-Dies sind Ihre Login-Informationen für das DTC-Kundencenter unserer Firma:
+Dies sind Ihre Login-Informationen fÃ¼r das DTC-Kundencenter unserer Firma:
 
 %%%DTC_LOGIN_INFO%%%
 
