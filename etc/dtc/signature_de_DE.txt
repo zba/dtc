@@ -1,4 +1,4 @@
-Mit freundlichen Grüßen,
+Mit freundlichen Gr√º√üen,
 
         GPLHost Buchhaltung
 
@@ -7,4 +7,4 @@ Telefon: +1-302-213-1611
 Internet: http://www.gplhost.com
 GPLHost:>_ Open source hosing worldwide
 Webspace mit dem GPL Control Panel und Xen VPS
-Hosting verfügbar in Singapur, Sydney, Seattle, Florida, London, Paris, Italien und Israel
+Hosting verf√ºgbar in Singapur, Sydney, Seattle, Florida, London, Paris, Italien und Israel
