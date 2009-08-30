@@ -4262,8 +4262,21 @@ createChrootTemplate () {
 				cp -pf /lib/librt.so.1 lib/
 			fi
 			if [ -e /lib/libnss_compat.so.2 ] ; then
-				cp -pf  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2 \
-			  /lib/libpam.so.0 /lib/libpam_misc.so.0 lib/
+				cp -pf  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2
+			fi
+
+			# libpam
+			if [ -e /lib/libpam.so.0 ] ; then
+				cp -pf /lib/libpam.so.0 lib/
+			fi
+			if [ -e /lib/libpam_misc.so.0 ] ; then
+				cp -pf /lib/libpam_misc.so.0 lib/
+			fi
+			if [ -e /lib64/libpam.so.0 ] ; then
+				cp -pf /lib64/libpam.so.0 lib/
+			fi
+			if [ -e /lib64/libpam_misc.so.0 ] ; then
+				cp -pf /lib64/libpam_misc.so.0 lib/
 			fi
 	
 			if [ -e /lib/libncurses.so.5 ] ; then
