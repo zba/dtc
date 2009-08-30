@@ -4261,59 +4261,26 @@ createChrootTemplate () {
 			if [ -e /lib/librt.so.1 ] ; then
 				cp -pf /lib/librt.so.1 lib/
 			fi
-			if [ -e /lib/libnss_compat.so.2 ] ; then
-				cp -pf  /lib/libnss_compat.so.2 /lib/libnsl.so.1 /lib/libnss_files.so.2
-			fi
 
-			# libpam
-			if [ -e /lib/libpam.so.0 ] ; then
-				cp -pf /lib/libpam.so.0 lib/
-			fi
-			if [ -e /lib/libpam_misc.so.0 ] ; then
-				cp -pf /lib/libpam_misc.so.0 lib/
-			fi
-			if [ -e /lib64/libpam.so.0 ] ; then
-				cp -pf /lib64/libpam.so.0 lib/
-			fi
-			if [ -e /lib64/libpam_misc.so.0 ] ; then
-				cp -pf /lib64/libpam_misc.so.0 lib/
-			fi
+			CPY_LIBS="libnss_compat.so.2 libnsl.so.1 libnss_files.so.2 libpam.so.0 libpam_misc.so.0 libncurses.so.5 libacl.so.1 libattr.so.1 libcap.so.1 libbz2.so.1.0 libz.so.1"
+			for i in ${CPY_LIBS} ; do
+				if [ -f /lib/${i} ] ; then
+					cp -pf  /lib/${i} lib/
+				fi
+				if [ -f /lib64/${i} ] ; then
+					cp -pf  /lib64/${i} lib/
+				fi
+			done
 	
-			if [ -e /lib/libncurses.so.5 ] ; then
-				cp  /lib/libncurses.so.5 lib/
-			fi
-	
-			if [ -e /usr/lib/libncurses.so.5 ] ; then
-				cp /usr/lib/libncurses.so.5 lib/
-			fi
-	
-			if [ -e /lib/libacl.so.1 ] ; then
-			  	cp /lib/libacl.so.1 lib/
-			fi
-	
-			if [ -e /lib/libattr.so.1 ] ; then
-				cp /lib/libattr.so.1 lib/
-			fi
-
-			if [ -e /lib/libcap.so.1 ] ; then
-				cp /lib/libcap.so.1 lib/
-			fi
-
-			if [ -e /lib/libbz2.so.1.0 ] ; then
-				cp /lib/libbz2.so.1.0 lib/
-			fi 
-			if [ -e /usr/lib/libbz2.so.1.0 ] ; then
-				cp /usr/lib/libbz2.so.1.0 lib/
-			fi
-			if [ -e /usr/lib/libmagic.so.1 ]
-			then
-				cp -pf /usr/lib/libmagic.so.1 lib/
-			fi
-			if [ -e /lib/libz.so.1 ] ; then
-				cp -pf /lib/libz.so.1 lib/
-			elif [ -e /usr/lib/libz.so.1 ] ; then
-				cp -pf /usr/lib/libz.so.1 lib/
-			fi
+			CPY_LIBS="libncurses.so.5 libbz2.so.1.0 libmagic.so.1 libz.so.1"
+			for i in ${CPY_LIBS} ; do
+				if [ -f /usr/lib/${i} ] ; then
+					cp -pf  /usr/lib/${i} lib/
+				fi
+				if [ -f /usr/lib64/${i} ] ; then
+					cp -pf  /usr/lib64/${i} lib/
+				fi
+			done
 
 			# libs for sftp and scp
 			if [ -e /lib/libresolv.so.2 ] ; then
