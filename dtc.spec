@@ -1,11 +1,11 @@
-Name: dtc
+Name: dtc-core
 Version: 0.30.4
-Release: 0.4.20090808
+Release: 0.4.20090831
 License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
 BuildArch: noarch
-Source: dtc-%{version}.tar.gz
+Source: dtc-core-%{version}.tar.gz
 BuildRoot:%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: symlinks make gettext
 
@@ -28,29 +28,11 @@ does the billing in general (including billing of dedicated servers), has
 integrated support tickets and more.
 This package contains the common files.
 
-%package core
-Summary: web control panel for admin and accounting hosting services (minimal depends)
-Group: System Environment/Daemons
-Requires: dtc
-%description core
-Domain Technologie Control (DTC) is a control panel aiming at commercial
-hosting. Using a web GUI for the administration and accounting all hosting
-services, DTC can delegate the task of creating subdomains, email, ssh,
-database, mailing lists, and FTP accounts to users for the domain names they
-own.
-DTC manages a MySQL database containing all the hosting informations,
-and configure your server's services and apllication for doing virtual hosting
-(DTC is compabible with a huge list of applications). It also connects to
-dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
-does the billing in general (including billing of dedicated servers), has
-integrated support tickets and more.
-This package contains only strictly needed.
-
-%package postfix-courier
+%package -n dtc-postfix-courier
 Summary: web control panel for admin and accounting hosting services (more depends)
 Group: System Environment/Daemons
-Requires: squirrelmail, maildrop, dtc, awstats, courier-authlib-userdb, courier-authlib-mysql, courier-imap, dkimproxy, mysql-server, bind, mlmmj, pure-ftpd, webalizer, amavisd-new, postfix, spamassassin, clamav, clamav-db, clamd, fetchmail, perl-Net-Whois, phpmyadmin, php-mcrypt, dtc-dos-firewall
-%description postfix-courier
+Requires: squirrelmail, maildrop, dtc-core, awstats, courier-authlib-userdb, courier-authlib-mysql, courier-imap, dkimproxy, mysql-server, bind, mlmmj, pure-ftpd, webalizer, amavisd-new, postfix, spamassassin, clamav, clamav-db, clamd, fetchmail, perl-Net-Whois, phpmyadmin, php-mcrypt, dtc-dos-firewall
+%description -n dtc-postfix-courier
 Domain Technologie Control (DTC) is a control panel aiming at commercial
 hosting. Using a web GUI for the administration and accounting all hosting
 services, DTC can delegate the task of creating subdomains, email, ssh,
@@ -64,27 +46,27 @@ does the billing in general (including billing of dedicated servers), has
 integrated support tickets and more.
 This package contains more dependencies to have the maximum setup.
 
-%package dos-firewall
+%package -n dtc-dos-firewall
 Summary: a small anti-DoS firewall script for your web, ftp and mail servers
 Group: System Environment/Daemons
 Requires: iptables
-%description dos-firewall
+%description -n dtc-dos-firewall
 If running in a production environment, you might want to have a basic
 firewall running on your server to avoid having DoS attack. This is not the
 state-of-the-art, but just another attempt to make things a bit more smooth.
 
-%package stats-daemon
+%package -n dtc-stats-daemon
 Summary: DTC-Xen VM statistics for the DTC web control panel
 Group: System Environment/Daemons
-Requires: dtc
-%description stats-daemon
+Requires: dtc-core
+%description -n dtc-stats-daemon
 Domain Technologie Control (DTC) is a control panel aiming at commercial
 hosting. This small daemon will query all the dtc-xen servers that you have
 configured in DTC and fetch the statistics from them: I/O stats, network and
 CPU. This information is then stored in DTC for your customer accounting.
 
 %prep
-%setup -n dtc
+%setup
 
 %build
 echo "No build needed"
@@ -136,13 +118,12 @@ fi
 %config(noreplace) %{_sysconfdir}/dtc/tickets
 %config(noreplace) %{_sysconfdir}/dtc/*.txt
 
-%files core
-%files postfix-courier
-%files stats-daemon
+%files -n dtc-postfix-courier
+%files -n dtc-stats-daemon
 %config %{_initrddir}/dtc-stats-daemon
 %config %{_sysconfdir}/logrotate.d/dtc-stats-daemon
 %{_sbindir}/dtc-stats-daemon
-%files dos-firewall
+%files -n dtc-dos-firewall
 %config(noreplace) %{_sysconfdir}/dtc/dtc-dos-firewall.conf
 %config %{_initrddir}/dtc-dos-firewall
 
@@ -150,6 +131,9 @@ fi
 mkdir %{_var}/lib/dtc/dtc-xenservers-rrds
 
 %changelog
+* Mon Aug 31 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090831
+- Source RPM is now called dtc-core, and there's no dtc package anymore.
+
 * Sat Aug 08 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090808
 - Fixed the sasldb2 link
 - Fixed the restart of dkimproxy in the cron.php

@@ -4,7 +4,7 @@ set -e
 set -x
 
 VERS=`head -n 1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'-' -f1`
-PKGNAME=`head -n 1 debian/changelog | cut -d' ' -f1`
+PKGNAME=`head -n 1 debian/changelog | cut -d' ' -f1`-core
 
 if [ -e /etc/redhat-release ] ; then
 	MKTEMP="mktemp -d -p /tmp"
@@ -18,7 +18,9 @@ DIRNAME=${PKGNAME}-${VERS}
 MYCWD=`pwd`
 mkdir -p ${TMPDIR}/${DIRNAME}
 cp -auxf * ${TMPDIR}/${DIRNAME}
+mv ${TMPDIR}/${DIRNAME}/dtc.spec ${TMPDIR}/${DIRNAME}/dtc-core.spec
 sed -i "s/__VERSION__/${VERS}/" ${TMPDIR}/${DIRNAME}/${PKGNAME}.spec
+mv ${TMPDIR}/${DIRNAME}/${PKGNAME}.spec ${TMPDIR}/${DIRNAME}/${PKGNAME}-core.spec
 rm -rf ${TMPDIR}/${DIRNAME}/debian
 rm -rf ${TMPDIR}/${DIRNAME}/.git
 cd ${TMPDIR}
