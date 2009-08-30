@@ -216,7 +216,7 @@ vm-cpu-all.php vm-io-all.php vm-net-all.php
 CLIENT_PHP_SCRIPT_FILES=client/bw_per_month.php client/dynip.php client/enets-notify.php client/index.php \
 client/invoice.php client/list_domains.php client/login.php client/new_account_form.php client/new_account.php \
 client/new_account_renewal.php client/paypal.php client/secpaycallback_worldpay.php client/webmoney.php \
-client/get_vps_location_status.php \
+client/get_vps_location_status.php client/moneybookers.php \
 client/logPushlet.php client/xanjaxXHR.js client/cheques_and_transfers.php client/recover_pass.php
 
 EMAIL_PHP_SCRIPT_FILES=email/api.php email/index.php email/login.php email/submit_to_sql_dtcemail.php
@@ -262,7 +262,8 @@ shared/securepay/modules/paypal/main.php \
 shared/securepay/modules/worldpay/main.php \
 shared/securepay/modules/cheque/main.php \
 shared/securepay/modules/wiretransfer/main.php \
-shared/securepay/modules/webmoney/main.php
+shared/securepay/modules/webmoney/main.php \
+shared/securepay/modules/moneybookers/main.php
 
 WEB_SCRIPT_FILES=$(ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES) $(ADMIN_GENFILE_PHP_SCRIPT_FILES) $(ADMIN_INC_PHP_SCRIPT_FILES) \
 $(CLIENT_PHP_SCRIPT_FILES) $(EMAIL_PHP_SCRIPT_FILES) $(SHARED_PHP_SCRIPT_FILES) $(SHARED_INC_PHP_SCRIPT_FILES) \
@@ -271,7 +272,7 @@ $(PAYMENT_API_PHP_SCRIPT_FILES)
 ################ PICTURES ##################
 NEW_SITES_TEMPLATE_IMG=shared/template/dtc_logo.gif shared/template/dtclogo.png shared/template/favicon.ico shared/template/logo_dtc.gif
 
-CLIENT_PICTURES=client/enets_pay_icon.gif client/favicon.ico client/cheque.gif client/wire.gif
+CLIENT_PICTURES=client/enets_pay_icon.gif client/favicon.ico client/cheque.gif client/wire.gif client/moneybookers.gif
 
 ALL_PICS=$(NEW_SITES_TEMPLATE_IMG) $(CLIENT_PICTURES)
 ################# EXECUTABLE SCRIPTS #################
