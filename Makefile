@@ -10,7 +10,7 @@
 
 # Version and release are set here:
 VERS=0.30.4
-RELS=0
+RELS=2
 
 VERSION=$(VERS)"-"$(RELS)
 CURDIR?=`pwd`
