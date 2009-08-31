@@ -14,9 +14,15 @@ of our company instead.
 
 Once the operating system will be setup, you will have to click on the
 control panel to bootup your VPS. Once it boots up, you need to login on
-the physical console using ssh. Once you are logged on the physical console
-of your VPS, login as root. Then, you can install ssh on it and finish
-the installation. A full detail of the procedure can be read here:
+the physical console using ssh: ssh xenXX@example.com, where XX is the
+number of your VPS, and example is the hostname of the Xen server where
+your VPS is running. This is NOT the sshd inside the VM that will be
+used, but the one of the physical server's main OS, that will
+automatically connect you to the console of your VPS.
+
+Once you are logged on the physical console of your VPS, login as root.
+Then, you can install ssh on it and finish the installation. A full
+detail of the procedure can be read here:
 
 http://dtcsupport.gplhost.com/PmWiki/Setup-A-VPS-Once-DTC-Xen-Installed-It
 
