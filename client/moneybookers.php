@@ -26,5 +26,21 @@ if( md5($concat_str) != $_REQUEST["md5sig"]){
 	die("md5sum not validated!");
 }
 
+if($_REQUEST["pay_to_email"] != $secpayconf_paypal_email){
+	die("This is not our business moneybookers email!");
+}
+
+if($_REQUEST["mb_currency"] != $secpayconf_currency_letters){
+	die("Incorrect currency!");
+}
+
+$item_number = mysql_real_escape_string($_REQUEST["mb_transaction_id"]);
+$amount = mysql_real_escape_string($_REQUEST["mb_amount"]);
+if($_REQUEST["mb_status"] != "0"){
+	setPaiemntAsPending($item_number,mysql_real_escape_string( "moneybookers" ));
+}
+if( $_REQUEST["mb_status"] != "2" ){
+	validatePaiement($item_number,$amount,"online","moneybookers");
+}
 
 ?>
