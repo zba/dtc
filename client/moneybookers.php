@@ -4,10 +4,11 @@
 // Handles payment motifications from moneybookers //
 /////////////////////////////////////////////////////
 // List of parameters sent:
-// pay_to_email
-// pay_from_email
-// merchant_id
-// mb_transaction_id
+// pay_to_email : our merchant account email
+// pay_from_email : email of the customer
+// merchant_id : only useful to claculate the MD5 check
+// transaction_id : merchant's TXID
+// mb_transaction_id : moneybookers TXID
 // mb_amount
 // mb_currency
 // mb_status: -3 = chargeback, -2 = failed, 2 = processed, 0 = pending, -1 = canceled
@@ -40,7 +41,7 @@ if($_REQUEST["mb_status"] != "0"){
 	setPaiemntAsPending($item_number,mysql_real_escape_string( "moneybookers" ));
 }
 if( $_REQUEST["mb_status"] != "2" ){
-	validatePaiement($item_number,$amount,"online","moneybookers");
+	validatePaiement($item_number,$amount,"online","moneybookers",mysql_real_escape_string($_REQUEST["mb_transaction_id"]));
 }
 
 ?>
