@@ -4938,6 +4938,12 @@ conf_cert_unit=\"${conf_cert_unit}\"
 conf_cert_email=\"${conf_cert_email}\"
 conf_cert_challenge_pass=\"${conf_cert_challenge_pass}\"
 " >${DTC_SAVED_INSTALL_CONFIG}
+	if [ -n "${conf_ftp_type}" ] ; then
+		echo "conf_ftp_type=\"${conf_ftp_type}\"" >>${DTC_SAVED_INSTALL_CONFIG}
+	fi
+	if [ -n "${conf_mta_type}" ] ; then
+		echo "conf_mta_type=\"${conf_mta_type}\"" >>${DTC_SAVED_INSTALL_CONFIG}
+	fi
 	chmod 0600 ${DTC_SAVED_INSTALL_CONFIG}
 	umask $oldumask
 }
