@@ -930,6 +930,7 @@ $dtc_database = array(
 			"paypal_validate_with" => "enum('total','mc_gross') NOT NULL default 'total'",
 			"use_paypal_recurring" => "enum('yes','no') NOT NULL default 'no' ",
 
+			"use_moneybookers" => "enum('yes','no') NOT NULL default 'no'",
 			"moneybookers_rate" => "float(6,2) NOT NULL default '0.00'",
 			"moneybookers_flat" => "float(6,2) NOT NULL default '0.00'",
 			"moneybookers_autovalidate" => "enum('yes','no') NOT NULL default 'yes'",

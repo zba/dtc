@@ -2,8 +2,8 @@ CREATE TABLE IF NOT EXISTS secpayconf (
   unicrow int(2) NOT NULL default '0',
   currency_symbol varchar(16) NOT NULL default '$',
   currency_letters varchar(16) NOT NULL default 'USD',
-  use_paypal enum('yes','no') NOT NULL default 'no',
 
+  use_paypal enum('yes','no') NOT NULL default 'no',
   paypal_rate float(6,2) NOT NULL default '0.00',
   paypal_flat float(6,2) NOT NULL default '0.00',
   paypal_autovalidate enum('yes','no') NOT NULL default 'yes',
@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS secpayconf (
   paypal_validate_with enum('total','mc_gross') NOT NULL default 'total',
   use_paypal_recurring enum('yes','no') NOT NULL default 'no',
 
+  use_moneybookers enum('yes','no') NOT NULL default 'no',
   moneybookers_rate float(6,2) NOT NULL default '0.00',
   moneybookers_flat float(6,2) NOT NULL default '0.00',
   moneybookers_autovalidate enum('yes','no') NOT NULL default 'yes',
