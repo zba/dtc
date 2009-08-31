@@ -81,7 +81,7 @@ function moneybookers_display_icon($product_id,$amount,$item_name,$return_url,$u
 <input type="hidden" name="detail1_text" value="'.$item_name.'">
 <input type="image" src="moneybookers.gif" border="0" name="submit" alt="'. "Moneybookers" .'">
 <input type="submit" value="Pay!">
-</form>'
+</form>';
 
 	return $out;
 
