@@ -111,7 +111,7 @@ if [ -f /etc/redhat-release ] ; then
 	. /usr/share/dtc/admin/install/functions
 	. /usr/share/dtc/admin/install/interactive_installer
 	if [ "${CENTOS_INIT_DAEMONS}" = "yes" ] ; then
-		ALL_DAEMONS="httpd crond postfix clamd amavisd rsyslog mysqld courier-authlib courier-imap dkimproxy pure-ftpd spamassassin saslauthd named"
+		ALL_DAEMONS="httpd crond postfix clamd amavisd rsyslog mysqld courier-authlib courier-imap dkimproxy pure-ftpd spamassassin saslauthd"
 		for i in ${ALL_DAEMONS} ; do
 			if [ -x /etc/rc.d/init.d/$i ] ; then
 				service $i start
