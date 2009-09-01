@@ -1,0 +1,22 @@
+La cuenta de hosting compartido que ha ordenado esta lista para ser
+usada. Tenga un cuenta que puede tardar hasta 10 minutos hasta que su
+nombre de dominio este configurado en nuestros servidores apache y DNS
+(un trabajo cron se ejecuta cada 10 minutos para correos nuevos,
+dominios y subdominios, pero usted no tiene que esperar para sus cuentas
+de ftp).
+
+Tenga en cuenta que sus archivos deberian ser subidos en: 
+
+/var/www/sites/SU-NOMBRE-DE-USUARIO/su-dominio.com/subdominios/www/html 
+
+Y cuando se cree una nueva cuenta FTP, usted no verá la primera parte de
+la ruta, y verá solamente la ruta relativa a: 
+
+/var/www/sites/SU-NOMBRE-DE-USUARIO 
+
+Usted puede ingresar al panel de control usando la siguiente
+informacion:
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%%

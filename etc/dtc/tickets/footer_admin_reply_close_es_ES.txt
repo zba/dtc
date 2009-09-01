@@ -1,0 +1,21 @@
+Tenga en cuenta que el ticket ha sido cerrado, esto significa que no hay
+necesidad de otra respuesta. Si usted todavia necesita ayuda, entonces
+debera abrir un nuevo ticket de soporte, o escribir en este ticket para
+reabrirlo. Para hacerlo ingrese al panel de control en la siguiente
+direccion:
+
+%%%DTC_CLIENT_URL%%%
+
+Una vez ingrese, vaya a la pestaña de ticket de soporte y escriba su
+respuesta. Tambien puede colocar "responder" en su cliente de correo,
+o escribir a:
+
+%%%SUPPORT_EMAIL_ADDRESS%%%
+
+Que tambien reabrira el ticket.
+
+Si usted esta respondiendo este email, por favor no cambie la direccion
+de respuesta. El numero que esta incluido en esta direccion es muy
+importante y nos ayuda a enlazar su email al ticket antiguo! Ademas, por
+favor no incluya nuestra respuesta en el cuerpo de su mensaje, ya que
+nosotros mantenemos un historial de este.

@@ -1,0 +1,20 @@
+
+Asunto: Su VPS expira hoy
+
+Hola %%%FIRST_NAME%%%,
+
+Su Servidor virtual Xen (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+ha expirado hoy, el: %%%EXPIRATION_DATE%%%.
+
+Por favor ingrese a su panel de control en:
+
+%%%DTC_CLIENT_URL%%%
+
+Con su nombre de usuario %%%DTC_ADM_LOGIN%%% haga click en la pestaña
+VPS y renuevela.
+
+Mantendremos su VPS funcionando unos dias mas para darle tiempo para
+renovar su contrato. Despues de ese periodo de gracia su cuenta sera
+borrada.
+
+%%%SIGNATURE%%%

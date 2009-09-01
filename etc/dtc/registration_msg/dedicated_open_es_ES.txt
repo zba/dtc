@@ -1,0 +1,12 @@
+El servidor dedicado que usted ha ordenado esta ahora validado.
+Tenga en cuenta que se produce una demora cuando ordena un servidor
+dedicado con nosotros. Por favor pongase en contacto con nosotros para
+saber cuanto tardara en estar en linea.
+Desde ahora, usted puede ingresar a nuestro panel de control para hacer
+las renovaciones de su contrato y enviar tickets de soporte.
+
+Aqui esta la informacion de inicio de sesion que necesita:
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%% 

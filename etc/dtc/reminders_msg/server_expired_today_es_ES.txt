@@ -1,0 +1,20 @@
+
+Asunto: Su servidor dedicado expira hoy
+
+Hola %%%FIRST_NAME%%%,
+
+Su servidor dedicado %%%SERVER_HOSTNAME%%% ha expirado hoy,
+desde el: %%%EXPIRATION_DATE%%%.
+
+Por favor ingrese a su panel de control en:
+
+%%%DTC_CLIENT_URL%%%
+
+Con su nombre de usuario %%%DTC_ADM_LOGIN%%% haga click en la pestaña
+de su servidor y renuevelo.
+
+Mantendremos su servidor en funcionamiento unos dias mas para darle
+tiempo para la renovacion de su contrato. Despues del periodo de gracia
+su servidor sera apagado.
+
+%%%SIGNATURE%%%

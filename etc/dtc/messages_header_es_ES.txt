@@ -1,0 +1,4 @@
+Este es un mensaje enviado automaticamente por el robot de Tecnologia de
+control de dominio (DTC). DTC es un panel de control de codigo abierto
+orientado al hosting comercial, y diseñado por GPLHost (vea
+http://www.gplhost.com/software.html para mas detalles).
