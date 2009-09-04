@@ -1,0 +1,94 @@
+for anyone who wants or was planning to make a cpanel -> direct admin
+converter and didnt know what cpanel files needed to do what, here is a
+break down. I am no cpanel guru but this is what I made from what I had.
+
+download the cpanel account backup: http://www.3spades.net/cpbackup.tar.gz
+
+
+folder structure, bold means its a folder
+
+cp - cpanel user file
+cron - holds cron job file
+fp - frontpage config files
+homedir - public_html/ftp folders, mail folders, etc folders. term folders,
+logs - logs
+mm - mailing list files
+mma - contains priv and pub folders, always empty
+mysql - each database has a folder inside are the table myi myd frm files
+va - mail autoresponders
+vf - mail fowarders (i think), contains domain and park/addons, no info
+inside files
+addons - addon domains and their corresponding subdomains
+mysql.sql - all databases
+nobodyfiles
+pds - park domains
+proftpdpasswd - ftp passes
+quota - disk quota (in mb)
+sds - subdomains
+shadow - shadow file
+shell - type of shell
+
+------------------------
+cp/username output:
+IP=x.x.x.x - ip of the domain or shared ip the domain is on
+STARTDATE=1072493354 - generated creation of account date
+DNS=tester.com - main dns info, always specifies main domain on account
+RS=x - cpanel theme, not important in move to direct admin
+OWNER=root - owner of the account ie:root or username of reseller
+PLAN=undefined - name of plan if specified on signup
+MAXFTP=10 - max ftp accounts
+BWLIMIT=104857600 - bandwidth limit: # / 1024 / 1024 = bandwidth limit in
+megs
+MAXSQL=10 - max sql datbases
+MAXPOP=10 - max pop3 addys
+MAXLST=10 - max mailing lists
+MAXPARK=1 - max park domains
+MAXADDON=1 - max addon domains
+FEATURELIST=default - cpanel feature list, useless info for direct admin
+MAXSUB=10 - max subdomains
+DNS2=buddy.tester.com - dns2-# will represent a subdomain, park domain or
+addon domain
+------------------------
+
+fp/domain.com.cnf output: (note: i grabbed this from a clients file who has
+fp extentions installed, i dont know much else other than the self
+explanetory stuff in this file)
+MailSender:webmaster@domain.com
+SMTPHost:127.0.0.1
+authoring:enabled
+extenderversion:5.0.2.2623
+frontpageroot:/usr/local/frontpage/version5.0
+serverconfig:/etc/httpd/conf/httpd.conf
+servertype:apache-fp
+vti_encoding:SR|utf8-nl
+SMTPHost:127.0.0.1
+SendmailCommand:/usr/sbin/sendmail
+------------------------
+
+va/domain.com output:
+juice@tester.com: |/usr/local/cpanel/bin/autorespond juice@tester.com
+/home/tester/.autorespond
+*: tester - catchall route to main email account
+------------------------
+
+homedir/mail:
+account1/inbox
+account2/inbox
+domain.com/account1/inbox
+domain.com/account2/inbox
+------------------------
+
+homedir/etc/ and homedir/etc/domain.com/
+passwd - mail passes
+quota - mailbox quotas
+shadow - shadow
+------------------------
+
+addons output:
+addon.com=somesub_maindomain.com - addon.com runs from subdomain
+somesub.maindomain.com
+------------------------
+
+pds output: (looks like ServerAlias output)
+www.parkeddomain.com parkeddomain.com
+------------------------
