@@ -26,7 +26,7 @@ function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admi
 
 	global $pro_mysql_handle_table;
 
-	$link_create = "<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=nickhandles\">". _("Create a new handle") ."</a>";
+	$link_create = "<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=myaccount/nickhandles\">". _("Create a new handle") ."</a>";
 
 	$query = "SELECT * FROM $pro_mysql_handle_table WHERE owner='$adm_login';";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
