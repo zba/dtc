@@ -9,8 +9,8 @@
 # MANUAL_DIR=/usr/share/man
 
 # Version and release are set here:
-VERS=0.30.4
-RELS=2
+VERS=0.30.5
+RELS=1
 
 VERSION=$(VERS)"-"$(RELS)
 CURDIR?=`pwd`
@@ -448,6 +448,12 @@ dist:
 	./dist
 
 deb:
+	if [ -z $(SIGN)"" ] ; then \
+		./deb ; \
+	else \
+		./deb --sign ; \
+	fi
+
 	./deb
 
 rpm:

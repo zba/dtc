@@ -26,10 +26,15 @@ cd ${TMPDIR}
 tar -czf ${PKGNAME}_${VERS}.orig.tar.gz ${DIRNAME}
 mv debian ${TMPDIR}/${DIRNAME}
 cd ${DIRNAME}
-dpkg-buildpackage -uc -us
+if [ "${1}" = "--sign" ] ; then
+	dpkg-buildpackage
+else
+	dpkg-buildpackage -uc -us
+fi
 cd ${MYCWD}
 mv ${TMPDIR}/${PKGNAME}_${VERS}.orig.tar.gz ..
 mv ${TMPDIR}/${PKGNAME}_${VERS}-${REL}.dsc ..
 mv ${TMPDIR}/${PKGNAME}_${VERS}-${REL}.diff.gz ..
 mv ${TMPDIR}/${PKGNAME}*_${VERS}-${REL}*.deb ..
+mv ${TMPDIR}/${PKGNAME}*_${VERS}-${REL}*.changes ..
 rm -rf ${TMPDIR}

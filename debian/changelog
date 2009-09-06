@@ -1,8 +1,98 @@
-dtc (0.30.4-1) unstable; urgency=low
+dtc (0.30.5-1) unstable; urgency=low
 
   * New upstream release.
+  * Added dependency to cpio and cron (Closes: #538111).
+  * Removed some bashismes (Closes: #530073).
+  * Fixed saslauthd directory (Closes: #529075).
+  * dtc-common now depends on libnusoap-php (Closes: #529577).
+  * MX records in uppercase are automatically lowered (Closes: #543531).
+  * Removed dependency to msttcorefonts (Closes: #490042).
+  * Swedish strings for dtc debconf thanks to Martin Bagge
+  <brother@bsnet.se> (Closes: #513778).
 
- -- Thomas Goirand <thomas@goirand.fr>  Thu, 30 Jul 2009 04:18:57 +0800
+ -- Thomas Goirand <thomas@goirand.fr>  Sun, 06 Sep 2009 13:15:59 +0800
+
+dtc (0.29.17-1) unstable; urgency=high
+
+  * The last debian package was wrongly packaged with a version older than
+    the 0.29.16 because of some Git mistake (forgot to push before I did the
+    clone to build the package). This corrects it.
+
+ -- Thomas Goirand <thomas@goirand.fr>  Thu, 29 Jan 2009 23:43:30 +0800
+
+dtc (0.29.16-1) unstable; urgency=low
+
+  * New spanish debian template translation thanks to Francisco Javier Cuadrado
+    <fcocuadrado@gmail.com> (Closes: #510468)
+  * Backported a MySQL insertion security fix from the Git version (issue was
+    when using the add service function once you already have an account).
+  * Fixed the roundcube dependency so it pulls it correctly.
+  * Backported a bugfix for the VAT rate so it can be changed without issue.
+
+ -- Thomas Goirand <thomas@goirand.fr>  Sat, 10 Jan 2009 04:20:01 +0800
+
+dtc (0.29.15-1) unstable; urgency=low
+
+  * Move the dependency of amavisd-new and clamav from dtc-common to
+    dtc-postfix-courier and dtc-cyrus, so dtc-core can be setup without it.
+  * Removed double dependency to patch.
+  * Removed dependency to bind, now only depends on bind9.
+
+ -- Thomas Goirand <thomas@goirand.fr>  Mon, 10 Nov 2008 03:57:19 +0800
+
+dtc (0.29.14-1) unstable; urgency=low
+
+  * New upstream release with corrections for Lenny, backported from the master
+    branch of the Git, to add corrections and not features as follow:
+    - Modify depends: so it uses proftpd-mod-mysql as this is the new package
+    for proftpd...
+    - Solved the INSERT bug for the Money spent accounting functions.
+    - Now the add domain or service link is ALWAYS showed.
+    - Fixed a bug if adding a new service with a non-debian VPS.
+    - Removed list.dsbl.org from default DNSBL as it's dead.
+  * Removed all trace of php4 dependency, leaving only dependency to php5. This
+    is needed as lintian doesn't see "php5-cli | php4-cli" and yell that
+    phpX-cli is missing.
+  * Removed unused debconf template.
+
+ -- Thomas Goirand <thomas@goirand.fr>  Fri, 17 Oct 2008 12:21:49 +0800
+
+dtc (0.29.10-1) unstable; urgency=low
+
+  * New upstream release with corrections for Lenny, backported from the master
+    branch of the Git, to add corrections and not features as follow:
+    - Big problem with the pending payment thing that was setting things as
+    validated when they were in fact just pending.
+    - the CPU rrd data collection (the rrd call was commented out)
+    - the setup of the default index.php & 404 subdomain files
+    - sa-wrapper symlink attack vulnerability fix (Closes: #496362)
+    - removed the paylog.txt logging
+    - [v0.29.8] phpmyadmin blowfish_secret owner change
+    - [v0.29.8] Cleaning the spam folder with -mtime instead of -atime
+    - [v0.29.8] Added a full Simplified Chinese translation by Wei Cao
+    <caowei@gplhost.com>, including debconf and the software itself
+    - [v0.29.8] Removed the "limit 1" when setting the id_client to zero
+    when deleting an admin.
+    - [v0.29.8] Solved the mysql users & db deletion bug when deleting an
+    admin, removed the old mysql manager code that was remaining.
+    - [v0.29.8] Needed a global $pro_mysql_pop_table in the spam folder
+    cleanup
+    - [v0.29.8] Removed a bug when there is no install log at all that was
+    preventing the VPS install tab to be displayed
+    - [v0.29.8] Some global variables for the vps table names where missing
+    in deleteVPS()
+    - [v0.29.8] The cron job needed to be modified for gen_named='yes',
+    reload_named='yes' when modifying the wildcard DNS thing.
+    - [v0.29.8] A Tags: was still there in debian/control, it's now removed.
+
+ -- Thomas Goirand <thomas@goirand.fr>  Thu, 26 Aug 2008 05:07:11 +0800
+
+dtc (0.29.8-1) unstable; urgency=low
+
+    * New upstream release with corrections for Lenny, backported from the master
+      branch of the Git, to add corrections and not features.
+
+ -- Thomas Goirand <thomas@goirand.fr>  Wed, 20 Aug 2008 05:07:11 +0800
 
 dtc (0.29.6-1) unstable; urgency=low
 
