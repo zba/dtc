@@ -454,8 +454,6 @@ deb:
 		./deb --sign ; \
 	fi
 
-	./deb
-
 rpm:
 	$(MAKE) dist
 	VERS=`head -n 1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'-' -f1` ; \
