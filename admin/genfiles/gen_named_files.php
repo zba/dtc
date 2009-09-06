@@ -928,7 +928,11 @@ $more_mx_server
 						if($conf_use_cname_for_subdomains == "yes"){
 							$this_site_file .= "$zeautogen	IN	CNAME	@\n";
 						}else{
-							$this_site_file .= "$zeautogen	IN	A	$ip_to_write\n";
+							if($zeautogen == "mysql1"){
+								$this_site_file .= "$zeautogen	IN	A	127.0.0.1\n";
+							}else{
+								$this_site_file .= "$zeautogen	IN	A	$ip_to_write\n";
+							}
 						}
 					}
 				}
