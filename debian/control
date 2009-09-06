@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Thomas Goirand <thomas@goirand.fr>
 Build-Depends: debhelper (>= 5), po-debconf
 Build-Depends-Indep: gettext
-Standards-Version: 3.8.0
+Standards-Version: 3.8.2
 Dm-Upload-Allowed: yes
 Vcs-Browser: http://git.gplhost.com/gitweb/?p=dtc.git
 Vcs-Git: http://git.gplhost.com/dtc.git
@@ -42,7 +42,7 @@ Description: a small anti-DoS firewall script for your web, ftp and mail servers
 
 Package: dtc-postfix-dovecot
 Architecture: all
-Depends: amavisd-new, clamav, clamav-daemon, clamav-freshclam, courier-maildrop, dtc-core, dovecot-imapd, dovecot-pop3d, courier-authlib-mysql, postfix, postfix-tls, mysql-server, spamassassin, spamc
+Depends: ${misc:Depends}, amavisd-new, clamav, clamav-daemon, clamav-freshclam, courier-maildrop, dtc-core, dovecot-imapd, dovecot-pop3d, courier-authlib-mysql, postfix, postfix-tls, mysql-server, spamassassin, spamc
 Description: A meta package to setup a minimal DTC server with Dovecot
  Domain Technologie Control (DTC) is a control panel aiming at commercial
  hosting. Using a web GUI for the administration and accounting all hosting
