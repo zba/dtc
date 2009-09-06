@@ -1,4 +1,4 @@
-dtc (0.30.5-1) unstable; urgency=low
+dtc (0.30.6-1) unstable; urgency=low
 
   * New upstream release.
   * Added dependency to cpio and cron (Closes: #538111).
