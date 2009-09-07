@@ -233,7 +233,7 @@ shared/dtcrm/srs/openSRS.php shared/dtcrm/srs/ops.dtd shared/dtcrm/srs/OPS.php s
 shared/dtcrm/webnic.cc/domainQuery.php shared/dtcrm/webnic.cc/domainRegistration.php shared/dtcrm/webnic.cc/test.php \
 shared/dtcrm/webnic.cc/webnic_base.php shared/dtcrm/webnic.cc/webnic_settings.php shared/dtcrm/webnic.cc/webnic_submit.php \
 shared/template/index.php shared/vars/clear_lang_array.php shared/vars/global_vars.php shared/inc/HTTPRequestClass.php \
-shared/vars/lang.php shared/vars/table_names.php shared/visitors_template/visitors.php
+shared/vars/lang.php shared/vars/table_names.php shared/visitors_template/visitors.php shared/dtcrm/registry_modulator.php
 
 SHARED_INC_PHP_SCRIPT_FILES=shared/inc/accounting.php shared/inc/dbconect.php shared/inc/delete_user.php shared/inc/domain_export.php \
 shared/inc/draw.php shared/inc/fetchmail.php shared/inc/fetch.php shared/inc/nusoap.php shared/inc/skin.class.php \
@@ -265,9 +265,11 @@ shared/securepay/modules/wiretransfer/main.php \
 shared/securepay/modules/webmoney/main.php \
 shared/securepay/modules/moneybookers/main.php
 
+REGISTRY_API_PHP_SCRIPT_FILES=shared/dtcrm/modules/webnic/main.php
+
 WEB_SCRIPT_FILES=$(ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES) $(ADMIN_GENFILE_PHP_SCRIPT_FILES) $(ADMIN_INC_PHP_SCRIPT_FILES) \
 $(CLIENT_PHP_SCRIPT_FILES) $(EMAIL_PHP_SCRIPT_FILES) $(SHARED_PHP_SCRIPT_FILES) $(SHARED_INC_PHP_SCRIPT_FILES) \
-$(PAYMENT_API_PHP_SCRIPT_FILES)
+$(PAYMENT_API_PHP_SCRIPT_FILES) $(REGISTRY_API_PHP_SCRIPT_FILES)
 
 ################ PICTURES ##################
 NEW_SITES_TEMPLATE_IMG=shared/template/dtc_logo.gif shared/template/dtclogo.png shared/template/favicon.ico shared/template/logo_dtc.gif
@@ -321,7 +323,8 @@ admin/tables/scheduled_updates.sql admin/tables/secpayconf.sql admin/tables/smtp
 admin/tables/ssh_groups.sql admin/tables/ssh_user_group.sql admin/tables/ssl_ips.sql admin/tables/subdomain.sql \
 admin/tables/tik_admins.sql admin/tables/tik_cats.sql admin/tables/tik_queries.sql admin/tables/vps_ip.sql admin/tables/vps_server.sql \
 admin/tables/vps.sql admin/tables/vps_stats.sql admin/tables/whitelist.sql admin/tables/whois.sql \
-admin/tables/spent_moneyout.sql  admin/tables/spent_providers.sql  admin/tables/spent_type.sql admin/tables/spent_bank.sql
+admin/tables/spent_moneyout.sql admin/tables/spent_providers.sql  admin/tables/spent_type.sql \
+admin/tables/spent_bank.sql admin/tables/registrar_domains.sql
 
 ##################### ETC FILES #########################
 CREATE_DIRS=admin/inc admin/genfiles admin/dtcrm admin/queuegraph admin/memgraph admin/netusegraph admin/cpugraph admin/install admin/tables \

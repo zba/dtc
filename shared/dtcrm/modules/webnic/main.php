@@ -1,7 +1,7 @@
 <?php
 
 
-function registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip){
+function webnic_registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip){
 }
 
 function webnic_registry_modify_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip){
@@ -48,7 +48,7 @@ $configurator = array(
 			"legend" => _("Username: "),
 			"type" => "text",
 			"size" => "20"),
-		"webnic_username" => array(
+		"webnic_password" => array(
 			"legend" => _("Password: "),
 			"type" => "text",
 			"size" => "20")

@@ -1424,6 +1424,45 @@ function drawBackupConfig(){
 function drawRegistryApiConfig(){
 
 	global $pro_mysql_config_table;
+	global $allTLD;
+	global $registry_api_modules;
+
+	$out = "";
+
+	$all_registrar = array();
+	$nbr_registrar = sizeof($registry_api_modules);
+	for($i=0;$i<$nbr_registrar;$i++){
+		$all_registrar[] = $registry_api_modules[$i]["name"];
+	}
+
+	$dsc = array(
+		"title" => _("Registrar selection"),
+		"action" => "tld_vs_registrar_selection",
+		"forward" => array("rub","sousrub"),
+		"table_name" => "registrar_domains",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+				),
+			"tld" => array(
+				"type" => "popup",
+				"legend" => _("TLD"),
+				"values" => $allTLD,
+				),
+			"price" => array(
+				"type" => "text",
+				"legend" => _("Price"),
+				),
+			"registrar" => array(
+				"type" => "popup",
+				"legend" => _("Registrar"),
+				"values" => $all_registrar
+				)
+		)
+	);
+	$out .= dtcDatagrid($dsc);
 
 	$dsc = array(
 		"title" => _("Domain name registry API configuraiton"),
@@ -1456,7 +1495,8 @@ function drawRegistryApiConfig(){
 				"legend" => _("Your key to access the LIVE server:"),
 				"type" => "text",
 				"size" => "50")));
-	return configEditorTemplate ($dsc);
+	$out .= configEditorTemplate ($dsc);
+	return $out;
 }
 
 function drawDTCpayConfig(){
