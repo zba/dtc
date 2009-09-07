@@ -58,6 +58,12 @@ function webnic_registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$doma
 }
 
 function webnic_registry_check_availability($domain_name){
+	$post_params_hash["domain"] = $domain_name;
+	if ( webnic_submit("pn_qry.jsp", $post_params_hash) == "0" ){
+		return TRUE;
+	}else{
+		return FALSE;
+	}
 }
 
 function webnic_registry_get_domain_price($domain_name,$period){

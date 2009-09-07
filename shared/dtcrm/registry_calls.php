@@ -2,6 +2,34 @@
 
 require_once "$dtcshared_path/dtcrm/opensrs.php";
 
+// Return the ID of the registrar module in the $registry_api_modules
+// depending on $domain
+// Returns false if not found
+function find_registry_id($domain){
+	global $registry_api_modules;
+	global $pro_mysql_registrar_domains_table;
+
+	$exten = find_domain_extension($domain)
+	if($exten === FALSE){
+		return FALSE;
+	}
+	$q = "SELECT * FROM $pro_mysql_registrar_domains_table WHERE tld='".$exten."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		return FALSE;
+	}
+	$a = mysql_fetch_array($r);
+	$registrar_name = $a["registrar"];
+	$n = sizeof($registry_api_modules);
+	for($i=0;$i<$n;$i++){
+		if($registry_api_modules[$i]["name"] == $registrar_name){
+			return $i;
+		}
+	}
+	return FALSE;
+}
+
 function registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip){
 	global $SRScookie_errno;
 	if(($cookie = SRSget_cookie($adm_login,$adm_pass,$domain_name)) == -1) return $SRScookie_errno;
@@ -27,7 +55,12 @@ function registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$domain_name
 }
 
 function registry_check_availability($domain_name){
-	return SRSregistry_check_availability($domain_name);
+	$id = find_registry_id($domain_name);
+	if($id === FALSE){
+		return FALSE;
+	}
+	return $registry_api_modules["registry_check_availability"]($domain_name);
+//	return SRSregistry_check_availability($domain_name);
 }
 
 function registry_get_domain_price($domain_name,$period){

@@ -1,5 +1,13 @@
 <?php
 
+function find_domain_extension($domain){
+	$pos = strrchr(".",$domain);
+	if($pos === FALSE){
+		return FALSE;
+	}
+	return $pos;
+}
+
 // If the admin has en_US.UTF-8, and filename is registration_msg/vps_open,
 // then the function will try to open, in order:
 // * /etc/dtc/registration_msg/vps_open_en_US.UTF-8.txt

@@ -49,4 +49,5 @@ $pro_mysql_spent_providers_table = "spent_providers";
 $pro_mysql_spent_type_table = "spent_type";
 $pro_mysql_spent_bank_table = "spent_bank";
 $pro_mysql_ip_pool_table = "ip_pool";
+$pro_mysql_registrar_domains_table = "registrar_domains";
 ?>

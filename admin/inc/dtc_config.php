@@ -1436,9 +1436,24 @@ function drawRegistryApiConfig(){
 		$all_registrar[] = $registry_api_modules[$i]["name"];
 	}
 
+	// Allow activation of the registrar API (not everyone is using it...)
+	$dsc = array(
+		"title" => _("Domain name registry API configuration"),
+		"action" => "domain_registry_config_yesno_editor",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"use_registrar_api" => array(
+				"legend" => _("Use registrar API:"),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")))
+		)
+	);
+	$out .= configEditorTemplate ($dsc);
+
 	// Display a grid so the root admin can configure what registrar will be used for what TLD
 	$dsc = array(
-		"title" => _("Registrar selection"),
+		"title" => _("Registrar selection and final customer pricing"),
 		"action" => "tld_vs_registrar_selection",
 		"forward" => array("rub","sousrub"),
 		"table_name" => "registrar_domains",
@@ -1446,7 +1461,7 @@ function drawRegistryApiConfig(){
 			"id" => array(
 				"type" => "id",
 				"display" => "no",
-				"legend" => "id"),
+				"legend" => "id",
 				),
 			"tld" => array(
 				"type" => "popup",
@@ -1466,44 +1481,11 @@ function drawRegistryApiConfig(){
 	);
 	$out .= dtcDatagrid($dsc);
 
-	// Display the configurator for each registrar
+	// Display the configurator for each registrar (configuration is in the main.php of each module)
 	for($i=0;$i<$nbr_registrar;$i++){
 		$dsc = $registry_api_modules[$i]["configure_descriptor"];
 		$out .= configEditorTemplate ($dsc);
 	}
-
-	$dsc = array(
-		"title" => _("Domain name registry API configuraiton"),
-		"action" => "domain_registry_config_editor",
-		"forward" => array("rub","sousrub"),
-		"desc" => "<img src=\"gfx/tucows.jpg\"><br>Note: you must have a Tucows reseller account.",
-		"cols" => array(
-			"use_registrar_api" => array(
-				"legend" => _("Use registrar API:"),
-				"type" => "radio",
-				"values" => array("yes","no"),
-				"display_replace" => array(_("Yes"),_("No"))),
-			"srs_crypt" => array(
-				"legend" => _("Type of encryption for connecting to Tucows server:"),
-				"type" => "radio",
-				"values" => array("DES","BLOWFISH")),
-			"srs_enviro" => array(
-				"legend" => _("Use the LIVE server (and not the test one) :"),
-				"type" => "radio",
-				"values" => array("LIVE","TEST")),
-			"srs_user" => array(
-				"legend" => _("Your SRS username:"),
-				"type" => "text",
-				"size" => "30"),
-			"srs_test_key" => array(
-				"legend" => _("Your key to access the test server:"),
-				"type" => "text",
-				"size" => "50"),
-			"srs_live_key" => array(
-				"legend" => _("Your key to access the LIVE server:"),
-				"type" => "text",
-				"size" => "50")));
-	$out .= configEditorTemplate ($dsc);
 	return $out;
 }
 

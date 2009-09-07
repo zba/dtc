@@ -189,7 +189,7 @@ $form_start
 	if(!isset($_REQUEST["toreg_domain"]) || $_REQUEST["toreg_domain"] == "" ||
 	!isset($_REQUEST["toreg_extention"]) || $_REQUEST["toreg_extention"] == ""){
 		$out .= "<br>". _("Enter the domain name you want to register:") ."<br>
-$form_start $form_enter_domain_name</form>";
+$form_start ".make_registration_tld_popup()."</form>";
 		return $out;
 	}
 
@@ -206,7 +206,7 @@ $form_start $form_enter_domain_name</form>";
 ". _("Sorry, the domain name ") ." <b>$fqdn</b> ". _("is NOT available for registration. The registration server returned: ") 
 ."<br><font color=\"red\">" . $domlookup["response_text"] . "</font>
 <br><br>
-Have another try:<br>$form_start $form_enter_domain_name</form>";
+Have another try:<br>$form_start ".make_registration_tld_popup()."</form>";
 		return $out;
 	}
 	$form_start .= "<input type=\"hidden\" name=\"toreg_domain\" value=\"".$_REQUEST["toreg_domain"]."\">
