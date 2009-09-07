@@ -235,6 +235,11 @@ $dtc_database = array(
 			"named_soa_retry" => "varchar (16) NOT NULL default '60M'",
 			"named_soa_expire" => "varchar (16) NOT NULL default '1W'",
 			"named_soa_default_ttl" => "varchar (16) NOT NULL default '24H'",
+
+			"webnic_server_url" => "varchar (256) NOT NULL default 'https://my.webnic.cc/jsp/'",
+			"webnic_username" => "varchar (128) NOT NULL default ''",
+			"webnic_password" => "varchar (128) NOT NULL default ''",
+
 			"provide_own_domain_hosts" => "enum('yes','no') NOT NULL default 'no'",
 			"nagios_host" => "varchar(255) NOT NULL default ''",
 			"nagios_username" => "varchar(255) NOT NULL default ''",

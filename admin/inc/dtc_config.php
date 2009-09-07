@@ -1429,12 +1429,14 @@ function drawRegistryApiConfig(){
 
 	$out = "";
 
+	// Load all registrar names
 	$all_registrar = array();
 	$nbr_registrar = sizeof($registry_api_modules);
 	for($i=0;$i<$nbr_registrar;$i++){
 		$all_registrar[] = $registry_api_modules[$i]["name"];
 	}
 
+	// Display a grid so the root admin can configure what registrar will be used for what TLD
 	$dsc = array(
 		"title" => _("Registrar selection"),
 		"action" => "tld_vs_registrar_selection",
@@ -1463,6 +1465,12 @@ function drawRegistryApiConfig(){
 		)
 	);
 	$out .= dtcDatagrid($dsc);
+
+	// Display the configurator for each registrar
+	for($i=0;$i<$nbr_registrar;$i++){
+		$dsc = $registry_api_modules[$i]["configure_descriptor"];
+		$out .= configEditorTemplate ($dsc);
+	}
 
 	$dsc = array(
 		"title" => _("Domain name registry API configuraiton"),
