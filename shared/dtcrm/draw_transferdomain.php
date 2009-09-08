@@ -44,7 +44,7 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 	$toreg_extention != ".name" && $toreg_extention != ".info")		){
 		$out .= "$form_start<br>
 ". _("Please enter the domain name you wish to transfer:") ."<br>
-".make_registration_tld_popup().";
+".make_registration_tld_popup();
 		return $out;
 	}
 
@@ -61,7 +61,7 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 ". _("Server said: ") .$regz["attributes"]["reason"]."<br>
 $form_start<br>
 ". _("Please enter the domain name you wish to transfer:") ."<br>
-"..make_registration_tld_popup().";
+".make_registration_tld_popup();
 		return $out;
 	}
 	$out .= "<br><font color=\"green\">". _("TRANSFER CHECK SUCCESSFUL") ."</font><br><br>";

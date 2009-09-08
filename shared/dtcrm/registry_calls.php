@@ -9,7 +9,7 @@ function find_registry_id($domain){
 	global $registry_api_modules;
 	global $pro_mysql_registrar_domains_table;
 
-	$exten = find_domain_extension($domain)
+	$exten = find_domain_extension($domain);
 	if($exten === FALSE){
 		return FALSE;
 	}
