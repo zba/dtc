@@ -30,6 +30,44 @@ function find_registry_id($domain){
 	return FALSE;
 }
 
+function registry_check_availability($domain_name){
+	global $registry_api_modules;
+	$id = find_registry_id($domain_name);
+	if($id === FALSE){
+		return FALSE;
+	}
+	return $registry_api_modules[$id]["registry_check_availability"]($domain_name);
+//	return SRSregistry_check_availability($domain_name);
+}
+
+function registry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers){
+	global $registry_api_modules;
+	$id = find_registry_id($domain_name);
+	if($id === FALSE){
+		return FALSE;
+	}
+	return $registry_api_modules[$id]["registry_register_domain"]($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers);
+//	return SRSregistry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers);
+}
+
+function registry_get_domain_price($domain_name,$period){
+	global $pro_mysql_registrar_domains_table;
+	echo $period;
+	$exten = find_domain_extension($domain_name);
+	if($exten === FALSE){
+		return FALSE;
+	}
+	$q = "SELECT * FROM $pro_mysql_registrar_domains_table WHERE tld='".$exten."';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		return FALSE;
+	}
+	$a = mysql_fetch_array($r);
+	//SRSregistry_get_domain_price($domain_name,$period);
+	return $a["price"];
+}
+
 function registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip){
 	global $SRScookie_errno;
 	if(($cookie = SRSget_cookie($adm_login,$adm_pass,$domain_name)) == -1) return $SRScookie_errno;
@@ -54,22 +92,7 @@ function registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$domain_name
 	return SRSregistry_delete_nameserver($adm_login,$adm_pass,$subdomain,$domain_name);
 }
 
-function registry_check_availability($domain_name){
-	$id = find_registry_id($domain_name);
-	if($id === FALSE){
-		return FALSE;
-	}
-	return $registry_api_modules["registry_check_availability"]($domain_name);
-//	return SRSregistry_check_availability($domain_name);
-}
 
-function registry_get_domain_price($domain_name,$period){
-	return SRSregistry_get_domain_price($domain_name,$period);
-}
-
-function registry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers){
-	return SRSregistry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers);
-}
 
 function SRSregistry_update_whois_infoz($adm_login,$adm_pass,$domain_name,$contacts){
 	global $SRScookie_errno;

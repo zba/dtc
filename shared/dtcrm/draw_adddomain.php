@@ -232,7 +232,7 @@ Have another try:<br>$form_start ".make_registration_tld_popup()."</form>";
 
 		$year = _("year") ;
 		$years = _("years") ;
-		$out .= _("Please select the 3 contact handles you want to use for registering that domain name.") ."<br><br>$form_start";
+		$out .= _("Please select registran and the 3 contact handles you want to use for registering that domain name.") ."<br><br>$form_start";
 		$out .= whoisHandleSelection($admin);
 		$out .= "<br>$form_enter_dns_infos<br><br>
 ". _("Select how long you want to register this domain name:") ."<br>
@@ -278,7 +278,7 @@ $form_start
 
 	// Check billing to know if user has enough money on his account
 	$price = registry_get_domain_price($fqdn,$_REQUEST["toreg_period"]);
-	$fqdn_price = $price["attributes"]["price"] + $registration_added_price;
+	$fqdn_price = $price;
 	$fqdn_price *= $_REQUEST["toreg_period"];
 
 	if($admin["info"]["id_client"] != 0){

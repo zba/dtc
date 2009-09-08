@@ -1,7 +1,7 @@
 <?php
 
 function find_domain_extension($domain){
-	$pos = strrchr(".",$domain);
+	$pos = strrchr($domain,".");
 	if($pos === FALSE){
 		return FALSE;
 	}
