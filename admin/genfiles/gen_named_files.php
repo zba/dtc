@@ -519,10 +519,22 @@ function nodes_vps_generate(){
 	global $conf_generated_file_path;
 	global $conf_named_slavefile_path;
 	global $pro_mysql_vps_ip_table;
+	global $conf_dtc_system_username;
+	global $conf_ip_allowed_dns_transfer;
 
 	global $conf_webmaster_email_addr;
 
 	$bind_formated_webmaster_email_addr = str_replace('@',".",$conf_webmaster_email_addr).".";
+
+	$nodes_named_conf = "";
+
+	if(strlen($conf_ip_allowed_dns_transfer) > 4){
+		$more_allowed = explode("|",$conf_ip_allowed_dns_transfer);
+		$v = sizeof($more_allowed);
+		for($k=0; $k<$v; $k++){
+			$all_ip .= $more_allowed[$k] . "; ";
+		}
+	}
 
 	$todays_serial = date("YmdH");
 	$q = "SELECT hostname,dom0_ips FROM $pro_mysql_vps_server_table;";
@@ -530,10 +542,20 @@ function nodes_vps_generate(){
 	$n = mysql_num_rows($r);
 	if($n > 0){
 		@mkdir("$conf_generated_file_path/nodes_zones");
+		@chown("$conf_generated_file_path/nodes_zones",$conf_dtc_system_username);
 	}
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$srv_hostname = $a["hostname"];
+
+		$nodes_named_conf .= "
+zone \"xen650901.gplhost.com\" IN {
+        type master;
+        allow-transfer { $all_ip  };
+        allow-query { any; };
+        file \"$conf_generated_file_path/nodes_zones/$srv_hostname\";
+};
+";
 
 		$node_zfile = "\$TTL $conf_default_zones_ttl
 @	IN	SOA	$conf_addr_primary_dns. $bind_formated_webmaster_email_addr (
@@ -567,9 +589,15 @@ function nodes_vps_generate(){
 				$node_zfile .= "mx.xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_vps."\n";
 			}
 		}
-		$filep = fopen("$conf_generated_file_path/$srv_hostname","w+");
+		$filep = fopen("$conf_generated_file_path/nodes_zones/$srv_hostname","w+");
 		fwrite($filep,$node_zfile);
 		fclose($filep);
+	}
+	if($n > 0){
+		$filep = fopen("$conf_generated_file_path/nodes_zones.conf","w+");
+		fwrite($filep,$nodes_named_conf);
+		fclose($filep);
+		@chown("$conf_generated_file_path/nodes_zones.conf",$conf_dtc_system_username);
 	}
 }
 
