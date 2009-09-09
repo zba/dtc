@@ -517,16 +517,19 @@ function nodes_vps_generate(){
 	global $conf_addr_secondary_dns;
 	global $pro_mysql_vps_table;
 	global $conf_generated_file_path;
+	global $conf_named_slavefile_path;
+	global $pro_mysql_vps_ip_table;
 
 	global $conf_webmaster_email_addr;
 
 	$bind_formated_webmaster_email_addr = str_replace('@',".",$conf_webmaster_email_addr).".";
 
+	$todays_serial = date("YmdH");
 	$q = "SELECT hostname,dom0_ips FROM $pro_mysql_vps_server_table;";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n > 0){
-		mkdir("$conf_generated_file_path/nodes_zones");
+		@mkdir("$conf_generated_file_path/nodes_zones");
 	}
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
@@ -540,24 +543,31 @@ function nodes_vps_generate(){
 			$conf_named_soa_expire ; expire
 			$conf_named_soa_default_ttl ; default_ttl
 			)
-@	IN	NS	$thisdomain_dns1.
-@	IN	NS	$thisdomain_dns2."."\n";
+@	IN	NS	$conf_addr_primary_dns.
+@	IN	NS	$conf_addr_secondary_dns."."\n";
 		// Set the first IP of the dom0 IP list as the node name
 		$ips = explode("|",$a["dom0_ips"]);
 		$ip_dom0 = $ips[0];
 		$node_zfile .= "	IN	NS	".$ip_dom0."\n";
 
-		$q2 = "SELECT vps_xen_name FROM $pro_mysql_vps_table WHERE vps_server_hostname='".$pro_mysql_vps_table."';";
+		$q2 = "SELECT vps_xen_name FROM $pro_mysql_vps_table WHERE vps_server_hostname='".$srv_hostname."';";
+//		echo $q2;
 		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 		$n2 = mysql_num_rows($r2);
 		for($j=0;$j<$n2;$j++){
 			$a2 = mysql_fetch_array($r2);
 			$vps_xen_name = $a2["vps_xen_name"];
-			$node_zfile .= "xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_dom0."\n";
-			$node_zfile .= "dtc.xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_dom0."\n";
-			$node_zfile .= "mx.xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_dom0."\n";
+			$q3 = "SELECT ip_addr FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$srv_hostname."' AND vps_xen_name='".$vps_xen_name."' LIMIT 1;";
+			$r3 = mysql_query($q3)or die("Cannot query $q3 line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
+			if(mysql_num_rows($r3) == 1){
+				$a3 = mysql_fetch_array($r3);
+				$ip_vps = $a3["ip_addr"];
+				$node_zfile .= "xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_vps."\n";
+				$node_zfile .= "dtc.xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_vps."\n";
+				$node_zfile .= "mx.xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_vps."\n";
+			}
 		}
-		$filep = fopen("$conf_generated_file_path/$conf_named_slavefile_path/$srv_hostname","w+");
+		$filep = fopen("$conf_generated_file_path/$srv_hostname","w+");
 		fwrite($filep,$node_zfile);
 		fclose($filep);
 	}
