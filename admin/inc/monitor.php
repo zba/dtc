@@ -28,11 +28,16 @@ function drawAdminMonitor (){
 		$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='".$ar["id"]."';";
 		$r2 = mysql_query($q2)or die("Cannot query: \"$q2\" !".mysql_error()." line ".__LINE__." in file ".__FILE__);
 		$nr2 = mysql_num_rows($r2);
+		$admin=array();
+		$admin_stats=array();
 		for($j=0;$j<$nr2;$j++){
 			$ar2 = mysql_fetch_array($r2);
+			$oneadmin = fetchAdmin($ar2["adm_login"],$ar2["adm_pass"]);
+			$admin_stats = fetchAdminStats($oneadmin);
+			$admin=array_merge($admin,$oneadmin);
 
-			$admin = fetchAdmin($ar2["adm_login"],$ar2["adm_pass"]);
-			$admin_stats = fetchAdminStats($admin);
+
+			
 			if (isset($admin_stats["total_transfer"])){
 				$transfer += $admin_stats["total_transfer"];
 			}
@@ -92,6 +97,7 @@ function drawAdminMonitor (){
 			$out .= "</table>";
 
 			$out .= "</td></tr>";
+
 		}
 		$total_box_transfer += $transfer;
 		$total_box_hits += $total_hits;
