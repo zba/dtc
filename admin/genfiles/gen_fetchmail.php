@@ -22,8 +22,9 @@ function fetchmail_generate() {
 	    $fetchline.="envelope \"Delivered-To\"\n";
 	    /* Unfortunately there is no such option in fetchmail to keep mails for X days, or something, so it must be done with
 	    other tools. I think its safer to keep messages on remote server by default */
-	    $fetchline.="keep\n";
 	    $fetchline.="user ${row['pop3_login']} with password ${row['pop3_pass']} to ${row['domain_user']}@${row['domain_name']}\n";
+	    $fetchline.="keep\n";
+
 	    $num++;
     }
     file_put_contents($filename,$fetchline);
