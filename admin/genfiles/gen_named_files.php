@@ -20,10 +20,10 @@ function get_remote_ns($a){
 	global $keep_dns_generate_flag;
 	global $panel_type;
 	$retry = 0;
-	$flag = false;
+	$flag = FALSE;
 	$named_file = ""; //init $named_file var
 	$url = $a["server_addr"].'/dtc/list_domains.php?action=list_dns&login='.$a["server_login"].'&pass='.$a["server_pass"];
-	while($retry < 3 && $flag == false){
+	while($retry < 3 && $flag == FALSE){
 		$a_vers = explode(".",phpversion());
 		if($a_vers[0] <= 4 && $a_vers[1] < 3){
 			if( $panel_type == "cronjob"){
@@ -40,23 +40,28 @@ function get_remote_ns($a){
 			}
 			$httprequest = new HTTPRequest("$url");
 			$lines = $httprequest->DownloadToStringArray();
-		}
-		$nline = sizeof($lines);
-
-		if(strstr($lines[0],"// Start of DTC generated slave zone file for backuping") &&
-			strstr($lines[$nline-1],"// End of DTC generated slave zone file for backuping")){
-			for($j=0;$j<$nline;$j++){
-				$named_file .= $lines[$j]."\n";
+			if($lines === FALSE){
+				$lines = array();
 			}
-			$flag = true;
-			if( $panel_type == "cronjob"){
-				echo "Success!\n";
-			}else{
-				$console .= "Success!<br>";
+		}
+		if($lines != FALSE){
+			$nline = sizeof($lines);
+
+			if(strstr($lines[0],"// Start of DTC generated slave zone file for backuping") &&
+				strstr($lines[$nline-1],"// End of DTC generated slave zone file for backuping")){
+				for($j=0;$j<$nline;$j++){
+					$named_file .= $lines[$j]."\n";
+				}
+				$flag = true;
+				if( $panel_type == "cronjob"){
+					echo "Success!\n";
+				}else{
+					$console .= "Success!<br>";
+				}
 			}
 		}
 		$retry ++;
-		if($flag == false){
+		if($flag == FALSE){
 			if( $panel_type == "cronjob"){
 				$console .= "Failed: delaying 3s!\n";
 			}else{
@@ -65,9 +70,9 @@ function get_remote_ns($a){
 			sleep(3);
 		}
 	}
-	if($flag == false){
+	if($flag == FALSE){
 		$keep_dns_generate_flag = "yes";
-		return false;
+		return FALSE;
 	}
 	else		return $named_file;
 }

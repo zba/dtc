@@ -70,6 +70,9 @@ class HTTPRequest{
 
 		// fetch from URL
 		$this->_fp = @fsockopen(($this->_protocol == 'https' ? 'ssl://' : '') . $this->_host, $this->_port, $errno, $errstr, $this->_timeout);
+		if( $this->_fp === FALSE){
+			return FALSE;
+		}
 
 		fwrite($this->_fp, $req);
 

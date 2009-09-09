@@ -141,14 +141,15 @@ function commitTriggerToRemoteInternal($a, $recipients){
 			$httprequest = new HTTPRequest("$url");
 			$lines = $httprequest->DownloadToStringArray();
 		}
-		if ($recipients == 1){
-			if(strstr($lines[0],"Successfuly recieved trigger for MX!") != false){
-				$flag = true;
-			}
-
-		} else {
-			if(strstr($lines[0],"Successfuly recieved trigger!") != false){
-				$flag = true;
+		if($lines != FALSE){
+			if ($recipients == 1){
+				if(strstr($lines[0],"Successfuly recieved trigger for MX!") != false){
+					$flag = true;
+				}
+			} else {
+				if(strstr($lines[0],"Successfuly recieved trigger!") != false){
+					$flag = true;
+				}
 			}
 		}
 		$retry ++;
