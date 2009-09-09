@@ -42,6 +42,9 @@ function webnic_submit($post_url, $post_params_hash){
 	$url = $post_url."?".$strContent;
 	$httprequest = new HTTPRequest("$url");
 	$lines = $httprequest->DownloadToStringArray();
+	if($lines === FALSE){
+		return "98 Could not open connection to the remote server (fsockopen error)\n";
+	}
 	return $lines[0];
 }
 
@@ -201,7 +204,7 @@ $configurator = array(
 	"title" => _("Wenic configuration"),
 	"action" => "configure_webnic_editor",
 	"forward" => array("rub","sousrub"),
-	"desc" => _("Webnic"),
+	"desc" => _("Use https://my.webnic.cc/jsp/ for the live server, https://ote.webnic.cc/jsp/ for the test one."),
 	"cols" => array(
 		"webnic_server_url" => array(
 			"legend" => _("Server address: "),

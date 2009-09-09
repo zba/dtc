@@ -185,7 +185,7 @@ function drawAdminTools_MyAccount($admin){
 				}
 			}
 
-/*			$out .=  "<h3>". _("Remaining money on my account:") ."</h3><br>
+			$out .=  "<h3>". _("Remaining money on my account:") ."</h3><br>
 <table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"0\">
 <tr>
 	<td><font size=\"+1\">\$".$client["dollar"]."</font></td>
@@ -196,7 +196,7 @@ $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 </form></td></tr>
 </table>
 <hr width=\"90%\">
-";*/
+";
 
 		}
 

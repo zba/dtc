@@ -1,7 +1,5 @@
 <?php
 
-require_once "$dtcshared_path/dtcrm/srs/openSRS_base.php";
-
 class openSRS extends openSRS_base {
 	var $USERNAME         = 'zigo';            # your OpenSRS username
 	var $TEST_PRIVATE_KEY = 'bb3c825180005bf60fc801564d4be9505d2602cc7a59fbfd100cf778afb266e99456609e7d1da54559a86ce3215e2fb117a2905b1811e8b3';  # your private key on the test (horizon) server
