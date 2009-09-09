@@ -84,7 +84,7 @@ function mail_account_generate_maildrop(){
 
 			$PATH = getenv('PATH');
 			putenv("PATH=/usr/lib/courier-imap/bin:$PATH");
-			system("maildirmake $boxpath/Maildir 2>&1 >/dev/null");
+			system("maildirmake $boxpath/Maildir >/dev/null 2>&1");
 			system("maildirmake -q  $quota_maildrop $boxpath/Maildir");
 			putenv("PATH=$PATH");
 			if($quota_maildrop==0){
