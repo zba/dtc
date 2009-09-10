@@ -50,6 +50,9 @@ class HTTPRequest{
 	function DownloadToStringArray(){
 		$crlf = "/[\r\n]+/";
 		$fullresponse = $this->DownloadToString();
+		if($fullresponse === FALSE){
+			return FALSE;
+		}
 		$array = preg_split($crlf, $fullresponse, -1, PREG_SPLIT_NO_EMPTY);
 		return $array;
 	}
@@ -57,8 +60,8 @@ class HTTPRequest{
 	// download URL to string
 	function DownloadToString(){
 		// store errors in case we need to handle them
-		$errno;
-		$errstr;
+		global $errno;
+		global $errstr;
 		$response ='';
 
 		$crlf = "\r\n";

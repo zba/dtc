@@ -12,6 +12,8 @@
 function webnic_submit($post_url, $post_params_hash){
 	global $conf_webnic_server_url;
 	global $conf_webnic_username;
+	global $errno;
+	global $errstr;
 
 	// Print the variable to be posted yes/no
 	$debug = 0;
@@ -43,13 +45,13 @@ function webnic_submit($post_url, $post_params_hash){
 	$httprequest = new HTTPRequest("$url");
 	$lines = $httprequest->DownloadToStringArray();
 	if($lines === FALSE){
-		return "98 Could not open connection to the remote server (fsockopen error)\n";
+		return "98 Could not open connection to the remote server (fsockopen error)\n$errno $errstr";
 	}
 	return $lines[0];
 }
 
 function webnic_return_code($return){
-	switch($webcc_ret){
+	switch($return){
 	case 0:
 		return "success";
 	case 1:
