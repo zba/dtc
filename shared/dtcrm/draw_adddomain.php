@@ -7,6 +7,9 @@ function drawAdminTools_AddDomain($admin){
 
 	global $registration_added_price;
 
+	global $conf_addr_primary_dns;
+	global $conf_addr_secondary_dns;
+
 	global $form_enter_dns_infos;
 	global $form_enter_domain_name;
 	global $whois_forwareded_params;
@@ -226,6 +229,7 @@ Have another try:<br>$form_start ".make_registration_tld_popup()."</form>";
 	if(!isset($_REQUEST["dtcrm_owner_hdl"]) || $_REQUEST["dtcrm_owner_hdl"] == "" ||
 		!isset($_REQUEST["dtcrm_admin_hdl"]) || $_REQUEST["dtcrm_admin_hdl"] == "" ||
 		!isset($_REQUEST["dtcrm_billing_hdl"]) || $_REQUEST["dtcrm_billing_hdl"] == "" ||
+		!isset($_REQUEST["dtcrm_teck_hdl"]) || $_REQUEST["dtcrm_teck_hdl"] == "" ||
 		!isset($_REQUEST["toreg_dns1"]) || $_REQUEST["toreg_dns1"] == "" ||
 		!isset($_REQUEST["toreg_dns2"]) || $_REQUEST["toreg_dns2"] == "" ||
 		$_REQUEST["toreg_period"] < 1 || $_REQUEST["toreg_period"] > 10){
@@ -300,6 +304,7 @@ $form_start
 		."&add_regortrans=".$_REQUEST["add_regortrans"]."&toreg_domain=".$_REQUEST["toreg_domain"]
 		."&toreg_extention=".$_REQUEST["toreg_extention"]."&dtcrm_owner_hdl=".$_REQUEST["dtcrm_owner_hdl"]
 		."&dtcrm_admin_hdl=".$_REQUEST["dtcrm_admin_hdl"]."&dtcrm_billing_hdl=".$_REQUEST["dtcrm_billing_hdl"]
+		."&dtcrm_teck_hdl=".$_REQUEST["dtcrm_teck_hdl"]
 		."&toreg_dns1=".$_REQUEST["toreg_dns1"]."&toreg_dns2=".$_REQUEST["toreg_dns2"]
 		."&toreg_dns3=".$_REQUEST["toreg_dns3"]."&toreg_dns4=".$_REQUEST["toreg_dns4"]
 		."&toreg_dns5=".$_REQUEST["toreg_dns5"]."&toreg_dns6=".$_REQUEST["toreg_dns6"]
@@ -328,8 +333,27 @@ $form_start
 	$owner_id = $_REQUEST["dtcrm_owner_hdl"];
 	$billing_id = $_REQUEST["dtcrm_billing_hdl"];
 	$admin_id = $_REQUEST["dtcrm_admin_hdl"];
-	$contacts = getContactsArrayFromID($owner_id,$billing_id,$admin_id);
-	$regz = registry_register_domain($adm_login,$adm_pass,$fqdn,$_REQUEST["toreg_period"],$contacts,$dns_servers);
+	$teck_id = $_REQUEST["dtcrm_teck_hdl"];
+	$contacts = getContactsArrayFromID($owner_id,$billing_id,$admin_id,$teck_id);
+	$dns_servers = array();
+	for($i=1;$i<7;$i++){
+		if(isset($_REQUEST["toreg_dns$i"]) && isHostname($_REQUEST["toreg_dns$i"])){
+			$dns_servers[] = $_REQUEST["toreg_dns$i"];
+		}else if($i == 1){
+			$dns_servers[] = $conf_addr_primary_dns;
+		}else if($i == 2){
+			$dns_servers[] = $conf_addr_secondary_dns;
+		}
+	}
+	$q = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login' AND whois='here' AND registrar='webnic';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n > 0){
+		$new_user = "no";
+	}else{
+		$new_user = "yes";
+	}
+	$regz = registry_register_domain($adm_login,$adm_pass,$fqdn,$_REQUEST["toreg_period"],$contacts,$dns_servers,$new_user);
 
 	if($regz["is_success"] != 1){
 		$out .= "<font color=\"red\"><b>". _("Registration failed") ."</b></font><br>
@@ -344,6 +368,13 @@ Server said: <i>" . $regz["response_text"] . "</i><br>";
 	mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 
 	addDomainToUser($adm_login,$adm_pass,$fqdn,$adm_pass);
+
+	if($regz["is_success"] == 1){
+		$q = "UPDATE $pro_mysql_domain_table SET registrar='".$registry_api_modules[$id]["name"]."' WHERE name='$fqdn';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	}
+
+
 	unset($ns_ar);
 	$ns_ar[] = $_REQUEST["toreg_dns1"];
 	$ns_ar[] = $_REQUEST["toreg_dns2"];

@@ -38,19 +38,19 @@ function registry_check_availability($domain_name){
 //	return SRSregistry_check_availability($domain_name);
 }
 
-function registry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers){
+function registry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers,$new_user="yes"){
 	global $registry_api_modules;
 	$id = find_registry_id($domain_name);
 	if($id === FALSE){
 		return FALSE;
 	}
-	return $registry_api_modules[$id]["registry_register_domain"]($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers);
+	$ret = $registry_api_modules[$id]["registry_register_domain"]($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers,$new_user);
+	return $ret;
 //	return SRSregistry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers);
 }
 
 function registry_get_domain_price($domain_name,$period){
 	global $pro_mysql_registrar_domains_table;
-	echo $period;
 	$exten = find_domain_extension($domain_name);
 	if($exten === FALSE){
 		return FALSE;

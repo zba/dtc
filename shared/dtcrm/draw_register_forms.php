@@ -52,6 +52,8 @@ if(isset($_REQUEST["dtcrm_admin_hdl"])) $dtcrm_admin_hdl=$_REQUEST["dtcrm_admin_
 else	$dtcrm_admin_hdl="";
 if(isset($_REQUEST["dtcrm_billing_hdl"])) $dtcrm_billing_hdl=$_REQUEST["dtcrm_billing_hdl"];
 else	$dtcrm_billing_hdl="";
+if(isset($_REQUEST["dtcrm_teck_hdl"])) $dtcrm_teck_hdl=$_REQUEST["dtcrm_teck_hdl"];
+else	$dtcrm_teck_hdl="";
 if(isset($_REQUEST["toreg_dns1"])) $toreg_dns1=$_REQUEST["toreg_dns1"];else	$toreg_dns1="";
 if(isset($_REQUEST["toreg_dns2"])) $toreg_dns2=$_REQUEST["toreg_dns2"];else	$toreg_dns2="";
 if(isset($_REQUEST["toreg_dns3"])) $toreg_dns3=$_REQUEST["toreg_dns3"];else	$toreg_dns3="";
@@ -70,6 +72,7 @@ $whois_forwareded_params_ip = "
 <input type=\"hidden\" name=\"dtcrm_owner_hdl\" value=\"$dtcrm_owner_hdl\">
 <input type=\"hidden\" name=\"dtcrm_admin_hdl\" value=\"$dtcrm_admin_hdl\">
 <input type=\"hidden\" name=\"dtcrm_billing_hdl\" value=\"$dtcrm_billing_hdl\">
+<input type=\"hidden\" name=\"dtcrm_teck_hdl\" value=\"$dtcrm_teck_hdl\">
 <input type=\"hidden\" name=\"toreg_dns1\" value=\"$toreg_dns1\">
 <input type=\"hidden\" name=\"toreg_dns2\" value=\"$toreg_dns2\">
 <input type=\"hidden\" name=\"toreg_dns3\" value=\"$toreg_dns3\">
@@ -89,6 +92,7 @@ $whois_forwareded_params = "
 <input type=\"hidden\" name=\"dtcrm_owner_hdl\" value=\"$dtcrm_owner_hdl\">
 <input type=\"hidden\" name=\"dtcrm_admin_hdl\" value=\"$dtcrm_admin_hdl\">
 <input type=\"hidden\" name=\"dtcrm_billing_hdl\" value=\"$dtcrm_billing_hdl\">
+<input type=\"hidden\" name=\"dtcrm_teck_hdl\" value=\"$dtcrm_teck_hdl\">
 <input type=\"hidden\" name=\"toreg_dns1\" value=\"$toreg_dns1\">
 <input type=\"hidden\" name=\"toreg_dns2\" value=\"$toreg_dns2\">
 <input type=\"hidden\" name=\"toreg_dns3\" value=\"$toreg_dns3\">

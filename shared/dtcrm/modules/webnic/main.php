@@ -110,69 +110,88 @@ function webnic_registry_check_availability($domain_name){
 	return $ret;
 }
 
-function webnic_registry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers){
+function webnic_registry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers,$new_user){
+	global $conf_webnic_username;
+	global $conf_webnic_password;
 	$post_params_hash["otime"] = date("Y-m-d H:m:i");
-	print_r($contacts);
-	die("Debug die");
+	$post_params_hash["ochecksum"] = md5($conf_webnic_username,$post_params_hash["otime"].md5($conf_webnic_password));
 
 	$post_params_hash["domainname"] = $domain_name;
-	$post_params_hash["ochecksum"] = "I don't know what's that, please FIXME";
 	$post_params_hash["encoding"] = "iso8859-1";
 	$post_params_hash["term"] = $period;
-	$post_params_hash["ns1"] = "FIXME";
-	$post_params_hash["ns2"] = "FIXME";
-	$post_params_hash["reg_company"] = "FIXME";
-	$post_params_hash["reg_fname"] = "FIXME";
-	$post_params_hash["reg_lname"] = "FIXME";
-	$post_params_hash["reg_addr1"] = "FIXME";
-	$post_params_hash["reg_addr2"] = "FIXME";
-	$post_params_hash["reg_state"] = "FIXME";
-	$post_params_hash["reg_city"] = "FIXME";
-	$post_params_hash["reg_postcode"] = "FIXME";
-	$post_params_hash["reg_telephone"] = "FIXME";
-	$post_params_hash["reg_fax"] = "FIXME";
-	$post_params_hash["reg_country"] = "FIXME";
-	$post_params_hash["reg_email"] = "FIXME";
-	$post_params_hash["flag_adm"] = "FIXME";
-	$post_params_hash["adm_company"] = "FIXME";
-	$post_params_hash["adm_fname"] = "FIXME";
-	$post_params_hash["adm_lname"] = "FIXME";
-	$post_params_hash["adm_addr1"] = "FIXME";
-	$post_params_hash["adm_addr2"] = "FIXME";
-	$post_params_hash["adm_state"] = "FIXME";
-	$post_params_hash["adm_city"] = "FIXME";
-	$post_params_hash["adm_postcode"] = "FIXME";
-	$post_params_hash["adm_telephone"] = "FIXME";
-	$post_params_hash["adm_fax"] = "FIXME";
-	$post_params_hash["adm_country"] = "FIXME";
-	$post_params_hash["adm_email"] = "FIXME";
-	$post_params_hash["tec_company"] = "FIXME";
-	$post_params_hash["tec_fname"] = "FIXME";
-	$post_params_hash["tec_lname"] = "FIXME";
-	$post_params_hash["tec_addr1"] = "FIXME";
-	$post_params_hash["tec_addr2"] = "FIXME";
-	$post_params_hash["tec_state"] = "FIXME";
-	$post_params_hash["tec_city"] = "FIXME";
-	$post_params_hash["tec_postcode"] = "FIXME";
-	$post_params_hash["tec_telephone"] = "FIXME";
-	$post_params_hash["tec_fax"] = "FIXME";
-	$post_params_hash["tec_country"] = "FIXME";
-	$post_params_hash["tec_email"] = "FIXME";
-	$post_params_hash["bil_company"] = "FIXME";
-	$post_params_hash["bil_fname"] = "FIXME";
-	$post_params_hash["bil_lname"] = "FIXME";
-	$post_params_hash["bil_addr1"] = "FIXME";
-	$post_params_hash["bil_addr2"] = "FIXME";
-	$post_params_hash["bil_state"] = "FIXME";
-	$post_params_hash["bil_city"] = "FIXME";
-	$post_params_hash["bil_postcode"] = "FIXME";
-	$post_params_hash["bil_telephone"] = "FIXME";
-	$post_params_hash["bil_fax"] = "FIXME";
-	$post_params_hash["bil_country"] = "FIXME";
-	$post_params_hash["bil_email"] = "FIXME";
-	$post_params_hash["username"] = "FIXME";
-	$post_params_hash["password"] = "FIXME";
-	$post_params_hash["newuser"] = "FIXME";	// old / new
+	$post_params_hash["ns1"] = $dns_servers[0];
+	$post_params_hash["ns2"] = $dns_servers[1];
+	if($contacts["owner"]["company"] == ""){
+		$owner = $contacts["owner"]["firstname"]." ".$contacts["owner"]["lastname"];
+	}else{
+		$owner = $contacts["owner"]["company"];
+	}
+	$post_params_hash["reg_company"] = $contacts["owner"]["company"];
+	$post_params_hash["reg_fname"] = $contacts["owner"]["firstname"];
+	$post_params_hash["reg_lname"] = $contacts["owner"]["lastname"];
+	$post_params_hash["reg_addr1"] = $contacts["owner"]["addr1"];
+	$post_params_hash["reg_addr2"] = $contacts["owner"]["addr2"]." ".$contacts["owner"]["addr3"];
+	$post_params_hash["reg_state"] = $contacts["owner"]["state"];
+	$post_params_hash["reg_city"] = $contacts["owner"]["city"];
+	$post_params_hash["reg_postcode"] = $contacts["owner"]["zipcode"];
+	$post_params_hash["reg_telephone"] = $contacts["owner"]["phone_num"];
+	$post_params_hash["reg_fax"] = $contacts["owner"]["fax_num"];
+	$post_params_hash["reg_country"] = $contacts["owner"]["country"];
+	$post_params_hash["reg_email"] = $contacts["owner"]["email"];
+	$post_params_hash["flag_adm"] = 0;
+	$post_params_hash["adm_company"] = $contacts["admin"]["company"];
+	$post_params_hash["adm_fname"] = $contacts["admin"]["firstname"];
+	$post_params_hash["adm_lname"] = $contacts["admin"]["lastname"];
+	$post_params_hash["adm_addr1"] = $contacts["admin"]["addr1"];
+	$post_params_hash["adm_addr2"] = $contacts["admin"]["addr2"]." ".$contacts["admin"]["addr3"];
+	$post_params_hash["adm_state"] = $contacts["admin"]["state"];
+	$post_params_hash["adm_city"] = $contacts["admin"]["city"];
+	$post_params_hash["adm_postcode"] = $contacts["admin"]["zipcode"];
+	$post_params_hash["adm_telephone"] = $contacts["admin"]["phone_num"];
+	$post_params_hash["adm_fax"] = $contacts["admin"]["fax_num"];
+	$post_params_hash["adm_country"] = $contacts["admin"]["country"];
+	$post_params_hash["adm_email"] = $contacts["admin"]["email"];
+	$post_params_hash["tec_company"] = $contacts["teck"]["company"];
+	$post_params_hash["tec_fname"] = $contacts["teck"]["firstname"];
+	$post_params_hash["tec_lname"] = $contacts["teck"]["firstname"];
+	$post_params_hash["tec_addr1"] = $contacts["teck"]["addr1"];
+	$post_params_hash["tec_addr2"] = $contacts["teck"]["addr2"]." ".$contacts["teck"]["addr3"];
+	$post_params_hash["tec_state"] = $contacts["teck"]["state"];
+	$post_params_hash["tec_city"] = $contacts["teck"]["city"];
+	$post_params_hash["tec_postcode"] = $contacts["teck"]["zipcode"];
+	$post_params_hash["tec_telephone"] = $contacts["teck"]["phone_num"];
+	$post_params_hash["tec_fax"] = $contacts["teck"]["fax_num"];
+	$post_params_hash["tec_country"] = $contacts["teck"]["country"];
+	$post_params_hash["tec_email"] = $contacts["teck"]["email"];
+	$post_params_hash["bil_company"] = $contacts["billing"]["company"];
+	$post_params_hash["bil_fname"] = $contacts["billing"]["firstname"];
+	$post_params_hash["bil_lname"] = $contacts["billing"]["lastname"];
+	$post_params_hash["bil_addr1"] = $contacts["billing"]["addr1"];
+	$post_params_hash["bil_addr2"] = $contacts["billing"]["addr2"]." ".$contacts["billing"]["addr3"];
+	$post_params_hash["bil_state"] = $contacts["billing"]["state"];
+	$post_params_hash["bil_city"] = $contacts["billing"]["city"];
+	$post_params_hash["bil_postcode"] = $contacts["billing"]["zipcode"];
+	$post_params_hash["bil_telephone"] = $contacts["billing"]["phone_num"];
+	$post_params_hash["bil_fax"] = $contacts["billing"]["fax_num"];
+	$post_params_hash["bil_country"] = $contacts["billing"]["country"];
+	$post_params_hash["bil_email"] = $contacts["billing"]["email"];
+	$post_params_hash["username"] = $adm_login;
+	$post_params_hash["password"] = $adm_pass;
+	if($new_user == "yes"){
+		$post_params_hash["newuser"] = "new";
+	}else{
+		$post_params_hash["newuser"] = "old";
+	}
+
+	$webcc_ret = webnic_submit("pn_reg.jsp", $post_params_hash);
+	$ret["response_text"] = response_text($webcc_ret);
+	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
+	return $ret;
 }
 
 function webnic_registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip){
