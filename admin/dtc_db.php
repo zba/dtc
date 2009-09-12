@@ -348,7 +348,8 @@ $dtc_database = array(
 			"stats_login" => "varchar(32) NOT NULL default ''",
   			"stats_pass" => "varchar(16) NOT NULL default ''",
   			"stats_subdomain" => " enum('yes','no') NOT NULL default 'no'",
-  			"wildcard_dns" => "enum('yes','no') NOT NULL default 'no'"
+  			"wildcard_dns" => "enum('yes','no') NOT NULL default 'no'",
+			"registrar" => "varchar(128) NOT NULL default 'webnic'"
 			),
 		"primary" => "(id)",
 		"keys" => array(
