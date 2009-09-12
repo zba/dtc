@@ -21,6 +21,8 @@ function drawAdminTools_AddDomain($admin){
 	global $pro_mysql_client_table;
 	global $pro_mysql_product_table;
 
+	global $registry_api_modules;
+
 	global $secpayconf_currency_letters;
 	global $pro_mysql_handle_table;
 
@@ -353,6 +355,7 @@ $form_start
 	}else{
 		$new_user = "yes";
 	}
+//	sleep(2);
 	$regz = registry_register_domain($adm_login,$adm_pass,$fqdn,$_REQUEST["toreg_period"],$contacts,$dns_servers,$new_user);
 
 	if($regz["is_success"] != 1){
@@ -370,6 +373,7 @@ Server said: <i>" . $regz["response_text"] . "</i><br>";
 	addDomainToUser($adm_login,$adm_pass,$fqdn,$adm_pass);
 
 	if($regz["is_success"] == 1){
+		$id = find_registry_id($fqdn);
 		$q = "UPDATE $pro_mysql_domain_table SET registrar='".$registry_api_modules[$id]["name"]."' WHERE name='$fqdn';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	}
@@ -386,11 +390,11 @@ Server said: <i>" . $regz["response_text"] . "</i><br>";
 		$ns_ar[] = $_REQUEST["toreg_dns5"];
 	if(isset($_REQUEST["toreg_dns6"]) && $_REQUEST["toreg_dns6"] != "")
 		$ns_ar[] = $_REQUEST["toreg_dns6"];
-	newWhois($fqdn,$owner_id,$billing_id,$admin_id,$period,$ns_ar);
+	newWhois($fqdn,$owner_id,$billing_id,$admin_id,$_REQUEST["toreg_period"],$ns_ar);
 
 	$out .= "<font color=\"green\"><b>". _("Successfully added your domain name to the hosting database") ."</b></font><br>";
 
-	$out .= _("Click") ."<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">". _("here") ."</a>". _("to refresh the menu or add another domain name.") ;
+	$out .= _("Click") . " " ."<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">". _("here") ."</a>". " " . _("to refresh the menu or add another domain name.") ;
 
 // END OF DOMAIN NAME REGISTRATION //
 /////////////////////////////////////

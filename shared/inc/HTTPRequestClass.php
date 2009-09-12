@@ -11,6 +11,8 @@ class HTTPRequest{
 	var $_protocol;    // protocol (HTTP/HTTPS)
 	var $_uri;        // request URI
 	var $_port;        // port
+	var $_post_or_get; // Use POST or GET
+	var $_post_params;
 
 	// Timeout in seconds 
 	var $_timeout = 5;
@@ -44,6 +46,13 @@ class HTTPRequest{
 	function HTTPRequest($url){
 		$this->_url = $url;
 		$this->_scan_url();
+		$this->post_or_get = "get";
+		$this->post_parms = "";
+	}
+
+	function postit($params){
+		$this->post_or_get = "post";
+		$this->_post_params = $params;
 	}
 
 	// download URL to string Array
@@ -64,12 +73,22 @@ class HTTPRequest{
 		global $errstr;
 		$response ='';
 
-		$crlf = "\r\n";
+		$crlf = "\n";
 
 		// generate request
-		$req = 'GET ' . $this->_uri . ' HTTP/1.0' . $crlf 
-		.    'Host: ' . $this->_host . $crlf 
-		.    $crlf;
+		if($this->post_or_get == "get"){
+			$req = 'GET ' . $this->_uri . ' HTTP/1.0' . $crlf 
+			.    'Host: ' . $this->_host . $crlf 
+			.    $crlf;
+		}else{
+			$req = 'POST ' . $this->_uri . ' HTTP/1.0' . $crlf
+			.    'Host: ' . $this->_host . $crlf
+			.    'Content-Type: application/x-www-form-urlencoded' . $crlf
+			.    'Content-Length: ' . strlen(urlencode($this->_post_params)) . $crlf
+			.    $crlf
+			.    urlencode($this->_post_params) . $crlf
+			. $crlf;
+		}
 
 		// fetch from URL
 		$this->_fp = @fsockopen(($this->_protocol == 'https' ? 'ssl://' : '') . $this->_host, $this->_port, $errno, $errstr, $this->_timeout);

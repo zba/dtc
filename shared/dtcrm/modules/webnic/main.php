@@ -41,9 +41,14 @@ function webnic_submit($post_url, $post_params_hash){
 		echo $postfield . "\n";
 		echo "Post URL: $post_url\n";
 	}
-	$url = $post_url."?".$strContent;
+//	$url = $post_url."?".$strContent;
+	$url = $post_url;
 	$httprequest = new HTTPRequest("$url");
+
+	// New code for POST!
+	$httprequest->postit($strContent);
 	$lines = $httprequest->DownloadToStringArray();
+
 	if($lines === FALSE){
 		return "98 Could not open connection to the remote server (fsockopen error)\n$errno $errstr";
 	}
@@ -184,6 +189,7 @@ function webnic_registry_register_domain($adm_login,$adm_pass,$domain_name,$peri
 	}
 
 	$webcc_ret = webnic_submit("pn_reg.jsp", $post_params_hash);
+	print_r($webcc_ret);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
 	if($webcc_ret == 0){
