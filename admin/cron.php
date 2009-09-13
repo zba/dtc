@@ -598,15 +598,15 @@ function checkApacheCronService () {
 }
 
 function checkNagiosCronService () {
-	global $conf_dtc_nagios_host;
-	global $conf_dtc_nagios_username;
-	global $conf_dtc_nagios_config_file_path;
-	global $conf_dtc_nagios_restart_command;
+	global $conf_nagios_host;
+	global $conf_nagios_username;
+	global $conf_nagios_config_file_path;
+	global $conf_nagios_restart_command;
 
-	if ( 	! $conf_dtc_nagios_host or
-		! $conf_dtc_nagios_username or  
-		! $conf_dtc_nagios_config_file_path or  
-		! $conf_dtc_nagios_restart_command ) return;
+	if ( 	! $conf_nagios_host or
+		! $conf_nagios_username or  
+		! $conf_nagios_config_file_path or  
+		! $conf_nagios_restart_command ) return;
 
 	$cronjob_table_content = getCronFlags();
 	if($cronjob_table_content["gen_nagios"] == "yes"){
@@ -620,17 +620,17 @@ function checkNagiosCronService () {
 		$returnvar = 0;
 
 		echo "Copying Nagios configuration to monitor host\n";
-		system("scp -B $tmpfile $conf_dtc_nagios_username@$conf_dtc_nagios_host:$conf_dtc_nagios_config_file_path",$return_var);
+		system("scp -B $tmpfile $conf_nagios_username@$conf_nagios_host:$conf_nagios_config_file_path",$return_var);
 		if ($return_var) {
-			echo "Failed (return value $return_var) to install Nagios configuration in username@$conf_dtc_nagios_host:$conf_dtc_nagios_config_file_path";
+			echo "Failed (return value $return_var) to install Nagios configuration in username@$conf_nagios_host:$conf_nagios_config_file_path";
 			unlink($tmpfile);
 			return;
 		}
 
 		echo "Reloading Nagios configuration\n";
-		system("ssh -o 'BatchMode yes' $conf_dtc_nagios_username@$conf_dtc_nagios_host $conf_dtc_nagios_restart_command",$return_var);
+		system("ssh -o 'BatchMode yes' $conf_nagios_username@$conf_nagios_host $conf_nagios_restart_command",$return_var);
 		if ($return_var) {
-			echo "Failed (return value $return_var) to reload Nagios configuration in $conf_dtc_nagios_host using command $conf_dtc_nagios_restart_command";
+			echo "Failed (return value $return_var) to reload Nagios configuration in $conf_nagios_host using command $conf_nagios_restart_command";
 			unlink($tmpfile);
 			return;
 		}
