@@ -9,5 +9,5 @@
 		if [ -f /var/run/dtc-stats-daemon.pid ] ; then \
 			/etc/init.d/dtc-stats-daemon restart ; \
 		fi
-	postrotate
+	endscript
 }
