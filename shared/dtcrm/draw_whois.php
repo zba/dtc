@@ -1,6 +1,6 @@
 <?php
 
-function newWhois($domain_name,$owner_id,$billing_id,$admin_id,$period,$ns_ar){
+function newWhois($domain_name,$owner_id,$billing_id,$admin_id,$teck_id,$period,$ns_ar,$registrar){
 	global $pro_mysql_whois_table;
 	global $pro_mysql_domain_table;
 
@@ -11,17 +11,19 @@ function newWhois($domain_name,$owner_id,$billing_id,$admin_id,$period,$ns_ar){
 	$now = $y."-".$m."-".$d;
 	$expir = ($period + $y)."-".$m."-".$d;
 
+	$ns_field = "";
+	$ns_values = "";
 	for($i=2;$i<sizeof($ns_ar);$i++){
-		$ns_field .= ",ns".$i." ";
+		$ns_field .= ",ns". $i + 1 ." ";
 		$ns_values .= ",'" . $ns_ar[$i] . "'";
 	}
 
 	$query = "INSERT INTO $pro_mysql_whois_table(
-domain_name,owner_id,admin_id,billing_id,
+domain_name,owner_id,admin_id,billing_id,teck_id,
 creation_date,modification_date,expiration_date,registrar,
-ns1,ns2". $ns_field .")VALUES('$domain_name','$owner_id','$billing_id','$admin_id',
-'$now','$now','$expir','tucows',
-'".$ns_ar[1]."','".$ns_ar[2]."'". $ns_values .");";
+ns1,ns2". $ns_field .")VALUES('$domain_name','$owner_id','$billing_id','$admin_id','$teck_id',
+'$now','$now','$expir','$registrar',
+'".$ns_ar[0]."','".$ns_ar[1]."'". $ns_values .");";
 	$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 
 	$query = "UPDATE $pro_mysql_domain_table SET whois='here' WHERE name='$domain_name';";

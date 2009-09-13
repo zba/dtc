@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS whois (
   owner_id int(16) NOT NULL default '0',
   admin_id int(16) NOT NULL default '0',
   billing_id int(16) NOT NULL default '0',
+  teck_id int(16) NOT NULL default '0',
   creation_date date NOT NULL default '0000-00-00',
   modification_date date NOT NULL default '0000-00-00',
   expiration_date date NOT NULL default '0000-00-00',

@@ -217,6 +217,16 @@ Have another try:<br>$form_start ".make_registration_tld_popup()."</form>";
 	$form_start .= "<input type=\"hidden\" name=\"toreg_domain\" value=\"".$_REQUEST["toreg_domain"]."\">
 <input type=\"hidden\" name=\"toreg_extention\" value=\"".$_REQUEST["toreg_extention"]."\">";
 
+	$q = "SELECT * FROM $pro_mysql_domain_table WHERE name='$fqdn';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 0){
+		$out .= "<br>
+". _("The domain name") . " <b>$fqdn</b> ". _("is already in use in this server: you can't register that domain name.")."<br>".
+_("Have another try:") . "<br>$form_start ".make_registration_tld_popup()."</form>";
+		return $out;
+	}
+
 	// DOMAIN IS AVAILABLE, PROCEED DO REGISTRATION
 	$out .= "Domain name <b>$fqdn</b> is available for registration.<br><br>
 <i><u>". _("Step 2: Enter whois information") ."</u></i><br>
@@ -376,21 +386,23 @@ Server said: <i>" . $regz["response_text"] . "</i><br>";
 		$id = find_registry_id($fqdn);
 		$q = "UPDATE $pro_mysql_domain_table SET registrar='".$registry_api_modules[$id]["name"]."' WHERE name='$fqdn';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+		unset($ns_ar);
+		$ns_ar = array();
+		$ns_ar[] = $_REQUEST["toreg_dns1"];
+		$ns_ar[] = $_REQUEST["toreg_dns2"];
+		if(isset($_REQUEST["toreg_dns3"]) && $_REQUEST["toreg_dns3"] != "")
+			$ns_ar[] = $_REQUEST["toreg_dns3"];
+		if(isset($_REQUEST["toreg_dns4"]) && $_REQUEST["toreg_dns4"] != "")
+			$ns_ar[] = $_REQUEST["toreg_dns4"];
+		if(isset($_REQUEST["toreg_dns5"]) && $_REQUEST["toreg_dns5"] != "")
+			$ns_ar[] = $_REQUEST["toreg_dns5"];
+		if(isset($_REQUEST["toreg_dns6"]) && $_REQUEST["toreg_dns6"] != "")
+			$ns_ar[] = $_REQUEST["toreg_dns6"];
+		newWhois($fqdn,$owner_id,$billing_id,$admin_id,$teck_id,$_REQUEST["toreg_period"],$ns_ar,$registry_api_modules[$id]["name"]);
 	}
 
 
-	unset($ns_ar);
-	$ns_ar[] = $_REQUEST["toreg_dns1"];
-	$ns_ar[] = $_REQUEST["toreg_dns2"];
-	if(isset($_REQUEST["toreg_dns3"]) && $_REQUEST["toreg_dns3"] != "")
-		$ns_ar[] = $_REQUEST["toreg_dns3"];
-	if(isset($_REQUEST["toreg_dns4"]) && $_REQUEST["toreg_dns4"] != "")
-		$ns_ar[] = $_REQUEST["toreg_dns4"];
-	if(isset($_REQUEST["toreg_dns5"]) && $_REQUEST["toreg_dns5"] != "")
-		$ns_ar[] = $_REQUEST["toreg_dns5"];
-	if(isset($_REQUEST["toreg_dns6"]) && $_REQUEST["toreg_dns6"] != "")
-		$ns_ar[] = $_REQUEST["toreg_dns6"];
-	newWhois($fqdn,$owner_id,$billing_id,$admin_id,$_REQUEST["toreg_period"],$ns_ar);
 
 	$out .= "<font color=\"green\"><b>". _("Successfully added your domain name to the hosting database") ."</b></font><br>";
 

@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS domain (
   stats_login varchar(32) NOT NULL default '',
   stats_pass varchar(16) NOT NULL default '',
   stats_subdomain enum('yes','no') NOT NULL default 'no',
-  wildcard_dns enum('yes','no') NOT NULL default 'no',
-  registrar varchar(128) NOT NULL default 'webnic',
+  wildcard_dns enum('yes','no') NOT NULL default 'no'
   UNIQUE KEY name (name)
 ) TYPE=MyISAM

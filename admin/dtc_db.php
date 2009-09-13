@@ -348,8 +348,7 @@ $dtc_database = array(
 			"stats_login" => "varchar(32) NOT NULL default ''",
   			"stats_pass" => "varchar(16) NOT NULL default ''",
   			"stats_subdomain" => " enum('yes','no') NOT NULL default 'no'",
-  			"wildcard_dns" => "enum('yes','no') NOT NULL default 'no'",
-			"registrar" => "varchar(128) NOT NULL default 'webnic'"
+  			"wildcard_dns" => "enum('yes','no') NOT NULL default 'no'"
 			),
 		"primary" => "(id)",
 		"keys" => array(
@@ -1195,6 +1194,7 @@ $dtc_database = array(
 			"owner_id" => "int(16) NOT NULL default '0' ",
 			"admin_id" => "int(16) NOT NULL default '0' ",
 			"billing_id" => "int(16) NOT NULL default '0' ",
+			"teck_id" => "int(16) NOT NULL default '0' ",
 			"creation_date" => "date NOT NULL default '0000-00-00' ",
 			"modification_date" => "date NOT NULL default '0000-00-00' ",
 			"expiration_date" => "date NOT NULL default '0000-00-00' ",
