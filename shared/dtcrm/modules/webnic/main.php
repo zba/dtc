@@ -9,7 +9,7 @@
 // returns error code from URL
 // returns actual content from URL
 
-function webnic_submit($post_url, $post_params_hash){
+function webnic_submit($post_url, $post_params_hash, $use_post="yes"){
 	global $conf_webnic_server_url;
 	global $conf_webnic_username;
 	global $errno;
@@ -41,18 +41,23 @@ function webnic_submit($post_url, $post_params_hash){
 		echo $postfield . "\n";
 		echo "Post URL: $post_url\n";
 	}
-//	$url = $post_url."?".$strContent;
-	$url = $post_url;
-	$httprequest = new HTTPRequest("$url");
+	if($use_post == "yes"){
+	 	$url = $post_url;
+		$httprequest = new HTTPRequest("$url");
 
-	// New code for POST!
-	$httprequest->postit($strContent);
-	$lines = $httprequest->DownloadToStringArray();
-
-	if($lines === FALSE){
-		return "98 Could not open connection to the remote server (fsockopen error)\n$errno $errstr";
+		// New code for POST!
+		$httprequest->postit($strContent);
+		$lines = $httprequest->DownloadToString();
+	}else{
+		$url = $post_url."?".$strContent;
+		$httprequest = new HTTPRequest("$url");
+		$lines = $httprequest->DownloadToString();
 	}
-	return $lines[0];
+
+/*	if($lines === FALSE){
+		return "98 Could not open connection to the remote server (fsockopen error)\nNum: $errno Text: \"$errstr\"";
+	}*/
+	return $lines;
 }
 
 function webnic_return_code($return){
@@ -108,30 +113,20 @@ function webnic_registry_check_availability($domain_name){
 	$ret["is_success"] = 1;
 	$ret["response_text"] = response_text($webcc_ret);
 	if($webcc_ret == 0){
-		$ret["attributes"]["status"] = "available";
+        	$ret["attributes"]["status"] = "available";
 	}else{
 		$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
 	}
 	return $ret;
 }
 
-function webnic_registry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers,$new_user){
-	global $conf_webnic_username;
-	global $conf_webnic_password;
-	$post_params_hash["otime"] = date("Y-m-d H:m:i");
-	$post_params_hash["ochecksum"] = md5($conf_webnic_username,$post_params_hash["otime"].md5($conf_webnic_password));
-
-	$post_params_hash["domainname"] = $domain_name;
-	$post_params_hash["encoding"] = "iso8859-1";
-	$post_params_hash["term"] = $period;
-	$post_params_hash["ns1"] = $dns_servers[0];
-	$post_params_hash["ns2"] = $dns_servers[1];
+function webnic_prepar_whois_params($contacts){
 	if($contacts["owner"]["company"] == ""){
 		$owner = $contacts["owner"]["firstname"]." ".$contacts["owner"]["lastname"];
 	}else{
 		$owner = $contacts["owner"]["company"];
 	}
-	$post_params_hash["reg_company"] = $contacts["owner"]["company"];
+	$post_params_hash["reg_company"] = $owner;
 	$post_params_hash["reg_fname"] = $contacts["owner"]["firstname"];
 	$post_params_hash["reg_lname"] = $contacts["owner"]["lastname"];
 	$post_params_hash["reg_addr1"] = $contacts["owner"]["addr1"];
@@ -180,6 +175,23 @@ function webnic_registry_register_domain($adm_login,$adm_pass,$domain_name,$peri
 	$post_params_hash["bil_fax"] = $contacts["billing"]["fax_num"];
 	$post_params_hash["bil_country"] = $contacts["billing"]["country"];
 	$post_params_hash["bil_email"] = $contacts["billing"]["email"];
+	return $post_params_hash;
+}
+
+function webnic_registry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers,$new_user){
+	global $conf_webnic_username;
+	global $conf_webnic_password;
+
+	$post_params_hash = webnic_prepar_whois_params($contacts);
+
+	$post_params_hash["otime"] = date("Y-m-d H:m:i");
+	$post_params_hash["ochecksum"] = md5($conf_webnic_username,$post_params_hash["otime"].md5($conf_webnic_password));
+
+	$post_params_hash["domainname"] = $domain_name;
+	$post_params_hash["encoding"] = "iso8859-1";
+	$post_params_hash["term"] = $period;
+	$post_params_hash["ns1"] = $dns_servers[0];
+	$post_params_hash["ns2"] = $dns_servers[1];
 	$post_params_hash["username"] = $adm_login;
 	$post_params_hash["password"] = $adm_pass;
 	if($new_user == "yes"){
@@ -189,7 +201,6 @@ function webnic_registry_register_domain($adm_login,$adm_pass,$domain_name,$peri
 	}
 
 	$webcc_ret = webnic_submit("pn_reg.jsp", $post_params_hash);
-	print_r($webcc_ret);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
 	if($webcc_ret == 0){
@@ -212,7 +223,29 @@ function webnic_registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$doma
 function webnic_registry_get_domain_price($domain_name,$period){
 }
 
+function webnic_registry_get_whois($domain_name){
+	$post_params_hash["domain"] = $domain_name;
+	$webcc_ret = webnic_submit("whois.jsp", $post_params_hash,"no");
+	$ret["is_success"] = 1;
+	$ret["response_text"] = $webcc_ret;
+	return $ret;
+}
+
 function webnic_registry_update_whois_info($adm_login,$adm_pass,$domain_name,$contacts){
+	global $conf_webnic_username;
+	global $conf_webnic_password;
+
+	$post_params_hash = webnic_prepar_whois_params($contacts);
+
+	$post_params_hash["otime"] = date("Y-m-d H:m:i");
+	$post_params_hash["ochecksum"] = md5($conf_webnic_username,$post_params_hash["otime"].md5($conf_webnic_password));
+
+	$post_params_hash["domainname"] = $domain_name;
+
+	$webcc_ret = webnic_submit("pn_mod.jsp", $post_params_hash);
+	$ret["response_text"] = response_text($webcc_ret);
+	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	return $ret;
 }
 
 function webnic_registry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns){
@@ -261,7 +294,8 @@ $registry_api_modules[] = array(
 "registry_update_whois_dns" => "webnic_registry_update_whois_dns",
 "registry_check_transfer" => "webnic_registry_check_transfer",
 "registry_renew_domain" => "webnic_registry_renew_domain",
-"registry_change_password" => "webnic_registry_change_password"
+"registry_change_password" => "webnic_registry_change_password",
+"registry_get_whois" => "webnic_registry_get_whois"
 );
 
 ?>

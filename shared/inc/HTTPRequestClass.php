@@ -134,9 +134,15 @@ class HTTPRequest{
 		fclose($this->_fp);
 
 		// split header and body
-		$pos = strpos($response, $crlf . $crlf);
-		if($pos === false)
-			return($response);
+//		echo "HERE--------------------------------";
+		$pos = strpos($response, "\r\n\r\n");
+		if($pos === false){
+			$pos = strpos($response, $crlf . $crlf);
+			if($pos === false){
+//				echo "HERE2--------------------------------";
+				return($response);
+			}
+		}
 		$header = substr($response, 0, $pos);
 		$body = substr($response, $pos + 2 * strlen($crlf));
 

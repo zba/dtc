@@ -56,10 +56,15 @@ function drawAdminTools_Whois($admin,$eddomain){
 ";
 		}
 	}else{
-		if($_REQUEST["action"] == "update_whois_infoz"){
+		if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "update_whois_infoz"){
 		        $owner_id = $_REQUEST["dtcrm_owner_hdl"];
 		        $billing_id = $_REQUEST["dtcrm_billing_hdl"];
 		        $admin_id = $_REQUEST["dtcrm_admin_hdl"];
+		        $teck_id = $_REQUEST["dtcrm_teck_hdl"];
+
+			if( !isRandomNum($owner_id) || !isRandomNum($billing_id) || !isRandomNum($admin_id) || !isRandomNum($teck_id) ){
+				die("Admin contact is not a number: exiting!");
+			}
 
 		        $query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$owner_id' AND owner='$adm_login';";
 			$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
@@ -76,16 +81,21 @@ function drawAdminTools_Whois($admin,$eddomain){
 		        if(mysql_num_rows($result) != 1)        die("Handle ID not found !");
 		        $contacts["admin"] = mysql_fetch_array($result)or die("Cannot fetch array !");
 
-			$regz = registry_update_whois_infoz($adm_login,$adm_pass,$domain_name,$contacts);
+		        $query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$teck_id' AND owner='$adm_login';";
+		        $result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+		        if(mysql_num_rows($result) != 1)        die("Handle ID not found !");
+		        $contacts["teck"] = mysql_fetch_array($result)or die("Cannot fetch array !");
+
+			$regz = registry_update_whois_info($adm_login,$adm_pass,$domain_name,$contacts);
 
 			if($regz["is_success"] != 1){
-				$out .= "<font color=\"red\"><b>Update of whois contact informations failed</b></font><br>
-Server said: <i>" . $regz["response_text"] . "</i><br>";
+				$out .= "<font color=\"red\"><b>". _("Update of whois contact informations failed"). "</b></font><br>
+".("Server said:")." <i>" . $regz["response_text"] . "</i><br>";
 			}else{
-				$out .= "<font color=\"green\"><b>Update of whois contact informations succesfull</b></font><br>
-Server said: <i>" . $regz["response_text"] . "</i><br>
+				$out .= "<font color=\"green\"><b>". _("Update of whois contact informations succesfull")."</b></font><br>
+"._("Server said:")." <i>" . $regz["response_text"] . "</i><br>
 ";
-				$query = "UPDATE $pro_mysql_whois_table SET owner_id='$owner_id',billing_id='$billing_id',admin_id='$admin_id' WHERE domain_name='$domain_name';";
+				$query = "UPDATE $pro_mysql_whois_table SET owner_id='$owner_id',billing_id='$billing_id',admin_id='$admin_id',teck_id='$teck_id' WHERE domain_name='$domain_name';";
 				$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 		        }
 		}
@@ -103,9 +113,14 @@ Server said: <i>" . $regz["response_text"] . "</i><br>
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"action\" value=\"update_whois_infoz\">
 ";
-		$out .= whoisHandleSelection($admin,"yes",$row["owner_id"],$row["billing_id"],$row["admin_id"]);
-		$out .= "<input type=\"submit\" value=\"Ok\"></form>";
+		$out .= whoisHandleSelection($admin,"yes",$row["owner_id"],$row["billing_id"],$row["admin_id"],$row["teck_id"]);
+		$out .= submitButtonStart(). _("Update whois") .submitButtonEnd()."</form>";
 	}
+
+	$out .= "<br><br>" . _("The current whois for this domain is as follow:") . "<br>";
+	$ret = registry_get_whois($domain_name);
+//	print_r($ret);
+	$out .= nl2br($ret["response_text"]);
 
 	return $out;
 }

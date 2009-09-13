@@ -95,12 +95,31 @@ function registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$domain_name
 //	return SRSregistry_delete_nameserver($adm_login,$adm_pass,$subdomain,$domain_name);
 }
 
-function registry_update_whois_infoz($adm_login,$adm_pass,$domain_name,$contacts){
-	return SRSregistry_update_whois_infoz($adm_login,$adm_pass,$domain_name,$contacts);
+function registry_update_whois_info($adm_login,$adm_pass,$domain_name,$contacts){
+	global $registry_api_modules;
+	$id = find_registry_id($domain_name);
+	if($id === FALSE){
+		return FALSE;
+	}
+	return $registry_api_modules[$id]["registry_update_whois_info"]($adm_login,$adm_pass,$domain_name,$contacts);
+}
+
+function registry_get_whois($domain_name){
+	global $registry_api_modules;
+	$id = find_registry_id($domain_name);
+	if($id === FALSE){
+		return FALSE;
+	}
+	return $registry_api_modules[$id]["registry_get_whois"]($domain_name);
 }
 
 function registry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns){
-	return SRSregistry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns);
+	global $registry_api_modules;
+	$id = find_registry_id($domain_name);
+	if($id === FALSE){
+		return FALSE;
+	}
+	return $registry_api_modules[$id]["registry_get_whois"]($adm_login,$adm_pass,$domain_name,$dns);
 }
 
 function registry_check_transfer($domain){
