@@ -488,6 +488,12 @@ function isIP($ip){
 	else			return true;
 }
 
+function isIP6($ip){
+        if(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) === FALSE)     return false;
+        else                    return true;
+}
+
+
 function isDTCLogin($login){
 	$reg = "^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$";
 	if(!ereg($reg,$login))	return false;

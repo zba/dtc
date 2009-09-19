@@ -187,6 +187,12 @@ function drawAdminTools_Subdomain($admin,$domain){
 				"can_be_empty" => "yes",
 				"empty_makes_default" => "yes",
 				"legend" => _("IP address or CNAME: ") ),
+                        "ip6" => array(
+                                "type" => "text",
+                                "check" => "ip6",
+                                "can_be_empty" => "yes",
+                                "empty_makes_default" => "yes",
+                                "legend" => _("IPv6 address: ") ),
 			"generate_vhost" => array(
 				"type" => "radio",
 				"values" => array("yes","no"),
