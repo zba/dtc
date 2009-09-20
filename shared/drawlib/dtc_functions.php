@@ -278,10 +278,19 @@ function autoGeneratePassButton($form_name,$field_name){
 <script language=\"JavaScript\">
 function dtc_gen_passwd(frm_name,fld_name){
 	document[frm_name][fld_name].value = '".$mdp."';
-	document[frm_name][fld_name].type = 'text';
+//	document[frm_name][fld_name].type = 'text';
+	dtc_see_password(frm_name,fld_name);
 }
 function dtc_see_password(frm_name,fld_name){
-	document[frm_name][fld_name].type = 'text';
+//	document[frm_name][fld_name].type = 'text';
+	var curObj = document[frm_name][fld_name];
+	if (curObj.getAttribute('type') != 'text') {
+		var newObj=document.createElement('input');
+		newObj.setAttribute('type','text');
+		newObj.setAttribute('name',curObj.getAttribute('name'));
+		newObj.setAttribute('value',curObj.getAttribute('value'));
+		curObj.parentNode.replaceChild( newObj, curObj );
+	}
 }
 </script>";
 	}
