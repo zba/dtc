@@ -615,7 +615,9 @@ function checkNagiosCronService () {
 		$tmpfile = tempnam("/somedirthatdoesntexist","newnagiosconfig");
 		file_put_contents($tmpfile,$config);
 
-		// FIXME: To work, this code requires that 1) the nagios monitor host be in the SSH keyring for the DTC user 2) the destination file be writable for the user DTC uses to log into the nagios monitor host.  We cannot do that from here.
+		// FIXME: To work, this code requires that:
+		// 1) the nagios monitor host be in the SSH keyring for the DTC user
+		// 2) the destination file be writable for the user DTC uses to log into the nagios monitor host.  We cannot do that from here.
 
 		$returnvar = 0;
 
