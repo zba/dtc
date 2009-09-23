@@ -19,6 +19,15 @@ CREATE TABLE IF NOT EXISTS subdomain (
   srv_record varchar(64) default NULL,
   add_default_charset varchar(32) NOT NULL default 'dtc-wont-add',
   customize_vhost text NOT NULL,
+  php_memory_limit int(11) NOT NULL default '64',
+  php_max_execution_time int(11) NOT NULL default '64',
+  php_allow_url_fopen enum('yes','no') NOT NULL default 'no',
+  php_post_max_size int(11) NOT NULL default '8',
+  php_session_auto_start enum('yes','no') NOT NULL default 'no',
+  php_upload_max_filesize int(11) NOT NULL default '2',
+  use_shared_ssl enum('yes','no') NOT NULL default 'no',
+  redirect_url varchar(512) NULL default '',
+
   PRIMARY KEY  (id),
   UNIQUE KEY unic_subdomain (domain_name,subdomain_name)
 ) TYPE=MyISAM

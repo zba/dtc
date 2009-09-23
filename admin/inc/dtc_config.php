@@ -1030,6 +1030,11 @@ function drawGeneralConfig(){
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
+			"use_shared_ssl" => array(
+				"legend" => _("(<a href=\"http://dtcsupport.gplhost.com/PmWiki/Name-based-shared-SSL-vhosts\">Shared SSL warnings!</a>)Allow use of name based shared SSL vhosts: "),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"domain_based_ftp_logins" => array(
 				"legend" => _("Use @domain.com ftp logins: "),
 				"type" => "radio",

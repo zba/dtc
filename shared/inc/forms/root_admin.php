@@ -308,6 +308,8 @@ function drawDomainConfig($admin){
 	global $pro_mysql_subdomain_table;
 
 	global $conf_site_addrs;
+	global $conf_use_shared_ssl;
+
 	$site_addrs = explode("|",$conf_site_addrs);
 
 	global $adm_login;
@@ -419,7 +421,7 @@ function drawDomainConfig($admin){
 				}
 				$ze_dom = mysql_fetch_array($r);
 				$customization = $ze_dom["customize_vhost"];
-				$ret .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+				/*$ret .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
 				<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 				<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 				<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -432,7 +434,84 @@ function drawDomainConfig($admin){
  <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"Ok\"></div>
  <div class=\"input_btn_right\"></div>
 </div>
-				</form><br><br><br>";
+				</form><br><br><br>";*/
+
+		$cols=array(	"id" => array(
+					"type" => "id",
+					"display" => "no",
+					"legend" => _("ID")),
+				"customize_vhost" => array(
+					"type"=> "textarea",
+					"help"=> _("Custom apache directives. There is *no* syntax checking on this field!"),
+					"cols"=> "40",
+					"rows"=> "70",
+					"legend" => _("Custom apache directives")),
+				"redirect_url" => array(
+					"type" => "text",
+					"help" => _("Redirect URL"),
+					"size" => 50,
+					"legend" => _("Redirect to:")),
+				"php_memory_limit" => array(
+					"type" => "text",
+					"help" => _(""),
+					"size" => 3,
+					"legend" => _("PHP memory limit")),
+				"php_max_execution_time" => array(
+					"type" => "text",
+					"help" => _(""),
+					"size" => 3,
+					"legend" => _("Execution time")),
+				"php_upload_max_filesize" => array(
+					"type" => "text",
+					"help" => _("Maximum allowed size of uploaded file"),
+					"size" => 2,
+					"legend" => _("Max upload file size")),
+				"php_post_max_size" => array(
+					"type" => "text",
+					"help" => _("Maximum allowed size of POST"),
+					"size" => 2,
+					"legend" => _("Max POST file size")),
+				"php_session_auto_start" => array(
+					"type" => "checkbox",
+					"help" => _("Auto start of php sessions"),
+					"size" => 2,
+					"legend" => _("Session autostart"),
+					"values" => array("yes","no"),
+					"display_replace" => array( _("No") , _("Yes") )),
+				"php_allow_url_fopen" => array(
+					"type" => "checkbox",
+					"help" => _("Allows to open URLs with PHP's fopen() function."),
+					"size" => 2,
+					"legend" => _("Allow URL fOpen()"),
+					"values" => array("yes","no"),
+					"display_replace" => array( _("No") , _("Yes") ))
+		);
+		if ($conf_use_shared_ssl=="yes") {
+		    $cols["use_shared_ssl"] = array(
+					"type" => "checkbox",
+					"help" => _("Use a shared SSL certificate for this subdomain."),
+					"size" => 2,
+					"legend" => _("SSL"),
+					"values" => array("yes","no"),
+					"display_replace" => array( _("No") , _("Yes") ));
+		}
+
+
+
+		$dsc = array(
+			"table_name" => $pro_mysql_subdomain_table,
+			"title" => _("Configuration of the subdomain"),
+			"action" => "change_domain_config",
+			"forward" => array("subdomain","edithost","rub","adm_login","adm_pass"),
+			"skip_deletion" => "yes",
+			"skip_creation" => "yes",
+			"where_condition" => "subdomain_name='".$_REQUEST["subdomain"]."' AND domain_name='".$_REQUEST["edithost"]."'",
+			"cols" => $cols
+			);
+			
+			$ret.=dtcDatagrid($dsc);
+				
+				
 			}
 		}
 	}
