@@ -350,7 +350,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 			return $ret;
 		}
 		$n = mysql_num_rows($r);
-		if($n >= 0){
+		if($n > 0){
 			$is_root_admin = "yes";
 			$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 			$result = mysql_query ($query);
