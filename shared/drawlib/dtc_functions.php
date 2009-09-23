@@ -836,6 +836,8 @@ function addVPSToUser($adm_login,$vps_server_hostname,$product_id,$operating_sys
 	VALUES('','$adm_login','".$vps_ip["vps_server_hostname"]."','".$vps_ip["vps_xen_name"]."','".date("Y-m-d")."','$exp_date','".$product["quota_disk"]."','".$product["memory_size"]."','$product_id','".$product["bandwidth"]."','$operating_system');";
 	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
+	updateUsingCron("gen_named='yes',reload_named ='yes'");
+
 	// Subscribe user to the lists of the VPS
 	VPS_Server_Subscribe_To_Lists($vps_server_hostname);
 
