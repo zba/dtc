@@ -1,7 +1,7 @@
 <?php
 
 function nagios_generate(){
-	global $pro_mysql_vps_table
+	global $pro_mysql_vps_table;
 	global $pro_mysql_vps_ip_table;
 	global $conf_main_domain;
 
