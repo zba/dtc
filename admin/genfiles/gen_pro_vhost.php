@@ -288,7 +288,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			$num_rows2 = mysql_num_rows($result2);
 			if($num_rows2 > 0){
 				$vhost_file .= "NameVirtualHost ".$all_site_addrs[$i].":80\n";
-				if ($conf_use_shared_ssl) {
+				if ($conf_use_shared_ssl == "yes") {
 					$vhost_file .= "NameVirtualHost ".$all_site_addrs[$i].":443\n";
 				}
 				if ($enable404feature == true){
@@ -329,7 +329,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 				$vhost_file_listen .= "#Listen ".$conf_main_site_ip.":80\n";
 			}
 			$vhost_file .= "NameVirtualHost ".$conf_main_site_ip.":80\n";
-			if ($conf_use_shared_ssl) {
+			if ($conf_use_shared_ssl == "yes") {
 				$vhost_file .= "NameVirtualHost ".$conf_main_site_ip.":443\n";
 			}
 		}
@@ -346,7 +346,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
         DirectoryIndex $conf_apache_directoryindex
 </VirtualHost>\n";
 
-		if ($conf_use_shared_ssl=="yes") {
+		if ($conf_use_shared_ssl == "yes") {
 			
 		    $vhost_file .= "<VirtualHost ".$conf_main_site_ip.":443>
         ServerName $conf_404_subdomain.$conf_main_domain
@@ -768,7 +768,7 @@ AND $pro_mysql_admin_table.id_client != '0'";
 						$vhost_more_conf .= "	php_admin_value upload_max_filesize ".$subdomain["php_upload_max_filesize"]."M\n";
 					}
 					
-					if($subdomain["use_shared_ssl"] == "yes" && $conf_use_shared_ssl){
+					if($subdomain["use_shared_ssl"] == "yes" && $conf_use_shared_ssl == "yes"){
 						$iteration_table[]="shared_ssl";
 					}
 					if (preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $subdomain["redirect_url"])) {
