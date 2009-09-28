@@ -550,7 +550,7 @@ function nodes_vps_generate(){
 		$srv_hostname = $a["hostname"];
 
 		$nodes_named_conf .= "
-zone \"xen650901.gplhost.com\" IN {
+zone \"$srv_hostname\" IN {
         type master;
         allow-transfer { $all_ip  };
         allow-query { any; };
