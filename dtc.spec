@@ -1,6 +1,6 @@
 Name: dtc-core
-Version: 0.30.4
-Release: 0.4.20090831.2
+Version: __VERSION__
+Release: 0.1.20090928
 License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
@@ -131,6 +131,10 @@ fi
 mkdir %{_var}/lib/dtc/dtc-xenservers-rrds
 
 %changelog
+* Mon Sep 28 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.9-0.1.20090928
+- New upstream release.
+- Added dependency to libgcc so ssh accounts are working.
+
 * Mon Aug 31 2009 Thomas Goirand (zigo) <thomas@goirand.fr> 0.30.4-0.1.20090831
 - Source RPM is now called dtc-core, and there's no dtc package anymore.
 
