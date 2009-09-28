@@ -571,7 +571,7 @@ zone \"$srv_hostname\" IN {
 		// Set the first IP of the dom0 IP list as the node name
 		$ips = explode("|",$a["dom0_ips"]);
 		$ip_dom0 = $ips[0];
-		$node_zfile .= "	IN	NS	".$ip_dom0."\n";
+		$node_zfile .= "	IN	A	".$ip_dom0."\n";
 
 		$q2 = "SELECT vps_xen_name FROM $pro_mysql_vps_table WHERE vps_server_hostname='".$srv_hostname."';";
 //		echo $q2;
@@ -585,9 +585,9 @@ zone \"$srv_hostname\" IN {
 			if(mysql_num_rows($r3) == 1){
 				$a3 = mysql_fetch_array($r3);
 				$ip_vps = $a3["ip_addr"];
-				$node_zfile .= "xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_vps."\n";
-				$node_zfile .= "dtc.xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_vps."\n";
-				$node_zfile .= "mx.xen".$vps_xen_name.".$srv_hostname        IN      NS      ".$ip_vps."\n";
+				$node_zfile .= "xen".$vps_xen_name.".$srv_hostname        IN      A      ".$ip_vps."\n";
+				$node_zfile .= "dtc.xen".$vps_xen_name.".$srv_hostname        IN      A      ".$ip_vps."\n";
+				$node_zfile .= "mx.xen".$vps_xen_name.".$srv_hostname        IN      A      ".$ip_vps."\n";
 			}
 		}
 		$filep = fopen("$conf_generated_file_path/nodes_zones/$srv_hostname","w+");
