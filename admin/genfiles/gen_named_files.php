@@ -585,9 +585,9 @@ zone \"$srv_hostname\" IN {
 			if(mysql_num_rows($r3) == 1){
 				$a3 = mysql_fetch_array($r3);
 				$ip_vps = $a3["ip_addr"];
-				$node_zfile .= "xen".$vps_xen_name.".$srv_hostname        IN      A      ".$ip_vps."\n";
-				$node_zfile .= "dtc.xen".$vps_xen_name.".$srv_hostname        IN      A      ".$ip_vps."\n";
-				$node_zfile .= "mx.xen".$vps_xen_name.".$srv_hostname        IN      A      ".$ip_vps."\n";
+				$node_zfile .= "xen".$vps_xen_name."        IN      A      ".$ip_vps."\n";
+				$node_zfile .= "dtc.xen".$vps_xen_name."        IN      A      ".$ip_vps."\n";
+				$node_zfile .= "mx.xen".$vps_xen_name."        IN      A      ".$ip_vps."\n";
 			}
 		}
 		$filep = fopen("$conf_generated_file_path/nodes_zones/$srv_hostname","w+");
