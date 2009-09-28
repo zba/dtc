@@ -56,12 +56,14 @@ function drawAdminMonitor (){
 		}
 
 		$nbr_row = 0;
-		$nbr_vps = sizeof($admin["vps"]);
+		if(!isset($admin["vps"])){
+                	$nbr_vps = 0;
+		}else{
+			$nbr_vps = sizeof($admin["vps"]);
+			$nbr_row += $nbr_vps;
+		}
 		if( isset($admin["data"])){
 			$nbr_row += 1;
-		}
-		if( isset($admin["vps"])){
-			$nbr_row += $nbr_vps;
 		}
 		if($nbr_row > 1){
 			$rowspan_entry = "rowspan=\"$nbr_row\"";
