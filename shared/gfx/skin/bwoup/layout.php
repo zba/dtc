@@ -543,6 +543,7 @@ function skin_LayoutAdminPage (){
 			$rand = $adm_random_pass;
 		}else{
 			$rand = getRandomValue();
+			$adm_random_pass = $rand;
 			$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
 			$q = "UPDATE $pro_mysql_tik_admins_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE pseudo='".$_SERVER["PHP_AUTH_USER"]."';";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");

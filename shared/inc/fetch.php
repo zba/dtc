@@ -330,6 +330,10 @@ function randomizePassword($adm_login,$adm_input_pass){
 	$ret["err"] = 0;
 	$ret["mesg"] = "No error";
 
+	if(isset($adm_random_pass) && strlen($adm_random_pass) > 0 && isRandomNum($adm_random_pass)){
+		return $ret;
+	}
+
 	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query ($query);
 	if (!$result)
@@ -350,7 +354,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 			return $ret;
 		}
 		$n = mysql_num_rows($r);
-		if($n > 0){
+		if($n == 1){
 			$is_root_admin = "yes";
 			$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 			$result = mysql_query ($query);
