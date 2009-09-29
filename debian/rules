@@ -40,6 +40,10 @@ install:
 	# package, so we don't need to include the lib file in this Debian
 	# package now.
 	rm -f $(CURDIR)/debian/dtc-common/usr/share/dtc/shared/inc/nusoap.php
+
+	# Install the doc-base control file
+	install -D -m 0644 debian/docbase $(CURDIR)/debian/dtc-common/usr/share/doc-base/dtc-doc
+
 	$(MAKE) install-dtc-stats-daemon DESTDIR=$(CURDIR)/debian/dtc-stats-daemon
 
 binary-indep: install
