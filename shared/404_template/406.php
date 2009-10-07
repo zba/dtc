@@ -4,9 +4,9 @@ header("HTTP/1.0 406 Not Acceptable");
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Error 404: file not found</title>
+<title>Error 406: forbidden</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<meta name="title" content="Error 404: file not found" />
+<meta name="title" content="Error 406: forbidden" />
 <meta name="robots" content="NOINDEX, FOLLOW" />
 <meta name="cache-control" content="no-cache" />
 <style type="text/css">
@@ -29,7 +29,7 @@ h1{text-decoration:none; text-align:center;}
 <div id="container">
     <div id="wrapper">
         <div class="top">
-            <h1>404 Error: the requested document does not exist</h1>
+            <h1>406 Error: the requested document is forbidden</h1>
             <?php echo "URL: http://".$_SERVER["SERVER_NAME"].htmlspecialchars($_SERVER["REQUEST_URI"]); ?>
 </div>
         <div class="message">
@@ -38,7 +38,7 @@ h1{text-decoration:none; text-align:center;}
             server: the security system has detected a possible attack on the server. If you
             are the owner of this website, believe that the security is too tight, and that
             what you are doing is legitimate, please get in touch with the server administrators
-            to request more relaxed rules for your website.<br /></p>
+            to request more relaxed rules for your website as this may be related to mod_security.<br /></p>
 </div>
 <div class="footer">
 	<p>This website server is powered by Domain Technologie Control (DTC), the open-source control panel.</p>
