@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Recalculate webalizer stats from scratch using the current DTC logs in each folders
 # Copyright Thomas Goirand <thomas@goirand.fr>, released under LGPL like the rest of
@@ -21,7 +21,7 @@ recalc_stats (){
 			FNAME=${i:0:${NEW_FNAME_SIZE}}
 
 			echo "-> Merging "$i
-			cat ${FNAME} >plop
+			cat ${FNAME} >>plop
 
 			echo "-> Repacking "$FNAME
 			gzip $FNAME
