@@ -462,7 +462,7 @@ function dtcDatagrid($dsc){
 				$out .= " <input class=\"$input_class\" type=\"checkbox\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][0]."\" $selected> ";
 				$out .= "</td>";
 				break;
-			case "textaera":
+			case "textarea":
 				if( isset($dsc["cols"][ $keys[$j] ]["cols"])){
 					$cols = " cols=\"".$dsc["cols"][ $keys[$j] ]["cols"]."\" ";
 				}else{
@@ -596,7 +596,7 @@ function dtcDatagrid($dsc){
 				$out .= " <input class=\"$input_class\" type=\"checkbox\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][0]."\" selected> ";
 				$out .= "</td>";
 				break;
-			case "textaera":
+			case "textarea":
 				break;
 			case "hyperlink":
 				$out .= "<td class=\"$tdclass\">&nbsp;</td>";
