@@ -1132,7 +1132,10 @@ function drawGeneralConfig(){
 			"apache_directoryindex" => array(
 				"legend" => _("Apache DirectoryIndex: "),
 				"size" => "50",
-				"type" => "text")));
+				"type" => "text"),
+			"spam_keep_days" => array(
+				"legend" => _("Keep spams for n days"),
+				"type"	=> "text")));
 	$out .= configEditorTemplate ($dsc);
 
 	// Open a known directory, and proceed to read its contents

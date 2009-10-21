@@ -19,11 +19,12 @@ function cleanTempFolder ($subdomain_path){
 }
 
 function cleanSPAMFolder($path){
+	global $conf_spam_keep_days;
 	if( is_dir($path) ){
 		$cmd = "if [ -f \"$path/courierimapacl\" ] ; then touch \"$path/courierimapacl\" ; fi";
 		echo $cmd."\n";
 		exec($cmd);
-		$cmd = "find '$path' -type f -mtime +20 -exec rm {} \\;";
+		$cmd = "find '$path' -type f -mtime +$conf_spam_keep_days -exec rm {} \\;";
 		echo $cmd."\n";
 		exec($cmd);
 	}
