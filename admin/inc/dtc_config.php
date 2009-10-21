@@ -712,7 +712,12 @@ function drawFTPBacupConfig(){
 			"ftp_backup_dest_folder" => array(
 				"legend" => _("Destination folder:"),
 				"type" => "text",
-				"size" => "30")));
+				"size" => "30"),
+			"ftp_active_mode" => array(
+				"legend" => _("Use active FTP connection to backup server:"),
+				"type"=>"radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")))));
 	return configEditorTemplate ($dsc);
 }
 
