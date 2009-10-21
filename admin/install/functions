@@ -2939,9 +2939,12 @@ protocols = imap imaps pop3 pop3s
 ${dovecot_env_directive} = maildir:%h/Maildir
 pop3_uidl_format = %08Xu%08Xv
 maildir_copy_with_hardlinks = yes
+disable_plaintext_auth= no
 protocol imap {
+    mail_plugins = quota imap_quota
 }
 protocol pop3 {
+    mail_plugins = quota
 }
 auth default {
   mechanisms = plain
