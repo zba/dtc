@@ -283,7 +283,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 		}
 		if($vps["operatingsystem"] == "xenpv"){
 			$vps_xenpv_iso = getVPSIso($vps_node,$vps_name,$soap_client);
-			$out .= "<br><br>" . _("To upload .iso files so they appear bellow and you can boot on them, you can upload them using ftp, ") ."xen$vps_name@$vps_node" ._(" using the password of your physical console.")."<br><br>";
+			$out .= "<br><br>" . _("To upload .iso files so they appear below and you can boot on them, you can upload them using ftp, ") ."xen$vps_name@$vps_node" ._(" using the password of your physical console.")."<br><br>";
 			$boot_device_selector = "<select name=\"xenpv_iso\">
 <option value=\"hdd\">". _("Boot on hard drive"). "</option>";
 			$n_iso = sizeof($vps_xenpv_iso);
