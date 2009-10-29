@@ -54,6 +54,9 @@ function mail_account_generate_postfix(){
 	global $conf_support_ticket_email;
 	global $conf_main_domain;
 
+	global $adm_realpass;
+	global $adm_pass;
+	global $adm_random_pass;
 	//global $conf_postfix_virtual_mailbox_domains_path;
 	//global $conf_postfix_virtual_path;
 	//global $conf_postfix_vmailbox_path;
@@ -106,6 +109,10 @@ function mail_account_generate_postfix(){
 		$row = mysql_fetch_array($result) or die ("Cannot fetch user-admin");
 		$user_admin_name = $row["adm_login"];
 		$user_admin_pass = $row["adm_pass"];
+		$adm_realpass = $row["adm_pass"];
+		$adm_pass = $row["adm_pass"];
+		$adm_random_pass = $row["adm_pass"];
+
 		$admin = fetchAdmin($user_admin_name,$user_admin_pass);
 		if(($error = $admin["err"]) != 0){
 			die("Error fetching admin : $error");
