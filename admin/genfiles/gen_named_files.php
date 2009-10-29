@@ -953,7 +953,7 @@ $more_mx_server
 						$this_site_file .= "$web_subname	$sub_ttl	IN	$the_ip_writed\n";
 					}
 				}
-				if ($subdomain["ip6"] != "") {
+				if ($subdomain["ip6"] != "" && $subdomain["ip6"] != "default") {
                                         $this_site_file .= "$web_subname        $sub_ttl        IN      AAAA    ".$subdomain["ip6"]."\n";
                                 }
 				if($subdomain["associated_txt_record"] != "" && (isIP($subdomain["ip"]) || $subdomain["ip"] == "default")){
