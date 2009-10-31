@@ -38,6 +38,8 @@ function mailUserTicketReply($adm_email,$hash,$subject,$body,$closed="no",$adm_l
 
 	if($conf_support_ticket_domain == "default"){
 		$support_domain = $conf_main_domain;
+	} else {
+		$support_domain = $conf_support_ticket_domain;
 	}
 
 	$support_email = $conf_support_ticket_email.$conf_recipient_delimiter.$hash."@".$support_domain;
