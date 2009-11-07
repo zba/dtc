@@ -288,13 +288,14 @@ function dtc_see_password(frm_name,fld_name){
 	} catch (e) {
 // type property read only on IE at the time of this writing,
 // so replace the control with a new one
-	if (curObj.getAttribute('type') != 'text') {
-		var newObj=document.createElement('input');
-		newObj.setAttribute('type','text');
-		newObj.setAttribute('name',curObj.getAttribute('name'));
-		newObj.setAttribute('class',curObj.getAttribute('class'));
-		newObj.value = curObj.value;
-		curObj.parentNode.replaceChild(newObj, curObj);
+		if (curObj.getAttribute('type') != 'text') {
+			var newObj=document.createElement('input');
+			newObj.setAttribute('type','text');
+			newObj.setAttribute('name',curObj.getAttribute('name'));
+			newObj.setAttribute('class',curObj.getAttribute('class'));
+			newObj.value = curObj.value;
+			curObj.parentNode.replaceChild(newObj, curObj);
+		}
 	}
 }
 </script>";
