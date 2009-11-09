@@ -234,7 +234,7 @@ msgstr "Liste d'accès :"
 #: shared/inc/sql/vps.php:282
 #: shared/inc/sql/vps.php:347
 msgid "Access not granted line "
-msgstr "Accès en ligne non autorisé "
+msgstr "Accès non autorisé ligne "
 
 #: admin/inc/renewals.php:262
 msgid "Account name"
@@ -604,7 +604,7 @@ msgstr "SCRIPT DE SAUVEGARDES"
 
 #: shared/inc/sql/vps.php:355
 msgid "BSD kernel type is not correct line "
-msgstr "Type de noyau BSD est pas une ligne valide "
+msgstr "Type de noyau BSD non valide ligne "
 
 #: admin/inc/monitor.php:15
 msgid "BW Quota"
@@ -867,7 +867,7 @@ msgstr "Impossible de récupérer la ligne d'information des pool d'IP VPS "
 #: shared/inc/sql/vps.php:216
 #: shared/inc/sql/vps.php:365
 msgid "Cannot get VPS information line "
-msgstr "Impossible de récupérer la ligne des informations du VPS "
+msgstr "Impossible de récupérer les informations du VPS ligne "
 
 #: shared/inc/sql/database.php:183
 msgid "Cannot reselect MySQL db name: please enter another and try again."
@@ -1213,7 +1213,7 @@ msgstr "Impossible de se connecter au serveur SMTP (temps d'attente dépassé) :
 #: shared/inc/sql/vps.php:287
 #: shared/inc/sql/vps.php:391
 msgid "Could not connect to VPS server!"
-msgstr "Impossible de se connecter au serveur VPS !"
+msgstr "Impossible de se connecter au serveur de VPS !"
 
 #: shared/dtcrm/draw_adddomain.php:199
 msgid "Could not connect to domain registration server: please try again later!"
@@ -1295,11 +1295,11 @@ msgstr "Impossible d'écrire HELLO sur le serveur"
 
 #: admin/deamons_state.php:234
 msgid "Could not write PASS to server"
-msgstr "Impossible d'écrire MOT DE PASSE au serveur"
+msgstr "Impossible d'écrire PASS au serveur"
 
 #: admin/deamons_state.php:221
 msgid "Could not write USER to server"
-msgstr "Impossible d'écrire UTILISATEUR au serveur"
+msgstr "Impossible d'écrire USER au serveur"
 
 #: admin/inc/dtc_config.php:881
 #: shared/inc/forms/root_admin.php:575
@@ -1600,7 +1600,7 @@ msgstr "Sous-domaine par défaut : "
 
 #: admin/inc/dtc_config.php:1261
 msgid "Defaut TTL for your zonefiles:"
-msgstr "TTL par défaut de vos  fichiers de zones:"
+msgstr "TTL par défaut de vos fichiers de zones:"
 
 #: admin/inc/renewals.php:485
 #: admin/inc/draw_user_admin.php:367
@@ -2154,7 +2154,7 @@ msgstr "Vérifier le système de fichiers (fsck)"
 
 #: shared/inc/forms/vps_installation.php:201
 msgid "File-system check:"
-msgstr "Vérification du système de fichiers:"
+msgstr "Vérification du système de fichiers :"
 
 #: shared/inc/forms/lists.php:204
 msgid "Fill this if you want every mail to have something like:<br>--<br>To unsubscribe send a mail to coollist+unsubscribe@lists.domain.net."
@@ -2646,7 +2646,7 @@ msgstr "Importer un fichier de domaine pour cet utilisateur :"
 
 #: shared/inc/forms/lists.php:192
 msgid "In those fields is specified *ONE* headertoken to match per line. If the fields are like this:<br><br>Received:<br>Message-ID:<br><br>Then all occurences of these headers in incoming list mail will be deleted. From: and Return-Path: are deleted no matter what."
-msgstr "Dans ces champs est spécifié *UN* token du header par ligne. Si les champs sont comme suit :<br><br>Received:<br>Message-ID:<br><br>Alors toutes les occurrences de ces headers dans les messages entrants de la liste seront effacées. From: et Return-Path: sont effacés dans tous les cas."
+msgstr "Dans ces champs est spécifié *UN* token du header par ligne. Si les champs sont comme il suit :<br><br>Received:<br>Message-ID:<br><br>Alors toutes les occurrences de ces headers dans les messages entrants de la liste seront effacées. From: et Return-Path: sont effacés dans tous les cas."
 
 #: admin/inc/submit_root_querys.php:278
 msgid "Incorect admin login format: it should consist of only lowercase letters or numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n"
@@ -2980,7 +2980,7 @@ msgstr "Liste de vos groupes de mail"
 
 #: shared/inc/forms/email.php:607
 msgid "List of your mailboxes:"
-msgstr "Liste de vos boîtes aux lettres:"
+msgstr "Liste de vos boîtes aux lettres :"
 
 #: shared/inc/forms/lists.php:27
 msgid "List of your mailing lists"
@@ -3009,7 +3009,7 @@ msgid ""
 "(leave blank if you don't have backup DNS server):"
 msgstr ""
 "Listez ici les IPs des serveurs DNS habilités à faire<br>\n"
-"des zones de transfert séparées par des &quot;|&quot; (pipe)<br>\n"
+"des transfert de zones séparées par des &quot;|&quot; (pipe)<br>\n"
 "(laissez vide si vous n'avez pas de serveur DNS de backup) :"
 
 #: admin/inc/dtc_config.php:1219
@@ -3179,7 +3179,7 @@ msgstr "Configuration de la boîte aux lettres"
 
 #: shared/inc/forms/email.php:378
 msgid "Mailbox configuration: "
-msgstr "Édition d'une boîte aux lettres: "
+msgstr "Edition d'une boîte aux lettres: "
 
 #: shared/inc/sql/email.php:23
 msgid "Mailbox does not exists in database!<br>\n"
@@ -3802,7 +3802,7 @@ msgstr "Pas de parking"
 
 #: admin/inc/renewals.php:422
 msgid "No past payments for this period"
-msgstr "Pas de paiements antérieur pour cette période"
+msgstr "Pas de paiement antérieur pour cette période"
 
 #: admin/inc/draw_user_admin.php:346
 msgid "No pay ID!"
@@ -3814,7 +3814,7 @@ msgstr "Pas de renouvellements en attente!"
 
 #: admin/inc/draw_user_admin.php:483
 msgid "No pending support tickets!"
-msgstr "Pas de tickets de support en attente !"
+msgstr "Pas de ticket de support en attente !"
 
 #: shared/inc/forms/root_admin.php:111
 msgid "No product"
@@ -5578,7 +5578,7 @@ msgstr "Cette valeur définie combien de mails peuvent s\\'accumuler avant qu\\'
 #: shared/inc/sql/dedicated.php:6
 #: shared/inc/sql/vps.php:99
 msgid "This is not a correct IP line "
-msgstr "Ce n'est pas une ligne correcte pour une IP "
+msgstr "Ce n'est pas une IP correcte ligne "
 
 #: shared/inc/sql/dedicated.php:9
 #: shared/inc/sql/vps.php:102
@@ -6165,15 +6165,15 @@ msgstr "Serveur VPS"
 
 #: admin/inc/dtc_config.php:841
 msgid "VPS Server and IP addresses registry edition"
-msgstr "Édition de la liste des serveurs VDS et de leurs IPs"
+msgstr "Édition de la liste des serveurs de VPS et de leurs IPs"
 
 #: shared/inc/forms/root_admin.php:230
 msgid "VPS Server hostname: "
-msgstr "Nom d'hôte du serveur VDS : "
+msgstr "Nom d'hôte du serveur de VPS : "
 
 #: admin/inc/dtc_config.php:844
 msgid "VPS Server list:"
-msgstr "Liste des serveurs VDS:"
+msgstr "Liste des serveurs de VPS :"
 
 #: shared/inc/forms/vps_monitoring.php:160
 #: shared/inc/forms/vps_installation.php:108
