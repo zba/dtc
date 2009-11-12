@@ -216,22 +216,28 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 
 	$txt .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"1\">";
 	$txt .= "<tr><td>". _("Package name") ."</td><td>". _("Description") ."</td><td>". _("Package version") ."</td><td>". _("Need a database") ."</td><td>". _("Unpack size") ."</td><td>". _("Install") ."</td></tr>";
-	if (is_dir($dir)) {
-		if ($dh = opendir($dir)) {
-			while (($file = readdir($dh)) !== false) {
-				if(is_dir($dir."/".$file) && $file != "." && $file != ".."){
-					if(file_exists($dir."/".$file."/dtc-pkg-info.php")){
-						include($dir."/".$file."/dtc-pkg-info.php");
-						$txt .= "<tr><td>".$pkg_info["name"]."</td>
-							<td>".$pkg_info["short_desc"]."</td>
-							<td>".$pkg_info["version"]."</td>
-							<td>".$pkg_info["need_database"]."</td>
-							<td style=\"white-space:nowrap;text-align=right\" nowrap>".smartByte($pkg_info["unpack_disk_usage"])."</td>
-							<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&action=prepareinstall&pkg=$file\">". _("Install") ."</a></td></tr>";
-					}
-				}
+	
+	$packages=array();
+	if (is_dir($dir) && ($dh = opendir($dir))) {
+		while (($file = readdir($dh)) !== false) {
+			if(is_dir($dir."/".$file) && $file != "." && $file != ".."){
+				$packages[]=$file;
 			}
-			closedir($dh);
+		}
+		closedir($dh);
+	}
+
+	sort($packages);
+
+	foreach($packages as $package) {
+		if(file_exists($dir."/".$package."/dtc-pkg-info.php")){
+			include($dir."/".$package."/dtc-pkg-info.php");
+			$txt .= "<tr><td>".$pkg_info["name"]."</td>
+				<td>".$pkg_info["short_desc"]."</td>
+				<td>".$pkg_info["version"]."</td>
+				<td>".$pkg_info["need_database"]."</td>
+				<td style=\"white-space:nowrap;text-align=right\" nowrap>".smartByte($pkg_info["unpack_disk_usage"])."</td>
+				<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&action=prepareinstall&pkg=$package\">". _("Install") ."</a></td></tr>";
 		}
 	}
 
