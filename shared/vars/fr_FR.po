@@ -4305,7 +4305,7 @@ msgstr "Veuillez cliquer sur le bouton ci-après pour envoyer de l'argent sur vo
 
 #: shared/inc/forms/database.php:132
 msgid "Please create a MySQL user in order to be able to create a database."
-msgstr "Veuillez créer un utilisateur MySQL en premier pour pouvoir créer des bases de données."
+msgstr "Veuillez créer un utilisateur MySQL pour pouvoir créer des bases de données."
 
 #: admin/inc/dtc_config.php:734
 msgid "Please enter an IP address for your dom0!"
@@ -4352,7 +4352,7 @@ msgstr "Veuillez sélectionner !"
 
 #: shared/inc/forms/my_account.php:203
 msgid "Please tell us if the following is not correct:"
-msgstr "Merci de nous avertir si les informations ci-dessous ne sont pas correctes :"
+msgstr "Merci de nous avertir si les informations ci-dessous n'étaient pas correctes :"
 
 #: shared/inc/forms/vps_installation.php:181
 msgid "Please wait until file system check is finished first."
@@ -4544,7 +4544,7 @@ msgstr "Récupération de mot de passe"
 
 #: shared/inc/forms/lists.php:261
 msgid "Recreate all messages of webarchive. Use this only if you have changed the webarchive\\'s template. NOTE: this works only if you have &quot;web archive&quot; checked."
-msgstr "Recréer tous les messages de l\\'archive web. À utiliser uniquement si vous avez changé le modèle de l\\'archive web. NOTE : ceci ne fonctionne que si vous avez &quot;archive web&quot; coché."
+msgstr "Recréer tous les messages de l\\'archive web. A utiliser uniquement si vous avez changé le modèle de l\\'archive web. NOTE : ceci ne fonctionne que si vous avez &quot;archive web&quot; coché."
 
 #: shared/inc/forms/lists.php:447
 msgid "Recreate:"
