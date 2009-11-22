@@ -3241,7 +3241,7 @@ configProftpd () {
 			echo "<IfModule mod_sql.c>" > $TMP_FILE_SQL
 			echo "SQLAuthenticate	on" >> $TMP_FILE_SQL
 			echo "SQLConnectInfo	"$conf_mysql_db"@"$conf_mysql_host" dtcdaemons "${MYSQL_DTCDAEMONS_PASS} >> $TMP_FILE_SQL
-			echo "SQLAuthTypes	Plaintext" >> $TMP_FILE_SQL
+			echo "SQLAuthTypes	Plaintext Crypt" >> $TMP_FILE_SQL
 			echo "SQLUserInfo	ftp_access login password uid gid homedir shell" >> $TMP_FILE_SQL
 			echo "# // Transfer Log to Proftpd
 SQLLog RETR,STOR transfer1
@@ -3684,7 +3684,7 @@ password ${MYSQL_DTCDAEMONS_PASS}
 				else
 					echo "
 [queries]
-getpwnam    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE login='%1\$s' LIMIT 1
+getpwnam    SELECT login,crypt,uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE login='%1\$s' LIMIT 1 
 getpwuid    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE uid='%1\$u' LIMIT 1
 getpwent    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access
 getgrnam    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_name='%1\$s' LIMIT 1
