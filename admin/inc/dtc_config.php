@@ -618,7 +618,7 @@ function drawTicketConfig(){
 				"legend" => _("Support ticket email address: "),
 				"type" => "text",
 				"size" => "32"),
-			"support_ticket_fw_email" = array(
+			"support_ticket_fw_email" => array(
 				"legend" => _("Support ticket forward email address:"),
 				"type" => "text",
 				"size" => "32"),
