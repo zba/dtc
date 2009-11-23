@@ -121,6 +121,7 @@ nagios_restart_command varchar(255) NOT NULL default 'sudo /etc/init.d/nagios2 r
 affiliate_return_domain varchar(255) NOT NULL default 'www.example.com',
 support_ticket_email varchar(255) NOT NULL default 'support',
 support_ticket_domain varchar(255) NOT NULL default 'default',
+support_ticket_fw_email varchar(255) NOT NULL default 'supportfw',
 all_customers_list_email varchar(255) NOT NULL default 'support',
 all_customers_list_domain varchar(255) NOT NULL default 'default',
 UNIQUE KEY unicrow (unicrow)
