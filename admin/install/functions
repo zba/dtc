@@ -3102,13 +3102,6 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 		fi
 
 		/usr/local/etc/rc.d/pure-ftpd start
-	elif [ "$UNIX_TYPE" = "redhat" -a ""$conf_ftp_type = "pureftpd" ] ; then
-		TMP_FILE=`${MKTEMP} DTC_pure-ftpd.conf.XXXXXX` || exit 1
-		grep -v MySQLConfigFile ${PATH_PUREFTPD_CONF} | grep -v MinUID >${TMP_FILE}
-		cat <${TMP_FILE} >${PATH_PUREFTPD_CONF}
-		rm -f ${TMP_FILE}
-		echo "MySQLConfigFile /etc/pure-ftpd/pureftpd-mysql-dtc.conf" >>${PATH_PUREFTPD_CONF}
-		echo "MinUID 100" >>${PATH_PUREFTPD_CONF}
 	else	
 		PURE_FTPD_ETC="/etc/pure-ftpd"
 		if [ -e $PURE_FTPD_ETC ] ; then
@@ -3116,10 +3109,11 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 				# This will activate the MySQL config in CentOS.
 				# FIXME: This also removes some useful comments, so it's not optimum
 				TMP_FILE=`${MKTEMP} DTC_pure-ftpd.conf.XXXXXX` || exit 1
-				grep -v MySQLConfigFile ${PATH_PUREFTPD_CONF} >${TMP_FILE}
+				grep -v MySQLConfigFile ${PATH_PUREFTPD_CONF} | grep -v MinUID >${TMP_FILE}
+				echo "MinUID 100" >>${TMP_FILE}
+				echo "MySQLConfigFile /etc/pure-ftpd/pureftpd-mysql-dtc.conf" >>${TMP_FILE}
 				cat <${TMP_FILE} >${PATH_PUREFTPD_CONF}
 				rm -f ${TMP_FILE}
-				echo "MySQLConfigFile /etc/pure-ftpd/pureftpd-mysql-dtc.conf"
 			fi
 			if [ -e /etc/pure-ftpd/conf/ ] ; then
 				echo "yes" >/etc/pure-ftpd/conf/ChrootEveryone
