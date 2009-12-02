@@ -32,7 +32,8 @@ $txt_langname = array(
 	"pt_BR" => "UTF-8",
 	"es" => "UTF-8",
 	"fi" => "UTF-8",
-	"lv" => "UTF-8");
+	"lv" => "UTF-8",
+	"cs" => "UTF-8");
 
 //check to see if we are running in the shell or web
 if($panel_type!="cronjob"){
@@ -113,6 +114,9 @@ if($panel_type!="cronjob"){
 		}
 		if($_REQUEST["change_language"] == "lv"){
 		  $lang = "lv";
+		}
+		if($_REQUEST["change_language"] == "cs"){
+		  $lang = "cs";
 		}
 	}
 	if(isset($lang)){
@@ -218,6 +222,10 @@ case "fi":
 case "lv_LV":
 case "lv":
 	$gettext_lang = "lv_LV.UTF-8";
+	break;
+case "cs_CZ":
+case "cs":
+	$gettext_lang = "cs_CZ.UTF-8";
 	break;
 default:
 	$gettext_lang = "en_US.UTF-8";
