@@ -435,7 +435,7 @@ function mail_account_generate_postfix(){
 	$domains_postmasters_file .= $conf_support_ticket_email."@".$conf_main_domain." dtc_support_ticket_messages\n";
 
 	// Add the supportforward@ email
-	$aliases_file .= "dtc_support_forward_ticket_messages: \"| reformime -e -s 1.1 | /usr/share/dtc/admin/support-receive.php\"\n";
+	$aliases_file .= "dtc_support_forward_ticket_messages: \"| reformime -e -s 1.2 | /usr/share/dtc/admin/support-receive.php\"\n";
 	$domains_postmasters_file .= $conf_support_ticket_fw_email."@".$conf_main_domain." dtc_support_ticket_messages\n";
 
 	//write out our config files
