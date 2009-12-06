@@ -10,6 +10,10 @@ function genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$
 	global $conf_dtc_system_groupname;
 	$MAILFILTER_FILE="$home/.mailfilter";
 
+	if($id == "cyrus" || $id == "cyradm"){
+		return true;
+	}
+
 	// Check if the maildir exists, create if not
 	if(! is_dir("$home/Maildir")){
 		if(! is_dir($home)){

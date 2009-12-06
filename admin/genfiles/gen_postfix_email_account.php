@@ -235,7 +235,7 @@ function mail_account_generate_postfix(){
 					if (!isset($home) || $home=="" && $conf_use_cyrus != "yes"){
 						$console .= "Missing home variable for $id";
 					}
-					if(! is_dir($home) && ($conf_use_cyrus != "yes")){
+					if(! is_dir($home) && ($conf_use_cyrus != "yes") && strlen($home) > 0 && $id != "cyrus" && $id != "cyradm"){
 						$PATH = getenv('PATH');
 						putenv("PATH=/usr/lib/courier-imap/bin:$PATH");
 						system("/bin/mkdir -p $home && maildirmake $home");
@@ -311,7 +311,7 @@ function mail_account_generate_postfix(){
 							genDotMailfilterFile($home,$id,$domain_full_name,$spam_mailbox_enable,$spam_mailbox,$localdeliver,$vacation_flag,$vacation_text,$redirect1,$redirect2);
 						}
 					}
-					if(is_dir($home) && $homedir_created == 1){
+					if(is_dir($home) && $homedir_created == 1 && $id != "cyrus" && $id != "cyradm"){
 						system("chown -R $conf_dtc_system_username $home");
 					}
 					if ( $k==$nbr_boites-1 ) $domains_postmasters_file.= "#\n";
