@@ -90,7 +90,7 @@ function mail_account_generate_maildrop(){
 				system("maildirmake -q $quota_maildrop $boxpath/Maildir");
 			}
 			putenv("PATH=$PATH");
-			if($quota_maildrop==0){
+			if($quota_maildrop=="0S,0C"){
 				if(file_exists("$boxpath/Maildir/maildirsize")){
 					system("rm $boxpath/Maildir/maildirsize");
 				}
