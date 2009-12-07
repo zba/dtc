@@ -672,6 +672,7 @@ function drawAdminTools_Emails($domain){
 			"check" => "max_value_2096",
 			"default" => "10",
 			"happen" => _("MBytes"),
+			"help" => _("Setting BOTH the number of files and overall mailbox size to zero will disable quota."),
 			"legend" => _("Mailbox quota: ") );
 		$dsc["cols"]["quota_files"] = array(
 			"type" => "text",
