@@ -1786,10 +1786,10 @@ modifyNamedConf () {
 	if [ "$UNIX_TYPE" = "redhat" ] ; then
 		for i in conf root.hints rfc1912.zones ; do
 			if [ ! -e /etc/named.${i} ] ; then
-				cp /usr/share/doc/bind-9.3.4/sample/etc/named.${i} /etc
+				cp /usr/share/doc/bind-9.*/sample/etc/named.${i} /etc
 			fi
 		done
-		VAR_NAMED_FOLDER=/usr/share/doc/bind-9.3.4/sample/var/named
+		VAR_NAMED_FOLDER=/usr/share/doc/bind-9.*/sample/var/named
 		if [ -e "${VAR_NAMED_FOLDER}" ] ; then
 			OLD_CWD=`pwd`
 			cd ${VAR_NAMED_FOLDER}
