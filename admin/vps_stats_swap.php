@@ -6,7 +6,7 @@ $panel_type = "none";
 require_once("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
 
-if( $_SERVER["REQUEST_URI"] != "/dtc/vps_stats_swap.php"){
+if( $_SERVER["REQUEST_URI"] != "/dtc/vps_stats_swap.php" && $_SERVER["SCRIPT_NAME"] != "/dtc/vps_stats_swap.php"){
 	require_once("authme.php");
 }
 
