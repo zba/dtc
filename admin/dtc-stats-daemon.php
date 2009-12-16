@@ -163,7 +163,7 @@ while (!$shutdown){
 
 		fwrite($log_fp, date("Y-m-d H:i:s")." Fetching stats from server $i/$vps_servers_num_rows: $vps_server...\n");
 		$soap_client = connectToVPSServer($vps_server);
-		$r = $soap_client->call("getCollectedPerformanceData",array("count" => 256),"","","");
+		$r = $soap_client->call("getCollectedPerformanceData",array("count" => 64),"","","");
 		$err = $soap_client->getError();
 		if ($err) {
 			fwrite($log_fp, date("Y-m-d H:i:s")." ".$err);
