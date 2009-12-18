@@ -26,7 +26,7 @@ case "$1" in
         ;;
 
 	stop)
-		log_daemon_msg "Stoping dtc-xen statistic daemon" "dtc-stats-daemon"
+		log_daemon_msg "Stopping dtc-xen statistic daemon" "dtc-stats-daemon"
 		start-stop-daemon --stop --oknodo --pidfile /var/run/dtc-stats-daemon.pid
 		log_end_msg $?
 	;;
