@@ -4,7 +4,7 @@
 	rotate 5
 	compress
 	delaycompress
-	create 640 root adm
+	create 640 dtc dtcgrp
 	postrotate
 		if [ -f /var/run/dtc-stats-daemon.pid ] ; then \
 			/etc/init.d/dtc-stats-daemon restart ; \

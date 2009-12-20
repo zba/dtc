@@ -7,7 +7,11 @@ set -e
 
 createDTCuserAndGroup
 mkdir -p /var/lib/dtc/dtc-xenservers-rrds
-chown dtc:dtcgrp /var/lib/dtc/dtc-xenservers-rrds
+chown -R dtc:dtcgrp /var/lib/dtc/dtc-xenservers-rrds
+
+# Set the logfile with correct rights
+touch /var/log/dtc-stats-daemon.log
+chown dtc:dtcgrp /var/log/dtc-stats-daemon.log
 
 #DEBHELPER#
 
