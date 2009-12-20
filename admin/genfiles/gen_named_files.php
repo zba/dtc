@@ -326,8 +326,6 @@ function rnds_generate(){
 	AND $pro_mysql_ip_pool_table.id=$pro_mysql_dedicated_ips_table.ip_pool_id;";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$num_ded = mysql_num_rows($r);
-	unset($tbl);
-	$tbl = array();
 	$tbl_num_of_records = $num_vps + $num_ded;
 	for($i=$num_vps;$i<$tbl_num_of_records;$i++){
 		$a = mysql_fetch_array($r);
