@@ -335,11 +335,18 @@ function drawAdminTools($admin){
 	}
 
 	if($nbr_domain > 0){
-	  $user_menu[] = array(
-		"text" => _("Databases") ,
-		"icon" => "box_wnb_nb_picto-database.gif",
-		"type" => "link",
-		"link" => "database");
+		$user_menu[] = array(
+			"text" => _("Databases") ,
+			"icon" => "box_wnb_nb_picto-database.gif",
+			"type" => "link",
+			"link" => "database");
+		if( file_exists("/usr/share/extplorer/index.php") ){
+			$user_menu[] = array(
+				"text" => _("File manager"),
+				"icon" => "box_wnb_nb_picto-database.gif",
+				"type" => "link",
+				"link" => "filemang");
+		}
         }
         if($resseller_flag == "yes"){
         	$user_menu[] = array(
@@ -495,6 +502,12 @@ function drawAdminTools($admin){
                         $web_editor .= "<img src=\"gfx/toolstitles/databases.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Databases:") ."</u></b><br></font>";
 			$web_editor .= drawDataBase("");
 			$title = _("Your databases");
+		}else if($add_array[0] == "filemang"){
+			$web_editor .= "<img src=\"gfx/toolstitles/databases.png\" align=\"left\"><font size=\"+2\"><b><u>". _("File manager:") ."</u></b><br></font>";
+			$web_editor .= "<table width=\"100%\" height=\"100%\" border=\"0\"><tr>
+					<td width=\"1\" height=\"100%\"><img width=\"1\" height=\"600\" src=\"gfx/skin/bwoup/gfx/spacer.gif\"></td>
+					<td width=\"100%\" height=\"100%\"><iframe width=\"100%\" height=\"100%\" src=\"https://dtc.xen650901.gplhost.com/extplorer/\"></iframe></td>
+				</tr></table>";
 		}else if($add_array[0] == "reseller"){
                         $web_editor .= "<img src=\"gfx/toolstitles/reseller.png\" align=\"left\"><font size=\"+2\"><b><u>"._("Sub-accounts (reseller):") ."</u></b><br></font>";
 			$web_editor .= drawReseller($admin);	
