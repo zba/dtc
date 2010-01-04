@@ -598,11 +598,14 @@ function nodes_vps_generate(){
 	global $conf_dtc_system_username;
 	global $conf_ip_allowed_dns_transfer;
 
+	global $conf_ip_slavezone_dns_server;
+
 	global $conf_webmaster_email_addr;
 
 	$bind_formated_webmaster_email_addr = str_replace('@',".",$conf_webmaster_email_addr).".";
 
-	$nodes_named_conf = "";
+	$nodes_named_conf = "// WARNING: Automatic regeneration of this file, do not edit!\n";
+	$nodes_named_conf_slave = "//WARNING: Automatic regeneration of this file, do not edit!\n";
 
 	if(strlen($conf_ip_allowed_dns_transfer) > 4){
 		$all_ip = "";
@@ -624,6 +627,15 @@ function nodes_vps_generate(){
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$srv_hostname = $a["hostname"];
+
+		$nodes_named_conf_slave .= "zone \"$srv_hostname\" IN {
+	type slave;
+	file \"$conf_generated_file_path/nodes_zones/$srv_hostname\";
+	masters { $conf_ip_slavezone_dns_server; };
+	allow-query { any; };
+};
+
+";
 
 		$nodes_named_conf .= "
 zone \"$srv_hostname\" IN {
@@ -673,6 +685,11 @@ zone \"$srv_hostname\" IN {
 	if($n > 0){
 		$filep = fopen("$conf_generated_file_path/nodes_zones.conf","w+");
 		fwrite($filep,$nodes_named_conf);
+		fclose($filep);
+		@chown("$conf_generated_file_path/nodes_zones.conf",$conf_dtc_system_username);
+
+		$filep = fopen("$conf_generated_file_path/nodes_zones_slave.conf","w+");
+		fwrite($filep,$nodes_named_conf_slave);
 		fclose($filep);
 		@chown("$conf_generated_file_path/nodes_zones.conf",$conf_dtc_system_username);
 	}
