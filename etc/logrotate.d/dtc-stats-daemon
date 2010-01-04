@@ -7,7 +7,7 @@
 	create 640 dtc dtcgrp
 	postrotate
 		if [ -f /var/run/dtc-stats-daemon.pid ] ; then \
-			/etc/init.d/dtc-stats-daemon restart ; \
+			/etc/init.d/dtc-stats-daemon restart 2>/dev/null >/dev/null; \
 		fi
 	endscript
 }
