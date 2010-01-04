@@ -122,6 +122,7 @@ if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "set_ip_reverse_dns")){
 							$submit_err = _("This IP pool can't be changed automatically, because our upstream network provider doesn't support it. Please open a support ticket to request this RDNS request.");
 						}
 					}
+					updateUsingCron("gen_named='yes',gen_reverse='yes',reload_named='yes'");
 				}
 			}
 		}
