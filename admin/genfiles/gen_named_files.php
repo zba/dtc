@@ -529,8 +529,7 @@ $allow_trans_str	allow-query { any; };
 };
 
 ";
-			}
-			$slave_dns_file .= "zone \"$zone_name\" in {
+				$slave_dns_file .= "zone \"$zone_name\" in {
 	type slave;
 	file \"$conf_generated_file_path/slave_reverse_zones/$the_ip_addr\";
 	masters { $conf_ip_slavezone_dns_server; };
@@ -538,6 +537,7 @@ $allow_trans_str	allow-query { any; };
 };
 
 ";
+			}
 			break;
 		case "one_zonefile":
 			$zone_name = calculate_reverse_end($pool_ip_addr,$pool_netmask);
