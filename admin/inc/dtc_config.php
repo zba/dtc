@@ -399,8 +399,8 @@ function drawIPPoolConfig(){
 			"zone_type" => array(
 				"type" => "popup",
 				"legend" => _("Type of zone generation"),
-				"values" => array("support_ticket", "ip_per_ip", "one_zonefile"),
-				"display_replace" => array(_("Support ticket"),_("One zonefile per IP"),_("One zonefile per pool")))
+				"values" => array("support_ticket", "ip_per_ip", "ip_per_ip_cidr", "one_zonefile"),
+				"display_replace" => array(_("Support ticket"),_("One zonefile per IP"),_("One zonefile per IP with net/cidr"),_("One zonefile per pool")))
 			)
 		);
 	$out .= dtcDatagrid($dsc);

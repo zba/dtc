@@ -176,6 +176,39 @@ function get_remote_ns_domains(){
 	return $domain_list;
 }
 
+function calculate_reverse_mask_and_cidr($ip_pool_ip,$ip_pool_netmask){
+	$ip_pool_ip_exploded = explode(".",$ip_pool_ip);
+
+	$netmask_exploded = explode(".",$ip_pool_netmask);
+	switch($ip_pool_netmask){
+	case "255.255.255.128":
+		$cird_mask = "/25";
+		break;
+	case "255.255.255.192":
+		$cird_mask = "/26";
+		break;
+	case "255.255.255.224":
+		$cird_mask = "/27";
+		break;
+	case "255.255.255.240":
+		$cird_mask = "/28";
+		break;
+	case "255.255.255.248":
+		$cird_mask = "/29";
+		break;
+	case "255.255.255.252":
+		$cird_mask = "/30";
+		break;
+	case "255.255.255.254":
+		$cird_mask = "/31";
+		break;
+	default:
+		die("$netmask is not a netmask line ".__LINE__." file ".__FILE__);
+	}
+	$out = "." . $ip_pool_ip_exploded[3] . $cird_mask . "." . $ip_pool_ip_exploded[2] . "." . $ip_pool_ip_exploded[1] . "." . $ip_pool_ip_exploded[0] . ".in-addr.arpa";;
+	return $out;
+}
+
 function calculate_reverse_end($ip_pool_ip,$ip_pool_netmask){
 	$out = "";
 	$ip_pool_ip_exploded = explode(".",$ip_pool_ip);
@@ -348,6 +381,7 @@ function rnds_generate(){
 
 		switch($zone_type){
 		case "ip_per_ip":
+		case "ip_per_ip_cidr":
 			unset($thiszoneIPs);
 			unset($thiszoneVPSIPs);
 			unset($thiszoneDEDIPs);
@@ -374,7 +408,13 @@ function rnds_generate(){
 			for($j=0;$j<$num_of_IPs;$j++){
 				$the_ip_addr = $thiszoneIPs[$j]["ip_addr"];
 				$the_reverse = $thiszoneIPs[$j]["rdns_addr"];
-				$zone_name = calculate_reverse_end($the_ip_addr,"255.255.255.255");
+				if($zone_type == "ip_per_ip_cidr"){
+					$zone_name_end = calculate_reverse_mask_and_cidr($pool_ip_addr,$pool_netmask);
+					$ip_exploded = explode(".",$the_ip_addr);
+					$zone_name = $ip_exploded[3] . $zone_name_end;
+				}else{
+					$zone_name = calculate_reverse_end($the_ip_addr,"255.255.255.255");
+				}
 /*				$reverse_dns_file .= "zone \"$zone_name\" in {
 	type master;
 	file \"$conf_generated_file_path/reverse_zones/$the_ip_addr\";
@@ -500,6 +540,7 @@ $allow_trans_str	allow-query { any; };
 
 		switch($zone_type){
 		case "ip_per_ip":
+		case "ip_per_ip_cidr":
 			unset($thiszoneIPs);
 			unset($thiszoneVPSIPs);
 			unset($thiszoneDEDIPs);
@@ -521,7 +562,13 @@ $allow_trans_str	allow-query { any; };
 			$num_of_IPs = sizeof($thiszoneIPs);
 			for($j=0;$j<$num_of_IPs;$j++){
 				$the_ip_addr = $thiszoneIPs[$j]["ip_addr"];
-				$zone_name = calculate_reverse_end($the_ip_addr,"255.255.255.255");
+				if($zone_type == "ip_per_ip_cidr"){
+					$zone_name_end = calculate_reverse_mask_and_cidr($pool_ip_addr,$pool_netmask);
+					$ip_exploded = explode(".",$the_ip_addr);
+					$zone_name = $ip_exploded[3] . $zone_name_end;
+				}else{
+					$zone_name = calculate_reverse_end($the_ip_addr,"255.255.255.255");
+				}
 				$reverse_dns_file .= "zone \"$zone_name\" in {
 	type master;
 	file \"$conf_generated_file_path/reverse_zones/$the_ip_addr\";

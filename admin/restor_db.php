@@ -274,6 +274,9 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 $q = "ALTER TABLE `domain` CHANGE `domain_parking_type` `domain_parking_type` enum('redirect','same_docroot','serveralias') NOT NULL default 'redirect'";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
+$q = "ALTER TABLE ip_pool CHANGE `zone_type` `zone_type` enum('support_ticket','ip_per_ip','ip_per_ip_cidr','one_zonefile') default 'one_zonefile'";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
 // Alter the default shell value for FreeBSD, as the path will be in /usr/local
 if($conf_unix_type == "bsd"){
 	$q = "ALTER TABLE ssh_access CHANGE `shell` `varchar(64) NOT NULL default '/usr/local/bin/dtc-chroot-shell'";

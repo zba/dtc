@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS ip_pool (
   `gateway` varchar(16) NOT NULL default '',
   `broadcast` varchar(16) NOT NULL default '',
   `dns` varchar(16) NOT NULL default '',
-  `zone_type` enum('support_ticket','ip_per_ip','one_zonefile') default 'one_zonefile',
+  `zone_type` enum('support_ticket','ip_per_ip','ip_per_ip_cidr','one_zonefile') default 'one_zonefile',
   `custom_part` text NOT NULL,
   PRIMARY KEY  (id),
   UNIQUE KEY ip_addr (ip_addr)
