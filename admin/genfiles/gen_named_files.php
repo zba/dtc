@@ -412,8 +412,12 @@ function rnds_generate(){
 					$zone_name_end = calculate_reverse_mask_and_cidr($pool_ip_addr,$pool_netmask);
 					$ip_exploded = explode(".",$the_ip_addr);
 					$zone_name = $ip_exploded[3] . $zone_name_end;
+					$the_at = "$zone_name\t";
+					$the_orig = "\$ORIGIN .\n";
 				}else{
 					$zone_name = calculate_reverse_end($the_ip_addr,"255.255.255.255");
+					$the_at = "@\t";
+					$the_orig = "";
 				}
 /*				$reverse_dns_file .= "zone \"$zone_name\" in {
 	type master;
@@ -423,8 +427,8 @@ $allow_trans_str	allow-query { any; };
 
 ";*/
 
-				$zonefile_content = "\$TTL $conf_default_zones_ttl
-@	$conf_default_zones_ttl	IN	SOA	".$conf_addr_primary_dns.". ".$bind_formated_webmaster_email_addr." (
+				$zonefile_content = $the_orig."\$TTL $conf_default_zones_ttl
+$the_at	$conf_default_zones_ttl	IN	SOA	".$conf_addr_primary_dns.". ".$bind_formated_webmaster_email_addr." (
 			$todays_serial; serial
 			$conf_named_soa_refresh ; refresh
 			$conf_named_soa_retry ; retry
