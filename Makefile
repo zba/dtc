@@ -207,7 +207,7 @@ admin/genfiles/mailfilter_vacation_template admin/genfiles/gen_nagios.php
 ADMIN_INC_PHP_SCRIPT_FILES=admin/inc/renewals.php \
 admin/inc/draw_user_admin.php admin/inc/dtc_config.php \
 admin/inc/monitor.php admin/inc/submit_root_querys.php admin/inc/graphs.php admin/inc/nav.php \
-admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/submit_to_sql.php
+admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/submit_to_sql.php admin/inc/ip_usage_report.php
 
 # Todo: have the client/vps_stats_* be taken from the admin folder!
 ADMIN_AND_CLIENT_FILES=vps_stats_cpu.php vps_stats_hdd.php vps_stats_network.php vps_stats_swap.php vm-cpu.php vm-io.php vm-net.php \

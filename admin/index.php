@@ -20,6 +20,9 @@ if(file_exists("dtcrm")){
 	include("inc/renewals.php");
 	include("inc/graphs.php");
 	include("inc/monitor.php");
+	if( isset($_REQUEST["show_ip_pool_report"]) ){
+		include("inc/ip_usage_report.php");
+	}
 }
 
 $DONOT_USE_ROTATING_PASS="yes";

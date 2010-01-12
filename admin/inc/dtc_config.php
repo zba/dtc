@@ -374,6 +374,10 @@ function drawIPPoolConfig(){
 				"type" => "hyperlink",
 				"legend" => _("Customize"),
 				"text" => _("Customize") ),
+			"show_ip_pool_report" => array(
+				"type" => "hyperlink",
+				"legend" => _("show"),
+				"text" => _("Show") ),
 			"location" => array(
 				"type" => "text",
 				"legend" => _("Location")),
@@ -405,6 +409,10 @@ function drawIPPoolConfig(){
 		);
 	$out .= dtcDatagrid($dsc);
 	$out .= "<br><br>";
+
+	if(isset($_REQUEST["show_ip_pool_report"])){
+		$out .= drawPool($_REQUEST["show_ip_pool_report"]);
+	}
 
 	if(isset($_REQUEST["editpool"])){
 		if(isset($_REQUEST["action"]) && $_REQUEST["action"] = "edit_custom_rdns_text"){

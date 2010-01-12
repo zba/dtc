@@ -9,7 +9,7 @@ Source: dtc-core-%{version}.tar.gz
 BuildRoot:%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: symlinks make gettext
 
-Requires: libgcc php-mbstring /usr/sbin/chroot gzip /usr/bin/perl perl(MIME::Parser) perl(MIME::Tools) php-pear-XML-Serializer perl(strict) cpio httpd mod_ssl sudo php-cli php mysql php-gd php-pear php-mysql bzip2 file gawk mod_log_sql openssh-clients cyrus-sasl-lib mailcap net-tools openssl patch php-fpdf php-pear-Crypt-CBC php-pear-Mail-Mime rrdtool unzip zip pam_mysql nss_mysql sbox vixie-cron gettext chrootuid, which, anacron, cyrus-sasl-md5, cyrus-sasl-plain
+Requires: libgcc php-mbstring /usr/sbin/chroot gzip /usr/bin/perl perl(MIME::Parser) perl(MIME::Tools) php-pear-XML-Serializer php-pear-Net_IPv4 perl(strict) cpio httpd mod_ssl sudo php-cli php mysql php-gd php-pear php-mysql bzip2 file gawk mod_log_sql openssh-clients cyrus-sasl-lib mailcap net-tools openssl patch php-fpdf php-pear-Crypt-CBC php-pear-Mail-Mime rrdtool unzip zip pam_mysql nss_mysql sbox vixie-cron gettext chrootuid, which, anacron, cyrus-sasl-md5, cyrus-sasl-plain
 # FIXME remember to check for ncftp to be nuked by thomas
 Prereq: /usr/sbin/useradd
 Summary: web control panel for admin and accounting hosting services (common files)
