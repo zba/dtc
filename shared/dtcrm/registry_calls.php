@@ -123,7 +123,13 @@ function registry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns){
 }
 
 function registry_check_transfer($domain){
-	return SRSregistry_check_transfer($domain);
+	global $registry_api_modules;
+	$id = find_registry_id($domain);
+	if($id === FALSE){
+		return FALSE;
+	}
+	return $registry_api_modules[$id]["registry_check_transfer"]($domain);
+	//return SRSregistry_check_transfer($domain);
 }
 
 function registry_renew_domain($adm_login,$adm_pass,$domain,$curent_year_expir,$period){

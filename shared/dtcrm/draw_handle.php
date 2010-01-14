@@ -251,7 +251,7 @@ function drawAdminTools_NickHandles($admin){
 				"size" => "20",
 				),
 			"country" => array(
-				"legend" => _("Company name: "),
+				"legend" => _("Country: "),
 				"type" => "popup",
 				"values" => array_keys($cc_code_array),
 				"display_replace" => array_values($cc_code_array)

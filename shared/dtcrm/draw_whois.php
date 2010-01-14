@@ -14,8 +14,10 @@ function newWhois($domain_name,$owner_id,$billing_id,$admin_id,$teck_id,$period,
 	$ns_field = "";
 	$ns_values = "";
 	for($i=2;$i<sizeof($ns_ar);$i++){
-		$ns_field .= ",ns". $i + 1 ." ";
+		$ind = $i+1;
+		$ns_field .= ",ns". $ind ." ";
 		$ns_values .= ",'" . $ns_ar[$i] . "'";
+	      echo "ICI TU PEUX PAS LOUPER NORMALEMENT : ". $ns_field;
 	}
 
 	$query = "INSERT INTO $pro_mysql_whois_table(
