@@ -9,7 +9,10 @@
 # MANUAL_DIR=/usr/share/man
 
 # Version and release are set here:
-VERS=0.31.0
+# To objat VERS=0.30.17, we do:
+# head -n 1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'-' -f1
+# to fetch the version number from the debian/changelog
+VERS = $(shell ./debvers)
 RELS=1
 
 VERSION=$(VERS)"-"$(RELS)
