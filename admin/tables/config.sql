@@ -113,6 +113,11 @@ webnic_server_url varchar (256) NOT NULL default 'https://my.webnic.cc/jsp/',
 webnic_username varchar (128) NOT NULL default '',
 webnic_password varchar (128) NOT NULL default '',
 
+ovh_server_url varchar (256) NOT NULL default 'https://www.ovh.com/soapi/soapi-re-1.8.wsdl',
+ovh_username varchar (128) NOT NULL default '',
+ovh_password varchar (128) NOT NULL default '',
+ovh_boolean enum('false','true') NOT NULL default 'true',
+
 provide_own_domain_hosts enum('yes','no') NOT NULL default 'no',
 nagios_host varchar(255) NOT NULL default '',
 nagios_username varchar(255) NOT NULL default '',
