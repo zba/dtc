@@ -264,7 +264,7 @@ shared/securepay/modules/wiretransfer/main.php \
 shared/securepay/modules/webmoney/main.php \
 shared/securepay/modules/moneybookers/main.php
 
-REGISTRY_API_PHP_SCRIPT_FILES=shared/dtcrm/modules/webnic/main.php
+REGISTRY_API_PHP_SCRIPT_FILES=shared/dtcrm/modules/webnic/main.php shared/dtcrm/modules/ovh/main.php
 
 WEB_SCRIPT_FILES=$(ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES) $(ADMIN_GENFILE_PHP_SCRIPT_FILES) $(ADMIN_INC_PHP_SCRIPT_FILES) \
 $(CLIENT_PHP_SCRIPT_FILES) $(EMAIL_PHP_SCRIPT_FILES) $(SHARED_PHP_SCRIPT_FILES) $(SHARED_INC_PHP_SCRIPT_FILES) \
