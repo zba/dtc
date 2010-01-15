@@ -85,7 +85,7 @@ $form_start<br>
 
 	$fqdn = $toreg_domain . $toreg_extention;
 	$price = registry_get_domain_price($fqdn,1);
-	$fqdn_price = $price["attributes"]["price"] + $registration_added_price;
+    $fqdn_price = $price + $registration_added_price;//["attributes"]["price"] + $registration_added_price;
 
 	if($admin["info"]["id_client"] != 0){
 		$remaining = $admin["client"]["dollar"];
