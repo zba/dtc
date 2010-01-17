@@ -27,7 +27,8 @@ CREATE TABLE IF NOT EXISTS subdomain (
   php_upload_max_filesize int(11) NOT NULL default '2',
   use_shared_ssl enum('yes','no') NOT NULL default 'no',
   redirect_url varchar(512) NULL default '',
-
+  srv_record_protocol enum('tcp','udp') NOT NULL default 'tcp',
+  
   PRIMARY KEY  (id),
   UNIQUE KEY unic_subdomain (domain_name,subdomain_name)
 ) TYPE=MyISAM

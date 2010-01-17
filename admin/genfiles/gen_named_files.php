@@ -1085,7 +1085,7 @@ $more_mx_server
 
 				// if we have a srv_record here (ie a port, then we don't write the normal subdomain entry, just the SRV record
 			 	if (isset($subdomain["srv_record"]) && $subdomain["srv_record"] != ""){
-					$this_site_file .= "$web_subname	$sub_ttl	SRV	0	10	".$subdomain["srv_record"]."	".$subdomain["ip"]."\n";
+					$this_site_file .= "_$web_subname._".$subdomain["srv_record_protocol"]."	$sub_ttl	IN	SRV	0	10	".$subdomain["srv_record"]."	".$subdomain["ip"]."\n";
 				} else {	
 					// write TTL values into subdomain
 					if ($conf_use_cname_for_subdomains == "yes"){
