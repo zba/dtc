@@ -508,6 +508,7 @@ function drawAdminTools($admin){
 					<td width=\"1\" height=\"100%\"><img width=\"1\" height=\"600\" src=\"gfx/skin/bwoup/gfx/spacer.gif\"></td>
 					<td width=\"100%\" height=\"100%\"><iframe width=\"100%\" height=\"100%\" src=\"https://dtc.xen650901.gplhost.com/extplorer/\"></iframe></td>
 				</tr></table>";
+			$title = _("eXtplorer web file manager");
 		}else if($add_array[0] == "reseller"){
                         $web_editor .= "<img src=\"gfx/toolstitles/reseller.png\" align=\"left\"><font size=\"+2\"><b><u>"._("Sub-accounts (reseller):") ."</u></b><br></font>";
 			$web_editor .= drawReseller($admin);	
