@@ -206,6 +206,11 @@ function drawAdminTools_Subdomain($admin,$domain){
 				"type" => "text",
 				"can_be_empty" => "yes",
 				"legend" => _("This subdomain is a service (SRV)<br>entry for the following port: ") ),
+			"srv_record_protocol" => array(
+				"type" => "radio",
+				"values" => array("tcp","udp"),
+				"default" => "tcp",
+				"legend" => _("SRV protocol: ") ),
 			"register_globals" => array(
 				"type" => "radio",
 				"values" => array("yes","no"),

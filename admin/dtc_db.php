@@ -1037,7 +1037,8 @@ $dtc_database = array(
 			"php_session_auto_start"=> "enum('yes','no') NOT NULL default 'no'",
 			"php_upload_max_filesize"=> "int(11) NOT NULL default '2'",
 			"use_shared_ssl" => "enum('yes','no') NOT NULL default 'no'",
-			"redirect_url" => "varchar(512) NULL default ''"
+			"redirect_url" => "varchar(512) NULL default ''",
+			"srv_record_protocol" => "enum('tcp','udp') NOT NULL default 'tcp'"
 			),
 		"primary" => "(id)",
 		"keys" => array(

@@ -793,16 +793,19 @@ function dtcListItemsEdit($dsc){
 					}
 					break;
 				case "ip6":
-                                        echo "IP6 check<br>";
-                                        if( !isIP6($_REQUEST[ $keys[$i] ]) ){
-                                                if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
-                                                                        || $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
-                                                                        || $_REQUEST[ $keys[$i] ] != ""){
-                                                        $commit_flag = "no";
-                                                        $commit_err .= $keys[$i].": not an IPv6 address<br>";
-                                                }
-                                        }
-                                        break;
+					if( !isIP6($_REQUEST[ $keys[$i] ]) ){
+						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
+									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
+									|| $_REQUEST[ $keys[$i] ] != ""){
+							if ( !isset($dsc["cols"][ $keys[$i] ]["empty_makes_default"])
+										|| $dsc["cols"][ $keys[$i] ]["empty_makes_default"] != "yes"
+										|| $_REQUEST[ $keys[$i] ] != "default"){
+								$commit_flag = "no";
+								$commit_err .= $keys[$i].": not an IPv6 address<br>";
+							}
+						}
+					}
+					break;
 				case "ip_addr":
 					if( !isIP($_REQUEST[ $keys[$i] ]) ){
 						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
@@ -1082,15 +1085,19 @@ function dtcListItemsEdit($dsc){
 					}
 					break;
 				case "ip6":
-                                        if( !isIP6($_REQUEST[ $keys[$i] ]) ){
-                                                if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
-                                                                        || $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
-                                                                        || $_REQUEST[ $keys[$i] ] != ""){
-                                                        $commit_flag = "no";
-                                                        $commit_err .= $keys[$i].": not an IPv6 address<br>";
-                                                }
-                                        }
-                                        break;
+					if( !isIP6($_REQUEST[ $keys[$i] ]) ){
+						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
+									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
+									|| $_REQUEST[ $keys[$i] ] != ""){
+							if ( !isset($dsc["cols"][ $keys[$i] ]["empty_makes_default"])
+										|| $dsc["cols"][ $keys[$i] ]["empty_makes_default"] != "yes"
+										|| $_REQUEST[ $keys[$i] ] != "default"){
+								$commit_flag = "no";
+								$commit_err .= $keys[$i].": not an IPv6 address<br>";
+							}
+						}
+					}
+					break;
 				case "ip_addr":
 					if( !isIP($_REQUEST[ $keys[$i] ]) ){
 						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
