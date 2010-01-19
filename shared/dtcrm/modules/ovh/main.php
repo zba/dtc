@@ -171,7 +171,7 @@ $ret["attributes"]["reason"] = "Domain name can't be transfered";
 	
 function ovh_registry_transfert_domain($adm_login,$adm_pass,$domain_name,$contacts,$dns_servers,$new_user) {
 	
-		global $conf_ovh_username;
+	global $conf_ovh_username;
 	global $conf_ovh_boolean;
 	global $conf_addr_primary_dns;
     global $conf_addr_secondary_dns;
@@ -215,7 +215,7 @@ if (isset($dns_servers[4])) {
    $session = login_ovh();
 
  //resellerDomainTransfer
- $result = $soap->resellerDomainTransfer($session, "$ovh_domain_name", "authinfo", "none", "gold", "whiteLabel", "no", "$ovh_nicowner", "$ovh_nicadmin", "$ovh_nictech", "$ovh_nicbilling", "$ovh_dns1", "$ovh_dns2", "$ovh_dns3", "$ovh_dns4", "$ovh_dns5", "(siren | inpi | birthPlace | afnicIdent)", "nom de la société / propriétaire de la marque", "numéro SIREN/SIRET/INPI", "clé d'identification AFNIC (format XXXXXXXX-999)", "date d'anniversaire du propriétaire", "ville de naissance du propriétaire", "département de naissance du propriétaire", "pays de naissance du propriétaire", $ovh_boolean);
+$soap->resellerDomainTransfer($session, "$ovh_domain_name", "authinfo", "none", "gold", "whiteLabel", "no", "$ovh_nicowner", "$ovh_nicadmin", "$ovh_nictech", "$ovh_nicbilling", "$ovh_dns1", "$ovh_dns2", "$ovh_dns3", "$ovh_dns4", "$ovh_dns5", "(siren | inpi | birthPlace | afnicIdent)", "nom de la société / propriétaire de la marque", "numéro SIREN/SIRET/INPI", "clé d'identification AFNIC (format XXXXXXXX-999)", "date d'anniversaire du propriétaire", "ville de naissance du propriétaire", "département de naissance du propriétaire", "pays de naissance du propriétaire", $ovh_boolean);
  $regz["is_success"] = 1;
  
  //logout
@@ -224,8 +224,12 @@ logout_ovh($soap,$session);
 } catch(SoapFault $fault) {
  echo $fault;
 } 
- $regz["response_text"] = $result;
- return $regz;
+if($regz["is_success"] == 1){
+	$regz["response_text"] = "Transfert successful";
+} else{
+	$regz["response_text"] = "Transfert failed";
+	}
+return $regz;
  }  
 
 function ovh_registry_renew_domain() {
