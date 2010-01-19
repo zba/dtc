@@ -7,6 +7,11 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 
 	global $registration_added_price;
 
+       global $pro_mysql_domain_table;
+       global $pro_mysql_client_table;
+
+       global $registry_api_modules;
+
 	global $form_enter_dns_infos;
 	global $whois_forwareded_params;
 
@@ -135,14 +140,85 @@ $form_start<br>
 $paybutton";
 		return $out;
 	}
-	if(!isset($_REQUEST["toreg_confirm_reg"]) || $_REQUEST["toreg_confirm_reg"] == "yes"){
-		$out .= "$form_start
-<input type=\"hidden\" name=\"toreg_confirm_transfer\" value=\"yes\">
-<input type=\"submit\" value=\"Proceed transfer\">
-</form>
-";
+	// Check for confirmation
+	if(!isset($_REQUEST["toreg_confirm_transfert"]) || $_REQUEST["toreg_confirm_transfert"] != "yes"){
+		$out .= _("You have enough funds on your account to proceed with transfert. Press the confirm button to proceed.") ."<br><br>
+$form_start
+<input type=\"hidden\" name=\"toreg_confirm_transfert\" value=\"yes\">
+<input type=\"submit\" value=\"". _("Proceed to name-transfert") ."\">
+</form>";		return $out;
+	}
+	///////////////////////////////////////
+// START OF DOMAIN NAME TRANSFERT //
+	$owner_id = $_REQUEST["dtcrm_owner_hdl"];
+	$billing_id = $_REQUEST["dtcrm_billing_hdl"];
+	$admin_id = $_REQUEST["dtcrm_admin_hdl"];
+	$teck_id = $_REQUEST["dtcrm_teck_hdl"];
+	$contacts = getContactsArrayFromID($owner_id,$billing_id,$admin_id,$teck_id);
+	$dns_servers = array();
+	for($i=1;$i<7;$i++){
+		if(isset($_REQUEST["toreg_dns$i"]) && isHostname($_REQUEST["toreg_dns$i"])){
+			$dns_servers[] = $_REQUEST["toreg_dns$i"];
+		}else if($i == 1){
+			$dns_servers[] = $conf_addr_primary_dns;
+		}else if($i == 2){
+			$dns_servers[] = $conf_addr_secondary_dns;
+		}
+	}
+	$q = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login' AND registrar='ovh';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n > 0){
+		$new_user = "no";
+	}else{
+		$new_user = "yes";
+	}
+//	sleep(2);
+	$regz = registry_transfert_domain($adm_login,$adm_pass,$fqdn,$contacts,$dns_servers,$new_user);
+
+	if($regz["is_success"] != 1){
+		$out .= "<font color=\"red\"><b>". _("Transfert failed") ."</b></font><br>
+". _("Server said: ") ."<i>" . $regz["response_text"] . "</i>";
 		return $out;
 	}
+	$out .= "<font color=\"green\"><b>Transfert succesfull</b></font><br>
+Server said: <i>" . $regz["response_text"] . "</i><br>";
+
+	$operation = $remaining - $fqdn_price;
+	$query = "UPDATE $pro_mysql_client_table SET dollar='$operation' WHERE id='".$admin["info"]["id_client"]."';";
+	mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
+
+	addDomainToUser($adm_login,$adm_pass,$fqdn,$adm_pass);
+
+	if($regz["is_success"] == 1){
+		$id = find_registry_id($fqdn);
+		$q = "UPDATE $pro_mysql_domain_table SET registrar='".$registry_api_modules[$id]["name"]."' WHERE name='$fqdn';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+
+		unset($ns_ar);
+		$ns_ar = array();
+		$ns_ar[] = $_REQUEST["toreg_dns1"];
+		$ns_ar[] = $_REQUEST["toreg_dns2"];
+		if(isset($_REQUEST["toreg_dns3"]) && $_REQUEST["toreg_dns3"] != "")
+			$ns_ar[] = $_REQUEST["toreg_dns3"];
+		if(isset($_REQUEST["toreg_dns4"]) && $_REQUEST["toreg_dns4"] != "")
+			$ns_ar[] = $_REQUEST["toreg_dns4"];
+		if(isset($_REQUEST["toreg_dns5"]) && $_REQUEST["toreg_dns5"] != "")
+			$ns_ar[] = $_REQUEST["toreg_dns5"];
+		if(isset($_REQUEST["toreg_dns6"]) && $_REQUEST["toreg_dns6"] != "")
+			$ns_ar[] = $_REQUEST["toreg_dns6"];
+		newWhois($fqdn,$owner_id,$billing_id,$admin_id,$teck_id,$period="1",$ns_ar,$registry_api_modules[$id]["name"]);
+	}
+
+
+
+	$out .= "<font color=\"green\"><b>". _("Successfully added your domain name to the hosting database") ."</b></font><br>";
+
+	$out .= _("Click") . " " ."<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">". _("here") ."</a>". " " . _("to refresh the menu or add another domain name.") ;
+
+// END OF DOMAIN NAME TRANSFERT //
+/////////////////////////////////////
+
 	return $out;
 }
 

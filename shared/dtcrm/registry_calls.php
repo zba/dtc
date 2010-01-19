@@ -49,6 +49,17 @@ function registry_register_domain($adm_login,$adm_pass,$domain_name,$period,$con
 //	return SRSregistry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers);
 }
 
+function registry_transfert_domain($adm_login,$adm_pass,$domain_name,$contacts,$dns_servers,$new_user="yes"){
+	global $registry_api_modules;
+	$id = find_registry_id($domain_name);
+	if($id === FALSE){
+		return FALSE;
+	}
+	$ret = $registry_api_modules[$id]["registry_transfert_domain"]($adm_login,$adm_pass,$domain_name,$contacts,$dns_servers,$new_user);
+	return $ret;
+//	return SRSregistry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers);
+}
+
 function registry_get_domain_price($domain_name,$period){
 	global $pro_mysql_registrar_domains_table;
 	$exten = find_domain_extension($domain_name);
