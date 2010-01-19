@@ -68,19 +68,44 @@ function ovh_registry_get_domain_price($domain_name,$period){
 
 function ovh_registry_register_domain ($adm_login,$adm_pass,$fqdn,$period,$contacts,$dns_servers,$new_user){
 	
+	global $conf_ovh_username;
 	global $conf_ovh_boolean;
+	global $conf_addr_primary_dns;
+    global $conf_addr_secondary_dns;
+
 	$ovh_boolean = $conf_ovh_boolean;
-	
-$ovh_domain_name = $fqdn;
-$ovh_nicadmin = "";
-$ovh_nictech = "";
-$ovh_nicowner = "";
-$ovh_nicbilling = "";
-$ovh_dns1 = $dns_servers[0];
-$ovh_dns2 = $dns_servers[1];
-$ovh_dns3 = $dns_servers[2];
-$ovh_dns4 = $dns_servers[3];
-$ovh_dns5 = $dns_servers[4];
+	$ovh_username = $conf_ovh_username;
+	$dnsfirst_ovh = $conf_addr_primary_dns;
+    $dnssecond_ovh = $conf_addr_secondary_dns;
+
+    $ovh_domain_name = $fqdn;
+    $ovh_nicadmin = $ovh_username;
+    $ovh_nictech = $ovh_username;
+    $ovh_nicowner = $ovh_username;
+    $ovh_nicbilling = $ovh_username;
+
+    $ovh_dns1 = $dns_servers[0];
+    $ovh_dns2 = $dns_servers[1];
+
+if($dns_servers[0] == "default"){
+	$ovh_dns1 = $dnsfirst_ovh;
+}
+if($dns_servers[1] == "default"){
+	$ovh_dns2 = $dnssecond_ovh;
+}
+if (isset($dns_servers[2])) {
+       $ovh_dns3 = $dns_servers[2];
+	   }else{
+		$ovh_dns3 = "";   }
+if (isset($dns_servers[3])) {
+       $ovh_dns4 = $dns_servers[3];
+	   }else{
+		$ovh_dns4 = "";   }
+if (isset($dns_servers[4])) {
+       $ovh_dns5 = $dns_servers[4];
+	   }else{
+		$ovh_dns5 = "";   }
+
 $regz["is_success"] = 0;
 
 try {
@@ -146,19 +171,43 @@ $ret["attributes"]["reason"] = "Domain name can't be transfered";
 	
 function ovh_registry_transfert_domain($adm_login,$adm_pass,$domain_name,$contacts,$dns_servers,$new_user) {
 	
+		global $conf_ovh_username;
 	global $conf_ovh_boolean;
-	
+	global $conf_addr_primary_dns;
+    global $conf_addr_secondary_dns;
+
 	$ovh_boolean = $conf_ovh_boolean;
-	$ovh_domain_name = $domain_name;
+	$ovh_username = $conf_ovh_username;
+	$dnsfirst_ovh = $conf_addr_primary_dns;
+    $dnssecond_ovh = $conf_addr_secondary_dns;
+
+    $ovh_domain_name = $domain_name;
+    $ovh_nicadmin = $ovh_username;
+    $ovh_nictech = $ovh_username;
+    $ovh_nicowner = $ovh_username;
+    $ovh_nicbilling = $ovh_username;
+
     $ovh_dns1 = $dns_servers[0];
     $ovh_dns2 = $dns_servers[1];
-    $ovh_dns3 = $dns_servers[2];
-    $ovh_dns4 = $dns_servers[3];
-    $ovh_dns5 = $dns_servers[4];
-    $ovh_nicadmin = "";
-    $ovh_nictech = "";
-    $ovh_nicowner = "";
-    $ovh_nicbilling = "";
+
+if($dns_servers[0] == "default"){
+	$ovh_dns1 = $dnsfirst_ovh;
+}
+if($dns_servers[1] == "default"){
+	$ovh_dns2 = $dnssecond_ovh;
+}
+if (isset($dns_servers[2])) {
+       $ovh_dns3 = $dns_servers[2];
+	   }else{
+		$ovh_dns3 = "";   }
+if (isset($dns_servers[3])) {
+       $ovh_dns4 = $dns_servers[3];
+	   }else{
+		$ovh_dns4 = "";   }
+if (isset($dns_servers[4])) {
+       $ovh_dns5 = $dns_servers[4];
+	   }else{
+		$ovh_dns5 = "";   }
 	$regz["is_success"] = 0; 
 	
     try {
@@ -167,7 +216,6 @@ function ovh_registry_transfert_domain($adm_login,$adm_pass,$domain_name,$contac
 
  //resellerDomainTransfer
  $result = $soap->resellerDomainTransfer($session, "$ovh_domain_name", "authinfo", "none", "gold", "whiteLabel", "no", "$ovh_nicowner", "$ovh_nicadmin", "$ovh_nictech", "$ovh_nicbilling", "$ovh_dns1", "$ovh_dns2", "$ovh_dns3", "$ovh_dns4", "$ovh_dns5", "(siren | inpi | birthPlace | afnicIdent)", "nom de la société / propriétaire de la marque", "numéro SIREN/SIRET/INPI", "clé d'identification AFNIC (format XXXXXXXX-999)", "date d'anniversaire du propriétaire", "ville de naissance du propriétaire", "département de naissance du propriétaire", "pays de naissance du propriétaire", $ovh_boolean);
- echo "resellerDomainTransfer successfull\n";
  $regz["is_success"] = 1;
  
  //logout
