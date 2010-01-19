@@ -1,39 +1,58 @@
-<?php 
+<?php
 
+function ovh_open(){
+      global $conf_ovh_server_url;
+      $ovh_server_url = $conf_ovh_server_url;
+
+$soap = new SoapClient($ovh_server_url); 
+
+return $soap;
+}
+
+function login_ovh(){
+	   global $conf_ovh_username;
+       global $conf_ovh_password;
+       global $conf_ovh_boolean;
+       $ovh_username = $conf_ovh_username;
+       $ovh_password = $conf_ovh_password;
+       $ovh_langage = "fr";
+       $ovh_boolean = $conf_ovh_boolean;
+	   $soap = ovh_open();
+	   
+ $session = $soap->login($ovh_username,$ovh_password,$ovh_langage,$ovh_boolean);
+ return $session;
+ }
+ 
+function logout_ovh($soap,$session){
+ $soap->logout($session);
+ }
+ 
 function ovh_registry_check_availability($domain_name) {
-$ovh_server_url = "https://www.ovh.com/soapi/soapi-re-1.8.wsdl";
-$ovh_username = "";
-$ovh_password = "";
-$ovh_langage = "fr";
-try {
- $soap = new SoapClient("$ovh_server_url");
-
- //login
- $session = $soap->login("$ovh_username", "$ovh_password","$ovh_langage", false);
- echo "login successfull\n";
-
+  try {
+//login 
+   $soap = ovh_open();
+   $session = login_ovh();
+   
  //domainCheck
- $result = $soap->domainCheck($session, "$domain_name");
- echo "domainCheck successfull\n";
- print_r($result); 
-
+ $result = $soap->domainCheck($session,"$domain_name");
 
  //logout
- $soap->logout($session);
- echo "logout successfull\n";
+ logout_ovh($soap,$session);
 
 } catch(SoapFault $fault) {
  echo $fault;
 }
 
 $ret["is_success"] = 1;
-$ret["response_text"] = $result[0]->reason;
+$ret["response_text"] = "Domain name already registred";
 	if($result[0]->value == 1){
         	$ret["attributes"]["status"] = "available";
+	} else {
+		    $ret["attributes"]["status"] = "not available";
 	}
 	return $ret;
 	
-}
+} 
 
 function ovh_registry_add_nameserver(){
 }
@@ -48,15 +67,15 @@ function ovh_registry_get_domain_price($domain_name,$period){
 }
 
 function ovh_registry_register_domain ($adm_login,$adm_pass,$fqdn,$period,$contacts,$dns_servers,$new_user){
+	
+	global $conf_ovh_boolean;
+	$ovh_boolean = $conf_ovh_boolean;
+	
 $ovh_domain_name = $fqdn;
-$ovh_server_url = "https://www.ovh.com/soapi/soapi-re-1.8.wsdl";
-$ovh_username = "";
-$ovh_password = "";
-$ovh_langage = "fr";
-$ovh_nicadmin = "cj42134-ovh";
-$ovh_nictech = "cg18768-ovh";
-$ovh_nicowner = "cg18768-ovh";
-$ovh_nicbilling = "cj42134-ovh";
+$ovh_nicadmin = "";
+$ovh_nictech = "";
+$ovh_nicowner = "";
+$ovh_nicbilling = "";
 $ovh_dns1 = $dns_servers[0];
 $ovh_dns2 = $dns_servers[1];
 $ovh_dns3 = $dns_servers[2];
@@ -65,26 +84,28 @@ $ovh_dns5 = $dns_servers[4];
 $regz["is_success"] = 0;
 
 try {
- $soap = new SoapClient("$ovh_server_url");
 
- //login
- $session = $soap->login("$ovh_username", "$ovh_password","$ovh_langage", false);
- echo "login successfull\n";
+//login
+   $soap = ovh_open();
+   $session = login_ovh();
 
 
  //resellerDomainCreate
- $result = $soap->resellerDomainCreate( $session, $ovh_domain_name, "none", "gold", "whiteLabel", "no", "$ovh_nicowner", "$ovh_nicadmin", "$ovh_nictech", "$ovh_nicbilling", "$ovh_dns1", "$ovh_dns2", "$ovh_dns3", "$ovh_dns4", "$ovh_dns5", "method : seulement pour les .fr (AFNIC) : méthode d'identification (siren | inpi | birthPlace | afnicIdent)", "legalName : seulement pour les .fr (AFNIC) : nom de la société / propriétaire de la marque", "legalNumber : seulement pour les .fr (AFNIC) : numéro SIREN/SIRET/INPI", "afnicIdent : seulement pour les .fr (AFNIC) : clé d'identification AFNIC (format XXXXXXXX-999)", "birthDate : seulement pour les .fr (AFNIC) : date d'anniversaire du propriétaire", "birthCity : seulement pour les .fr (AFNIC) : ville de naissance du propriétaire", "birthDepartement : seulement pour les .fr (AFNIC) : département de naissance du propriétaire", "birthCountry : seulement pour les .fr (AFNIC) : pays de naissance du propriétaire", true );
- echo "resellerDomainCreate successfull\n";
- $regz["is_success"] = 1;
+  $soap->resellerDomainCreate( $session, $ovh_domain_name, "none", "gold", "whiteLabel", "no", "$ovh_nicowner", "$ovh_nicadmin", "$ovh_nictech", "$ovh_nicbilling", "$ovh_dns1", "$ovh_dns2", "$ovh_dns3", "$ovh_dns4", "$ovh_dns5", "method : seulement pour les .fr (AFNIC) : méthode d'identification (siren | inpi | birthPlace | afnicIdent)", "legalName : seulement pour les .fr (AFNIC) : nom de la société / propriétaire de la marque", "legalNumber : seulement pour les .fr (AFNIC) : numéro SIREN/SIRET/INPI", "afnicIdent : seulement pour les .fr (AFNIC) : clé d'identification AFNIC (format XXXXXXXX-999)", "birthDate : seulement pour les .fr (AFNIC) : date d'anniversaire du propriétaire", "birthCity : seulement pour les .fr (AFNIC) : ville de naissance du propriétaire", "birthDepartement : seulement pour les .fr (AFNIC) : département de naissance du propriétaire", "birthCountry : seulement pour les .fr (AFNIC) : pays de naissance du propriétaire", $ovh_boolean);
+  $regz["is_success"] = 1;
 
  //logout
- $soap->logout($session);
- echo "logout successfull\n";
+ logout_ovh($soap,$session);
 
 } catch(SoapFault $fault) {
  echo $fault;
 }
- $regz["response_text"] = $result;
+if($regz["is_success"] == 1){
+	$regz["response_text"] = "Registration successful";
+} else{
+	$regz["response_text"] = "Registration failed";
+	}
+	
  return $regz;
 }
 
@@ -93,98 +114,82 @@ function ovh_registry_update_whois_dns(){
 
 function ovh_registry_update_whois_info(){
 }
- function ovh_registry_check_transfer($domain) {
-	 $domain_name = $domain;
-	 $ovh_server_url = "https://www.ovh.com/soapi/soapi-re-1.8.wsdl";
-$ovh_username = "";
-$ovh_password = "";
-$ovh_langage = "fr";
-try {
- $soap = new SoapClient("$ovh_server_url");
 
- //login
- $session = $soap->login("$ovh_username", "$ovh_password","$ovh_langage", false);
- echo "login successfull\n";
+function ovh_registry_check_transfer($domain) {
+	 $domain_name = $domain;
+	 
+	try {
+		
+   $soap = ovh_open();
+   $session = login_ovh();
 
  //domainCheck
  $result = $soap->domainCheck($session, "$domain_name");
- echo "domainCheck successfull\n";
- print_r($result); 
-
-
+ 
  //logout
- $soap->logout($session);
- echo "logout successfull\n";
+logout_ovh($soap,$session);
 
 } catch(SoapFault $fault) {
  echo $fault;
 }
 
 $ret["is_success"] = 1;
-$ret["attributes"]["reason"] = $result[1]->reason;
+$ret["attributes"]["reason"] = "Domain name can't be transfered";
 	if($result[1]->value == 1){
 		    $ret["attributes"]["transferrable"] = 1;
-					}
+  } else {
+			$ret["attributes"]["transferrable"] = 0;
+	}
+		
 	return $ret;
 	}
-/* function ovh_registry_check_transfer($domain) {
-	$ovh_domain_name = $domain;
-	$domain_name = $domain;
-	$ovh_server_url = "https://www.ovh.com/soapi/soapi-re-1.8.wsdl";
-    $ovh_username = "";
-    $ovh_password = "";
-    $ovh_langage = "fr";
+	
+function ovh_registry_transfert_domain($adm_login,$adm_pass,$domain_name,$contacts,$dns_servers,$new_user) {
+	
+	global $conf_ovh_boolean;
+	
+	$ovh_boolean = $conf_ovh_boolean;
+	$ovh_domain_name = $domain_name;
     $ovh_dns1 = $dns_servers[0];
     $ovh_dns2 = $dns_servers[1];
     $ovh_dns3 = $dns_servers[2];
     $ovh_dns4 = $dns_servers[3];
     $ovh_dns5 = $dns_servers[4];
-	$ovh_nicadmin = "cj42134-ovh";
-    $ovh_nictech = "cg18768-ovh";
-    $ovh_nicowner = "cg18768-ovh";
-    $ovh_nicbilling = "cj42134-ovh";
+    $ovh_nicadmin = "";
+    $ovh_nictech = "";
+    $ovh_nicowner = "";
+    $ovh_nicbilling = "";
 	$regz["is_success"] = 0; 
 	
-	$regz = ovh_registry_check_availability($domain_name);
-    			
-	 try {
- $soap = new SoapClient("$ovh_server_url");
-
- //login
- $session = $soap->login("$ovh_username", "$ovh_password","$ovh_langage", false);
- echo "login successfull\n";
+    try {
+   $soap = ovh_open();
+   $session = login_ovh();
 
  //resellerDomainTransfer
- $result = $soap->resellerDomainTransfer($session, "$ovh_domain_name", "authinfo", "none", "gold", "whiteLabel", "no", "$ovh_nicowner", "$ovh_nicadmin", "$ovh_nictech", "$ovh_nicbilling", "$ovh_dns1", "$ovh_dns2", "$ovh_dns3", "$ovh_dns4", "$ovh_dns5", "(siren | inpi | birthPlace | afnicIdent)", "nom de la société / propriétaire de la marque", "numéro SIREN/SIRET/INPI", "clé d'identification AFNIC (format XXXXXXXX-999)", "date d'anniversaire du propriétaire", "ville de naissance du propriétaire", "département de naissance du propriétaire", "pays de naissance du propriétaire", true);
+ $result = $soap->resellerDomainTransfer($session, "$ovh_domain_name", "authinfo", "none", "gold", "whiteLabel", "no", "$ovh_nicowner", "$ovh_nicadmin", "$ovh_nictech", "$ovh_nicbilling", "$ovh_dns1", "$ovh_dns2", "$ovh_dns3", "$ovh_dns4", "$ovh_dns5", "(siren | inpi | birthPlace | afnicIdent)", "nom de la société / propriétaire de la marque", "numéro SIREN/SIRET/INPI", "clé d'identification AFNIC (format XXXXXXXX-999)", "date d'anniversaire du propriétaire", "ville de naissance du propriétaire", "département de naissance du propriétaire", "pays de naissance du propriétaire", $ovh_boolean);
  echo "resellerDomainTransfer successfull\n";
  $regz["is_success"] = 1;
+ 
  //logout
- $soap->logout($session);
- echo "logout successfull\n";
+logout_ovh($soap,$session);
 
 } catch(SoapFault $fault) {
  echo $fault;
 } 
- $regz["attributes"]["reason"] = $regz[1]->reason;
+ $regz["response_text"] = $result;
  return $regz;
- echo "ICI A REGARDER :  ".$toreg_extention;
- }  */
+ }  
 
 function ovh_registry_renew_domain() {
  }
 
 function ovh_registry_get_whois($domain_name) {
 $post_params_hash["domain"] = $domain_name;
-$ovh_server_url = "https://www.ovh.com/soapi/soapi-re-1.8.wsdl";
-$ovh_username = "";
-$ovh_password = "";
-$ovh_langage = "fr";
-try {
- $soap = new SoapClient("$ovh_server_url");
 
- //login
- $session = $soap->login("$ovh_username", "$ovh_password","$ovh_langage", false);
- echo "login successfull\n";
+try {
+	
+   $soap = ovh_open();
+   $session = login_ovh();
 
  //domainInfo
  $result = $soap->domainInfo($session, "$domain_name");
@@ -192,8 +197,7 @@ try {
  print_r($result); // your code here ...
 
  //logout
- $soap->logout($session);
- echo "logout successfull\n";
+logout_ovh($soap,$session);
 
 } catch(SoapFault $fault) {
  echo $fault;
@@ -298,5 +302,6 @@ $registry_api_modules[] = array(
 "registry_check_transfer" => "ovh_registry_check_transfer",
 "registry_renew_domain" => "ovh_registry_renew_domain",
 "registry_change_password" => "ovh_registry_change_password",
-"registry_get_whois" => "ovh_registry_get_whois"
+"registry_get_whois" => "ovh_registry_get_whois",
+"registry_transfert_domain" => "ovh_registry_transfert_domain"
 );?>
