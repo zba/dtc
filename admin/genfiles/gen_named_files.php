@@ -1025,7 +1025,7 @@ $more_mx_server
 				$KEY = str_replace("\n","",$KEY);
 				$SELECTOR="postfix";
 				$DOMAIN=$web_name;
-				$NSRECORD="$SELECTOR._domainkey IN TXT \"k=rsa;p=$KEY; t=y\"";
+				$NSRECORD="$SELECTOR._domainkey IN TXT \"k=rsa;p=$KEY\"";
 				$NSRECORDDEFAULT="_domainkey IN TXT \"o=~\"";
 				$this_site_file .= "$NSRECORDDEFAULT\n";
 				$this_site_file .= "$NSRECORD\n";

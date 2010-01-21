@@ -759,7 +759,7 @@ AND $pro_mysql_admin_table.id_client != '0'";
 						$vhost_more_conf .= "	php_admin_flag session_autostart ".$subdomain["php_session_auto_start"]."\n";
 					}
 					if($subdomain["php_allow_url_fopen"] == "yes"){
-						$vhost_more_conf .= "	php_admin_flag allow_url_fopen ".$subdomain["php_allow_url_fopen"]."\n";
+						$vhost_more_conf .= "	php_admin_flag allow_url_fopen on\n";
 					}
 					if($subdomain["php_post_max_size"] != ""){
 						$vhost_more_conf .= "	php_admin_value post_max_size ".$subdomain["php_post_max_size"]."M\n";
