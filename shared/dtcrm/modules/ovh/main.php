@@ -245,9 +245,7 @@ try {
 
  //domainInfo
  $result = $soap->domainInfo($session, "$domain_name");
- echo "domainInfo successfull\n";
- print_r($result); // your code here ...
-
+ 
  //logout
 logout_ovh($soap,$session);
 
@@ -267,19 +265,19 @@ $ret["response_text"] .="\n \n Creation date : ".$result->creation;
 if (isset($result->expiration)) {
 $ret["response_text"] .="\n Expiration date : ".$result->expiration;
 }
-if (isset($result->expiration)) {
+if (isset($result->nicowner)) {
 $ret["response_text"] .="\n \n Owner name : ".$result->nicowner;
 }
-if (isset($result->expiration)) {
+if (isset($result->nicadmin)) {
 $ret["response_text"] .="\n Admin name : ".$result->nicadmin;
 }
-if (isset($result->expiration)) {
+if (isset($result->nictech)) {
 $ret["response_text"] .="\n Tech name : ".$result->nictech;
 }
-if (isset($result->expiration)) {
+if (isset($result->nicbilling)) {
 $ret["response_text"] .="\n Billing name : ".$result->nicbilling;
 }
-if (isset($result->expiration)) {
+if (isset($result->authinfo)) {
 $ret["response_text"] .="\n \n Authinfo : ".$result->authinfo;
 }
 if (isset($result->dns[0]->name)) {
