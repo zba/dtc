@@ -10,7 +10,7 @@ PKGNAMESUFFIX=  -toaster
 
 MAINTAINER=     scrappy@freebsd.org
 
-CONFLICTS=      dtc-[0-9]*
+CONFLICTS=      dtc-[0-9]* dtc-postfix-courier-[0-9]*
 
 WITH_WEBALIZER=yes
 WITH_VISITORS=yes
@@ -24,6 +24,6 @@ WITH_PHP5=yes
 
 DESCR=          ${.CURDIR}/pkg-descr
 
-MASTERDIR=      ${.CURDIR}/../dtc
+MASTERDIR=      ${.CURDIR}/../../sysutils/dtc
 
 .include "${MASTERDIR}/Makefile"

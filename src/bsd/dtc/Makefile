@@ -7,7 +7,11 @@
 
 PORTNAME=	dtc
 PORTVERSION=	__VERSION__
-CATEGORIES=	sysutils
+CATEGORIES=	sysutils local
+VALID_CATEGORIES+=	local
+
+CONFLICTS=      dtc-toaster-[0-9]* dtc-postfix-courier-[0-9]*
+
 MASTER_SITES=	ftp://ftp.gplhost.com/pub/dtc/bsd/ \
 		ftp://ftp.gplhost.fr/pub/dtc/bsd/ \
 		ftp://ftp.gplhost.sg/pub/dtc/bsd/
@@ -99,7 +103,7 @@ RUN_DEPENDS+=	${LOCALBASE}/www/squirrelmail/src/login.php:${PORTSDIR}/mail/squir
 .endif
 
 .if defined(WITH_PHPMYADMIN)
-RUN_DEPENDS+=	${LOCALBASE}/www/phpMyAdmin/index.html:${PORTSDIR}/databases/phpmyadmin
+RUN_DEPENDS+=	${LOCALBASE}/www/phpMyAdmin/index.php:${PORTSDIR}/databases/phpmyadmin
 .endif
 
 .if defined(WITH_APACHE2)

@@ -9,6 +9,8 @@ PORTREVISION=   1
 PKGNAMESUFFIX=  -postix-courier
 MAINTAINER=	thomas@goirand.fr
 
+CONFLICTS=      dtc-[0-9]* dtc-toaster-[0-9]*
+
 WITH_WEBALIZER=yes
 WITH_AWSTATS=yes
 WITH_VISITORS=yes
@@ -27,6 +29,6 @@ WITH_PHPMYADMIN=yes
 
 DESCR=          ${.CURDIR}/pkg-descr
 
-MASTERDIR=      ${.CURDIR}/../dtc
+MASTERDIR=      ${.CURDIR}/../../sysutils/dtc
 
 .include "${MASTERDIR}/Makefile"

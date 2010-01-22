@@ -142,7 +142,7 @@ bsd-ports-packages:
 	@if ! [ $(BSD_DEST_DIR) = . -o $(BSD_DEST_DIR) = ./ -o $(BSD_DEST_DIR) = $(CURDIR) ] ; then mv $(BSD_BUILD_DIR)/$(BSD_ARCH_NAME) $(BSD_DEST_DIR)/ ; fi
 	@echo " --- Succesfully made BSD source snapshot ${BSD_DEST_DIR}/${BSD_ARCH_NAME} ---"
 
-	@echo " --- Making BSD port tree for version "$BSD_VERSION" ---"
+	@echo " --- Making BSD port tree for version "${BSD_VERSION}" ---"
 	@echo "===> Creating port files in $(PORT_BUILD)"
 	@mkdir -p $(PORT_BUILD)/files						# Make  dtc port dir and copy static files in it
 	@sed "s/__VERSION__/$(BSD_VERSION)/" $(BSD_SOURCE_DIR)/dtc/Makefile >$(PORT_BUILD)/Makefile	# Create Makefile with correct port version
@@ -159,15 +159,15 @@ bsd-ports-packages:
 	@echo "-> Calling make install-dtc-common to calculate list in $(PKG_PLIST_BUILD)"
 	@make install-dtc-common DESTDIR=$(PKG_PLIST_BUILD) DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
 		DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd 2>&1 >/dev/null
-	echo "-> Building list of files"
-	@cd $(PKG_PLIST_BUILD) && find . -type f | sed "s/\.\/usr\/local/%%LOCALBASE%%/" | sort -r >../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
-	@echo "%%LOCALBASE%%/www/dtc/admin/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
-	@echo "%%LOCALBASE%%/www/dtc/shared/mysql_config.php" >>$(PORT_BUILD)/pkg-plist.tmp
-	@echo "%%LOCALBASE%%/www/dtc/client/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
+	@echo "-> Building list of files"
+	@cd $(PKG_PLIST_BUILD) && find . -type f | sed "s/\.\/usr\/local\///" | sort -r >../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
+	@echo "/www/dtc/admin/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
+	@echo "/www/dtc/shared/mysql_config.php" >>$(PORT_BUILD)/pkg-plist.tmp
+	@echo "/www/dtc/client/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
 	@echo "sbin/dtc-install" >>$(PORT_BUILD)/pkg-plist.tmp
 	@echo "sbin/dtc-deinstall" >>$(PORT_BUILD)/pkg-plist.tmp
-	@echo "%%LOCALBASE%%/dtc/email/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
-	@cd $(PKG_PLIST_BUILD) && find usr/local -type d -exec echo @dirrm {} \; | grep -v "/etc" | sed "s/usr\/local/%%LOCALBASE%%/" | sort -r >>../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
+	@echo "/dtc/email/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
+	@cd $(PKG_PLIST_BUILD) && find usr/local -type d -exec echo @dirrm {} \; | grep -v "/etc" | sed "s/usr\/local\///" | sort -r >>../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
 	@NBR_LINE=`cat $(PORT_BUILD)/pkg-plist.tmp | wc -l` && cat $(PORT_BUILD)/pkg-plist.tmp | head -n $$(( $$NBR_LINE - 2 )) >$(PORT_BUILD)/pkg-plist.tmp2
 	@cat $(PORT_BUILD)/pkg-plist.tmp2 | grep -v "mysql_config.php" >$(PORT_BUILD)/pkg-plist
 	@echo "@dirrm %%DTCROOT%%/etc/zones" >>$(PORT_BUILD)/pkg-plist
@@ -185,11 +185,11 @@ bsd-ports-packages:
 	@cp $(BSD_SOURCE_DIR)/dtc-toaster/pkg-descr $(BSD_BUILD_DIR)/sysutils/dtc-toaster
 
 	@echo "===> Creating archive file"
-	cd $(BSD_BUILD_DIR) && tar -czf dtcBSDport-$(BSD_VERSION).tar.gz sysutils && cd $(CURDIR)
+	@cd $(BSD_BUILD_DIR) && tar -czf dtcBSDport-$(BSD_VERSION).tar.gz sysutils && cd $(CURDIR)
 	@mv $(BSD_BUILD_DIR)/dtcBSDport-"$(BSD_VERSION)".tar.gz $(BSD_DEST_DIR)
 	@echo "--- Successfully made BSD port tree $(BSD_DEST_DIR)/dtcBSDport-$(BSD_VERSION).tar.gz ---"
 	@echo "===> Deleting temp files"
-	rm -r $(BSD_BUILD_DIR)
+	@rm -r $(BSD_BUILD_DIR)
 
 
 
@@ -333,7 +333,10 @@ shared/gfx/skin/bwoup/gfx/config-icon shared/gfx/skin/bwoup/gfx/buttons shared/g
 shared/gfx/skin/bwoup/gfx/treeview shared/gfx/skin/bwoup/gfx/navbar shared/inc/forms shared/inc/sql shared/404_template shared/drawlib \
 shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars shared/visitors_template shared/template shared/maxmind \
 admin/patches shared/securepay/modules shared/securepay/modules/paypal shared/securepay/modules/enets shared/securepay/modules/webmoney \
-shared/securepay/modules/worldpay
+shared/securepay/modules/worldpay client email shared/securepay/modules/cheque shared/securepay/modules/wiretransfer \
+shared/securepay/modules/moneybookers shared/dtcrm/modules/webnic admin/postfix_checks admin/mod-security shared/gfx/skin/paperboard shared/gfx/skin/paperboard/gfx \
+shared/gfx/skin/paperboard/gfx/treeview shared/gfx/skin/paperboard/gfx/tabs shared/gfx/skin/paperboard/gfx/navbar \
+shared/gfx/toolstitles shared/gfx/skin/paperboard/gfx/css shared/gfx/skin/paperboard/gfx/config-icon shared/gfx/skin/paperboard/gfx/buttons shared/dtcrm/modules/ovh
 
 LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL sv_SE pt_PT pt_BR es_ES fi_FI zh_TW sr_RS lv_LV cs_CZ
 
@@ -423,7 +426,11 @@ install-dtc-common:
 
 	# Create the configuration folder
 	mkdir -p $(DTC_ETC_DIRECTORY)
-	cp -auxf etc/dtc/* $(DTC_ETC_DIRECTORY)
+	if [ $(UNIX_TYPE) = "bsd" ] ; then \
+		cp -anf etc/dtc/* $(DTC_ETC_DIRECTORY) ; \
+	else \
+		cp -auxf etc/dtc/* $(DTC_ETC_DIRECTORY) ; \
+	fi ; \
 	rm $(DTC_ETC_DIRECTORY)/dtc-dos-firewall.conf
 
 	# Doc dir
