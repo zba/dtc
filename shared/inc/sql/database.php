@@ -84,6 +84,10 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
 			$commit_flag = "no";
 		}
 	}
+	if($_REQUEST["newdb_name"] == $conf_mysql_db || $_REQUEST["newdb_name"] == "mysql" || $_REQUEST["newdb_name"] == "information_schema" || $_REQUEST["newdb_name"] == "apachelogs"){
+		$submit_err .= _("Forbidden database name")." ".$_REQUEST["newdb_name"]."<br>";
+		$commit_flag = "no";
+	}
 	if($commit_flag == "yes"){
 		$q = "CREATE DATABASE IF NOT EXISTS `". $newdb_name ."`;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
