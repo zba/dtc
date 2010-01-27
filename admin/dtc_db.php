@@ -247,6 +247,11 @@ $dtc_database = array(
             "ovh_username" => "varchar (128) NOT NULL default ''",
             "ovh_password" => "varchar (128) NOT NULL default ''",
             "ovh_boolean" => "enum('false','true') NOT NULL default 'true'",
+            "ovh_language" => "enum('fr','en','es','de','pl','it','pt','nl','cz','ie') NOT NULL default 'en'",
+			"ovh_nicadmin" => "varchar (128) NOT NULL default ''",
+            "ovh_nictech" => "varchar (128) NOT NULL default ''",
+            "ovh_nicowner" => "varchar (128) NOT NULL default ''",
+            "ovh_nicbilling" => "varchar (128) NOT NULL default ''",
 
 			"provide_own_domain_hosts" => "enum('yes','no') NOT NULL default 'no'",
 			"nagios_host" => "varchar(255) NOT NULL default ''",

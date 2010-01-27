@@ -13,9 +13,11 @@ function login_ovh(){
 	   global $conf_ovh_username;
        global $conf_ovh_password;
        global $conf_ovh_boolean;
+	   global $conf_ovh_language;
+	   
        $ovh_username = $conf_ovh_username;
        $ovh_password = $conf_ovh_password;
-       $ovh_langage = "fr";
+       $ovh_langage = $conf_ovh_language;
        $ovh_boolean = $conf_ovh_boolean;
 	   $soap = ovh_open();
 	   
@@ -69,6 +71,10 @@ function ovh_registry_get_domain_price($domain_name,$period){
 function ovh_registry_register_domain ($adm_login,$adm_pass,$fqdn,$period,$contacts,$dns_servers,$new_user){
 	
 	global $conf_ovh_username;
+	global $conf_ovh_nicadmin;
+	global $conf_ovh_nictech;
+	global $conf_ovh_nicowner;
+	global $conf_ovh_nicbilling;
 	global $conf_ovh_boolean;
 	global $conf_addr_primary_dns;
     global $conf_addr_secondary_dns;
@@ -79,10 +85,10 @@ function ovh_registry_register_domain ($adm_login,$adm_pass,$fqdn,$period,$conta
     $dnssecond_ovh = $conf_addr_secondary_dns;
 
     $ovh_domain_name = $fqdn;
-    $ovh_nicadmin = $ovh_username;
-    $ovh_nictech = $ovh_username;
-    $ovh_nicowner = $ovh_username;
-    $ovh_nicbilling = $ovh_username;
+    $ovh_nicadmin = $conf_ovh_nicadmin;
+    $ovh_nictech = $conf_ovh_nictech;
+    $ovh_nicowner = $conf_ovh_nicowner;
+    $ovh_nicbilling = $conf_ovh_nicbilling;
 
     $ovh_dns1 = $dns_servers[0];
     $ovh_dns2 = $dns_servers[1];
@@ -172,6 +178,10 @@ $ret["attributes"]["reason"] = "Domain name can't be transfered";
 function ovh_registry_transfert_domain($adm_login,$adm_pass,$domain_name,$contacts,$dns_servers,$new_user) {
 	
 	global $conf_ovh_username;
+	global $conf_ovh_nicadmin;
+	global $conf_ovh_nictech;
+	global $conf_ovh_nicowner;
+	global $conf_ovh_nicbilling;
 	global $conf_ovh_boolean;
 	global $conf_addr_primary_dns;
     global $conf_addr_secondary_dns;
@@ -182,10 +192,10 @@ function ovh_registry_transfert_domain($adm_login,$adm_pass,$domain_name,$contac
     $dnssecond_ovh = $conf_addr_secondary_dns;
 
     $ovh_domain_name = $domain_name;
-    $ovh_nicadmin = $ovh_username;
-    $ovh_nictech = $ovh_username;
-    $ovh_nicowner = $ovh_username;
-    $ovh_nicbilling = $ovh_username;
+    $ovh_nicadmin = $conf_ovh_nicadmin;
+    $ovh_nictech = $conf_ovh_nictech;
+    $ovh_nicowner = $conf_ovh_nicowner;
+    $ovh_nicbilling = $conf_ovh_nicbilling;
 
     $ovh_dns1 = $dns_servers[0];
     $ovh_dns2 = $dns_servers[1];
@@ -321,18 +331,42 @@ $configurator = array(
 	"title" => _("OVH configuration"),
 	"action" => "configure_ovh_editor",
 	"forward" => array("rub","sousrub"),
-	"desc" => _("Use boolean false for the live server, boolean true for the test one. You have to code"),
+	"desc" => _("Use boolean false for the live server, boolean true for the test one. Languages : fr, en, es, de, pl, it, pt, nl, cz, ie"),
 	"cols" => array(
                  "ovh_server_url" => array(
-			"legend" => _("Server address: "),
+			"legend" => _("Server address : "),
 			"type" => "text",
 			"size" => "20"),
 		"ovh_username" => array(
-			"legend" => _("Username: "),
+			"legend" => _("Username : "),
 			"type" => "text",
 			"size" => "20"),
 		"ovh_password" => array(
-			"legend" => _("Password: "),
+			"legend" => _("Password : "),
+			"type" => "text",
+			"size" => "20")
+		"ovh_language" => array(
+			"legend" => _("Language : "),
+			"type" => "text",
+			"size" => "20")
+		"ovh_boolean" => array(
+			"legend" => _("Boolean : "),
+			"type" => "text",
+			"size" => "20")
+		"ovh_nicadmin" => array(
+			"legend" => _("Nic admin : "),
+			"type" => "text",
+			"size" => "20")
+		"ovh_nictech" => array(
+			"legend" => _("Nic tech : "),
+			"type" => "text",
+			"size" => "20")
+		"ovh_nicowner" => array(
+			"legend" => _("Nic owner : "),
+			"type" => "text",
+			"size" => "20")
+		"ovh_nicbilling" => array(
+			"legend" => _("Nic billing : "),
 			"type" => "text",
 			"size" => "20")
 		)
