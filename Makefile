@@ -160,19 +160,13 @@ bsd-ports-packages:
 	@make install-dtc-common DESTDIR=$(PKG_PLIST_BUILD) DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
 		DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd 2>&1 >/dev/null
 	@echo "-> Building list of files"
-	@cd $(PKG_PLIST_BUILD) && find . -type f | sed "s/\.\/usr\/local\///" | sort -r >../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
-	@echo "/www/dtc/admin/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
-	@echo "/www/dtc/shared/mysql_config.php" >>$(PORT_BUILD)/pkg-plist.tmp
-	@echo "/www/dtc/client/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
+	@cd $(PKG_PLIST_BUILD) && find . -type f -o -type l | egrep -v "/man/" | sed "s/\.\/usr\/local\///" | sort -r >../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
+	@echo "www/dtc/shared/mysql_config.php" >>$(PORT_BUILD)/pkg-plist.tmp
 	@echo "sbin/dtc-install" >>$(PORT_BUILD)/pkg-plist.tmp
 	@echo "sbin/dtc-deinstall" >>$(PORT_BUILD)/pkg-plist.tmp
-	@echo "/dtc/email/gfx" >>$(PORT_BUILD)/pkg-plist.tmp
-	@cd $(PKG_PLIST_BUILD) && find usr/local -type d -exec echo @dirrm {} \; | grep -v "/etc" | sed "s/usr\/local\///" | sort -r >>../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
-	@NBR_LINE=`cat $(PORT_BUILD)/pkg-plist.tmp | wc -l` && cat $(PORT_BUILD)/pkg-plist.tmp | head -n $$(( $$NBR_LINE - 2 )) >$(PORT_BUILD)/pkg-plist.tmp2
+	@cd $(PKG_PLIST_BUILD) && find usr/local -type d -exec echo @dirrm {} \; | egrep -v "/man" | egrep -v "/share/doc$$" | egrep -v "/share$$" | egrep -v "usr/local$$" | egrep -v "/www$$" | sed "s/usr\/local\///" | sort -r >>../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
+	@NBR_LINE=`cat $(PORT_BUILD)/pkg-plist.tmp | wc -l` && cat $(PORT_BUILD)/pkg-plist.tmp | head -n $$(( $$NBR_LINE - 1 )) >$(PORT_BUILD)/pkg-plist.tmp2
 	@cat $(PORT_BUILD)/pkg-plist.tmp2 | grep -v "mysql_config.php" >$(PORT_BUILD)/pkg-plist
-	@echo "@dirrm %%DTCROOT%%/etc/zones" >>$(PORT_BUILD)/pkg-plist
-	@echo "@dirrm %%DTCROOT%%/etc" >>$(PORT_BUILD)/pkg-plist
-	@echo "@dirrm %%DTCROOT%%" >>$(PORT_BUILD)/pkg-plist
 	@rm $(PORT_BUILD)/pkg-plist.tmp $(PORT_BUILD)/pkg-plist.tmp2
 	@rm -r $(PKG_PLIST_BUILD)
 
