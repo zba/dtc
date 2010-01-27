@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS admin (
   adm_login varchar(64) NOT NULL default '',
-  adm_pass varchar(16) NOT NULL default '',
+  adm_pass varchar(255) NOT NULL default '',
   path varchar(128) NOT NULL default '/web/disk4',
   max_email int(12) NOT NULL default '3',
   max_ftp int(12) NOT NULL default '3',
