@@ -46,6 +46,21 @@ function drawAdminTools_Whois($admin,$eddomain){
 	$domain_name = $eddomain["name"];
 
 	$out = "";
+	$out1 = "";
+	
+	if($eddomain["whois"] == "here"){
+		if(isset($_REQUEST["dtcrm_action"]) && $_REQUEST["dtcrm_action"] == "renew_domain"){
+			$out1 .= drawNameRenew($admin,$domain_name);
+		}else{
+			$out1 .= "<form action=\"". $_SERVER["PHP_SELF"] ."\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+<input type=\"hidden\" name=\"dtcrm_action\" value=\"renew_domain\">
+";   
+$out1 .= "<br>".submitButtonStart(). _("Renew domain") .submitButtonEnd()."</form><br><br>";
+}
+		}	
 	if($eddomain["whois"] == "away"){
 		if(isset($_REQUEST["dtcrm_action"]) && $_REQUEST["dtcrm_action"] == "transfer_domain"){
 			$out .= drawNameTransfer($admin,$domain_name);
@@ -124,7 +139,8 @@ function drawAdminTools_Whois($admin,$eddomain){
 //	print_r($ret);
 	$out .= nl2br($ret["response_text"]);
 
-	return $out;
+	return $out1.$out;
+
 }
 
 ?>
