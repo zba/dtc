@@ -52,6 +52,16 @@ $ret["response_text"] = "Domain name already registred";
 	} else {
 		    $ret["attributes"]["status"] = "not available";
 	}
+if($result[1]->value == 1){
+		    $ret["attributes"]["transferrable"] = 1;
+  } else {
+			$ret["attributes"]["transferrable"] = 0;
+	}
+if($result[2]->value == 1){
+		    $ret["attributes"]["renewable"] = 1;
+  } else {
+			$ret["attributes"]["renewable"] = 0;
+	}
 	return $ret;
 	
 } 
@@ -136,7 +146,7 @@ if($regz["is_success"] == 1){
 } else{
 	$regz["response_text"] = "Registration failed";
 	}
-	
+
  return $regz;
 }
 
@@ -242,8 +252,36 @@ if($regz["is_success"] == 1){
 return $regz;
  }  
 
-function ovh_registry_renew_domain() {
+
+
+function ovh_registry_renew_domain($domain_name) {
+	global $conf_ovh_boolean;
+	$ovh_boolean = $conf_ovh_boolean;
+	
+	$regz["is_success"] = 0;
+	$regz["response_text"] = "Renew Failed";
+	
+	//login 
+try {	
+   $soap = ovh_open();
+   $session = login_ovh();
+   
+	//resellerDomainRenew
+ $soap->resellerDomainRenew($session, $domain_name, $ovh_boolean);
+ $regz["is_success"] = 1;
+ $regz["response_text"] = "Renew successful";
+ 
+ //logout
+logout_ovh($soap,$session);
+
+} catch(SoapFault $fault) {
+ echo $fault;
+} 
+return $regz;
  }
+
+
+
 
 function ovh_registry_get_whois($domain_name) {
 $post_params_hash["domain"] = $domain_name;

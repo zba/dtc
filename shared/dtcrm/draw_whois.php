@@ -44,13 +44,14 @@ function drawAdminTools_Whois($admin,$eddomain){
 	global $conf_addr_secondary_dns;
 
 	$domain_name = $eddomain["name"];
-
+    $domainrenew_name = $domain_name;
+	
 	$out = "";
 	$out1 = "";
 	
 	if($eddomain["whois"] == "here"){
 		if(isset($_REQUEST["dtcrm_action"]) && $_REQUEST["dtcrm_action"] == "renew_domain"){
-			$out1 .= drawNameRenew($admin,$domain_name);
+			$out1 .= drawNameRenew($domainrenew_name,$admin);
 		}else{
 			$out1 .= "<form action=\"". $_SERVER["PHP_SELF"] ."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">

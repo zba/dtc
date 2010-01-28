@@ -230,7 +230,7 @@ shared/404_template/index.php shared/drawlib/anotherDtc.php shared/drawlib/cc_co
 shared/drawlib/skinLib.php shared/drawlib/skin.php shared/drawlib/templates.php shared/drawlib/tree_menu.php \
 shared/dtcrm/draw_adddomain.php shared/dtcrm/draw_handle.php shared/dtcrm/draw_nameservers.php shared/dtcrm/draw.php shared/dtcrm/draw_register_forms.php \
 shared/dtcrm/draw_transferdomain.php shared/dtcrm/draw_whois.php shared/dtcrm/registry_calls.php \
-shared/dtcrm/submit_to_sql.php \
+shared/dtcrm/submit_to_sql.php shared/dtcrm/draw_renewdomain.php \
 shared/template/index.php shared/vars/clear_lang_array.php shared/vars/global_vars.php shared/inc/HTTPRequestClass.php \
 shared/vars/lang.php shared/vars/table_names.php shared/visitors_template/visitors.php shared/dtcrm/registry_modulator.php
 

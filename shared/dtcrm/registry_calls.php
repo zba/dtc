@@ -143,8 +143,15 @@ function registry_check_transfer($domain){
 	//return SRSregistry_check_transfer($domain);
 }
 
-function registry_renew_domain($adm_login,$adm_pass,$domain,$curent_year_expir,$period){
-	return SRSregistry_renew_domain($adm_login,$adm_pass,$domain,$curent_year_expir,$period);
+function registry_renew_domain($domain_name){
+	global $registry_api_modules;
+	$id = find_registry_id($domain_name);
+	if($id === FALSE){
+		return FALSE;
+	}
+	$ret = $registry_api_modules[$id]["registry_renew_domain"]($domain_name);
+	return $ret;
+	//return SRSregistry_renew_domain($adm_login,$adm_pass,$domain,$curent_year_expir,$period);
 }
 
 function registry_change_password($adm_login,$adm_pass,$domain,$new_pass){
