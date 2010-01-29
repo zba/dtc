@@ -17,7 +17,7 @@ function drawNameRenew($domain_name,$admin){
 ";
 	//first step : renewable ?
 	
-		$domlookup = registry_check_availability($domain_name);
+		$domlookup = registry_check_renew($domain_name);
 		
 	if($domlookup["is_success"] != 1){
 		$out = "<font color=\"red\">". _("Could not connect to domain renew server: please try again later!") 
@@ -25,7 +25,7 @@ function drawNameRenew($domain_name,$admin){
 	return $out;
 	}
 	if($domlookup["attributes"]["renewable"] != 1){
-		$out .= "<br>
+		$out = "<br>
 ". _("Sorry, the domain name ") ." <b>$domain_name</b> ". _("is NOT renewable. The registration server returned: ") 
 ."<br><font color=\"red\">" . $domlookup["response_text"] . "</font>
 <br><br>";
@@ -100,7 +100,7 @@ return $out;
 	///////////////////////////////////////
 // START OF DOMAIN NAME RENEW           //
 
-	$q = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login' AND registrar='ovh';";
+	$q = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n > 0){

@@ -165,7 +165,7 @@ $form_start
 			$dns_servers[] = $conf_addr_secondary_dns;
 		}
 	}
-	$q = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login' AND registrar='ovh';";
+	$q = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n > 0){
