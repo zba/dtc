@@ -32,6 +32,5 @@ CREATE TABLE IF NOT EXISTS domain (
   stats_pass varchar(16) NOT NULL default '',
   stats_subdomain enum('yes','no') NOT NULL default 'no',
   wildcard_dns enum('yes','no') NOT NULL default 'no',
-  registrar varchar(128) NOT NULL default 'ovh',
   UNIQUE KEY name (name)
 ) TYPE=MyISAM
