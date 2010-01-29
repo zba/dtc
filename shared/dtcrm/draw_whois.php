@@ -44,22 +44,22 @@ function drawAdminTools_Whois($admin,$eddomain){
 	global $conf_addr_secondary_dns;
 
 	$domain_name = $eddomain["name"];
-    $domainrenew_name = $domain_name;
+    
 	
 	$out = "";
-	$out1 = "";
+	
 	
 	if($eddomain["whois"] == "here"){
 		if(isset($_REQUEST["dtcrm_action"]) && $_REQUEST["dtcrm_action"] == "renew_domain"){
-			$out1 .= drawNameRenew($domainrenew_name,$admin);
+			$out .= drawNameRenew($domain_name,$admin);
 		}else{
-			$out1 .= "<form action=\"". $_SERVER["PHP_SELF"] ."\">
+			$out .= "<form action=\"". $_SERVER["PHP_SELF"] ."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"dtcrm_action\" value=\"renew_domain\">
 ";   
-$out1 .= "<br>".submitButtonStart(). _("Renew domain") .submitButtonEnd()."</form><br><br>";
+$out .= "<br>".submitButtonStart(). _("Renew domain") .submitButtonEnd()."</form><br><br>";
 }
 		}	
 	if($eddomain["whois"] == "away"){
@@ -140,7 +140,7 @@ $out1 .= "<br>".submitButtonStart(). _("Renew domain") .submitButtonEnd()."</for
 //	print_r($ret);
 	$out .= nl2br($ret["response_text"]);
 
-	return $out1.$out;
+	return $out;
 
 }
 
