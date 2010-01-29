@@ -52,16 +52,6 @@ $ret["response_text"] = "Domain name already registred";
 	} else {
 		    $ret["attributes"]["status"] = "not available";
 	}
-if($result[1]->value == 1){
-		    $ret["attributes"]["transferrable"] = 1;
-  } else {
-			$ret["attributes"]["transferrable"] = 0;
-	}
-if($result[2]->value == 1){
-		    $ret["attributes"]["renewable"] = 1;
-  } else {
-			$ret["attributes"]["renewable"] = 0;
-	}
 	return $ret;
 	
 } 
@@ -252,6 +242,32 @@ if($regz["is_success"] == 1){
 return $regz;
  }  
 
+function ovh_registry_check_renew($domain_name) {
+	 	try {
+		
+   $soap = ovh_open();
+   $session = login_ovh();
+
+ //domainCheck
+ $result = $soap->domainCheck($session,$domain_name);
+ 
+ //logout
+logout_ovh($soap,$session);
+
+} catch(SoapFault $fault) {
+ echo $fault;
+}
+
+$ret["is_success"] = 1;
+$ret["response_text"] = "Domain name can't be renewed";
+	if($result[2]->value == 1){
+		    $ret["attributes"]["renewable"] = 1;
+  } else {
+			$ret["attributes"]["renewable"] = 0;
+	}
+		
+	return $ret;
+	}
 
 
 function ovh_registry_renew_domain($domain_name) {
@@ -425,5 +441,6 @@ $registry_api_modules[] = array(
 "registry_renew_domain" => "ovh_registry_renew_domain",
 "registry_change_password" => "ovh_registry_change_password",
 "registry_get_whois" => "ovh_registry_get_whois",
-"registry_transfert_domain" => "ovh_registry_transfert_domain"
+"registry_transfert_domain" => "ovh_registry_transfert_domain",
+"registry_check_renew" => "ovh_registry_check_renew"
 );?>
