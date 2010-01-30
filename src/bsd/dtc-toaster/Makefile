@@ -5,25 +5,25 @@
 # $FreeBSD: ports/sysutils/dtc-toaster/Makefile,v 1.6 2007/09/29 12:22:20 pav Exp $
 #
 
-PORTREVISION=   4
-PKGNAMESUFFIX=  -toaster
+PORTREVISION=	4
+PKGNAMESUFFIX=	-toaster
 
-MAINTAINER=     scrappy@freebsd.org
+MAINTAINER=	scrappy@freebsd.org
 
-CONFLICTS=      dtc-[0-9]* dtc-postfix-courier-[0-9]*
+CONFLICTS=	dtc-[0-9]* dtc-postfix-courier-[0-9]*
 
-WITH_WEBALIZER=yes
-WITH_VISITORS=yes
-WITH_AWSTATS=yes
-WITH_MHONARC=yes
-WITH_MLMMJ=yes
-WITH_PUREFTPD=yes
-WITH_POSTFIX=yes
-WITH_APACHE2=yes
-WITH_PHP5=yes
+WITH_WEBALIZER=	yes
+WITH_VISITORS=	yes
+WITH_AWSTATS=	yes
+WITH_MHONARC=	yes
+WITH_MLMMJ=	yes
+WITH_PUREFTPD=	yes
+WITH_POSTFIX=	yes
+WITH_APACHE2=	yes
+WITH_PHP5=	yes
 
-DESCR=          ${.CURDIR}/pkg-descr
+DESCR=		${.CURDIR}/pkg-descr
 
-MASTERDIR=      ${.CURDIR}/../../sysutils/dtc
+MASTERDIR=	${.CURDIR}/../../sysutils/dtc
 
 .include "${MASTERDIR}/Makefile"

@@ -5,30 +5,31 @@
 # $FreeBSD$
 #
 
-PORTREVISION=   1
-PKGNAMESUFFIX=  -postix-courier
+PORTREVISION=	1
+PKGNAMESUFFIX=	-postix-courier
+
 MAINTAINER=	thomas@goirand.fr
 
-CONFLICTS=      dtc-[0-9]* dtc-toaster-[0-9]*
+CONFLICTS=	dtc-[0-9]* dtc-toaster-[0-9]*
 
-WITH_WEBALIZER=yes
-WITH_AWSTATS=yes
-WITH_VISITORS=yes
-WITH_PUREFTPD=yes
-WITH_POSTFIX=yes
-WITH_APACHE2=yes
-WITH_PHP5=yes
-WITH_MAILDROP=yes
+WITH_WEBALIZER=	yes
+WITH_AWSTATS=	yes
+WITH_VISITORS=	yes
+WITH_PUREFTPD=	yes
+WITH_POSTFIX=	yes
+WITH_APACHE2=	yes
+WITH_PHP5=	yes
+WITH_MAILDROP=	yes
 WITH_COURIER_IMAP=yes
 WITH_CYRUS_SASL2=yes
 WITH_SPAMASSASSIN=yes
-WITH_CLAMAV=yes
-WITH_AMAVIS=yes
+WITH_CLAMAV=	yes
+WITH_AMAVIS=	yes
 WITH_SQUIRRELMAIL=yes
 WITH_PHPMYADMIN=yes
 
-DESCR=          ${.CURDIR}/pkg-descr
+DESCR=		${.CURDIR}/pkg-descr
 
-MASTERDIR=      ${.CURDIR}/../../sysutils/dtc
+MASTERDIR=	${.CURDIR}/../../sysutils/dtc
 
 .include "${MASTERDIR}/Makefile"

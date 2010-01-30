@@ -32,15 +32,15 @@ then
 	echo "WARNING: Your MySQL Server MUST be running."
 	echo "If not, please add mysql_enable=\"YES\" in your"
 	echo "/etc/rc.conf and issue the following cmd:"
-	echo "/usr/local/etc/rc.d/mysql-server start"
+	echo "%%PREFIX%%/etc/rc.d/mysql-server start"
 	echo ""
 	echo "Press ENTER to continue, CTRL-C to abort install"
 	read XX
 fi
 
-. ${LOCALBASE}/www/dtc/admin/install/bsd_config
-. ${LOCALBASE}/www/dtc/admin/install/interactive_installer
-. ${LOCALBASE}/www/dtc/admin/install/functions
+. %%WWWDIR%%/www/dtc/admin/install/bsd_config
+. %%WWWDIR%%/www/dtc/admin/install/interactive_installer
+. %%WWWDIR%%/www/dtc/admin/install/functions
 
 enableBsdBind
 copyBsdPhpIni

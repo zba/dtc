@@ -150,6 +150,8 @@ bsd-ports-packages:
 	@chmod 644 $(PORT_BUILD)/files/dtc-install.in
 	@cp $(BSD_SOURCE_DIR)/dtc/uninstall.sh $(PORT_BUILD)/files/dtc-deinstall.in		# Create package uninstall script
 	@chmod 644 $(PORT_BUILD)/files/dtc-deinstall.in
+	@cp $(BSD_SOURCE_DIR)/dtc/patch-Makefile $(PORT_BUILD)/files/patch-Makefile
+	@chmod 644 $(PORT_BUILD)/files/patch-Makefile
 	@cp $(BSD_SOURCE_DIR)/dtc/pkg-message $(PORT_BUILD)
 	@cp $(BSD_SOURCE_DIR)/dtc/pkg-descr $(PORT_BUILD)
 	@echo "MD5 ($(BSD_ARCH_NAME)) = "`if [ -e /sbin/md5 ] ; then md5 -r $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | cut -f1 -d" " ; else md5sum $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | cut -f1 -d" " ; fi` >$(PORT_BUILD)/distinfo
@@ -169,6 +171,8 @@ bsd-ports-packages:
 	@cat $(PORT_BUILD)/pkg-plist.tmp2 | grep -v "mysql_config.php" >$(PORT_BUILD)/pkg-plist
 	@rm $(PORT_BUILD)/pkg-plist.tmp $(PORT_BUILD)/pkg-plist.tmp2
 	@rm -r $(PKG_PLIST_BUILD)
+	@cd $(PORT_BUILD) && perl -pi -e 's^www/dtc^%%WWWDIR%%^' pkg-plist && perl -pi -e 's^share/doc/dtc^%%DOCSDIR%%^' pkg-plist && perl -pi -e 's^etc/dtc^%%ETCDIR%%^' pkg-plist
+	
 
 	@echo "-> Adding slave ports to the archive"
 	@mkdir -p $(BSD_BUILD_DIR)/sysutils/dtc-postfix-courier

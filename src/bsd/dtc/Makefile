@@ -7,23 +7,22 @@
 
 PORTNAME=	dtc
 PORTVERSION=	__VERSION__
-CATEGORIES=	sysutils local
-VALID_CATEGORIES+=	local
-
-CONFLICTS=      dtc-toaster-[0-9]* dtc-postfix-courier-[0-9]*
-
-MASTER_SITES=	ftp://ftp.gplhost.com/pub/dtc/bsd/ \
+CATEGORIES=	sysutils
+MASTER_SITES=	ftp://ftp.gplhost.sg/pub/dtc/bsd/ \
+		ftp://qala-sg.apt-proxy.gplhost.sg/pub/dtc/bsd/ \
+		ftp://601.apt-proxy.gplhost.com/pub/dtc/bsd/ \
+		ftp://seattle.apt-proxy.gplhost.com/pub/dtc/bsd/ \
+		ftp://ftp.gplhost.com/pub/dtc/bsd/ \
+		ftp://ftp.gplhost.co.uk/pub/dtc/bsd/ \
 		ftp://ftp.gplhost.fr/pub/dtc/bsd/ \
-		ftp://ftp.gplhost.sg/pub/dtc/bsd/
+		ftp://972.apt-proxy.gplhost.com/pub/dtc/bsd/ \
+		http://ftp.gplhost.fr/pub/dtc/bsd/
 
 MAINTAINER=	thomas@goirand.fr
 COMMENT=	A hosting web GUI for admin and accounting all hosting services
 
 RUN_DEPENDS=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server \
-		${LOCALBASE}/libexec/apache22/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql2-dtc \
-		${LOCALBASE}/libexec/apache22/libphp5.so:${PORTSDIR}/www/php5-session \
-		${LOCALBASE}/include/php/ext/gettext/php_gettext.h:${PORTSDIR}/devel/php5-gettext \
-		${LOCALBASE}/include/php/ext/posix/php_posix.h:${PORTSDIR}/sysutils/php5-posix \
+		${LOCALBASE}/${APACHEMODDIR}/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql2-dtc \
 		${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Crypt_CBC \
 		${LOCALBASE}/share/pear/XML/Serializer.php:${PORTSDIR}/devel/pear-XML_Serializer \
 		${LOCALBASE}/www/cgi-bin/sbox:${PORTSDIR}/www/sbox-dtc \
@@ -38,6 +37,8 @@ RUN_DEPENDS=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server \
 		${LOCALBASE}/bin/mlmmj-list:${PORTSDIR}/mail/mlmmj \
 		${LOCALBASE}/bin/ncftpput:${PORTSDIR}/ftp/ncftp3 \
 		${LOCALBASE}/bin/rrdtool:${PORTSDIR}/databases/rrdtool
+
+CONFLICTS=	dtc-toaster-[0-9]* dtc-postfix-courier-[0-9]*
 
 NO_BUILD=	yes
 USE_PHP=	mysql pcre session
@@ -64,7 +65,7 @@ RUN_DEPENDS+=	${LOCALBASE}/bin/visitors:${PORTSDIR}/www/visitors
 
 .if defined(WITH_PUREFTPD)
 RUN_DEPENDS+=	${LOCALBASE}/sbin/pure-ftpd:${PORTSDIR}/ftp/pure-ftpd
-.elif defined(WITH_PROFTPD) 
+.elif defined(WITH_PROFTPD)
 RUN_DEPENDS+=	proftpd-mysql>=0:${PORTSDIR}/ftp/proftpd-mysql
 .endif
 
@@ -79,7 +80,7 @@ RUN_DEPENDS+=	${LOCALBASE}/sbin/pop3login:${PORTSDIR}/mail/courier-imap \
 .endif
 
 .if defined(WITH_MAILDROP)
-RUN_DEPENDS+=   ${LOCALBASE}/bin/maildrop:${PORTSDIR}/mail/maildrop
+RUN_DEPENDS+=	${LOCALBASE}/bin/maildrop:${PORTSDIR}/mail/maildrop
 .endif
 
 .if defined(WITH_CYRUS_SASL2)
@@ -106,29 +107,23 @@ RUN_DEPENDS+=	${LOCALBASE}/www/squirrelmail/src/login.php:${PORTSDIR}/mail/squir
 RUN_DEPENDS+=	${LOCALBASE}/www/phpMyAdmin/index.php:${PORTSDIR}/databases/phpmyadmin
 .endif
 
-.if defined(WITH_APACHE2)
 USE_APACHE=	2.2+
-.endif
 
 .if defined(WITH_DOVECOT)
 RUN_DEPENDS+=	${LOCALBASE}/sbin/dovecot:${PORTSDIR}/mail/dovecot
 .endif
 
-DTCROOT?=	www/dtc
-DTCDIR=		${PREFIX}/${DTCROOT}
-PLIST_SUB+=	DTCROOT="${DTCROOT}"
-
 SUB_FILES=	dtc-install dtc-deinstall
-SUB_LIST+=	QMAIL_DIR="${QMAIL_DIR}"
+SUB_LIST+=	WWWDIR=${WWWDIR} QMAIL_DIR="${QMAIL_DIR}"
 MAN8=		dtc-chroot-shell.8
-NOMANCOMPRESS=	yes
+MANCOMPRESSED=	no
 
 do-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-install ${PREFIX}/sbin/dtc-install
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-deinstall ${PREFIX}/sbin/dtc-deinstall
 	@${MAKE} -C ${WRKDIR}/dtc-__VERSION__ install-dtc-common INSTALL=install \
-		DESTDIR=${PREFIX} DTC_APP_DIR=/www DTC_GEN_DIR=/var CONFIG_DIR=/etc \
-		DTC_DOC_DIR=/share/doc MANUAL_DIR=/man BIN_DIR=/bin UNIX_TYPE=bsd
+		DTC_APP_DIR=${WWWDIR} DTC_GEN_DIR=/var CONFIG_DIR=${PREFIX}/etc DTC_ETC_DIRECTORY=${ETCDIR} \
+		DTC_DOC_DIR=${DOCSDIR} MANUAL_DIR=${MANPREFIX}/man BIN_DIR=${PREFIX}/bin UNIX_TYPE=bsd
 	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
