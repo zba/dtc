@@ -42,7 +42,7 @@ PATH_CGIBIN=/usr/lib/cgi-bin
 PATH_SASLLIB=/usr/lib/sasl2
 
 USER_ADD_CMD=useradd
-USER_ADD_CMD=groupadd
+GROUP_ADD_CMD=groupadd
 USER_MOD_CMD=usermod
 PASSWD_CMD=passwd
 DTC_SAVED_INSTALL_CONFIG=/var/lib/dtc/saved_install_config

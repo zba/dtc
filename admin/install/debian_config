@@ -139,7 +139,7 @@ PATH_SASLLIB=/usr/lib/sasl2
 PATH_BASH=/bin/bash
 
 USER_ADD_CMD=useradd
-USER_ADD_CMD=groupadd
+GROUP_ADD_CMD=groupadd
 USER_MOD_CMD=usermod
 PASSWD_CMD=passwd
 
