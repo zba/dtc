@@ -284,7 +284,7 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 
 // Alter the default shell value for FreeBSD, as the path will be in /usr/local
 if($conf_unix_type == "bsd"){
-	$q = "ALTER TABLE ssh_access CHANGE `shell` `varchar(64) NOT NULL default '/usr/local/bin/dtc-chroot-shell'";
+	$q = "ALTER TABLE ssh_access CHANGE `shell` `shell` varchar(64) NOT NULL default '/usr/local/bin/dtc-chroot-shell'";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 }
 

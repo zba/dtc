@@ -1528,10 +1528,13 @@ generateOpenSSLApacheCert () {
 		if [ ! -e "./"new.cert.csr ] ; then
 			if [ ! -e "./"new.cert.cert ] ; then
 				if [ ! -e "./"new.cert.key ] ; then
+					if [ -z "${conf_cert_statecode}" ] ; then
+						conf_cert_statecode="the state"
+					fi
 					CERTPASS_TMP_FILE=`${MKTEMP} certfilepass.XXXXXX` || exit 1
 					echo $conf_gen_ssl_cert"" >$CERTPASS_TMP_FILE
 					( echo $conf_cert_countrycode;
-					echo "the state";
+					echo ""$conf_cert_statecode;
 					echo ""$conf_cert_locality;
 					echo ""$conf_cert_organization;
 					echo ""$conf_cert_unit;
@@ -3036,7 +3039,7 @@ db_client_flags = 0
 					echo $conf_gen_ssl_cert"" >$CERTPASS_TMP_FILE
 					echoIfVerbose " - generating cert signing request.."
 					( ( echo $conf_cert_countrycode;
-						echo "the state";
+						echo $conf_cert_statecode;
 						echo $conf_cert_locality;
 						echo $conf_cert_organization;
 						echo $conf_cert_unit;
@@ -3187,7 +3190,7 @@ configProftpd () {
 							CERTPASS_TMP_FILE=`${MKTEMP} certfilepass.XXXXXX` || exit 1
 							echo $conf_gen_ssl_cert"" >$CERTPASS_TMP_FILE
 							( echo $conf_cert_countrycode;
-								echo "the state";
+								echo $conf_cert_statecode;
 								echo $conf_cert_locality;
 								echo $conf_cert_organization;
 								echo $conf_cert_unit;
@@ -4105,7 +4108,7 @@ createChrootTemplate () {
 
 	if [ "$UNIX_TYPE" = "freebsd" ] ; then
 		cp -pf /usr/bin/cpio usr/bin
-	        cp -pf /libexec/ld-elf.so.1 libexec
+	        cp -f /libexec/ld-elf.so.1 libexec
 		cp -pf /bin/rm /bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
 	elif [ "$UNIX_TYPE" = "osx" ] ; then
 		cp -pf /usr/bin/cpio usr/bin
@@ -4182,9 +4185,17 @@ createChrootTemplate () {
 		for i in /usr/local/lib/libintl.so.* /usr/local/lib/libiconv.so.* \
 			/usr/lib/libarchive.so.* /usr/lib/libasn1.so.* /usr/lib/libbsm.so.* \
 			/usr/lib/libbz2.so.* /usr/lib/libcom_err.so.* /usr/lib/libgssapi.so.* /usr/lib/libkrb5.so.* /usr/lib/libmagic.so.* \
-			/usr/lib/libroken.so.* /usr/lib/libssh.so.* /usr/local/lib/perl5/5.8.8/mach/CORE/libperl.so ; do
+			/usr/lib/libroken.so.* /usr/lib/libssh.so.* ; do
 			cp -f ${i} usr/lib
 		done
+		LIBPERL=/usr/local/lib/perl5/` ldd /usr/local/bin/perl | grep libperl | cut -d/ -f 6`/mach/CORE/libperl.so
+		if [ ! -f $LIBPERL ]
+		then
+			echo "No PERL Library Found. $LIBPERL"
+			exit 1
+		else
+			cp -f $LIBPERL usr/lib
+		fi
 		cp -f /lib/libc.so* /lib/libm.so* /lib/libedit.so* /lib/libncurses.so* /lib/libcrypt.so.* /lib/libmd.so.* /lib/libutil.so.* \
 			/lib/libz.so.* lib/
 		cp -f /usr/lib/libc.so* usr/lib/
@@ -4930,6 +4941,7 @@ conf_omit_dev_mknod=${conf_omit_dev_mknod}
 conf_gen_ssl_cert=${conf_gen_ssl_cert}
 conf_cert_passphrase=\"${conf_cert_passphrase}\"
 conf_cert_countrycode=${conf_cert_countrycode}
+conf_cert_statecode=${conf_cert_statecode}
 conf_cert_locality=\"${conf_cert_locality}\"
 conf_cert_organization=\"${conf_cert_organization}\"
 conf_cert_unit=\"${conf_cert_unit}\"
@@ -5034,6 +5046,9 @@ DTCsetupDaemons () {
 	modifyResolvConf
 	createChrootTemplate
 	findHtpasswdBinary
+	if [ ! "$UNIX_TYPE" = "debian" ] ; then
+		changeMySQLPassword
+	fi
 	setupDTCDatabase
 	createHostingDirAndFiles
 	chownSquirrelAndFastcgiToDtcUserAndGroup
