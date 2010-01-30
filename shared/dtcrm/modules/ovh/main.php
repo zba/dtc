@@ -13,9 +13,11 @@ function login_ovh(){
 	   global $conf_ovh_username;
        global $conf_ovh_password;
        global $conf_ovh_boolean;
+	   global $conf_ovh_language;
+	   
        $ovh_username = $conf_ovh_username;
        $ovh_password = $conf_ovh_password;
-       $ovh_langage = "fr";
+       $ovh_langage = $conf_ovh_language;
        $ovh_boolean = $conf_ovh_boolean;
 	   $soap = ovh_open();
 	   
@@ -69,6 +71,10 @@ function ovh_registry_get_domain_price($domain_name,$period){
 function ovh_registry_register_domain ($adm_login,$adm_pass,$fqdn,$period,$contacts,$dns_servers,$new_user){
 	
 	global $conf_ovh_username;
+	global $conf_ovh_nicadmin;
+	global $conf_ovh_nictech;
+	global $conf_ovh_nicowner;
+	global $conf_ovh_nicbilling;
 	global $conf_ovh_boolean;
 	global $conf_addr_primary_dns;
     global $conf_addr_secondary_dns;
@@ -79,10 +85,10 @@ function ovh_registry_register_domain ($adm_login,$adm_pass,$fqdn,$period,$conta
     $dnssecond_ovh = $conf_addr_secondary_dns;
 
     $ovh_domain_name = $fqdn;
-    $ovh_nicadmin = $ovh_username;
-    $ovh_nictech = $ovh_username;
-    $ovh_nicowner = $ovh_username;
-    $ovh_nicbilling = $ovh_username;
+    $ovh_nicadmin = $conf_ovh_nicadmin;
+    $ovh_nictech = $conf_ovh_nictech;
+    $ovh_nicowner = $conf_ovh_nicowner;
+    $ovh_nicbilling = $conf_ovh_nicbilling;
 
     $ovh_dns1 = $dns_servers[0];
     $ovh_dns2 = $dns_servers[1];
@@ -130,7 +136,7 @@ if($regz["is_success"] == 1){
 } else{
 	$regz["response_text"] = "Registration failed";
 	}
-	
+
  return $regz;
 }
 
@@ -172,6 +178,10 @@ $ret["attributes"]["reason"] = "Domain name can't be transfered";
 function ovh_registry_transfert_domain($adm_login,$adm_pass,$domain_name,$contacts,$dns_servers,$new_user) {
 	
 	global $conf_ovh_username;
+	global $conf_ovh_nicadmin;
+	global $conf_ovh_nictech;
+	global $conf_ovh_nicowner;
+	global $conf_ovh_nicbilling;
 	global $conf_ovh_boolean;
 	global $conf_addr_primary_dns;
     global $conf_addr_secondary_dns;
@@ -182,10 +192,10 @@ function ovh_registry_transfert_domain($adm_login,$adm_pass,$domain_name,$contac
     $dnssecond_ovh = $conf_addr_secondary_dns;
 
     $ovh_domain_name = $domain_name;
-    $ovh_nicadmin = $ovh_username;
-    $ovh_nictech = $ovh_username;
-    $ovh_nicowner = $ovh_username;
-    $ovh_nicbilling = $ovh_username;
+    $ovh_nicadmin = $conf_ovh_nicadmin;
+    $ovh_nictech = $conf_ovh_nictech;
+    $ovh_nicowner = $conf_ovh_nicowner;
+    $ovh_nicbilling = $conf_ovh_nicbilling;
 
     $ovh_dns1 = $dns_servers[0];
     $ovh_dns2 = $dns_servers[1];
@@ -232,8 +242,62 @@ if($regz["is_success"] == 1){
 return $regz;
  }  
 
-function ovh_registry_renew_domain() {
+function ovh_registry_check_renew($domain_name) {
+	 	try {
+		
+   $soap = ovh_open();
+   $session = login_ovh();
+
+ //domainCheck
+ $result = $soap->domainCheck($session,$domain_name);
+ 
+ //logout
+logout_ovh($soap,$session);
+
+} catch(SoapFault $fault) {
+ echo $fault;
+}
+
+$ret["is_success"] = 1;
+$ret["response_text"] = "Domain name can't be renewed";
+	if($result[2]->value == 1){
+		    $ret["attributes"]["renewable"] = 1;
+  } else {
+			$ret["attributes"]["renewable"] = 0;
+	}
+		
+	return $ret;
+	}
+
+
+function ovh_registry_renew_domain($domain_name) {
+	global $conf_ovh_boolean;
+	$ovh_boolean = $conf_ovh_boolean;
+	
+	$regz["is_success"] = 0;
+	$regz["response_text"] = "Renew Failed";
+	
+	//login 
+try {	
+   $soap = ovh_open();
+   $session = login_ovh();
+   
+	//resellerDomainRenew
+ $soap->resellerDomainRenew($session, $domain_name, $ovh_boolean);
+ $regz["is_success"] = 1;
+ $regz["response_text"] = "Renew successful";
+ 
+ //logout
+logout_ovh($soap,$session);
+
+} catch(SoapFault $fault) {
+ echo $fault;
+} 
+return $regz;
  }
+
+
+
 
 function ovh_registry_get_whois($domain_name) {
 $post_params_hash["domain"] = $domain_name;
@@ -321,18 +385,42 @@ $configurator = array(
 	"title" => _("OVH configuration"),
 	"action" => "configure_ovh_editor",
 	"forward" => array("rub","sousrub"),
-	"desc" => _("Use boolean false for the live server, boolean true for the test one. You have to code"),
+	"desc" => _("Use boolean false for the live server, boolean true for the test one. Languages : fr, en, es, de, pl, it, pt, nl, cz, ie"),
 	"cols" => array(
                  "ovh_server_url" => array(
-			"legend" => _("Server address: "),
+			"legend" => _("Server address : "),
 			"type" => "text",
 			"size" => "20"),
 		"ovh_username" => array(
-			"legend" => _("Username: "),
+			"legend" => _("Username : "),
 			"type" => "text",
 			"size" => "20"),
 		"ovh_password" => array(
-			"legend" => _("Password: "),
+			"legend" => _("Password : "),
+			"type" => "text",
+			"size" => "20"),
+		"ovh_language" => array(
+			"legend" => _("Language : "),
+			"type" => "text",
+			"size" => "20"),
+		"ovh_boolean" => array(
+			"legend" => _("Boolean : "),
+			"type" => "text",
+			"size" => "20"),
+		"ovh_nicadmin" => array(
+			"legend" => _("Nic admin : "),
+			"type" => "text",
+			"size" => "20"),
+		"ovh_nictech" => array(
+			"legend" => _("Nic tech : "),
+			"type" => "text",
+			"size" => "20"),
+		"ovh_nicowner" => array(
+			"legend" => _("Nic owner : "),
+			"type" => "text",
+			"size" => "20"),
+		"ovh_nicbilling" => array(
+			"legend" => _("Nic billing : "),
 			"type" => "text",
 			"size" => "20")
 		)
@@ -353,5 +441,6 @@ $registry_api_modules[] = array(
 "registry_renew_domain" => "ovh_registry_renew_domain",
 "registry_change_password" => "ovh_registry_change_password",
 "registry_get_whois" => "ovh_registry_get_whois",
-"registry_transfert_domain" => "ovh_registry_transfert_domain"
+"registry_transfert_domain" => "ovh_registry_transfert_domain",
+"registry_check_renew" => "ovh_registry_check_renew"
 );?>
