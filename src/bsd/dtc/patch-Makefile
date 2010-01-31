@@ -1,5 +1,5 @@
---- Makefile.orig	2010-01-30 01:02:51.000000000 +0000
-+++ Makefile	2010-01-30 01:04:49.000000000 +0000
+--- Makefile.orig	2010-01-30 13:33:16.000000000 +0000
++++ Makefile	2010-01-30 22:11:28.000000000 +0000
 @@ -45,13 +45,13 @@
  UNIX_TYPE?=debian
  
@@ -7,7 +7,8 @@
 -APP_INST_DIR = $(DESTDIR)$(DTC_APP_DIR)/dtc
 +APP_INST_DIR = $(DESTDIR)$(DTC_APP_DIR)
  # /var/lib
- GENFILES_DIRECTORY = $(DESTDIR)$(DTC_GEN_DIR)/dtc
+-GENFILES_DIRECTORY = $(DESTDIR)$(DTC_GEN_DIR)/dtc
++GENFILES_DIRECTORY = $(DESTDIR)$(DTC_GEN_DIR)
  # /etc
 -DTC_ETC_DIRECTORY = $(DESTDIR)$(CONFIG_DIR)/dtc
 +DTC_ETC_DIRECTORY = $(DESTDIR)$(CONFIG_DIR)
@@ -17,7 +18,7 @@
  # /usr/share/man
  MAN_DIR = $(DESTDIR)$(MANUAL_DIR)
  # /usr/bin
-@@ -372,7 +372,7 @@
+@@ -374,7 +374,7 @@
  	# PHP scripts files served by web server
  	@echo "-> Creating destination folders"
  	for i in $(CREATE_DIRS) ; do $(INSTALL_DIR) -m $(NORMAL_FOLDER) $(APP_INST_DIR)/$$i ; done
