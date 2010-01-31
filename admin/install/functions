@@ -4458,6 +4458,7 @@ enableBsdBind () {
 			echo 'named_enable="YES"              # Run named, the DNS server (or NO).' >> /etc/rc.tmp
 			echo 'named_program="/usr/sbin/named" # path to named, if you want a different one.' >> /etc/rc.tmp
 			echo '#named_flags="-u bind -g bind"  # Flags for named' >> /etc/rc.tmp
+			echo 'named_chrootdir=""              # Don't chroot for named' >> /etc/rc.tmp
 			mv /etc/rc.tmp /etc/rc.conf
 			echo "named /etc/rc.conf injected"
 		else
