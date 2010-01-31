@@ -27,6 +27,7 @@ PSMYSQL=`ps -axf|grep mysqld|grep -v grep|awk '{print $1}'`
 
 while [ "$PSMYSQL" = "" ]
 do
+	echo ""
 	echo "### MYSQL CONFIGURATION ###"
 	echo ""
 	echo "WARNING: Your MySQL Server MUST be running."
@@ -35,23 +36,28 @@ do
 	echo "%%PREFIX%%/etc/rc.d/mysql-server start"
 	echo ""
 	echo "Press ENTER to continue, CTRL-C to abort install"
-	echo "or start and ENTER to hace MySQL started for you"
+	echo "or start and ENTER to have MySQL started for you"
 	startmysql=""
 	read startmysql
 
 	if [ "$startmysql" = start ]
 	then
 		echo "Starting MySQL"
-		if [ grep mysql_start /etc/rc.conf ]
+		if grep mysql_start /etc/rc.conf
 		then
-			echo "/etc/rc.conf already configured. skipping."
+			echo "Skipping /etc/rc.conf already configured."
 		else
+			echo "Backing up /etc/rc.conf."
+			cp /etc/rc.conf /etc/rc.conf.DTC.Backup
 			echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
-			echo "mysql_start=\"YES\"" >>/etc/rc.conf
-			echo "### End of DTC configuration - please do not remove" >>/etc/rc.conf
+			echo "mysql_enable=\"YES\"" >>/etc/rc.conf
+#			echo "### End of DTC configuration - please do not remove" >>/etc/rc.conf
 		fi
 		%%PREFIX%%/etc/rc.d/mysql-server start
+		#Let MySQL finish starting and show on ps
+		sleep 5
 	fi
+	PSMYSQL=`ps -axf|grep mysqld|grep -v grep|awk '{print $1}'`
 done
 
 . %%WWWDIR%%/admin/install/bsd_config

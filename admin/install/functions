@@ -1360,6 +1360,20 @@ modifyHTTPD_CONF () {
 	then
 		echoIfVerbose "httpd.conf has been configured before : skipping include inssertion !"
 	else
+		if [ $UNIX_TYPE = freebsd ]
+		then
+			if grep apache22_enable /etc/rc.conf
+			then
+				echo "Apache already enabled in /etc/rc.conf"
+			else
+				if grep "Configured by DTC" /etc/rc.conf
+				then
+					echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
+				fi
+				echo "Activating apache on /etc/rc.conf"
+				echo "apache22_enable=\"YES\"" >>/etc/rc.conf
+			fi
+		fi
 		if ! [ -f $PATH_HTTPD_CONF.DTC.backup ]
 		then
 			echoIfVerbose "===> Backuping "$PATH_HTTPD_CONF
@@ -4433,8 +4447,13 @@ enableBsdBind () {
 		nonamed=`cat /etc/rc.conf | grep named  | awk '{print $1}' | grep NO`
 		if [ "$named" = "" ] || [ "$nonamed" != "" ] ; then
 			echo "===> FreeBSD or NetBSD: Backing up /etc/rc.conf and inserting named_enable=YES"
-			cp /etc/rc.conf /etc/rc.conf.old
-			echo "/etc/rc.conf /etc/rc.conf.old saved"
+			if [ -f /etc/rc.conf.DTC.Backup ]
+			then
+				cp /etc/rc.conf /etc/rc.conf.DTC.Backup
+				echo "/etc/rc.conf /etc/rc.conf.DTC.Backup saved"
+			else
+				echo "/etc/rc.conf.DTC.Backup already exists"
+			fi
 			cat /etc/rc.conf | grep -v "named" >> /etc/rc.tmp
 			echo 'named_enable="YES"              # Run named, the DNS server (or NO).' >> /etc/rc.tmp
 			echo 'named_program="/usr/sbin/named" # path to named, if you want a different one.' >> /etc/rc.tmp
