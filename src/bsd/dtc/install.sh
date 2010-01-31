@@ -43,7 +43,7 @@ do
 	if [ "$startmysql" = start ]
 	then
 		echo "Starting MySQL"
-		if grep mysql_start /etc/rc.conf
+		if grep mysql_enable /etc/rc.conf
 		then
 			echo "Skipping /etc/rc.conf already configured."
 		else

@@ -1368,6 +1368,8 @@ modifyHTTPD_CONF () {
 			else
 				if grep "Configured by DTC" /etc/rc.conf
 				then
+					## Configure already echoed
+				else
 					echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
 				fi
 				echo "Activating apache on /etc/rc.conf"
@@ -4454,11 +4456,11 @@ enableBsdBind () {
 			else
 				echo "/etc/rc.conf.DTC.Backup already exists"
 			fi
-			cat /etc/rc.conf | grep -v "named" >> /etc/rc.tmp
+			cat /etc/rc.conf | grep -v "named" > /etc/rc.tmp
 			echo 'named_enable="YES"              # Run named, the DNS server (or NO).' >> /etc/rc.tmp
 			echo 'named_program="/usr/sbin/named" # path to named, if you want a different one.' >> /etc/rc.tmp
 			echo '#named_flags="-u bind -g bind"  # Flags for named' >> /etc/rc.tmp
-			echo 'named_chrootdir=""              # Don't chroot for named' >> /etc/rc.tmp
+			echo 'named_chrootdir=""              # Do not chroot for named' >> /etc/rc.tmp
 			mv /etc/rc.tmp /etc/rc.conf
 			echo "named /etc/rc.conf injected"
 		else
