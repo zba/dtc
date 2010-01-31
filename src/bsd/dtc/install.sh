@@ -25,8 +25,8 @@ fi
 # DATABASE CONFIGURATION
 PSMYSQL=`ps -axf|grep mysqld|grep -v grep|awk '{print $1}'`
 
-if [ "$PSMYSQL" = "" ]
-then
+while [ "$PSMYSQL" = "" ]
+do
 	echo "### MYSQL CONFIGURATION ###"
 	echo ""
 	echo "WARNING: Your MySQL Server MUST be running."
@@ -35,12 +35,28 @@ then
 	echo "%%PREFIX%%/etc/rc.d/mysql-server start"
 	echo ""
 	echo "Press ENTER to continue, CTRL-C to abort install"
-	read XX
-fi
+	echo "or start and ENTER to hace MySQL started for you"
+	startmysql=""
+	read startmysql
 
-. %%WWWDIR%%/www/dtc/admin/install/bsd_config
-. %%WWWDIR%%/www/dtc/admin/install/interactive_installer
-. %%WWWDIR%%/www/dtc/admin/install/functions
+	if [ "$startmysql" = start ]
+	then
+		echo "Starting MySQL"
+		if [ grep mysql_start /etc/rc.conf ]
+		then
+			echo "/etc/rc.conf already configured. skipping."
+		else
+			echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
+			echo "mysql_start=\"YES\"" >>/etc/rc.conf
+			echo "### End of DTC configuration - please do not remove" >>/etc/rc.conf
+		fi
+		%%PREFIX%%/etc/rc.d/mysql-server start
+	fi
+done
+
+. %%WWWDIR%%/admin/install/bsd_config
+. %%WWWDIR%%/admin/install/interactive_installer
+. %%WWWDIR%%/admin/install/functions
 
 enableBsdBind
 copyBsdPhpIni

@@ -3164,6 +3164,12 @@ configProftpd () {
 	#
 	if [ -f $PATH_PROFTPD_CONF ] ; then
 		echoIfVerbose "===> Adding directives to proftpd.conf"
+		PATH_PROFTPD_DIR=`dirname $PATH_PROFTPD_CONF`
+		if [ `basename $PATH_PROFTPD_DIR` != proftpd ]
+		then
+			PATH_PROFTPD_DIR=$PATH_PROFTPD_DIR/proftpd
+		fi
+		mkdir -p $PATH_PROFTPD_DIR
 		if grep "Configured by DTC" $PATH_PROFTPD_CONF >/dev/null
 		then
 			echoIfVerbose "proftpd.conf has been configured before : skipping include inssertion !"
@@ -3215,8 +3221,8 @@ configProftpd () {
 			echo "AuthOrder		mod_sql.c mod_auth_pam.c mod_auth_unix.c" >> $TMP_FILE
 			echo "IdentLookups	off" >> $TMP_FILE
 			echo "DefaultRoot	~" >> $TMP_FILE
-			echo "Include /etc/proftpd/sql-dtc.conf" >> $TMP_FILE
-			echo "Include /etc/proftpd/tls-dtc.conf" >> $TMP_FILE
+			echo "Include $PATH_PROFTPD_DIR/sql-dtc.conf" >> $TMP_FILE
+			echo "Include $PATH_PROFTPD_DIR/tls-dtc.conf" >> $TMP_FILE
 			echo "# End of DTC configuration v0.30 : please don't touch this line !" >> $TMP_FILE
 			TMP_FILE_TLS=`${MKTEMP} DTC_install.proftp.conf.tls.XXXXXX` || exit 1
 			if [ -e $PATH_DTC_ETC"/ssl/proftpd/new.cert.cert" ] ; then
@@ -3278,8 +3284,8 @@ SQLNamedQuery         ulcount UPDATE \"ul_count=ul_count+1 WHERE login='%u'\" ft
 			echo "</IfModule>" >>$TMP_FILE_SQL
 
 			cat < $TMP_FILE >>$PATH_PROFTPD_CONF
-			mv $TMP_FILE_TLS /etc/proftpd/tls-dtc.conf
-			mv $TMP_FILE_SQL /etc/proftpd/sql-dtc.conf
+			mv $TMP_FILE_TLS $PATH_PROFTPD_DIR/tls-dtc.conf
+			mv $TMP_FILE_SQL $PATH_PROFTPD_DIR/sql-dtc.conf
 			rm $TMP_FILE
 			# This restarts proftpd if under debian like system
 			# work has to be done under other OS to restart the ftp daemon
@@ -3661,15 +3667,15 @@ groups.member_groupid_column = ssh_user_group.group_id;
 				if [ "$UNIX_TYPE" = "freebsd" ] ; then
 					echo "
 [queries]
-getpwnam    SELECT login,crypt,uid,gid,'','default','DTC User',homedir,shell,2145916000 FROM ssh_access WHERE login='%1$s' LIMIT 1
-getpwuid    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE uid='%1$u' LIMIT 1
+getpwnam    SELECT login,crypt,uid,gid,'','default','DTC User',homedir,shell,2145916000 FROM ssh_access WHERE login='%1\$s' LIMIT 1
+getpwuid    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access WHERE uid='%1\$u' LIMIT 1
 getpwent    SELECT login,'*',uid,gid,'DTC User',homedir,shell FROM ssh_access
-getgrnam    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_name='%1$s' LIMIT 1
-getgrgid    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_id='%1$u' LIMIT 1
+getgrnam    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_name='%1\$s' LIMIT 1
+getgrgid    SELECT group_name,group_password,group_id FROM ssh_groups WHERE group_id='%1\$u' LIMIT 1
 getgrent    SELECT group_name,group_password,group_id FROM ssh_groups
-memsbygid   SELECT login FROM ssh_access WHERE gid='%1$u'
-gidsbymem   SELECT gid  FROM ssh_access WHERE login='%1$s'
-getspnam    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access WHERE ssh_access.login='%1$s' LIMIT 1
+memsbygid   SELECT login FROM ssh_access WHERE gid='%1\$u'
+gidsbymem   SELECT gid  FROM ssh_access WHERE login='%1\$s'
+getspnam    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access WHERE ssh_access.login='%1\$s' LIMIT 1
 getspent    SELECT login,crypt,UNIX_TIMESTAMP() - 10,1,2,7,-1,-1,0 FROM ssh_access
 
 [server]
