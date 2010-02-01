@@ -1367,11 +1367,11 @@ modifyHTTPD_CONF () {
 	else
 		if [ $UNIX_TYPE = freebsd ]
 		then
-			if grep apache22_enable /etc/rc.conf
+			if grep apache22_enable /etc/rc.conf >/dev/null
 			then
 				echo "Apache already enabled in /etc/rc.conf"
 			else
-				if grep "Configured by DTC" /etc/rc.conf
+				if grep "Configured by DTC" /etc/rc.conf >/dev/null
 				then
 					## Configure already echoed
 				else
@@ -2806,6 +2806,52 @@ prepareMlmmjSpool () {
 }
 
 modifyCourierConfig () {
+	# Activate courier in rc.conf on FreeBSD
+	if [ $UNIX_TYPE = freebsd ]
+	then
+		echo "Checking activation of Courier Daemons"
+		if grep "Configured by DTC" /etc/rc.conf >/dev/null
+		then
+			# Configured already echoed
+		else
+			echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
+		fi
+
+		if grep courier_authdaemond /etc/rc.conf >/dev/null
+		then
+			# Authdaemon already activated
+		else
+			echo "courier_authdaemond_enable=\"YES\"" >>/etc/rc.conf
+		fi
+
+		if grep courier_imap_pop3d_enable /etc/rc.conf >/dev/null
+		then
+			# pop3d already activated
+		else
+			echo "courier_imap_pop3d_enable=\"YES\"" >>/etc/rc.conf
+		fi
+
+		if grep courier_imap_imapd_enable /etc/rc.conf >/dev/null
+		then
+			# imapd already activated
+		else
+			echo "courier_imap_imapd_enable=\"YES\"" >>/etc/rc.conf
+		fi
+
+		if grep courier_imap_pop3d_ssl /etc/rc.conf >/dev/null
+		then
+			# pop3d_ssl already activated
+		else
+			echo "courier_imap_pop3d_ssl_enable=\"YES\"" >>/etc/rc.conf
+		fi
+
+		if grep courier_imap_imapd_ssl /etc/rc.conf >/dev/null
+		then
+			# imapd_ssl already activated
+		else
+			echo "courier_imap_imapd_ssl_enable=\"YES\"" >>/etc/rc.conf
+		fi
+	fi
 	# check to see if we have a userdb FILE, rather than a FOLDER, rm -r if any folder...
 	if [ -d "/etc/authlib" ] ; then
 		COURIER_FOLDER="/etc/authlib"
@@ -2938,7 +2984,7 @@ modifyDovecotConfig () {
 		echoIfVerbose "===> Adding directives to dovecot.conf"
 		DOVECOT_CONF_OK="no"
 		if [ -f "${PATH_DOVECOT_CONF}" ] ; then
-			if grep -q "Configured by DTC" $PATH_DOVECOT_CONF ; then
+			if grep -q "Configured by DTC" $PATH_DOVECOT_CONF >/dev/null; then
 				DOVECOT_CONF_OK="yes"
 			fi
 		fi
@@ -3195,7 +3241,7 @@ configProftpd () {
 	if [ -f $PATH_PROFTPD_CONF ] ; then
 		if [ $UNIX_TYPE = freebsd ]
 		then
-			if grep proftpd_enable /etc/rc.conf
+			if grep proftpd_enable /etc/rc.conf >/dev/null
 			then
 				echoIfVerbose "===> proftpd already activated"
 			else
@@ -3810,10 +3856,10 @@ password ${MYSQL_DTCDAEMONS_PASS}
 	# Fixup the Lenny /etc/pam.d/common-auth to use libpam-unix2
 	if [ -e /etc/pam.d/common-auth ] ; then
 		if [ -e /lib/security/pam_unix2.so ] ; then
-			if grep "pam_unix.so" /etc/pam.d/common-auth ; then
+			if grep "pam_unix.so" /etc/pam.d/common-auth >/dev/null ; then
 				sed -i "s/pam_unix.so/pam_unix2.so/" /etc/pam.d/common-auth
 			fi
-			if grep "nullok_secure" /etc/pam.d/common-auth ; then
+			if grep "nullok_secure" /etc/pam.d/common-auth >/dev/null ; then
 				sed -i "s/nullok_secure/nullok/" /etc/pam.d/common-auth
 			fi
 		fi
@@ -3903,7 +3949,7 @@ modifyCrontab () {
 	echoIfVerbose "===> Installing cron script"
 	if [ "$UNIX_TYPE" = "freebsd" ] && crontab -l | grep -q 'Configured by DTC'; then
 		echoIfVerbose "root crontab has been configured before : skipping include insertion"
-	elif grep -q "Configured by DTC " $PATH_CRONTAB_CONF; then
+	elif grep -q "Configured by DTC " $PATH_CRONTAB_CONF >/dev/null ; then
 		echoIfVerbose "/etc/crontab has been configured before : skinping include insertion"
 	else
 		echoIfVerbose "Inserting DTC cronjob in "$PATH_CRONTAB_CONF
@@ -5130,7 +5176,7 @@ DTCsetupDaemons () {
 	modifyCrontab
 	if [ $UNIX_TYPE = freebsd ]
 	then
-		if grep "End of DTC configuration" /etc/rc.conf
+		if grep "End of DTC configuration" /etc/rc.conf >/dev/null
 		then
 			#/etc/rc.conf already configured before
 		else
