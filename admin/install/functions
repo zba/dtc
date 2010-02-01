@@ -2780,7 +2780,7 @@ prepareMlmmjSpool () {
 	if [ ${MLMMJ_TYPE} -o "no.sh" ] ; then
 		echoIfVerbose "===> Detected presence of mlmmj... prepping environment..."
 		# symlink the .sh to the non .sh, for the genfiles 
-		TMP_MLMMJ_PATH_NOSH=`dirname $TMP_MLMMJ_PATH`/`basename $TMP_MLMMJ_PATH .sh
+		TMP_MLMMJ_PATH_NOSH=`dirname $TMP_MLMMJ_PATH`/`basename $TMP_MLMMJ_PATH .sh`
 		if [ ! -e $TMP_MLMMJ_PATH_NOSH ] ; then
 			echo ln -s $TMP_MLMMJ_PATH_NOSH $TMP_MLMMJ_PATH
 			ln -s $TMP_MLMMJ_PATH_NOSH $TMP_MLMMJ_PATH
@@ -3194,7 +3194,7 @@ configProftpd () {
 				echoIfVerbose "===> proftpd already activated"
 			else
 				echoIfVerbose "===> Activating proftpd in /etc/rc.conf"
-				echo "proftpd_enable=\"YES\" >>/etc/rc.conf
+				echo "proftpd_enable=\"YES\"" >>/etc/rc.conf
 			fi
 		fi
 		echoIfVerbose "===> Adding directives to proftpd.conf"
