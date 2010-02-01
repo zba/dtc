@@ -2859,7 +2859,8 @@ mail server administrator about it.
 			echoIfVerbose "Inserting DTC configuration inside "$PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc
 			if ! [ -f $PATH_COURIER_AUTHD_CONF_PATH.DTC.backup ]
 			then
-				cp -f $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc $PATH_COURIER_AUTHD_CONF_PATH.DTC.backup
+				cp -f $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc.DTC.backup
+				cp -f $PATH_COURIER_AUTHD_CONF_PATH/authmysqlrc $PATH_COURIER_AUTHD_CONF_PATH/authmysqlrc.DTC.backup
 			fi
 			TMP_FILE=`${MKTEMP} DTC_install.courier.conf.XXXXXX` || exit 1
 			echo "# Configured by DTC v0.12 : Please don't touch this line !" > $TMP_FILE
