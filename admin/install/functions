@@ -1991,8 +1991,12 @@ setupAmavisConf () {
 	#
 	# Make some changes to the amavisd-new configuration to allow clamav to work with it cleanly
 	#
+	if [ -z "$AMAVISD_USER" ]
+	then
+		AMAVISD_USER=amavis
+	fi
 
-	# make sure the amavisd configuration has 'amavis' user and group
+	# make sure the amavisd configuration has '$AMAVISD_USER' user and group
 
 	if [ $UNIX_TYPE = freebsd ]
 	then
@@ -2031,18 +2035,23 @@ setupAmavisConf () {
 
 	        # make sure our users exist for amavis
 	        # turn back on error handling, these users probably exist already
-	        $GROUP_ADD_CMD amavis > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ] ; then
-			echoIfVerbose "-> Group amavis already exists..."
-	        fi
-	        $USER_ADD_CMD -g amavis amavis > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ] ; then
-			echoIfVerbose "-> User amavis already exists..."
-	        fi
-	        $PASSWD_CMD -l amavis > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ] ; then
-			echoIfVerbose "Change password failed for amavis user"
-	        fi
+	        if [ $UNIX_TYPE = freebsd ]
+		then
+			# On FreeBSD amavisd user and group are created with app install
+		else
+			$GROUP_ADD_CMD $AMAVISD_USER > /dev/null 2>&1 || true
+	        	if [ $? -ne 0 ] ; then
+				echoIfVerbose "-> Group amavis already exists..."
+	        	fi
+	        	$USER_ADD_CMD -g $AMAVISD_USER $AMAVISD_USER > /dev/null 2>&1 || true
+	        	if [ $? -ne 0 ] ; then
+				echoIfVerbose "-> User amavis already exists..."
+	        	fi
+	        	$PASSWD_CMD -l $AMAVISD_USER > /dev/null 2>&1 || true
+	        	if [ $? -ne 0 ] ; then
+				echoIfVerbose "Change password failed for amavis user"
+	        	fi
+		fi
 
 	        if grep "Configured by DTC" "$PATH_AMAVISD_CONF" >/dev/null; then
 			echoIfVerbose "$PATH_AMAVISD_CONF already configured..."
@@ -2060,8 +2069,8 @@ setupAmavisConf () {
 
                 	TMP_FILE=`${MKTEMP} dtc_install.amavisd.conf.XXXXXX` || exit 1
                 	echo "# Configured by DTC $VERSION" >> $TMP_FILE
-                	echo "\$daemon_user  = 'amavis';" >> $TMP_FILE
-                	echo "\$daemon_group  = 'amavis';" >> $TMP_FILE
+                	echo "\$daemon_user  = '$AMAVISD_USER';" >> $TMP_FILE
+                	echo "\$daemon_group  = '$AMAVISD_USER';" >> $TMP_FILE
 			echo "\$max_servers=5;" >> $TMP_FILE
                 	echo "\$final_virus_destiny = D_DISCARD;" >> $TMP_FILE
                 	echo "\$final_spam_destiny = D_PASS;" >> $TMP_FILE
@@ -2144,30 +2153,40 @@ modifyClamavConf () {
 
                 echoIfVerbose "===> Checking user and group configuration for clamav..."
 
+		if [ -z "$AMAVISD_USER" ]
+		then
+			AMAVISD_USER=amavis
+		fi
+
 	        # make sure our users exist for amavis
 	        # turn back on error handling, these users probably exist already
-	        $GROUP_ADD_CMD clamav > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ] ; then
-			echoIfVerbose "-> Group clamav already exists..."
-	        fi
-	        $USER_ADD_CMD -g clamav clamav > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ] ; then
-			echoIfVerbose "-> User clamav already exists..."
-	        fi
-	        $PASSWD_CMD -l clamav > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ] ; then
-			echoIfVerbose "-> Change password failed for clamav user"
-	        fi
-		# now add amavisd to the clamav group and vice versa
-		$USER_MOD_CMD -G clamav,amavis clamav > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ] ; then
-			echoIfVerbose "-> Change group failed for clamav user"
+	        if [ $UNIX_TYPE = freebsd ]
+		then
+			# On FreeBSD tha clamav user and group created on the app install.
+		else
+			$GROUP_ADD_CMD clamav > /dev/null 2>&1 || true
+	        	if [ $? -ne 0 ] ; then
+				echoIfVerbose "-> Group clamav already exists..."
+	        	fi
+	        	$USER_ADD_CMD -g clamav clamav > /dev/null 2>&1 || true
+	        	if [ $? -ne 0 ] ; then
+				echoIfVerbose "-> User clamav already exists..."
+	        	fi
+	        	$PASSWD_CMD -l clamav > /dev/null 2>&1 || true
+	        	if [ $? -ne 0 ] ; then
+				echoIfVerbose "-> Change password failed for clamav user"
+	        	fi
+			# now add amavisd to the clamav group and vice versa
+			$USER_MOD_CMD -G clamav,$AMAVISD_USER clamav > /dev/null 2>&1 || true
+	        	if [ $? -ne 0 ] ; then
+				echoIfVerbose "-> Change group failed for clamav user"
+			fi
+			$USER_MOD_CMD -G $AMAVISD_USER,clamav $AMAVISD_USER > /dev/null 2>&1 || true
+	        	if [ $? -ne 0 ] ; then
+				echoIfVerbose "-> Change group failed for amavis user"
+			fi
 		fi
-		$USER_MOD_CMD -G amavis,clamav amavis > /dev/null 2>&1 || true
-	        if [ $? -ne 0 ] ; then
-			echoIfVerbose "-> Change group failed for amavis user"
-		fi
-		
+
 		# need to add the following to the config file:
 		# AllowSupplementaryGroups
 		# LocalSocket /var/run/clamav/clamd.ctl
@@ -2310,6 +2329,11 @@ modifyPostfixConfig () {
 
 	# Declare this makes the test when appenning the configuration for SASL
 	# works if you don't have SASL
+
+	if [ -z "$AMAVISD_USER" ]
+	then
+		AMAVISD_USER=amavis
+	fi
 
 	SASLTMP_FILE="/thisfiledoesnotexists"
 	if [ -f "$PATH_POSTFIX_CONF" ] ; then
@@ -2600,11 +2624,11 @@ transport_maps = hash:$PATH_POSTFIX_ETC/transport
 					echo "# Adds support for the sa-learn script
 sa-spam unix    -       n       n       -       -       pipe
     -o smtpd_client_restrictions=permit_sasl_authenticated,permit_mynetworks,reject
-    user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper spam \${sender}
+    user=$AMAVISD_USER:$AMAVISD_USER argv=$PATH_DTC_ADMIN/sa-wrapper spam \${sender}
 
 sa-ham  unix    -       n       n       -       -       pipe
     -o smtpd_client_restrictions=permit_sasl_authenticated,permit_mynetworks,reject
-    user=amavis:amavis argv=$PATH_DTC_ADMIN/sa-wrapper ham  \${sender}
+    user=$AMAVISD_USER:$AMAVISD_USER argv=$PATH_DTC_ADMIN/sa-wrapper ham  \${sender}
 
 " >> $TMP_FILE2
 				fi
