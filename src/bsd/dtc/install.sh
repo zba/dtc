@@ -51,7 +51,6 @@ do
 			cp /etc/rc.conf /etc/rc.conf.DTC.Backup
 			echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
 			echo "mysql_enable=\"YES\"" >>/etc/rc.conf
-#			echo "### End of DTC configuration - please do not remove" >>/etc/rc.conf
 		fi
 		%%PREFIX%%/etc/rc.d/mysql-server start
 		#Let MySQL finish starting and show on ps

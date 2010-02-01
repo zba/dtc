@@ -2758,13 +2758,18 @@ prepareMlmmjSpool () {
 			TMP_MLMMJ_PATH=/usr/bin/mlmmj-make-ml.sh
 		else
 			if [ -x "${LOCALBASE}/bin/mlmmj-make-ml" ] ; then
-				TMP_MLMMJ_PATH=/usr/bin/mlmmj-make-ml
+				TMP_MLMMJ_PATH=${LOCALBASE}/usr/bin/mlmmj-make-ml
+				MLMMJ_TYPE="no.sh"
 			else
-				TMP_MLMMJ_PATH=`which mlmmj-make-ml.sh`
-				if [ -z "${TMP_MLMMJ_PATH}" ] ; then
+				if [ -x "${LOCALBASE}/bin/mlmmj-make-ml.sh" ] ; then
+					TMP_MLMMJ_PATH=${LOCALBASE}/usr/bin/mlmmj-make-ml.sh
+				else
 					TMP_MLMMJ_PATH=`which mlmmj-make-ml.sh`
-					if ! [ -z "${TMP_MLMMJ_PATH}" ] ; then
-						MLMMJ_TYPE="no.sh"
+					if [ -z "${TMP_MLMMJ_PATH}" ] ; then
+						TMP_MLMMJ_PATH=`which mlmmj-make-ml.sh`
+						if ! [ -z "${TMP_MLMMJ_PATH}" ] ; then
+							MLMMJ_TYPE="no.sh"
+						fi
 					fi
 				fi
 			fi
@@ -2775,13 +2780,16 @@ prepareMlmmjSpool () {
 	if [ ${MLMMJ_TYPE} -o "no.sh" ] ; then
 		echoIfVerbose "===> Detected presence of mlmmj... prepping environment..."
 		# symlink the .sh to the non .sh, for the genfiles 
-		if [ ! -e "/usr/bin/mlmmj-make-ml" ] ; then
-			ln -s "/usr/bin/mlmmj-make-ml.sh" "/usr/bin/mlmmj-make-ml"
+		TMP_MLMMJ_PATH_NOSH=`dirname $TMP_MLMMJ_PATH`/`basename $TMP_MLMMJ_PATH .sh
+		if [ ! -e $TMP_MLMMJ_PATH_NOSH ] ; then
+			echo ln -s $TMP_MLMMJ_PATH_NOSH $TMP_MLMMJ_PATH
+			ln -s $TMP_MLMMJ_PATH_NOSH $TMP_MLMMJ_PATH
 		fi
 	fi
-	mkdir -p /etc/mlmmj/lists
-	chown -R root:${CONF_DTC_SYSTEM_GROUPNAME} /etc/mlmmj/lists
-	chmod -R g+w /etc/mlmmj/lists
+	MLMMJ_LIST_PATH=/etc/mlmmj/lists
+	mkdir -p $MLMMJ_LIST_PATH
+	chown -R root:${CONF_DTC_SYSTEM_GROUPNAME} $MLMMJ_LIST_PATH
+	chmod -R g+w $MLMMJ_LIST_PATH
 
 	# create mlmmj spool directory if it doesn't exist yet
 	if [ ! -e /var/spool/mlmmj/ ] ; then
@@ -3179,6 +3187,16 @@ configProftpd () {
 	# Install proftpd.conf to access to the database
 	#
 	if [ -f $PATH_PROFTPD_CONF ] ; then
+		if [ $UNIX_TYPE = freebsd ]
+		then
+			if grep proftpd_enable /etc/rc.conf
+			then
+				echoIfVerbose "===> proftpd already activated"
+			else
+				echoIfVerbose "===> Activating proftpd in /etc/rc.conf"
+				echo "proftpd_enable=\"YES\" >>/etc/rc.conf
+			fi
+		fi
 		echoIfVerbose "===> Adding directives to proftpd.conf"
 		PATH_PROFTPD_DIR=`dirname $PATH_PROFTPD_CONF`
 		if [ `basename $PATH_PROFTPD_DIR` != proftpd ]
@@ -5104,6 +5122,15 @@ DTCsetupDaemons () {
 	modifyNSSConfig
 	modifyMysqmail
 	modifyCrontab
+	if [ $UNIX_TYPE = freebsd ]
+	then
+		if grep "End of DTC configuration" /etc/rc.conf
+		then
+			#/etc/rc.conf already configured before
+		else
+			echo "### End of DTC configuration - please do not remove" >>/etc/rc.conf
+		fi
+	fi
 
 	startPhpCronScript
 	echoEndMessage
