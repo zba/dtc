@@ -375,6 +375,11 @@ modifyResolvConf () {
 	else
 		echoIfVerbose "Adding nameserver 127.0.0.1 to /etc/resolv.conf"
 		TMP_FILE=`mktemp -t DTC_resolv.conf.XXXXXX` || exit 1
+		if [ ! -f /etc/resolv.conf.DTC.Backup ]
+		then
+			echoIfVerbose "Backing up /etc/resolv.conf"
+			cp /etc/resolv.conf /etc/resolv.conf.DTC.Backup
+		fi
 		if grep "search" /etc/resolv.conf >/dev/null ; then
 			grep "search" /etc/resolv.conf > $TMP_FILE
 		fi
