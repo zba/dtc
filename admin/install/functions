@@ -1994,6 +1994,24 @@ setupAmavisConf () {
 
 	# make sure the amavisd configuration has 'amavis' user and group
 
+	if [ $UNIX_TYPE = freebsd ]
+	then
+		if grep "Configured by DTC" /etc/rc.conf >/dev/null
+		then
+			# rc.conf already spammed
+		else
+			echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
+		fi
+
+		if grep amavisd_enable /etc/rc.conf >/dev/null
+		then
+			echo "Amavisd already activated in rc.conf"
+		else
+			echo "Activating amavisd on /etc/rc.conf"
+			echo "amavisd_enable=\"YES\"" >>/etc/rc.conf
+		fi
+	fi
+
 	if [ -n ""$PATH_AMAVISD_CONF ] ; then
 		PATH_AMAVISD_ETC=`dirname $PATH_AMAVISD_CONF`
 	fi
@@ -2106,6 +2124,24 @@ if (defined @\$ref)
 
 modifyClamavConf () {
 	if [ -f "$PATH_CLAMAV_CONF" ] ; then
+		if [ $UNIX_TYPE = freebsd ]
+		then
+			if grep "Configured by DTC" /etc/rc.conf >/dev/null
+			then
+				# rc.conf already spammed
+			else
+				echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
+			fi
+			if grep clamav_clamd /etc/rc.conf >/dev/null
+			then
+				echo "Clamav daemon already activated on rc.conf"
+			else
+				echo "Activating clamav daemon on rc.conf"
+				echo "clamav_clamd_enable=\"YES\"" >>/etc/rc.conf
+				echo "clamav_freshclam_enable=\"YES\"" >>/etc/rc.conf
+			fi
+		fi
+
                 echoIfVerbose "===> Checking user and group configuration for clamav..."
 
 	        # make sure our users exist for amavis

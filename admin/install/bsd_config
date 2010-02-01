@@ -48,6 +48,8 @@ FREERADIUS_ETC="${LOCALBASE}/etc/raddb"
 PATH_DTC_SHARED="${PREFIX}/www/dtc"
 PATH_CRONTAB_CONF=/etc/crontab
 PATH_AWSTATS_ETC=${LOCALBASE}/etc/awstats
+PATH_AMAVISD_CONF=${LOCALBASE}/etc/amavisd.conf
+PATH_CLAMAV_CONF=${LOCALBASE}/etc/clamd.conf
 MYSQL_DB_SOCKET_PATH="/tmp/mysql.sock"
 PATH_CGIBIN="${LOCALBASE}/www/cgi-bin"
 
