@@ -1989,7 +1989,7 @@ linkQmailFilesToGenerated () {
 setupAmavisConf () {
 	echoIfVerbose "===> Customizing amavis config"
 	#
-	# Make some changes to the amavisd-new configuration to allow clamav to work with it cleanly
+	# Make some changes to the amavisd-new configuration to allow clamav to work with it cleanly.
 	#
 	if [ -z "$AMAVISD_USER" ]
 	then
