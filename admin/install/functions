@@ -2534,12 +2534,12 @@ smtpd_sasl_security_options = noanonymous
 smtpd_sasl_local_domain = /etc/mailname
 smtpd_sasl_auth_enable = yes
 smtpd_tls_auth_only = no"
-				echo "smtp_sasl_auth_enable = no
-smtpd_sasl_security_options = noanonymous
-smtpd_sasl_local_domain = /etc/mailname
-smtpd_sasl_auth_enable = yes
-smtpd_tls_auth_only = no
-"
+#				echo "smtp_sasl_auth_enable = no
+#smtpd_sasl_security_options = noanonymous
+#smtpd_sasl_local_domain = /etc/mailname
+#smtpd_sasl_auth_enable = yes
+#smtpd_tls_auth_only = no
+#"
 			else
 				echoIfVerbose "No saslpasswd2 found"
 				echo "smtpd_recipient_restrictions = permit_mynetworks," >> $TMP_FILE
