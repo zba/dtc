@@ -1901,9 +1901,9 @@ modifyNamedConf () {
 				head -n ${LINE_NUM_TWO} $PATH_NAMED_CONF >${TMP_FILE}
 				echo $line1 >>${TMP_FILE}
 				echo $line2 >>${TMP_FILE}
-				NUM_LINES=`cat /etc/named.conf | wc -l`
+				NUM_LINES=`cat ${PATH_NAMED_CONF} | wc -l`
 				TAIL=$((${NUM_LINES} - ${LINE_NUM_TWO} ))
-				tail -n ${TAIL} /etc/named.conf >>${TMP_FILE}
+				tail -n ${TAIL} ${PATH_NAMED_CONF} >>${TMP_FILE}
 				cat <${TMP_FILE} >$PATH_NAMED_CONF
 				rm ${TMP_FILE}
 			fi
@@ -1916,9 +1916,9 @@ modifyNamedConf () {
 					head -n ${LINE_NUM_TWO} $PATH_NAMED_CONF >${TMP_FILE}
 					echo $line1 >>${TMP_FILE}
 					echo $line2 >>${TMP_FILE}
-					NUM_LINES=`cat /etc/named.conf | wc -l`
+					NUM_LINES=`cat ${PATH_NAMED_CONF} | wc -l`
 					TAIL=$((${NUM_LINES} - ${LINE_NUM_TWO} ))
-					tail -n ${TAIL} /etc/named.conf >>${TMP_FILE}
+					tail -n ${TAIL} ${PATH_NAMED_CONF} >>${TMP_FILE}
 					cat <${TMP_FILE} >$PATH_NAMED_CONF
 					rm ${TMP_FILE}
 				fi
@@ -1943,6 +1943,12 @@ modifyNamedConf () {
 				rndc-confgen -a
 			else
 				echo "rndc.key already exists..."
+			fi
+			if grep -i listen-on /etc/namedb/named.conf|egrep -v "^//"
+			then
+				echo "Commenting Listen directives on named.conf"
+				sed "s'listen-on'//listen-on'I" $PATH_NAMED_CONF >$TMP_FILE
+				cat < $TMP_FILE > $PATH_NAMED_CONF
 			fi
 		fi
 	fi
