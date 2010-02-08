@@ -167,7 +167,11 @@ function genSasl2PasswdDBStart(){
 		if(is_dir("/etc/sasl2")){
 			$fpath = "/etc/sasl2/sasldb2";
 		}else{
-			$fpath = "/etc/sasldb2";
+			if(is_dir("/usr/local/etc")){
+				$fpath = "/usr/local/etc/sasldb2";
+			}else{
+				$fpath = "/etc/sasldb2";
+			}
 		}
 	}
 	system("cat $fpath > $conf_generated_file_path/sasldb2");
@@ -211,7 +215,11 @@ function genSaslFinishConfigAndRights(){
 		if(is_dir("/etc/sasl2")){
 			$fpath = "/etc/sasl2/sasldb2";
 		}else{
-			$fpath = "/etc/sasldb2";
+			if(is_dir("/usr/local/etc")){
+				$fpath = "/usr/local/etc/sasldb2";
+			}else{
+				$fpath = "/etc/sasldb2";
+			}
 		}
 	}
 	system("cat $conf_generated_file_path/sasldb2 > $fpath");
