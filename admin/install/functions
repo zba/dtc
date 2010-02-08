@@ -2823,15 +2823,15 @@ prepareMlmmjSpool () {
 			TMP_MLMMJ_PATH=/usr/bin/mlmmj-make-ml.sh
 		else
 			if [ -x "${LOCALBASE}/bin/mlmmj-make-ml" ] ; then
-				TMP_MLMMJ_PATH=${LOCALBASE}/usr/bin/mlmmj-make-ml
+				TMP_MLMMJ_PATH=${LOCALBASE}/bin/mlmmj-make-ml
 				MLMMJ_TYPE="no.sh"
 			else
 				if [ -x "${LOCALBASE}/bin/mlmmj-make-ml.sh" ] ; then
-					TMP_MLMMJ_PATH=${LOCALBASE}/usr/bin/mlmmj-make-ml.sh
+					TMP_MLMMJ_PATH=${LOCALBASE}/bin/mlmmj-make-ml.sh
 				else
 					TMP_MLMMJ_PATH=`which mlmmj-make-ml.sh`
 					if [ -z "${TMP_MLMMJ_PATH}" ] ; then
-						TMP_MLMMJ_PATH=`which mlmmj-make-ml.sh`
+						TMP_MLMMJ_PATH=`which mlmmj-make-ml`
 						if ! [ -z "${TMP_MLMMJ_PATH}" ] ; then
 							MLMMJ_TYPE="no.sh"
 						fi
@@ -2841,27 +2841,31 @@ prepareMlmmjSpool () {
 		fi
 	fi
 
-	# Debian like case
-	if [ ${MLMMJ_TYPE} -o "no.sh" ] ; then
-		echoIfVerbose "===> Detected presence of mlmmj... prepping environment..."
-		# symlink the .sh to the non .sh, for the genfiles 
-		TMP_MLMMJ_PATH_NOSH=`dirname $TMP_MLMMJ_PATH`/`basename $TMP_MLMMJ_PATH .sh`
-		if [ ! -e $TMP_MLMMJ_PATH_NOSH ] ; then
-			echo ln -s $TMP_MLMMJ_PATH_NOSH $TMP_MLMMJ_PATH
-			ln -s $TMP_MLMMJ_PATH_NOSH $TMP_MLMMJ_PATH
-		fi
-	fi
-	MLMMJ_LIST_PATH=/etc/mlmmj/lists
-	mkdir -p $MLMMJ_LIST_PATH
-	chown -R root:${CONF_DTC_SYSTEM_GROUPNAME} $MLMMJ_LIST_PATH
-	chmod -R g+w $MLMMJ_LIST_PATH
+	if ! [ -z "${TMP_MLMMJ_PATH}" ]
+	then
 
-	# create mlmmj spool directory if it doesn't exist yet
-	if [ ! -e /var/spool/mlmmj/ ] ; then
-		mkdir -p /var/spool/mlmmj
-	fi
-	if [ -e /var/spool/mlmmj/ ] ; then
-		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /var/spool/mlmmj/
+		echoIfVerbose "===> Detected presence of mlmmj... prepping environment..."
+		# Debian like case
+		if [ ${MLMMJ_TYPE} -o "no.sh" ] ; then
+			# symlink the .sh to the non .sh, for the genfiles 
+			TMP_MLMMJ_PATH_NOSH=`dirname $TMP_MLMMJ_PATH`/`basename $TMP_MLMMJ_PATH .sh`
+			if [ ! -e $TMP_MLMMJ_PATH_NOSH ] ; then
+				echo "Symlinking mlmmj-make-ml.sh to mlmmj-make-ml"
+				ln -s $TMP_MLMMJ_PATH $TMP_MLMMJ_PATH_NOSH
+			fi
+		fi
+		MLMMJ_LIST_PATH=/etc/mlmmj/lists
+		mkdir -p $MLMMJ_LIST_PATH
+		chown -R root:${CONF_DTC_SYSTEM_GROUPNAME} $MLMMJ_LIST_PATH
+		chmod -R g+w $MLMMJ_LIST_PATH
+	
+		# create mlmmj spool directory if it doesn't exist yet
+		if [ ! -e /var/spool/mlmmj/ ] ; then
+			mkdir -p /var/spool/mlmmj
+		fi
+		if [ -e /var/spool/mlmmj/ ] ; then
+			chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} /var/spool/mlmmj/
+		fi
 	fi
 }
 
