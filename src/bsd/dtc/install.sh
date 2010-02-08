@@ -9,7 +9,7 @@ PREFIX=%%PREFIX%%
 LOCALBASE=%%LOCALBASE%%
 QMAIL_DIR=%%QMAIL_DIR%%
 
-UID=`id|cut -d= -f2|cut -d\( -f1`
+UID=`id -u`
 
 if [ $UID -ne 0 ]
 then
@@ -23,7 +23,7 @@ then
 fi
 
 # DATABASE CONFIGURATION
-PSMYSQL=`ps -axf|grep mysqld|grep -v grep|awk '{print $1}'`
+PSMYSQL=`pgrep -n mysqld`
 
 while [ "$PSMYSQL" = "" ]
 do
