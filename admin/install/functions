@@ -2356,15 +2356,19 @@ modifyPostfixConfig () {
 	SASLTMP_FILE="/thisfiledoesnotexists"
 	if [ -f "$PATH_POSTFIX_CONF" ] ; then
 		echoIfVerbose "===> Linking postfix control files to DTC generated files"
-		touch $PATH_DTC_ETC/postfix_virtual.db
-		touch $PATH_DTC_ETC/postfix_aliases.db
-		# fix default /etc/aliases
-		touch /etc/aliases
-		newaliases
-		touch $PATH_DTC_ETC/postfix_relay_recipients.db
-		touch $PATH_DTC_ETC/postfix_vmailbox.db
-		touch $PATH_DTC_ETC/postfix_virtual_uid_mapping.db
-		chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_ETC/postfix_*.db
+		#These files are created by the first cron.php run so (at least for FreeBSD) do not create them
+		if [ $UNIX_TYPE != freebsd ]
+		then
+			touch $PATH_DTC_ETC/postfix_virtual.db
+			touch $PATH_DTC_ETC/postfix_aliases.db
+			# fix default /etc/aliases
+			touch /etc/aliases
+			newaliases
+			touch $PATH_DTC_ETC/postfix_relay_recipients.db
+			touch $PATH_DTC_ETC/postfix_vmailbox.db
+			touch $PATH_DTC_ETC/postfix_virtual_uid_mapping.db
+			chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} $PATH_DTC_ETC/postfix_*.db
+		fi
 		if grep "Configured by DTC" "$PATH_POSTFIX_CONF" >/dev/null
 		then
 			echoIfVerbose "Postfix main.cf has been configured before, not adding virtual mailbox options"
