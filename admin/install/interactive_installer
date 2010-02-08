@@ -485,6 +485,7 @@ installerQuestions () {
 	echo "mknod is not allowed to be executed. For that reason, it's possible"
 	echo "to skip the creation of the dev null, random and urandom devices"
 	echo "durring the chroot template creation."
+	echo "Choosing yes here also gets FreeBSD apache not bound to 127.0.0.1"
 	if [ ""$conf_omit_dev_mknod = "true" ] ; then
 		echo -n "Skip mknod? [Yn]";
 		read answer
