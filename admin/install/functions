@@ -1935,6 +1935,16 @@ modifyNamedConf () {
 			touch $PATH_DTC_ETC/named.conf
 			chown named.named $PATH_DTC_ETC/named.conf
 		fi
+		if [ ${UNIX_TYPE} = freebsd ]
+		then
+			if ! [ -f /etc/namedb/rndc.key ]
+			then
+				echo "Creating rndc.key to control named"
+				rndc-confgen -a
+			else
+				echo "rndc.key already exists..."
+			fi
+		fi
 	fi
 }
 

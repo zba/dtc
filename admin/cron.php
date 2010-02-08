@@ -559,13 +559,20 @@ function checkNamedCronService () {
 	}
 	if($cronjob_table_content["reload_named"] == "yes"){
 		echo "Reloading name-server\n";
-		if(file_exists("/usr/sbin/rndc")){
-			system("/usr/sbin/rndc reload");
+		if (system("pgrep named") != ""){
+			if(file_exists("/usr/sbin/rndc")){
+				system("/usr/sbin/rndc reload");
+			}else{
+				system("killall -HUP named");
+			}
+			if($keep_dns_generate_flag == "no"){
+				markCronflagOk ("reload_named='no'");
+			}
 		}else{
-			system("killall -HUP named");
-		}
-		if($keep_dns_generate_flag == "no"){
-			markCronflagOk ("reload_named='no'");
+			echo "named NOT RUNNING\n";
+			if (system("uname -s") == "FreeBSD" ){
+				system("/etc/rc.d/named start");
+			}
 		}
 	}
 }
