@@ -215,7 +215,7 @@ function genSaslFinishConfigAndRights(){
 		if(is_dir("/etc/sasl2")){
 			$fpath = "/etc/sasl2/sasldb2";
 		}else{
-			if(is_dir("/usr/local/etc")){
+			if(is_dir("/usr/local/etc") && !file_exists("/etc/sasldb2")){
 				$fpath = "/usr/local/etc/sasldb2";
 			}else{
 				$fpath = "/etc/sasldb2";
