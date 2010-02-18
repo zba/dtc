@@ -4,6 +4,7 @@
 $cc_europe = array(
   "AT" => 1,
   "BE" => 1,
+  "BG" => 1,
   "CY" => 1,
   "CZ" => 1,
   "DK" => 1,
