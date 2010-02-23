@@ -1687,6 +1687,10 @@ function drawDTCpayConfig(){
 				"legend" => _("MoneyBookers business account email: "),
 				"type" => "text",
 				"size" => "30"),
+			"moneybookers_secret_word" => array(
+				"legend" => _("MoneyBookers secret word: "),
+				"type" => "text",
+				"size" => "10"),
 			"moneybookers_rate" => array(
 				"legend" => _("MoneyBookers fee rate: "),
 				"type" => "text",

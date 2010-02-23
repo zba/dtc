@@ -30,7 +30,7 @@ function moneybookers_display_icon($product_id,$amount,$item_name,$return_url,$u
 	}else{
 		// This is production website
 		$moneybookers_host = "www.moneybookers.com";
-		$moneybookers_cgi = "/app/test_payment.pl";
+		$moneybookers_cgi = "/app/payment.pl";
 		$ze_moneybookers_email = $secpayconf_moneybookers_email;
 	}
 
@@ -68,12 +68,12 @@ function moneybookers_display_icon($product_id,$amount,$item_name,$return_url,$u
 		break;
 	}
 
-	$out = '<form action="https://'.$moneybookers_host.$moneybookers_cgi.'" method="POST" target="_blank">
+	$out = '<form action="https://'.$moneybookers_host.$moneybookers_cgi.'" method="POST">
 <input type="hidden" name="pay_to_email" value="'.$ze_moneybookers_email.'">
 <input type="hidden" name="status_url" value="'.$goback_start.$conf_administrative_site.'/dtc/moneybookers.php">
 <input type="hidden" name="status_url" value="'.$ze_moneybookers_email.'">
 <input type="hidden" name="transaction_id" value="'.$product_id.'">
-<input type="hidden" name="return" value="'.$goback_start.$conf_administrative_site.$return_url.'">
+<input type="hidden" name="return_url" value="'.$goback_start.$conf_administrative_site.$return_url.'">
 <input type="hidden" name="language" value="'.$mb_lang.'">
 <input type="hidden" name="amount" value="'.$amount.'">
 <input type="hidden" name="currency" value="'.$secpayconf_currency_letters.'">
