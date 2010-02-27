@@ -47,6 +47,10 @@ if [ -n "$bindgroup" ]; then
 		chown dtc:$bindgroup $conf_generated_file_path/named.conf.slave.reverse
 		chmod 0660 $conf_generated_file_path/named.conf.slave.reverse
 	fi
+	if [ -e $conf_generated_file_path/slave_reverse_zones ] ; then
+		chown dtc:$bindgroup $conf_generated_file_path/slave_reverse_zones
+		chmod +x $conf_generated_file_path/slave_reverse_zones
+	fi
 else
 	echo "Didn't find named groups, it must be running as root: keeping permissions"
 fi
