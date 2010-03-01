@@ -1,5 +1,22 @@
 <?php
 
+function webnicPostUsingCurl($url,$data) { 
+	$headers = array();
+	$headers[] = 'Content-type: application/x-www-form-urlencoded;charset=UTF-8';
+	$c = curl_init($url);
+	curl_setopt($c, CURLOPT_HEADER, 1);
+	curl_setopt($c, CURLOPT_HTTPHEADER, $headers); 
+	curl_setopt($c, CURLOPT_TIMEOUT, 15);
+
+	curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($c, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt($c, CURLOPT_POST, 1);
+	curl_setopt($c, CURLOPT_POSTFIELDS, $data);
+	$return = curl_exec($c);
+	curl_close($c);
+	return $return;
+}
+
 // $post_url is usually something like: pn_reg.cgi
 // and with the help of the configurator, it will be transformed into: https://pay.web.cc/new/cgi-bin/pn_reg.cgi
 // $source is the webnic username
@@ -36,7 +53,7 @@ function webnic_submit($post_url, $post_params_hash, $use_post="yes"){
 		}
 	}
 
-	$postfield=$strContent;
+/*	$postfield=$strContent;
 	if ($debug == 1){
 		echo $postfield . "\n";
 		echo "Post URL: $post_url\n";
@@ -53,6 +70,9 @@ function webnic_submit($post_url, $post_params_hash, $use_post="yes"){
 		$httprequest = new HTTPRequest("$url");
 		$lines = $httprequest->DownloadToString();
 	}
+*/
+
+	return webnicPostUsingCurl($post_url,$strContent);
 
 /*	if($lines === FALSE){
 		return "98 Could not open connection to the remote server (fsockopen error)\nNum: $errno Text: \"$errstr\"";
