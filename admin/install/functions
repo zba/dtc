@@ -1361,19 +1361,16 @@ modifyHTTPD_CONF () {
 	#
 	echoIfVerbose "===> Modifying httpd.conf"
 
-	if grep "Configured by DTC" $PATH_HTTPD_CONF >/dev/null
-	then
+	if grep "Configured by DTC" $PATH_HTTPD_CONF >/dev/null ; then
 		echoIfVerbose "httpd.conf has been configured before : skipping include inssertion !"
 	else
-		if [ $UNIX_TYPE = freebsd ]
-		then
-			if grep apache22_enable /etc/rc.conf >/dev/null
-			then
+		if [ $UNIX_TYPE = freebsd ] ; then
+			if grep apache22_enable /etc/rc.conf >/dev/null ; then
 				echo "Apache already enabled in /etc/rc.conf"
 			else
-				if grep "Configured by DTC" /etc/rc.conf >/dev/null
-				then
+				if grep "Configured by DTC" /etc/rc.conf >/dev/null ; then
 					## Configure already echoed
+					echo -n ""
 				else
 					echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
 				fi
@@ -2016,17 +2013,15 @@ setupAmavisConf () {
 
 	# make sure the amavisd configuration has '$AMAVISD_USER' user and group
 
-	if [ $UNIX_TYPE = freebsd ]
-	then
-		if grep "Configured by DTC" /etc/rc.conf >/dev/null
-		then
+	if [ $UNIX_TYPE = freebsd ] ; then
+		if grep "Configured by DTC" /etc/rc.conf >/dev/null ; then
 			# rc.conf already spammed
+			echo -n ""
 		else
 			echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
 		fi
 
-		if grep amavisd_enable /etc/rc.conf >/dev/null
-		then
+		if grep amavisd_enable /etc/rc.conf >/dev/null ; then
 			echo "Amavisd already activated in rc.conf"
 		else
 			echo "Activating amavisd on /etc/rc.conf"
@@ -2053,9 +2048,9 @@ setupAmavisConf () {
 
 	        # make sure our users exist for amavis
 	        # turn back on error handling, these users probably exist already
-	        if [ $UNIX_TYPE = freebsd ]
-		then
+	        if [ $UNIX_TYPE = freebsd ] ; then
 			# On FreeBSD amavisd user and group are created with app install
+			echo -n ""
 		else
 			$GROUP_ADD_CMD $AMAVISD_USER > /dev/null 2>&1 || true
 	        	if [ $? -ne 0 ] ; then
@@ -2151,11 +2146,10 @@ if (defined @\$ref)
 
 modifyClamavConf () {
 	if [ -f "$PATH_CLAMAV_CONF" ] ; then
-		if [ $UNIX_TYPE = freebsd ]
-		then
-			if grep "Configured by DTC" /etc/rc.conf >/dev/null
-			then
+		if [ $UNIX_TYPE = freebsd ] ; then
+			if grep "Configured by DTC" /etc/rc.conf >/dev/null ; then
 				# rc.conf already spammed
+				echo -n ""
 			else
 				echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
 			fi
@@ -2178,9 +2172,9 @@ modifyClamavConf () {
 
 	        # make sure our users exist for amavis
 	        # turn back on error handling, these users probably exist already
-	        if [ $UNIX_TYPE = freebsd ]
-		then
+	        if [ $UNIX_TYPE = freebsd ] ; then
 			# On FreeBSD tha clamav user and group created on the app install.
+			echo -n ""
 		else
 			$GROUP_ADD_CMD clamav > /dev/null 2>&1 || true
 	        	if [ $? -ne 0 ] ; then
@@ -2893,47 +2887,43 @@ prepareMlmmjSpool () {
 
 modifyCourierConfig () {
 	# Activate courier in rc.conf on FreeBSD
-	if [ $UNIX_TYPE = freebsd ]
-	then
+	if [ $UNIX_TYPE = freebsd ] ; then
 		echo "Checking activation of Courier Daemons"
-		if grep "Configured by DTC" /etc/rc.conf >/dev/null
-		then
+		if grep "Configured by DTC" /etc/rc.conf >/dev/null ; then
 			# Configured already echoed
+			echo -n ""
 		else
 			echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
 		fi
-
-		if grep courier_authdaemond /etc/rc.conf >/dev/null
-		then
+		if grep courier_authdaemond /etc/rc.conf >/dev/null ; then
 			# Authdaemon already activated
+			echo -n ""
 		else
 			echo "courier_authdaemond_enable=\"YES\"" >>/etc/rc.conf
 		fi
-
-		if grep courier_imap_pop3d_enable /etc/rc.conf >/dev/null
-		then
+		if grep courier_imap_pop3d_enable /etc/rc.conf >/dev/null ; then
 			# pop3d already activated
+			echo -n ""
 		else
 			echo "courier_imap_pop3d_enable=\"YES\"" >>/etc/rc.conf
 		fi
-
-		if grep courier_imap_imapd_enable /etc/rc.conf >/dev/null
-		then
+		if grep courier_imap_imapd_enable /etc/rc.conf >/dev/null ; then
 			# imapd already activated
+			echo -n ""
 		else
 			echo "courier_imap_imapd_enable=\"YES\"" >>/etc/rc.conf
 		fi
 
-		if grep courier_imap_pop3d_ssl /etc/rc.conf >/dev/null
-		then
+		if grep courier_imap_pop3d_ssl /etc/rc.conf >/dev/null ; then
 			# pop3d_ssl already activated
+			echo -n ""
 		else
 			echo "courier_imap_pop3d_ssl_enable=\"YES\"" >>/etc/rc.conf
 		fi
 
-		if grep courier_imap_imapd_ssl /etc/rc.conf >/dev/null
-		then
+		if grep courier_imap_imapd_ssl /etc/rc.conf >/dev/null ; then
 			# imapd_ssl already activated
+			echo -n ""
 		else
 			echo "courier_imap_imapd_ssl_enable=\"YES\"" >>/etc/rc.conf
 		fi
@@ -3325,8 +3315,7 @@ configProftpd () {
 	# Install proftpd.conf to access to the database
 	#
 	if [ -f $PATH_PROFTPD_CONF ] ; then
-		if [ $UNIX_TYPE = freebsd ]
-		then
+		if [ $UNIX_TYPE = freebsd ] ; then
 			if grep proftpd_enable /etc/rc.conf >/dev/null
 			then
 				echoIfVerbose "===> proftpd already activated"
@@ -3337,18 +3326,15 @@ configProftpd () {
 		fi
 		echoIfVerbose "===> Adding directives to proftpd.conf"
 		PATH_PROFTPD_DIR=`dirname $PATH_PROFTPD_CONF`
-		if [ `basename $PATH_PROFTPD_DIR` != proftpd ]
-		then
+		if ! [ `basename $PATH_PROFTPD_DIR` = proftpd ] ; then
 			PATH_PROFTPD_DIR=$PATH_PROFTPD_DIR/proftpd
 		fi
 		mkdir -p $PATH_PROFTPD_DIR
-		if grep "Configured by DTC" $PATH_PROFTPD_CONF >/dev/null
-		then
+		if grep "Configured by DTC" $PATH_PROFTPD_CONF >/dev/null ; then
 			echoIfVerbose "proftpd.conf has been configured before : skipping include inssertion !"
 		else
 			echoIfVerbose "Inserting DTC configuration inside "$PATH_PROFTPD_CONF
-			if ! [ -f $PATH_PROFTPD_CONF.DTC.backup ]
-			then
+			if ! [ -f $PATH_PROFTPD_CONF.DTC.backup ] ; then
 				cp -f $PATH_PROFTPD_CONF $PATH_PROFTPD_CONF.DTC.backup
 			fi
 
@@ -5262,9 +5248,9 @@ DTCsetupDaemons () {
 	modifyCrontab
 	if [ $UNIX_TYPE = freebsd ]
 	then
-		if grep "End of DTC configuration" /etc/rc.conf >/dev/null
-		then
+		if grep "End of DTC configuration" /etc/rc.conf >/dev/null ; then
 			#/etc/rc.conf already configured before
+			echo -n ""
 		else
 			echo "### End of DTC configuration - please do not remove" >>/etc/rc.conf
 		fi
