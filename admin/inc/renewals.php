@@ -492,7 +492,7 @@ function drawRenewalTables (){
 		// Calculation of recuring totals
 		$out .= "<h3>". _("Total recurring incomes per month:") ."</h3>";
 		// Monthly recurring for shared hosting:
-		$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
+		$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period,$pro_mysql_product_table.id
 		FROM $pro_mysql_product_table,$pro_mysql_admin_table
 		WHERE $pro_mysql_product_table.id = $pro_mysql_admin_table.prod_id
 		AND $pro_mysql_product_table.heb_type='shared'
@@ -504,12 +504,17 @@ function drawRenewalTables (){
 			$a = mysql_fetch_array($r);
 			$period = $a["period"];
 			$price = $a["price_dollar"];
+			$id = $a["id"];
 			if($period == '0001-00-00'){
 				$total_shared += $price / 12;
 			}else{
 				$papoum = explode('-',$period);
 				$months = $papoum[1];
-				$total_shared += $price / $months;
+				if($months == 0){
+					echo "Product $id has zero month.<br>";
+				}else{
+					$total_shared += $price / $months;
+				}
 			}
 		}
 
@@ -530,7 +535,7 @@ function drawRenewalTables (){
 		}
 
 		// Monthly recurring for VPS:
-		$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
+		$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period,$pro_mysql_product_table.id
 		FROM $pro_mysql_product_table,$pro_mysql_vps_table
 		WHERE $pro_mysql_product_table.id = $pro_mysql_vps_table.product_id";
 		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -540,17 +545,22 @@ function drawRenewalTables (){
 			$a = mysql_fetch_array($r);
 			$period = $a["period"];
 			$price = $a["price_dollar"];
+			$id = $a["id"];
 			if($period == '0001-00-00'){
 				$total_shared += $price / 12;
 			}else{
 				$papoum = explode('-',$period);
 				$months = $papoum[1];
-				$total_vps += $price / $months;
+				if($months != 0){
+					$total_vps += $price / $months;
+				}else{
+					echo "Product $id has zero month.<br>";
+				}
 			}
 		}
 
 		// Monthly recurring for dedicated servers:
-		$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period
+		$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period,$pro_mysql_product_table.id
 		FROM $pro_mysql_product_table,$pro_mysql_dedicated_table
 		WHERE $pro_mysql_product_table.id = $pro_mysql_dedicated_table.product_id";
 		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -560,13 +570,14 @@ function drawRenewalTables (){
 			$a = mysql_fetch_array($r);
 			$period = $a["period"];
 			$price = $a["price_dollar"];
+			$id = $a["id"];
 			if($period == '0001-00-00'){
 				$total_shared += $price / 12;
 			}else{
 				$papoum = explode('-',$period);
 				$months = $papoum[1];
 				if($months == 0){
-					echo "A dedicated server product has zero for the number of month to renew<br>";
+					echo "Dedicated server product ID $id has zero for the number of month to renew<br>";
 				}else{
 					$total_dedicated += $price / $months;
 				}
