@@ -185,7 +185,7 @@ function webnic_registry_register_domain($adm_login,$adm_pass,$domain_name,$peri
 	$post_params_hash = webnic_prepar_whois_params($contacts);
 
 	$post_params_hash["otime"] = date("Y-m-d H:m:i");
-	$post_params_hash["ochecksum"] = md5($conf_webnic_username,$post_params_hash["otime"].md5($conf_webnic_password));
+	$post_params_hash["ochecksum"] = md5($conf_webnic_username.$post_params_hash["otime"].md5($conf_webnic_password));
 
 	$post_params_hash["domainname"] = $domain_name;
 	$post_params_hash["encoding"] = "iso8859-1";
@@ -238,7 +238,7 @@ function webnic_registry_update_whois_info($adm_login,$adm_pass,$domain_name,$co
 	$post_params_hash = webnic_prepar_whois_params($contacts);
 
 	$post_params_hash["otime"] = date("Y-m-d H:m:i");
-	$post_params_hash["ochecksum"] = md5($conf_webnic_username,$post_params_hash["otime"].md5($conf_webnic_password));
+	$post_params_hash["ochecksum"] = md5($conf_webnic_username.$post_params_hash["otime"].md5($conf_webnic_password));
 
 	$post_params_hash["domainname"] = $domain_name;
 
