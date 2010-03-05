@@ -5,7 +5,7 @@ function auth_failed($reason) {
 	header( "HTTP/1.0 401 Unauthorized" );
 	echo $reason;
 	// Log to SYSLOG
-	syslog(LOG_WARNING, "Failed login to DTC Admin from ".$_SERVER['REMOTE_ADDR'];
+	syslog(LOG_WARNING, "Failed login to DTC Admin from ".$_SERVER['REMOTE_ADDR']);
 	die();
 }
 
