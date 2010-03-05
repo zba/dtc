@@ -282,6 +282,9 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 $q = "ALTER TABLE admin CHANGE adm_pass adm_pass varchar(255) NOT NULL";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
+$q = "ALTER TABLE whois CHANGE registrar registrar varchar(255) NOT NULL default 'webnic'";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
 // Alter the default shell value for FreeBSD, as the path will be in /usr/local
 if($conf_unix_type == "bsd"){
 	$q = "ALTER TABLE ssh_access CHANGE `shell` `shell` varchar(64) NOT NULL default '/usr/local/bin/dtc-chroot-shell'";

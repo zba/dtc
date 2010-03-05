@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS whois (
   creation_date date NOT NULL default '0000-00-00',
   modification_date date NOT NULL default '0000-00-00',
   expiration_date date NOT NULL default '0000-00-00',
-  registrar enum('tucows','namebay') NOT NULL default 'tucows',
+  registrar varchar(255) NOT NULL default 'webnic',
   ns1 varchar(64) NOT NULL default 'ns1.example.com',
   ns2 varchar(64) NOT NULL default 'ns2.example.com',
   ns3 varchar(64) default NULL,
