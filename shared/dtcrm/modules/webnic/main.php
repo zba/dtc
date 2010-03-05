@@ -53,31 +53,7 @@ function webnic_submit($post_url, $post_params_hash, $use_post="yes"){
 		}
 	}
 
-/*	$postfield=$strContent;
-	if ($debug == 1){
-		echo $postfield . "\n";
-		echo "Post URL: $post_url\n";
-	}
-	if($use_post == "yes"){
-	 	$url = $post_url;
-		$httprequest = new HTTPRequest("$url");
-
-		// New code for POST!
-		$httprequest->postit($strContent);
-		$lines = $httprequest->DownloadToString();
-	}else{
-		$url = $post_url."?".$strContent;
-		$httprequest = new HTTPRequest("$url");
-		$lines = $httprequest->DownloadToString();
-	}
-*/
-
 	return webnicPostUsingCurl($post_url,$strContent);
-
-/*	if($lines === FALSE){
-		return "98 Could not open connection to the remote server (fsockopen error)\nNum: $errno Text: \"$errstr\"";
-	}*/
-	return $lines;
 }
 
 function webnic_return_code($return){
@@ -125,6 +101,15 @@ function response_text($webcc_ret){
 		return substr($webcc_ret,2);
 		break;
 	}
+}
+
+function webnic_checksum($post_params_hash=array()){
+	global $conf_webnic_username;
+	global $conf_webnic_password;
+
+	$post_params_hash["otime"] = date("Y-m-d H:m:i");
+	$post_params_hash["ochecksum"] = md5($conf_webnic_username.$post_params_hash["otime"].md5($conf_webnic_password));
+	return $post_params_hash;
 }
 
 function webnic_registry_check_availability($domain_name){
@@ -199,13 +184,8 @@ function webnic_prepar_whois_params($contacts){
 }
 
 function webnic_registry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers,$new_user){
-	global $conf_webnic_username;
-	global $conf_webnic_password;
-
 	$post_params_hash = webnic_prepar_whois_params($contacts);
-
-	$post_params_hash["otime"] = date("Y-m-d H:m:i");
-	$post_params_hash["ochecksum"] = md5($conf_webnic_username.$post_params_hash["otime"].md5($conf_webnic_password));
+	$post_params_hash = webnic_checksum($post_params_hash);
 
 	$post_params_hash["domainname"] = $domain_name;
 	$post_params_hash["encoding"] = "iso8859-1";
@@ -232,12 +212,64 @@ function webnic_registry_register_domain($adm_login,$adm_pass,$domain_name,$peri
 }
 
 function webnic_registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip){
+	$post_params_hash = webnic_checksum();
+	$post_params_hash["dns1"] = $subdomain.".".$domain_name;
+	$post_params_hash["ip1"] = $ip[0];
+	if( isset($ip[1]) ){
+		$post_params_hash["ip2"] = $ip[1];
+	}
+	if( isset($ip[2]) ){
+		$post_params_hash["ip3"] = $ip[2];
+	}
+	if( isset($ip[3]) ){
+		$post_params_hash["ip4"] = $ip[3];
+	}
+	if( isset($ip[4]) ){
+		$post_params_hash["ip5"] = $ip[4];
+	}
+	if( isset($ip[5]) ){
+		$post_params_hash["ip6"] = $ip[5];
+	}
+	$post_params_hash["reg"] = "com";
+	$webcc_ret = webnic_submit("pn_dnsreg.jsp", $post_params_hash);
+	$ret["response_text"] = response_text($webcc_ret);
+	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	return $ret;
 }
 
 function webnic_registry_modify_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip){
+	$post_params_hash = webnic_checksum();
+	$post_params_hash["dns"] = $subdomain.".".$domain_name;
+	$post_params_hash["ip1"] = $ip;
+	if( isset($ip[1]) ){
+		$post_params_hash["ip2"] = $ip[1];
+	}
+	if( isset($ip[2]) ){
+		$post_params_hash["ip3"] = $ip[2];
+	}
+	if( isset($ip[3]) ){
+		$post_params_hash["ip4"] = $ip[3];
+	}
+	if( isset($ip[4]) ){
+		$post_params_hash["ip5"] = $ip[4];
+	}
+	if( isset($ip[5]) ){
+		$post_params_hash["ip6"] = $ip[5];
+	}
+	$webcc_ret = webnic_submit("pn_dnsmod.jsp", $post_params_hash);
+	$ret["response_text"] = response_text($webcc_ret);
+	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	return $ret;
 }
 
 function webnic_registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$domain_name){
+	$post_params_hash = webnic_checksum();
+	$post_params_hash["dns1"] = $subdomain.".".$domain_name;
+	$post_params_hash["reg"] = "com";
+	$webcc_ret = webnic_submit("pn_dnsdel.jsp", $post_params_hash);
+	$ret["response_text"] = response_text($webcc_ret);
+	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	return $ret;
 }
 
 function webnic_registry_get_domain_price($domain_name,$period){
@@ -252,29 +284,99 @@ function webnic_registry_get_whois($domain_name){
 }
 
 function webnic_registry_update_whois_info($adm_login,$adm_pass,$domain_name,$contacts){
-	global $conf_webnic_username;
-	global $conf_webnic_password;
-
 	$post_params_hash = webnic_prepar_whois_params($contacts);
-
-	$post_params_hash["otime"] = date("Y-m-d H:m:i");
-	$post_params_hash["ochecksum"] = md5($conf_webnic_username.$post_params_hash["otime"].md5($conf_webnic_password));
-
+	$post_params_hash = webnic_checksum($post_params_hash);
 	$post_params_hash["domainname"] = $domain_name;
-
 	$webcc_ret = webnic_submit("pn_mod.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
 	return $ret;
 }
 
-function webnic_registry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns){
+function webnic_registry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns,$dns_ip=array()){
+	$post_params_hash = webnic_checksum();
+
+	$post_params_hash["domain"] = $domain_name;
+	$post_params_hash["ns1"] = $dns[0];
+	$post_params_hash["ns2"] = $dns[1];
+	if(isset($dns[2])){
+		$post_params_hash["ns3"] = $dns[2];
+	}
+	if(isset($dns[3])){
+		$post_params_hash["ns4"] = $dns[3];
+	}
+	if(isset($dns[4])){
+		$post_params_hash["ns5"] = $dns[4];
+	}
+	if(isset($dns[5])){
+		$post_params_hash["ns6"] = $dns[5];
+	}
+	if( isset( $dns_ip[0] )){
+		$post_params_hash["nsip1"] = $dns_ip[0];
+	}
+	if( isset( $dns_ip[1] )){
+		$post_params_hash["nsip2"] = $dns_ip[1];
+	}
+	if( isset( $dns_ip[2] )){
+		$post_params_hash["nsip3"] = $dns_ip[2];
+	}
+	if( isset( $dns_ip[3] )){
+		$post_params_hash["nsip4"] = $dns_ip[3];
+	}
+	if( isset( $dns_ip[4] )){
+		$post_params_hash["nsip5"] = $dns_ip[4];
+	}
+	if( isset( $dns_ip[5] )){
+		$post_params_hash["nsip6"] = $dns_ip[5];
+	}
+	$webcc_ret = webnic_submit("pn_dns.jsp", $post_params_hash);
+	$ret["response_text"] = response_text($webcc_ret);
+	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	return $ret;
 }
 
-function webnic_registry_check_transfer($domain){
+function webnic_registry_check_transfer($adm_login,$adm_pass,$domain){
+	$post_params_hash = webnic_checksum($post_params_hash);
+	$post_params_hash["domainname"] = $domain;
+	$webcc_ret = webnic_submit("pn_trfstatus.jsp", $post_params_hash);
+	$ret["response_text"] = response_text($webcc_ret);
+	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	return $ret;
+}
+
+function webnic_registry_transfert_domain($adm_login,$adm_pass,$domain,$contacts,$authinfo){
+	$post_params_hash = webnic_prepar_whois_params($contacts);
+	$post_params_hash = webnic_checksum($post_params_hash);
+	$post_params_hash["domain"] = $domain;
+	$post_params_hash["authinfo"] = $authinfo;
+	$post_params_hash["userstatus"] = "NEW"; // Can be "OLD" as well
+	$post_params_hash["username"] = $adm_login;
+	$post_params_hash["password"] = $adm_pass;
+	$post_params_hash["password2"] = $adm_pass;
+	$webcc_ret = webnic_submit("pn_transfer.jsp", $post_params_hash);
+	$ret["response_text"] = response_text($webcc_ret);
+	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	return $ret;
 }
 
 function webnic_registry_renew_domain($adm_login,$adm_pass,$domain,$curent_year_expir,$period){
+	$post_params_hash = webnic_checksum();
+	$post_params_hash["domainname"] = $domain;
+	$post_params_hash["term"] = $period;
+	$post_params_hash["proxy"] = "0";
+	$webcc_ret = webnic_submit("pn_renew.jsp", $post_params_hash);
+	$ret["response_text"] = response_text($webcc_ret);
+	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	return $ret;
+}
+
+function webnic_registry_delete_domain($adm_login,$adm_pass,$domain){
+	$post_params_hash = webnic_checksum();
+	$post_params_hash["domainname"] = $domain;
+	$webcc_ret = webnic_submit("pn_del.jsp", $post_params_hash);
+	$ret["response_text"] = response_text($webcc_ret);
+	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	return $ret;
 }
 
 function webnic_registry_change_password($adm_login,$adm_pass,$domain,$new_pass){
@@ -314,6 +416,8 @@ $registry_api_modules[] = array(
 "registry_update_whois_dns" => "webnic_registry_update_whois_dns",
 "registry_check_transfer" => "webnic_registry_check_transfer",
 "registry_renew_domain" => "webnic_registry_renew_domain",
+"registry_delete_domain" => "webnic_registry_delete_domain",
+"registry_transfert_domain" => "webnic_registry_transfert_domain",
 "registry_change_password" => "webnic_registry_change_password",
 "registry_get_whois" => "webnic_registry_get_whois"
 );
