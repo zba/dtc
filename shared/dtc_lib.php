@@ -59,6 +59,8 @@ require("$dtcshared_path/inc/domain_export.php");
 ////////////////////////////////////////
 // THE USER TOOLS FOR THEY'RE ACCOUNT //
 ////////////////////////////////////////
+// Registrar API calls
+require_once "$dtcshared_path/dtcrm/registry_calls.php";
 // SQL FORM SUBMITION
 require("$dtcshared_path/inc/delete_user.php");
 require("$dtcshared_path/inc/submit_to_sql.php");		// Submit all user actions, could be used by user's scripts...

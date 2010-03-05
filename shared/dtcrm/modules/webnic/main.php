@@ -359,10 +359,10 @@ function webnic_registry_transfert_domain($adm_login,$adm_pass,$domain,$contacts
 	return $ret;
 }
 
-function webnic_registry_renew_domain($adm_login,$adm_pass,$domain,$curent_year_expir,$period){
+function webnic_registry_renew_domain($domain,$years){
 	$post_params_hash = webnic_checksum();
 	$post_params_hash["domainname"] = $domain;
-	$post_params_hash["term"] = $period;
+	$post_params_hash["term"] = $years;
 	$post_params_hash["proxy"] = "0";
 	$webcc_ret = webnic_submit("pn_renew.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);

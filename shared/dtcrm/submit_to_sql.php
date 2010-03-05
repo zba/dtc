@@ -37,4 +37,13 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "refund"){
 	}
 }
 
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "registry_renew_domain"){
+	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
+	if(!isRandomNum($_REQUEST["num_years"]) || strlen($_REQUEST["num_years"]) != 1){
+		echo _("Number of years is not a number between 1 and 9.");
+	}else{
+		$renew_return = registry_renew_domain($edit_domain,$_REQUEST["num_years"]);
+	}
+}
+
 ?>

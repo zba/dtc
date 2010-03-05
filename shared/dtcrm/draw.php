@@ -1,7 +1,5 @@
 <?php
 
-require_once "$dtcshared_path/dtcrm/registry_calls.php";
-
 $registration_added_price = 3;
 $renew_added_price = 2;
 
