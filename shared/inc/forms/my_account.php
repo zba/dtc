@@ -11,8 +11,11 @@ function drawAdminTools_MyAccount($admin){
 	global $pro_mysql_client_table;
 	global $pro_mysql_ssl_ips_table;
 	global $pro_mysql_product_table;
+	global $secpayconf_currency_letters;
 
 	global $cc_code_array;
+
+	get_secpay_conf();
 
 	$frm_start = "<form action=\"$PHP_SELF\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
@@ -61,7 +64,7 @@ function drawAdminTools_MyAccount($admin){
 	}
 
 	if(isset($admin["data"])){
-		$out .= "<h3>". _("Transfer and disk usage:") ."</h3>";
+		$out .= "<br><h3>". _("Transfer and disk usage:") ."</h3>";
 		// Draw overall this month usage
 		// if there is no usage, set to 0
 		if (!isset($stats["total_transfer"]))
@@ -185,23 +188,18 @@ function drawAdminTools_MyAccount($admin){
 				}
 			}
 
-			$out .=  "<h3>". _("Remaining money on my account:") ."</h3><br>
-<table width=\"100%\" height=\"1\" cellpadding=\"4\" cellspacing=\"0\" border=\"0\">
-<tr>
-	<td><font size=\"+1\">\$".$client["dollar"]."</font></td>
-	<td><font size=\"-1\">". _("Refund my account:") ."</font><br>
-$frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
-\$<input size=\"8\" type=\"text\" name=\"refund_amount\" value=\"\">
-<input type=\"submit\" value=\"". _("Ok") ."\">
-</form></td></tr>
-</table>
-<hr width=\"90%\">
-";
+			$out .=  "<h3>". _("Remaining money on my account:") ."</h3>";
+			$out .= dtcFormTableAttrs();
+			$out .= dtcFormLineDraw( _("Money remaining: "), $client["dollar"]." $secpayconf_currency_letters",1);
+			$out .= dtcFormLineDraw( _("Refund my account:"), "$frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
+<input size=\"8\" type=\"text\" name=\"refund_amount\" value=\"\"> $secpayconf_currency_letters",0);
+			$out .= dtcFormLineDraw( "", submitButtonStart()._("Add money").submitButtonEnd()."</form>",1);
+			$out .= "</table>";
 
 		}
 
 
-		$out .= "<center><b>". _("Please tell us if the following is not correct:") ."</b></center>";
+		$out .= "<h3>". _("Your address (please tell us if the following is not correct):") ."</h3>";
 
 		if($client["is_company"] == "yes"){
 			$out .= _("Company name:") .$client["company_name"]."<br>";
@@ -238,11 +236,10 @@ $frm_start<input type=\"hidden\" name=\"action\" value=\"refund_myaccount\">
 
 		}
 
-		$out .= "<br>If you want to earn money with GPLHost, all you have to do is place a link on your site, pointing to:
-
-		<pre>https://{$_SERVER['SERVER_NAME']}/dtc/affiliation.php?affiliate={$adm_login}&amp;return=/hosting-vps.html</pre>
-
-		You can customize the <code>return</code> variable to redirect the user to any particular landing page that exists on our Web site (though we recommend the product page as per the example).  Then, when one of your visitors clicks on that link to buy a product from us, he will be redirected to our Web site.  Once he buys, you will automatically be credited a payment depending on the product that your visitor bought.";
+		$out .= "<h3>"._("Affiliation")."</h3>";
+		$out .= _("If you want to earn money, all you have to do is place a link on your site, pointing to:").
+		"<pre>https://{$_SERVER['SERVER_NAME']}/dtc/affiliation.php?affiliate={$adm_login}&amp;return=/hosting-vps.html</pre>"
+		._("You can customize the <code>return</code> variable to redirect the user to any particular landing page that exists on our Web site (though we recommend the product page as per the example).  Then, when one of your visitors clicks on that link to buy a product from us, he will be redirected to our Web site.  Once he buys, you will automatically be credited a payment depending on the product that your visitor bought.");
 
 	}else{
 		$out .= "<br>" . _("You do not have a client account, so there is no money in your account.");

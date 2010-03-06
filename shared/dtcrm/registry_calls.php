@@ -1,5 +1,18 @@
 <?php
 
+function find_domain_price($tld){
+	global $pro_mysql_registrar_domains_table;
+	$q = "SELECT price FROM $pro_mysql_registrar_domains_table WHERE tld='$tld';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		return FALSE;
+	}else{
+		$a = mysql_fetch_array($r);
+		return $a["price"];
+	}
+}
+
 // Return the ID of the registrar module in the $registry_api_modules
 // depending on $domain
 // Returns false if not found

@@ -42,7 +42,40 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "registry_renew_domain")
 	if(!isRandomNum($_REQUEST["num_years"]) || strlen($_REQUEST["num_years"]) != 1){
 		echo _("Number of years is not a number between 1 and 9.");
 	}else{
+		$q = "SELECT id_client FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			die("ID client not found line ".__LINE__." file ".__FILE__);
+		}
+		$admin = mysql_fetch_array($r);
+		$id_client = $admin["id_client"];
+		$q = "SELECT * FROM $pro_mysql_client_table WHERE id='$id_client';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			die("Client record not found line ".__LINE__." file ".__FILE__);
+		}
+		$client = mysql_fetch_array($r);
+		$tld = find_domain_extension($edit_domain);
+		if($tld === FLASE){
+			die("Domain TLD not found line ".__LINE__." file ".__FILE__);
+		}
+		$price = find_domain_price($tld);
+		if($price === FALSE){
+			die("TLD price not found line ".__LINE__." file ".__FILE__);
+		}
+		$price = $_REQUEST["num_years"] * $price;
+		$remaining = $client["dollar"] - $price;
+		if($remaining < 0){
+			die("Not enough money on the account line ".__LINE__." file ".__FILE__);
+		}
 		$renew_return = registry_renew_domain($edit_domain,$_REQUEST["num_years"]);
+		// If renew successful, remove some money from the account, and update expiration date of the domain
+		if($renew_return["attributes"]["status"] == 0){
+			$q = "UPDATE $pro_mysql_client_table SET dollar='$remaining' WHERE id='$id_client';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		}
 	}
 }
 

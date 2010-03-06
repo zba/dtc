@@ -9,9 +9,12 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_whois_table;
 	global $renew_return;
+	global $secpayconf_currency_letters;
 	$out = "";
 
 	$webname = $eddomain["name"];
+
+	get_secpay_conf();
 
 	$out .= "<br><h3>". _("Registration:") ."</h3>";
 	if($eddomain["whois"] == "away"){
@@ -25,15 +28,35 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 		}else{
 			$a = mysql_fetch_array($r);
 			if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "renew_domain"){
-				$out .= "TODO: display how many funds on the account, and what to do if not enough.<br>
-<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+				// echo "<pre>"; print_r($admin); echo "</pre>";
+				$out .= dtcFormTableAttrs();
+				$out .= dtcFormLineDraw( _("Money on your account: "), $admin["client"]["dollar"]." $secpayconf_currency_letters",1);
+				$tld = find_domain_extension($webname);
+				$out .= dtcFormLineDraw( _("Type of extension: "),$tld,0);
+				$out .= dtcFormLineDraw( _("Renewal for how many years: "),$_REQUEST["num_years"],1);
+				$price = find_domain_price($tld);
+				if($price === FALSE){
+					$out .= dtcFormLineDraw( "", "<font color=\"red\">"._("Price for the domain not found!")."</font>",0);
+					$out .= "</table>";
+				}else{
+					$price = $_REQUEST["num_years"] * $price;
+					$out .= dtcFormLineDraw( _("Total price: "),$price." $secpayconf_currency_letters",0);
+					$remaining = $admin["client"]["dollar"] - $price;
+					$out .= dtcFormLineDraw( _("Balance after transaction: "), $remaining." $secpayconf_currency_letters",1);
+					if($remaining < 0){
+						$out .= dtcFormLineDraw( "", "<font color=\"red\">"._("Insufisant balance for the transaction, please go to \"My account\" and add money.")."</font>",0);
+						$out .= "</table>";
+					}else{
+						$out .= dtcFormLineDraw( "", "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
-<input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
+<input type=\"hidden\" name=\"edit_domain\" value=\"".$webname."\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"action\" value=\"registry_renew_domain\">
 <input type=\"hidden\" name=\"num_years\" value=\"".$_REQUEST["num_years"]."\">
-".submitButtonStart()._("Renew domain").submitButtonEnd()."</form><br><br>
-";
+".submitButtonStart()._("Renew domain").submitButtonEnd()."</form>",0);
+						$out .= "</table>";
+					}
+				}
 			}elseif(isset($_REQUEST["action"]) && $_REQUEST["action"] == "registry_renew_domain"){
 				$out .= $renew_return["response_text"];
                         }else{
