@@ -270,7 +270,7 @@ $ret["response_text"] = "Domain name can't be renewed";
 	}
 
 
-function ovh_registry_renew_domain($domain_name) {
+function ovh_registry_renew_domain($domain_name,$years) {
 	global $conf_ovh_boolean;
 	$ovh_boolean = $conf_ovh_boolean;
 	
@@ -284,6 +284,9 @@ try {
    
 	//resellerDomainRenew
  $soap->resellerDomainRenew($session, $domain_name, $ovh_boolean);
+ if($years != 1){
+return array( "attribute" => array("is_succes" => 0), "response_text" => _("Only one year renewals with OVH.") );
+}
  $regz["is_success"] = 1;
  $regz["response_text"] = "Renew successful";
  
