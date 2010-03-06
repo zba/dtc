@@ -356,9 +356,12 @@ function webnic_registry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns
 }
 
 function webnic_registry_check_transfer($domain){
-	$post_params_hash = webnic_checksum();
-	$post_params_hash["domainname"] = $domain;
-	$webcc_ret = webnic_submit("pn_trfstatus.jsp", $post_params_hash);
+//	$post_params_hash = webnic_checksum();
+//	$post_params_hash["domainname"] = $domain;
+//	$webcc_ret = webnic_submit("pn_trfstatus.jsp", $post_params_hash);
+	// No apparent way to test if a domain is transferable with webnice
+	// so we always reply transferable.
+	$webcc_ret = "0 Transferable";
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
 	if($webcc_ret == 0){
@@ -366,6 +369,7 @@ function webnic_registry_check_transfer($domain){
 	}else{
 		$ret["is_success"] = 0;
 	}
+	$ret["attributes"]["transferrable"] = 1;
 	return $ret;
 }
 

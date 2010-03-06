@@ -11,11 +11,10 @@ function make_registration_tld_popup(){
 		$a = mysql_fetch_array($r);
 		$reg_tld_popup .= "<option value=\"".$a["tld"]."\">".$a["tld"]."</option>";
 	}
-	$form_enter_domain_name = "<input type=\"hidden\" name=\"action\" value=\"dtcrm_add_domain\">
-www.<input type=\"text\" name=\"toreg_domain\" value=\"\">
-<select name=\"toreg_extention\">
-$reg_tld_popup
-</select><input type=\"submit\" value=\"Ok\">
+	$form_enter_domain_name = "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">
+<tr><td><input type=\"hidden\" name=\"action\" value=\"dtcrm_add_domain\">www.<input type=\"text\" name=\"toreg_domain\" value=\"\"></td>
+<td><select name=\"toreg_extention\">$reg_tld_popup</select></td>
+<td>".submitButtonStart(). _("Ok") .submitButtonEnd()."</td></tr></table>
 ";
 	return $form_enter_domain_name;
 }
@@ -102,16 +101,15 @@ $whois_forwareded_params = "
 ";
 
 $period_popup = "<select name=\"toreg_period\">
-<option value=\"1\">1 years</value>
-<option value=\"2\">2 years</value>
-<option value=\"3\">3 years</value>
-<option value=\"4\">4 years</value>
-<option value=\"5\">5 years</value>
-<option value=\"6\">6 years</value>
-<option value=\"7\">7 years</value>
-<option value=\"8\">8 years</value>
-<option value=\"9\">9 years</value>
-<option value=\"10\">10 years</value>
+<option value=\"1\">1 "._("year")."</value>
+<option value=\"2\">2 "._("years")."</value>
+<option value=\"3\">3 "._("years")."</value>
+<option value=\"4\">4 "._("years")."</value>
+<option value=\"5\">5 "._("years")."</value>
+<option value=\"6\">6 "._("years")."</value>
+<option value=\"7\">7 "._("years")."</value>
+<option value=\"8\">8 "._("years")."</value>
+<option value=\"9\">9 "._("years")."</value>
 </select>";
 
 ?>

@@ -7,13 +7,15 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 
 	global $registration_added_price;
 
-       global $pro_mysql_domain_table;
-       global $pro_mysql_client_table;
-
-       global $registry_api_modules;
+	global $pro_mysql_domain_table;
+	global $pro_mysql_client_table;
+	global $registry_api_modules;
 
 	global $form_enter_dns_infos;
 	global $whois_forwareded_params;
+	global $secpayconf_currency_letters;
+
+	get_secpay_conf();
 
 	$out = "";
 
@@ -39,7 +41,7 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 <input type=\"hidden\" name=\"add_domain_type\" value=\"".$_REQUEST["add_domain_type"]."\">
 ";
 
-	$out .= "<b><u>". _("Transfer from another registrar to this server:") ."</u></b><br>
+	$out .= "<br><h3>". _("Transfer from another registrar to this server:") ."</h3>
 <i><u>". _("Step1: check if domain is transferable") ."</u></i>";
 
 	if(!isset($toreg_extention) || $toreg_extention == "" ||
@@ -80,7 +82,7 @@ $form_start<br>
 		!isset($_REQUEST["toreg_dns2"]) || $_REQUEST["toreg_dns2"] == ""){
 		$out .= $form_start . whoisHandleSelection($admin);
 		$out .= $form_enter_dns_infos;
-		$out .= "<br><input type=\"submit\" value=\"". _("Proceed to transfer") ."\"></form>";
+		$out .= "<br>".submitButtonStart(). _("Proceed to transfer") .submitButtonEnd() ."</form>";
 		return $out;
 	}
 	$form_start .= $whois_forwareded_params;
@@ -89,8 +91,7 @@ $form_start<br>
 	$out .= "DNS2: ".$_REQUEST["toreg_dns2"]."<br><br>";
 
 	$fqdn = $toreg_domain . $toreg_extention;
-	$price = registry_get_domain_price($fqdn,1);
-    $fqdn_price = $price + $registration_added_price;//["attributes"]["price"] + $registration_added_price;
+	$fqdn_price = $price = find_domain_price($toreg_extention);
 
 	if($admin["info"]["id_client"] != 0){
 		$remaining = $admin["client"]["dollar"];
@@ -102,8 +103,8 @@ $form_start<br>
 
 	// Step 3: check account balance and transfer the domain name after transaction aprooval
 	$out .= "<i><u>Step3: Proceed for transfer</u></i><br>";
-	$out .= _("Remaining on your account: ") ." \$" . $remaining . "<br>
-". _("Total price: ") ." \$". $fqdn_price . "<br><br>";
+	$out .= _("Remaining on your account: ") ." " . $remaining . " $secpayconf_currency_letters<br>
+". _("Total price: ") ." ". $fqdn_price . " $secpayconf_currency_letters<br><br>";
 
 	if(isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "return_from_paypal_domain_add"){
 		$ze_refund = isPayIDValidated(addslashes($_REQUEST["pay_id"]));
@@ -145,7 +146,7 @@ $paybutton";
 		$out .= _("You have enough funds on your account to proceed with transfert. Press the confirm button to proceed.") ."<br><br>
 $form_start
 <input type=\"hidden\" name=\"toreg_confirm_transfert\" value=\"yes\">
-<input type=\"submit\" value=\"". _("Proceed to name-transfert") ."\">
+".submitButtonStart(). _("Proceed to name-transfert") .submitButtonEnd() ."
 </form>";		return $out;
 	}
 	///////////////////////////////////////
