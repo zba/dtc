@@ -234,6 +234,11 @@ function webnic_registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_
 	$webcc_ret = webnic_submit("pn_dnsreg.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
@@ -259,6 +264,11 @@ function webnic_registry_modify_nameserver($adm_login,$adm_pass,$subdomain,$doma
 	$webcc_ret = webnic_submit("pn_dnsmod.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
@@ -269,6 +279,11 @@ function webnic_registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$doma
 	$webcc_ret = webnic_submit("pn_dnsdel.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
@@ -332,15 +347,25 @@ function webnic_registry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns
 	$webcc_ret = webnic_submit("pn_dns.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
-function webnic_registry_check_transfer($adm_login,$adm_pass,$domain){
-	$post_params_hash = webnic_checksum($post_params_hash);
+function webnic_registry_check_transfer($domain){
+	$post_params_hash = webnic_checksum();
 	$post_params_hash["domainname"] = $domain;
 	$webcc_ret = webnic_submit("pn_trfstatus.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
@@ -356,6 +381,11 @@ function webnic_registry_transfert_domain($adm_login,$adm_pass,$domain,$contacts
 	$webcc_ret = webnic_submit("pn_transfer.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
@@ -367,6 +397,11 @@ function webnic_registry_renew_domain($domain,$years){
 	$webcc_ret = webnic_submit("pn_renew.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
@@ -376,6 +411,11 @@ function webnic_registry_delete_domain($adm_login,$adm_pass,$domain){
 	$webcc_ret = webnic_submit("pn_del.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
