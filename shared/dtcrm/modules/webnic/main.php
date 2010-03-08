@@ -287,9 +287,6 @@ function webnic_registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$doma
 	return $ret;
 }
 
-function webnic_registry_get_domain_price($domain_name,$period){
-}
-
 function webnic_registry_get_whois($domain_name){
 	$post_params_hash["domain"] = $domain_name;
 	$webcc_ret = webnic_submit("whois.jsp", $post_params_hash,"no");
@@ -393,6 +390,32 @@ function webnic_registry_transfert_domain($adm_login,$adm_pass,$domain,$contacts
 	return $ret;
 }
 
+function webnic_registry_set_domain_protection($domain,$protection){
+	$post_params_hash = webnic_checksum();
+	$post_params_hash["domainname"] = $domain;
+	switch($protection){
+	case "unlocked":
+		$post_params_hash["status"] = "A";
+		break;
+	case "transferprot":
+		$post_params_hash["status"] = "N";
+		break;
+	case "locked":
+	default:
+		$post_params_hash["status"] = "L";
+		break;
+	}
+	$webcc_ret = webnic_submit("pn_protect.jsp", $post_params_hash);
+	$ret["response_text"] = response_text($webcc_ret);
+	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
+	return $ret;
+}
+
 function webnic_registry_renew_domain($domain,$years){
 	$post_params_hash = webnic_checksum();
 	$post_params_hash["domainname"] = $domain;
@@ -454,11 +477,11 @@ $registry_api_modules[] = array(
 "registry_add_nameserver" => "webnic_registry_add_nameserver",
 "registry_modify_nameserver" => "webnic_registry_modify_nameserver",
 "registry_delete_nameserver" => "webnic_registry_delete_nameserver",
-"registry_get_domain_price" => "webnic_registry_get_domain_price",
 "registry_register_domain" => "webnic_registry_register_domain",
 "registry_update_whois_info" => "webnic_registry_update_whois_info",
 "registry_update_whois_dns" => "webnic_registry_update_whois_dns",
 "registry_check_transfer" => "webnic_registry_check_transfer",
+"registry_set_domain_protection" => "webnic_registry_set_domain_protection",
 "registry_renew_domain" => "webnic_registry_renew_domain",
 "registry_delete_domain" => "webnic_registry_delete_domain",
 "registry_transfert_domain" => "webnic_registry_transfert_domain",

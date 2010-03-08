@@ -73,23 +73,6 @@ function registry_transfert_domain($adm_login,$adm_pass,$domain_name,$contacts,$
 //	return SRSregistry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers);
 }
 
-function registry_get_domain_price($domain_name,$period){
-	global $pro_mysql_registrar_domains_table;
-	$exten = find_domain_extension($domain_name);
-	if($exten === FALSE){
-		return FALSE;
-	}
-	$q = "SELECT * FROM $pro_mysql_registrar_domains_table WHERE tld='".$exten."';";
-	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-	if($n != 1){
-		return FALSE;
-	}
-	$a = mysql_fetch_array($r);
-	//SRSregistry_get_domain_price($domain_name,$period);
-	return $a["price"];
-}
-
 function registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip){
 	global $registry_api_modules;
 	$id = find_registry_id($domain_name);
@@ -143,7 +126,16 @@ function registry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns){
 	if($id === FALSE){
 		return FALSE;
 	}
-	return $registry_api_modules[$id]["registry_get_whois"]($adm_login,$adm_pass,$domain_name,$dns);
+	return $registry_api_modules[$id]["registry_update_whois_dns"]($adm_login,$adm_pass,$domain_name,$dns);
+}
+
+function registry_set_domain_protection($domain,$protection){
+	global $registry_api_modules;
+	$id = find_registry_id($domain);
+	if($id === FALSE){
+		return FALSE;
+	}
+	return $registry_api_modules[$id]["registry_set_domain_protection"]($domain_name,$protection);
 }
 
 function registry_check_transfer($domain){

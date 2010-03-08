@@ -84,6 +84,20 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	                        $out .= "</table>";
 			}
 			// Domain protection
+			if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_domain_protection"){
+				switch($a["protection"]){
+				case "unlocked":
+					$sel = "unlocked";
+					break;
+				case "transferprot":
+					$sel = "transferprot";
+					break;
+				default:
+				case "locked":
+					$sel = "locked";
+					break;
+				}
+			}
                         $frm = "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
