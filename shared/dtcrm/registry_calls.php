@@ -135,7 +135,7 @@ function registry_set_domain_protection($domain,$protection){
 	if($id === FALSE){
 		return FALSE;
 	}
-	return $registry_api_modules[$id]["registry_set_domain_protection"]($domain_name,$protection);
+	return $registry_api_modules[$id]["registry_set_domain_protection"]($domain,$protection);
 }
 
 function registry_check_transfer($domain){
