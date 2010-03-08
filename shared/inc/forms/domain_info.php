@@ -27,8 +27,8 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 			$out .= _("Cannot find your domain name registration information in the database.");
 		}else{
 			$a = mysql_fetch_array($r);
+			// Domain renewals
 			if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "renew_domain"){
-				// echo "<pre>"; print_r($admin); echo "</pre>";
 				$out .= dtcFormTableAttrs();
 				$out .= dtcFormLineDraw( _("Money on your account: "), $admin["client"]["dollar"]." $secpayconf_currency_letters",1);
 				$tld = find_domain_extension($webname);
@@ -83,6 +83,35 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 </select>"._("year(s)"), submitButtonStart()._("Renew domain").submitButtonEnd(),1);
 	                        $out .= "</table>";
 			}
+			// Domain protection
+                        $frm = "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
+<input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"action\" value=\"change_domain_protection\">";
+			$out .= "<br><br>".dtcFormTableAttrs();
+			$unlck_sel = "";
+			$trans_sel = "";
+			$lockd_sel = "";
+			switch($a["protection"]){
+			case "unlocked":
+				$unlck_sel = " selected ";
+				break;
+			case "transferprot":
+				$trans_sel = " selected ";
+				break;
+			default:
+			case "locked":
+				$lockd_sel = " selected ";
+				break;
+			}
+			$out .= dtcFormLineDraw( _("Domain protection: ") . $frm , "<select name=\"protection\">
+<option value=\"unlocked\" $unlck_sel>"._("Domain name unlocked")."</option>
+<option value=\"transferprot\" $trans_sel>"._("Domain name transfer protected")."</option>
+<option value=\"locked\" $lockd_sel>"._("Domain name protected")."</option>
+</select>",0);
+			$out .= dtcFormLineDraw( "", submitButtonStart()._("Set protection").submitButtonEnd(),1);
+			$out .= "</table>";
 		}
 	}
 
