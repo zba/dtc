@@ -16,6 +16,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 
 	get_secpay_conf();
 
+	// Domain registration API stuffs
 	$out .= "<br><h3>". _("Registration:") ."</h3>";
 	if($eddomain["whois"] == "away"){
 		$out .= _("Your domain is not registered here.");
@@ -97,6 +98,12 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 					$sel = "locked";
 					break;
 				}
+				$ret = registry_set_domain_protection($webname,$sel);
+				if($ret != FALSE && $ret["is_success"] == 1)}
+					$q = "UPDATE $pro_mysql_whois_table WHERE domain_name='$webname';";
+					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__."sql said: ".mysql_error());
+					$a["protection"] = $sel;
+				}
 			}
                         $frm = "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
@@ -126,12 +133,19 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 </select>",0);
 			$out .= dtcFormLineDraw( "", submitButtonStart()._("Set protection").submitButtonEnd(),1);
 			$out .= "</table>";
-		}
-	}
 
-	// TODO : fetch the expiration in the database
-//	$webname = $eddomain["name"];
-//	$query = "SELECT * FROM $pro_mysql_command_table WHERE nom_domaine='$webname'";
+			// Domain auth code
+			$authcode = registry_get_auth_code($webname);
+			if($authcode === FALSE || $authcode["is_success"] != 1){
+				$txt = _("Auth code retrival failed.");
+			}else{
+				$txt = $authcode["response_text"];
+			}
+			$out .= "<br><br>".dtcFormTableAttrs();
+			$out .= dtcFormLineDraw( _("Domain auth code: "), $txt,1);
+			$out .= "</table>";
+		}
+	}	// End of domain registration API code
 
 	// Retrive domain config
 	$quota = $eddomain["quota"];

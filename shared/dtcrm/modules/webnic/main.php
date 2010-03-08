@@ -390,6 +390,14 @@ function webnic_registry_transfert_domain($adm_login,$adm_pass,$domain,$contacts
 	return $ret;
 }
 
+function webnic_registry_get_auth_code($domain){
+//	$post_params_hash = webnic_checksum();
+	$ret["response_text"] = _("Webnic doesn't support auth code retrivial, please ask support.");
+	$ret["attributes"]["status"] = 0;
+	$ret["is_success"] = 1;
+	return $ret;
+}
+
 function webnic_registry_set_domain_protection($domain,$protection){
 	$post_params_hash = webnic_checksum();
 	$post_params_hash["domainname"] = $domain;
@@ -481,6 +489,7 @@ $registry_api_modules[] = array(
 "registry_update_whois_info" => "webnic_registry_update_whois_info",
 "registry_update_whois_dns" => "webnic_registry_update_whois_dns",
 "registry_check_transfer" => "webnic_registry_check_transfer",
+"registry_get_auth_code" => "webnic_registry_get_auth_code",
 "registry_set_domain_protection" => "webnic_registry_set_domain_protection",
 "registry_renew_domain" => "webnic_registry_renew_domain",
 "registry_delete_domain" => "webnic_registry_delete_domain",

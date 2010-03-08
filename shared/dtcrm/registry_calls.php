@@ -147,6 +147,16 @@ function registry_check_transfer($domain){
 	return $registry_api_modules[$id]["registry_check_transfer"]($domain);
 	
 }
+
+function registry_get_auth_code($domain){
+	global $registry_api_modules;
+	$id = find_registry_id($domain);
+	if($id === FALSE){
+		return FALSE;
+	}
+	return $registry_api_modules[$id]["registry_get_auth_code"]($domain);
+}
+
 function registry_check_renew($domain_name){
 	global $registry_api_modules;
 	$id = find_registry_id($domain_name);
