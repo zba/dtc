@@ -12,9 +12,15 @@ function webnicPostUsingCurl($url,$data) {
 	curl_setopt($c, CURLOPT_FOLLOWLOCATION, 1);
 	curl_setopt($c, CURLOPT_POST, 1);
 	curl_setopt($c, CURLOPT_POSTFIELDS, $data);
-	$return = curl_exec($c);
+	$content = curl_exec($c);
+	if($content === FALSE){
+		return FALSE;
+	}
+	$info = curl_getinfo($c);
+	$ret = substr($content,$info["header_size"]);
+	// echo "Webnic return: $ret<br>";
 	curl_close($c);
-	return $return;
+	return $ret;
 }
 
 // $post_url is usually something like: pn_reg.cgi
@@ -302,6 +308,11 @@ function webnic_registry_update_whois_info($adm_login,$adm_pass,$domain_name,$co
 	$webcc_ret = webnic_submit("pn_mod.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
