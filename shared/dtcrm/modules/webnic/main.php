@@ -12,9 +12,15 @@ function webnicPostUsingCurl($url,$data) {
 	curl_setopt($c, CURLOPT_FOLLOWLOCATION, 1);
 	curl_setopt($c, CURLOPT_POST, 1);
 	curl_setopt($c, CURLOPT_POSTFIELDS, $data);
-	$return = curl_exec($c);
+	$content = curl_exec($c);
+	if($content === FALSE){
+		return FALSE;
+	}
+	$info = curl_getinfo($c);
+	$ret = substr($content,$info["header_size"]);
+	// echo "Webnic return: $ret<br>";
 	curl_close($c);
-	return $return;
+	return $ret;
 }
 
 // $post_url is usually something like: pn_reg.cgi
@@ -234,6 +240,11 @@ function webnic_registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_
 	$webcc_ret = webnic_submit("pn_dnsreg.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
@@ -259,6 +270,11 @@ function webnic_registry_modify_nameserver($adm_login,$adm_pass,$subdomain,$doma
 	$webcc_ret = webnic_submit("pn_dnsmod.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
@@ -269,10 +285,12 @@ function webnic_registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$doma
 	$webcc_ret = webnic_submit("pn_dnsdel.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
-}
-
-function webnic_registry_get_domain_price($domain_name,$period){
 }
 
 function webnic_registry_get_whois($domain_name){
@@ -290,6 +308,11 @@ function webnic_registry_update_whois_info($adm_login,$adm_pass,$domain_name,$co
 	$webcc_ret = webnic_submit("pn_mod.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
@@ -332,15 +355,29 @@ function webnic_registry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns
 	$webcc_ret = webnic_submit("pn_dns.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
-function webnic_registry_check_transfer($adm_login,$adm_pass,$domain){
-	$post_params_hash = webnic_checksum($post_params_hash);
-	$post_params_hash["domainname"] = $domain;
-	$webcc_ret = webnic_submit("pn_trfstatus.jsp", $post_params_hash);
+function webnic_registry_check_transfer($domain){
+//	$post_params_hash = webnic_checksum();
+//	$post_params_hash["domainname"] = $domain;
+//	$webcc_ret = webnic_submit("pn_trfstatus.jsp", $post_params_hash);
+	// No apparent way to test if a domain is transferable with webnice
+	// so we always reply transferable.
+	$webcc_ret = "0 Transferable";
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
+	$ret["attributes"]["transferrable"] = 1;
 	return $ret;
 }
 
@@ -356,6 +393,45 @@ function webnic_registry_transfert_domain($adm_login,$adm_pass,$domain,$contacts
 	$webcc_ret = webnic_submit("pn_transfer.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
+	return $ret;
+}
+
+function webnic_registry_get_auth_code($domain){
+//	$post_params_hash = webnic_checksum();
+	$ret["response_text"] = _("Webnic doesn't support auth code retrivial, please ask support.");
+	$ret["attributes"]["status"] = 0;
+	$ret["is_success"] = 1;
+	return $ret;
+}
+
+function webnic_registry_set_domain_protection($domain,$protection){
+	$post_params_hash = webnic_checksum();
+	$post_params_hash["domainname"] = $domain;
+	switch($protection){
+	case "unlocked":
+		$post_params_hash["status"] = "A";
+		break;
+	case "transferprot":
+		$post_params_hash["status"] = "N";
+		break;
+	case "locked":
+	default:
+		$post_params_hash["status"] = "L";
+		break;
+	}
+	$webcc_ret = webnic_submit("pn_protect.jsp", $post_params_hash);
+	$ret["response_text"] = response_text($webcc_ret);
+	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
@@ -367,6 +443,11 @@ function webnic_registry_renew_domain($domain,$years){
 	$webcc_ret = webnic_submit("pn_renew.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
@@ -376,6 +457,11 @@ function webnic_registry_delete_domain($adm_login,$adm_pass,$domain){
 	$webcc_ret = webnic_submit("pn_del.jsp", $post_params_hash);
 	$ret["response_text"] = response_text($webcc_ret);
 	$ret["attributes"]["status"] = webnic_return_code($webcc_ret);
+	if($webcc_ret == 0){
+		$ret["is_success"] = 1;
+	}else{
+		$ret["is_success"] = 0;
+	}
 	return $ret;
 }
 
@@ -410,11 +496,12 @@ $registry_api_modules[] = array(
 "registry_add_nameserver" => "webnic_registry_add_nameserver",
 "registry_modify_nameserver" => "webnic_registry_modify_nameserver",
 "registry_delete_nameserver" => "webnic_registry_delete_nameserver",
-"registry_get_domain_price" => "webnic_registry_get_domain_price",
 "registry_register_domain" => "webnic_registry_register_domain",
 "registry_update_whois_info" => "webnic_registry_update_whois_info",
 "registry_update_whois_dns" => "webnic_registry_update_whois_dns",
 "registry_check_transfer" => "webnic_registry_check_transfer",
+"registry_get_auth_code" => "webnic_registry_get_auth_code",
+"registry_set_domain_protection" => "webnic_registry_set_domain_protection",
 "registry_renew_domain" => "webnic_registry_renew_domain",
 "registry_delete_domain" => "webnic_registry_delete_domain",
 "registry_transfert_domain" => "webnic_registry_transfert_domain",

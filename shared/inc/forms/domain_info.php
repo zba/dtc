@@ -9,10 +9,14 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	global $pro_mysql_domain_table;
 	global $pro_mysql_whois_table;
 	global $renew_return;
+	global $secpayconf_currency_letters;
 	$out = "";
 
 	$webname = $eddomain["name"];
 
+	get_secpay_conf();
+
+	// Domain registration API stuffs
 	$out .= "<br><h3>". _("Registration:") ."</h3>";
 	if($eddomain["whois"] == "away"){
 		$out .= _("Your domain is not registered here.");
@@ -24,20 +28,48 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 			$out .= _("Cannot find your domain name registration information in the database.");
 		}else{
 			$a = mysql_fetch_array($r);
+			// Domain renewals
 			if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "renew_domain"){
-				$out .= "TODO: display how many funds on the account, and what to do if not enough.<br>
-<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+				$out .= dtcFormTableAttrs();
+				$out .= dtcFormLineDraw( _("Money on your account: "), $admin["client"]["dollar"]." $secpayconf_currency_letters",1);
+				$tld = find_domain_extension($webname);
+				$out .= dtcFormLineDraw( _("Type of extension: "),$tld,0);
+				$out .= dtcFormLineDraw( _("Renewal for how many years: "),$_REQUEST["num_years"],1);
+				$price = find_domain_price($tld);
+				if($price === FALSE){
+					$out .= dtcFormLineDraw( "", "<font color=\"red\">"._("Price for the domain not found!")."</font>",0);
+					$out .= "</table>";
+				}else{
+					$price = $_REQUEST["num_years"] * $price;
+					$out .= dtcFormLineDraw( _("Total price: "),$price." $secpayconf_currency_letters",0);
+					$remaining = $admin["client"]["dollar"] - $price;
+					$out .= dtcFormLineDraw( _("Balance after transaction: "), $remaining." $secpayconf_currency_letters",1);
+					if($remaining < 0){
+						$out .= dtcFormLineDraw( "", "<font color=\"red\">"._("Insufisant balance for the transaction, please go to \"My account\" and add money.")."</font>",0);
+						$out .= "</table>";
+					}else{
+						$out .= dtcFormLineDraw( "", "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
-<input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
+<input type=\"hidden\" name=\"edit_domain\" value=\"".$webname."\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"action\" value=\"registry_renew_domain\">
 <input type=\"hidden\" name=\"num_years\" value=\"".$_REQUEST["num_years"]."\">
-".submitButtonStart()._("Renew domain").submitButtonEnd()."</form><br><br>
-";
+".submitButtonStart()._("Renew domain").submitButtonEnd()."</form>",0);
+						$out .= "</table>";
+					}
+				}
 			}elseif(isset($_REQUEST["action"]) && $_REQUEST["action"] == "registry_renew_domain"){
 				$out .= $renew_return["response_text"];
                         }else{
 				$out .= dtcFormTableAttrs();
+
+				// Domain auth code
+				$authcode = registry_get_auth_code($webname);
+				if($authcode === FALSE || $authcode["is_success"] != 1){
+					$txt = _("Auth code retrival failed.");
+				}else{
+					$txt = $authcode["response_text"];
+				}
 	                        $frm = "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
@@ -47,6 +79,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 				$out .= dtcFormLineDraw( _("Creation date: "), $a["creation_date"],0);
 				$out .= dtcFormLineDraw( _("Last modification date: "), $a["modification_date"],1);
 				$out .= dtcFormLineDraw( _("Expiration date: "), $a["expiration_date"],0);
+				$out .= dtcFormLineDraw( _("Domain auth code: "), $txt,1);
 				$out .= dtcFormLineDraw( "<select name=\"num_years\">
 <option value=\"1\">1</option>
 <option value=\"2\">2</option>
@@ -57,15 +90,61 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 <option value=\"7\">7</option>
 <option value=\"8\">8</option>
 <option value=\"9\">9</option>
-</select>"._("year(s)"), submitButtonStart()._("Renew domain").submitButtonEnd(),1);
+</select>"._("year(s)"), submitButtonStart()._("Renew domain").submitButtonEnd()."</form>",0);
 	                        $out .= "</table>";
 			}
-		}
-	}
+			// Domain protection
+			if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_domain_protection"){
+				switch($_REQUEST["protection"]){
+				case "unlocked":
+					$sel = "unlocked";
+					break;
+				case "transferprot":
+					$sel = "transferprot";
+					break;
+				default:
+				case "locked":
+					$sel = "locked";
+					break;
+				}
+				$ret = registry_set_domain_protection($webname,$sel);
+				if($ret != FALSE && $ret["is_success"] == 1){
+					$q = "UPDATE $pro_mysql_whois_table SET protection='$sel' WHERE domain_name='$webname';";
+					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__."sql said: ".mysql_error());
+					$a["protection"] = $sel;
+				}
+			}
+                        $frm = "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
+<input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"action\" value=\"change_domain_protection\">";
+			$out .= dtcFormTableAttrs();
+			$unlck_sel = "";
+			$trans_sel = "";
+			$lockd_sel = "";
+			switch($a["protection"]){
+			case "unlocked":
+				$unlck_sel = " selected ";
+				break;
+			case "transferprot":
+				$trans_sel = " selected ";
+				break;
+			default:
+			case "locked":
+				$lockd_sel = " selected ";
+				break;
+			}
+			$out .= dtcFormLineDraw( _("Domain protection: ") . $frm , "<select name=\"protection\">
+<option value=\"unlocked\" $unlck_sel>"._("Domain name unlocked")."</option>
+<option value=\"transferprot\" $trans_sel>"._("Domain name transfer protected")."</option>
+<option value=\"locked\" $lockd_sel>"._("Domain name protected")."</option>
+</select>",1);
+			$out .= dtcFormLineDraw( "", submitButtonStart()._("Set protection").submitButtonEnd(),0);
+			$out .= "</form></table>";
 
-	// TODO : fetch the expiration in the database
-//	$webname = $eddomain["name"];
-//	$query = "SELECT * FROM $pro_mysql_command_table WHERE nom_domaine='$webname'";
+		}
+	}	// End of domain registration API code
 
 	// Retrive domain config
 	$quota = $eddomain["quota"];

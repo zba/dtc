@@ -43,7 +43,7 @@ function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admi
 
 	$out = "";
 	$pop = "";
-	$out .= _("Who will own the domain name and will be the registrant (domain owner)?") ."<br>
+	$out .= "<b>"._("Domain owner / registrant:")."</b> "._("who will own the domain name and will be the registrant?") ."<br>
 <select name=\"dtcrm_owner_hdl\">";
 	for($i=0;$i<$num_rows;$i++){
 		$id = $rows[$i]["id"];
@@ -58,7 +58,10 @@ function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admi
 	}
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
-		$out .= _("First name: ") . $infoz["firstname"] ."<br>".
+		if(!isset($infoz)){
+			$out .= "<font color=\"red\">"._("Whois handle information not found! Please select a new nick handle.")."</font>";
+		}else{
+			$out .= _("First name: ") . $infoz["firstname"] ."<br>".
 _("Familly name: ") . $infoz["lastname"] ."<br>".
 _("Company name: ") . $infoz["company"] ."<br>".
 _("Address (line1): ") . $infoz["addr1"] ."<br>".
@@ -71,11 +74,13 @@ _("Country: ") . $infoz["country"] ."<br>".
 _("Phone number: ") . $infoz["phone_num"] ."<br>".
 _("Fax: ") . $infoz["fax_num"] ."<br>".
 _("Email: ") . $infoz["email"] ."<br>";
+		}
 	}
 	$out .="
 <br>";
+	unset($infoz);
 
-	$out .= _("Who will have the rights for changing the whois information (admin contact)?") ."<br>
+	$out .= "<b>"._("Admin contact:")."</b> "._("who will have the rights for changing the whois information?") ."<br>
 <select name=\"dtcrm_admin_hdl\">";
 	for($i=0;$i<$num_rows;$i++){
 		$id = $rows[$i]["id"];
@@ -90,7 +95,10 @@ _("Email: ") . $infoz["email"] ."<br>";
 	}
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
-		$out .= _("First name: ") . $infoz["firstname"] ."<br>".
+		if(!isset($infoz)){
+			$out .= "<font color=\"red\">"._("Whois handle information not found! Please select a new nick handle.")."</font>";
+		}else{
+			$out .= _("First name: ") . $infoz["firstname"] ."<br>".
 _("Familly name: ") . $infoz["lastname"] ."<br>".
 _("Company name: ") . $infoz["company"] ."<br>".
 _("Address (line1): ") . $infoz["addr1"] ."<br>".
@@ -103,11 +111,13 @@ _("Country: ") . $infoz["country"] ."<br>".
 _("Phone number: ") . $infoz["phone_num"] ."<br>".
 _("Fax: ") . $infoz["fax_num"] ."<br>".
 _("Email: ") . $infoz["email"] ."<br>";
+		}
 	}
 	$out .="
 <br>";
+	unset($infoz);
 
-	$out .= _("Who will be contacted for domain renewall (billing contact)?") ."<br>
+	$out .= "<b>"._("Billing contact:")."</b> "._("who will be contacted for domain renewall?") ."<br>
 <select name=\"dtcrm_billing_hdl\">";
 	for($i=0;$i<$num_rows;$i++){
 		$id = $rows[$i]["id"];
@@ -122,7 +132,10 @@ _("Email: ") . $infoz["email"] ."<br>";
 	}
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
-		$out .= _("First name: ") . $infoz["firstname"] ."<br>".
+		if(!isset($infoz)){
+			$out .= "<font color=\"red\">"._("Whois handle information not found! Please select a new nick handle.")."</font>";
+		}else{
+			$out .= _("First name: ") . $infoz["firstname"] ."<br>".
 _("Familly name: ") . $infoz["lastname"] ."<br>".
 _("Company name: ") . $infoz["company"] ."<br>".
 _("Address (line1): ") . $infoz["addr1"] ."<br>".
@@ -135,11 +148,13 @@ _("Country: ") . $infoz["country"] ."<br>".
 _("Phone number: ") . $infoz["phone_num"] ."<br>".
 _("Fax: ") . $infoz["fax_num"] ."<br>".
 _("Email: ") . $infoz["email"] ."<br>";
+		}
 	}
 	$out .="
 <br>";
+	unset($infoz);
 
-	$out .= _("Who will be contacted for technical changes (teck contact)?") ."<br>
+	$out .= "<b>"._("Technical contact:")."</b> "._("who will be contacted for technical changes?") ."<br>
 <select name=\"dtcrm_teck_hdl\">";
 	for($i=0;$i<$num_rows;$i++){
 		$id = $rows[$i]["id"];
@@ -154,7 +169,10 @@ _("Email: ") . $infoz["email"] ."<br>";
 	}
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
-		$out .= _("First name: ") . $infoz["firstname"] ."<br>".
+		if(!isset($infoz)){
+			$out .= "<font color=\"red\">"._("Whois handle information not found! Please select a new nick handle.")."</font>";
+		}else{
+			$out .= _("First name: ") . $infoz["firstname"] ."<br>".
 _("Familly name: ") . $infoz["lastname"] ."<br>".
 _("Company name: ") . $infoz["company"] ."<br>".
 _("Address (line1): ") . $infoz["addr1"] ."<br>".
@@ -167,6 +185,7 @@ _("Country: ") . $infoz["country"] ."<br>".
 _("Phone number: ") . $infoz["phone_num"] ."<br>".
 _("Fax: ") . $infoz["fax_num"] ."<br>".
 _("Email: ") . $infoz["email"] ."<br>";
+		}
 	}
 
 	$out .="

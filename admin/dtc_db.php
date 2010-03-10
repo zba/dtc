@@ -1228,7 +1228,8 @@ $dtc_database = array(
 			"ns3" => "varchar(64) NULL ",
 			"ns4" => "varchar(64) NULL ",
 			"ns5" => "varchar(64) NULL ",
-			"ns6" => "varchar(64) NULL "
+			"ns6" => "varchar(64) NULL ",
+			"protection" => "enum('unlocked','transferprot','locked')NOT NULL default 'unlocked'"
 			),
 		"primary" => "(domain_name)"
 		)

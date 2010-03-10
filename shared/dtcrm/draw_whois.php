@@ -45,23 +45,8 @@ function drawAdminTools_Whois($admin,$eddomain){
 
 	$domain_name = $eddomain["name"];
     
-	
 	$out = "";
-	
-	
-	if($eddomain["whois"] == "here"){
-		if(isset($_REQUEST["dtcrm_action"]) && $_REQUEST["dtcrm_action"] == "renew_domain"){
-			$out .= drawNameRenew($domain_name,$admin);
-		}else{
-			$out .= "<form action=\"". $_SERVER["PHP_SELF"] ."\">
-<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
-<input type=\"hidden\" name=\"dtcrm_action\" value=\"renew_domain\">
-";   
-$out .= "<br>".submitButtonStart(). _("Renew domain") .submitButtonEnd()."</form><br><br>";
-}
-		}	
+
 	if($eddomain["whois"] == "away"){
 		if(isset($_REQUEST["dtcrm_action"]) && $_REQUEST["dtcrm_action"] == "transfer_domain"){
 			$out .= drawNameTransfer($admin,$domain_name);
@@ -122,7 +107,7 @@ $out .= "<br>".submitButtonStart(). _("Renew domain") .submitButtonEnd()."</form
 		$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 		if(mysql_num_rows($result) != 1) die("Whois row not found !");
 		$row = mysql_fetch_array($result);
-		$out .= "<b><u>". _("Your domain name whois data:") ."</u></b><br>
+		$out .= "<br><h3>". _("Your domain name whois data:") ."</h3>
 ";
 
 		$out .= "<form action=\"". $_SERVER["PHP_SELF"] ."\">
@@ -132,10 +117,10 @@ $out .= "<br>".submitButtonStart(). _("Renew domain") .submitButtonEnd()."</form
 <input type=\"hidden\" name=\"action\" value=\"update_whois_infoz\">
 ";
 		$out .= whoisHandleSelection($admin,"yes",$row["owner_id"],$row["billing_id"],$row["admin_id"],$row["teck_id"]);
-		$out .= submitButtonStart(). _("Update whois") .submitButtonEnd()."</form>";
+		$out .= submitButtonStart(). _("Update whois") .submitButtonEnd()."</form><br>";
 	}
 
-	$out .= "<br><br>" . _("The current whois for this domain is as follow:") . "<br>";
+	$out .= "<br><h3>" . _("The current whois for this domain is as follow:") . "</h3>";
 	$ret = registry_get_whois($domain_name);
 //	print_r($ret);
 	$out .= nl2br($ret["response_text"]);

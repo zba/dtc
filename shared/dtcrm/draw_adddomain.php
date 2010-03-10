@@ -77,7 +77,7 @@ $form_start = "
 <input type=\"hidden\" name=\"product_id\" value=\"".$_REQUEST["product_id"]."\">
 <input type=\"hidden\" name=\"action\" value=\"add_new_service\">".$added1."
 Special notes for the setup:<textarea name=\"custom_notes\" cols=\"50\" rows=\"5\"></textarea><br>
-<input type=\"submit\" value=\""._("Register")."\">
+".submitButtonStart(). _("Register") .submitButtonEnd()."
 ";
 		
 		return $out;
@@ -96,7 +96,7 @@ $form_start";
 			$add_domain_type_checked = " checked ";
 		}
 		$out .= "<input type=\"radio\" name=\"add_domain_type\" value=\"hosting\" checked>". _("Hosting only") ."<br>
-<input type=\"submit\" value=\"Ok\">
+".submitButtonStart(). _("Ok") .submitButtonEnd()."
 </form>
 ";
 
@@ -121,7 +121,7 @@ $form_start";
 			<input type=\"hidden\" name=\"action\" value=\"add_new_service\">
 			<input type=\"hidden\" name=\"product_id\" value=\"".$a["id"]."\">
 			<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
-			<input type=\"submit\" value=\"".$a["name"]."\"></form>";
+			".submitButtonStart().$a["name"].submitButtonEnd()."</form>";
 //			$out .= "<a href=\"/dtc/new_account.php?action=add_new_service&adm_login=$adm_login&product_id=".$a["id"]."\">".$a["name"]."</a>";
 		}
 		return $out;
@@ -138,7 +138,8 @@ $form_start";
 		if(!isset($_REQUEST["domain_name"]) || $_REQUEST["domain_name"] == ""){
 			return "<br><b><u>". _("Please enter the domain name you wish to add:") ."</u></b><br>
 $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
-<input type=\"submit\" value=\"ok\"></form>";
+".submitButtonStart(). _("Ok") .submitButtonEnd()."
+</form>";
 		}
 		if(!isHostname($_REQUEST["domain_name"])){
 			return _("Domain name is not in correct format. Please enter another name.") ;
@@ -158,7 +159,8 @@ $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
 <br>
 ". _("You can add another domain name:") ."
 $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
-<input type=\"submit\" value=\"ok\"></form>
+".submitButtonStart(). _("Ok") .submitButtonEnd()."
+</form>
 ";
 		}
 		addDomainToUser($adm_login,$adm_pass,$_REQUEST["domain_name"]);
@@ -168,18 +170,19 @@ $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
 <br>
 ". _("Alternatively, you can add another domain name:") ."
 $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
-<input type=\"submit\" value=\"ok\"></form>
+".submitButtonStart(). _("Ok") .submitButtonEnd()."
+</form>
 ";
 	}
 
 	// Registration or domain transfer ?
 	if(!isset($_REQUEST["add_regortrans"]) || ($_REQUEST["add_regortrans"] != "register" &&
 		$_REQUEST["add_regortrans"] != "transfer")){
-		$out .= "<b><u>". _("Do you want to transfer an existing domain or register a new domain?") ."</u></b><br>
+		$out .= "<br><h3>". _("Do you want to transfer an existing domain or register a new domain?") ."</h3>
 $form_start
 <input type=\"radio\" name=\"add_regortrans\" value=\"register\" checked>". _("Register a new domain") ."<br>
 <input type=\"radio\" name=\"add_regortrans\" value=\"transfer\">". _("Transfer an existing domain from another registrar") ."<br>
-<input type=\"submit\" value=\"Ok\">
+".submitButtonStart(). _("Ok") .submitButtonEnd()."
 </form>
 ";
 		return $out;
@@ -189,7 +192,7 @@ $form_start
 
 	// Start registration procedure (with or without hosting)
 
-	$out .= "<b><u>". _("Register a domain name") ."</u></b><br>";
+	$out .= "<br><h3>". _("Register a domain name") ."</h3>";
 	$out .= "<i><u>". _("Step 1: Verify availability") ."</u></i><br>";
 	if(!isset($_REQUEST["toreg_domain"]) || $_REQUEST["toreg_domain"] == "" ||
 	!isset($_REQUEST["toreg_extention"]) || $_REQUEST["toreg_extention"] == ""){
@@ -264,7 +267,7 @@ _("Have another try:") . "<br>$form_start ".make_registration_tld_popup()."</for
 <option value=\"9\">9 $years</option>
 <option value=\"10\">10 $years</option>
 </select><br><br>
-<input type=\"submit\" value=\"Ok\">
+".submitButtonStart(). _("Ok") .submitButtonEnd()."
 </form>
 ";
 		return $out;
@@ -326,7 +329,8 @@ $form_start
 
 		$out .= _("You currently don't have enough funds on your account. You will be redirected to our payment system. Please click on the button below to pay.") ."<br>
 <br><br>
-$form_start<input type=\"submit\" value=\"". _("Payment complete. Proceed to checkout") ."\">
+$form_start
+".submitButtonStart(). _("Payment complete. Proceed to checkout") .submitButtonEnd()."
 </form> $paybutton";
 		return $out;
 	}
@@ -336,7 +340,7 @@ $form_start<input type=\"submit\" value=\"". _("Payment complete. Proceed to che
 		$out .= _("You have enough funds on your account to proceed with registration. Press the confirm button to proceed.") ."<br><br>
 $form_start
 <input type=\"hidden\" name=\"toreg_confirm_register\" value=\"yes\">
-<input type=\"submit\" value=\"". _("Proceed to name-registration") ."\">
+".submitButtonStart(). _("Proceed to name-registration") .submitButtonEnd()."
 </form>";
 		return $out;
 	}

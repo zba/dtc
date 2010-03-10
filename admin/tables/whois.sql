@@ -14,5 +14,6 @@ CREATE TABLE IF NOT EXISTS whois (
   ns4 varchar(64) default NULL,
   ns5 varchar(64) default NULL,
   ns6 varchar(64) default NULL,
+  protection enum('unlocked','transferprot','locked')NOT NULL default 'unlocked',
   PRIMARY KEY  (domain_name)
 ) TYPE=MyISAM;
