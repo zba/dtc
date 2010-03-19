@@ -1925,7 +1925,7 @@ modifyNamedConf () {
 			echo $line2 >> $TMP_FILE
 			touch $PATH_DTC_ETC/named.conf
 			cat < $TMP_FILE >> $PATH_NAMED_CONF
-			[ -f $TMP_FILE ] && rm -f $TMP_FILE
+			rm -f $TMP_FILE
 		fi
 		if [ "$UNIX_TYPE" = "redhat" ] ; then
 			touch $PATH_DTC_ETC/named.conf
@@ -1945,6 +1945,7 @@ modifyNamedConf () {
 				echo "Commenting Listen directives on named.conf"
 				sed "s'listen-on'//listen-on'I" $PATH_NAMED_CONF >$TMP_FILE
 				cat < $TMP_FILE > $PATH_NAMED_CONF
+				rm -f $TMP_FILE
 			fi
 		fi
 	fi
