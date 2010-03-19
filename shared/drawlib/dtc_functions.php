@@ -834,7 +834,7 @@ function addVPSToUser($adm_login,$vps_server_hostname,$product_id,$operating_sys
 		 die("Cannot find available IP and Xen name in $vps_server_hostname line ".__LINE__." file ".__FILE__);
 	}
 	$vps_ip = mysql_fetch_array($r);
-	$q = "UPDATE $pro_mysql_vps_ip_table SET available='no' WHERE vps_xen_name='".$vps_ip["vps_xen_name"]."' AND vps_server_hostname='".$vps_ip["vps_server_hostname"]."';";
+	$q = "UPDATE $pro_mysql_vps_ip_table SET available='no',rdns_addr='mx.xen".$vps_ip["vps_xen_name"].".".$vps_ip["vps_server_hostname"]."' WHERE vps_xen_name='".$vps_ip["vps_xen_name"]."' AND vps_server_hostname='".$vps_ip["vps_server_hostname"]."';";
 	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	$exp_date = calculateExpirationDate(date("Y-m-d"),$product["period"]);
