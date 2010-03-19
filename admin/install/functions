@@ -378,7 +378,7 @@ modifyResolvConf () {
 		echoIfVerbose "/etc/resolv.conf seems to be OK !"
 	else
 		echoIfVerbose "Adding nameserver 127.0.0.1 to /etc/resolv.conf"
-		TMP_FILE=`mktemp -t DTC_resolv.conf.XXXXXX` || exit 1
+		TMP_FILE=`${MKTEMP} DTC_resolv.conf.XXXXXX` || exit 1
 		if [ ! -f /etc/resolv.conf.DTC.Backup ]
 		then
 			echoIfVerbose "Backing up /etc/resolv.conf"
@@ -492,7 +492,7 @@ searchAndReplace () {
 		TMP_FILE=`${MKTEMP} DTC_SAR_TEMP.XXXXXX` || exit 1
 		sed "s/${2}/${3}/" ${1} >${TMP_FILE}
 		cat ${TMP_FILE} >${1}
-		rm -f ${TMP_FILE}
+		rm ${TMP_FILE}
 	fi
 }
 
@@ -788,8 +788,12 @@ setDtcdbPassword () {
 	# Add a dtc user to the mysql db, generate a password randomly if no password is there already
 	# Using a file to remember password...
 	if [ "$UNIX_TYPE" = "freebsd" -o "$UNIX_TYPE" = "osx" ] ; then
-		gen_pass=`mktemp -t "" | cut -d'.' -f2`
-		gen_pass=${gen_pass}`mktemp -t "" | cut -d'.' -f2`
+                TMP_FILE=`${MKTEMP} ""`
+                gen_pass=`echo $TMP_FILE | cut -d'.' -f2`
+                rm -f ${TMP_FILE}
+                TMP_FILE=`${MKTEMP} ""`
+                gen_pass=${gen_pass}`echo $TMP_FILE | cut -d'.' -f2`
+                rm -f ${TMP_FILE}
 	else
 		# This new one works as well with sh!
 		gen_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
@@ -1267,6 +1271,7 @@ changeApacheUserAndGroup () {
 		sed "s/Group apache/Group ${CONF_DTC_SYSTEM_GROUPNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
+	rm -f ${TMP_FILE}
 }
 
 createApachePIDSymLink () {
@@ -1388,7 +1393,7 @@ modifyHTTPD_CONF () {
 			cp -f "$PATH_HTTPD_CONF" "$PATH_HTTPD_CONF.DTC.backup"
 		fi
 
-		echoIfVerbose -n "Checking for AllowOverride..."
+		echoIfVerbose "Checking for AllowOverride..."
 		searchAndReplace $PATH_HTTPD_CONF AllowOverride\ None AllowOverride\ AuthConfig\ FileInfo\ Limit\ Indexes
 		searchAndReplace $PATH_HTTPD_CONF Options\ None Options\ FollowSymLinks
 
