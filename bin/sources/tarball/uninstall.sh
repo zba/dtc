@@ -7,5 +7,4 @@ QMAIL_DIR=/var/qmail
 . ${LOCALBASE}/www/dtc/admin/install/bsd_config
 . ${LOCALBASE}/www/dtc/admin/install/functions
 
-DTCsearchConfigFiles
 DTCuninstallPackage
