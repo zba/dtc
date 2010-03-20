@@ -31,6 +31,10 @@ if [ -z ${PATH_BASH} ] ; then
 	fi
 fi
 
+if [ -z "$AMAVISD_USER" ] ; then
+	AMAVISD_USER=amavis
+fi
+
 echoIfVerbose () {
 	if [ ""$VERBOSE_INSTALL = "yes" ] ; then
 		echo $1
@@ -2006,10 +2010,6 @@ setupAmavisConf () {
 	#
 	# Make some changes to the amavisd-new configuration to allow clamav to work with it cleanly.
 	#
-	if [ -z "$AMAVISD_USER" ]
-	then
-		AMAVISD_USER=amavis
-	fi
 
 	# make sure the amavisd configuration has '$AMAVISD_USER' user and group
 
@@ -2168,11 +2168,6 @@ modifyClamavConf () {
 		fi
 
                 echoIfVerbose "===> Checking user and group configuration for clamav..."
-
-		if [ -z "$AMAVISD_USER" ]
-		then
-			AMAVISD_USER=amavis
-		fi
 
 	        # make sure our users exist for amavis
 	        # turn back on error handling, these users probably exist already
@@ -2345,11 +2340,6 @@ modifyPostfixConfig () {
 
 	# Declare this makes the test when appenning the configuration for SASL
 	# works if you don't have SASL
-
-	if [ -z "$AMAVISD_USER" ]
-	then
-		AMAVISD_USER=amavis
-	fi
 
 	SASLTMP_FILE="/thisfiledoesnotexists"
 	if [ -f "$PATH_POSTFIX_CONF" ] ; then
