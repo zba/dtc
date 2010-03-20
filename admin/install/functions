@@ -1388,8 +1388,6 @@ modifyHTTPD_CONF () {
 			cp -f "$PATH_HTTPD_CONF" "$PATH_HTTPD_CONF.DTC.backup"
 		fi
 
-		TMP_FILE=`${MKTEMP} DTC_install.httpd.conf.XXXXXX` || exit 1
-
 		echoIfVerbose -n "Checking for AllowOverride..."
 		searchAndReplace $PATH_HTTPD_CONF AllowOverride\ None AllowOverride\ AuthConfig\ FileInfo\ Limit\ Indexes
 		searchAndReplace $PATH_HTTPD_CONF Options\ None Options\ FollowSymLinks
@@ -1479,9 +1477,6 @@ ErrorDocument 501 /dtc404/406.php
 </IfModule>
 " >>$PATH_HTTPD_CONF
 		echo "# End of DTC configuration v0.12 : please don't touch this line !" >>$PATH_HTTPD_CONF
-		if [ -f $TMP_FILE ] ; then
-			rm -f $TMP_FILE
-		fi
 	fi
 
 	if [ -e /etc/apache2/ports.conf ] ; then
