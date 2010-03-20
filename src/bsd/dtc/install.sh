@@ -66,5 +66,4 @@ done
 enableBsdBind
 copyBsdPhpIni
 interactiveInstaller
-DTCinstallPackage
 DTCsetupDaemons
