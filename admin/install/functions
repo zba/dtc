@@ -2069,6 +2069,10 @@ setupAmavisConf () {
 	        if grep "Configured by DTC" "$PATH_AMAVISD_CONF" >/dev/null; then
 			echoIfVerbose "$PATH_AMAVISD_CONF already configured..."
         	else
+        		if ! [ -f ${PATH_AMVISD_CONF}.DTC.backup ] ; then
+        			echoIfVerbose "===> Backuping "$PATH_AMAVISD_CONF
+        			cp -f "$PATH_AMAVISD_CONF" "$PATH_AMAVISD_CONF.DTC.backup"
+        		fi
 			echoIfVerbose "Inserting configuration into $PATH_AMAVISD_CONF"
 
 			# strip the 1; from the end of the config file
@@ -2367,6 +2371,10 @@ modifyPostfixConfig () {
 		then
 			echoIfVerbose "Postfix main.cf has been configured before, not adding virtual mailbox options"
 		else
+			if ! [ -f $PATH_POSTFIX_CONF.DTC.backup ] ; then
+				echoIfVerbose "===> Backuping "$PATH_POSTFIX_CONF
+				cp -f "$PATH_POSTFIX_CONF" "$PATH_POSTFIX_CONF.DTC.backup"
+			fi
 			if [ ! -d ${PATH_POSTFIX_ETC}/maps ] ; then
 				mkdir -p ${PATH_POSTFIX_ETC}/maps
 			fi
@@ -2619,6 +2627,10 @@ transport_maps = hash:$PATH_POSTFIX_ETC/transport
 			if grep "Configured by DTC" /etc/aliases >/dev/null; then
 				echoIfVerbose "/etc/aliases configured before, not adding ham/spam aliases"
 			else
+				if ! [ -f /etc/aliases.DTC.backup ] ; then
+					echoIfVerbose "===> Backuping /etc/aliases"
+					cp -f /etc/aliases /etc/aliases.DTC.backup
+				fi
 				echo "# Configured by DTC v0.26 : Please don't touch this line !" >>/etc/aliases
 				echo "# auto-spam-learning" >>/etc/aliases
 				echo "spam:	spam@spam.spam" >>/etc/aliases
@@ -2630,6 +2642,10 @@ transport_maps = hash:$PATH_POSTFIX_ETC/transport
 			if grep "Configured by DTC 0.21" "$PATH_POSTFIX_ETC/master.cf" >/dev/null; then
 				echoIfVerbose "Postfix master.cf has been configured before, not adding maildrop options"
 			else
+				if ! [ -f $PATH_POSTFIX_ETC/master.cf.DTC.backup ] ; then
+					echoIfVerbose "===> Backuping $PATH_POSTFIX_ETC/master.cf"
+					cp -f "$PATH_POSTFIX_ETC/master.cf" "$PATH_POSTFIX_ETC/master.cf.DTC.backup"
+				fi
 				echoIfVerbose "Inserting DTC configuration inside $PATH_POSTFIX_ETC/master.cf"
 
 				TMP_FILE2=`${MKTEMP} DTC_install.postfix_master.cf.XXXXXX` || exit 1
