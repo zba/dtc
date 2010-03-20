@@ -35,6 +35,12 @@ function mail_account_generate_maildrop(){
 
 	if( file_exists("/etc/courier/userdb") ){
 		$path_userdb="/etc/courier/userdb";
+	}elseif( file_exists("/usr/local/etc/userdb") ){
+		$path_userdb="/usr/local/etc/userdb";
+	}elseif( file_exists("/usr/local/etc/authlib/userdb") ){
+		$path_userdb="/usr/local/etc/authlib/userdb";
+	}elseif( file_exists("/usr/local/etc/courier/userdb") ){
+		$path_userdb="/usr/local/etc/courier/userdb";
 	}else{
 		$path_userdb="/etc/authlib/userdb";
 	}
@@ -123,6 +129,11 @@ function mail_account_generate_maildrop(){
 
 	// Create the binary database
 	system("/usr/sbin/makeuserdb");
+	if( file_exists("/usr/local/sbin/makeuserdb") ){
+		system("/usr/local/sbin/makeuserdb -f " . $path_userdb);
+	}else{
+		system("/usr/sbin/makeuserdb -f " . $path_userdb);
+	}
 	return;
 }
 
