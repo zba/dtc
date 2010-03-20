@@ -36,7 +36,8 @@ RUN_DEPENDS=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server \
 		${LOCALBASE}/bin/mhonarc:${PORTSDIR}/www/mhonarc \
 		${LOCALBASE}/bin/mlmmj-list:${PORTSDIR}/mail/mlmmj \
 		${LOCALBASE}/bin/ncftpput:${PORTSDIR}/ftp/ncftp3 \
-		${LOCALBASE}/bin/rrdtool:${PORTSDIR}/databases/rrdtool
+		${LOCALBASE}/bin/rrdtool:${PORTSDIR}/databases/rrdtool \
+		${LOCALBASE}/sbin/logrotate:${PORTSDIR}/sysutils/logrotate
 
 CONFLICTS=	dtc-toaster-[0-9]* dtc-postfix-courier-[0-9]*
 
