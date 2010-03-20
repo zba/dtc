@@ -2947,10 +2947,12 @@ modifyCourierConfig () {
 	# check to see if we have a userdb FILE, rather than a FOLDER, rm -r if any folder...
 	if [ -d "/etc/authlib" ] ; then
 		COURIER_FOLDER="/etc/authlib"
-	elif [ -d "/etc/courier" ] ; then
-		COURIER_FOLDER="/etc/courier"
 	elif [ -d "/usr/local/etc/courier" ] ; then
 		COURIER_FOLDER="/usr/local/etc/courier"
+	elif [ -d "/usr/local/etc/authlib" ] ; then
+		COURIER_FOLDER="/usr/local/etc/authlib"
+	else
+		COURIER_FOLDER="/etc/courier"
 	fi
 
 	if [ -d "$COURIER_FOLDER" ] ; then
