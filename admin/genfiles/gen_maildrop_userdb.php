@@ -128,7 +128,6 @@ function mail_account_generate_maildrop(){
 	fclose($fp);
 
 	// Create the binary database
-	system("/usr/sbin/makeuserdb");
 	if( file_exists("/usr/local/sbin/makeuserdb") ){
 		system("/usr/local/sbin/makeuserdb -f " . $path_userdb);
 	}else{
