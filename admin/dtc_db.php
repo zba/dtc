@@ -344,8 +344,6 @@ $dtc_database = array(
 			"max_subdomain" => "int(11) NOT NULL default '5' ",
 			"ip_addr" => "varchar(16) NOT NULL default '127.0.0.1' ",
 			"backup_ip_addr" => "varchar(16) NULL ",
-			"primary_dns" => "varchar(255) NOT NULL default 'default' ",
-			"other_dns" => "varchar(255) NOT NULL default 'default' ",
 			"primary_mx" => "varchar(255) NOT NULL default 'default' ",
 			"other_mx" => "varchar(255) NOT NULL default 'default' ",
 			"whois" => "enum('here','away','linked') NOT NULL default 'away' ",
@@ -362,7 +360,20 @@ $dtc_database = array(
 			"stats_login" => "varchar(32) NOT NULL default ''",
   			"stats_pass" => "varchar(16) NOT NULL default ''",
   			"stats_subdomain" => " enum('yes','no') NOT NULL default 'no'",
-  			"wildcard_dns" => "enum('yes','no') NOT NULL default 'no'"
+  			"wildcard_dns" => "enum('yes','no') NOT NULL default 'no'",
+
+			"primary_dns" => "varchar(255) NOT NULL default 'default'",
+			"other_dns" => "varchar(255) NOT NULL default 'default'",
+			"whois" => "enum('here','away','linked') NOT NULL default 'away'",
+			"owner_id" => "int(16) NOT NULL default '0'",
+			"admin_id" => "int(16) NOT NULL default '0'",
+			"billing_id" => "int(16) NOT NULL default '0'",
+			"teck_id" => "int(16) NOT NULL default '0'",
+			"creation_date" => "date NOT NULL default '0000-00-00'",
+			"modification_date" => "date NOT NULL default '0000-00-00'",
+			"expiration_date" => "date NOT NULL default '0000-00-00'",
+			"registrar" => "varchar(255) NOT NULL default 'webnic'",
+			"protection" => "enum('unlocked','transferprot','locked')NOT NULL default 'unlocked'",
 			),
 		"primary" => "(id)",
 		"keys" => array(
@@ -1212,27 +1223,6 @@ $dtc_database = array(
 			"id" => "(id)"
 			)
 		),
-	"whois" => array(
-		"vars" => array(
-			"domain_name" => "varchar(128) NOT NULL ",
-			"owner_id" => "int(16) NOT NULL default '0' ",
-			"admin_id" => "int(16) NOT NULL default '0' ",
-			"billing_id" => "int(16) NOT NULL default '0' ",
-			"teck_id" => "int(16) NOT NULL default '0' ",
-			"creation_date" => "date NOT NULL default '0000-00-00' ",
-			"modification_date" => "date NOT NULL default '0000-00-00' ",
-			"expiration_date" => "date NOT NULL default '0000-00-00' ",
-			"registrar" => "varchar(255) NOT NULL default 'webnic' ",
-			"ns1" => "varchar(64) NOT NULL default 'ns1.gplhost.com' ",
-			"ns2" => "varchar(64) NOT NULL default 'ns2.gplhost.com' ",
-			"ns3" => "varchar(64) NULL ",
-			"ns4" => "varchar(64) NULL ",
-			"ns5" => "varchar(64) NULL ",
-			"ns6" => "varchar(64) NULL ",
-			"protection" => "enum('unlocked','transferprot','locked')NOT NULL default 'unlocked'"
-			),
-		"primary" => "(domain_name)"
-		)
 	)
 );
 ?>

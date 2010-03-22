@@ -14,11 +14,8 @@ CREATE TABLE IF NOT EXISTS domain (
   max_ssh int(11) NOT NULL default '3',
   ip_addr varchar(16) NOT NULL default '213.215.47.212',
   backup_ip_addr varchar(16) default NULL,
-  primary_dns varchar(255) NOT NULL default 'default',
-  other_dns varchar(255) NOT NULL default 'default',
   primary_mx varchar(255) NOT NULL default 'default',
   other_mx varchar(255) NOT NULL default 'default',
-  whois enum('here','away','linked') NOT NULL default 'away',
   hosting enum('here','away') NOT NULL default 'here',
   du_stat bigint(20) NOT NULL default '0',
   gen_unresolved_domain_alias enum('yes','no') NOT NULL default 'no',
@@ -32,5 +29,19 @@ CREATE TABLE IF NOT EXISTS domain (
   stats_pass varchar(16) NOT NULL default '',
   stats_subdomain enum('yes','no') NOT NULL default 'no',
   wildcard_dns enum('yes','no') NOT NULL default 'no',
+
+  primary_dns varchar(255) NOT NULL default 'default',
+  other_dns varchar(255) NOT NULL default 'default',
+  whois enum('here','away','linked') NOT NULL default 'away',
+  owner_id int(16) NOT NULL default '0',
+  admin_id int(16) NOT NULL default '0',
+  billing_id int(16) NOT NULL default '0',
+  teck_id int(16) NOT NULL default '0',
+  creation_date date NOT NULL default '0000-00-00',
+  modification_date date NOT NULL default '0000-00-00',
+  expiration_date date NOT NULL default '0000-00-00',
+  registrar varchar(255) NOT NULL default 'webnic',
+  protection enum('unlocked','transferprot','locked')NOT NULL default 'unlocked',
+
   UNIQUE KEY name (name)
 ) TYPE=MyISAM
