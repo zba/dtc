@@ -72,9 +72,9 @@ RUN_DEPENDS+=	proftpd-mysql>=0:${PORTSDIR}/ftp/proftpd-mysql
 
 .if defined(WITH_POSTFIX)
 RUN_DEPENDS+=	${LOCALBASE}/libexec/postfix/smtpd:${PORTSDIR}/mail/postfix
+.endif
 .if defined(WITH_CYRUS_IMAPD)
 RUN_DEPENDS+=	${LOCALBASE}/cyrus/bin/deliver:${PORTSDIR}/mail/cyrus-imapd23
-.endif
 .elif defined(WITH_COURIER_IMAP)
 RUN_DEPENDS+=	${LOCALBASE}/sbin/pop3login:${PORTSDIR}/mail/courier-imap \
 		${LOCALBASE}lib/courier-authlib/libauthmysql.a:${PORTSDIR}/databases/courier-authlib-mysql
