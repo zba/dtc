@@ -109,7 +109,7 @@ function test_valid_local_ip($address){
 
 	if (!($ret = socket_bind($sock, $address, $port))) {
 		$error = socket_last_error();
-		if ($error == 98){
+		if ($error == 98 || $error == 48){
 			//echo "Address already in use!\n";
 			$console .= " already in use -> success\n";
 			return true;
