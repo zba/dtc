@@ -1,7 +1,6 @@
 <?php
 
 function newWhois($domain_name,$owner_id,$billing_id,$admin_id,$teck_id,$period,$ns_ar,$registrar){
-	global $pro_mysql_whois_table;
 	global $pro_mysql_domain_table;
 
 	$y = date("Y");
@@ -11,24 +10,15 @@ function newWhois($domain_name,$owner_id,$billing_id,$admin_id,$teck_id,$period,
 	$now = $y."-".$m."-".$d;
 	$expir = ($period + $y)."-".$m."-".$d;
 
-	$ns_field = "";
 	$ns_values = "";
 	for($i=2;$i<sizeof($ns_ar);$i++){
-		$ind = $i+1;
-		$ns_field .= ",ns". $ind ." ";
-		$ns_values .= ",'" . $ns_ar[$i] . "'";
-	      
+		$ns_values .= "|" . $ns_ar[$i];
 	}
 
-	$query = "INSERT INTO $pro_mysql_whois_table(
-domain_name,owner_id,admin_id,billing_id,teck_id,
-creation_date,modification_date,expiration_date,registrar,
-ns1,ns2". $ns_field .")VALUES('$domain_name','$owner_id','$billing_id','$admin_id','$teck_id',
-'$now','$now','$expir','$registrar',
-'".$ns_ar[0]."','".$ns_ar[1]."'". $ns_values .");";
-	$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
-
-	$query = "UPDATE $pro_mysql_domain_table SET whois='here' WHERE name='$domain_name';";
+	$query = "UPDATE $pro_mysql_domain_table SET whois='here',
+	owner_id='$owner_id',admin_id='$admin_id',billing_id='$billing_id',teck_id='$teck_id',
+	creation_date='$now',modification_date='$now',expiration_date='$now',registrar='$registrar',
+	ns1='".$ns_ar[0]."',ns2='".$ns_ar[1].$ns_values."' WHERE name='$domain_name';";
 	$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 }
 
@@ -38,7 +28,7 @@ function drawAdminTools_Whois($admin,$eddomain){
 	global $addrlink;
 
 	global $pro_mysql_handle_table;
-	global $pro_mysql_whois_table;
+	global $pro_mysql_domain_table;
 
 	global $conf_addr_primary_dns;
 	global $conf_addr_secondary_dns;
@@ -98,12 +88,12 @@ function drawAdminTools_Whois($admin,$eddomain){
 				$out .= "<font color=\"green\"><b>". _("Update of whois contact informations succesfull")."</b></font><br>
 "._("Server said:")." <i>" . $regz["response_text"] . "</i><br>
 ";
-				$query = "UPDATE $pro_mysql_whois_table SET owner_id='$owner_id',billing_id='$billing_id',admin_id='$admin_id',teck_id='$teck_id' WHERE domain_name='$domain_name';";
+				$query = "UPDATE $pro_mysql_domain_table SET owner_id='$owner_id',billing_id='$billing_id',admin_id='$admin_id',teck_id='$teck_id' WHERE name='$domain_name';";
 				$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 		        }
 		}
 
-		$query = "SELECT * FROM $pro_mysql_whois_table WHERE domain_name='".$eddomain["name"]."';";
+		$query = "SELECT * FROM $pro_mysql_domain_table WHERE name='".$eddomain["name"]."';";
 		$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 		if(mysql_num_rows($result) != 1) die("Whois row not found !");
 		$row = mysql_fetch_array($result);
