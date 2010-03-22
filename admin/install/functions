@@ -2558,7 +2558,7 @@ smtpd_tls_auth_only = no"
 			else
 				echoIfVerbose "No saslpasswd2 found"
 				echo "smtpd_recipient_restrictions = permit_mynetworks," >> $TMP_FILE
-				echo "		check_client_access regexp:/etc/postfix/maps/relaying_stoplist," >> $TMP_FILE
+				echo "		check_client_access regexp:${PATH_POSTFIX_ETC}/maps/relaying_stoplist," >> $TMP_FILE
 echo "                               $dnsbl_list
                                reject_unauth_destination" >> $TMP_FILE
 				if [ "$FOUND_DKIMPROXY" -eq 1 ] ; then
@@ -2575,7 +2575,7 @@ disable_vrfy_command = yes
 smtp_tls_security_level = may
 
 smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
-			check_client_access regexp:/etc/postfix/maps/relaying_stoplist,
+			check_client_access regexp:${PATH_POSTFIX_ETC}/maps/relaying_stoplist,
 			reject_invalid_hostname,
 			reject_non_fqdn_sender,
 			reject_non_fqdn_recipient,
@@ -2783,12 +2783,12 @@ maximal_queue_lifetime = 3d" >> $TMP_FILE
 #			postmap ${PATH_POSTFIX_ETC}'/maps/body_checks'
 #			postmap ${PATH_POSTFIX_ETC}'/maps/mime_header_checks'
 
-			echo "header_checks = regexp:/etc/postfix/maps/header_checks
-body_checks = regexp:/etc/postfix/maps/body_checks
-mime_header_checks = regexp:/etc/postfix/maps/mime_header_checks
+			echo "header_checks = regexp:${PATH_POSTFIX_ETC}/maps/header_checks
+body_checks = regexp:${PATH_POSTFIX_ETC}/maps/body_checks
+mime_header_checks = regexp:${PATH_POSTFIX_ETC}/maps/mime_header_checks
 smtpd_client_restrictions = permit_mynetworks,
 	permit_sasl_authenticated,
-	check_client_access regexp:/etc/postfix/maps/relaying_stoplist,
+	check_client_access regexp:${PATH_POSTFIX_ETC}/maps/relaying_stoplist,
 	permit
 " >> $TMP_FILE
 			
