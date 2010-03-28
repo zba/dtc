@@ -45,6 +45,14 @@ function mail_account_generate_maildrop(){
 		$path_userdb="/etc/authlib/userdb";
 	}
 
+	if( file_exists("/usr/bin/maildirmake") ){
+		$path_maildirmake="/usr/bin/maildirmake";
+	}elseif( file_exists("/usr/local/bin/maildirmake") ){
+		$path_maildirmake="/usr/local/bin/maildirmake";
+	}else{
+		$path_maildirmake="maildirmake";
+	}
+
 	if($panel_type == "cronjob"){
 		echo "Making maildrop userdb file\n";
 	}
@@ -85,15 +93,15 @@ function mail_account_generate_maildrop(){
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$boxpath = $a["path"]."/".$a["name"]."/Mailboxs/".$a["id"];
-			$userdb_file .= $a["id"]."@".$a2["name"]."\t".'home='.$boxpath.'|mail='.$boxpath."|uid=".$a["uid"].'|gid='.$a["gid"].'|quota='.$a["quota_size"]."\n";
+			$userdb_file .= $a["id"]."@".$a2["name"]."\t".'home='.$boxpath.'|mail='.$boxpath."|uid=".$a["uid"].'|gid='.$a["gid"].'|quota='.$a["quota_couriermaildrop"]."\n";
 			$quota_maildrop=$a["quota_couriermaildrop"];
 
 			$PATH = getenv('PATH');
 			putenv("PATH=/usr/lib/courier-imap/bin:$PATH");
 			system("/bin/mkdir -p $boxpath/Maildir");
-			system("maildirmake $boxpath/Maildir >/dev/null 2>&1");
-			if($quota_maildrop==0){
-				system("maildirmake -q $quota_maildrop $boxpath/Maildir");
+			system("$path_maildirmake $boxpath/Maildir >/dev/null 2>&1");
+			if($quota_maildrop!="0S,0C"){
+				system("$path_maildirmake -q $quota_maildrop $boxpath/Maildir");
 			}
 			putenv("PATH=$PATH");
 			if($quota_maildrop=="0S,0C"){
