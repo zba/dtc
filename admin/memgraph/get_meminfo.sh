@@ -28,9 +28,17 @@ else
 	fi
 fi
 
-
-MEMTOTAL=`grep MemTotal /proc/meminfo | gawk -F ' ' '{print $2}'`
-MEMFREE=`grep MemFree /proc/meminfo | gawk -F ' ' '{print $2}'`
-SWAPTOTAL=`grep SwapTotal /proc/meminfo | gawk -F ' ' '{print $2}'`
-SWAPFREE=`grep SwapFree /proc/meminfo | gawk -F ' ' '{print $2}'`
+if [ `uname -s` = FreeBSD ]
+then
+	MEMTOTAL=`sysctl hw.physmem | cut -d" " -f2|awk '{print $1 / 1024 }`
+	MEMFREE=` vmstat -H | tail -n1 | awk '{print $5}'`
+	SWAPTOTAL=`swapctl -s|awk '{print $2 / 2 }'`
+	SWAPFREE=`swapctl -s|awk '{print $3 / 2 }'`
+	SWAPFREE=`expr $SWAPTOTAL - $SWAPFREE`
+else
+	MEMTOTAL=`grep MemTotal /proc/meminfo | gawk -F ' ' '{print $2}'`
+	MEMFREE=`grep MemFree /proc/meminfo | gawk -F ' ' '{print $2}'`
+	SWAPTOTAL=`grep SwapTotal /proc/meminfo | gawk -F ' ' '{print $2}'`
+	SWAPFREE=`grep SwapFree /proc/meminfo | gawk -F ' ' '{print $2}'`
+fi
 $RRDTOOL update $DTC_ETC/memusage.rrd "N:${MEMTOTAL}:${MEMFREE}:${SWAPTOTAL}:${SWAPFREE}"

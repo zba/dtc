@@ -4,7 +4,7 @@ $panel_type="admin";
 require_once("../shared/autoSQLconfig.php");
 require_once("authme.php");
 
-$rrd = '/var/lib/dtc/etc/cpu.rrd';
+$rrd = $conf_generated_file_path.'/cpu.rrd';
 $xpoints = 800;
 $ypoints = 160;
 $vert_label = "CPU Load average";

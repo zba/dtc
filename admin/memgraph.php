@@ -4,7 +4,7 @@ $panel_type="admin";
 require_once("../shared/autoSQLconfig.php");
 require_once("authme.php");
 
-$rrd = '/var/lib/dtc/etc/memusage.rrd';
+$rrd = $conf_generated_file_path.'/memusage.rrd';
 $xpoints = 800;
 $ypoints = 160;
 $vert_label = "Memory usage stats";
