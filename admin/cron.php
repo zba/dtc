@@ -214,7 +214,7 @@ function updateAllDomainsStats(){
 			echo "Calculating usage of $domain_name:";
 			echo " disk...";
 			if($conf_unix_type == "bsd"){
-				$du_string = exec("du -sk $adm_path/$domain_name --exclude=access.log",$retval);
+				$du_string = exec("du -sk -I access.log $adm_path/$domain_name",$retval);
 				$du_state = explode("\t",$du_string);
 				$domain_du = $du_state[0] * 1024;
 			}else{
