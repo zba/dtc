@@ -34,7 +34,7 @@ function delete_old_files_in_tmp(){
 		$fullpath = $a["path"]."/".$a["name"]."/subdomains/".$a["subdomain_name"]."/tmp";
 		// Delete files older than 7 days (atime adds one day to the +6...)
 		$cmd = "find $fullpath -atime +6 -exec rm {} \;";
-		exec($cmd);
+		if(file_exists($fullpath)) exec($cmd);
 	}
 }
 
