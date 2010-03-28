@@ -32,6 +32,18 @@ function readCustomizedMessage($filename,$adm_login){
 	// then /etc/dtc/filename.txt
 	}else if( file_exists( "/etc/dtc/" . $filename . ".txt" ) ){
 		$to_open = "/etc/dtc/" . $filename . ".txt";
+	// then /usr/local/etc/dtc/filename_en_US.UTF-8.txt
+	}else if( file_exists( "/usr/local/etc/dtc/" . $filename . "_" . $mylang . ".txt" ) ){
+		$to_open = "/usr/local/etc/dtc/" . $filename . $mylang . ".txt";
+	// Then /usr/local/etc/dtc/filename_en_US.txt
+	}else if( file_exists( "/usr/local/etc/dtc/" . $filename . "_" . substr($mylang,0,5) . ".txt" ) ){
+		$to_open = "/usr/local/etc/dtc/" . $filename . "_" . substr($mylang,0,5) . ".txt";
+	// Then /usr/local/etc/dtc/filename_en.txt
+	}else if( file_exists( "/usr/local/etc/dtc/" . $filename . "_" . substr($mylang,0,2) . ".txt" ) ){
+		$to_open = "/usr/local/etc/dtc/" . $filename . "_" . substr($mylang,0,2) . ".txt";
+	// then /usr/local/etc/dtc/filename.txt
+	}else if( file_exists( "/usr/local/etc/dtc/" . $filename . ".txt" ) ){
+		$to_open = "/usr/local/etc/dtc/" . $filename . ".txt";
 	// then /usr/local/www/dtc/etc/filename_en_US.UTF-8.txt
 	}else if( file_exists( "/usr/local/www/dtc/etc/" . $filename . "_" . $mylang . ".txt" ) ){
 		$to_open = "/usr/local/www/dtc/etc/" . $filename . "_" . $mylang . ".txt";
