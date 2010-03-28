@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [ -f $DTC_SAVED_INSTALL_CONFIG ] ; then
+	. ${DTC_SAVED_INSTALL_CONFIG}
+fi
+
 LIST_CHROOT_DIRS="bin var lib sbin tmp usr dev etc"
 if [ `uname -m` = "x86_64" ] ; then
 	LIST_CHROOT_DIRS="$LIST_CHROOT_DIRS lib64"
@@ -1794,7 +1798,7 @@ auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" hos
 		rm /etc/sasldb2
 	fi
 	if [ ! -e /etc/sasldb2 ] ; then
-		ln -sf /var/lib/dtc/etc/sasldb2 /etc/sasldb2 
+		ln -sf $PATH_DTC_ETC/sasldb2 /etc/sasldb2
 	fi
 }
 
@@ -1942,6 +1946,7 @@ modifyNamedConf () {
 			then
 				echo "Creating rndc.key to control named"
 				rndc-confgen -a
+				chmod 644 /etc/namedb/rndc.key
 			else
 				echo "rndc.key already exists..."
 			fi
@@ -2628,6 +2633,11 @@ transport_maps = hash:$PATH_POSTFIX_ETC/transport
 				echo "ham:	ham@ham.ham" >>/etc/aliases
 				echo "notspam:	ham@ham.ham" >>/etc/aliases
 				echo "# End of DTC configuration v0.26 : please don't touch this line !" >>/etc/aliases
+				if [ -f /usr/local/sbin/postalias ] ; then
+					/usr/local/sbin/postalias -r /etc/aliases
+				else
+					/usr/sbin/postalias -r /etc/aliases
+				fi
 			fi
 
 			if grep "Configured by DTC 0.21" "$PATH_POSTFIX_ETC/master.cf" >/dev/null; then
@@ -3644,6 +3654,10 @@ createRRDFiles () {
 	if [ -d /tmp/cpugraph ] ; then
 		rm -rf /tmp/cpugraph
 	fi
+	echoIfVerbose "===> Creating dtc.log with 666 permissions."
+	touch /var/log/dtc.log
+	chmod 666 /var/log/dtc.log
+
 }
 
 modifySSHDConfig () {
@@ -4058,13 +4072,12 @@ nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 			if [ ! "$UNIX_TYPE" = "redhat" ] ; then
 				TMP_FILE=`${MKTEMP} DTC_install.crontab.XXXXXX` || exit 1
 				echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
-				echo "*/10 * * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
-				echo "9 4  * * *   ${CONF_DTC_SYSTEM_USERNAME} cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php" >> $TMP_FILE
-				echo "*/15 * * * * ${CONF_DTC_SYSTEM_USERNAME} [ -s /var/lib/dtc/etc/fetchmailrc ] && fetchmail -v -N -f /var/lib/dtc/etc/fetchmailrc --pidfile /tmp/fetchmail.pid" >> $TMP_FILE
-				echo "*    * * * * root cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
-				echo "34   2 * * * ${CONF_DTC_SYSTEM_USERNAME} cd /usr/share/dtc/admin && /usr/bin/php stat_total_active_prods.php 2>&1 >> /var/log/dtc.log" >> $TMP_FILE
-				echo "9    3 * * * root cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
-				echo "*    * * * * dtc  [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php stat_total_active_prods.php 2>&1 >> /var/log/dtc.log" >> $TMP_FILE
+				echo "*/10 * * * * root [ -d $PATH_DTC_ADMIN ] && cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
+				echo "9 4 * * * ${CONF_DTC_SYSTEM_USERNAME} [ -d $PATH_DTC_ADMIN ] && cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php >>/var/log/dtc.log" >> $TMP_FILE
+				echo "*/15 * * * * ${CONF_DTC_SYSTEM_USERNAME} [ -s $PATH_DTC_ETC/fetchmailrc ] && fetchmail -v -N -f $PATH_DTC_ETC/fetchmailrc --pidfile /tmp/fetchmail.pid" >> $TMP_FILE
+				echo "* * * * * root [ -d $PATH_DTC_ADMIN ] && cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
+				echo "34 2 * * * ${CONF_DTC_SYSTEM_USERNAME} [ -d $PATH_DTC_ADMIN ] && cd $PATH_DTC_ADMIN && $PATH_PHP_CGI $PATH_DTC_ADMIN/stat_total_active_prods.php 2>&1 >> /var/log/dtc.log" >> $TMP_FILE
+				echo "9 3 * * * root [ -d $PATH_DTC_ADMIN ] && cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
 				cat < $TMP_FILE >>$PATH_CRONTAB_CONF
 				rm $TMP_FILE
 			fi
