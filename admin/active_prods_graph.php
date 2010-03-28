@@ -4,7 +4,7 @@ $panel_type="admin";
 require_once("../shared/autoSQLconfig.php");
 require_once("authme.php");
 
-$rrd = '/var/lib/dtc/etc/stat_total_active_prods.rrd';
+$rrd = $conf_generated_file_path.'/stat_total_active_prods.rrd';
 $xpoints = 400;
 $ypoints = 160;
 $vert_label = "Active products";
