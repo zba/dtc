@@ -41,6 +41,7 @@ function mail_account_generate_postfix(){
 
 	global $conf_generated_file_path;
 	global $conf_addr_mail_server;
+	global $conf_dtcadmin_path;
 
 	global $conf_unix_type;
 
