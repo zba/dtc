@@ -12,7 +12,7 @@
 # To objat VERS=0.30.17, we do:
 # head -n 1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'-' -f1
 # to fetch the version number from the debian/changelog
-VERS = $(shell ./debvers)
+VERS?=$(shell ./debvers)
 RELS=1
 
 VERSION=$(VERS)"-"$(RELS)
@@ -145,7 +145,7 @@ bsd-ports-packages:
 	@echo " --- Making BSD port tree for version "${BSD_VERSION}" ---"
 	@echo "===> Creating port files in $(PORT_BUILD)"
 	@mkdir -p $(PORT_BUILD)/files						# Make  dtc port dir and copy static files in it
-	@sed "s/__VERSION__/$(BSD_VERSION)/" $(BSD_SOURCE_DIR)/dtc/Makefile >$(PORT_BUILD)/Makefile	# Create Makefile with correct port version
+	@sed "s/__VERSION__/$(VERS)/" $(BSD_SOURCE_DIR)/dtc/Makefile | sed "s/__RELEASE__/$(RELS)/" >$(PORT_BUILD)/Makefile	# Create Makefile with correct port version
 	@cp $(BSD_SOURCE_DIR)/dtc/install.sh $(PORT_BUILD)/files/dtc-install.in		# Create package install script
 	@chmod 644 $(PORT_BUILD)/files/dtc-install.in
 	@cp $(BSD_SOURCE_DIR)/dtc/uninstall.sh $(PORT_BUILD)/files/dtc-deinstall.in		# Create package uninstall script
@@ -378,7 +378,7 @@ install-dtc-dos-firewall:
 
 install-dtc-common:
 	# PHP scripts files served by web server
-	@echo "-> Creating destination folders"
+	@echo "-> Creating destination folders for version "${VERS}
 	for i in $(CREATE_DIRS) ; do $(INSTALL_DIR) -m $(NORMAL_FOLDER) $(APP_INST_DIR)/$$i ; done
 	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(MAN_DIR)/man8
 

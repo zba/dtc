@@ -6,7 +6,7 @@
 #
 
 PORTNAME=	dtc
-PORTVERSION=	__VERSION__
+PORTVERSION=	__VERSION__.__RELEASE__
 CATEGORIES=	sysutils
 MASTER_SITES=	ftp://ftp.gplhost.sg/pub/dtc/bsd/ \
 		ftp://qala-sg.apt-proxy.gplhost.sg/pub/dtc/bsd/ \
@@ -126,9 +126,9 @@ MANCOMPRESSED=	no
 do-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-install ${PREFIX}/sbin/dtc-install
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-deinstall ${PREFIX}/sbin/dtc-deinstall
-	@${MAKE} -C ${WRKDIR}/dtc-__VERSION__ install-dtc-common INSTALL=install \
+	@${MAKE} -C ${WRKDIR}/dtc-__VERSION__.__RELEASE__ install-dtc-common INSTALL=install \
 		DTC_APP_DIR=${WWWDIR} DTC_GEN_DIR=${PREFIX}/var/dtc CONFIG_DIR=${PREFIX}/etc DTC_ETC_DIRECTORY=${ETCDIR} \
-		DTC_DOC_DIR=${DOCSDIR} MANUAL_DIR=${MANPREFIX}/man BIN_DIR=${PREFIX}/bin UNIX_TYPE=bsd
+		DTC_DOC_DIR=${DOCSDIR} MANUAL_DIR=${MANPREFIX}/man BIN_DIR=${PREFIX}/bin UNIX_TYPE=bsd VERS=__VERSION__
 	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
