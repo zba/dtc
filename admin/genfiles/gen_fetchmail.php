@@ -29,5 +29,6 @@ function fetchmail_generate() {
     }
     file_put_contents($filename,$fetchline);
     $console.="Number of fetchmailrc entries generated: ".$num."\n";
+    markCronflagOk ("gen_fetchmail='no'");
 }
 ?>

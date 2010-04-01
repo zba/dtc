@@ -294,7 +294,7 @@ $q = "SELECT * FROM config";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 $n = mysql_num_rows($r);
 if($n != 1){
-	die("Cannot read config table: not one and only one row...");
+	die("Cannot read config table: not one and only one row...\n");
 }
 $config_vals = mysql_fetch_array($r);
 
