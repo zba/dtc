@@ -9,6 +9,16 @@ $xpoints = 800;
 $ypoints = 160;
 $vert_label = "CPU Load average";
 
+if( file_exists("/usr/bin/rrdtool") ) {
+	$rrdpath = "/usr/bin/rrdtool";
+} else if( file_exists("/usr/local/bin/rrdtool") ) {
+	$rrdpath = "/usr/local/bin/rrdtool";
+} else if( file_exists("/opt/local/bin/rrdtool") ) {
+	$rrdpath = "/opt/local/bin/rrdtool";
+} else {
+	$rrdpath = "rrdtool";
+}
+
 if( isset($_REQUEST["graph"]) ){
 
 	switch($_REQUEST["graph"]){
@@ -38,7 +48,7 @@ if( isset($_REQUEST["graph"]) ){
 	}
 	$range = - $steps;
 	$filename = tempnam("/tmp","dtc_cpugraph");
-	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
+	$cmd = $rrdpath . " graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
 	$cmd .= "DEF:loadaverage=$rrd:loadaverage:AVERAGE ";
 	$cmd .= "'LINE1:loadaverage#ff0000:CPU Load average*100:' 'GPRINT:loadaverage:MAX:Maximum\: %0.0lf' 'GPRINT:loadaverage:AVERAGE:Average\: %0.0lf/min\\n' ";
 	exec($cmd,$output);
