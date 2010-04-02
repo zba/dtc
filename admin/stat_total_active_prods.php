@@ -92,6 +92,9 @@ for($i=0;$i<$n;$i++){
 	if($year != 0){
 		$month = $month + $year * 12;
 	}
+	if($month == 0){
+		$month = 1 / $period_array[2] / 30;
+	}
 	$price_per_month = $product["price_dollar"] / $month;
 	$total_shared += $num_shared * $price_per_month;
 }
