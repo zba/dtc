@@ -118,6 +118,10 @@ USE_APACHE=	2.2+
 RUN_DEPENDS+=	${LOCALBASE}/sbin/dovecot:${PORTSDIR}/mail/dovecot
 .endif
 
+.if defined(WITH_MYSQMAIL)
+RUN_DEPENDS+=	${LOCALBASE}/sbin/mysqmail-postfix-logger:${PORTSDIR}/sysutils/mysqmail
+.endif
+
 SUB_FILES=	dtc-install dtc-deinstall
 SUB_LIST+=	WWWDIR=${WWWDIR} QMAIL_DIR="${QMAIL_DIR}"
 MAN8=		dtc-chroot-shell.8

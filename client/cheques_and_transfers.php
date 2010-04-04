@@ -56,7 +56,7 @@ if( $proceed == "yes"){
 	}else{
 		$form = "<u>" . _("Wire transfers shall be made to: ") . "</u><br><pre>" . $secpayconf_wiretransfers_bank_details . "</pre><br><br>";
 	}
-	$form .= "<b>" . _("Thanks for your order. Your order has been set on hold until someone checks for your payment.") . "</b><br><br>";
+	$form .= "<b>" . _("Thanks for your order. Your order has been set on hold until someone checks for your payment.") . "</b>  <a href=\"/\">" . _("Continue") . "</a><br><br>";
 }
 
 $login_skined = skin($conf_skin,$form, _("Register a new account") );

@@ -2679,6 +2679,10 @@ tumgreyspf unix  -      n       n       -       -       spawn
 				fi
 				# if we have maildrop, we should use it!
 				if [ -n ""$PATH_MAILDROP_BIN -a -f "$PATH_MAILDROP_BIN" ] ; then
+					if [ $UNIX_TYPE = freebsd ] ; then
+						## On FreeBSD: maildrop needs to be setuid root to work the way dtc wants.
+						chmod 4755 $PATH_MAILDROP_BIN
+					fi
 					echo "maildrop  unix  -       n       n       -       -       pipe
     flags=DRhu user=${CONF_DTC_SYSTEM_USERNAME} argv=$PATH_MAILDROP_BIN -w 90 -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
 
@@ -3973,7 +3977,7 @@ fi
 
 modifyMysqmail () {
 	#
-	# Generate default config file for awstats (if we have it installed)
+	# Generate default config file for mysqmail (if we have it installed)
 	#
 	if [ -f $PATH_MYSQMAIL_CONF ] ; then
 		echoIfVerbose "===> Configuring mysqmail.conf"
@@ -3989,7 +3993,7 @@ modifyMysqmail () {
 			echo "# Configured by DTC 0.22 : please do not touch this line !" > $TMP_FILE
 			echo "mysql_hostname ${conf_mysql_host}" >> $TMP_FILE
 			echo "mysql_user dtcdaemons" >> $TMP_FILE
-			echo "mysql_pass ${MYSQL_DTCDAEMONS_PASS};" >> $TMP_FILE
+			echo "mysql_pass ${MYSQL_DTCDAEMONS_PASS}" >> $TMP_FILE
 			echo "mysql_db ${conf_mysql_db}" >> $TMP_FILE
 			echo "mysql_table_smtp_logs smtp_logs" >> $TMP_FILE
 			echo "mysql_table_pop_access pop_access" >> $TMP_FILE
@@ -3999,6 +4003,50 @@ modifyMysqmail () {
 			echo "" >> $TMP_FILE
 			cat < $TMP_FILE >>$PATH_MYSQMAIL_CONF
 			rm $TMP_FILE	
+			# Activate courier in rc.conf on FreeBSD
+			if [ $UNIX_TYPE = freebsd ] ; then
+				echo "Checking activation of mysqmail Daemons"
+				if grep "Configured by DTC" /etc/rc.conf >/dev/null ; then
+					# Configured already echoed
+					echo -n ""
+				else
+					echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
+				fi
+				if grep mysqmail_postfix_logger /etc/rc.conf >/dev/null ; then
+					# Postfix logger  already activated
+					echo -n ""
+				else
+					echo "Activating Postfix Logger"
+					echo "mysqmail_postfix_logger_enable=\"YES\"" >>/etc/rc.conf
+				fi
+				if [ ""$conf_use_cyrus = "false" ] ; then
+					if grep mysqmail_courier_logger /etc/rc.conf >/dev/null ; then
+						# Courier logger  already activated
+						echo -n ""
+					else
+						echo "Activating Courier Logger"
+						echo "mysqmail_courier_logger_enable=\"YES\"" >>/etc/rc.conf
+					fi
+				fi
+				if [ -f $PATH_DOVECOT_CONF ] ; then
+					if grep mysqmail_dovecot_logger /etc/rc.conf >/dev/null ; then
+						# Dovecot logger  already activated
+						echo -n ""
+					else
+						echo "Activating Dovecot Logger"
+						echo "mysqmail_dovecot_logger_enable=\"YES\"" >>/etc/rc.conf
+					fi
+				fi
+				if [ ""$conf_ftp_type = "pureftpd" ] ; then
+					if grep mysqmail_pure_ftp_logger /etc/rc.conf >/dev/null ; then
+						# Pure-ftp logger  already activated
+						echo -n ""
+					else
+						echo "Activating Pure-Ftp Logger"
+						echo "mysqmail_pure_ftp_logger_enable=\"YES\"" >>/etc/rc.conf
+					fi
+				fi
+			fi
 		fi
 		if [ -f $SYSLOG_CONF ] ; then
 			if grep "Configured by DTC 0.22" $SYSLOG_CONF >/dev/null
