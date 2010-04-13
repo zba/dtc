@@ -3995,6 +3995,7 @@ modifyMysqmail () {
 			echo "mysql_table_pop_access pop_access" >> $TMP_FILE
 			echo "mysql_table_scoreboard email_accounting" >> $TMP_FILE
 			echo "mysql_table_domain domain" >> $TMP_FILE
+			echo "# End of DTC Configuration : please do not touch this line !" >> $TMP_FILE
 			echo "" >> $TMP_FILE
 			cat < $TMP_FILE >>$PATH_MYSQMAIL_CONF
 			rm $TMP_FILE	
@@ -4004,28 +4005,32 @@ modifyMysqmail () {
 			then
 				echoIfVerbose "$SYSLOG_CONF has been configured before..."
 			else
-				if ! [ -f $SYSLOG_CONF.DTC.backup ]
-				then
-					echoIfVerbose "===> Backuping "$SYSLOG_CONF
-					cp -f "$SYSLOG_CONF" "$SYSLOG_CONF.DTC.backup"
+#				if ! [ -f $SYSLOG_CONF.DTC.backup ]
+#				then
+#					echoIfVerbose "===> Backuping "$SYSLOG_CONF
+#					cp -f "$SYSLOG_CONF" "$SYSLOG_CONF.DTC.backup"
+#				fi
+#				TMP_FILE=/tmp/mysqmail.tmp
+#				echo "# Configured by DTC 0.22 : please do not touch this line !" > $TMP_FILE
+#				echo "mail.*					|/var/log/mail.fifo" >> $TMP_FILE
+#				echo "mail.*					|/var/log/courier.fifo" >> $TMP_FILE
+#		#	echo "ftp.*						|/var/log/pure-ftpd.fifo" >> $TMP_FILE
+#				cat < $TMP_FILE >> $SYSLOG_CONF;
+#				rm $TMP_FILE
+#				if ! [ -e /var/log/mail.fifo ] ; then
+#					mkfifo /var/log/mail.fifo
+#				fi
+#				if ! [ -e /var/log/courier.fifo ] ; then
+#					mkfifo /var/log/courier.fifo
+#				fi
+#				if ! [ -e /var/log/pure-ftpd.fifo ] ; then
+#					mkfifo /var/log/pure-ftpd.fifo
+#				fi
+#				echoIfVerbose "Do not forget restart syslog daemon and mysqmail-loggers"
+				if [ $UNIX_TYPE = freebsd ] ; then
+					echo "Linking /var/log/maillog to /var/log/syslog."
+					ln -s /var/log/maillog /var/log/syslog
 				fi
-				TMP_FILE=/tmp/mysqmail.tmp
-				echo "# Configured by DTC 0.22 : please do not touch this line !" > $TMP_FILE
-				echo "mail.*					|/var/log/mail.fifo" >> $TMP_FILE
-				echo "mail.*					|/var/log/courier.fifo" >> $TMP_FILE
-		#	echo "ftp.*						|/var/log/pure-ftpd.fifo" >> $TMP_FILE
-				cat < $TMP_FILE >> $SYSLOG_CONF;
-				rm $TMP_FILE
-				if ! [ -e /var/log/mail.fifo ] ; then
-					mkfifo /var/log/mail.fifo
-				fi
-				if ! [ -e /var/log/courier.fifo ] ; then
-					mkfifo /var/log/courier.fifo
-				fi
-				if ! [ -e /var/log/pure-ftpd.fifo ] ; then
-					mkfifo /var/log/pure-ftpd.fifo
-				fi
-				echoIfVerbose "Do not forget restart syslog daemon and mysqmail-loggers"
 			fi
 		fi
 	fi
