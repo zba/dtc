@@ -166,13 +166,13 @@ function registry_check_renew($domain_name){
 	return $registry_api_modules[$id]["registry_check_renew"]($domain_name);
 	
 }
-function registry_renew_domain($domain_name){
+function registry_renew_domain($domain_name,$years){
 	global $registry_api_modules;
 	$id = find_registry_id($domain_name);
 	if($id === FALSE){
 		return FALSE;
 	}
-	$ret = $registry_api_modules[$id]["registry_renew_domain"]($domain_name);
+	$ret = $registry_api_modules[$id]["registry_renew_domain"]($domain_name,$years);
 	return $ret;
 	
 }
