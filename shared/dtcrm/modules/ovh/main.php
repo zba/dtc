@@ -56,16 +56,26 @@ $ret["response_text"] = "Domain name already registred";
 	
 } 
 
-function ovh_registry_add_nameserver(){
-}
-
 function ovh_registry_modify_nameserver (){
-}
+	
+/* 	try {
+ 
+ //login
+   $soap = ovh_open();
+   $session = login_ovh();
 
-function ovh_registry_delete_nameserver(){
-}
+ //domainDnsUpdate
+ $result = $soap->domainDnsUpdate($session, "domain", "dns1", "ip1", "dns2", "ip", "dns3", "ip", "dns4 ", "ip", "dns5", "ip");
+ echo "domainDnsUpdate successfull\n";
+ print_r($result); // your code here ...
 
-function ovh_registry_get_domain_price($domain_name,$period){
+ //logout
+   logout_ovh($soap,$session);
+
+} catch(SoapFault $fault) {
+ echo $fault;
+} */
+
 }
 
 function ovh_registry_register_domain ($adm_login,$adm_pass,$fqdn,$period,$contacts,$dns_servers,$new_user){
@@ -144,6 +154,61 @@ function ovh_registry_update_whois_dns(){
 }
 
 function ovh_registry_update_whois_info(){
+
+/* try {
+
+ //login
+   $soap = ovh_open();
+   $session = login_ovh();
+
+ //nicModifyInfos
+ $soap->nicModifyInfos($session, "name ", "firstname", "legalform", "organisation", "address", "zip ", "city", "country", "phone", "fax", "email", "spareEmail", "language", "vat");
+
+
+ //logout
+   logout_ovh($soap,$session);
+
+} catch(SoapFault $fault) {
+ echo $fault;
+} */
+
+/* try {
+
+ //login
+   $soap = ovh_open();
+   $session = login_ovh();
+
+ //nicPublicInfo
+ $result = $soap->nicPublicInfo($session, "nic");
+ echo "nicPublicInfo successfull\n";
+ print_r($result); // your code here ...
+
+ //logout
+   logout_ovh($soap,$session);
+
+} catch(SoapFault $fault) {
+ echo $fault;
+} */
+
+/* try {
+
+ //login
+   $soap = ovh_open();
+   $session = login_ovh();
+
+ //nicCreate
+ $result = $soap->nicCreate($session, "name", "firstname", "password", "email", "phone", "fax", "address", "city", "area", "zip", "country", "language", false, "legalform", "organisation", "legalName", "legalNumber", "vat");
+ echo "nicCreate successfull\n";
+ print_r($result); // your code here ...
+
+ //logout
+   logout_ovh($soap,$session);
+ 
+} catch(SoapFault $fault) {
+ echo $fault;
+} */
+
+
 }
 
 function ovh_registry_check_transfer($domain) {
@@ -360,10 +425,10 @@ if (isset($result->dns[1]->ip)) {
 $ret["response_text"] .="\n ip ns2 : ".$result->dns[1]->ip;
 }
 if (isset($result->dns[2]->name)) {
-$ret["response_text"] .="\n Name server 3 : ".$result->dns[1]->name;
+$ret["response_text"] .="\n Name server 3 : ".$result->dns[2]->name;
 }
 if (isset($result->dns[2]->ip)) {
-$ret["response_text"] .="\n ip ns3 : ".$result->dns[1]->ip;
+$ret["response_text"] .="\n ip ns3 : ".$result->dns[2]->ip;
 }
 if (isset($result->dns[3]->name)) {
 $ret["response_text"] .="\n Name server 4 : ".$result->dns[3]->name;
@@ -434,10 +499,9 @@ $registry_api_modules[] = array(
 "name" => "ovh",
 "configure_descriptor" => $configurator,
 "registry_check_availability" => "ovh_registry_check_availability",
-"registry_add_nameserver" => "ovh_registry_add_nameserver",
+"registry_add_nameserver" => "ovh_registry_modify_nameserver",
 "registry_modify_nameserver" => "ovh_registry_modify_nameserver",
-"registry_delete_nameserver" => "ovh_registry_delete_nameserver",
-"registry_get_domain_price" => "ovh_registry_get_domain_price",
+"registry_delete_nameserver" => "ovh_registry_modify_nameserver",
 "registry_register_domain" => "ovh_registry_register_domain",
 "registry_update_whois_info" => "ovh_registry_update_whois_info",
 "registry_update_whois_dns" => "ovh_registry_update_whois_dns",
