@@ -164,12 +164,17 @@ bsd-ports-packages:
 		DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd 2>&1 >/dev/null
 	@echo "-> Building list of files"
 	@cd $(PKG_PLIST_BUILD) && find . -type f -o -type l | egrep -v "/man/" | sed "s/\.\/usr\/local\///" | sort -r >../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
-	@echo "www/dtc/shared/mysql_config.php" >>$(PORT_BUILD)/pkg-plist.tmp
 	@echo "sbin/dtc-install" >>$(PORT_BUILD)/pkg-plist.tmp
 	@echo "sbin/dtc-deinstall" >>$(PORT_BUILD)/pkg-plist.tmp
-	@cd $(PKG_PLIST_BUILD) && find usr/local -type d -exec echo @dirrm {} \; | egrep -v "/man" | egrep -v "/share/doc$$" | egrep -v "/share$$" | egrep -v "usr/local$$" | egrep -v "/www$$" | sed "s/usr\/local\///" | sort -r >>../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
+	@cd $(PKG_PLIST_BUILD) && find usr/local -type d -exec echo @dirrm {} \; | egrep -v "/man" | egrep -v "/share/doc$$" | egrep -v "/share$$" | egrep -v "usr/local$$" | egrep -v "/www$$" | grep -v "\/var\/" | grep -v "\/var$$" | grep -v "www\/dtc$$" | sed "s/usr\/local\///" | sort -r >>../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
 	@NBR_LINE=`cat $(PORT_BUILD)/pkg-plist.tmp | wc -l` && cat $(PORT_BUILD)/pkg-plist.tmp | head -n $$(( $$NBR_LINE - 1 )) >$(PORT_BUILD)/pkg-plist.tmp2
-	@cat $(PORT_BUILD)/pkg-plist.tmp2 | grep -v "mysql_config.php" >$(PORT_BUILD)/pkg-plist
+	@cat $(PORT_BUILD)/pkg-plist.tmp2 | grep -v "\/var\/" | grep -v "\/var$$" >$(PORT_BUILD)/pkg-plist
+	@echo "@dirrmtry var/dtc/etc/slave_zones" >>$(PORT_BUILD)/pkg-plist
+	@echo "@dirrmtry var/dtc/etc/zones" >>$(PORT_BUILD)/pkg-plist
+	@echo "@dirrmtry var/dtc/etc" >>$(PORT_BUILD)/pkg-plist
+	@echo "@dirrmtry var/dtc" >>$(PORT_BUILD)/pkg-plist
+	@echo "@dirrmtry var" >>$(PORT_BUILD)/pkg-plist
+	@echo "@dirrmtry www/dtc" >>$(PORT_BUILD)/pkg-plist
 	@rm $(PORT_BUILD)/pkg-plist.tmp $(PORT_BUILD)/pkg-plist.tmp2
 	@rm -r $(PKG_PLIST_BUILD)
 	@cd $(PORT_BUILD) && perl -pi -e 's^www/dtc^%%WWWDIR%%^' pkg-plist && perl -pi -e 's^share/doc/dtc^%%DOCSDIR%%^' pkg-plist && perl -pi -e 's^etc/dtc^%%ETCDIR%%^' pkg-plist
@@ -320,7 +325,7 @@ admin/tables/pending_queries.sql admin/tables/pending_renewal.sql admin/tables/p
 admin/tables/scheduled_updates.sql admin/tables/secpayconf.sql admin/tables/smtp_logs.sql admin/tables/ssh_access.sql \
 admin/tables/ssh_groups.sql admin/tables/ssh_user_group.sql admin/tables/ssl_ips.sql admin/tables/subdomain.sql \
 admin/tables/tik_admins.sql admin/tables/tik_cats.sql admin/tables/tik_queries.sql admin/tables/vps_ip.sql admin/tables/vps_server.sql \
-admin/tables/vps.sql admin/tables/vps_stats.sql admin/tables/whitelist.sql admin/tables/whois.sql \
+admin/tables/vps.sql admin/tables/vps_stats.sql admin/tables/whitelist.sql \
 admin/tables/spent_moneyout.sql admin/tables/spent_providers.sql  admin/tables/spent_type.sql \
 admin/tables/spent_bank.sql admin/tables/registrar_domains.sql
 

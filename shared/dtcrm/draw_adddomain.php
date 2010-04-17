@@ -296,7 +296,7 @@ $form_start
 	}
 
 	// Check billing to know if user has enough money on his account
-	$price = registry_get_domain_price($fqdn,$_REQUEST["toreg_period"]);
+	$price = find_domain_price($_REQUEST["toreg_extention"]);
 	$fqdn_price = $price;
 	$fqdn_price *= $_REQUEST["toreg_period"];
 

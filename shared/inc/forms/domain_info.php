@@ -21,7 +21,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 	if($eddomain["whois"] == "away"){
 		$out .= _("Your domain is not registered here.");
 	}else{
-		$q = "SELECT * FROM $pro_mysql_whois_table WHERE domain_name='$webname';";
+		$q = "SELECT * FROM $pro_mysql_domain_table WHERE name='$webname';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1){

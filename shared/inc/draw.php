@@ -422,7 +422,7 @@ function drawAdminTools($admin){
 				$web_editor .= "VPS not found!";
 			}
 			$title = "Virtual Private Server $vps_name running on $vps_node";
-		}else if(substr($addrlink,0,6) == "server"){
+		}else if(substr($addrlink,0,7) == "server:"){
 			$web_editor .= drawAdminTools_Dedicated($admin,$dedicated_server_hostname);
 			$title = "Dedicated server: $dedicated_server_hostname";
 		}else if(@$add_array[1] == "mailboxs"){

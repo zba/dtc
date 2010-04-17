@@ -350,11 +350,14 @@ try {
 	//resellerDomainRenew
  $soap->resellerDomainRenew($session, $domain_name, $ovh_boolean);
  if($years != 1){
-return array( "attribute" => array("is_succes" => 0), "response_text" => _("Only one year renewals with OVH.") );
+
+return array( "attributes" => array("status" => 1), "response_text" => _("Only one year renewals with OVH.") );
+
 }
  $regz["is_success"] = 1;
+ $regz["attributes"]["status"]= 0;
  $regz["response_text"] = "Renew successful";
- 
+
  //logout
 logout_ovh($soap,$session);
 
@@ -449,6 +452,10 @@ return $ret;
 function ovh_registry_change_password(){
 }
 
+function ovh_registry_get_auth_code(){
+}
+
+
 $configurator = array(
 	"title" => _("OVH configuration"),
 	"action" => "configure_ovh_editor",
@@ -502,6 +509,7 @@ $registry_api_modules[] = array(
 "registry_add_nameserver" => "ovh_registry_modify_nameserver",
 "registry_modify_nameserver" => "ovh_registry_modify_nameserver",
 "registry_delete_nameserver" => "ovh_registry_modify_nameserver",
+"registry_get_auth_code" => "ovh_registry_get_auth_code",
 "registry_register_domain" => "ovh_registry_register_domain",
 "registry_update_whois_info" => "ovh_registry_update_whois_info",
 "registry_update_whois_dns" => "ovh_registry_update_whois_dns",

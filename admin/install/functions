@@ -31,6 +31,10 @@ if [ -z ${PATH_BASH} ] ; then
 	fi
 fi
 
+if [ -z "$AMAVISD_USER" ] ; then
+	AMAVISD_USER=amavis
+fi
+
 echoIfVerbose () {
 	if [ ""$VERBOSE_INSTALL = "yes" ] ; then
 		echo $1
@@ -374,7 +378,7 @@ modifyResolvConf () {
 		echoIfVerbose "/etc/resolv.conf seems to be OK !"
 	else
 		echoIfVerbose "Adding nameserver 127.0.0.1 to /etc/resolv.conf"
-		TMP_FILE=`mktemp -t DTC_resolv.conf.XXXXXX` || exit 1
+		TMP_FILE=`${MKTEMP} DTC_resolv.conf.XXXXXX` || exit 1
 		if [ ! -f /etc/resolv.conf.DTC.Backup ]
 		then
 			echoIfVerbose "Backing up /etc/resolv.conf"
@@ -488,7 +492,7 @@ searchAndReplace () {
 		TMP_FILE=`${MKTEMP} DTC_SAR_TEMP.XXXXXX` || exit 1
 		sed "s/${2}/${3}/" ${1} >${TMP_FILE}
 		cat ${TMP_FILE} >${1}
-		rm -f ${TMP_FILE}
+		rm ${TMP_FILE}
 	fi
 }
 
@@ -784,8 +788,12 @@ setDtcdbPassword () {
 	# Add a dtc user to the mysql db, generate a password randomly if no password is there already
 	# Using a file to remember password...
 	if [ "$UNIX_TYPE" = "freebsd" -o "$UNIX_TYPE" = "osx" ] ; then
-		gen_pass=`mktemp -t "" | cut -d'.' -f2`
-		gen_pass=${gen_pass}`mktemp -t "" | cut -d'.' -f2`
+                TMP_FILE=`${MKTEMP} ""`
+                gen_pass=`echo $TMP_FILE | cut -d'.' -f2`
+                rm -f ${TMP_FILE}
+                TMP_FILE=`${MKTEMP} ""`
+                gen_pass=${gen_pass}`echo $TMP_FILE | cut -d'.' -f2`
+                rm -f ${TMP_FILE}
 	else
 		# This new one works as well with sh!
 		gen_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
@@ -800,7 +808,7 @@ setDtcdbPassword () {
 	fi
 	if [ -z "${MYSQL_DTCDAEMONS_PASS}" ] ; then
 		MYSQL_DTCDAEMONS_PASS=${gen_pass}
-		echo ${MYSQL_DTC_PASS} >${PATH_DB_PWD_FILE}
+		echo ${MYSQL_DTCDAEMONS_PASS} >${PATH_DB_PWD_FILE}
 	fi
 
 	chmod 600 ${PATH_DB_PWD_FILE}
@@ -1263,6 +1271,7 @@ changeApacheUserAndGroup () {
 		sed "s/Group apache/Group ${CONF_DTC_SYSTEM_GROUPNAME}/" $PATH_HTTPD_CONF >$TMP_FILE
 		cat <$TMP_FILE >$PATH_HTTPD_CONF
 	fi
+	rm -f ${TMP_FILE}
 }
 
 createApachePIDSymLink () {
@@ -1384,9 +1393,7 @@ modifyHTTPD_CONF () {
 			cp -f "$PATH_HTTPD_CONF" "$PATH_HTTPD_CONF.DTC.backup"
 		fi
 
-		TMP_FILE=`${MKTEMP} DTC_install.httpd.conf.XXXXXX` || exit 1
-
-		echoIfVerbose -n "Checking for AllowOverride..."
+		echoIfVerbose "Checking for AllowOverride..."
 		searchAndReplace $PATH_HTTPD_CONF AllowOverride\ None AllowOverride\ AuthConfig\ FileInfo\ Limit\ Indexes
 		searchAndReplace $PATH_HTTPD_CONF Options\ None Options\ FollowSymLinks
 
@@ -1475,9 +1482,6 @@ ErrorDocument 501 /dtc404/406.php
 </IfModule>
 " >>$PATH_HTTPD_CONF
 		echo "# End of DTC configuration v0.12 : please don't touch this line !" >>$PATH_HTTPD_CONF
-		if [ -f $TMP_FILE ] ; then
-			rm -f $TMP_FILE
-		fi
 	fi
 
 	if [ -e /etc/apache2/ports.conf ] ; then
@@ -1926,7 +1930,7 @@ modifyNamedConf () {
 			echo $line2 >> $TMP_FILE
 			touch $PATH_DTC_ETC/named.conf
 			cat < $TMP_FILE >> $PATH_NAMED_CONF
-			[ -f $TMP_FILE ] && rm -f $TMP_FILE
+			rm -f $TMP_FILE
 		fi
 		if [ "$UNIX_TYPE" = "redhat" ] ; then
 			touch $PATH_DTC_ETC/named.conf
@@ -1946,6 +1950,7 @@ modifyNamedConf () {
 				echo "Commenting Listen directives on named.conf"
 				sed "s'listen-on'//listen-on'I" $PATH_NAMED_CONF >$TMP_FILE
 				cat < $TMP_FILE > $PATH_NAMED_CONF
+				rm -f $TMP_FILE
 			fi
 		fi
 	fi
@@ -2006,10 +2011,6 @@ setupAmavisConf () {
 	#
 	# Make some changes to the amavisd-new configuration to allow clamav to work with it cleanly.
 	#
-	if [ -z "$AMAVISD_USER" ]
-	then
-		AMAVISD_USER=amavis
-	fi
 
 	# make sure the amavisd configuration has '$AMAVISD_USER' user and group
 
@@ -2069,6 +2070,10 @@ setupAmavisConf () {
 	        if grep "Configured by DTC" "$PATH_AMAVISD_CONF" >/dev/null; then
 			echoIfVerbose "$PATH_AMAVISD_CONF already configured..."
         	else
+        		if ! [ -f ${PATH_AMVISD_CONF}.DTC.backup ] ; then
+        			echoIfVerbose "===> Backuping "$PATH_AMAVISD_CONF
+        			cp -f "$PATH_AMAVISD_CONF" "$PATH_AMAVISD_CONF.DTC.backup"
+        		fi
 			echoIfVerbose "Inserting configuration into $PATH_AMAVISD_CONF"
 
 			# strip the 1; from the end of the config file
@@ -2164,11 +2169,6 @@ modifyClamavConf () {
 		fi
 
                 echoIfVerbose "===> Checking user and group configuration for clamav..."
-
-		if [ -z "$AMAVISD_USER" ]
-		then
-			AMAVISD_USER=amavis
-		fi
 
 	        # make sure our users exist for amavis
 	        # turn back on error handling, these users probably exist already
@@ -2342,11 +2342,6 @@ modifyPostfixConfig () {
 	# Declare this makes the test when appenning the configuration for SASL
 	# works if you don't have SASL
 
-	if [ -z "$AMAVISD_USER" ]
-	then
-		AMAVISD_USER=amavis
-	fi
-
 	SASLTMP_FILE="/thisfiledoesnotexists"
 	if [ -f "$PATH_POSTFIX_CONF" ] ; then
 		echoIfVerbose "===> Linking postfix control files to DTC generated files"
@@ -2367,6 +2362,10 @@ modifyPostfixConfig () {
 		then
 			echoIfVerbose "Postfix main.cf has been configured before, not adding virtual mailbox options"
 		else
+			if ! [ -f $PATH_POSTFIX_CONF.DTC.backup ] ; then
+				echoIfVerbose "===> Backuping "$PATH_POSTFIX_CONF
+				cp -f "$PATH_POSTFIX_CONF" "$PATH_POSTFIX_CONF.DTC.backup"
+			fi
 			if [ ! -d ${PATH_POSTFIX_ETC}/maps ] ; then
 				mkdir -p ${PATH_POSTFIX_ETC}/maps
 			fi
@@ -2619,6 +2618,10 @@ transport_maps = hash:$PATH_POSTFIX_ETC/transport
 			if grep "Configured by DTC" /etc/aliases >/dev/null; then
 				echoIfVerbose "/etc/aliases configured before, not adding ham/spam aliases"
 			else
+				if ! [ -f /etc/aliases.DTC.backup ] ; then
+					echoIfVerbose "===> Backuping /etc/aliases"
+					cp -f /etc/aliases /etc/aliases.DTC.backup
+				fi
 				echo "# Configured by DTC v0.26 : Please don't touch this line !" >>/etc/aliases
 				echo "# auto-spam-learning" >>/etc/aliases
 				echo "spam:	spam@spam.spam" >>/etc/aliases
@@ -2630,6 +2633,10 @@ transport_maps = hash:$PATH_POSTFIX_ETC/transport
 			if grep "Configured by DTC 0.21" "$PATH_POSTFIX_ETC/master.cf" >/dev/null; then
 				echoIfVerbose "Postfix master.cf has been configured before, not adding maildrop options"
 			else
+				if ! [ -f $PATH_POSTFIX_ETC/master.cf.DTC.backup ] ; then
+					echoIfVerbose "===> Backuping $PATH_POSTFIX_ETC/master.cf"
+					cp -f "$PATH_POSTFIX_ETC/master.cf" "$PATH_POSTFIX_ETC/master.cf.DTC.backup"
+				fi
 				echoIfVerbose "Inserting DTC configuration inside $PATH_POSTFIX_ETC/master.cf"
 
 				TMP_FILE2=`${MKTEMP} DTC_install.postfix_master.cf.XXXXXX` || exit 1
@@ -2931,10 +2938,12 @@ modifyCourierConfig () {
 	# check to see if we have a userdb FILE, rather than a FOLDER, rm -r if any folder...
 	if [ -d "/etc/authlib" ] ; then
 		COURIER_FOLDER="/etc/authlib"
-	elif [ -d "/etc/courier" ] ; then
-		COURIER_FOLDER="/etc/courier"
 	elif [ -d "/usr/local/etc/courier" ] ; then
 		COURIER_FOLDER="/usr/local/etc/courier"
+	elif [ -d "/usr/local/etc/authlib" ] ; then
+		COURIER_FOLDER="/usr/local/etc/authlib"
+	else
+		COURIER_FOLDER="/etc/courier"
 	fi
 
 	if [ -d "$COURIER_FOLDER" ] ; then

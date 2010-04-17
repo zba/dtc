@@ -75,7 +75,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "registry_renew_domain")
 		if($renew_return["attributes"]["status"] == 0){
 			$q = "UPDATE $pro_mysql_client_table SET dollar='$remaining' WHERE id='$id_client';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-			$q = "UPDATE $pro_mysql_whois_table SET expiration_date=DATE_ADD(expiration_date, INTERVAL 1 YEAR);";
+			$q = "UPDATE $pro_mysql_domain_table SET expiration_date=DATE_ADD(expiration_date, INTERVAL ".$_REQUEST["num_years"]." YEAR) WHERE name='$edit_domain';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		}
 	}
