@@ -12,6 +12,8 @@ function register_user($adding_service="no"){
 
 	global $secpayconf_currency_letters;
 
+	global $gettext_lang;
+
 	get_secpay_conf();
 
 	// Check if all fields are blank, in wich case don't display error
@@ -341,6 +343,7 @@ custom_notes,
 shopper_ip,
 date,
 time,
+last_used_lang,
 maxmind_output$vps_add1
 )
 VALUES('".$_REQUEST["reqadm_login"]."',
@@ -366,6 +369,7 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 '".$_SERVER["REMOTE_ADDR"]."',
 '".date("Y-m-d")."',
 '".date("H:i:s")."',
+'".$gettext_lang."',
 '".mysql_real_escape_string(serialize($maxmind_output))."'$vps_add2)";
 	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
 	$id = mysql_insert_id();
