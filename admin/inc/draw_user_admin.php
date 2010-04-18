@@ -1,5 +1,38 @@
 <?php
 
+function deleteTicketThread($delete_me){
+	global $pro_mysql_tik_queries_table;
+
+	$a = array();
+	$a["in_reply_of_id"] = $delete_me;
+	while($a["in_reply_of_id"] != 0){
+		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE id='".$a["in_reply_of_id"]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			die("Cannot find ticket ".$a["in_reply_of_id"]." when willing to search head thread line ".__LINE__." file ".__FILE__);
+		}
+		$a = mysql_fetch_array($r);
+	}
+	$head = $a["id"];
+	$next = $a["reply_id"];
+	$q = "DELETE FROM $pro_mysql_tik_queries_table WHERE id='$head';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	while($next != 0){
+		$q = "SELECT * FROM $pro_mysql_tik_queries_table WHERE id='$next';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			die("Cannot find ticket ".$a["in_reply_of_id"]." when willing to delete thread line ".__LINE__." file ".__FILE__);
+		}
+		$a = mysql_fetch_array($r);
+		$head = $next;
+		$next = $a["reply_id"];
+		$q = "DELETE FROM $pro_mysql_tik_queries_table WHERE id='$head';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	}
+}
+
 function calculateAge($date,$time){
 	$exp_date = explode("-",$date);
 	$exp_time = explode(":",$time);
@@ -219,6 +252,11 @@ function drawNewAdminForm(){
  <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"close\" value=\"". _("Close without reply") ."\"></div>
  <div class=\"input_btn_right\"></div>
 </div>
+		<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+ <div class=\"input_btn_left\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"delete_thread\" value=\"". _("Delete thread silently") ."\"></div>
+ <div class=\"input_btn_right\"></div>
+</div>
 		</form>";
 		return $out;
 	}
@@ -254,6 +292,10 @@ function drawNewAdminForm(){
 			$client = mysql_fetch_array($r);
 		}else{
 			$adm_login = "";
+		}
+		if( isset($_REQUEST["delete_thread"]) ){
+			deleteTicketThread($_REQUEST["tik_id"]);
+			$closed = "no";
 		}
 		if(isset($_REQUEST["answer"]) || isset($_REQUEST["answer_close"])){
 			$qps = "SELECT * FROM $pro_mysql_tik_admins_table WHERE pseudo='".$_SERVER["PHP_AUTH_USER"]."';";
