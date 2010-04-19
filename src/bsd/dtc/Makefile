@@ -38,8 +38,7 @@ RUN_DEPENDS=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server \
 		${LOCALBASE}/bin/ncftpput:${PORTSDIR}/ftp/ncftp3 \
 		${LOCALBASE}/bin/rrdtool:${PORTSDIR}/databases/rrdtool \
 		${LOCALBASE}/sbin/logrotate:${PORTSDIR}/sysutils/logrotate \
-		${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash \
-		${LOCALBASE}/bin/gawk:${PORTSDIR}/lang/gawk
+		${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash
 
 
 
