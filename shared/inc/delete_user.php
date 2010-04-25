@@ -124,6 +124,7 @@ function DTCdeleteAdmin ($adm_to_del) {
 	global $pro_mysql_dedicated_table;
 	global $pro_mysql_tik_queries_table;
 	global $pro_mysql_cronjob_table;
+	global $pro_mysql_ssl_ips_table;
 
 	global $conf_demo_version;
 	global $conf_mysql_db;
@@ -153,6 +154,10 @@ function DTCdeleteAdmin ($adm_to_del) {
 	if($conf_demo_version == "no"){
 		system("rm -rf $the_admin_path");
 	}
+
+	// Make all SSL vhosts the user registered available again
+	$q = "UPDATE $pro_mysql_ssl_ips_table SET available='yes' WHERE adm_login='$adm_to_del';";
+	$r = mysql_query($q)or die("Cannot execute query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 	deleteMysqlUserAndDB($adm_to_del);
 
