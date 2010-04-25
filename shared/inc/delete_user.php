@@ -101,7 +101,13 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 	$r = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__);
 	$n = mysql_num_rows($r);
 	if($n == 0){
-		system("rm -rf $the_admin_path/lib $the_admin_path/dev $the_admin_path/etc $the_admin_path/sbin $the_admin_path/tmp $the_admin_path/usr $the_admin_path/var $the_admin_path/bin $the_admin_path/lib64 $the_admin_path/libexec");
+		$folder_list = "$the_admin_path/lib $the_admin_path/dev $the_admin_path/etc $the_admin_path/sbin $the_admin_path/tmp $the_admin_path/usr $the_admin_path/var $the_admin_path/bin $the_admin_path/libexec";
+		$mystring = exec("uname -m",$out,$ret);
+		$arch = $out[0];
+		if($arch == "x86_64"){
+			$folder_list .= " $the_admin_path/lib64";
+		}
+		system("rm -rf ".$folder_list);
 	}
 
 	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',
