@@ -15,6 +15,10 @@
  * add head to file
  *
  **/
+
+if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
+@date_default_timezone_set(@date_default_timezone_get());
+
 function get_remote_ns($a){
 	global $console;
 	global $keep_dns_generate_flag;

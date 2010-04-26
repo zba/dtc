@@ -2,7 +2,7 @@
 
 function mysql_table_exists($dbname,$tableName){
 	$tables = array();
-	$tablesResult = mysql_list_tables($dbname);
+	$tablesResult = mysql_query("SHOW TABLES FROM " . $dbname);
 	while ($row = mysql_fetch_row($tablesResult)) $tables[] = $row[0];
 	return(in_array($tableName, $tables));
 }

@@ -1,6 +1,9 @@
 #!/usr/bin/env php
 <?php
 
+if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
+@date_default_timezone_set(@date_default_timezone_get());
+
 // 5 minute timeout for the cron.php run... if it runs longer, then we need to know about it!
 $_timelimit = 300;
 set_time_limit($_timelimit); 

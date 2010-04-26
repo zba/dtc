@@ -8,6 +8,10 @@
 
 echo "==> Restor DB script for DTC\n";
 
+#Eliminates Warning from PHP 5.3.x
+if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
+@date_default_timezone_set(@date_default_timezone_get());
+
 $pro_mysql_host="localhost";
 $pro_mysql_login="root";
 $pro_mysql_db="dtc";
