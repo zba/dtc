@@ -231,7 +231,10 @@ searchPATH_PHP_INI_APACHE () {
 	elif [ -f "$PATH_PHP_INI" ] ; then
 		PATH_PHP_INI_APACHE=$PATH_PHP_INI
 	# This one is for FreeBSD
-	elif [ -f /usr/local/etc/php.ini ] ; then
+	elif [ -f /usr/local/etc/php.ini -o -f /usr/local/etc/php.ini-production ] ; then
+		if [ ! -f /usr/local/etc/php.ini ] ; then
+			cp /usr/local/etc/php.ini-production /usr/local/etc/php.ini
+		fi
 		PATH_PHP_INI_APACHE=/usr/local/etc/php.ini
 	# This one for RedHat and Centos, and osx !
 	elif [ -f /etc/php.ini -o -f /etc/php.ini.default ] ; then
