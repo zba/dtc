@@ -55,7 +55,13 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser_db"){
 	if($conf_user_mysql_type=="distant"){
 		$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user SQL host");
 	}
-	if(!isDatabase($_REQUEST["newdb_name"])){
+	// Check the db name format and that it's one one of the forbidden dbs
+	if(!isDatabase($_REQUEST["newdb_name"])
+				|| $_REQUEST["newdb_name"] == "mysql"
+				|| $_REQUEST["newdb_name"] == "information_schema"
+				|| $_REQUEST["newdb_name"] == "apachelogs"
+				|| $_REQUEST["newdb_name"] == "dtc"
+				|| $_REQUEST["newdb_name"] == $conf_mysql_db){
 		$submit_err .= _("This is not a valid database name! Please choose another one.") ."<br>\n";
 		$commit_flag = "no";
 	}else{
