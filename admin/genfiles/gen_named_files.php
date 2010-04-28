@@ -732,6 +732,7 @@ zone \"$srv_hostname\" IN {
 		$filep = fopen("$conf_generated_file_path/nodes_zones/$srv_hostname","w+");
 		fwrite($filep,$node_zfile);
 		fclose($filep);
+		@chown("$conf_generated_file_path/nodes_zones/$srv_hostname",$conf_dtc_system_username);
 	}
 	if($n > 0){
 		$filep = fopen("$conf_generated_file_path/nodes_zones.conf","w+");
