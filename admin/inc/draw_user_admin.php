@@ -280,14 +280,17 @@ function drawNewAdminForm(){
 			$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n != 1){
-				return "Admin not found!";
+				return "Admin $adm_login not found line ".__LINE__." file ".__FILE__;
 			}
 			$admin = mysql_fetch_array($r);
+			if($admin["id_client"] == "0"){
+				return _("The virtual administrator for which you are trying to manage a support ticket has no client file. Go in the Customer management screen and create a client file for this administrator.");
+			}
 			$q = "SELECT * FROM $pro_mysql_client_table WHERE id='".$admin["id_client"]."';";
 			$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n != 1){
-				return "Admin not found!";
+				return "Client id for admin $adm_login not found line ".__LINE__." file ".__FILE__;
 			}
 			$client = mysql_fetch_array($r);
 		}else{
