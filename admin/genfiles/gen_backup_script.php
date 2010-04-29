@@ -173,7 +173,6 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin";
 	$restor_net .= "mysql -h$conf_user_mysql_host -u$conf_mysql_login -p$conf_mysql_pass <".$dbfilename."\n";
 	$restor_net .= "echo \" deleting archive\"\n";
 	$restor_net .= "rm -f ".$dbfilename."\n";
-	$restor_net .= "date\n";
 
 	$backup_net .= "ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -V -T tmp. $ncftp_mode $conf_ftp_backup_dest_folder $conf_generated_file_path/net_restor.sh\n";
 	$backup_net .= "if [ -e /etc/apache/httpd.conf ] ; then\n";
@@ -222,13 +221,14 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin";
 	$backup_net .= "	ncftpput -f $conf_generated_file_path/ncftpput_login.cfg -V -T tmp. $ncftp_mode $conf_ftp_backup_dest_folder $conf_generated_file_path/ncftpput_login.cfg\n";
 	$backup_net .= "fi\n";
 	$restor_net .= "echo \"Rewriting dtcdaemons user password on mysql database.\"\n";
-	$restor_net .= "dtcdaemons_pass=`echo $conf_generated_file_path/dtcdb_passwd`\n";
+	$restor_net .= "dtcdaemons_pass=`cat $conf_generated_file_path/dtcdb_passwd`\n";
 	$restor_net .= "mysql -h$conf_user_mysql_host -u$conf_mysql_login -p$conf_mysql_pass -D mysql -e \"update user set password=password('\$dtcdaemons_pass') where user='dtcdaemons';\"\n";
 	$restor_net .= "echo \"Marking all scripts and DNS zones to be regenerated on next cron.\"\n";
 	$restor_net .= "mysql -h$conf_user_mysql_host -u$conf_mysql_login -p$conf_mysql_pass -D dtc -e \"update domain set generate_flag='yes';\"\n";
 	$restor_net .= "mysql -h$conf_user_mysql_host -u$conf_mysql_login -p$conf_mysql_pass -D dtc -e \"update cron_job set qmail_newu='yes',restart_qmail='yes',reload_named='yes',restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_reverse='yes',gen_fetchmail='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes',gen_nagios='yes',lock_flag='finished';\"\n";
 
 	$backup_net .= "date\n";
+	$restor_net .= "date\n";
 	$filep = fopen("$conf_generated_file_path/net_backup.sh", "w+");
 	if( $filep == NULL){
 		echo("Cannot open file for writting");

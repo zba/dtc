@@ -2239,7 +2239,12 @@ modifyClamavConf () {
 #	                rm -f $TMP_FILE
 #	        fi
 #	        # Finaly restart the daemon
-	        restartDaemonMultiUnix clamav-daemon
+		if [ ""$UNIX_TYPE = freebsd ] ; then
+			restartDaemonMultiUnix clamav-clamd
+			restartDaemonMultiUnix clamav-freshclam
+		else
+	        	restartDaemonMultiUnix clamav-daemon
+		fi
 	fi
 }
 
@@ -3046,12 +3051,20 @@ MYSQL_SELECT_CLAUSE     SELECT concat(id, '@', mbox_host), crypt, passwd, uid, g
 
 MYSQL_CHPASS_CLAUSE     UPDATE pop_access SET passwd='\$(newpass)', crypt='\$(newpass_crypt)' WHERE (id = '\$(local_part)' AND mbox_host = '\$(domain)') OR (id = SUBSTRING_INDEX('\$(local_part)', '%', 1)  AND mbox_host = SUBSTRING_INDEX('\$(local_part)', '%', -1))
 " > $PATH_COURIER_AUTHD_CONF_PATH/authmysqlrc
-			restartDaemonMultiUnix courier-authdaemon
-			restartDaemonMultiUnix courier-authlib
-			restartDaemonMultiUnix courier-imap
-			restartDaemonMultiUnix courier-imap-ssl
-			restartDaemonMultiUnix courier-pop
-			restartDaemonMultiUnix courier-pop-ssl
+			if [ ""$UNIX_TYPE = freebsd ] ; then
+				restartDaemonMultiUnix courier-authdaemond
+				restartDaemonMultiUnix courier-imap-imapd
+				restartDaemonMultiUnix courier-imap-imapd-ssl
+				restartDaemonMultiUnix courier-imap-pop3d
+				restartDaemonMultiUnix courier-imap-pop3d-ssl
+			else
+				restartDaemonMultiUnix courier-authdaemon
+				restartDaemonMultiUnix courier-authlib
+				restartDaemonMultiUnix courier-imap
+				restartDaemonMultiUnix courier-imap-ssl
+				restartDaemonMultiUnix courier-pop
+				restartDaemonMultiUnix courier-pop-ssl
+			fi
 		fi	
 	fi
 
@@ -4054,6 +4067,16 @@ modifyMysqmail () {
 						echo "mysqmail_pure_ftp_logger_enable=\"YES\"" >>/etc/rc.conf
 					fi
 				fi
+			fi
+			restartDaemonMultiUnix mysqmail-postfix-logger
+			if [ ""$conf_use_cyrus = "false" ] ; then
+				restartDaemonMultiUnix mysqmail-courier-logger
+			fi
+			if [ -f $PATH_DOVECOT_CONF ] ; then
+				restartDaemonMultiUnix mysqmail-dovecot-logger
+			fi
+			if [ ""$conf_ftp_type = "pureftpd" ] ; then
+				restartDaemonMultiUnix mysqmail-pure-ftp-logger
 			fi
 		fi
 		if [ -f $SYSLOG_CONF ] ; then

@@ -502,6 +502,9 @@ function cronMailSystem () {
 			// This one seems ok for slackware
 			}else if(file_exists("/etc/rc.d/rc.amavisd")){
 				system("/etc/rc.d/rc.amavisd restart");
+			// This is for FreeBSD
+			}else if(file_exists("/usr/local/etc/rc.d/amavisd")){
+				system("/usr/local/etc/rc.d/amavisd restart");
 			}
 
 			if( file_exists ("/etc/init.d/dkimproxy") ){
