@@ -9,7 +9,7 @@ $send_email_header = "Content-Type: text/plain; charset=\"UTF-8\"\n";
 $send_email_header .= "Content-Transfer-Encoding: quoted-printable\n";
 
 if(isset($_REQUEST["rub"])){
-	if(!ereg("^([a-z0-9]+)([.a-z_0-9-]*)([a-z0-9]+)\$",$_REQUEST["rub"]) && $_REQUEST["rub"] != ""){
+	if(!preg_match("/^([a-z0-9]+)([.a-z_0-9-]*)([a-z0-9]+)\$/",$_REQUEST["rub"]) && $_REQUEST["rub"] != ""){
 		die("Rub parameter not correct: XSS attempt?");
 	}
 	$rub = $_REQUEST["rub"];
@@ -18,7 +18,7 @@ if(isset($_REQUEST["rub"])){
 if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] == "crm"){
 	if(isset( $_REQUEST["id_client"] )){
 		$id_client = $_REQUEST["id_client"];
-		if($id_client != "" && isset($id_client) && !ereg("^([0-9]+)\$",$id_client)){
+		if($id_client != "" && isset($id_client) && !preg_match("/^([0-9]+)\$/",$id_client)){
 			die("The provided id_client does not seems to be in the correct format. It should be a single number.");
 		}
 	}
@@ -36,22 +36,22 @@ if(isset($_REQUEST["addrlink"]))	$addrlink = $_REQUEST["addrlink"];
 else	$addrlink = "";
 
 function isValidEmailLogin($email){
-        $reg = "^([a-z0-9]+)([_.a-z0-9-]+)@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$";
-        if(!ereg($reg,$email))  return false;
+        $reg = "/^([a-z0-9]+)([_.a-z0-9-]+)@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$/";
+        if(!preg_match($reg,$email))  return false;
         else                    return true;
 }
 
 
-if(isset($adm_login) && !ereg("^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$",$adm_login) && $adm_login != ""){
+if(isset($adm_login) && !preg_match("/^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$/",$adm_login) && $adm_login != ""){
 	die("DTC client login error: Requested login does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
 }
-if(isset($adm_pass) && !ereg("^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$adm_pass) && $adm_pass != ""){
+if(isset($adm_pass) && !preg_match("/^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)([a-zA-Z0-9])\$/",$adm_pass) && $adm_pass != ""){
 	die("DTC client login error: Requested pass does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
 }
-if(isset($adm_email_login) && !ereg("^([a-z0-9]+)([_.a-z0-9-]*)@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$",$adm_email_login) && $adm_email_login != ""){
+if(isset($adm_email_login) && !preg_match("/^([a-z0-9]+)([_.a-z0-9-]*)@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$/",$adm_email_login) && $adm_email_login != ""){
 	die("DTC email client login error: Requested login does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
 }
-if(isset($adm_email_pass) && !ereg("^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)([a-zA-Z0-9])\$",$adm_email_pass) && $adm_email_pass != ""){
+if(isset($adm_email_pass) && !preg_match("/^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)([a-zA-Z0-9])\$/",$adm_email_pass) && $adm_email_pass != ""){
 	die("DTC email client login error: Requested pass does not look like to be correct. It should be made only with letters, numbers, \".\" or \"-\" signs.");
 }
 
@@ -89,7 +89,7 @@ if(isset($whatdoiedit) && $whatdoiedit == "nickhandles" && isset($_REQUEST["edit
 	$edit_id = $_REQUEST["edit_id"];
 }
 
-if($panel_type != "email" && isset($edit_domain) && !ereg("^([a-z0-9]+)([.a-z0-9-]+)([a-z0-9])\$",$edit_domain) && $edit_domain != ""){
+if($panel_type != "email" && isset($edit_domain) && !preg_match("/^([a-z0-9]+)([.a-z0-9-]+)([a-z0-9])\$/",$edit_domain) && $edit_domain != ""){
 	die("The domain provided does not look like a correct domain name...");
 }
 

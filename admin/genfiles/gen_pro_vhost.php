@@ -277,7 +277,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$nbr_addrs = sizeof($all_site_addrs);
 		for($i=0;$i<$nbr_addrs;$i++){
 			// first write all config'ed IPs with the Listen
-			if (test_valid_local_ip($all_site_addrs[$i]) && !ereg("Listen ".$all_site_addrs[$i].":80", $vhost_file_listen))
+			if (test_valid_local_ip($all_site_addrs[$i]) && !preg_match("/Listen ".$all_site_addrs[$i].":80/", $vhost_file_listen))
 			{
 				$vhost_file_listen .= "Listen ".$all_site_addrs[$i].":80\n";
 			} else {
@@ -314,7 +314,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 		$ip_for_404=$conf_main_site_ip;
 		if($conf_use_nated_vhost=="yes"){
 			$ip_for_404 = $conf_nated_vhost_ip;
-			if (test_valid_local_ip($conf_nated_vhost_ip) && !ereg("Listen ".$conf_nated_vhost_ip.":80", $vhost_file_listen))
+			if (test_valid_local_ip($conf_nated_vhost_ip) && !preg_match("/Listen ".$conf_nated_vhost_ip.":80/", $vhost_file_listen))
 			{
 				$vhost_file_listen .= "Listen ".$conf_nated_vhost_ip.":80\n";
 			} else {
@@ -322,7 +322,7 @@ AND $pro_mysql_admin_table.adm_login=$pro_mysql_domain_table.owner;";
 			}
 			$vhost_file .= "NameVirtualHost ".$conf_nated_vhost_ip.":80\n";
 		}else{
-			if (test_valid_local_ip($conf_main_site_ip) && !ereg("Listen ".$conf_main_site_ip.":80", $vhost_file_listen))
+			if (test_valid_local_ip($conf_main_site_ip) && !preg_match("/Listen ".$conf_main_site_ip.":80/", $vhost_file_listen))
 			{
 				$vhost_file_listen .= "Listen ".$conf_main_site_ip.":80\n";
 			} else {
@@ -449,12 +449,12 @@ AND $pro_mysql_admin_table.id_client != '0'";
 		} 
 		// need to check if we have a NameVirtualHost entry for this backup IP, to support multiple backup sites on one IP
 		if (isset($backup_ip_addr)){
-			if (test_valid_local_ip($backup_ip_addr) && !ereg("Listen ".$backup_ip_addr.":80", $vhost_file_listen)){
+			if (test_valid_local_ip($backup_ip_addr) && !preg_match("/Listen ".$backup_ip_addr.":80/", $vhost_file_listen)){
 				$vhost_file_listen .= "Listen ".$backup_ip_addr.":80\n";
 			} else {
 				$vhost_file_listen .= "#Listen ".$backup_ip_addr.":80\n";
 			}
-			if (!ereg("NameVirtualHost $backup_ip_addr", $vhost_file)){
+			if (!preg_match("/NameVirtualHost $backup_ip_addr/", $vhost_file)){
 				$vhost_file .= "NameVirtualHost ".$backup_ip_addr.":80\n";
 			}
 		}
@@ -569,7 +569,7 @@ AND $pro_mysql_admin_table.id_client != '0'";
 				$log_tablename = str_replace("-","A",str_replace(".","_",$web_name)).'$'.str_replace("-","A",str_replace(".","_",$web_subname));
 				if($conf_use_ssl == "yes" && $k == 0){
 					# add the directive for SSL here
-					if (test_valid_local_ip($ip_to_write) && !ereg("Listen ".$ip_to_write.":".$conf_administrative_ssl_port, $vhost_file_listen))
+					if (test_valid_local_ip($ip_to_write) && !preg_match("/Listen ".$ip_to_write.":".$conf_administrative_ssl_port."/", $vhost_file_listen))
 					{
 						$vhost_file_listen .= "Listen ".$ip_to_write.":".$conf_administrative_ssl_port."\n";
 					} else {

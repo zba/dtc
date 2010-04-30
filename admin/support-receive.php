@@ -71,7 +71,7 @@ $tik_regexp = '^' . $conf_support_ticket_email . "[-+]([a-f0-9]*)@" . $tik_domai
 $email_to = $matches[0][0];
 $n = sizeof($matches[0]);
 for($i = 0;$i<$n;$i++){
-	if( ereg($tik_regexp,$matches[0][$i]) ){
+	if( preg_match("/".$tik_regexp."/",$matches[0][$i]) ){
 		$email_to = $matches[0][$i];
 	}
 }
@@ -79,7 +79,7 @@ for($i = 0;$i<$n;$i++){
 //echo "From: $email_from To: $email_to\n";
 
 // This is to avoid any hacking with support mail looping to itself.
-if( ereg($tik_regexp,$email_from) ){
+if( preg_match("/".$tik_regexp."/",$email_from) ){
 	echo "From email is the one of our support ticket, we can't allow this!";
 	exit(1);
 }
@@ -121,7 +121,7 @@ $body = mb_convert_encoding($body,"UTF-8",strtoupper($charset));
 // Check if the To: has the support ID number in it
 // emails are sent to something like: support-3bc8212a0@dtc.example.com
 // and that a record really exists for it
-if( ereg($tik_regexp,$email_to) ){
+if( preg_match("/".$tik_regexp."/",$email_to) ){
 	// If the To: match an existing ID of a previous ticket, then we should search for that ticket
 	$start = strlen($conf_support_ticket_email) + 1;
 	$end = strlen($email_to) - $start - strlen($tik_domain) - 1; // Size of the email - size of "support+" - size of "@domain.tld"

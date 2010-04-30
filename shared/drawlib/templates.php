@@ -1510,7 +1510,7 @@ function dtcListItemsEdit($dsc){
 					}else{
 						$size = "";
 					}
-					if( isset($dsc["cols"][ $keys[$j] ]["happen_domain"]) && ereg($dsc["cols"][ $keys[$j] ]["happen_domain"]."$",$a[ $keys[$j] ])){
+					if( isset($dsc["cols"][ $keys[$j] ]["happen_domain"]) && preg_match("/".$dsc["cols"][ $keys[$j] ]["happen_domain"]."\$/",$a[ $keys[$j] ])){
 						$input_disp_value = substr($a[ $keys[$j] ],0,strlen($a[ $keys[$j] ]) - strlen($dsc["cols"][ $keys[$j] ]["happen_domain"]));
 						$happen = $dsc["cols"][ $keys[$j] ]["happen_domain"];
 					}else{

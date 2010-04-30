@@ -180,7 +180,7 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	$command = "touch $list_full_path/control/subonlyget";
 	exec($command);
 
-	if (!ereg("\@", $owner)){
+	if (!preg_match("/\@/", $owner)){
 		$owner .= "@" . $edit_domain;
 	}
 

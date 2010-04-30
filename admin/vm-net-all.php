@@ -85,7 +85,7 @@ if( isset($_REQUEST["graph"]) ){
 	if(is_dir("/var/lib/dtc/dtc-xenservers-rrds/".$_REQUEST["vps_server_hostname"])){
 		if ($handle = opendir("/var/lib/dtc/dtc-xenservers-rrds/".$_REQUEST["vps_server_hostname"])) {
 			while (false !== ($file = readdir($handle))) {
-				if(ereg("^xen([0-9])([0-9])-netin.rrd\$",$file)){
+				if(preg_match("/^xen([0-9])([0-9])-netin.rrd\$/",$file)){
 					$all_rrd_files[] = $file;
 					$xen_vps_numbers[] = substr($file,3,2);
 				}

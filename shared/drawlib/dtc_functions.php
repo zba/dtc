@@ -185,7 +185,7 @@ function domainNamePopup($domain_name=""){
 
 	$nbr_tld = sizeof($allTLD);
 	for($i=0;$i<$nbr_tld;$i++){
-		if( ereg("\\".$allTLD[$i]."\$",$domain_name)){
+		if( preg_match("/\\".$allTLD[$i]."\$/",$domain_name)){
 			$selected = " selected ";
 		}else{
 			$selected = "";
@@ -494,15 +494,15 @@ function checkLoginPass($adm_login,$adm_pass){
 }
 
 
-////////////////////////////////////////////////////////
-// Some ereg check functions to be sure of all inputs //
-////////////////////////////////////////////////////////
-// This is the RFC ereg as seen in most servers...
+//////////////////////////////////////////////////////////////
+// Some preg_match check functions to be sure of all inputs //
+//////////////////////////////////////////////////////////////
+// This is the RFC preg_match as seen in most servers...
 // Todo: extract rulles for other functions.
 // $reg = '^(([^<>;()[\]\\.,;:@"]+(\.[^<>()[\]\\.,;:@"]+)*)|(".+"))@((([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))\.)*(([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))$';
 function isIP($ip){
-	$reg = "^([0-9]){1,3}\.([0-9]){1,3}\.([0-9]){1,3}\.([0-9]){1,3}\$";
-	if(!ereg($reg,$ip))	return false;
+	$reg = "/^([0-9]){1,3}\.([0-9]){1,3}\.([0-9]){1,3}\.([0-9]){1,3}\$/";
+	if(!preg_match($reg,$ip))	return false;
 	else			return true;
 }
 
@@ -513,8 +513,8 @@ function isIP6($ip){
 
 
 function isDTCLogin($login){
-	$reg = "^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$";
-	if(!ereg($reg,$login))	return false;
+	$reg = "/^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$/";
+	if(!preg_match($reg,$login))	return false;
 	else			return true;
 }
 
@@ -523,10 +523,10 @@ function checkSubdomainFormat($name){
 	if($name == ""){
 		return false;
 	}
-	if(ereg("^([a-z0-9]+)([.a-z0-9-]*)([.a-z0-9]+)\$",$name))
+	if(preg_match("/^([a-z0-9]+)([.a-z0-9-]*)([.a-z0-9]+)\$/",$name))
 		return true;
 	else{
-		if(ereg("^([a-z0-9])\$",$name))
+		if(preg_match("/^([a-z0-9])\$/",$name))
 			return true;
 		else
 			return false;
@@ -536,7 +536,7 @@ function checkSubdomainFormat($name){
 // Check if a string is an ssh key
 // TO BE DONE!!!
 function isSSHKey($ssh_key){
-	if(ereg("^ssh-[rd]s[as] ([.a-zA-Z0-9+/=]+)\$",$ssh_key)){
+	if(preg_match("/^ssh-[rd]s[as] ([.a-zA-Z0-9+/=]+)\$/",$ssh_key)){
 		return true;
 	}else{
 		return false;
@@ -545,65 +545,65 @@ function isSSHKey($ssh_key){
 
 // Check for email addr we allow to create using DTC
 function isMailbox($mailbox){
-	$reg = "^([a-z0-9])|([a-z0-9]+)([._a-z0-9-]+)\$";
-	if(!ereg($reg,$mailbox))	return false;
+	$reg = "/^([a-z0-9])|([a-z0-9]+)([._a-z0-9-]+)\$/";
+	if(!preg_match($reg,$mailbox))	return false;
 	else			return true;
 }
 
 // Check for valid (but maybe non-RFC) email addr we allow forwarding to
 function isValidEmail($email){
-	$reg = "^([a-zA-Z0-9])|([a-zA-Z0-9]+)([._a-zA-Z0-9-]*)@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$";
-	if(!ereg($reg,$email))	return false;
+	$reg = "/^([a-zA-Z0-9])|([a-zA-Z0-9]+)([._a-zA-Z0-9-]*)@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$/";
+	if(!preg_match($reg,$email))	return false;
 	else			return true;
 }
 
 function isHostnameOrIP($hostname){
-	$reg = '^((([a-z0-9]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))\.)*(([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))$';
-	if(!ereg($reg,$hostname) && !isIP($hostname))	return false;
+	$reg = '/^((([a-z0-9]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))\.)*(([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))$/';
+	if(!preg_match($reg,$hostname) && !isIP($hostname))	return false;
 	else			return true;
 }
 
 function isHostname($hostname){
-	$reg = '^((([a-z0-9]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))\.)*(([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))$';
+	$reg = '/^((([a-z0-9]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))\.)*(([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))$/';
 //	$reg = '^(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)$';
 //	$reg = "^([.a-z0-9-]+)\$";
-	if(!ereg($reg,$hostname))	return false;
+	if(!preg_match($reg,$hostname))	return false;
 	else			return true;
 }
 
 // Check for email addr we allow to create using DTC
 function isFtpLogin($mailbox){
 	if(isValidEmail($mailbox))	return true;
-	$reg = "^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$";
-	if(!ereg($reg,$mailbox))	return false;
+	$reg = "/^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$/";
+	if(!preg_match($reg,$mailbox))	return false;
 	else			return true;
 }
 
 // Check for validity of a database name
 function isDatabase($db){
-	$reg = "(^[a-zA-Z0-9]+([\_]*)[a-zA-Z0-9]+)\$";
-	if(!ereg($reg,$db))	return false;
+	$reg = "(/^[a-zA-Z0-9]+([\_]*)[a-zA-Z0-9]+)\$/";
+	if(!preg_match($reg,$db))	return false;
 	else			return true;
 }
 
 // Check any mail password for another server
 function isMailPassword($login){
 //	$reg = '^([<>()\\\/\?_\[;,;:%\^@"!a-zA-Z0-9-]){4,16}$';
-	$reg = "^([_.a-zA-Z0-9-]){1,64}\$";
-        if(!ereg($reg,$login))   return false;
+	$reg = "/^([_.a-zA-Z0-9-]){1,64}\$/";
+        if(!preg_match($reg,$login))   return false;
 	else                    return true;
 }
 
 function isDTCPassword($pass){
-	$reg = "^([a-zA-Z0-9]){4,255}\$";
-	if(!ereg($reg,$pass))	return false;
+	$reg = "/^([a-zA-Z0-9]){4,255}\$/";
+	if(!preg_match($reg,$pass))	return false;
 	else			return true;
 }
 
 // Check if it's only numbers
 function isRandomNum($mailbox){
-	$reg = "^([0-9]+)\$";
-	if(!ereg($reg,$mailbox))        return false;
+	$reg = "/^([0-9]+)\$/";
+	if(!preg_match($reg,$mailbox))        return false;
 	else                    return true;
 }
 

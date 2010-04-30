@@ -98,7 +98,7 @@ function mail_account_generate_qmail(){
 					$list_owner = $list["owner"];
 					$list_domain = $list["domain"];
 					// add the missing domain to the list owner
-					if (!ereg("\@", $list_owner))
+					if (!preg_match("/\@/", $list_owner))
 					{
 						$list_owner .= "@" . $list_domain;
 					}

@@ -25,9 +25,9 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 		$commit_flag = "no";
 	}
 
-	if (ereg("^$adm_path/$edit_domain/$", $_REQUEST["newssh_path"]) || ereg("^$adm_path/$", $_REQUEST["newssh_path"])){
+	if (preg_match("/^$adm_path\\/$edit_domain\\/\$/", $_REQUEST["newssh_path"]) || preg_match("/^$adm_path\\/\$", $_REQUEST["newssh_path"])){
 		// all good here, can go ahead
-	}else if(!ereg("^$adm_path/$edit_domain/subdomains",$_REQUEST["newssh_path"]) || strstr($_REQUEST["newssh_path"],'..')){
+	}else if(!preg_match("/^$adm_path\\/$edit_domain\\/subdomains",$_REQUEST["newssh_path"]) || strstr($_REQUEST["newssh_path"],'..')){
 		$submit_err .= _("Your path is restricted to ") ."$adm_path/$edit_domain/subdomains<br>\n";
 		$commit_flag = "no";
 	}
@@ -39,7 +39,7 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 		if($pos == false){
 			$_REQUEST["newssh_login"] .= '@' . $edit_domain;
 		}else{
-			if(!ereg($edit_domain."\$",$_REQUEST["newssh_login"])){
+			if(!preg_match("/".$edit_domain."\$/",$_REQUEST["newssh_login"])){
 				$submit_err .= "Your login must be in the form login@domain.com";
 				$commit_flag = "no";
 			}
