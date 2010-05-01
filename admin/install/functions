@@ -2579,6 +2579,11 @@ disable_vrfy_command = yes
 
 smtp_tls_security_level = may
 
+smtpd_client_connection_rate_limit=20
+smtpd_client_messages_rate_limit=20
+smtpd_client_recipient_rate_limit=20
+anvil_rate_time_unit = 60s
+
 smtpd_recipient_restrictions = permit_mynetworks,${permit_sasl_authenticated}
 			check_client_access regexp:${PATH_POSTFIX_ETC}/maps/relaying_stoplist,
 			reject_invalid_hostname,
