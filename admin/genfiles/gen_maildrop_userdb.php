@@ -109,7 +109,7 @@ function mail_account_generate_maildrop(){
 					system("rm $boxpath/Maildir/maildirsize");
 				}
 			}else{
-				if($panel_type == "cronjob"){
+				if($panel_type == "cronjob" && file_exists("$boxpath/Maildir/maildirsize")){
 					chown("$boxpath/Maildir/maildirsize",$conf_dtc_system_username);
 				}
 			}
