@@ -46,7 +46,6 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 	global $pro_mysql_list_table;
 	global $pro_mysql_fetchmail_table;
 	global $pro_mysql_cronjob_table;
-	global $pro_mysql_whois_table;
 	global $conf_demo_version;
 
 	global $conf_root_admin_random_pass;
@@ -85,9 +84,6 @@ function deleteUserDomain($adm_login,$adm_pass,$deluserdomain,$delete_directorie
 
 	// Delete all mailing lists
 	$adm_query = "DELETE FROM $pro_mysql_list_table WHERE domain='$deluserdomain';";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
-
-	$adm_query = "DELETE FROM $pro_mysql_whois_table WHERE domain_name='$deluserdomain';";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 
 	// Delete the files of the domain name
