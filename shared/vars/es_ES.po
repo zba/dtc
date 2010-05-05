@@ -3556,7 +3556,7 @@ msgstr "Servidores de respaldo MX y NS"
 
 #: shared/drawlib/cc_code_popup.php:236
 msgid "Macau"
-msgstr "Macau"
+msgstr "Macao"
 
 #: shared/drawlib/cc_code_popup.php:237
 msgid "Macedonia"
@@ -3572,11 +3572,11 @@ msgstr "Grupos de correo:"
 
 #: admin/inc/graphs.php:11
 msgid "Mail Queue graph"
-msgstr "Grafico de Cola de correo"
+msgstr "Gr&aacute;fico de Cola de correo"
 
 #: admin/inc/graphs.php:14
 msgid "Mail Queue statistics"
-msgstr "Estadisticas de la cola de correo"
+msgstr "Estad&iacute;sticas de la cola de correo"
 
 #: admin/deamons_state.php:135
 msgid "Mail gen files"
@@ -3584,7 +3584,7 @@ msgstr "Archivos generados de correo"
 
 #: shared/inc/draw.php:435
 msgid "Mail groups of "
-msgstr "Grupos de correo"
+msgstr "Grupos de correo de "
 
 #: admin/deamons_state.php:133
 msgid "Mail restart"
@@ -3600,15 +3600,15 @@ msgstr "Servidor de correo utilizado para enviar mensajes."
 
 #: admin/deamons_state.php:134
 msgid "Mail-newu"
-msgstr "Nuevo usuario de correo"
+msgstr "Nuevos usuarios de correo"
 
 #: shared/inc/forms/email.php:610
 msgid "Mailbox configuration:"
-msgstr "Configuracion de su casilla de correo:"
+msgstr "Configuraci&oacute;n de su casilla de correo:"
 
 #: shared/inc/forms/email.php:378
 msgid "Mailbox configuration: "
-msgstr "Configuraci&oacute;n de la cuenta de correo:"
+msgstr "Configuraci&oacute;n de su casilla de correo: "
 
 #: shared/inc/sql/email.php:23
 msgid "Mailbox does not exists in database!<br>\n"
@@ -3616,7 +3616,7 @@ msgstr "Mailbox inexistente en la base de datos!<br>\n"
 
 #: shared/inc/forms/email.php:682
 msgid "Mailbox max files quota: "
-msgstr "Cuota maxima de archivos de la casilla de correo:"
+msgstr "Cantidad m&aacute;xima de mensajes en la casilla de correo:"
 
 #: shared/inc/forms/email.php:662 shared/inc/forms/email.php:676
 msgid "Mailbox quota: "
@@ -3628,11 +3628,11 @@ msgstr "Buzones"
 
 #: shared/inc/draw.php:431
 msgid "Mailboxes of "
-msgstr "Cuentas de correo de "
+msgstr "Buzones de correo de "
 
 #: shared/inc/draw.php:429 shared/inc/forms/domain_info.php:187
 msgid "Mailboxes:"
-msgstr "Cuentas de correo:"
+msgstr "Buzones:"
 
 #: admin/inc/dtc_config.php:532
 msgid "Mailing list for sending email to all customers"
@@ -3640,7 +3640,7 @@ msgstr "Lista de correo para enviar email a todos los clientes"
 
 #: shared/inc/draw.php:298
 msgid "Mailing lists"
-msgstr "Listados de correo:"
+msgstr "Listas de correo"
 
 #: shared/inc/draw.php:437
 msgid "Mailing lists:"
@@ -3648,11 +3648,11 @@ msgstr "Listas de correo:"
 
 #: admin/inc/dtc_config.php:1191
 msgid "Main ip address of the server: "
-msgstr "IP principal del servidor:"
+msgstr "IP principal del servidor: "
 
 #: admin/inc/dtc_config.php:1186
 msgid "Main software configuration of DTC"
-msgstr "Configuraci&oacute;n principal"
+msgstr "Configuraci&oacute;n principal de DTC"
 
 #: shared/drawlib/cc_code_popup.php:239
 msgid "Malawi"
@@ -3664,7 +3664,7 @@ msgstr "Malasia"
 
 #: shared/drawlib/cc_code_popup.php:241
 msgid "Maldives"
-msgstr "Maldives"
+msgstr "Maldivas"
 
 #: shared/drawlib/cc_code_popup.php:242
 msgid "Mali"
@@ -3680,12 +3680,11 @@ msgstr "Configurar mis servidores de nombres:"
 
 #: shared/drawlib/cc_code_popup.php:244
 msgid "Marshall Islands"
-msgstr "Marshall Islands"
+msgstr "Islas Marshall"
 
 #: shared/drawlib/cc_code_popup.php:245
-#, fuzzy
 msgid "Martinique (French)"
-msgstr "Martinique"
+msgstr "Martinica (Francia)"
 
 #: shared/drawlib/cc_code_popup.php:246
 msgid "Mauritania"
@@ -3693,32 +3692,31 @@ msgstr "Mauritania"
 
 #: shared/drawlib/cc_code_popup.php:247
 msgid "Mauritius"
-msgstr "Mauritius"
+msgstr "Mauricio"
 
 #: shared/inc/forms/root_admin.php:378
 msgid "Max FTP"
-msgstr "Max ftp"
+msgstr "Max FTP"
 
 #: shared/inc/forms/root_admin.php:473
-#, fuzzy
 msgid "Max POST file size"
-msgstr "Memoria m&aacute;xima del mensaje:"
+msgstr "Tama&ntilde;o M&aacute;ximo del archivo POST"
 
 #: shared/inc/forms/root_admin.php:386
 msgid "Max SSH"
-msgstr "SSH Maximo"
+msgstr "M&aacute;x SSH"
 
 #: shared/inc/forms/lists.php:432
 msgid "Max VERP recipients:"
-msgstr "Max destinatarios VERP:"
+msgstr "M&aacute;x destinatarios VERP:"
 
 #: admin/dtcrm/product_manager.php:63
 msgid "Max database"
-msgstr "Cantidad maxima de bases de datos"
+msgstr "Cantidad m&aacute;xima de bases de datos"
 
 #: admin/dtcrm/product_manager.php:58
 msgid "Max email"
-msgstr "Cantidad maxima de email"
+msgstr "Cantidad m&aacute;xima de email"
 
 #: shared/inc/forms/lists.php:428
 msgid "Max mail memory size:"
@@ -3727,12 +3725,11 @@ msgstr "Memoria m&aacute;xima del mensaje:"
 #: shared/inc/forms/vps_monitoring.php:150
 #: shared/inc/forms/vps_installation.php:98
 msgid "Max memory: "
-msgstr "Máxima memoria: "
+msgstr "Memoria M&aacute;xima: "
 
 #: shared/inc/forms/root_admin.php:468
-#, fuzzy
 msgid "Max upload file size"
-msgstr "Memoria m&aacute;xima del mensaje:"
+msgstr "Tama&ntilde;o m&aacute;ximo de archivo de subida"
 
 #: admin/inc/draw_user_admin.php:355
 msgid "MaxMind says"
@@ -3740,15 +3737,15 @@ msgstr "MaxMind dice"
 
 #: shared/inc/forms/root_admin.php:471
 msgid "Maximum allowed size of POST"
-msgstr ""
+msgstr "Tama&ntilde;o m&aacute;ximo de POST permitido"
 
 #: shared/inc/forms/root_admin.php:466
 msgid "Maximum allowed size of uploaded file"
-msgstr ""
+msgstr "Tama&ntilde;o m&aacute;ximo de archivo subido"
 
 #: shared/inc/forms/lists.php:109
 msgid "Maximum number of lists reached"
-msgstr "alcanzado el numero maximo de listas "
+msgstr "Ha alcanzado el numero m&aacute;ximo de listas"
 
 #: shared/inc/forms/vps_monitoring.php:152
 #: shared/inc/forms/vps_installation.php:100
@@ -3757,11 +3754,11 @@ msgstr "Maxmem: no se puede obtener (tal vez se esta iniciando el sistema?)"
 
 #: admin/inc/dtc_config.php:1762
 msgid "Maxmind license key: "
-msgstr "Llave de licencia Maxmind:"
+msgstr "Clave de licencia Maxmind: "
 
 #: admin/inc/dtc_config.php:1758
 msgid "Maxmind login: "
-msgstr "Login Maxmind:"
+msgstr "Login Maxmind: "
 
 #: shared/drawlib/cc_code_popup.php:248
 msgid "Mayotte"
@@ -3769,16 +3766,16 @@ msgstr "Mayotte"
 
 #: admin/inc/renewals.php:191
 msgid "Means of payment"
-msgstr "Metodos de pago"
+msgstr "M&eacute;todos de pago"
 
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
-msgstr "Uso de Memoria y Swap"
+msgstr "Uso de Memoria y Swap "
 
 #: admin/dtcrm/product_manager.php:160 admin/dtcrm/product_manager.php:253
 #: shared/inc/forms/root_admin.php:644
 msgid "Memory size in MBytes."
-msgstr "Tamaño de memoria en Mbytes."
+msgstr "Tama&ntilde;o de memoria en Mbytes."
 
 #: shared/inc/forms/root_admin.php:575
 msgid ""
@@ -3786,8 +3783,8 @@ msgid ""
 "etc/xen/xenXX startup configuration file and reboot the VPS to activate the "
 "changes."
 msgstr ""
-"Tamaño de memoria en Mbytes. Usted tendra que manualmente cambiar el tamaño "
-"de la RAM en /etc/xen/xenXX en el archivo de configuración de inicio y luego "
+"Tama&ntilde;o de memoria en Mbytes. Usted tendr&aacute; que cambiar manualmente el tama&ntilde;o "
+"de la RAM en /etc/xen/xenXX en el archivo de configuraci&oacute;n de inicio y luego "
 "reiniciar la VPS para activar los cambios."
 
 #: shared/inc/forms/vps_monitoring.php:147
@@ -3798,15 +3795,15 @@ msgstr "Memoria: "
 #: shared/inc/forms/vps_monitoring.php:125
 #: shared/inc/forms/vps_installation.php:73
 msgid "Method getVPSState failed"
-msgstr "Metodo getVPSState fallido"
+msgstr "M&eacute;todo getVPSState fallido"
 
 #: shared/drawlib/cc_code_popup.php:249
 msgid "Mexico"
-msgstr "Mexico"
+msgstr "M&eacute;xico"
 
 #: shared/drawlib/cc_code_popup.php:250
 msgid "Micronesia, Federated States Of"
-msgstr "Micronesia, Federated States Of"
+msgstr "Micronesia, Estados Federados de la"
 
 #: shared/inc/forms/lists.php:400
 msgid "Moderated:"
@@ -3818,49 +3815,43 @@ msgstr "Moderadores:"
 
 #: shared/drawlib/cc_code_popup.php:251
 msgid "Moldova, Republic Of"
-msgstr "Moldova, Republic Of"
+msgstr "Moldova, Rep&uacute;blica de"
 
 #: shared/drawlib/cc_code_popup.php:252
 msgid "Monaco"
-msgstr "Monaco"
+msgstr "M&oacute;naco"
 
 #: shared/inc/forms/domain_info.php:34
-#, fuzzy
 msgid "Money on your account: "
-msgstr "Restante en su cuenta: "
+msgstr "Dinero en su cuenta: "
 
 #: admin/dtcrm/main.php:229 shared/inc/forms/my_account.php:193
 msgid "Money remaining: "
-msgstr "Efectivo restante en la cuenta: "
+msgstr "Dinero restante en su cuenta: "
 
 #: admin/inc/renewals.php:42 admin/inc/renewals.php:44
 msgid "Money spent"
 msgstr "Dinero gastado"
 
 #: admin/inc/dtc_config.php:1687
-#, fuzzy
 msgid "MoneyBookers business account email: "
-msgstr "Email de la cuenta de negocios PayPal:"
+msgstr "Email de la cuenta de negocios Moneybookers: "
 
 #: admin/inc/dtc_config.php:1695
-#, fuzzy
 msgid "MoneyBookers fee rate: "
-msgstr "Porcentaje de comisi&oacute;n de PayPal:"
+msgstr "Porcentaje de comisi&oacute;n de Moneybookers: "
 
 #: admin/inc/dtc_config.php:1699
-#, fuzzy
 msgid "MoneyBookers flat fee: "
-msgstr "Comisi&oacute;n fija de Paypal:"
+msgstr "Comisi&oacute;n fija de Moneybookers: "
 
 #: admin/inc/dtc_config.php:1691
-#, fuzzy
 msgid "MoneyBookers secret word: "
-msgstr "Llave secreta de Webmoney:"
+msgstr "Clave secreta de Moneybookers: "
 
 #: admin/inc/dtc_config.php:1713
-#, fuzzy
 msgid "MoneyBookers test account email (sandbox): "
-msgstr "E-mail de la cuenta de prueba PayPal (sandbox):"
+msgstr "E-mail de la cuenta de prueba Moneybookers (sandbox):"
 
 #: shared/drawlib/cc_code_popup.php:253
 msgid "Mongolia"
@@ -3872,15 +3863,15 @@ msgstr "Monitoreo"
 
 #: admin/inc/dtc_config.php:723
 msgid "Monthly"
-msgstr "Mensual"
+msgstr "Mensualmente"
 
 #: shared/inc/forms/vps_graphs.php:54
 msgid "Monthly VPS usage statistics:"
-msgstr "Estadisticas de uso mensual de la VPS:"
+msgstr "Estad&iacute;sticas de uso mensual de la VPS:"
 
 #: shared/inc/forms/vps_dom0graphs.php:54
 msgid "Monthly Xen server usage statistics:"
-msgstr "Estadisticas de uso mensual del servidor Xen:"
+msgstr "Estad&iacute;sticas de uso mensual del servidor Xen:"
 
 #: shared/drawlib/cc_code_popup.php:254
 msgid "Montserrat"
@@ -3888,15 +3879,15 @@ msgstr "Montserrat"
 
 #: admin/inc/renewals.php:782
 msgid "More than one VPS"
-msgstr "Mas de una VPS"
+msgstr "M&aacute;s de un VPS"
 
 #: admin/inc/renewals.php:785
 msgid "More than one login"
-msgstr "Mas de un login"
+msgstr "M&aacute;s de un login"
 
 #: shared/drawlib/cc_code_popup.php:255
 msgid "Morocco"
-msgstr "Morocco"
+msgstr "Marruecos"
 
 #: shared/drawlib/cc_code_popup.php:256
 msgid "Mozambique"
@@ -3931,8 +3922,8 @@ msgid ""
 "MySql database ownership not valid: I will not let you change owner of this "
 "database because it doesn't seems to be owned by you."
 msgstr ""
-"Propietario de la base de datos incorrecto. No puede eliminar esta base de "
-"datos si no es usted el propietario"
+"Propietario de la base de datos incorrecto. No puede cambiar el propietario de esta base de "
+"datos si usted no es el propietario actual."
 
 #: shared/inc/sql/database.php:201
 msgid ""
@@ -3940,7 +3931,7 @@ msgid ""
 "because it doesn't seem to be owned by you."
 msgstr ""
 "Propietario de la base de datos incorrecto. No puede eliminar esta base de "
-"datos si no es usted el propietario"
+"datos si usted no es el propietario."
 
 #: shared/drawlib/cc_code_popup.php:257
 msgid "Myanmar"
@@ -3953,15 +3944,15 @@ msgstr "N/A"
 
 #: admin/inc/nav.php:72
 msgid "NAMED ZONES FILES"
-msgstr "FICHEROS DE ZONA DNS"
+msgstr "ARCHIVOS DE ZONA DNS"
 
 #: admin/inc/dtc_config.php:1776
 msgid "NAS config"
-msgstr " configuración NAS"
+msgstr "Configuraci&oacute;n de NAS"
 
 #: admin/inc/dtc_config.php:476
 msgid "NAT Port"
-msgstr "Poerto NAT"
+msgstr "Puerto NAT"
 
 #: client/new_account.php:112
 msgid "NOT VALIDATED"
@@ -3973,7 +3964,7 @@ msgstr "Host Nagios"
 
 #: admin/inc/dtc_config.php:268
 msgid "Nagios host name: "
-msgstr "Nombre del servidor Nagios:"
+msgstr "Nombre del servidor Nagios: "
 
 #: admin/inc/dtc_config.php:261
 msgid "Nagios monitoring"
@@ -3986,15 +3977,15 @@ msgstr "Nombre"
 
 #: shared/dtcrm/draw_handle.php:376
 msgid "Name for this handle: "
-msgstr "Nombre para este contacto: "
+msgstr "Nombre para este nic-handle: "
 
 #: shared/inc/forms/email.php:652
 msgid ""
 "Name of the SPAM folder to receive the spam (the above option has to be "
 "activated)."
 msgstr ""
-"Nombre de la carpeta SPAM para recibir el spam (la opción de arriba debe ser "
-"activada)."
+"Nombre de la carpeta SPAM para recibir el spam (la opci&oacute;n de arriba debe "
+"activarse)."
 
 #: shared/inc/forms/lists.php:70
 msgid "Name of the list."
@@ -4002,15 +3993,15 @@ msgstr "Nombre de la lista."
 
 #: shared/dtcrm/draw_nameservers.php:107
 msgid "Name server hostname: "
-msgstr "Nombre de host de servidor de nombres:"
+msgstr "Hostname del servidor de nombres: "
 
 #: shared/inc/draw.php:165
 msgid "Name servers"
-msgstr "Servidores de nombres:"
+msgstr "Servidores de nombre"
 
 #: shared/inc/draw.php:448 shared/inc/draw.php:494
 msgid "Name servers:"
-msgstr "Servidores de nombres:"
+msgstr "Servidores de nombre:"
 
 #: shared/inc/forms/email.php:640
 msgid "Name:"
@@ -4019,11 +4010,11 @@ msgstr "Nombre:"
 #: admin/inc/dtc_config.php:1793 shared/inc/forms/vps_monitoring.php:143
 #: shared/inc/forms/vps_installation.php:91
 msgid "Name: "
-msgstr "Nombre:"
+msgstr "Nombre: "
 
 #: admin/inc/nav.php:5
 msgid "Named conf files generated !"
-msgstr "Archivos de configuracion Named generados!"
+msgstr "Archivos de configuraci&oacute;n Named generados!"
 
 #: admin/inc/dtc_config.php:1919
 msgid "Named file names"
@@ -4054,7 +4045,7 @@ msgid ""
 "Names of your VPS should always be like 01, 02, 03 ... (including the "
 "leading zero)."
 msgstr ""
-"Los nombres de sus VPS deben ser siempre como 01,02,03... (incluyendo el "
+"Los nombres de sus VPS deben ser siempre 01, 02, 03 ... (incluyendo el "
 "cero al comienzo)."
 
 #: shared/drawlib/cc_code_popup.php:258
@@ -4075,15 +4066,15 @@ msgstr "Nepal"
 
 #: shared/drawlib/cc_code_popup.php:261
 msgid "Netherlands"
-msgstr "Netherlands"
+msgstr "Holanda"
 
 #: shared/drawlib/cc_code_popup.php:262
 msgid "Netherlands Antilles"
-msgstr "Netherlands Antilles"
+msgstr "Antilla Holandesa"
 
 #: admin/inc/dtc_config.php:390
 msgid "Netmask"
-msgstr "Máscara de red"
+msgstr "M&aacute;scara de red"
 
 #: admin/inc/dtc_config.php:386
 msgid "Network"
@@ -4091,7 +4082,7 @@ msgstr "Red"
 
 #: admin/inc/graphs.php:5
 msgid "Network Traffic Statistics"
-msgstr "Estadísticas de tráfico de red"
+msgstr "Estad&iacute;sticas de tr&aacute;fico de red"
 
 #: shared/inc/forms/vps_monitoring.php:102
 msgid "Network:"
@@ -4102,9 +4093,8 @@ msgid "Neutral Zone"
 msgstr "Zona Neutral"
 
 #: shared/drawlib/cc_code_popup.php:264
-#, fuzzy
 msgid "New Caledonia (French)"
-msgstr "New Caledonia"
+msgstr "Nueva Caledonia (Francia)"
 
 #: shared/inc/forms/ftp.php:52
 msgid "New FTP account: "
@@ -4116,15 +4106,15 @@ msgstr "Nueva cuenta SSH:"
 
 #: shared/inc/forms/vps_installation.php:329
 msgid "New SSH key: "
-msgstr "Nueva llave SSH:"
+msgstr "Nueva clave SSH: "
 
 #: shared/inc/forms/vps_installation.php:327
 msgid "New SSH password: "
-msgstr "Nuevo password SSH:"
+msgstr "Nuevo password SSH: "
 
 #: shared/drawlib/cc_code_popup.php:265
 msgid "New Zealand"
-msgstr "New Zealand"
+msgstr "Nueva Zelandia"
 
 #: admin/dtcrm/main.php:23 admin/dtcrm/main.php:36
 msgid "New customer"
@@ -4132,7 +4122,7 @@ msgstr "Nuevo cliente"
 
 #: shared/inc/forms/email.php:24
 msgid "New fetchmail address"
-msgstr "Nueva dirección fetchmail"
+msgstr "Nueva direcci&oacute;n fetchmail"
 
 #: shared/inc/forms/email.php:608
 msgid "New mailbox"
@@ -4143,13 +4133,12 @@ msgid "New mailing list:"
 msgstr "Nueva lista de correo:"
 
 #: shared/dtcrm/draw_handle.php:210
-#, fuzzy
 msgid "New nick handle"
-msgstr "Responsables DNS"
+msgstr "Nuevo nic-handle"
 
 #: shared/inc/draw.php:77
 msgid "New password:"
-msgstr "Nueva contrase&ntilde;a"
+msgstr "Nueva contrase&ntilde;a:"
 
 #: client/new_account.php:299
 msgid "New service registered successfully!"
@@ -4168,22 +4157,20 @@ msgid "Next cronjob"
 msgstr "Siguiente cronjob"
 
 #: shared/dtcrm/modules/ovh/main.php:487
-#, fuzzy
 msgid "Nic admin : "
-msgstr "cargando administrador: "
+msgstr "nic-handle Contacto Administrativo : "
 
 #: shared/dtcrm/modules/ovh/main.php:499
 msgid "Nic billing : "
-msgstr ""
+msgstr "nic-handle Contacto de Facturaci&oacute;n : "
 
 #: shared/dtcrm/modules/ovh/main.php:495
-#, fuzzy
 msgid "Nic owner : "
-msgstr "Propietario de la lista:"
+msgstr "nic-handle Titular del dominio : "
 
 #: shared/dtcrm/modules/ovh/main.php:491
 msgid "Nic tech : "
-msgstr ""
+msgstr "nic-handle Contacto T&eacute;cnico : "
 
 #: shared/drawlib/cc_code_popup.php:266
 msgid "Nicaragua"
@@ -4192,7 +4179,7 @@ msgstr "Nicaragua"
 #: shared/dtcrm/draw_handle.php:227
 #, fuzzy
 msgid "Nick handle name: "
-msgstr "Sobre nombre"
+msgstr "Nombre del nic-handle: "
 
 #: admin/inc/dtc_config.php:654
 msgid "Nick name"
@@ -4249,7 +4236,7 @@ msgstr "No"
 
 #: admin/inc/renewals.php:694
 msgid "No SSL IP expired"
-msgstr "No hay IP SSL expirada"
+msgstr "No hay IPs SSL expiradas"
 
 #: shared/inc/forms/my_account.php:171
 msgid "No SSL token available: contact your administrator to request it."
@@ -4258,7 +4245,7 @@ msgstr ""
 
 #: admin/inc/renewals.php:728
 msgid "No VPS expired"
-msgstr "No hay VPS expirada"
+msgstr "No hay VPSs expirados"
 
 #: shared/inc/forms/lists.php:413
 msgid "No archives:"
@@ -4270,19 +4257,19 @@ msgstr "Sin Catch-all"
 
 #: admin/inc/renewals.php:432 admin/inc/renewals.php:433
 msgid "No client id"
-msgstr "No es una ID de cliente"
+msgstr "No tiene ID de cliente"
 
 #: shared/inc/forms/invoices.php:71
 msgid "No completed orders found."
-msgstr "No se encontraron ordenes completadas."
+msgstr "No se encontraron ordenes finalizadas."
 
 #: admin/inc/renewals.php:809
 msgid "No dedicated server expired"
-msgstr "No hay servidor dedicado expirado"
+msgstr "No hay servidores dedicados expirados"
 
 #: admin/inc/draw_user_admin.php:425
 msgid "No domain waiting!"
-msgstr "¡Ning&uacute;n dominio a la espera!"
+msgstr "Ning&uacute;n dominio a la espera!"
 
 #: shared/inc/forms/lists.php:414
 msgid "No get-N function:"
@@ -4294,7 +4281,7 @@ msgstr "Sin parking"
 
 #: admin/inc/renewals.php:422
 msgid "No past payments for this period"
-msgstr "No hay pagos pasados para este periodo"
+msgstr "No hay pagos demorados para este per&iacute;odo"
 
 #: admin/inc/draw_user_admin.php:393
 msgid "No pay ID!"
@@ -4314,7 +4301,7 @@ msgstr "No hay producto"
 
 #: admin/inc/renewals.php:663
 msgid "No shared account expired."
-msgstr "No hay cuenta compartida expirada"
+msgstr "No hay cuentas compartidas expiradas."
 
 #: shared/inc/forms/my_account.php:150 shared/inc/forms/my_account.php:177
 msgid "No ssl product defined."
@@ -4329,12 +4316,12 @@ msgid ""
 "No user by that name exists in the database, or you don't own this db user. "
 "Please select a new one."
 msgstr ""
-"NO existe ningún usuario con este nombre en la base de datos o usted no "
+"NO existe ning&uacute;n usuario con este nombre en la base de datos o usted no "
 "posee este usuario. Por favor, seleccione otro."
 
 #: admin/inc/draw_user_admin.php:365
 msgid "No user waiting!"
-msgstr "¡Ning&uacute;n usuario a la espera!"
+msgstr "Ning&uacute;n usuario a la espera!"
 
 #: shared/drawlib/cc_code_popup.php:270
 msgid "Norfolk Island"
@@ -4342,15 +4329,15 @@ msgstr "Isla Norfolk"
 
 #: shared/drawlib/cc_code_popup.php:271
 msgid "Northern Mariana Islands"
-msgstr "Islas Marianas del Norte "
+msgstr "Islas Marianas del Norte"
 
 #: shared/drawlib/cc_code_popup.php:272
 msgid "Norway"
-msgstr "Norway"
+msgstr "Noruega"
 
 #: admin/dtcrm/product_manager.php:95 admin/dtcrm/product_manager.php:188
 msgid "Not a renewal product"
-msgstr "No es un producto de renovación"
+msgstr "No es un producto de renovaci&oacute;n"
 
 #: shared/inc/forms/dedicated.php:39 shared/inc/forms/invoices.php:58
 #: shared/inc/forms/invoices.php:59 shared/inc/forms/invoices.php:60
@@ -4367,7 +4354,7 @@ msgid ""
 "Note that you should always click on the above button to resubscribe all of "
 "your users before sending an email to the list"
 msgstr ""
-"Tenga en cuenta de que usted siempre deberia hacer click en el botón de "
+"Tenga en cuenta de que usted siempre deber&iacute;a hacer click en el bot&oacute;n de "
 "arriba para resuscribir a todos los usuarios antes de enviar un email a la "
 "lista"
 
@@ -4403,35 +4390,32 @@ msgstr ""
 #: shared/inc/forms/vps_monitoring.php:155
 #: shared/inc/forms/vps_installation.php:103
 msgid "Number of CPU: "
-msgstr "Numero de CPU:"
+msgstr "N&uacute;mero de CPU:"
 
 #: shared/inc/forms/vps_monitoring.php:157
 #: shared/inc/forms/vps_installation.php:105
 msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
-msgstr "Numero de CPU: No se puede obtener (inicio en progreso?)"
+msgstr "N&uacute;mero de CPU: No se puede obtener (inicio en progreso?)"
 
 #: admin/inc/ip_usage_report.php:282
-#, fuzzy
 msgid "Number of IPs remaining in the pool:"
-msgstr "Numero de listas de correo activas"
+msgstr "N&uacute;mero de IPs restantes en el pool:"
 
 #: admin/inc/ip_usage_report.php:277
-#, fuzzy
 msgid "Number of SSL IP(s):"
-msgstr "Numero de CPU:"
+msgstr "N&uacute;mero de IP(s) SSL:"
 
 #: admin/inc/ip_usage_report.php:279
-#, fuzzy
 msgid "Number of VPS IP(s):"
-msgstr "Numero de CPU:"
+msgstr "N&uacute;mero de IP(s) de VPS:"
 
 #: shared/inc/forms/email.php:33
 msgid "Number of active fetchmail imported email:"
-msgstr "Numero de emails importados fetchmail activos:"
+msgstr "N&uacute;mero de emails importados por fetchmail activos:"
 
 #: shared/inc/forms/ftp.php:61
 msgid "Number of active ftp accounts:"
-msgstr "Numero de cuentas ftp activas:"
+msgstr "N&uacute;mero de cuentas ftp activas:"
 
 #: shared/inc/forms/aliases.php:31 shared/inc/forms/email.php:617
 msgid "Number of active mailboxes:"
@@ -4439,11 +4423,11 @@ msgstr "N&uacute;mero de cuentas de correo activas:"
 
 #: shared/inc/forms/lists.php:24
 msgid "Number of active mailing lists"
-msgstr "Numero de listas de correo activas"
+msgstr "N&uacute;mero de listas de correo activas"
 
 #: shared/inc/forms/ssh.php:55
 msgid "Number of active ssh accounts:"
-msgstr "Numero de cuentas ssh activas:"
+msgstr "N&uacute;mero de cuentas ssh activas:"
 
 #: shared/inc/forms/subdomain.php:167
 msgid "Number of active subdomains:"
@@ -4454,23 +4438,20 @@ msgid "Number of databases:"
 msgstr "N&uacute;mero de bases de datos:"
 
 #: admin/inc/ip_usage_report.php:280
-#, fuzzy
 msgid "Number of dedicated IP(s):"
-msgstr "N&uacute;mero de bases de datos:"
+msgstr "N&uacute;mero de IP(s) dedicadas:"
 
 #: admin/inc/ip_usage_report.php:278
-#, fuzzy
 msgid "Number of dom0 IP(s):"
-msgstr "Numero de CPU:"
+msgstr "N&uacute;mero de IP(s) de dom0:"
 
 #: shared/dtcrm/submit_to_sql.php:43
 msgid "Number of years is not a number between 1 and 9."
-msgstr ""
+msgstr "El n&uacute;mero de a&ntilde;os no est&aacute; entre 1 y 9."
 
 #: shared/dtcrm/modules/ovh/main.php:482
-#, fuzzy
 msgid "OVH Server : "
-msgstr "Servidor:"
+msgstr "Servidor OVH : "
 
 #: shared/dtcrm/modules/ovh/main.php:460
 #, fuzzy
