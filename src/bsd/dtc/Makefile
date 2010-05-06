@@ -40,9 +40,9 @@ RUN_DEPENDS=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server \
 		${LOCALBASE}/sbin/logrotate:${PORTSDIR}/sysutils/logrotate \
 		${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash
 
-
-
 CONFLICTS=	dtc-toaster-[0-9]* dtc-postfix-courier-[0-9]*
+
+USE_GETTEXT=	yes
 
 NO_BUILD=	yes
 USE_PHP=	mysql pcre session
