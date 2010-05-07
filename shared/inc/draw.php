@@ -288,7 +288,7 @@ function drawAdminTools($admin){
 		}
 		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking" && $conf_use_mail_alias_group == "yes"){
 			$domain_conf_submenu[] = array(
-				"text" => "Mail Groups",
+				"text" => _("Mail Groups"),
 				"icon" => "box_wnb_nb_picto-mailgroups.gif",
 				"type" => "link",
 				"link" => "mailaliases");
@@ -424,7 +424,7 @@ function drawAdminTools($admin){
 			$title = "Virtual Private Server $vps_name running on $vps_node";
 		}else if(substr($addrlink,0,7) == "server:"){
 			$web_editor .= drawAdminTools_Dedicated($admin,$dedicated_server_hostname);
-			$title = "Dedicated server: $dedicated_server_hostname";
+			$title = _("Dedicated server") .": $dedicated_server_hostname";
 		}else if(@$add_array[1] == "mailboxs"){
                         $web_editor .= "<img src=\"gfx/toolstitles/mailboxs.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Mailboxes:") ."</u></b><br></font>";
                         $web_editor .= drawAdminTools_Emails($eddomain);
@@ -449,9 +449,9 @@ function drawAdminTools($admin){
 			$web_editor .= drawAdminTools_DomainDNS($admin,$eddomain);
 			$title = _("DNS config of:") ." ".$edit_domain;
 		}else if(@$add_array[1] == "invoices"){
-			$web_editor .= "<img src=\"gfx/toolstitles/stats.png\" align=\"left\"><font size=\"+2\"><b><u>Invoices:</u></b><br></font>";
+			$web_editor .= "<img src=\"gfx/toolstitles/stats.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Invoices") .":</u></b><br></font>";
 			$web_editor .= drawAdminTools_Invoices($admin);
-			$title = "Invoices";
+			$title = _("Invoices");
 		}else if(@$add_array[1] == "stats"){
 			if($add_array[0] == "myaccount"){
 				$web_editor .= "<img src=\"gfx/toolstitles/stats.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Statistics:") ."</u></b><br></font>";

@@ -125,9 +125,9 @@ function listTypePopup(){
 	$admins = "<div class=\"box_wnb_nb_content\">
 <div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">". _("Display and sort by:")  ."<br>
 <select class=\"box_wnb_nb_input\" name=\"admlist_type\">
-<option value=\"Logins\"$selectedlist_logins>Logins
-<option value=\"Names\"$selectedlist_name>Names
-<option value=\"Domains\"$selectedlist_domain>Domains
+<option value=\"Logins\"$selectedlist_logins>" . _("Logins") . "
+<option value=\"Names\"$selectedlist_name>" . _("Names") . "
+<option value=\"Domains\"$selectedlist_domain>" . _("Domains") . "
 </select>
 <div class=\"box_wnb_nb_input_btn_container\" onMouseOver=\"this.className='box_wnb_nb_input_btn_container-hover';\" onMouseOut=\"this.className='box_wnb_nb_input_btn_container';\">
  <div class=\"box_wnb_nb_input_btn_left\"></div>

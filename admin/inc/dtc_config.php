@@ -327,7 +327,7 @@ function drawDedicatedIPConfig(){
 	$my_pool_values = array();
 	$my_pool_text = array();
 	$my_pool_values[] = 0;
-	$my_pool_text[] = "Not set";
+	$my_pool_text[] = _("Not set");
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$my_pool_values[] = $a["id"];
@@ -392,7 +392,7 @@ function drawIPPoolConfig(){
 				"text" => _("Customize") ),
 			"show_ip_pool_report" => array(
 				"type" => "hyperlink",
-				"legend" => _("show"),
+				"legend" => _("Show"),
 				"text" => _("Show") ),
 			"location" => array(
 				"type" => "text",
@@ -1125,7 +1125,7 @@ function drawGeneralConfig(){
 				"display_replace" => array(_("Yes"),_("No"))),
 			"use_awstats" => array(
 				"type" => "radio",
-				"legend" => "(<a href=\"http://dtcsupport.gplhost.com/PmWiki/Why-not-using-awstats\">AWStats armful?</a>) " . _("Use awstats: "),
+				"legend" => "(<a href=\"http://dtcsupport.gplhost.com/PmWiki/Why-not-using-awstats\">"._("AWStats armful")."?</a>) " . _("Use awstats: "),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
 			"use_visitors" => array(
@@ -1824,7 +1824,7 @@ function drawDTCradiusConfig(){
 				"check" => "dtc_pass"),
 			"community" => array(
 				"type" => "text",
-				"legend" => "SNMP community: "),
+				"legend" => _("SNMP community").": "),
 			"description" => array(
 				"type" => "text",
 				"legend" => _("Description: "))));
@@ -1888,7 +1888,7 @@ Each of the following (qmail, apache and named) path will be concatened to this:
 
 
 	$dsc = array(
-		"title" => "<img src=\"gfx/dtc/generate_mail.gif\">Qmail path:",
+		"title" => "<img src=\"gfx/dtc/generate_mail.gif\">"._("Qmail path").":",
 		"action" => "qmail_path_editor",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -2031,7 +2031,7 @@ function drawInvoicingConfig(){
 	$q = "SELECT * FROM $pro_mysql_companies_table WHERE 1;";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-	$comp_names = array("Please select");
+	$comp_names = array(_("Please select"));
 	$comp_ids = array(0);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
@@ -2056,7 +2056,7 @@ function drawInvoicingConfig(){
 	$country_codes = array_reverse($country_codes);
 	$country_fullnames = array_reverse($country_fullnames);
 	$country_codes[] = "00";
-	$country_fullnames[] = "none";
+	$country_fullnames[] = _("none");
 	$country_codes = array_reverse($country_codes);
 	$country_fullnames = array_reverse($country_fullnames);
 

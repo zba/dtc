@@ -397,7 +397,7 @@ function drawDomainConfig($admin){
 			);
 		$ret .= dtcDatagrid($dsc);
 		if( isset($_REQUEST["edithost"]) && isHostname($_REQUEST["edithost"]) ){
-			$ret .= "<h3>Custom Apache directives for ".$_REQUEST["edithost"]."</h3>";
+			$ret .= "<h3>". _("Custom Apache directives for") ." ".$_REQUEST["edithost"]."</h3>";
 			$q = "SELECT subdomain_name FROM $pro_mysql_subdomain_table WHERE domain_name='".$_REQUEST["edithost"]."';";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
@@ -411,8 +411,8 @@ function drawDomainConfig($admin){
 			}
 			$ret .= "<br><br>";
 			if( isset($_REQUEST["subdomain"]) && isHostname($_REQUEST["subdomain"]) ){
-				$ret .= "<u>Subdomain: ".$_REQUEST["subdomain"].":</u><br>";
-				$ret .= "Take care: no syntax checkings are done on your custom directives, doing a mistake here could lead to your web server not being able to restart!<br>";
+				$ret .= "<u>". _("Subdomain") .": ".$_REQUEST["subdomain"].":</u><br>";
+				$ret .= _("Take care: no syntax checkings are done on your custom directives, doing a mistake here could lead to your web server not being able to restart!")."<br>";
 				$q = "SELECT customize_vhost FROM $pro_mysql_subdomain_table WHERE subdomain_name='".$_REQUEST["subdomain"]."' AND domain_name='".$_REQUEST["edithost"]."';";
 				$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 				$n = mysql_num_rows($r);

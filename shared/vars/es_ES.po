@@ -378,7 +378,7 @@ msgstr "Aceptar Cheques: "
 
 #: admin/inc/dtc_config.php:1584
 msgid "Accept wire transfers to bank: "
-msgstr "Aceptar transferencias o dep&oacute;s bancarios: "
+msgstr "Aceptar transferencias o dep&oacute;sitos bancarios: "
 
 #: shared/inc/forms/lists.php:435
 msgid "Access list:"
@@ -959,7 +959,7 @@ msgstr "Brasil"
 
 #: shared/drawlib/cc_code_popup.php:135
 msgid "British Indian Ocean Territory"
-msgstr "Territorios Brt&aacute;nicos del Oc&eacute;ano &Iacute;ndico"
+msgstr "Territorios Brit&aacute;nicos del Oc&eacute;ano &Iacute;ndico"
 
 #: admin/inc/dtc_config.php:394
 msgid "Broadcast"
@@ -1103,7 +1103,7 @@ msgstr "Cabo Verde"
 
 #: admin/inc/renewals.php:195
 msgid "Cash"
-msgstr "Dinero"
+msgstr "Efectivo"
 
 #: shared/inc/forms/email.php:726
 msgid "Catch-all email set to deliver to"
@@ -1268,7 +1268,7 @@ msgstr "Colombia"
 msgid ""
 "Command line that, run in the Nagios server, will reload its configuration: "
 msgstr ""
-"L&iacute;nea de comandos, ejecutada en el servidor Nagios, "
+"L&iacute;nea de comandos que, ejecutada en el servidor Nagios, "
 "recargar&aacute; la configuracion:"
 
 #: admin/dtcrm/product_manager.php:47 admin/dtcrm/product_manager.php:149
@@ -1569,7 +1569,7 @@ msgstr "Letras de la Moneda: "
 
 #: admin/inc/dtc_config.php:1551
 msgid "Currency symbol: "
-msgstr "Simbolo de la Moneda: "
+msgstr "S&iacute;mbolo de la Moneda: "
 
 #: shared/inc/forms/vps_monitoring.php:208
 #: shared/inc/forms/vps_installation.php:175
@@ -1590,7 +1590,7 @@ msgstr "Entradas personalizadas de RDNS para el pool de IPs"
 
 #: shared/inc/forms/root_admin.php:448
 msgid "Custom apache directives"
-msgstr "Diretivas de Apache personalizadas"
+msgstr "Directivas de Apache personalizadas"
 
 #: shared/inc/forms/root_admin.php:445
 msgid "Custom apache directives. There is *no* syntax checking on this field!"
@@ -1975,7 +1975,7 @@ msgstr "Configuraci&oacute;n de dominio"
 
 #: shared/inc/forms/domain_info.php:253
 msgid "Domain configuration backup:"
-msgstr "Copia de seguridad de lacConfiguracion del dominio:"
+msgstr "Copia de seguridad de la configuraci&oacute;n del dominio:"
 
 #: admin/inc/draw_user_admin.php:428 shared/inc/forms/admin_stats.php:104
 #: shared/inc/forms/root_admin.php:346
@@ -2201,7 +2201,7 @@ msgstr "Habilitar archivo web:"
 
 #: shared/dtcrm/modules/ovh/main.php:480
 msgid "English"
-msgstr "Ingl&eacute"
+msgstr "Ingl&eacute;s"
 
 #: shared/dtcrm/draw_adddomain.php:199
 msgid "Enter the domain name you want to register:"
@@ -2282,7 +2282,7 @@ msgstr "Fecha de caducidad:"
 
 #: shared/inc/forms/my_account.php:95
 msgid "Export all my domains configuration to a file"
-msgstr "Exportar la configuraci&oacute; de todos mis dominios a un archivo"
+msgstr "Exportar la configuraci&oacute;n de todos mis dominios a un archivo"
 
 #: shared/inc/forms/my_account.php:94
 msgid "Export configuration:"
@@ -2496,7 +2496,7 @@ msgstr "Descripci&oacute;n completa del problema:"
 
 #: admin/inc/dtc_config.php:1213
 msgid "Full hostname of DTC admin panel: "
-msgstr "Hostname complato del panel de adminitraci&oacute;n de DTC: "
+msgstr "Hostname completo del panel de adminitraci&oacute;n de DTC: "
 
 #: admin/inc/dtc_config.php:1306
 msgid "Full path to location of the public.key file for DomainKey support:"
@@ -2828,7 +2828,7 @@ msgstr "Direcci&oacute;n(es) IP de su VPS:"
 #: shared/inc/forms/vps_monitoring.php:196
 #: shared/inc/forms/vps_installation.php:143
 msgid "IP address: "
-msgstr "Direccion IP: "
+msgstr "Direcci&oacute;n IP: "
 
 #: admin/inc/dtc_config.php:35
 msgid "IP addresses and network"
@@ -2858,7 +2858,7 @@ msgstr "Direcciones IP"
 
 #: shared/inc/forms/subdomain.php:195
 msgid "IPv6 address: "
-msgstr "Direccion IPv6:"
+msgstr "Direcci&oacute;n IPv6:"
 
 #: shared/drawlib/cc_code_popup.php:205
 msgid "Iceland"
@@ -3469,7 +3469,7 @@ msgstr "Producci&oacute;n"
 
 #: admin/inc/dtc_config.php:1209
 msgid "Local network area ip address of the vhost using NAT: "
-msgstr "Direccion IP de la red local del vhost usando NAT: "
+msgstr "Direcci&oacute;n IP de la red local del vhost usando NAT: "
 
 #: admin/inc/dtc_config.php:383 admin/inc/dtc_config.php:887
 msgid "Location"
@@ -3481,7 +3481,7 @@ msgstr "La ubicaci&oacute;n no es un hostname valido."
 
 #: admin/inc/dtc_config.php:1126
 msgid "Location of user's database: "
-msgstr "Ubicacion de la base de datos del usuario: "
+msgstr "Ubicaci&oacute;n de la base de datos de usuarios: "
 
 #: shared/drawlib/anotherDtc.php:166
 msgid "Logged as:"
@@ -4919,7 +4919,7 @@ msgstr ""
 
 #: shared/inc/forms/domain_info.php:191
 msgid "Preview URL:"
-msgstr "URL de revisi&oacute;:"
+msgstr "URL de revisi&oacute;n:"
 
 #: admin/inc/dtc_config.php:1498 admin/dtcrm/product_manager.php:36
 #: admin/dtcrm/product_manager.php:138 admin/dtcrm/product_manager.php:231
@@ -5522,8 +5522,8 @@ msgid ""
 "Secondary DNS servers address<br>\n"
 "(separated by &quot;|&quot; (pipe) if more than one):"
 msgstr ""
-"Direccion DNS secundario <br>\n"
-"(separado por &quot;|quot; (pipe) si hay mas de uno):"
+"Direcci&oacute;n DNS secundario <br>\n"
+"(separado por &quot;|&quot; (pipe) si hay mas de uno):"
 
 #: shared/dtcrm/draw_whois.php:48
 msgid "Secondary DNS:"
@@ -5954,7 +5954,7 @@ msgstr "Sud&aacute;n"
 
 #: admin/inc/dtc_config.php:32
 msgid "Support and auth"
-msgstr "Soporte y auntenticaci&oacute;n:"
+msgstr "Soporte y auntenticaci&oacute;n"
 
 #: admin/inc/dtc_config.php:407
 msgid "Support ticket"
@@ -6352,7 +6352,7 @@ msgstr ""
 #: shared/inc/forms/subdomain.php:208
 msgid "This subdomain is a service (SRV)<br>entry for the following port: "
 msgstr ""
-"Este subdominio es una entrada del service (SRV)<br>para el siguiente port: "
+"Este subdominio es una entrada de servicieservice (SRV)<br>para el siguiente port: "
 
 #: shared/inc/forms/email.php:639
 msgid "This text is just a memo for yourself, and will not really be used."
@@ -6837,15 +6837,15 @@ msgstr "Usuario"
 
 #: admin/inc/dtc_config.php:1131
 msgid "User MySQL host: "
-msgstr "Host MYSQL para clientes: "
+msgstr "Host MYSQL para usuarios: "
 
 #: admin/inc/dtc_config.php:1134
 msgid "User MySQL root login: "
-msgstr "Usuario root MYSQL para clientes: "
+msgstr "Usuario root MYSQL para usuarios: "
 
 #: admin/inc/dtc_config.php:1137
 msgid "User MySQL root password: "
-msgstr "Password root MySQL para clientes: "
+msgstr "Password root MySQL para usuarios: "
 
 #: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:569
 msgid "User administration"

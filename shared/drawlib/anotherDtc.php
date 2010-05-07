@@ -137,7 +137,7 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		$zeLanguage = "
 	<td valign=\"top\">&nbsp;</td>
 	<td $nowrap width=\"1\">".anotherLanguageSelection()."</td>";
-		$links = "<a target=\"_blank\" href=\"/dtcdoc/\">". _("Documentation") ."</a> <a target=\"_blank\" href=\"/phpmyadmin/\">PhpMyAdmin</a>";
+		$links = "<a target=\"_blank\" href=\"/dtcdoc/\">". _("Documentation") ."</a> <a target=\"_blank\" href=\"/phpmyadmin/\">". _("PhpMyAdmin") . "</a>";
 	}else{
 		$links = "";
 		$zeLanguage = "";

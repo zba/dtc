@@ -314,9 +314,9 @@ function drawRenewalTables (){
 			"forward" => array("rub","sousrub"),
 			"id_fld" => "id",
 			"list_fld_show" => "quick_name",
-			"new_item_title" => "New upstream provider:",
-			"new_item_link" => "New upsream provider",
-			"edit_item_title" => "Edit upstream provider:",
+			"new_item_title" => _("New upstream provider").":",
+			"new_item_link" => _("New upsream provider"),
+			"edit_item_title" => _("Edit upstream provider").":",
 			"check_unique" => array( "quick_name" ),
 			"where_list" => array("always_yes" => "yes"),
 			"cols" => array(
@@ -577,7 +577,7 @@ function drawRenewalTables (){
 				$papoum = explode('-',$period);
 				$months = $papoum[1];
 				if($months == 0){
-					echo "Dedicated server product ID $id has zero for the number of month to renew<br>";
+					echo _("Dedicated server product ID $id has zero for the number of month to renew")."<br>";
 				}else{
 					$total_dedicated += $price / $months;
 				}

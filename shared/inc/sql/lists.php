@@ -86,7 +86,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "subscribe_new_user"){
 		}
 	}
 	if($exists == "true"){
-		echo "<font color=\"red\">Subscriber exists already in the list!</font>";
+		echo "<font color=\"red\">". _("Subscriber exists already in the list") ."!</font>";
 	}else{
 		$subs[] = $_REQUEST["subscriber_email"]."\n";
 		sort($subs);
