@@ -23,6 +23,21 @@ function sendAdminWarning($message){
 }
 
 function getCustomizedReminder($msg,$client,$remaining_days,$expiration_date,$adm_login){
+
+	$msg_2_send = getCustomizedReminderNoHeader($msg,$client,$remaining_days,$expiration_date,$adm_login);
+
+	// Add signature to the email
+	$signature = readCustomizedMessage("signature",$adm_login);
+	$msg_2_send = str_replace("%%%SIGNATURE%%%",$signature,$msg_2_send);
+
+	// Manage the header of the messages
+	$head = readCustomizedMessage("messages_header",$adm_login);
+	$msg_2_send = $head.$msg_2_send;
+
+	return $msg_2_send;
+}
+
+function getCustomizedReminderNoHeader($msg,$client,$remaining_days,$expiration_date,$adm_login){
 	global $conf_administrative_site;
 	global $conf_use_ssl;
 
@@ -43,14 +58,6 @@ function getCustomizedReminder($msg,$client,$remaining_days,$expiration_date,$ad
 		$surl = "";
 	}
 	$msg_2_send = str_replace("%%%DTC_CLIENT_URL%%%","http".$surl."://".$conf_administrative_site."/dtc/",$msg_2_send);
-
-	// Add signature to the email
-	$signature = readCustomizedMessage("signature",$adm_login);
-	$msg_2_send = str_replace("%%%SIGNATURE%%%",$signature,$msg_2_send);
-
-	// Manage the header of the messages
-	$head = readCustomizedMessage("messages_header",$adm_login);
-	$msg_2_send = $head.$msg_2_send;
 
 	return $msg_2_send;
 }
@@ -271,9 +278,12 @@ function sendSharedHostingReminderEmail($remaining_days,$file,$send_webmaster_co
 
 		$headers = $send_email_header;
 		$headers .= "From: ".$conf_webmaster_email_addr;
-		mail($client["email"],"$conf_message_subject_header Your shared hosting expiration",$msg_2_send,$headers);
+		$subject = readCustomizedMessage("reminders_msg/shared_subject",$admin["adm_login"]);
+		$subject = getCustomizedReminderNoHeader($subject,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
+		mail($client["email"],"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
-			$subject = $admin["adm_login"] . "'s shared hosting package expired " . -$remaining_days . " ago";
+			$subject = readCustomizedMessage("reminders_msg/shared_subject_adm",$admin["adm_login"]);
+			$subject = getCustomizedReminderNoHeader($subject,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
 			mail($conf_webmaster_email_addr,"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		}
 	}

@@ -3,8 +3,7 @@ Asunto: Su cuenta de hosting expirará pronto
 
 Hola %%%FIRST_NAME%%%
 
-Su cuenta de hosting compartido expirará en %%%REMAINING_DAYS%%% días,
-desde el: %%%EXPIRATION_DATE%%%.
+Su cuenta de hosting compartido expirará en %%%REMAINING_DAYS%%% días, el: %%%EXPIRATION_DATE%%%.
 
 Por favor ingrese en su panel de control en:
 
