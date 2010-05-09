@@ -3505,6 +3505,24 @@ configFreeRadius () {
 
 		FREERADIUS_CONF=$FREERADIUS_ETC/radiusd.conf  
 		FREERADIUS_SQL_DOT_CONF=$FREERADIUS_ETC/sql.conf 
+		FREERADIUS_SITE_ENABLED_CONF=$FREERADIUS_ETC/sites-enabled/default
+
+		if [ $UNIX_TYPE = freebsd ] ; then
+			if grep "Configured by DTC" /etc/rc.conf >/dev/null ; then
+				# rc.conf already spammed
+				echo -n ""
+			else
+				echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
+			fi
+
+			if grep radiusd_enable /etc/rc.conf >/dev/null ; then
+				echo "Freeradius already activated in rc.conf"
+			else
+				echo "Activating freeradius on /etc/rc.conf"
+				echo "radiusd_enable=\"YES\"" >>/etc/rc.conf
+			fi
+		fi
+
 
 		# Backup of freeradius config files
 		if [ -e $FREERADIUS_CONF ] ; then
@@ -3519,15 +3537,18 @@ configFreeRadius () {
 			fi
 		fi
 
+		if [ -e $FREERADIUS_SITE_ENABLED_CONF ] ; then
+			if ! [ -e $FREERADIUS_SITE_ENABLED_CONF".DTCbackup" ] ; then
+				cp $FREERADIUS_SITE_ENABLED_CONF $FREERADIUS_SITE_ENABLED_CONF".DTCbackup"
+			fi
+		fi
+
 		TMP_FILE=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
 		TMP_FILE2=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
-		TMP_FILE3=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
-		TMP_FILE4=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
-		TMP_FILE5=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
-		TMP_FILE6=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
 
 		if [ -e /var/log/radacct ] ; then
 			chown -R ${CONF_DTC_SYSTEM_USERNAME} /var/log/radacct
+			chmod -R 770 /var/log/radacct
 		fi
 
 		sed "s/#user = nobody/user = nobody/" $FREERADIUS_CONF >$TMP_FILE
@@ -3536,14 +3557,15 @@ configFreeRadius () {
 		else
 			sed "s/#group = nogroup/group = nogroup/" $TMP_FILE >$TMP_FILE2
 		fi
-		sed "s/log_auth = no/log_auth = yes/" $TMP_FILE2 >$TMP_FILE3
-		sed "s/log_auth_badpass = no/log_auth_badpass = yes/" $TMP_FILE3 >$TMP_FILE4
-		sed "s/log_auth_goodpass = no/log_auth_goodpass = yes/" $TMP_FILE4 >$TMP_FILE5
-		sed "s/#	sql/       sql/" $TMP_FILE5 >$TMP_FILE6 
+		sed "s/auth = no/auth = yes/" $TMP_FILE2 >$TMP_FILE
+		sed "s/auth_badpass = no/auth_badpass = yes/" $TMP_FILE >$TMP_FILE2
+		sed "s/auth_goodpass = no/auth_goodpass = yes/" $TMP_FILE2 >$TMP_FILE
+		sed "s/#	sql$/       sql/" $TMP_FILE >$TMP_FILE2 
+		sed "s/#	\$INCLUDE sql/	\$INCLUDE sql/" $TMP_FILE2 >$TMP_FILE 
 
-		cat <$TMP_FILE6 >$FREERADIUS_CONF
+		cat <$TMP_FILE >$FREERADIUS_CONF
 
-		rm $TMP_FILE $TMP_FILE2 $TMP_FILE3 $TMP_FILE4 $TMP_FILE5 $TMP_FILE6
+		rm $TMP_FILE $TMP_FILE2
 
 		echoIfVerbose "===> Adding directives to sql.conf"
 
@@ -3555,34 +3577,49 @@ configFreeRadius () {
 
 		        TMP_FILE1=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
 		        TMP_FILE2=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
-		        TMP_FILE3=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
-		        TMP_FILE4=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
-		        TMP_FILE5=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
 
 			# Remove the default config
 			grep -v "server =" $FREERADIUS_SQL_DOT_CONF >$TMP_FILE1
 			grep -v "login =" $TMP_FILE1 >$TMP_FILE2
-			grep -v "password =" $TMP_FILE2 >$TMP_FILE3
-			grep -v "radius_db = " $TMP_FILE3 >$TMP_FILE4
-			grep -v "}" $TMP_FILE4 >$TMP_FILE5
+			grep -v "password =" $TMP_FILE2 >$TMP_FILE1
+			grep -v "radius_db = " $TMP_FILE1 >$TMP_FILE2
+			grep -v "readclients *=" $TMP_FILE2 >$TMP_FILE1
+			grep -v "read_groups *=" $TMP_FILE1 >$TMP_FILE2
+			grep -v "}$" $TMP_FILE2 >$TMP_FILE1
 
 			# Install the DTC db config
-		        TMP_FILE=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
 		        echo "# Configured by DTC v0.10 : Please don't touch this line !
         # Connect info
+	driver = rlm_sql_mysql
         server = "$conf_mysql_host"
         login = "$conf_mysql_login"
-        password = "$conf_mysql_pass"" >> $TMP_FILE5
-#	        echo "SQLConnectInfo    "$conf_mysql_db"@"$conf_mysql_host" "$conf_mysql_login" "$conf_mysql_pass >> $TMP_FILE4
+        password = "$conf_mysql_pass"" >> $TMP_FILE1
 		        echo "        # Database table configuration
         radius_db = "$conf_mysql_db"
+	readclients=yes
+	read_groups=yes
 # End of DTC configuration v0.10 : please don't touch this line !
 }
-" >> $TMP_FILE5
+" >> $TMP_FILE1
 
-			cat <$TMP_FILE5 >$FREERADIUS_SQL_DOT_CONF
-			rm $TMP_FILE $TMP_FILE1 $TMP_FILE2 $TMP_FILE3 $TMP_FILE4 $TMP_FILE5
+			cat <$TMP_FILE1 >$FREERADIUS_SQL_DOT_CONF
+			rm $TMP_FILE1 $TMP_FILE2
 		fi
+
+		echoIfVerbose "===> Activating sql directives in sites-enabled/default"
+
+		TMP_FILE=`${MKTEMP} DTC_install.sites-enabled.XXXXXX` || exit 1
+		TMP_FILE1=`${MKTEMP} DTC_install.sites-enabled.XXXXXX` || exit 1
+
+		sed "s/#	sql$/       sql/" $FREERADIUS_SITE_ENABLED_CONF >$TMP_FILE
+		sed "s/	unix$/#       unix/" $TMP_FILE >$TMP_FILE1 
+		sed "s/	radutmp$/#       radutmp/" $TMP_FILE1 >$TMP_FILE 
+
+		cat <$TMP_FILE >$FREERADIUS_SITE_ENABLED_CONF
+		rm $TMP_FILE $TMP_FILE1
+
+		#Finally start the daemon
+	        restartDaemonMultiUnix radiusd
 	fi
 }
 

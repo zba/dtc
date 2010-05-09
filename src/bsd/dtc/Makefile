@@ -124,6 +124,10 @@ RUN_DEPENDS+=	${LOCALBASE}/sbin/dovecot:${PORTSDIR}/mail/dovecot
 RUN_DEPENDS+=	${LOCALBASE}/sbin/mysqmail-postfix-logger:${PORTSDIR}/sysutils/mysqmail
 .endif
 
+.if defined(WITH_FREERADIUS)
+RUN_DEPENDS+=	${LOCALBASE}/sbin/radiusd:${PORTSDIR}/net/freeradius2
+.endif
+
 SUB_FILES=	dtc-install dtc-deinstall
 SUB_LIST+=	WWWDIR=${WWWDIR} QMAIL_DIR="${QMAIL_DIR}"
 MAN8=		dtc-chroot-shell.8

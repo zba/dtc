@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 0.30.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-06-02 21:23-0300\n"
-"PO-Revision-Date: 2010-06-02 22:05-0300\n"
+"PO-Revision-Date: 2010-06-22 22:05-0300\n"
 "Last-Translator: Fernando Kiernan <fkiernan@id.net.ar>\n"
 "Language-Team: Yosu Cadilla <digitalwares@hotmail.com>\n"
 "Language: \n"
@@ -5455,7 +5455,7 @@ msgstr "Polaco"
 
 #: admin/inc/dtc_config.php:1869
 msgid "Port number: "
-msgstr "Numero de puerto:"
+msgstr "Cant. de puertos: "
 
 #: shared/drawlib/cc_code_popup.php:284
 msgid "Portugal"

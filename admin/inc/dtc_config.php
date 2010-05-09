@@ -1522,6 +1522,7 @@ function drawBackupConfig(){
 function drawRegistryApiConfig(){
 
 	global $pro_mysql_config_table;
+	global $pro_mysql_registrar_domains_table;
 	global $allTLD;
 	global $registry_api_modules;
 
@@ -1554,7 +1555,7 @@ function drawRegistryApiConfig(){
 		"title" => _("Registrar selection and final customer pricing"),
 		"action" => "tld_vs_registrar_selection",
 		"forward" => array("rub","sousrub"),
-		"table_name" => "registrar_domains",
+		"table_name" => $pro_mysql_registrar_domains_table,
 		"cols" => array(
 			"id" => array(
 				"type" => "id",
@@ -1873,15 +1874,21 @@ function drawDTCpayConfig(){
 
 function drawDTCradiusConfig(){
 	global $conf_dtcshared_path;
+	global $pro_mysql_nas_table;
+	global $pro_mysql_radgroup_table;
+	global $pro_mysql_radgroupcheck_table;
+	global $pro_mysql_radgroupreply_table;
+	global $pro_mysql_raduser_table;
+	global $pro_mysql_radcheck_table;
+	global $pro_mysql_radreply_table;
+	global $pro_mysql_product_table;
+	global $pro_mysql_dedicated_table;
 	global $lang;
 
-	$out = "";
+	$out = "WARNING!!! All parameteres (specially Attributes) set here have NO validation at all, so be careful.<BR>Freeradius will have unexpected behavoiurs if you do mistakes or errors here, and may be it can't start.";
 	$dsc = array(
 		"title" => _("NAS config"),
-		"new_item_title" => _("Add new NAS:"),
-		"new_item_link" => _("Add new NAS"),
-		"edit_item_title" => _("Edit a NAS:"),
-		"table_name" => "nas",
+		"table_name" => $pro_mysql_nas_table,
 		"action" => "nas_editor",
 		"forward" => array("rub","sousrub"),
 		"id_fld" => "id",
@@ -1894,29 +1901,254 @@ function drawDTCradiusConfig(){
 			"nasname" => array(
 				"type" => "text",
 				"disable_edit" => "yes",
-				"legend" => _("Name: ")),
+				"legend" => _("Name")),
 			"shortname" => array(
 				"type" => "text",
-				"legend" => _("Short name: ")),
+				"legend" => _("Short name")),
 			"type" => array(
 				"type" => "popup",
-				"legend" => _("Type:"),
+				"legend" => _("Type"),
 				"values" => array("cisco","computone","livingston","max40xx","multitech","netserver","pathras","patton","portslave","tc","usrhiper","other")),
 			"ports" => array(
 				"type" => "text",
-				"legend" => _("Port number: "),
+				"legend" => _("Port number"),
 				"check" => "number"),
 			"secret" => array(
 				"type" => "password",
-				"legend" => _("Password: "),
+				"legend" => _("Password"),
 				"check" => "dtc_pass"),
+			"server" => array(
+				"type" => "text",
+				"legend" => _("Virtual Radius Server")),
 			"community" => array(
 				"type" => "text",
-				"legend" => _("SNMP community").": "),
+				"legend" => _("SNMP community")),
 			"description" => array(
 				"type" => "text",
-				"legend" => _("Description: "))));
-	$out .= dtcListItemsEdit($dsc);
+				"legend" => _("Description"))));
+	$out .= dtcDatagrid($dsc);
+	$out .= "<BR><BR>";
+
+	$dsc = array(
+		"title" => _("Group config"),
+		"table_name" => $pro_mysql_radgroup_table,
+		"action" => "group_editor",
+		"forward" => array("rub","sousrub"),
+		"id_fld" => "id",
+		"list_fld_show" => "GroupName",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"GroupName" => array(
+				"type" => "text",
+				"disable_edit" => "yes",
+				"legend" => _("Name")),
+			"Description" => array(
+				"type" => "text",
+				"legend" => _("Description"))));
+	$out .= dtcDatagrid($dsc);
+	$out .= "<BR><BR>";
+
+        $q = "SELECT * FROM $pro_mysql_radgroup_table WHERE 1;";
+        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+        $n = mysql_num_rows($r);
+        $group_names = array(_("Please select"));
+        $group_ids = array(0);
+        for($i=0;$i<$n;$i++){
+                $a = mysql_fetch_array($r);
+                $group_names[] = $a["GroupName"];
+//		echo $a["GroupName"];
+                $group_ids[] = $a["id"];
+        }
+
+	$dsc = array(
+		"title" => _("Group Attributes checking config"),
+		"table_name" => $pro_mysql_radgroupcheck_table,
+		"action" => "group_attribute_check_editor",
+		"forward" => array("rub","sousrub"),
+		"id_fld" => "id",
+		"list_fld_show" => "GroupName",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"GroupName" => array(
+				"type" => "popup",
+				"disable_edit" => "yes",
+				"legend" => _("Group"),
+				"values" => $group_ids,
+				"display_replace" => $group_names),
+			"Attribute" => array(
+				"type" => "text",
+				"legend" => _("Attribute")),
+			"op" => array(
+				"type" => "popup",
+				"legend" => _("Operation"),
+				"values" => array("==",":=","+=","!=",">=","<=",">","<","=~","!~","=*","!*")),
+			"Value" => array(
+				"type" => "text",
+				"legend" => _("Value"))));
+	$out .= dtcDatagrid($dsc);
+	$out .= "<BR><BR>";
+
+
+	$dsc = array(
+		"title" => _("Group Reply Attributes config"),
+		"table_name" => $pro_mysql_radgroupreply_table,
+		"action" => "group_attribute_reply_editor",
+		"forward" => array("rub","sousrub"),
+		"id_fld" => "id",
+		"list_fld_show" => "GroupName",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"GroupName" => array(
+				"type" => "popup",
+				"disable_edit" => "yes",
+				"legend" => _("Group"),
+				"values" => $group_ids,
+				"display_replace" => $group_names),
+			"Attribute" => array(
+				"type" => "text",
+				"legend" => _("Attribute")),
+			"op" => array(
+				"type" => "popup",
+				"legend" => _("Operation"),
+				"values" => array("=",":=","+=")),
+			"Value" => array(
+				"type" => "text",
+				"legend" => _("Value")),
+			"prio" => array(
+				"type" => "text",
+				"legend" => _("Priority"),
+				"size" => 5)));
+	$out .= dtcDatagrid($dsc);
+	$out .= "<BR><BR>";
+
+        $q = "SELECT * FROM $pro_mysql_raduser_table WHERE 1;";
+        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+        $n = mysql_num_rows($r);
+        $user_names = array(_("Please select"));
+        $user_ids = array(0);
+        for($i=0;$i<$n;$i++){
+                $a = mysql_fetch_array($r);
+                $user_names[] = $a["UserName"];
+//		echo $a["UserName"];
+                $user_ids[] = $a["id"];
+        }
+
+        $q = "SELECT * FROM $pro_mysql_dedicated_table,$pro_mysql_product_table WHERE $pro_mysql_dedicated_table.product_id=$pro_mysql_product_table.id and use_radius='yes';";
+        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+        $n = mysql_num_rows($r);
+        $dedicated_names = array(_("None"));
+        $dedicated_ids = array(0);
+        for($i=0;$i<$n;$i++){
+                $a = mysql_fetch_array($r);
+                $dedicated_names[] = $a["server_hostname"];
+//		echo $a["server_hostname"];
+                $dedicated_ids[] = $a["id"];
+        }
+
+	$dsc = array(
+		"title" => _("Radius Users"),
+		"table_name" => $pro_mysql_raduser_table,
+		"action" => "raduser_editor",
+		"forward" => array("rub","sousrub"),
+		"id_fld" => "id",
+		"list_fld_show" => "UserName",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"UserName" => array(
+				"type" => "text",
+				"disable_edit" => "yes",
+				"legend" => _("Username")),
+			"password" => array(
+				"type" => "password",
+				"legend" => _("Password")),
+			"GroupName" => array(
+				"type" => "popup",
+				"disable_edit" => "yes",
+				"legend" => _("Group"),
+				"values" => $group_ids,
+				"display_replace" => $group_names),
+			"Dedicated_id" => array(
+				"type" => "popup",
+				"disable_edit" => "yes",
+				"legend" => _("Associated Dedicated Service"),
+				"values" => $dedicated_ids,
+				"display_replace" => $dedicated_names)));
+	$out .= dtcDatagrid($dsc);
+	$out .= "<BR><BR>";
+
+	$dsc = array(
+		"title" => _("User Attributes checking config"),
+		"table_name" => $pro_mysql_radcheck_table,
+		"action" => "user_attribute_check_editor",
+		"forward" => array("rub","sousrub"),
+		"id_fld" => "id",
+		"list_fld_show" => "UserName",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"UserName" => array(
+				"type" => "popup",
+				"disable_edit" => "yes",
+				"legend" => _("Username"),
+				"values" => $user_names),
+			"Attribute" => array(
+				"type" => "text",
+				"legend" => _("Attribute")),
+			"op" => array(
+				"type" => "popup",
+				"legend" => _("Operation"),
+				"values" => array("==",":=","+=","!=",">=","<=",">","<","<>","=~","!~","=*","!*")),
+			"Value" => array(
+				"type" => "text",
+				"legend" => _("Value"))));
+	$out .= dtcDatagrid($dsc);
+	$out .= "<BR><BR>";
+
+
+	$dsc = array(
+		"title" => _("User Reply Attributes config"),
+		"table_name" => $pro_mysql_radreply_table,
+		"action" => "user_attribute_reply_editor",
+		"forward" => array("rub","sousrub"),
+		"id_fld" => "id",
+		"list_fld_show" => "UserName",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "id"),
+			"UserName" => array(
+				"type" => "popup",
+				"disable_edit" => "yes",
+				"legend" => _("Username"),
+				"values" => $user_names),
+			"Attribute" => array(
+				"type" => "text",
+				"legend" => _("Attribute")),
+			"op" => array(
+				"type" => "popup",
+				"legend" => _("Operation"),
+				"values" => array("=",":=","+=")),
+			"Value" => array(
+				"type" => "text",
+				"legend" => _("Value"))));
+	$out .= dtcDatagrid($dsc);
+	$out .= "<BR><BR>";
+
 	return $out;
 }
 

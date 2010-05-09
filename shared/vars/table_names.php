@@ -50,4 +50,11 @@ $pro_mysql_spent_type_table = "spent_type";
 $pro_mysql_spent_bank_table = "spent_bank";
 $pro_mysql_ip_pool_table = "ip_pool";
 $pro_mysql_registrar_domains_table = "registrar_domains";
+$pro_mysql_radgroupcheck_table = "radgroupcheck";
+$pro_mysql_nas_table = "nas";
+$pro_mysql_radgroup_table = "radgroup";
+$pro_mysql_radgroupreply_table = "radgroupreply";
+$pro_mysql_raduser_table = "radusergroup";
+$pro_mysql_radreply_table = "radreply";
+$pro_mysql_radcheck_table = "radcheck";
 ?>
