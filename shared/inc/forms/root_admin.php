@@ -211,7 +211,7 @@ function drawEditAdmin($admin){
 		$vps_prods .= "<option value=\"".$a["id"]."\">".$a["name"]."</option>";
 	}
 
-	$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE available='yes' ORDER BY vps_server_hostname;";
+	$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE available='yes' ORDER BY vps_server_hostname,vps_xen_name;";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	$vps_srvs = "";
