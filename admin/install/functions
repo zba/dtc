@@ -2758,7 +2758,7 @@ submission  inet  n     -       n       -       -       smtpd
 #
 # specify the location of the DomainKeys signing filter
 #
-dkimsign    unix  -       -       n       -       5      smtp
+dkimsign    unix  -       -       n       -       4      smtp
     -o smtp_send_xforward_command=yes
     -o smtp_discard_ehlo_keywords=8bitmime
 
