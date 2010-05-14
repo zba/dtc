@@ -4156,12 +4156,9 @@ nice -n+20 memgraph/get_meminfo.sh      $PATH_DTC_ETC 2>&1 >>/var/log/dtc.log
 			if [ ! "$UNIX_TYPE" = "redhat" ] ; then
 				TMP_FILE=`${MKTEMP} DTC_install.crontab.XXXXXX` || exit 1
 				echo "# Configured by DTC v0.10 : Please don't touch this line !" > $TMP_FILE
-				echo "*/10 * * * * root [ -d $PATH_DTC_ADMIN ] && cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/cron.php >>/var/log/dtc.log" >> $TMP_FILE
-				echo "9 4 * * * ${CONF_DTC_SYSTEM_USERNAME} [ -d $PATH_DTC_ADMIN ] && cd $PATH_DTC_ADMIN; nice -n+20 $PATH_PHP_CGI $PATH_DTC_ADMIN/accesslog.php >>/var/log/dtc.log" >> $TMP_FILE
-				echo "*/15 * * * * ${CONF_DTC_SYSTEM_USERNAME} [ -s $PATH_DTC_ETC/fetchmailrc ] && fetchmail -v -N -f $PATH_DTC_ETC/fetchmailrc --pidfile /tmp/fetchmail.pid" >> $TMP_FILE
-				echo "* * * * * root [ -d $PATH_DTC_ADMIN ] && cd $PATH_DTC_ADMIN; ./rrdtool.sh" >> $TMP_FILE
-				echo "34 2 * * * ${CONF_DTC_SYSTEM_USERNAME} [ -d $PATH_DTC_ADMIN ] && cd $PATH_DTC_ADMIN && $PATH_PHP_CGI $PATH_DTC_ADMIN/stat_total_active_prods.php 2>&1 >> /var/log/dtc.log" >> $TMP_FILE
-				echo "9 3 * * * root [ -d $PATH_DTC_ADMIN ] && cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/reminders.php" >> $TMP_FILE
+				echo -n `grep "^PATH=" /etc/crontab` >> $TMP_FILE
+				echo ":/usr/local/bin:/usr/local/sbin" >> $TMP_FILE
+				sed -e "s/\* dtc /\* ${CONF_DTC_SYSTEM_USERNAME} /" $PATH_DTC_CRON_FILE  | sed -e "s! /usr/share/dtc/admin! ${PATH_DTC_ADMIN}!g" | sed -e "s!/usr/bin/php!${PATH_PHP_CGI}!g" | sed -e "s!/var/lib/dtc/etc!${PATH_DTC_ETC}!g" >> $TMP_FILE
 				cat < $TMP_FILE >>$PATH_CRONTAB_CONF
 				rm $TMP_FILE
 			fi
