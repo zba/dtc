@@ -688,11 +688,6 @@ function make_new_adm_domain_dir($path){
 		$console .= "mkdir $path/mailbox;<br>";
 	}
 
-	if(!file_exists("$path/mysql")){
-		mkdir("$path/mysql", 0750);
-		$console .= "mkdir $path/mysql;<br>";
-	}
-
 	if(!file_exists("$path/subdomains")){
 		mkdir("$path/subdomains", 0750);
 		$console .= "mkdir $path/subdomains;<br>";
