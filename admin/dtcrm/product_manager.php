@@ -72,7 +72,7 @@ function productManager(){
 				"type" => "popup",
 				"legend" => _("Add domain") ,
 				"help" => _("If set to yes, the the admin can add a domain, if set to check, then it will go through moderation, set to no, no domain addition to account is possible by the admin."),
-				"values" => array("check","no","yes")
+				"values" => array("check","no","yes"),
 				"display_replace" => array(_("check"),_("no"),_("yes"))
 				),
 			"private" => array(
