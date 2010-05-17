@@ -2,8 +2,8 @@
 
 ### BEGIN INIT INFO
 # Provides:          dtc-stats-daemon
-# Required-Start:    $all
-# Required-Stop:
+# Required-Start:    $remote_fs $all
+# Required-Stop:     $remote_fs
 # Should-Start:      $local_fs
 # Should-Stop:       $local_fs
 # Default-Start:     2 3 4 5
