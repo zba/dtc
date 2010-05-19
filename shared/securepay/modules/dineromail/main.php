@@ -37,7 +37,7 @@ function dineromail_display_icon($product_id,$amount,$item_name,$return_url,$use
 	$amount = round(floatval(str_replace(",",".",$amount)), 2);
 
 	$out = '<form action="https://argentina.dineromail.com/Shop/Shop_Ingreso.asp" method="post">';
-	$out .= '<input type="hidden" name="NombreItem" value="Payment hosting">'; // name of the phurchased service
+	$out .= '<input type="hidden" name="NombreItem" value="'.$item_name.'">'; // name of the phurchased service
 	$out .= '<input type="hidden" name="TipoMoneda" value="1">'; // currency: 1=pesos 2=dollar
 	$out .= '<input type="hidden" name="PrecioItem" value="'.$amount.'">'; // payment ammount
 	$out .= '<input type="hidden" name="E_Comercio" value="'.$ncta[0].'">'; // dineromail account (without the "/" part and without the final digit)
