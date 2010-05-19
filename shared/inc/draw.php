@@ -506,7 +506,7 @@ function drawAdminTools($admin){
 			$web_editor .= "<img src=\"gfx/toolstitles/databases.png\" align=\"left\"><font size=\"+2\"><b><u>". _("File manager:") ."</u></b><br></font>";
 			$web_editor .= "<table width=\"100%\" height=\"100%\" border=\"0\"><tr>
 					<td width=\"1\" height=\"100%\"><img width=\"1\" height=\"600\" src=\"gfx/skin/bwoup/gfx/spacer.gif\"></td>
-					<td width=\"100%\" height=\"100%\"><iframe width=\"100%\" height=\"100%\" src=\"https://dtc.xen650901.gplhost.com/extplorer/\"></iframe></td>
+					<td width=\"100%\" height=\"100%\"><iframe width=\"100%\" height=\"100%\" src=\"/extplorer/\"></iframe></td>
 				</tr></table>";
 			$title = _("eXtplorer web file manager");
 		}else if($add_array[0] == "reseller"){
