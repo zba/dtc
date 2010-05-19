@@ -1780,6 +1780,34 @@ function drawDTCpayConfig(){
 				"size" => "30")));
 	$out .= configEditorTemplate ($dsc,"secpay");
 
+	$dsc = array(
+		"title" => "dineromail:",
+		"action" => "dineromail_gateway_dineromail_edit",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"use_dineromail" => array(
+				"legend" => _("Use dineromail: "),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))),
+			"dineromail_nrocuenta" => array(
+				"legend" => _("Dineromail Account: "),
+				"type" => "text",
+				"size" => "20"),
+			"dineromail_tipospago" => array(
+				"legend" => _("Payments Accepted: "),
+				"type" => "text",
+				"size" => "30"),
+			"dineromail_cargocomision" => array(
+				"legend" => _("Fixed charge fee: "),
+				"type" => "text",
+				"size" => "6"),
+			"dineromail_porcentajecomision" => array(
+				"legend" => _("Percentage fee: "),
+				"type" => "text",
+				"size" => "6"), ));
+	$out .= configEditorTemplate ($dsc,"secpay");
+
 	return $out;
 }
 

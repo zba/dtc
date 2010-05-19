@@ -991,7 +991,13 @@ $dtc_database = array(
 
 			"accept_wiretransfers" => "enum('yes','no') NOT NULL default 'no'",
 			"wiretransfers_flat_fees" => "float(6,2) NOT NULL default '0.00' ",
-			"wiretransfers_bank_details" => "text NOT NULL default ''"
+			"wiretransfers_bank_details" => "text NOT NULL default ''",
+
+			"use_dineromail" => "enum('yes','no') NOT NULL default 'no'",
+			"dineromail_nrocuenta" => "varchar(20) NOT NULL default ''",
+			"dineromail_tipospago" => "varchar(30) NOT NULL default '2,7,13,4,5,6,14,15,16,17,18'",
+			"dineromail_cargocomision" => "float(6,2) NOT NULL default '0.00'",
+			"dineromail_porcentajecomision" => "float(6,2) NOT NULL default '0.00' "
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

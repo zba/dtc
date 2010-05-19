@@ -266,7 +266,8 @@ shared/securepay/modules/worldpay/main.php \
 shared/securepay/modules/cheque/main.php \
 shared/securepay/modules/wiretransfer/main.php \
 shared/securepay/modules/webmoney/main.php \
-shared/securepay/modules/moneybookers/main.php
+shared/securepay/modules/moneybookers/main.php \
+shared/securepay/modules/dineromail/main.php
 
 REGISTRY_API_PHP_SCRIPT_FILES=shared/dtcrm/modules/webnic/main.php shared/dtcrm/modules/ovh/main.php
 
@@ -340,7 +341,8 @@ admin/patches shared/securepay/modules shared/securepay/modules/paypal shared/se
 shared/securepay/modules/worldpay client email shared/securepay/modules/cheque shared/securepay/modules/wiretransfer \
 shared/securepay/modules/moneybookers shared/dtcrm/modules/webnic admin/postfix_checks admin/mod-security shared/gfx/skin/paperboard shared/gfx/skin/paperboard/gfx \
 shared/gfx/skin/paperboard/gfx/treeview shared/gfx/skin/paperboard/gfx/tabs shared/gfx/skin/paperboard/gfx/navbar \
-shared/gfx/toolstitles shared/gfx/skin/paperboard/gfx/css shared/gfx/skin/paperboard/gfx/config-icon shared/gfx/skin/paperboard/gfx/buttons shared/dtcrm/modules/ovh
+shared/gfx/toolstitles shared/gfx/skin/paperboard/gfx/css shared/gfx/skin/paperboard/gfx/config-icon shared/gfx/skin/paperboard/gfx/buttons shared/dtcrm/modules/ovh \
+shared/securepay/modules/dineromail
 
 LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL sv_SE pt_PT pt_BR es_ES fi_FI zh_TW sr_RS lv_LV cs_CZ
 
