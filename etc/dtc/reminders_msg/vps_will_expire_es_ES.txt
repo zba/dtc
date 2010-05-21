@@ -4,7 +4,7 @@ Asunto: Su VPS expirará pronto
 Hola %%%FIRST_NAME%%%,
 
 Su Servidor Virtual Xen (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
-va a expirar en %%%REMAINING_DAYS%%% días, desde el: %%%EXPIRATION_DATE%%%.
+va a expirar en %%%REMAINING_DAYS%%% días, el: %%%EXPIRATION_DATE%%%.
 
 Por favor ingrese a su panel de control en:
 

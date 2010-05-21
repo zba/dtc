@@ -1,4 +1,4 @@
 Este es un mensaje enviado automáticamente por el robot de DTC.
 DTC es un panel de control de código abierto
 orientado al hosting comercial, y diseñado por GPLHost (vea
-http://www.gplhost.com/software.html para mráas detalles).
+http://www.gplhost.com/software.html para más detalles).

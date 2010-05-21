@@ -120,9 +120,14 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 
 		$headers = $send_email_header;
 		$headers .= "From: ".$conf_webmaster_email_addr;
-		mail($client["email"],"$conf_message_subject_header Your VPS expiration",$msg_2_send,$headers);
+		$subject = readCustomizedMessage("reminders_msg/vps_subject",$admin["adm_login"]);
+		$subject = getCustomizedReminderNoHeader($subject,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
+			mail($conf_webmaster_email_addr,"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
-			$subject = $admin["adm_login"] . "'s VPS " . $vps["vps_server_hostname"] . ":" . $vps["vps_xen_name"] . " expired " . $remaining_days . " ago";
+			$subject = readCustomizedMessage("reminders_msg/vps_subject_adm",$admin["adm_login"]);
+			$subject = getCustomizedReminderNoHeader($subject,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
+			$subject = str_replace("%%%VPS_NUMBER%%%",$vps["vps_xen_name"],$subject);
+			$subject = str_replace("%%%VPS_NODE%%%",$vps["vps_server_hostname"],$subject);
 			mail($conf_webmaster_email_addr,"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		}
 	}
