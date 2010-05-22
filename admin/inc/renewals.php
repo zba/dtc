@@ -59,7 +59,7 @@ function drawRenewalTables (){
 
 	switch($sousrub){
 	case "spent":
-		$out .= "<h3>Date selection</h3>";
+		$out .= _("<h3>Date selection</h3>");
 
 		if( !isset($_REQUEST["date_selector"])){
 			// Check the last record to get the last entry by default.
@@ -75,20 +75,20 @@ function drawRenewalTables (){
 				}else{
 					$using_date = $exploded[0] . "-" . $exploded[1];
 				}
-				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=all\">all</a>";
+				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=all\">" . _("all") . "</a>";
 				$date = $using_date;
 				$where_condition = " invoice_date LIKE '$date%' ";
 			}else{
-				$out .= "all";
+				$out .= _("all");
 				$date = "all";
 				$where_condition = " 1 ";
 			}
 		}else if( $_REQUEST["date_selector"] == "all"){
-			$out .= "all";
+			$out .= _("all");
 			$date = "all";
 			$where_condition = " 1 ";
 		}else{
-			$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=all\">all</a>";
+			$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=all\">" . _("all") . "</a>";
 			$date = $_REQUEST["date_selector"];
 			$where_condition = " invoice_date LIKE '$date%' ";
 		}

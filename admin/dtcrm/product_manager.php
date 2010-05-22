@@ -10,7 +10,7 @@ function productManager(){
 
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
-        	"title" => _("Product list editor") ." (shared)",
+        	"title" => _("Product list editor") . _(" (shared)"),
         	"action" => "hosting_product_list_shared",
         	"forward" => array("rub"),
         	"where_condition" => "heb_type='shared'",
@@ -106,7 +106,7 @@ function productManager(){
 
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
-        	"title" => _("Product list editor") ." (VPS)",
+        	"title" => _("Product list editor") . _(" (VPS)"),
         	"action" => "hosting_product_list_vps",
         	"forward" => array("rub"),
         	"where_condition" => "heb_type='vps'",
@@ -199,7 +199,7 @@ function productManager(){
 
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
-        	"title" => _("Product list editor") ." (Dedicated servers)",
+        	"title" => _("Product list editor") . _(" (Dedicated servers)"),
         	"action" => "hosting_product_list_dedicated",
         	"forward" => array("rub"),
         	"where_condition" => "heb_type='server'",

@@ -892,7 +892,7 @@ function drawVPSServerConfig(){
 			"edithost" => array(
 				"type" => "hyperlink",
 				"legend" => _("IPs addrs"),
-				"text" => "Edit IPs"),
+				"text" => _("Edit IPs")),
 			"dom0_ips" => array(
 				"type" => "text",
 				"size" => "8",
@@ -938,7 +938,7 @@ function drawVPSServerConfig(){
 		$my_pool_values = array();
 		$my_pool_text = array();
 		$my_pool_values[] = 0;
-		$my_pool_text[] = "Not set";
+		$my_pool_text[] = _("Not set");
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$my_pool_values[] = $a["id"];
@@ -989,13 +989,13 @@ function drawVPSServerConfig(){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n == 0){
-			$out .= "Create a mailing list @".$conf_main_domain." if you want to write to all users of this VPS server.";
+			$out .= _("Create a mailing list @".$conf_main_domain." if you want to write to all users of this VPS server.");
 		}else{
-			$out .= "<h3>Owners of the VPS of <i>".$a["hostname"]."</i> are subscribed automatically to the following mailing list:</h3>";
+			$out .= _("<h3>Owners of the VPS of <i>".$a["hostname"]."</i> are subscribed automatically to the following mailing list:</h3>");
 			$q2 = "SELECT * FROM $pro_mysql_vps_server_lists_table WHERE hostname='".$a["hostname"]."' ORDER BY list_name;";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
-			$out .= "Click on the list name to remove the list from the server:<br><br>";
+			$out .= _("Click on the list name to remove the list from the server:<br><br>");
 			$conditions = "";
 			for($i=0;$i<$n2;$i++){
 				$a2 = mysql_fetch_array($r2);
@@ -1009,7 +1009,7 @@ function drawVPSServerConfig(){
 			$q = "SELECT * FROM $pro_mysql_list_table WHERE domain='$conf_main_domain' $conditions ORDER BY name;";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
-			$out .= "Click on the list name to add the list to the server:<br><br>";
+			$out .= _("Click on the list name to add the list to the server:")."<br><br>";
 			for($i=0;$i<$n;$i++){
 				$a = mysql_fetch_array($r);
 				if($i != 0){
@@ -1693,7 +1693,7 @@ function drawDTCpayConfig(){
 	$out .= configEditorTemplate ($dsc,"secpay");
 
 	$dsc = array(
-		"title" => "MoneyBookers (currently in development):",
+		"title" => _("MoneyBookers (currently in development):"),
 		"action" => "payment_gateway_moneybookers_edit",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -1769,7 +1769,7 @@ function drawDTCpayConfig(){
 	$out .= configEditorTemplate ($dsc,"secpay");
 
 	$dsc = array(
-		"title" => "Maxmind API:",
+		"title" => _("Maxmind API:"),
 		"action" => "maxmind_api_conf_edit",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -1789,7 +1789,7 @@ function drawDTCpayConfig(){
 	$out .= configEditorTemplate ($dsc,"secpay");
 
 	$dsc = array(
-		"title" => "dineromail:",
+		"title" => _("Dineromail:"),
 		"action" => "dineromail_gateway_dineromail_edit",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -1826,9 +1826,9 @@ function drawDTCradiusConfig(){
 	$out = "";
 	$dsc = array(
 		"title" => _("NAS config"),
-		"new_item_title" => "Add new NAS:",
-		"new_item_link" => "Add new NAS",
-		"edit_item_title" => "Edit a NAS:",
+		"new_item_title" => _("Add new NAS:"),
+		"new_item_link" => _("Add new NAS"),
+		"edit_item_title" => _("Edit a NAS:"),
 		"table_name" => "nas",
 		"action" => "nas_editor",
 		"forward" => array("rub","sousrub"),

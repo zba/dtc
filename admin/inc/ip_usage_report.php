@@ -242,22 +242,22 @@ function drawIPUsageReport(){
 			$out .= "<table border=\"1\"><tr><th>IP address</th><th>Type</th><th>Name</th></tr>";
 			for($i=0;$i<$nbr_ip;$i++){
 				$ip = $keys[$i];
-				$out .= "<tr><td>". $ip ."</td><td>".$all_ips[ $ip ]["type"]."</td>";
+				$out .= "<tr><td>". $ip ."</td>";
 				switch($all_ips[ $ip ]["type"]){
 				case "vps":
-					$out .= "<td>".$all_ips[ $ip ]["vps_xen_name"].":".$all_ips[ $ip ]["vps_server_hostname"]."</td>";
+					$out .= "<td>"._("vps")."</td><td>".$all_ips[ $ip ]["vps_xen_name"].":".$all_ips[ $ip ]["vps_server_hostname"]."</td>";
 					break;
 				case "ssl":
-					$out .= "<td>-</td>";
+					$out .= "<td>"._("ssl")."</td><td>-</td>";
 					break;
 				case "dedicated":
-					$out .= "<td>".$all_ips[ $ip ]["dedicated_server_hostname"]."</td>";
+					$out .= "<td>"._("dedicated")."</td><td>".$all_ips[ $ip ]["dedicated_server_hostname"]."</td>";
 					break;
 				case "dom0":
-					$out .= "<td>".$all_ips[ $ip ]["hostname"]."</td>";
+					$out .= "<td>"._("dom0")."</td><td>".$all_ips[ $ip ]["hostname"]."</td>";
 					break;
 				default:
-					$out .= "<td>-</td>";
+					$out .= "<td>".$all_ips[ $ip ]["type"]."</td><td>-</td>";
 					break;
 				}
 			}
@@ -283,7 +283,7 @@ function drawPool($id){
 
 	$ip_calc = new Net_IPv4();
 	$ip_long = $ip_calc->ip2double($mypool["ip_addr"]);
-	$out .= "<table class=\"dtcDatagrid_table_props\" border=\"1\"><tr><td class=\"dtcDatagrid_table_titles\">IP address</td><td class=\"dtcDatagrid_table_titles\">Type</td><td class=\"dtcDatagrid_table_titles\">Name</td><td class=\"dtcDatagrid_table_titles\">Provision</td></tr>";
+	$out .= "<table class=\"dtcDatagrid_table_props\" border=\"1\"><tr><td class=\"dtcDatagrid_table_titles\">" . _("IP address") . "</td><td class=\"dtcDatagrid_table_titles\">". _("Type") . "</td><td class=\"dtcDatagrid_table_titles\">" . _("Name") . "</td><td class=\"dtcDatagrid_table_titles\">" . _("Provision") . "</td></tr>";
 	for($i=0;$i<$mypool["pool_size"];$i++){
 		$ip = long2ip($ip_long);
 		if($i % 2){
