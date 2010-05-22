@@ -3,8 +3,8 @@ Asunto: Su servidor dedicado expirará pronto
 
 Hola %%%FIRST_NAME%%%,
 
-Su servidor dedicado %%%SERVER_HOSTNAME%%% expirara en %%%REMAINING_DAYS%%% días,
-el dia: %%%EXPIRATION_DATE%%%.
+Su servidor dedicado %%%SERVER_HOSTNAME%%% expirará en %%%REMAINING_DAYS%%% días,
+el: %%%EXPIRATION_DATE%%%.
 
 Por favor ingrese a su panel de control en:
 

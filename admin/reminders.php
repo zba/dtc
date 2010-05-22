@@ -122,7 +122,7 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 		$headers .= "From: ".$conf_webmaster_email_addr;
 		$subject = readCustomizedMessage("reminders_msg/vps_subject",$admin["adm_login"]);
 		$subject = getCustomizedReminderNoHeader($subject,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
-			mail($conf_webmaster_email_addr,"$conf_message_subject_header $subject",$msg_2_send,$headers);
+		mail($conf_webmaster_email_addr,"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
 			$subject = readCustomizedMessage("reminders_msg/vps_subject_adm",$admin["adm_login"]);
 			$subject = getCustomizedReminderNoHeader($subject,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
@@ -206,10 +206,14 @@ function sendDedicatedReminderEmail($remaining_days,$file,$send_webmaster_copy="
 		$msg_2_send = str_replace("%%%SERVER_HOSTNAME%%%",$dedicated["server_hostname"],$msg_2_send);
 
 		$headers = $send_email_header;
-		$headers = "From: ".$conf_webmaster_email_addr;
-		mail($client["email"],"$conf_message_subject_header Your dedicated server expiration",$msg_2_send,$headers);
+		$headers .= "From: ".$conf_webmaster_email_addr;
+		$subject = readCustomizedMessage("reminders_msg/server_subject",$admin["adm_login"]);
+		$subject = getCustomizedReminderNoHeader($subject,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
+		mail($client["email"],"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
-			$subject = $admin["adm_login"] . "'s server " . $dedicated["server_hostname"] . " expired " . $remaining_days . " ago";
+			$subject = readCustomizedMessage("reminders_msg/server_subject_adm",$admin["adm_login"]);
+			$subject = getCustomizedReminderNoHeader($subject,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
+			$subject = str_replace("%%%SERVER_NAME%%%",$dedicated["server_hostname"],$subject);
 			mail($conf_webmaster_email_addr,"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		}
 	}
