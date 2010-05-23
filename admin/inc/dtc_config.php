@@ -359,7 +359,11 @@ function drawDedicatedIPConfig(){
 			"dedicated_server_hostname" => array(
 				"type" => "popup",
 				"values" => $popup_vals,
-				"legend" => _("Dedicated server hostname"))
+				"legend" => _("Dedicated server hostname")),
+			"rdns_addr" => array(
+				"type" => "text",
+				"size" => "30",
+				"legend" => _("RDNS hostname"))
 			)
 	);
 	$out .= dtcDatagrid($dsc);
@@ -969,6 +973,10 @@ function drawVPSServerConfig(){
 					"legend" => _("IP Pool"),
 					"values" => $my_pool_values,
 					"display_replace" => $my_pool_text),
+				"rdns_addr" => array(
+					"type" => "text",
+					"size" => "30",
+					"legend" => _("RDNS hostname")),
 				"available" => array(
 					"type" => "radio",
 					"legend" => _("Available"),

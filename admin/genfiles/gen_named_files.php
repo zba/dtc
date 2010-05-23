@@ -185,6 +185,30 @@ function calculate_reverse_mask_and_cidr($ip_pool_ip,$ip_pool_netmask){
 
 	$netmask_exploded = explode(".",$ip_pool_netmask);
 	switch($ip_pool_netmask){
+	case "255.255.0.0":
+		$cird_mask = "/16";
+		break;
+	case "255.255.128.0":
+		$cird_mask = "/17";
+		break;
+	case "255.255.192.0":
+		$cird_mask = "/18";
+		break;
+	case "255.255.224.0":
+		$cird_mask = "/19";
+		break;
+	case "255.255.240.0":
+		$cird_mask = "/20";
+		break;
+	case "255.255.248.0":
+		$cird_mask = "/22";
+		break;
+	case "255.255.254.0":
+		$cird_mask = "/23";
+		break;
+	case "255.255.255.0":
+		$cird_mask = "/24";
+		break;
 	case "255.255.255.128":
 		$cird_mask = "/25";
 		break;
