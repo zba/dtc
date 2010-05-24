@@ -991,7 +991,7 @@ function drawVPSServerConfig(){
 		if($n == 0){
 			$out .= _("Create a mailing list @").$conf_main_domain._(" if you want to write to all users of this VPS server.");
 		}else{
-			$out .= _("<h3>Owners of the VPS of <i>".$a["hostname"]."</i> are subscribed automatically to the following mailing list:</h3>");
+			$out .= "<h3>" . _("Owners of the VPS of") . " <i>".$a["hostname"]."</i> " . _("are subscribed automatically to the following mailing list:") . "</h3>";
 			$q2 = "SELECT * FROM $pro_mysql_vps_server_lists_table WHERE hostname='".$a["hostname"]."' ORDER BY list_name;";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);

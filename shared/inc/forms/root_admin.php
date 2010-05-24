@@ -453,12 +453,12 @@ function drawDomainConfig($admin){
 					"legend" => _("Redirect to:")),
 				"php_memory_limit" => array(
 					"type" => "text",
-					"help" => _(""),
+					"help" => _("Maximum memory used by PHP session"),
 					"size" => 3,
 					"legend" => _("PHP memory limit")),
 				"php_max_execution_time" => array(
 					"type" => "text",
-					"help" => _(""),
+					"help" => _("Maximum time a PHP script can execute"),
 					"size" => 3,
 					"legend" => _("Execution time")),
 				"php_upload_max_filesize" => array(

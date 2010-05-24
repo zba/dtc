@@ -3,11 +3,12 @@
 $panel_type="admin";
 require_once("../shared/autoSQLconfig.php");
 require_once("authme.php");
+require_once("../shared/vars/lang.php");
 
 $rrd = $conf_generated_file_path.'/cpu.rrd';
 $xpoints = 800;
 $ypoints = 160;
-$vert_label = "CPU Load average";
+$vert_label = _("CPU Load average");
 
 if( file_exists("/usr/bin/rrdtool") ) {
 	$rrdpath = "/usr/bin/rrdtool";
@@ -23,23 +24,23 @@ if( isset($_REQUEST["graph"]) ){
 
 	switch($_REQUEST["graph"]){
 		case "hour":
-			$title = 'Hour graph';
+			$title = _('Hour graph');
 			$steps = 3600;
 			break;
 		case "day":
-			$title = 'Day Graph';
+			$title = _('Day Graph');
 			$steps = 3600*24;
 			break;
 		case "week":
-			$title = 'Week Graph';
+			$title = _('Week Graph');
 			$steps = 3600*24*7;
 			break;
 		case "month":
-			$title = 'Month Graph';
+			$title = _('Month Graph');
 			$steps = 3600*24*31;
 			break;
 		case "year":
-			$title = 'Year Graph';
+			$title = _('Year Graph');
 			$steps = 3600*24*365;
 			break;
 		default:
@@ -50,7 +51,7 @@ if( isset($_REQUEST["graph"]) ){
 	$filename = tempnam("/tmp","dtc_cpugraph");
 	$cmd = $rrdpath . " graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
 	$cmd .= "DEF:loadaverage=$rrd:loadaverage:AVERAGE ";
-	$cmd .= "'LINE1:loadaverage#ff0000:CPU Load average*100:' 'GPRINT:loadaverage:MAX:Maximum\: %0.0lf' 'GPRINT:loadaverage:AVERAGE:Average\: %0.0lf/min\\n' ";
+	$cmd .= "'LINE1:loadaverage#ff0000:" . _("CPU Load average") . "*100:' 'GPRINT:loadaverage:MAX:" . _("Maximum") . "\: %0.0lf' 'GPRINT:loadaverage:AVERAGE:" . _("Average") . "\: %0.0lf/min\\n' ";
 	exec($cmd,$output);
 
 	$filesize = filesize($filename);
@@ -74,7 +75,7 @@ if( isset($_REQUEST["graph"]) ){
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>CPU load average statistics for '.$_SERVER["SERVER_NAME"].'</TITLE>
+<TITLE>' . _("CPU load average statistics for") . ' ' .$_SERVER["SERVER_NAME"].'</TITLE>
 <style type="text/css">
 body{
 	height:100%;
@@ -90,13 +91,13 @@ h1 {
 </style>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
-<H1>CPU load average Statistics for '.$_SERVER["SERVER_NAME"].'</H1>
+<H1>' . _("CPU load average Statistics for") . ' ' .$_SERVER["SERVER_NAME"].'</H1>
 <center>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="Hour CPU Load Graph" width="897" height="239"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="Day CPU Load Graph" width="897" height="239"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="Week CPU Load Graph" width="897" height="239"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="Month CPU Load Graph" width="897" height="239"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="Year CPU Load Graph" width="897" height="239">
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="' . _("Hour CPU Load Graph") . '" width="897" height="239"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="' . _("Day CPU Load Graph") . '" width="897" height="239"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="' . _("Week CPU Load Graph") . '" width="897" height="239"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="' . _("Month CPU Load Graph") . '" width="897" height="239"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="' . _("Year CPU Load Graph") . '" width="897" height="239">
 </center>
 </body>
 </html>';

@@ -3,33 +3,34 @@
 $panel_type="admin";
 require_once("../shared/autoSQLconfig.php");
 require_once("authme.php");
+require_once("../shared/vars/lang.php");
 
 $rrd = $conf_generated_file_path.'/memusage.rrd';
 $xpoints = 800;
 $ypoints = 160;
-$vert_label = "Memory usage stats";
+$vert_label = _("Memory usage stats");
 
 if( isset($_REQUEST["graph"]) ){
 
 	switch($_REQUEST["graph"]){
 		case "hour":
-			$title = 'Hour graph';
+			$title = _('Hour graph');
 			$steps = 3600;
 			break;
 		case "day":
-			$title = 'Day Graph';
+			$title = _('Day Graph');
 			$steps = 3600*24;
 			break;
 		case "week":
-			$title = 'Week Graph';
+			$title = _('Week Graph');
 			$steps = 3600*24*7;
 			break;
 		case "month":
-			$title = 'Month Graph';
+			$title = _('Month Graph');
 			$steps = 3600*24*31;
 			break;
 		case "year":
-			$title = 'Year Graph';
+			$title = _('Year Graph');
 			$steps = 3600*24*365;
 			break;
 		default:
@@ -42,10 +43,10 @@ if( isset($_REQUEST["graph"]) ){
 	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
 	$cmd .= "DEF:totalmem=$rrd:totalmem:AVERAGE DEF:freemem=$rrd:freemem:AVERAGE ";
 	$cmd .= "DEF:totalswap=$rrd:totalswap:AVERAGE DEF:freeswap=$rrd:freeswap:AVERAGE ";
-	$cmd .= "'LINE1:totalmem#0000AA:Total available memory:' 'GPRINT:totalmem:MAX:Maximum\: %0.0lf' ";
-	$cmd .= "'LINE1:freemem#7777ff:Minimum free memory:' 'GPRINT:freemem:MIN:Minimum\: %0.0lf\\n' ";
-	$cmd .= "'LINE1:totalswap#00ff00:Total swap:' 'GPRINT:freemem:MAX:Maxmium\: %0.0lf' ";
-	$cmd .= "'LINE1:freeswap#ff0000:Free swap:' 'GPRINT:freeswap:MIN:Minimum\: %0.0lf' ";
+	$cmd .= "'LINE1:totalmem#0000AA:" . _("Total available memory") . ":' 'GPRINT:totalmem:MAX:" . _("Maximum") . "\: %0.0lf' ";
+	$cmd .= "'LINE1:freemem#7777ff:" . _("Minimum free memory") . ":' 'GPRINT:freemem:MIN:" . _("Minimum") . "\: %0.0lf\\n' ";
+	$cmd .= "'LINE1:totalswap#00ff00:" . _("Total swap") . ":' 'GPRINT:freemem:MAX:" . _("Maxmium") . "\: %0.0lf' ";
+	$cmd .= "'LINE1:freeswap#ff0000:" . _("Free swap") . ":' 'GPRINT:freeswap:MIN:" . _("Minimum") . "\: %0.0lf' ";
 	exec($cmd,$output);
 
 	$filesize = filesize($filename);
@@ -69,7 +70,7 @@ if( isset($_REQUEST["graph"]) ){
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>Memory and swap usage statistics for '.$_SERVER["SERVER_NAME"].'</TITLE>
+<TITLE>' . _("Memory and swap usage statistics for") . ' '.$_SERVER["SERVER_NAME"].'</TITLE>
 <style type="text/css">
 body{
 	height:100%;
@@ -85,13 +86,13 @@ h1 {
 </style>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
-<H1>Memory and swap usage statistics usage for '.$_SERVER["SERVER_NAME"].'</H1>
+<H1>' . _("Memory and swap usage statistics usage for") . ' '.$_SERVER["SERVER_NAME"].'</H1>
 <center>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="Hour Netusage Graph" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="Day Netusage Graph" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="Week Netusage Graph" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="Month Netusage Graph" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="Year Netusage Graph" width="897" height="253">
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="' . _("Hour Netusage Graph") . '" width="897" height="253"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="' . _("Day Netusage Graph") . '" width="897" height="253"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="' . _("Week Netusage Graph") . '" width="897" height="253"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="' . _("Month Netusage Graph") . '" width="897" height="253"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="' . _("Year Netusage Graph") . '" width="897" height="253">
 </center>
 </body>
 </html>';

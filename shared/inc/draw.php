@@ -421,7 +421,7 @@ function drawAdminTools($admin){
 			}else{
 				$web_editor .= "VPS not found!";
 			}
-			$title = "Virtual Private Server $vps_name running on $vps_node";
+			$title = _("Virtual Private Server $vps_name running on $vps_node");
 		}else if(substr($addrlink,0,7) == "server:"){
 			$web_editor .= drawAdminTools_Dedicated($admin,$dedicated_server_hostname);
 			$title = _("Dedicated server") .": $dedicated_server_hostname";
@@ -518,9 +518,9 @@ function drawAdminTools($admin){
 			$web_editor .= drawPasswordChange();
 			$title = _("Password");
 		}else if($add_array[0] == "ticket"){
-                        $web_editor .= "<img src=\"gfx/toolstitles/ticket.png\" align=\"left\"><font size=\"+2\"><b><u>Support tickets:</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/ticket.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Support tickets:") . "</u></b><br></font>";
 			$web_editor .= drawTickets($admin);
-			$title = "Support ticket system";
+			$title = _("Support ticket system");
 		}else if($add_array[0] == "help"){
                         $web_editor .= "<img src=\"gfx/toolstitles/help.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Help:") ."</u></b><br></font>";
 			$web_editor .= _("<font face=\"Arial, Verdana\">
