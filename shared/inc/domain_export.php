@@ -314,7 +314,7 @@ function domainImport($path_from,$adm_login,$adm_pass){
 
 		// Reimport all the stuff
 		updateRowValue($pro_mysql_domain_table,"name='$dom_name'",$cur_dom["domain_config"],
-			"safe_mode,sbox_protect,owner,default_subdomain,quota,max_email,max_lists,max_ftp,max_subdomain,max_ssh,primary_dns,other_dns,primary_mx,other_mx,whois,hosting,gen_unresolved_domain_alias,txt_root_entry,txt_root_entry2,catchall_email,domain_parking,registrar_password,ttl,stats_login,stats_pass,stats_subdomain,wildcard_dns,domain_parking_type");
+			"safe_mode,sbox_protect,default_subdomain,quota,max_email,max_lists,max_ftp,max_subdomain,max_ssh,primary_dns,other_dns,primary_mx,other_mx,whois,hosting,gen_unresolved_domain_alias,txt_root_entry,txt_root_entry2,catchall_email,domain_parking,registrar_password,ttl,stats_login,stats_pass,stats_subdomain,wildcard_dns,domain_parking_type");
 		recreateAllRows($pro_mysql_subdomain_table,"domain_name='$dom_name'",$cur_dom["subdomains"],
 			"safe_mode,sbox_protect,subdomain_name,ip,register_globals,associated_txt_record,generate_vhost,ssl_ip,nameserver_for,ttl,srv_record,add_default_charset,customize_vhost",
 			",domain_name",",'$dom_name'");
