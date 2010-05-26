@@ -59,7 +59,7 @@ function drawRenewalTables (){
 
 	switch($sousrub){
 	case "spent":
-		$out .= _("<h3>Date selection</h3>");
+		$out .= "<h3>"._("Date selection")."</h3>";
 
 		if( !isset($_REQUEST["date_selector"])){
 			// Check the last record to get the last entry by default.

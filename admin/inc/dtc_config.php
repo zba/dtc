@@ -989,7 +989,7 @@ function drawVPSServerConfig(){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n == 0){
-			$out .= _("Create a mailing list @".$conf_main_domain." if you want to write to all users of this VPS server.");
+			$out .= _("Create a mailing list @").$conf_main_domain._(" if you want to write to all users of this VPS server.");
 		}else{
 			$out .= _("<h3>Owners of the VPS of <i>".$a["hostname"]."</i> are subscribed automatically to the following mailing list:</h3>");
 			$q2 = "SELECT * FROM $pro_mysql_vps_server_lists_table WHERE hostname='".$a["hostname"]."' ORDER BY list_name;";
