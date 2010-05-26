@@ -44,10 +44,17 @@ limit-ssh-login-rate () {
 	if [ -z "${SSH_LOGIN_TIME}" ] ; then
 		SSH_LOGIN_TIME=300
 	fi
+	# Get configured sshd ports (as a comma-separated list which iptables supports) from /etc/ssh/sshd_config
+	if [ -f /etc/ssh/sshd_config ] ; then
+		SSHD_CONFIG_PORT=`grep Port /etc/ssh/sshd_config | awk '{print $2}'`
+		TO_FIREWALL_PORT=`echo -n ${SSHD_CONFIG_PORT} | tr ' ' ','`
+	else
+		TO_FIREWALL_PORT="22"
+	fi
 	# Anti DoS SSH : deny ssh for 300 seconds after 10 attempts
 	# This can't be too high because of the use of scp
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --update --seconds ${SSH_LOGIN_TIME} --hitcount ${SSH_LOGIN_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport ${TO_FIREWALL_PORT} -i eth0 -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport ${TO_FIREWALL_PORT} -i eth0 -m state --state NEW -m recent --update --seconds ${SSH_LOGIN_TIME} --hitcount ${SSH_LOGIN_RATE} -j REJECT
 }
 
 limit-smtp-connection-rate () {
