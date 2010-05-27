@@ -17,19 +17,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: admin/dtcrm/product_manager.php:202
-#, fuzzy
 msgid " (Dedicated servers)"
-msgstr "Servidore dedicado"
+msgstr "Servidores dedicados"
 
 #: admin/dtcrm/product_manager.php:109
-#, fuzzy
 msgid " (VPS)"
-msgstr "VPS"
+msgstr " (VPS)"
 
 #: admin/dtcrm/product_manager.php:13
-#, fuzzy
 msgid " (shared)"
-msgstr "Compartido"
+msgstr " (Hosting Compartido)"
 
 #: shared/inc/forms/vps_monitoring.php:68
 #: shared/inc/forms/vps_monitoring.php:81
@@ -516,14 +513,12 @@ msgid "Add money"
 msgstr "Agregar dinero"
 
 #: admin/inc/dtc_config.php:1830
-#, fuzzy
 msgid "Add new NAS"
-msgstr "Agregar un nuevo usuario"
+msgstr "Agregar un nuevo NAS"
 
 #: admin/inc/dtc_config.php:1829
-#, fuzzy
 msgid "Add new NAS:"
-msgstr "Agregar un nuevo usuario"
+msgstr "Agregar un nuevo NAS:"
 
 #: shared/inc/forms/lists.php:410
 msgid "Added footer:"
@@ -1579,9 +1574,8 @@ msgid "Create New Mail Group"
 msgstr "Crear un nuevo Grupo de Correo"
 
 #: admin/inc/dtc_config.php:992
-#, fuzzy
 msgid "Create a mailing list @"
-msgstr "nueva lista de correo"
+msgstr "Crear una lista de correo @"
 
 #: shared/dtcrm/draw_handle.php:34
 msgid "Create a new handle"
@@ -1816,9 +1810,8 @@ msgid "Date"
 msgstr "Fecha"
 
 #: admin/inc/renewals.php:62
-#, fuzzy
 msgid "Date selection"
-msgstr "Selecci&oacute;n de registrador"
+msgstr "Selecci&oacute;n de fechas"
 
 #: admin/inc/renewals.php:735
 msgid "Days of expiration"
@@ -2000,9 +1993,8 @@ msgid "Dineromail Account: "
 msgstr "Cuenta de Dineromail: "
 
 #: admin/inc/dtc_config.php:1792
-#, fuzzy
 msgid "Dineromail:"
-msgstr "Usar Dineromail: "
+msgstr "Dineromail:"
 
 #: admin/dtcrm/product_manager.php:53 admin/dtcrm/product_manager.php:156
 #: admin/dtcrm/product_manager.php:249
@@ -2189,9 +2181,8 @@ msgid "Edit Mail Group"
 msgstr "Editar Grupo de Correo"
 
 #: admin/inc/dtc_config.php:1831
-#, fuzzy
 msgid "Edit a NAS:"
-msgstr "Editar una empresa:"
+msgstr "Editar un NAS:"
 
 #: admin/inc/dtc_config.php:2005
 msgid "Edit a company:"
@@ -3887,9 +3878,8 @@ msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr "Maxmem: no se puede obtener (tal vez se esta iniciando el sistema?)"
 
 #: admin/inc/dtc_config.php:1772
-#, fuzzy
 msgid "Maxmind API:"
-msgstr "Utilizar API de Maxmind: "
+msgstr "API de Maxmind:"
 
 #: admin/inc/dtc_config.php:1786
 msgid "Maxmind license key: "
@@ -3978,9 +3968,8 @@ msgid "Money spent"
 msgstr "Dinero gastado"
 
 #: admin/inc/dtc_config.php:1696
-#, fuzzy
 msgid "MoneyBookers (currently in development):"
-msgstr "Clave secreta de Moneybookers: "
+msgstr "Moneybookers (todav&iacute;a en desarrollo):"
 
 #: admin/inc/dtc_config.php:1711
 msgid "MoneyBookers business account email: "
@@ -5240,9 +5229,8 @@ msgid "Protect your mailbox with efficient tools:"
 msgstr "Proteja su casilla de correo con herramientas eficientes:"
 
 #: admin/inc/ip_usage_report.php:286
-#, fuzzy
 msgid "Provision"
-msgstr "Comisi&oacute;n"
+msgstr "Provisi&oacute;n"
 
 #: shared/drawlib/cc_code_popup.php:286
 msgid "Puerto Rico"
@@ -5273,9 +5261,8 @@ msgid "RAM"
 msgstr "RAM"
 
 #: admin/inc/dtc_config.php:366 admin/inc/dtc_config.php:979
-#, fuzzy
 msgid "RDNS hostname"
-msgstr "Hostname"
+msgstr "Hostname para RDNS"
 
 #: admin/inc/nav.php:78
 msgid "REINIT NAMED ZONES"
@@ -7891,9 +7878,8 @@ msgstr "alias"
 
 #: admin/inc/renewals.php:78 admin/inc/renewals.php:82
 #: admin/inc/renewals.php:87 admin/inc/renewals.php:91
-#, fuzzy
 msgid "all"
-msgstr "Instalar"
+msgstr "todo"
 
 #: shared/inc/forms/vps_installation.php:260
 msgid "applicance builder"
@@ -7921,13 +7907,12 @@ msgid "cz"
 msgstr "cz"
 
 #: admin/inc/ip_usage_report.php:254
-#, fuzzy
 msgid "dedicated"
-msgstr "Tiene un dedicado"
+msgstr "dedicado"
 
 #: admin/inc/ip_usage_report.php:257
 msgid "dom0"
-msgstr ""
+msgstr "dom0"
 
 #: admin/inc/dtc_config.php:899
 msgid "dom0 IP addresses"
