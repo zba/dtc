@@ -32,7 +32,8 @@ Upstream Authors:
 	- Feher Sandor <sfeher@bluesystem.hu> (Hungarian)
 	- Jose Toscano <josetg81wireless@yahoo.es> and
 	  Jorge Mendez <solutions@todoimporta.com> and
-	  Patricio Lopez <lankaster.lopez@gmail.com> (Espanol)
+	  Patricio Lopez <lankaster.lopez@gmail.com> and
+	  Fernando M. Kiernan <fkiernan@id.net.ar> (Espanol)
 	- Sebastian Pachla <seeb@seeb.net.pl> (Polish)
 	- Andrea Polte <andreapolte@gmx.de> and
 	  Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net> (German)
@@ -45,7 +46,9 @@ Upstream Authors:
 	- Frederic Boije <frederic.boije@gmail.com> (Swedish)
 
 	A big up to all my sponsors so far in Debian: Roberto C. Sanchez,
-	Daniel Baumann, and many others.
+	Daniel Baumann, and many others. Thanks to Myon, Enrico, Steffen and
+	Mez, for taking the time to review and process my Debian application.
+	Without all the above persons, DTC wouldn't be in Debian and Ubuntu.
 
 Files: admin/sa-learn
 Copyright: (C) 2004, Alexandre Jousset
