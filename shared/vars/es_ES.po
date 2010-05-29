@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 0.30.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-05-29 14:36-0300\n"
-"PO-Revision-Date: 2010-05-20 00:43-0300\n"
+"PO-Revision-Date: 2010-05-29 14:45-0300\n"
 "Last-Translator: Fernando Kiernan <fkiernan@id.net.ar>\n"
 "Language-Team: Yosu Cadilla <digitalwares@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr " archivo "
 
 #: admin/inc/dtc_config.php:992
 msgid " if you want to write to all users of this VPS server."
-msgstr ""
+msgstr " si quiere escribirle a todos los usuarios de este servidor VPS."
 
 #: shared/dtcrm/draw.php:79
 msgid " of data transfer each month."
@@ -243,7 +243,7 @@ msgstr ""
 "<br><br>\n"
 "\n"
 "<font size=\"+1\"><u>2. Correos</u></font><br>\n"
-"<u>2.1. ¿ Que puedo hacer ?</u><br><br>\n"
+"<u>2.1. Â¿ Que puedo hacer ?</u><br><br>\n"
 "Puedes a&ntilde;adir, borrar o modificar tus cuentas de correo electr&oacute;"
 "nico con esta herramienta.<br><br>\n"
 "\n"
@@ -445,7 +445,7 @@ msgstr "Activar copias de seguridad de FTP:"
 
 #: admin/mailgraph.php:45
 msgid "Active+incoming+maildrop"
-msgstr ""
+msgstr "Activos+entrantes+locales"
 
 #: admin/inc/draw_user_admin.php:413 admin/inc/draw_user_admin.php:433
 msgid "Add"
@@ -822,9 +822,8 @@ msgstr "Disponible"
 
 #: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
 #: admin/netusegraph.php:45 admin/netusegraph.php:46
-#, fuzzy
 msgid "Average"
-msgstr "Carga media de la CPU"
+msgstr "Promedio"
 
 #: shared/drawlib/cc_code_popup.php:118
 msgid "Azerbaijan"
@@ -1033,14 +1032,13 @@ msgstr "Bytes"
 
 #: shared/inc/forms/root_admin.php:360
 msgid "CGI-BIN protection"
-msgstr "Protección de los CGI-BIN"
+msgstr "ProtecciÃ³n de los CGI-BIN"
 
 #: admin/inc/graphs.php:7
 msgid "CPU Load Average"
 msgstr "Carga media de la CPU"
 
 #: admin/cpugraph.php:11 admin/cpugraph.php:54
-#, fuzzy
 msgid "CPU Load average"
 msgstr "Carga media de la CPU"
 
@@ -1050,11 +1048,11 @@ msgstr "Tiempo de CPU:"
 
 #: admin/cpugraph.php:94
 msgid "CPU load average Statistics for"
-msgstr ""
+msgstr "Estad&iacute;sticas de Carga media de la CPU para"
 
 #: admin/cpugraph.php:78
 msgid "CPU load average statistics for"
-msgstr ""
+msgstr "Estad&iacute;sticas de Carga media de la CPU para"
 
 #: shared/drawlib/cc_code_popup.php:140
 msgid "Cambodia"
@@ -1260,11 +1258,11 @@ msgstr "Click"
 
 #: admin/inc/dtc_config.php:1012
 msgid "Click on the list name to add the list to the server:"
-msgstr ""
+msgstr "Haga clieck en el nombre de la lista para agregar el servidor a la misma:"
 
 #: admin/inc/dtc_config.php:998
 msgid "Click on the list name to remove the list from the server:<br><br>"
-msgstr ""
+msgstr "Haga click en el nombre de la lista para removerla del servidor:<br><br>"
 
 #: admin/inc/renewals.php:425 admin/inc/renewals.php:666
 #: admin/inc/renewals.php:697 admin/inc/renewals.php:732
@@ -1415,7 +1413,7 @@ msgstr "Confirmar contrase&ntilde;a: "
 
 #: shared/inc/forms/email.php:286
 msgid "Confirm password: "
-msgstr "Confirmar contraseña:"
+msgstr "Confirmar contraseÃ±a:"
 
 #: shared/drawlib/cc_code_popup.php:153
 msgid "Congo"
@@ -1832,23 +1830,21 @@ msgid "Date selection"
 msgstr "Selecci&oacute;n de fechas"
 
 #: admin/cpugraph.php:97
-#, fuzzy
 msgid "Day CPU Load Graph"
-msgstr "Carga media de la CPU"
+msgstr "Gráfico por Día de Carga media de la CPU"
 
 #: admin/cpugraph.php:31 admin/mailgraph.php:21 admin/memgraph.php:21
 #: admin/netusegraph.php:21
 msgid "Day Graph"
-msgstr ""
+msgstr "Gráfico por Día"
 
 #: admin/mailgraph.php:89
-#, fuzzy
 msgid "Day Mail Queue Graph"
-msgstr "Gr&aacute;fico de Cola de correo"
+msgstr "Gr&aacute;fico por Día de Cola de correo"
 
 #: admin/memgraph.php:92 admin/netusegraph.php:90
 msgid "Day Netusage Graph"
-msgstr ""
+msgstr "Gr&aacute;fico por D&iacute;a de Uso de Red"
 
 #: admin/inc/renewals.php:735
 msgid "Days of expiration"
@@ -1913,7 +1909,7 @@ msgstr "TTL por defecto de los archivos de zona:"
 
 #: admin/mailgraph.php:46
 msgid "Deferred"
-msgstr ""
+msgstr "Diferidos"
 
 #: admin/inc/draw_user_admin.php:520
 msgid "Del"
@@ -2215,7 +2211,7 @@ msgstr "Ecuador"
 
 #: admin/inc/dtc_config.php:895
 msgid "Edit IPs"
-msgstr ""
+msgstr "Editar IPs"
 
 #: shared/inc/forms/aliases.php:24
 msgid "Edit Mail Group"
@@ -2620,7 +2616,7 @@ msgstr "Territorios Franceses de Europa"
 
 #: admin/memgraph.php:49
 msgid "Free swap"
-msgstr ""
+msgstr "Memoria de intercambio libre"
 
 #: shared/dtcrm/modules/ovh/main.php:480
 msgid "French"
@@ -2911,23 +2907,21 @@ msgid "Hostname: "
 msgstr "Hostname: "
 
 #: admin/cpugraph.php:96
-#, fuzzy
 msgid "Hour CPU Load Graph"
-msgstr "Carga media de la CPU"
+msgstr "Gráfico por Hora de Carga media de la CPU"
 
 #: admin/mailgraph.php:88
-#, fuzzy
 msgid "Hour Mail Queue Graph"
-msgstr "Gr&aacute;fico de Cola de correo"
+msgstr "Gr&aacute;fico por Hora de Cola de correo"
 
 #: admin/memgraph.php:91 admin/netusegraph.php:89
 msgid "Hour Netusage Graph"
-msgstr ""
+msgstr "Gráfico por Hora de Use de Red"
 
 #: admin/cpugraph.php:27 admin/mailgraph.php:17 admin/memgraph.php:17
 #: admin/netusegraph.php:17
 msgid "Hour graph"
-msgstr ""
+msgstr "Gráfico por Hora"
 
 #: shared/inc/forms/vps_graphs.php:35
 msgid "Hourly VPS usage statistics:"
@@ -3184,7 +3178,7 @@ msgstr ""
 
 #: admin/netusegraph.php:45
 msgid "Incoming network traffic in bytes"
-msgstr ""
+msgstr "Tráfico entrante en bytes"
 
 #: admin/inc/submit_root_querys.php:278
 msgid ""
@@ -3697,7 +3691,7 @@ msgstr "Informaci&oacute;n de acceso (login)"
 #: shared/inc/forms/email.php:395
 msgid "Login successfull. Please select a menu entry on the left..."
 msgstr ""
-"Inicio de sesión satisfactorio. Por favor seleccione una opci&oacute;n de "
+"Inicio de sesiÃ³n satisfactorio. Por favor seleccione una opci&oacute;n de "
 "men&uacute; de la izquierda..."
 
 #: admin/inc/draw_user_admin.php:346 client/recover_pass.php:53
@@ -3776,19 +3770,16 @@ msgid "Mail groups of "
 msgstr "Grupos de correo de "
 
 #: admin/mailgraph.php:86
-#, fuzzy
 msgid "Mail queue Statistics for"
-msgstr "Estad&iacute;sticas de la cola de correo"
+msgstr "Estad&iacute;sticas de la cola de correo para"
 
 #: admin/mailgraph.php:11
-#, fuzzy
 msgid "Mail queue statistics"
-msgstr "Estad&iacute;sticas de la cola de correo"
+msgstr "Estadísticas de la cola de correo"
 
 #: admin/mailgraph.php:70
-#, fuzzy
 msgid "Mail queue statistics for"
-msgstr "Estad&iacute;sticas de la cola de correo"
+msgstr "Estad&iacute;sticas de la cola de correo para"
 
 #: admin/deamons_state.php:133
 msgid "Mail restart"
@@ -3942,7 +3933,7 @@ msgstr "MaxMind dice"
 #: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
 #: admin/memgraph.php:46 admin/netusegraph.php:45 admin/netusegraph.php:46
 msgid "Maximum"
-msgstr ""
+msgstr "Máximo"
 
 #: shared/inc/forms/root_admin.php:471
 msgid "Maximum allowed size of POST"
@@ -3954,7 +3945,7 @@ msgstr "Tama&ntilde;o m&aacute;ximo de archivo subido"
 
 #: shared/inc/forms/root_admin.php:456
 msgid "Maximum memory used by PHP session"
-msgstr ""
+msgstr "Memoria M&aacute;xima usada por una sesi&oacute;n PHP"
 
 #: shared/inc/forms/lists.php:109
 msgid "Maximum number of lists reached"
@@ -3966,7 +3957,7 @@ msgstr "Ha alcanzado el n&uacute;mero m&aacute;ximo"
 
 #: shared/inc/forms/root_admin.php:461
 msgid "Maximum time a PHP script can execute"
-msgstr ""
+msgstr "M&aacute;ximo tiempo que un programa PHP puede ejecutarse"
 
 #: shared/inc/forms/vps_monitoring.php:152
 #: shared/inc/forms/vps_installation.php:100
@@ -3986,9 +3977,8 @@ msgid "Maxmind login: "
 msgstr "Login Maxmind: "
 
 #: admin/memgraph.php:48
-#, fuzzy
 msgid "Maxmium"
-msgstr "M&aacute;x email"
+msgstr "Máximo"
 
 #: shared/drawlib/cc_code_popup.php:248
 msgid "Mayotte"
@@ -4003,14 +3993,12 @@ msgid "Memory and Swap Usage "
 msgstr "Uso de Memoria y Swap "
 
 #: admin/memgraph.php:73
-#, fuzzy
 msgid "Memory and swap usage statistics for"
-msgstr "Uso de Memoria y Swap "
+msgstr "Estad&iacute;sticas de Uso de Memoria y Swap para"
 
 #: admin/memgraph.php:89
-#, fuzzy
 msgid "Memory and swap usage statistics usage for"
-msgstr "Uso de Memoria y Swap "
+msgstr "Estad&iacute;sticas de Uso de Memoria y Swap para"
 
 #: admin/dtcrm/product_manager.php:161 admin/dtcrm/product_manager.php:254
 #: shared/inc/forms/root_admin.php:644
@@ -4029,9 +4017,8 @@ msgstr ""
 "cambios."
 
 #: admin/memgraph.php:11
-#, fuzzy
 msgid "Memory usage stats"
-msgstr "Estad&iacute;sticas de uso por hora de VPS:"
+msgstr "Estadísticas de uso de memoria"
 
 #: shared/inc/forms/vps_monitoring.php:147
 #: shared/inc/forms/vps_installation.php:95
@@ -4057,11 +4044,11 @@ msgstr "Micronesia, Estados Federados de la"
 
 #: admin/memgraph.php:47 admin/memgraph.php:49
 msgid "Minimum"
-msgstr ""
+msgstr "Mínimo"
 
 #: admin/memgraph.php:47
 msgid "Minimum free memory"
-msgstr ""
+msgstr "Memoria libre"
 
 #: shared/inc/forms/lists.php:400
 msgid "Moderated:"
@@ -4124,23 +4111,21 @@ msgid "Monitoring"
 msgstr "Monitoreo"
 
 #: admin/cpugraph.php:99
-#, fuzzy
 msgid "Month CPU Load Graph"
-msgstr "Carga media de la CPU"
+msgstr "Gr&aacute;fico por Mes de Carga media de la CPU"
 
 #: admin/cpugraph.php:39 admin/mailgraph.php:29 admin/memgraph.php:29
 #: admin/netusegraph.php:29
 msgid "Month Graph"
-msgstr ""
+msgstr "Gráfico por Mes"
 
 #: admin/mailgraph.php:91
-#, fuzzy
 msgid "Month Mail Queue Graph"
-msgstr "Gr&aacute;fico de Cola de correo"
+msgstr "Gr&aacute;fico por Mes de Cola de correo"
 
 #: admin/memgraph.php:94 admin/netusegraph.php:92
 msgid "Month Netusage Graph"
-msgstr ""
+msgstr "Gr&aacute; por Mes de Uso de Red"
 
 #: admin/inc/dtc_config.php:743
 msgid "Monthly"
@@ -4371,19 +4356,16 @@ msgid "Network Traffic Statistics"
 msgstr "Estad&iacute;sticas de tr&aacute;fico de red"
 
 #: admin/netusegraph.php:87
-#, fuzzy
 msgid "Network Usage Statistics for"
-msgstr "Estad&iacute;sticas de tr&aacute;fico de red"
+msgstr "Estad&iacute;sticas de Uso de red para"
 
 #: admin/netusegraph.php:11
-#, fuzzy
 msgid "Network transfer"
-msgstr "Transferencia bancaria"
+msgstr "Transferencia de red"
 
 #: admin/netusegraph.php:71
-#, fuzzy
 msgid "Network usage statistics for"
-msgstr "Estad&iacute;sticas de tr&aacute;fico de red"
+msgstr "Estad&iacute;sticas de Uso de Red para"
 
 #: shared/inc/forms/vps_monitoring.php:102
 msgid "Network:"
@@ -4830,7 +4812,7 @@ msgstr "Otros servidores MX (backup):"
 
 #: admin/netusegraph.php:46
 msgid "Outgoing network traffic in bytes:"
-msgstr ""
+msgstr "Tráfico saliente en bytes"
 
 #: shared/inc/forms/my_account.php:232
 msgid "Outstanding payments:"
@@ -4846,7 +4828,7 @@ msgstr "Propietario:"
 
 #: admin/inc/dtc_config.php:994
 msgid "Owners of the VPS of"
-msgstr ""
+msgstr "Usuarios del VPS de"
 
 #: client/new_account.php:156
 msgid "PAYMENT CANCELLED"
@@ -5149,7 +5131,7 @@ msgstr "PhpMyAdmin"
 
 #: shared/inc/forms/vps_installation.php:322
 msgid "Physical console last display and ssh access:"
-msgstr "Ultima presentación de la consola y acceso ssh:"
+msgstr "Ultima presentaciÃ³n de la consola y acceso ssh:"
 
 #: shared/inc/forms/vps_monitoring.php:258
 msgid "Ping: "
@@ -6199,7 +6181,7 @@ msgstr "Estad&iacute;sticas del dominio"
 
 #: shared/inc/draw.php:457 shared/inc/draw.php:461 shared/inc/draw.php:498
 msgid "Statistics:"
-msgstr "Estadísticas:"
+msgstr "EstadÃ­sticas:"
 
 #: shared/inc/forms/ticket.php:173
 msgid "Status"
@@ -6352,18 +6334,16 @@ msgid "Support ticket forward email address:"
 msgstr "Direcci&oacute;n de email para reenv&iacute;o de ticket de soporte:"
 
 #: shared/inc/draw.php:523
-#, fuzzy
 msgid "Support ticket system"
-msgstr "Tickets de soporte"
+msgstr "Sistema de Tickets de soporte"
 
 #: shared/inc/draw.php:364
 msgid "Support tickets"
 msgstr "Tickets de soporte"
 
 #: shared/inc/draw.php:521
-#, fuzzy
 msgid "Support tickets:"
-msgstr "Tickets de soporte"
+msgstr "Tickets de soporte:"
 
 #: shared/drawlib/cc_code_popup.php:315
 msgid "Suriname"
@@ -6797,7 +6777,7 @@ msgid ""
 "protection. Please go in the subdomains section of this domain name to "
 "finish the setup."
 msgstr ""
-"Esto agregara un nuevo switch si/no de subdominio en la interfaz del cliente "
+"Esto agregar&aacute; un nuevo switch si/no de subdominio en la interfaz del cliente "
 "del dominio. Desactivar esta casilla NO ES SUFICIENTE para desactivar la "
 "protecci&oacute;n CGI-BIN sbox. Por favor vaya a la secci&oacute;n de "
 "subdominios de este dominio para finalizar la configuraci&oacute;n."
@@ -6890,9 +6870,8 @@ msgid "Total Price"
 msgstr "Precio Total"
 
 #: admin/memgraph.php:46
-#, fuzzy
 msgid "Total available memory"
-msgstr "N&uacute;mero total de bases de datos:"
+msgstr "Memoria total disponible"
 
 #: admin/inc/renewals.php:199
 msgid "Total cost"
@@ -6922,9 +6901,8 @@ msgid "Total recurring incomes per month:"
 msgstr "Total de ingresos recurrentes por mes:"
 
 #: admin/memgraph.php:48
-#, fuzzy
 msgid "Total swap"
-msgstr "Impuesto total"
+msgstr "Memoria de intercambio total"
 
 #: admin/inc/renewals.php:207
 msgid "Total tax"
@@ -7554,23 +7532,21 @@ msgstr ""
 "autorizaci&oacute;n, por favor contacte a soporte."
 
 #: admin/cpugraph.php:98
-#, fuzzy
 msgid "Week CPU Load Graph"
-msgstr "Carga media de la CPU"
+msgstr "Gr&aacute;fico por Semana de Carga media de la CPU"
 
 #: admin/cpugraph.php:35 admin/mailgraph.php:25 admin/memgraph.php:25
 #: admin/netusegraph.php:25
 msgid "Week Graph"
-msgstr ""
+msgstr "Gráfico por Semana"
 
 #: admin/mailgraph.php:90
-#, fuzzy
 msgid "Week Mail Queue Graph"
-msgstr "Gr&aacute;fico de Cola de correo"
+msgstr "Gr&aacute;fico por Semana de Cola de correo"
 
 #: admin/memgraph.php:93 admin/netusegraph.php:91
 msgid "Week Netusage Graph"
-msgstr ""
+msgstr "Gr&aacute;fico por Semana de Uso de Red"
 
 #: admin/inc/dtc_config.php:743
 msgid "Weekly"
@@ -7692,23 +7668,21 @@ msgstr ""
 "n excedido!"
 
 #: admin/cpugraph.php:100
-#, fuzzy
 msgid "Year CPU Load Graph"
-msgstr "Carga media de la CPU"
+msgstr "Gr&aacute;fco por A&ntilde;o de Carga media de la CPU"
 
 #: admin/cpugraph.php:43 admin/mailgraph.php:33 admin/memgraph.php:33
 #: admin/netusegraph.php:33
 msgid "Year Graph"
-msgstr ""
+msgstr "Gráfico por Año"
 
 #: admin/mailgraph.php:92
-#, fuzzy
 msgid "Year Mail Queue Graph"
-msgstr "Gr&aacute;fico de Cola de correo"
+msgstr "Gr&aacute;fico por A&ntilde;o de Cola de correo"
 
 #: admin/memgraph.php:95 admin/netusegraph.php:93
 msgid "Year Netusage Graph"
-msgstr ""
+msgstr "Gr&aacute;fico por A&ntilde;o de Uso de Red"
 
 #: shared/inc/forms/vps_graphs.php:60
 msgid "Yearly VPS usage statistics:"
@@ -8111,7 +8085,7 @@ msgstr "Constructor de aplicaciones"
 
 #: admin/inc/dtc_config.php:994
 msgid "are subscribed automatically to the following mailing list:"
-msgstr ""
+msgstr "son suscriptos autom&aacute;ticamente a la seguiente lista de correo:"
 
 #: shared/inc/forms/vps_installation.php:239
 msgid "boot on your own .iso image"
@@ -8299,7 +8273,7 @@ msgstr "condiciones de venta"
 
 #: admin/inc/ip_usage_report.php:251
 msgid "ssl"
-msgstr ""
+msgstr "ssl"
 
 #: shared/dtcrm/draw_adddomain.php:413
 #: shared/dtcrm/draw_transferdomain.php:218
@@ -8308,7 +8282,7 @@ msgstr "para actualizar el men&uacute; o a&ntilde;adir otro dominio."
 
 #: admin/inc/ip_usage_report.php:248
 msgid "vps"
-msgstr ""
+msgstr "vps"
 
 #: admin/inc/dtc_config.php:581
 msgid "when resubscribing all users."
@@ -8363,7 +8337,7 @@ msgid "yes"
 msgstr "s&iacute;"
 
 #~ msgid " maybe there are no logs yet?"
-#~ msgstr " quizás todavía no hay logs?"
+#~ msgstr " quizÃ¡s todavÃ­a no hay logs?"
 
 #~ msgid "Add a domain"
 #~ msgstr "A&ntilde;adir un dominio para este usuario:"
@@ -8391,7 +8365,7 @@ msgstr "s&iacute;"
 
 #~ msgid "Could not get VPS install log. Error: "
 #~ msgstr ""
-#~ "No ha sido posible obtener el registro de instalación del VPS. Error:"
+#~ "No ha sido posible obtener el registro de instalaciÃ³n del VPS. Error:"
 
 #~ msgid "Dedicated server IP addresses"
 #~ msgstr "Direcci&oacute;n IP"
@@ -8412,7 +8386,7 @@ msgstr "s&iacute;"
 #~ msgstr "Guinea"
 
 #~ msgid "Installation log:"
-#~ msgstr "Instalación"
+#~ msgstr "InstalaciÃ³n"
 
 #~ msgid "Mailbox type"
 #~ msgstr "Cuentas de correo:"
@@ -8444,7 +8418,7 @@ msgstr "s&iacute;"
 #~ msgstr "Usar el servidor LIVE (no el de pruebas)"
 
 #~ msgid "User or password is incorrect!"
-#~ msgstr "Nombre de usuario o contraseña incorrectos !"
+#~ msgstr "Nombre de usuario o contraseÃ±a incorrectos !"
 
 #~ msgid "What"
 #~ msgstr "Qu&eacute;"
