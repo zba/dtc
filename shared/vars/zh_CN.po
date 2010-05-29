@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Thomas Goirand <thomas@goirand.fr>, 2002-2007.
 #
-#: shared/inc/forms/root_admin.php:456 shared/inc/forms/root_admin.php:461
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 13:44+0800\n"
+"POT-Creation-Date: 2010-05-29 14:36-0300\n"
 "PO-Revision-Date: 2009-08-27 14:52+0800\n"
 "Last-Translator: Wei Cao <caowei@gplhost.com>\n"
 "Language-Team: Wei Cao <caowei@gplhost.com>\n"
@@ -341,10 +340,6 @@ msgstr ""
 "</div>\n"
 "</font>"
 
-#: admin/inc/dtc_config.php:994
-msgid "<h3>Owners of the VPS of <i>"
-msgstr ""
-
 #: shared/inc/sql/database.php:135
 msgid "A MySQL user by that name already exists. Please choose another one."
 msgstr "已存在一个相同的MySQL 用户。请重新选择一个名字。"
@@ -416,6 +411,10 @@ msgstr "操作"
 #: admin/inc/dtc_config.php:723
 msgid "Activate FTP backups:"
 msgstr "激活FTP备份："
+
+#: admin/mailgraph.php:45
+msgid "Active+incoming+maildrop"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:413 admin/inc/draw_user_admin.php:433
 msgid "Add"
@@ -784,6 +783,12 @@ msgstr "自动生成子域名列表（用 | 来分隔）："
 msgid "Available"
 msgstr "可用"
 
+#: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
+#: admin/netusegraph.php:45 admin/netusegraph.php:46
+#, fuzzy
+msgid "Average"
+msgstr "CPU 平均载入"
+
 #: shared/drawlib/cc_code_popup.php:118
 msgid "Azerbaijan"
 msgstr "阿塞拜疆"
@@ -999,9 +1004,22 @@ msgstr "CGI-BIN 安全防护"
 msgid "CPU Load Average"
 msgstr "CPU 平均载入"
 
+#: admin/cpugraph.php:11 admin/cpugraph.php:54
+#, fuzzy
+msgid "CPU Load average"
+msgstr "CPU 平均载入"
+
 #: shared/inc/forms/vps_monitoring.php:105
 msgid "CPU Time:"
 msgstr "CPU 时间："
+
+#: admin/cpugraph.php:94
+msgid "CPU load average Statistics for"
+msgstr ""
+
+#: admin/cpugraph.php:78
+msgid "CPU load average statistics for"
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:140
 msgid "Cambodia"
@@ -1762,6 +1780,25 @@ msgstr "日期"
 msgid "Date selection"
 msgstr "注册选择"
 
+#: admin/cpugraph.php:97
+#, fuzzy
+msgid "Day CPU Load Graph"
+msgstr "CPU 平均载入"
+
+#: admin/cpugraph.php:31 admin/mailgraph.php:21 admin/memgraph.php:21
+#: admin/netusegraph.php:21
+msgid "Day Graph"
+msgstr ""
+
+#: admin/mailgraph.php:89
+#, fuzzy
+msgid "Day Mail Queue Graph"
+msgstr "邮件排列图表"
+
+#: admin/memgraph.php:92 admin/netusegraph.php:90
+msgid "Day Netusage Graph"
+msgstr ""
+
 #: admin/inc/renewals.php:735
 msgid "Days of expiration"
 msgstr "已过期的日期"
@@ -1822,6 +1859,10 @@ msgstr "默认子域名："
 #: admin/inc/dtc_config.php:1310
 msgid "Defaut TTL for your zonefiles:"
 msgstr "默认 TTL 对于您的 zonefiles："
+
+#: admin/mailgraph.php:46
+msgid "Deferred"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:520
 #, fuzzy
@@ -2545,6 +2586,10 @@ msgstr "法国"
 msgid "France (European Territories)"
 msgstr "法属南部领地"
 
+#: admin/memgraph.php:49
+msgid "Free swap"
+msgstr ""
+
 #: shared/dtcrm/modules/ovh/main.php:480
 #, fuzzy
 msgid "French"
@@ -2837,6 +2882,25 @@ msgstr "主机名："
 msgid "Hostname: "
 msgstr "主机名："
 
+#: admin/cpugraph.php:96
+#, fuzzy
+msgid "Hour CPU Load Graph"
+msgstr "CPU 平均载入"
+
+#: admin/mailgraph.php:88
+#, fuzzy
+msgid "Hour Mail Queue Graph"
+msgstr "邮件排列图表"
+
+#: admin/memgraph.php:91 admin/netusegraph.php:89
+msgid "Hour Netusage Graph"
+msgstr ""
+
+#: admin/cpugraph.php:27 admin/mailgraph.php:17 admin/memgraph.php:17
+#: admin/netusegraph.php:17
+msgid "Hour graph"
+msgstr ""
+
 #: shared/inc/forms/vps_graphs.php:35
 msgid "Hourly VPS usage statistics:"
 msgstr "每小时的VPS 使用量统计："
@@ -3073,6 +3137,10 @@ msgstr ""
 "在这些区域中标记了*一个* 需要过滤的标题信息。如果这个区域中填写的是这样的内"
 "容：<br><br>Received:<br>Message-ID:<br><br>那么所有的包含这些内容的标题邮件"
 "都将被删除。From: 和 Return-Path:是无论如何都会被删除的。"
+
+#: admin/netusegraph.php:45
+msgid "Incoming network traffic in bytes"
+msgstr ""
 
 #: admin/inc/submit_root_querys.php:278
 msgid ""
@@ -3645,6 +3713,21 @@ msgstr "邮箱服务器文件写入"
 msgid "Mail groups of "
 msgstr "邮件组的"
 
+#: admin/mailgraph.php:86
+#, fuzzy
+msgid "Mail queue Statistics for"
+msgstr "邮件排列统计"
+
+#: admin/mailgraph.php:11
+#, fuzzy
+msgid "Mail queue statistics"
+msgstr "邮件排列统计"
+
+#: admin/mailgraph.php:70
+#, fuzzy
+msgid "Mail queue statistics for"
+msgstr "邮件排列统计"
+
 #: admin/deamons_state.php:133
 msgid "Mail restart"
 msgstr "邮件重启"
@@ -3797,12 +3880,21 @@ msgstr "邮件系统可使用的最大内存空间："
 msgid "MaxMind says"
 msgstr "MaxMind 答复"
 
+#: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
+#: admin/memgraph.php:46 admin/netusegraph.php:45 admin/netusegraph.php:46
+msgid "Maximum"
+msgstr ""
+
 #: shared/inc/forms/root_admin.php:471
 msgid "Maximum allowed size of POST"
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:466
 msgid "Maximum allowed size of uploaded file"
+msgstr ""
+
+#: shared/inc/forms/root_admin.php:456
+msgid "Maximum memory used by PHP session"
 msgstr ""
 
 #: shared/inc/forms/lists.php:109
@@ -3813,6 +3905,10 @@ msgstr "可到达的最大列表数"
 #, fuzzy
 msgid "Maximum number reached"
 msgstr "可到达的最大列表数"
+
+#: shared/inc/forms/root_admin.php:461
+msgid "Maximum time a PHP script can execute"
+msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:152
 #: shared/inc/forms/vps_installation.php:100
@@ -3832,6 +3928,11 @@ msgstr "Maxmind 证书密码："
 msgid "Maxmind login: "
 msgstr "Maxmind 登录："
 
+#: admin/memgraph.php:48
+#, fuzzy
+msgid "Maxmium"
+msgstr "最大email"
+
 #: shared/drawlib/cc_code_popup.php:248
 msgid "Mayotte"
 msgstr "马约特岛"
@@ -3842,6 +3943,16 @@ msgstr "支付类型"
 
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
+msgstr "内存和Swap用量 "
+
+#: admin/memgraph.php:73
+#, fuzzy
+msgid "Memory and swap usage statistics for"
+msgstr "内存和Swap用量 "
+
+#: admin/memgraph.php:89
+#, fuzzy
+msgid "Memory and swap usage statistics usage for"
 msgstr "内存和Swap用量 "
 
 #: admin/dtcrm/product_manager.php:161 admin/dtcrm/product_manager.php:254
@@ -3857,6 +3968,11 @@ msgid ""
 msgstr ""
 "内存大小MBytes。您需要在/etc/xen/xenXX 开始配置文件中手动改变 RAM 大小 并且重"
 "启VPS 来激活这些改变。"
+
+#: admin/memgraph.php:11
+#, fuzzy
+msgid "Memory usage stats"
+msgstr "每小时的VPS 使用量统计："
 
 #: shared/inc/forms/vps_monitoring.php:147
 #: shared/inc/forms/vps_installation.php:95
@@ -3879,6 +3995,14 @@ msgstr "墨西哥"
 #: shared/drawlib/cc_code_popup.php:250
 msgid "Micronesia, Federated States Of"
 msgstr "密克罗尼西亚联邦政府"
+
+#: admin/memgraph.php:47 admin/memgraph.php:49
+msgid "Minimum"
+msgstr ""
+
+#: admin/memgraph.php:47
+msgid "Minimum free memory"
+msgstr ""
 
 #: shared/inc/forms/lists.php:400
 msgid "Moderated:"
@@ -3946,6 +4070,25 @@ msgstr "蒙古"
 #: shared/inc/draw.php:181
 msgid "Monitoring"
 msgstr "监控"
+
+#: admin/cpugraph.php:99
+#, fuzzy
+msgid "Month CPU Load Graph"
+msgstr "CPU 平均载入"
+
+#: admin/cpugraph.php:39 admin/mailgraph.php:29 admin/memgraph.php:29
+#: admin/netusegraph.php:29
+msgid "Month Graph"
+msgstr ""
+
+#: admin/mailgraph.php:91
+#, fuzzy
+msgid "Month Mail Queue Graph"
+msgstr "邮件排列图表"
+
+#: admin/memgraph.php:94 admin/netusegraph.php:92
+msgid "Month Netusage Graph"
+msgstr ""
 
 #: admin/inc/dtc_config.php:743
 msgid "Monthly"
@@ -4168,6 +4311,21 @@ msgstr "网络"
 
 #: admin/inc/graphs.php:5
 msgid "Network Traffic Statistics"
+msgstr "网络流量统计"
+
+#: admin/netusegraph.php:87
+#, fuzzy
+msgid "Network Usage Statistics for"
+msgstr "网络流量统计"
+
+#: admin/netusegraph.php:11
+#, fuzzy
+msgid "Network transfer"
+msgstr "转账"
+
+#: admin/netusegraph.php:71
+#, fuzzy
+msgid "Network usage statistics for"
 msgstr "网络流量统计"
 
 #: shared/inc/forms/vps_monitoring.php:102
@@ -4624,6 +4782,10 @@ msgstr "其他DNS服务器："
 msgid "Other MX (backup) servers:"
 msgstr "其它MX(备用)服务器："
 
+#: admin/netusegraph.php:46
+msgid "Outgoing network traffic in bytes:"
+msgstr ""
+
 #: shared/inc/forms/my_account.php:232
 msgid "Outstanding payments:"
 msgstr "未支付的款项："
@@ -4635,6 +4797,10 @@ msgstr "个人模板："
 #: shared/inc/forms/lists.php:399
 msgid "Owner:"
 msgstr "所有者："
+
+#: admin/inc/dtc_config.php:994
+msgid "Owners of the VPS of"
+msgstr ""
 
 #: client/new_account.php:156
 msgid "PAYMENT CANCELLED"
@@ -6145,8 +6311,18 @@ msgstr "支持标签email地址："
 msgid "Support ticket forward email address:"
 msgstr "支持标签email地址："
 
+#: shared/inc/draw.php:523
+#, fuzzy
+msgid "Support ticket system"
+msgstr "支持标签"
+
 #: shared/inc/draw.php:364
 msgid "Support tickets"
+msgstr "支持标签"
+
+#: shared/inc/draw.php:521
+#, fuzzy
+msgid "Support tickets:"
 msgstr "支持标签"
 
 #: shared/drawlib/cc_code_popup.php:315
@@ -6622,6 +6798,11 @@ msgstr "总计"
 msgid "Total Price"
 msgstr "总价"
 
+#: admin/memgraph.php:46
+#, fuzzy
+msgid "Total available memory"
+msgstr "数据库的总数："
+
 #: admin/inc/renewals.php:199
 msgid "Total cost"
 msgstr "总费用"
@@ -6648,6 +6829,11 @@ msgstr "总价："
 #: admin/inc/renewals.php:493
 msgid "Total recurring incomes per month:"
 msgstr "每月循环收益总数："
+
+#: admin/memgraph.php:48
+#, fuzzy
+msgid "Total swap"
+msgstr "总税："
 
 #: admin/inc/renewals.php:207
 msgid "Total tax"
@@ -7273,6 +7459,25 @@ msgstr "Webalizer 国家分布图："
 msgid "Webnic doesn't support auth code retrivial, please ask support."
 msgstr ""
 
+#: admin/cpugraph.php:98
+#, fuzzy
+msgid "Week CPU Load Graph"
+msgstr "CPU 平均载入"
+
+#: admin/cpugraph.php:35 admin/mailgraph.php:25 admin/memgraph.php:25
+#: admin/netusegraph.php:25
+msgid "Week Graph"
+msgstr ""
+
+#: admin/mailgraph.php:90
+#, fuzzy
+msgid "Week Mail Queue Graph"
+msgstr "邮件排列图表"
+
+#: admin/memgraph.php:93 admin/netusegraph.php:91
+msgid "Week Netusage Graph"
+msgstr ""
+
 #: admin/inc/dtc_config.php:743
 msgid "Weekly"
 msgstr "每周"
@@ -7386,6 +7591,25 @@ msgstr "错误登录或者密码。"
 #: shared/inc/fetch.php:39 shared/inc/fetch.php:370 shared/inc/fetch.php:375
 msgid "Wrong user or password, or timeout expired!"
 msgstr "用户或密码错误，或者已过期！"
+
+#: admin/cpugraph.php:100
+#, fuzzy
+msgid "Year CPU Load Graph"
+msgstr "CPU 平均载入"
+
+#: admin/cpugraph.php:43 admin/mailgraph.php:33 admin/memgraph.php:33
+#: admin/netusegraph.php:33
+msgid "Year Graph"
+msgstr ""
+
+#: admin/mailgraph.php:92
+#, fuzzy
+msgid "Year Mail Queue Graph"
+msgstr "邮件排列图表"
+
+#: admin/memgraph.php:95 admin/netusegraph.php:93
+msgid "Year Netusage Graph"
+msgstr ""
 
 #: shared/inc/forms/vps_graphs.php:60
 msgid "Yearly VPS usage statistics:"
@@ -7752,6 +7976,10 @@ msgstr "安装"
 #: shared/inc/forms/vps_installation.php:260
 msgid "applicance builder"
 msgstr "applicance builder"
+
+#: admin/inc/dtc_config.php:994
+msgid "are subscribed automatically to the following mailing list:"
+msgstr ""
 
 #: shared/inc/forms/vps_installation.php:239
 msgid "boot on your own .iso image"

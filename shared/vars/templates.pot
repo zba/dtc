@@ -3,19 +3,125 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: shared/inc/forms/root_admin.php:456 shared/inc/forms/root_admin.php:461
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 13:44+0800\n"
+"POT-Creation-Date: 2010-05-29 14:36-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: admin/cpugraph.php:11 admin/cpugraph.php:54
+msgid "CPU Load average"
+msgstr ""
+
+#: admin/cpugraph.php:27 admin/mailgraph.php:17 admin/memgraph.php:17
+#: admin/netusegraph.php:17
+msgid "Hour graph"
+msgstr ""
+
+#: admin/cpugraph.php:31 admin/mailgraph.php:21 admin/memgraph.php:21
+#: admin/netusegraph.php:21
+msgid "Day Graph"
+msgstr ""
+
+#: admin/cpugraph.php:35 admin/mailgraph.php:25 admin/memgraph.php:25
+#: admin/netusegraph.php:25
+msgid "Week Graph"
+msgstr ""
+
+#: admin/cpugraph.php:39 admin/mailgraph.php:29 admin/memgraph.php:29
+#: admin/netusegraph.php:29
+msgid "Month Graph"
+msgstr ""
+
+#: admin/cpugraph.php:43 admin/mailgraph.php:33 admin/memgraph.php:33
+#: admin/netusegraph.php:33
+msgid "Year Graph"
+msgstr ""
+
+#: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
+#: admin/memgraph.php:46 admin/netusegraph.php:45 admin/netusegraph.php:46
+msgid "Maximum"
+msgstr ""
+
+#: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
+#: admin/netusegraph.php:45 admin/netusegraph.php:46
+msgid "Average"
+msgstr ""
+
+#: admin/cpugraph.php:78
+msgid "CPU load average statistics for"
+msgstr ""
+
+#: admin/cpugraph.php:94
+msgid "CPU load average Statistics for"
+msgstr ""
+
+#: admin/cpugraph.php:96
+msgid "Hour CPU Load Graph"
+msgstr ""
+
+#: admin/cpugraph.php:97
+msgid "Day CPU Load Graph"
+msgstr ""
+
+#: admin/cpugraph.php:98
+msgid "Week CPU Load Graph"
+msgstr ""
+
+#: admin/cpugraph.php:99
+msgid "Month CPU Load Graph"
+msgstr ""
+
+#: admin/cpugraph.php:100
+msgid "Year CPU Load Graph"
+msgstr ""
+
+#: admin/mailgraph.php:11
+msgid "Mail queue statistics"
+msgstr ""
+
+#: admin/mailgraph.php:45
+msgid "Active+incoming+maildrop"
+msgstr ""
+
+#: admin/mailgraph.php:46
+msgid "Deferred"
+msgstr ""
+
+#: admin/mailgraph.php:70
+msgid "Mail queue statistics for"
+msgstr ""
+
+#: admin/mailgraph.php:86
+msgid "Mail queue Statistics for"
+msgstr ""
+
+#: admin/mailgraph.php:88
+msgid "Hour Mail Queue Graph"
+msgstr ""
+
+#: admin/mailgraph.php:89
+msgid "Day Mail Queue Graph"
+msgstr ""
+
+#: admin/mailgraph.php:90
+msgid "Week Mail Queue Graph"
+msgstr ""
+
+#: admin/mailgraph.php:91
+msgid "Month Mail Queue Graph"
+msgstr ""
+
+#: admin/mailgraph.php:92
+msgid "Year Mail Queue Graph"
+msgstr ""
 
 #: admin/deamons_state.php:94 admin/inc/draw_user_admin.php:403
 #: admin/inc/draw_user_admin.php:478
@@ -130,6 +236,82 @@ msgstr ""
 #: admin/deamons_state.php:295 admin/deamons_state.php:301
 #: admin/deamons_state.php:307 admin/deamons_state.php:313
 msgid "ERROR!"
+msgstr ""
+
+#: admin/memgraph.php:11
+msgid "Memory usage stats"
+msgstr ""
+
+#: admin/memgraph.php:46
+msgid "Total available memory"
+msgstr ""
+
+#: admin/memgraph.php:47
+msgid "Minimum free memory"
+msgstr ""
+
+#: admin/memgraph.php:47 admin/memgraph.php:49
+msgid "Minimum"
+msgstr ""
+
+#: admin/memgraph.php:48
+msgid "Total swap"
+msgstr ""
+
+#: admin/memgraph.php:48
+msgid "Maxmium"
+msgstr ""
+
+#: admin/memgraph.php:49
+msgid "Free swap"
+msgstr ""
+
+#: admin/memgraph.php:73
+msgid "Memory and swap usage statistics for"
+msgstr ""
+
+#: admin/memgraph.php:89
+msgid "Memory and swap usage statistics usage for"
+msgstr ""
+
+#: admin/memgraph.php:91 admin/netusegraph.php:89
+msgid "Hour Netusage Graph"
+msgstr ""
+
+#: admin/memgraph.php:92 admin/netusegraph.php:90
+msgid "Day Netusage Graph"
+msgstr ""
+
+#: admin/memgraph.php:93 admin/netusegraph.php:91
+msgid "Week Netusage Graph"
+msgstr ""
+
+#: admin/memgraph.php:94 admin/netusegraph.php:92
+msgid "Month Netusage Graph"
+msgstr ""
+
+#: admin/memgraph.php:95 admin/netusegraph.php:93
+msgid "Year Netusage Graph"
+msgstr ""
+
+#: admin/netusegraph.php:11
+msgid "Network transfer"
+msgstr ""
+
+#: admin/netusegraph.php:45
+msgid "Incoming network traffic in bytes"
+msgstr ""
+
+#: admin/netusegraph.php:46
+msgid "Outgoing network traffic in bytes:"
+msgstr ""
+
+#: admin/netusegraph.php:71
+msgid "Network usage statistics for"
+msgstr ""
+
+#: admin/netusegraph.php:87
+msgid "Network Usage Statistics for"
 msgstr ""
 
 #: admin/authme.php:13
@@ -1367,7 +1549,11 @@ msgid " if you want to write to all users of this VPS server."
 msgstr ""
 
 #: admin/inc/dtc_config.php:994
-msgid "<h3>Owners of the VPS of <i>"
+msgid "Owners of the VPS of"
+msgstr ""
+
+#: admin/inc/dtc_config.php:994
+msgid "are subscribed automatically to the following mailing list:"
 msgstr ""
 
 #: admin/inc/dtc_config.php:998
@@ -4803,6 +4989,14 @@ msgstr ""
 msgid "Resseller child accounts"
 msgstr ""
 
+#: shared/inc/draw.php:521
+msgid "Support tickets:"
+msgstr ""
+
+#: shared/inc/draw.php:523
+msgid "Support ticket system"
+msgstr ""
+
 #: shared/inc/draw.php:525
 msgid "Help:"
 msgstr ""
@@ -6695,8 +6889,16 @@ msgstr ""
 msgid "Redirect to:"
 msgstr ""
 
+#: shared/inc/forms/root_admin.php:456
+msgid "Maximum memory used by PHP session"
+msgstr ""
+
 #: shared/inc/forms/root_admin.php:458
 msgid "PHP memory limit"
+msgstr ""
+
+#: shared/inc/forms/root_admin.php:461
+msgid "Maximum time a PHP script can execute"
 msgstr ""
 
 #: shared/inc/forms/root_admin.php:463

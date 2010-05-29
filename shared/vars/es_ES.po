@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Thomas Goirand <thomas@goirand.fr>, 2002-2007.
 #
-#: shared/inc/forms/root_admin.php:456 shared/inc/forms/root_admin.php:461
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.30.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 13:44+0800\n"
+"POT-Creation-Date: 2010-05-29 14:36-0300\n"
 "PO-Revision-Date: 2010-05-20 00:43-0300\n"
 "Last-Translator: Fernando Kiernan <fkiernan@id.net.ar>\n"
 "Language-Team: Yosu Cadilla <digitalwares@hotmail.com>\n"
@@ -369,10 +368,6 @@ msgstr ""
 "servidor sea mas r&aacute;pida.<br><br><br>\n"
 "</div>"
 
-#: admin/inc/dtc_config.php:994
-msgid "<h3>Owners of the VPS of <i>"
-msgstr ""
-
 #: shared/inc/sql/database.php:135
 msgid "A MySQL user by that name already exists. Please choose another one."
 msgstr "Ya existe un usuario MYSQL con ese nombre. Por favor escoja otro."
@@ -447,6 +442,10 @@ msgstr "Acci&oacute;n"
 #: admin/inc/dtc_config.php:723
 msgid "Activate FTP backups:"
 msgstr "Activar copias de seguridad de FTP:"
+
+#: admin/mailgraph.php:45
+msgid "Active+incoming+maildrop"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:413 admin/inc/draw_user_admin.php:433
 msgid "Add"
@@ -821,6 +820,12 @@ msgstr "Lista de subdominios para auto generar (separados por |):"
 msgid "Available"
 msgstr "Disponible"
 
+#: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
+#: admin/netusegraph.php:45 admin/netusegraph.php:46
+#, fuzzy
+msgid "Average"
+msgstr "Carga media de la CPU"
+
 #: shared/drawlib/cc_code_popup.php:118
 msgid "Azerbaijan"
 msgstr "Azerbaji&aacute;n"
@@ -1034,9 +1039,22 @@ msgstr "Protección de los CGI-BIN"
 msgid "CPU Load Average"
 msgstr "Carga media de la CPU"
 
+#: admin/cpugraph.php:11 admin/cpugraph.php:54
+#, fuzzy
+msgid "CPU Load average"
+msgstr "Carga media de la CPU"
+
 #: shared/inc/forms/vps_monitoring.php:105
 msgid "CPU Time:"
 msgstr "Tiempo de CPU:"
+
+#: admin/cpugraph.php:94
+msgid "CPU load average Statistics for"
+msgstr ""
+
+#: admin/cpugraph.php:78
+msgid "CPU load average statistics for"
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:140
 msgid "Cambodia"
@@ -1813,6 +1831,25 @@ msgstr "Fecha"
 msgid "Date selection"
 msgstr "Selecci&oacute;n de fechas"
 
+#: admin/cpugraph.php:97
+#, fuzzy
+msgid "Day CPU Load Graph"
+msgstr "Carga media de la CPU"
+
+#: admin/cpugraph.php:31 admin/mailgraph.php:21 admin/memgraph.php:21
+#: admin/netusegraph.php:21
+msgid "Day Graph"
+msgstr ""
+
+#: admin/mailgraph.php:89
+#, fuzzy
+msgid "Day Mail Queue Graph"
+msgstr "Gr&aacute;fico de Cola de correo"
+
+#: admin/memgraph.php:92 admin/netusegraph.php:90
+msgid "Day Netusage Graph"
+msgstr ""
+
 #: admin/inc/renewals.php:735
 msgid "Days of expiration"
 msgstr "D&iacute;as de expiraci&oacute;n"
@@ -1873,6 +1910,10 @@ msgstr "Subdominio por defecto: "
 #: admin/inc/dtc_config.php:1310
 msgid "Defaut TTL for your zonefiles:"
 msgstr "TTL por defecto de los archivos de zona:"
+
+#: admin/mailgraph.php:46
+msgid "Deferred"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:520
 msgid "Del"
@@ -2577,6 +2618,10 @@ msgstr "Francia"
 msgid "France (European Territories)"
 msgstr "Territorios Franceses de Europa"
 
+#: admin/memgraph.php:49
+msgid "Free swap"
+msgstr ""
+
 #: shared/dtcrm/modules/ovh/main.php:480
 msgid "French"
 msgstr "Franc&eacute;s"
@@ -2865,6 +2910,25 @@ msgstr "Hostname:"
 msgid "Hostname: "
 msgstr "Hostname: "
 
+#: admin/cpugraph.php:96
+#, fuzzy
+msgid "Hour CPU Load Graph"
+msgstr "Carga media de la CPU"
+
+#: admin/mailgraph.php:88
+#, fuzzy
+msgid "Hour Mail Queue Graph"
+msgstr "Gr&aacute;fico de Cola de correo"
+
+#: admin/memgraph.php:91 admin/netusegraph.php:89
+msgid "Hour Netusage Graph"
+msgstr ""
+
+#: admin/cpugraph.php:27 admin/mailgraph.php:17 admin/memgraph.php:17
+#: admin/netusegraph.php:17
+msgid "Hour graph"
+msgstr ""
+
 #: shared/inc/forms/vps_graphs.php:35
 msgid "Hourly VPS usage statistics:"
 msgstr "Estad&iacute;sticas de uso por hora de VPS:"
@@ -3117,6 +3181,10 @@ msgstr ""
 "el archivo consiste de:<br><br>Received:<br>Message-ID:<br><br>todas las "
 "apariciones de estos encabezados en el correo entrante a la lista ser&aacute;"
 "n borradas. From: y Return-Path: se borran siempre."
+
+#: admin/netusegraph.php:45
+msgid "Incoming network traffic in bytes"
+msgstr ""
 
 #: admin/inc/submit_root_querys.php:278
 msgid ""
@@ -3707,6 +3775,21 @@ msgstr "Archivos generados de correo"
 msgid "Mail groups of "
 msgstr "Grupos de correo de "
 
+#: admin/mailgraph.php:86
+#, fuzzy
+msgid "Mail queue Statistics for"
+msgstr "Estad&iacute;sticas de la cola de correo"
+
+#: admin/mailgraph.php:11
+#, fuzzy
+msgid "Mail queue statistics"
+msgstr "Estad&iacute;sticas de la cola de correo"
+
+#: admin/mailgraph.php:70
+#, fuzzy
+msgid "Mail queue statistics for"
+msgstr "Estad&iacute;sticas de la cola de correo"
+
 #: admin/deamons_state.php:133
 msgid "Mail restart"
 msgstr "Reinicio de correo"
@@ -3856,6 +3939,11 @@ msgstr "Tama&ntilde;o m&aacute;ximo de archivo de subida"
 msgid "MaxMind says"
 msgstr "MaxMind dice"
 
+#: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
+#: admin/memgraph.php:46 admin/netusegraph.php:45 admin/netusegraph.php:46
+msgid "Maximum"
+msgstr ""
+
 #: shared/inc/forms/root_admin.php:471
 msgid "Maximum allowed size of POST"
 msgstr "Tama&ntilde;o m&aacute;ximo de POST permitido"
@@ -3864,6 +3952,10 @@ msgstr "Tama&ntilde;o m&aacute;ximo de POST permitido"
 msgid "Maximum allowed size of uploaded file"
 msgstr "Tama&ntilde;o m&aacute;ximo de archivo subido"
 
+#: shared/inc/forms/root_admin.php:456
+msgid "Maximum memory used by PHP session"
+msgstr ""
+
 #: shared/inc/forms/lists.php:109
 msgid "Maximum number of lists reached"
 msgstr "Ha alcanzado el n&uacute;mero m&aacute;ximo de listas"
@@ -3871,6 +3963,10 @@ msgstr "Ha alcanzado el n&uacute;mero m&aacute;ximo de listas"
 #: shared/drawlib/templates.php:1332
 msgid "Maximum number reached"
 msgstr "Ha alcanzado el n&uacute;mero m&aacute;ximo"
+
+#: shared/inc/forms/root_admin.php:461
+msgid "Maximum time a PHP script can execute"
+msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:152
 #: shared/inc/forms/vps_installation.php:100
@@ -3889,6 +3985,11 @@ msgstr "Clave de licencia Maxmind: "
 msgid "Maxmind login: "
 msgstr "Login Maxmind: "
 
+#: admin/memgraph.php:48
+#, fuzzy
+msgid "Maxmium"
+msgstr "M&aacute;x email"
+
 #: shared/drawlib/cc_code_popup.php:248
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -3899,6 +4000,16 @@ msgstr "M&eacute;todos de pago"
 
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
+msgstr "Uso de Memoria y Swap "
+
+#: admin/memgraph.php:73
+#, fuzzy
+msgid "Memory and swap usage statistics for"
+msgstr "Uso de Memoria y Swap "
+
+#: admin/memgraph.php:89
+#, fuzzy
+msgid "Memory and swap usage statistics usage for"
 msgstr "Uso de Memoria y Swap "
 
 #: admin/dtcrm/product_manager.php:161 admin/dtcrm/product_manager.php:254
@@ -3916,6 +4027,11 @@ msgstr ""
 "manualmente el tama&ntilde;o de la RAM en /etc/xen/xenXX en el archivo de "
 "configuraci&oacute;n de inicio y luego reiniciar la VPS para activar los "
 "cambios."
+
+#: admin/memgraph.php:11
+#, fuzzy
+msgid "Memory usage stats"
+msgstr "Estad&iacute;sticas de uso por hora de VPS:"
 
 #: shared/inc/forms/vps_monitoring.php:147
 #: shared/inc/forms/vps_installation.php:95
@@ -3938,6 +4054,14 @@ msgstr "M&eacute;xico"
 #: shared/drawlib/cc_code_popup.php:250
 msgid "Micronesia, Federated States Of"
 msgstr "Micronesia, Estados Federados de la"
+
+#: admin/memgraph.php:47 admin/memgraph.php:49
+msgid "Minimum"
+msgstr ""
+
+#: admin/memgraph.php:47
+msgid "Minimum free memory"
+msgstr ""
 
 #: shared/inc/forms/lists.php:400
 msgid "Moderated:"
@@ -3998,6 +4122,25 @@ msgstr "Mongolia"
 #: shared/inc/draw.php:181
 msgid "Monitoring"
 msgstr "Monitoreo"
+
+#: admin/cpugraph.php:99
+#, fuzzy
+msgid "Month CPU Load Graph"
+msgstr "Carga media de la CPU"
+
+#: admin/cpugraph.php:39 admin/mailgraph.php:29 admin/memgraph.php:29
+#: admin/netusegraph.php:29
+msgid "Month Graph"
+msgstr ""
+
+#: admin/mailgraph.php:91
+#, fuzzy
+msgid "Month Mail Queue Graph"
+msgstr "Gr&aacute;fico de Cola de correo"
+
+#: admin/memgraph.php:94 admin/netusegraph.php:92
+msgid "Month Netusage Graph"
+msgstr ""
 
 #: admin/inc/dtc_config.php:743
 msgid "Monthly"
@@ -4225,6 +4368,21 @@ msgstr "Red"
 
 #: admin/inc/graphs.php:5
 msgid "Network Traffic Statistics"
+msgstr "Estad&iacute;sticas de tr&aacute;fico de red"
+
+#: admin/netusegraph.php:87
+#, fuzzy
+msgid "Network Usage Statistics for"
+msgstr "Estad&iacute;sticas de tr&aacute;fico de red"
+
+#: admin/netusegraph.php:11
+#, fuzzy
+msgid "Network transfer"
+msgstr "Transferencia bancaria"
+
+#: admin/netusegraph.php:71
+#, fuzzy
+msgid "Network usage statistics for"
 msgstr "Estad&iacute;sticas de tr&aacute;fico de red"
 
 #: shared/inc/forms/vps_monitoring.php:102
@@ -4670,6 +4828,10 @@ msgstr "Otros servidores DNS:"
 msgid "Other MX (backup) servers:"
 msgstr "Otros servidores MX (backup):"
 
+#: admin/netusegraph.php:46
+msgid "Outgoing network traffic in bytes:"
+msgstr ""
+
 #: shared/inc/forms/my_account.php:232
 msgid "Outstanding payments:"
 msgstr "Pagos destacados:"
@@ -4681,6 +4843,10 @@ msgstr "Plantilla propia:"
 #: shared/inc/forms/lists.php:399
 msgid "Owner:"
 msgstr "Propietario:"
+
+#: admin/inc/dtc_config.php:994
+msgid "Owners of the VPS of"
+msgstr ""
 
 #: client/new_account.php:156
 msgid "PAYMENT CANCELLED"
@@ -6185,8 +6351,18 @@ msgstr "Direcci&oacute;n de email para ticket de soporte:"
 msgid "Support ticket forward email address:"
 msgstr "Direcci&oacute;n de email para reenv&iacute;o de ticket de soporte:"
 
+#: shared/inc/draw.php:523
+#, fuzzy
+msgid "Support ticket system"
+msgstr "Tickets de soporte"
+
 #: shared/inc/draw.php:364
 msgid "Support tickets"
+msgstr "Tickets de soporte"
+
+#: shared/inc/draw.php:521
+#, fuzzy
+msgid "Support tickets:"
 msgstr "Tickets de soporte"
 
 #: shared/drawlib/cc_code_popup.php:315
@@ -6713,6 +6889,11 @@ msgstr "Total"
 msgid "Total Price"
 msgstr "Precio Total"
 
+#: admin/memgraph.php:46
+#, fuzzy
+msgid "Total available memory"
+msgstr "N&uacute;mero total de bases de datos:"
+
 #: admin/inc/renewals.php:199
 msgid "Total cost"
 msgstr "Costo total"
@@ -6739,6 +6920,11 @@ msgstr "Precio total: "
 #: admin/inc/renewals.php:493
 msgid "Total recurring incomes per month:"
 msgstr "Total de ingresos recurrentes por mes:"
+
+#: admin/memgraph.php:48
+#, fuzzy
+msgid "Total swap"
+msgstr "Impuesto total"
 
 #: admin/inc/renewals.php:207
 msgid "Total tax"
@@ -7367,6 +7553,25 @@ msgstr ""
 "Webnic no soporta la recuperaci&oacute;n del c&oacute;digo de "
 "autorizaci&oacute;n, por favor contacte a soporte."
 
+#: admin/cpugraph.php:98
+#, fuzzy
+msgid "Week CPU Load Graph"
+msgstr "Carga media de la CPU"
+
+#: admin/cpugraph.php:35 admin/mailgraph.php:25 admin/memgraph.php:25
+#: admin/netusegraph.php:25
+msgid "Week Graph"
+msgstr ""
+
+#: admin/mailgraph.php:90
+#, fuzzy
+msgid "Week Mail Queue Graph"
+msgstr "Gr&aacute;fico de Cola de correo"
+
+#: admin/memgraph.php:93 admin/netusegraph.php:91
+msgid "Week Netusage Graph"
+msgstr ""
+
 #: admin/inc/dtc_config.php:743
 msgid "Weekly"
 msgstr "Semanalmente"
@@ -7485,6 +7690,25 @@ msgid "Wrong user or password, or timeout expired!"
 msgstr ""
 "Nombre de usuario o contrase&ntilde;a incorrecta o tiempo de ejecuci&oacute;"
 "n excedido!"
+
+#: admin/cpugraph.php:100
+#, fuzzy
+msgid "Year CPU Load Graph"
+msgstr "Carga media de la CPU"
+
+#: admin/cpugraph.php:43 admin/mailgraph.php:33 admin/memgraph.php:33
+#: admin/netusegraph.php:33
+msgid "Year Graph"
+msgstr ""
+
+#: admin/mailgraph.php:92
+#, fuzzy
+msgid "Year Mail Queue Graph"
+msgstr "Gr&aacute;fico de Cola de correo"
+
+#: admin/memgraph.php:95 admin/netusegraph.php:93
+msgid "Year Netusage Graph"
+msgstr ""
 
 #: shared/inc/forms/vps_graphs.php:60
 msgid "Yearly VPS usage statistics:"
@@ -7884,6 +8108,10 @@ msgstr "todo"
 #: shared/inc/forms/vps_installation.php:260
 msgid "applicance builder"
 msgstr "Constructor de aplicaciones"
+
+#: admin/inc/dtc_config.php:994
+msgid "are subscribed automatically to the following mailing list:"
+msgstr ""
 
 #: shared/inc/forms/vps_installation.php:239
 msgid "boot on your own .iso image"

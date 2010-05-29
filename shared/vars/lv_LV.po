@@ -1,9 +1,8 @@
-#: shared/inc/forms/root_admin.php:456 shared/inc/forms/root_admin.php:461
 msgid ""
 msgstr ""
 "Project-Id-Version: Domain Technologie Control (DTC) - git 2008.11.19\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-26 13:44+0800\n"
+"POT-Creation-Date: 2010-05-29 14:36-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Coool (Nauris Ešenvalds) <coool@vivonet.lv>\n"
 "Language-Team: Coool (Nauris Ešenvalds) <coool@vivonet.lv>\n"
@@ -221,10 +220,6 @@ msgid ""
 "</font>"
 msgstr ""
 
-#: admin/inc/dtc_config.php:994
-msgid "<h3>Owners of the VPS of <i>"
-msgstr ""
-
 #: shared/inc/sql/database.php:135
 #, fuzzy
 msgid "A MySQL user by that name already exists. Please choose another one."
@@ -300,6 +295,10 @@ msgstr "Darbība"
 #: admin/inc/dtc_config.php:723
 msgid "Activate FTP backups:"
 msgstr "Aktivizēt rezerves kopijas veidošanu pa FTP:"
+
+#: admin/mailgraph.php:45
+msgid "Active+incoming+maildrop"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:413 admin/inc/draw_user_admin.php:433
 msgid "Add"
@@ -662,6 +661,12 @@ msgstr ""
 msgid "Available"
 msgstr ""
 
+#: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
+#: admin/netusegraph.php:45 admin/netusegraph.php:46
+#, fuzzy
+msgid "Average"
+msgstr "Procesora vidējā noslodze"
+
 #: shared/drawlib/cc_code_popup.php:118
 msgid "Azerbaijan"
 msgstr ""
@@ -880,8 +885,21 @@ msgstr ""
 msgid "CPU Load Average"
 msgstr "Procesora vidējā noslodze"
 
+#: admin/cpugraph.php:11 admin/cpugraph.php:54
+#, fuzzy
+msgid "CPU Load average"
+msgstr "Procesora vidējā noslodze"
+
 #: shared/inc/forms/vps_monitoring.php:105
 msgid "CPU Time:"
+msgstr ""
+
+#: admin/cpugraph.php:94
+msgid "CPU load average Statistics for"
+msgstr ""
+
+#: admin/cpugraph.php:78
+msgid "CPU load average statistics for"
 msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:140
@@ -1633,6 +1651,24 @@ msgstr ""
 msgid "Date selection"
 msgstr "Apraksts"
 
+#: admin/cpugraph.php:97
+#, fuzzy
+msgid "Day CPU Load Graph"
+msgstr "Procesora vidējā noslodze"
+
+#: admin/cpugraph.php:31 admin/mailgraph.php:21 admin/memgraph.php:21
+#: admin/netusegraph.php:21
+msgid "Day Graph"
+msgstr ""
+
+#: admin/mailgraph.php:89
+msgid "Day Mail Queue Graph"
+msgstr ""
+
+#: admin/memgraph.php:92 admin/netusegraph.php:90
+msgid "Day Netusage Graph"
+msgstr ""
+
 #: admin/inc/renewals.php:735
 msgid "Days of expiration"
 msgstr ""
@@ -1690,6 +1726,10 @@ msgstr "Noklusētais apakšdomēns: "
 
 #: admin/inc/dtc_config.php:1310
 msgid "Defaut TTL for your zonefiles:"
+msgstr ""
+
+#: admin/mailgraph.php:46
+msgid "Deferred"
 msgstr ""
 
 #: admin/inc/draw_user_admin.php:520
@@ -2406,6 +2446,10 @@ msgstr "Francija"
 msgid "France (European Territories)"
 msgstr ""
 
+#: admin/memgraph.php:49
+msgid "Free swap"
+msgstr ""
+
 #: shared/dtcrm/modules/ovh/main.php:480
 #, fuzzy
 msgid "French"
@@ -2690,6 +2734,24 @@ msgstr ""
 msgid "Hostname: "
 msgstr ""
 
+#: admin/cpugraph.php:96
+#, fuzzy
+msgid "Hour CPU Load Graph"
+msgstr "Procesora vidējā noslodze"
+
+#: admin/mailgraph.php:88
+msgid "Hour Mail Queue Graph"
+msgstr ""
+
+#: admin/memgraph.php:91 admin/netusegraph.php:89
+msgid "Hour Netusage Graph"
+msgstr ""
+
+#: admin/cpugraph.php:27 admin/mailgraph.php:17 admin/memgraph.php:17
+#: admin/netusegraph.php:17
+msgid "Hour graph"
+msgstr ""
+
 #: shared/inc/forms/vps_graphs.php:35
 msgid "Hourly VPS usage statistics:"
 msgstr ""
@@ -2904,6 +2966,10 @@ msgid ""
 "fields are like this:<br><br>Received:<br>Message-ID:<br><br>Then all "
 "occurences of these headers in incoming list mail will be deleted. From: and "
 "Return-Path: are deleted no matter what."
+msgstr ""
+
+#: admin/netusegraph.php:45
+msgid "Incoming network traffic in bytes"
 msgstr ""
 
 #: admin/inc/submit_root_querys.php:278
@@ -3461,6 +3527,18 @@ msgstr ""
 msgid "Mail groups of "
 msgstr ""
 
+#: admin/mailgraph.php:86
+msgid "Mail queue Statistics for"
+msgstr ""
+
+#: admin/mailgraph.php:11
+msgid "Mail queue statistics"
+msgstr ""
+
+#: admin/mailgraph.php:70
+msgid "Mail queue statistics for"
+msgstr ""
+
 #: admin/deamons_state.php:133
 msgid "Mail restart"
 msgstr ""
@@ -3610,6 +3688,11 @@ msgstr ""
 msgid "MaxMind says"
 msgstr ""
 
+#: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
+#: admin/memgraph.php:46 admin/netusegraph.php:45 admin/netusegraph.php:46
+msgid "Maximum"
+msgstr ""
+
 #: shared/inc/forms/root_admin.php:471
 msgid "Maximum allowed size of POST"
 msgstr ""
@@ -3618,12 +3701,20 @@ msgstr ""
 msgid "Maximum allowed size of uploaded file"
 msgstr ""
 
+#: shared/inc/forms/root_admin.php:456
+msgid "Maximum memory used by PHP session"
+msgstr ""
+
 #: shared/inc/forms/lists.php:109
 msgid "Maximum number of lists reached"
 msgstr ""
 
 #: shared/drawlib/templates.php:1332
 msgid "Maximum number reached"
+msgstr ""
+
+#: shared/inc/forms/root_admin.php:461
+msgid "Maximum time a PHP script can execute"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:152
@@ -3643,6 +3734,10 @@ msgstr ""
 msgid "Maxmind login: "
 msgstr ""
 
+#: admin/memgraph.php:48
+msgid "Maxmium"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:248
 msgid "Mayotte"
 msgstr "Majota"
@@ -3653,6 +3748,14 @@ msgstr ""
 
 #: admin/inc/graphs.php:9
 msgid "Memory and Swap Usage "
+msgstr ""
+
+#: admin/memgraph.php:73
+msgid "Memory and swap usage statistics for"
+msgstr ""
+
+#: admin/memgraph.php:89
+msgid "Memory and swap usage statistics usage for"
 msgstr ""
 
 #: admin/dtcrm/product_manager.php:161 admin/dtcrm/product_manager.php:254
@@ -3666,6 +3769,11 @@ msgid ""
 "etc/xen/xenXX startup configuration file and reboot the VPS to activate the "
 "changes."
 msgstr ""
+
+#: admin/memgraph.php:11
+#, fuzzy
+msgid "Memory usage stats"
+msgstr "Servisu darbības stāvoklis"
 
 #: shared/inc/forms/vps_monitoring.php:147
 #: shared/inc/forms/vps_installation.php:95
@@ -3687,6 +3795,14 @@ msgstr "Meksika"
 
 #: shared/drawlib/cc_code_popup.php:250
 msgid "Micronesia, Federated States Of"
+msgstr ""
+
+#: admin/memgraph.php:47 admin/memgraph.php:49
+msgid "Minimum"
+msgstr ""
+
+#: admin/memgraph.php:47
+msgid "Minimum free memory"
 msgstr ""
 
 #: shared/inc/forms/lists.php:400
@@ -3748,6 +3864,24 @@ msgstr "Mongolija"
 
 #: shared/inc/draw.php:181
 msgid "Monitoring"
+msgstr ""
+
+#: admin/cpugraph.php:99
+#, fuzzy
+msgid "Month CPU Load Graph"
+msgstr "Procesora vidējā noslodze"
+
+#: admin/cpugraph.php:39 admin/mailgraph.php:29 admin/memgraph.php:29
+#: admin/netusegraph.php:29
+msgid "Month Graph"
+msgstr ""
+
+#: admin/mailgraph.php:91
+msgid "Month Mail Queue Graph"
+msgstr ""
+
+#: admin/memgraph.php:94 admin/netusegraph.php:92
+msgid "Month Netusage Graph"
 msgstr ""
 
 #: admin/inc/dtc_config.php:743
@@ -3968,6 +4102,20 @@ msgstr ""
 
 #: admin/inc/graphs.php:5
 msgid "Network Traffic Statistics"
+msgstr "Tīkla trafika statistika"
+
+#: admin/netusegraph.php:87
+#, fuzzy
+msgid "Network Usage Statistics for"
+msgstr "Tīkla trafika statistika"
+
+#: admin/netusegraph.php:11
+msgid "Network transfer"
+msgstr ""
+
+#: admin/netusegraph.php:71
+#, fuzzy
+msgid "Network usage statistics for"
 msgstr "Tīkla trafika statistika"
 
 #: shared/inc/forms/vps_monitoring.php:102
@@ -4417,6 +4565,10 @@ msgstr ""
 msgid "Other MX (backup) servers:"
 msgstr ""
 
+#: admin/netusegraph.php:46
+msgid "Outgoing network traffic in bytes:"
+msgstr ""
+
 #: shared/inc/forms/my_account.php:232
 msgid "Outstanding payments:"
 msgstr ""
@@ -4428,6 +4580,10 @@ msgstr ""
 #: shared/inc/forms/lists.php:399
 msgid "Owner:"
 msgstr "Īpašnieks:"
+
+#: admin/inc/dtc_config.php:994
+msgid "Owners of the VPS of"
+msgstr ""
 
 #: client/new_account.php:156
 msgid "PAYMENT CANCELLED"
@@ -5914,8 +6070,16 @@ msgstr ""
 msgid "Support ticket forward email address:"
 msgstr ""
 
+#: shared/inc/draw.php:523
+msgid "Support ticket system"
+msgstr ""
+
 #: shared/inc/draw.php:364
 msgid "Support tickets"
+msgstr ""
+
+#: shared/inc/draw.php:521
+msgid "Support tickets:"
 msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:315
@@ -6355,6 +6519,11 @@ msgstr ""
 msgid "Total Price"
 msgstr ""
 
+#: admin/memgraph.php:46
+#, fuzzy
+msgid "Total available memory"
+msgstr "Kopējais datu bāzes skaits:"
+
 #: admin/inc/renewals.php:199
 msgid "Total cost"
 msgstr ""
@@ -6380,6 +6549,10 @@ msgstr ""
 
 #: admin/inc/renewals.php:493
 msgid "Total recurring incomes per month:"
+msgstr ""
+
+#: admin/memgraph.php:48
+msgid "Total swap"
 msgstr ""
 
 #: admin/inc/renewals.php:207
@@ -6996,6 +7169,24 @@ msgstr ""
 msgid "Webnic doesn't support auth code retrivial, please ask support."
 msgstr ""
 
+#: admin/cpugraph.php:98
+#, fuzzy
+msgid "Week CPU Load Graph"
+msgstr "Procesora vidējā noslodze"
+
+#: admin/cpugraph.php:35 admin/mailgraph.php:25 admin/memgraph.php:25
+#: admin/netusegraph.php:25
+msgid "Week Graph"
+msgstr ""
+
+#: admin/mailgraph.php:90
+msgid "Week Mail Queue Graph"
+msgstr ""
+
+#: admin/memgraph.php:93 admin/netusegraph.php:91
+msgid "Week Netusage Graph"
+msgstr ""
+
 #: admin/inc/dtc_config.php:743
 msgid "Weekly"
 msgstr ""
@@ -7103,6 +7294,24 @@ msgstr "Nomainīt savu paroli:"
 
 #: shared/inc/fetch.php:39 shared/inc/fetch.php:370 shared/inc/fetch.php:375
 msgid "Wrong user or password, or timeout expired!"
+msgstr ""
+
+#: admin/cpugraph.php:100
+#, fuzzy
+msgid "Year CPU Load Graph"
+msgstr "Procesora vidējā noslodze"
+
+#: admin/cpugraph.php:43 admin/mailgraph.php:33 admin/memgraph.php:33
+#: admin/netusegraph.php:33
+msgid "Year Graph"
+msgstr ""
+
+#: admin/mailgraph.php:92
+msgid "Year Mail Queue Graph"
+msgstr ""
+
+#: admin/memgraph.php:95 admin/netusegraph.php:93
+msgid "Year Netusage Graph"
 msgstr ""
 
 #: shared/inc/forms/vps_graphs.php:60
@@ -7447,6 +7656,10 @@ msgstr "Uzstādīt"
 
 #: shared/inc/forms/vps_installation.php:260
 msgid "applicance builder"
+msgstr ""
+
+#: admin/inc/dtc_config.php:994
+msgid "are subscribed automatically to the following mailing list:"
 msgstr ""
 
 #: shared/inc/forms/vps_installation.php:239
