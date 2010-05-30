@@ -1108,7 +1108,7 @@ function drawGeneralConfig(){
                 "edit_callback" => "generalDaemonCallback",
 		"cols" => array (
 			"mta_type" => array(
-				"legend" => "MTA <a href=\"http://www.wikipedia.org/wiki/MTA\" target=\"_blank\">*</a> : ",
+				"legend" => "MTA <a href=\"http://www.wikipedia.org/wiki/Mail_transfer_agent\" target=\"_blank\">*</a> : ",
 				"type" => "radio",
 				"values" => array("qmail","postfix")),
 			"use_cyrus" => array(

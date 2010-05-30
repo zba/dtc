@@ -1000,15 +1000,15 @@ function smartDate($date){
 		$plop = $ar[0] +1;
 		$plop -= 1;
 		$out .= $plop." " ;
-		if($ar[0] > 1)	$out .= _("years") else $out .= _("year") ;
+		if($ar[0] > 1)	$out .= _("years"); else $out .= _("year") ;
 	}
 	if($ar[1] > 0 ){
 		$out .= $ar[1]." ";
-		if($ar[1] > 1)	$out .= "months" else $out .= _("month") ;
+		if($ar[1] > 1)	$out .= "months"; else $out .= _("month") ;
 	}
 	if($ar[2] > 0 ){
 		$out .= $ar[2]." ";
-		if($ar[2] > 1)	$out .= "days" else $out .= _("day") ;
+		if($ar[2] > 1)	$out .= "days"; else $out .= _("day") ;
 	}
 	return $out;
 }
