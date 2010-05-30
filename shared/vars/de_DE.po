@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-29 14:36-0300\n"
+"POT-Creation-Date: 2010-05-30 03:26-0300\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net>\n"
 "Language-Team: German <de@li.org>\n"
@@ -19,6 +19,11 @@ msgstr ""
 #, fuzzy
 msgid " (Dedicated servers)"
 msgstr "dedizierte Server: "
+
+#: admin/dtcrm/product_manager.php:277
+#, fuzzy
+msgid " (SSL IPs)"
+msgstr "Anzahl CPUs: "
 
 #: admin/dtcrm/product_manager.php:109
 #, fuzzy
@@ -416,6 +421,30 @@ msgstr "Aktion"
 msgid "Activate FTP backups:"
 msgstr "Aktiviere FTP-Backups:"
 
+#: admin/active_prods_graph.php:86
+#, fuzzy
+msgid "Active Products Statistics for"
+msgstr "Statistik der Mailqueue"
+
+#: admin/active_prods_graph.php:45
+msgid "Active VPS"
+msgstr ""
+
+#: admin/active_prods_graph.php:46
+#, fuzzy
+msgid "Active dedicated servers"
+msgstr "dedizierte Server: "
+
+#: admin/active_prods_graph.php:70
+#, fuzzy
+msgid "Active product statistics for"
+msgstr "Statistik der Mailqueue"
+
+#: admin/active_prods_graph.php:44
+#, fuzzy
+msgid "Active shared accounts"
+msgstr "Anzahl aktiver SSH-Konten:"
+
 #: admin/mailgraph.php:45
 msgid "Active+incoming+maildrop"
 msgstr ""
@@ -574,6 +603,10 @@ msgstr "Partnerprogramm"
 #: shared/drawlib/cc_code_popup.php:104
 msgid "Afghanistan"
 msgstr "Afghanistan"
+
+#: shared/dtcrm/draw.php:160
+msgid "After upgrade, you will have"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:533
 msgid "Age"
@@ -798,6 +831,8 @@ msgstr "verfügbar"
 
 #: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
 #: admin/netusegraph.php:45 admin/netusegraph.php:46
+#: admin/active_prods_graph.php:44 admin/active_prods_graph.php:45
+#: admin/active_prods_graph.php:46
 #, fuzzy
 msgid "Average"
 msgstr "durchschnittliche CPU-Load"
@@ -1013,6 +1048,10 @@ msgstr "Bytes"
 msgid "CGI-BIN protection"
 msgstr "CGI-BIN-Schutz"
 
+#: admin/inc/monitor.php:99
+msgid "CPU"
+msgstr ""
+
 #: admin/inc/graphs.php:7
 msgid "CPU Load Average"
 msgstr "durchschnittliche CPU-Load"
@@ -1032,6 +1071,10 @@ msgstr ""
 
 #: admin/cpugraph.php:78
 msgid "CPU load average statistics for"
+msgstr ""
+
+#: shared/dtcrm/draw.php:107
+msgid "Calculate price"
 msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:140
@@ -1816,7 +1859,7 @@ msgid "Day CPU Load Graph"
 msgstr "durchschnittliche CPU-Load"
 
 #: admin/cpugraph.php:31 admin/mailgraph.php:21 admin/memgraph.php:21
-#: admin/netusegraph.php:21
+#: admin/netusegraph.php:21 admin/active_prods_graph.php:21
 msgid "Day Graph"
 msgstr ""
 
@@ -1828,6 +1871,11 @@ msgstr "Diagramm der Mailqueue"
 #: admin/memgraph.php:92 admin/netusegraph.php:90
 msgid "Day Netusage Graph"
 msgstr ""
+
+#: admin/active_prods_graph.php:89
+#, fuzzy
+msgid "Day Sales Graph"
+msgstr "Diagramm der Mailqueue"
 
 #: admin/inc/renewals.php:735
 msgid "Days of expiration"
@@ -2180,11 +2228,11 @@ msgstr "Dominikanische Republik"
 msgid "Duch"
 msgstr ""
 
-#: shared/inc/forms/subdomain.php:289
+#: shared/inc/forms/subdomain.php:291
 msgid "Dynamic IP update login: "
 msgstr "Dynamic-IP Login:"
 
-#: shared/inc/forms/subdomain.php:295
+#: shared/inc/forms/subdomain.php:297
 msgid "Dynamic IP update password: "
 msgstr "Dynamic-IP Passwort: "
 
@@ -2569,6 +2617,11 @@ msgstr "Vorname:"
 msgid "First name: "
 msgstr "Vorname: "
 
+#: shared/inc/forms/ticket.php:89
+#, fuzzy
+msgid "First query date"
+msgstr "Datum der ersten Anfrage: "
+
 #: admin/inc/draw_user_admin.php:194
 msgid "First query date: "
 msgstr "Datum der ersten Anfrage: "
@@ -2585,7 +2638,7 @@ msgstr "Gebühr für Scheck-Zahlungen:"
 msgid "Flat fee for accepting wire transfers: "
 msgstr "Gebühr für Überweisungen:"
 
-#: shared/inc/forms/subdomain.php:300
+#: shared/inc/forms/subdomain.php:302
 msgid ""
 "For unix users, a simple wget command in a cron joe like below will do. "
 "Something like this:"
@@ -2653,6 +2706,11 @@ msgstr "voller Hostname des DTC-Control-Panels: "
 #: admin/inc/dtc_config.php:1330
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr "Vollständiger Pfad zum zur public.key-Datei für den DomainKey-Support:"
+
+#: shared/dtcrm/draw.php:133
+#, fuzzy
+msgid "Funds added to your account!"
+msgstr "Verbleibendes Guthaben auf Ihrem Konto:"
 
 #: shared/drawlib/dtc_functions.php:1017
 msgid "GBytes"
@@ -2781,6 +2839,10 @@ msgstr "Guinea-Bissau"
 #: shared/drawlib/cc_code_popup.php:198
 msgid "Guyana"
 msgstr "Guyana"
+
+#: admin/inc/monitor.php:99
+msgid "HDD"
+msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:113
 msgid "HDD I/O:"
@@ -2935,8 +2997,13 @@ msgstr "Diagramm der Mailqueue"
 msgid "Hour Netusage Graph"
 msgstr ""
 
+#: admin/active_prods_graph.php:88
+#, fuzzy
+msgid "Hour Sales Graph"
+msgstr "Diagramm der Mailqueue"
+
 #: admin/cpugraph.php:27 admin/mailgraph.php:17 admin/memgraph.php:17
-#: admin/netusegraph.php:17
+#: admin/netusegraph.php:17 admin/active_prods_graph.php:17
 msgid "Hour graph"
 msgstr ""
 
@@ -3968,6 +4035,8 @@ msgstr "MaxMind antwortet"
 
 #: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
 #: admin/memgraph.php:46 admin/netusegraph.php:45 admin/netusegraph.php:46
+#: admin/active_prods_graph.php:44 admin/active_prods_graph.php:45
+#: admin/active_prods_graph.php:46
 msgid "Maximum"
 msgstr ""
 
@@ -4164,7 +4233,7 @@ msgid "Month CPU Load Graph"
 msgstr "durchschnittliche CPU-Load"
 
 #: admin/cpugraph.php:39 admin/mailgraph.php:29 admin/memgraph.php:29
-#: admin/netusegraph.php:29
+#: admin/netusegraph.php:29 admin/active_prods_graph.php:29
 msgid "Month Graph"
 msgstr ""
 
@@ -4176,6 +4245,11 @@ msgstr "Diagramm der Mailqueue"
 #: admin/memgraph.php:94 admin/netusegraph.php:92
 msgid "Month Netusage Graph"
 msgstr ""
+
+#: admin/active_prods_graph.php:91
+#, fuzzy
+msgid "Month Sales Graph"
+msgstr "Diagramm der Mailqueue"
 
 #: admin/inc/dtc_config.php:743
 msgid "Monthly"
@@ -4396,7 +4470,7 @@ msgstr "Niederländische Antillen"
 msgid "Netmask"
 msgstr "Netmask"
 
-#: admin/inc/dtc_config.php:406
+#: admin/inc/dtc_config.php:406 admin/inc/monitor.php:99
 msgid "Network"
 msgstr "Network"
 
@@ -4451,6 +4525,11 @@ msgstr "Neues SSH-Passwort: "
 #: shared/drawlib/cc_code_popup.php:265
 msgid "New Zealand"
 msgstr "Neuseeland"
+
+#: shared/dtcrm/draw.php:142
+#, fuzzy
+msgid "New account price"
+msgstr "Neues FTP-Konto: "
 
 #: admin/dtcrm/main.php:23 admin/dtcrm/main.php:36
 msgid "New customer"
@@ -4578,6 +4657,7 @@ msgstr "Niue"
 #: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
 #: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
 #: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
+#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
 #: shared/inc/forms/ticket.php:144 shared/securepay/modules/cheque/main.php:56
 #: shared/securepay/modules/wiretransfer/main.php:56
 msgid "No"
@@ -4672,6 +4752,10 @@ msgstr ""
 #: admin/inc/draw_user_admin.php:365
 msgid "No user waiting!"
 msgstr "Kein Benutzer in Warteschleife!"
+
+#: admin/dtcrm/product_manager.php:292
+msgid "No-renew"
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:270
 msgid "Norfolk Island"
@@ -5038,7 +5122,7 @@ msgstr "Passwort: "
 msgid "Passwords 1 and 2 do not match!"
 msgstr "Die beiden Passwörter stimmen nicht überein!"
 
-#: shared/dtcrm/draw.php:42
+#: shared/dtcrm/draw.php:42 shared/dtcrm/draw.php:143
 msgid "Past account refundal"
 msgstr "frühere Konto-Erstattungen"
 
@@ -5081,6 +5165,20 @@ msgstr "Pfad: "
 #: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:1903
 msgid "Paths"
 msgstr "Pfade"
+
+#: shared/securepay/modules/dineromail/main.php:61
+#, fuzzy
+msgid "Pay by DineroMail"
+msgstr "register_globals=1 verwenden: "
+
+#: shared/securepay/modules/cheque/main.php:46
+msgid "Pay by cheque"
+msgstr ""
+
+#: shared/securepay/modules/wiretransfer/main.php:46
+#, fuzzy
+msgid "Pay by wire transfer"
+msgstr "Überweisung"
 
 #: admin/inc/dtc_config.php:1663
 msgid "PayPal business account email: "
@@ -5264,7 +5362,7 @@ msgstr "Bitte verlängern Sie ihn mit einer der folgenden Optionen"
 msgid "Please renew with one of the following options: "
 msgstr "Bitte verlängern Sie mit einer der folenden Optionen: "
 
-#: admin/inc/dtc_config.php:2070
+#: admin/inc/dtc_config.php:2070 shared/drawlib/dtc_functions.php:209
 #, fuzzy
 msgid "Please select"
 msgstr "bitte auswählen"
@@ -5644,6 +5742,11 @@ msgstr ""
 msgid "Remaining money on my account:"
 msgstr "Verbleibendes Guthaben auf meinem Konto:"
 
+#: shared/dtcrm/draw.php:141
+#, fuzzy
+msgid "Remaining on your account"
+msgstr "Verbleibendes Guthaben auf Ihrem Konto:"
+
 #: shared/dtcrm/draw_adddomain.php:310
 #: shared/dtcrm/draw_transferdomain.php:106
 #: shared/dtcrm/draw_renewdomain.php:51
@@ -5946,7 +6049,7 @@ msgstr "Saudi-Arabien"
 msgid "Save"
 msgstr "Speichern"
 
-#: shared/inc/forms/subdomain.php:240
+#: shared/inc/forms/subdomain.php:242
 msgid "Sbox cgi-bin protection: "
 msgstr "CGI-BIN-Schutz mit SBOX: "
 
@@ -6050,6 +6153,11 @@ msgid ""
 msgstr ""
 "Server hat nach dem Connect nicht mit OK geantwortet. Eventuell ist ein "
 "falscher Server angegeben, oder der Server läuft nicht:"
+
+#: shared/inc/forms/ticket.php:90
+#, fuzzy
+msgid "Server hostname related"
+msgstr "betreffender Servername: "
 
 #: admin/inc/draw_user_admin.php:195
 msgid "Server hostname related: "
@@ -6240,6 +6348,10 @@ msgstr "Spanien"
 msgid "Spanish"
 msgstr "Spanien"
 
+#: shared/dtcrm/draw_adddomain.php:79
+msgid "Special notes for the setup"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:313
 msgid "Sri Lanka"
 msgstr "Sri Lanka"
@@ -6297,6 +6409,11 @@ msgstr "Schritt 1: Upgrade auswählen"
 msgid "Step 2: Enter whois information"
 msgstr "Schritt 2: Whois-Informationen eingeben"
 
+#: shared/dtcrm/draw.php:122
+#, fuzzy
+msgid "Step 2: proceed to upgrade"
+msgstr "Schritt 1: Upgrade auswählen"
+
 #: shared/dtcrm/draw_transferdomain.php:77
 msgid "Step 2: select contacts for domain transfer"
 msgstr "Schritt 2: Kontakte für den Domain-Transfer auswählen"
@@ -6309,7 +6426,7 @@ msgstr "Schritt 3: Weiter zur Registrierung"
 msgid "Step1: check if domain is transferable"
 msgstr "Schritt 1: Überprüfen, ob die Domain übertragen werden kann"
 
-#: shared/dtcrm/draw.php:86
+#: shared/dtcrm/draw.php:86 shared/dtcrm/draw.php:118
 msgid "Storage"
 msgstr "Speicherplatz"
 
@@ -6456,6 +6573,11 @@ msgstr "Surinam"
 #: shared/drawlib/cc_code_popup.php:316
 msgid "Svalbard and Jan Mayen Islands"
 msgstr "Spitzbergen und Jan Mayen-Inseln"
+
+#: admin/inc/monitor.php:99
+#, fuzzy
+msgid "Swap"
+msgstr "Swap I/O:"
 
 #: shared/inc/forms/vps_monitoring.php:110
 msgid "Swap I/O:"
@@ -6670,7 +6792,7 @@ msgstr "Die Produkt-ID ist keine Ganzzahl"
 msgid "The requested login is not a valid login."
 msgstr "Der gewünschte Benutzername ist kein gültiger Benutzername."
 
-#: shared/dtcrm/draw_transferdomain.php:112
+#: shared/dtcrm/draw.php:131 shared/dtcrm/draw_transferdomain.php:112
 #: shared/dtcrm/draw_renewdomain.php:57
 msgid "The transaction failed, please try again!"
 msgstr "Der Transfer ist fehlgeschlagen, bitte versuchen Sie es erneut!"
@@ -6988,6 +7110,11 @@ msgstr "Disk-Nutzung gesamt:"
 msgid "Total number of used IPs:"
 msgstr ""
 
+#: shared/dtcrm/draw.php:144
+#, fuzzy
+msgid "Total price"
+msgstr "Gesamtsumme"
+
 #: shared/dtcrm/draw_adddomain.php:311
 #: shared/dtcrm/draw_transferdomain.php:107
 #: shared/dtcrm/draw_renewdomain.php:52 shared/inc/forms/domain_info.php:44
@@ -7028,7 +7155,7 @@ msgstr "Gesamt: "
 msgid "Traffic"
 msgstr "Traffic"
 
-#: admin/inc/monitor.php:18
+#: admin/inc/monitor.php:18 shared/dtcrm/draw.php:119
 msgid "Transfer"
 msgstr "Transfer"
 
@@ -7240,7 +7367,7 @@ msgstr "Als Wildcard für die Domain verwenden:"
 msgid "Use active FTP connection to backup server:"
 msgstr "Verschlüsselung für Verbindungen zum Tucows-Server:"
 
-#: shared/inc/forms/subdomain.php:276
+#: shared/inc/forms/subdomain.php:278
 msgid "Use an SSL vhost using this IP: "
 msgstr "Einen SSL-Vhost mit dieser IP-Adresse verwenden: "
 
@@ -7572,6 +7699,10 @@ msgstr "Britische Jungferninseln"
 msgid "Virgin Islands (U.S.)"
 msgstr "Amerikanische Jungferninseln"
 
+#: shared/inc/draw.php:424
+msgid "Virtual Private Server"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1955
 msgid "Virtual host config-file:"
 msgstr "Vhost Konfigurationsdatei:"
@@ -7640,7 +7771,7 @@ msgid "Week CPU Load Graph"
 msgstr "durchschnittliche CPU-Load"
 
 #: admin/cpugraph.php:35 admin/mailgraph.php:25 admin/memgraph.php:25
-#: admin/netusegraph.php:25
+#: admin/netusegraph.php:25 admin/active_prods_graph.php:25
 msgid "Week Graph"
 msgstr ""
 
@@ -7652,6 +7783,11 @@ msgstr "Diagramm der Mailqueue"
 #: admin/memgraph.php:93 admin/netusegraph.php:91
 msgid "Week Netusage Graph"
 msgstr ""
+
+#: admin/active_prods_graph.php:90
+#, fuzzy
+msgid "Week Sales Graph"
+msgstr "Diagramm der Mailqueue"
 
 #: admin/inc/dtc_config.php:743
 msgid "Weekly"
@@ -7732,7 +7868,7 @@ msgstr "Whois von:"
 msgid "Whois:"
 msgstr "Whois:"
 
-#: shared/inc/forms/subdomain.php:298
+#: shared/inc/forms/subdomain.php:300
 msgid ""
 "Windows users (and UNIX users running WINE) can update their IP address "
 "dynamically by downloading and installing the following open source DTC "
@@ -7777,7 +7913,7 @@ msgid "Year CPU Load Graph"
 msgstr "durchschnittliche CPU-Load"
 
 #: admin/cpugraph.php:43 admin/mailgraph.php:33 admin/memgraph.php:33
-#: admin/netusegraph.php:33
+#: admin/netusegraph.php:33 admin/active_prods_graph.php:33
 msgid "Year Graph"
 msgstr ""
 
@@ -7789,6 +7925,11 @@ msgstr "Diagramm der Mailqueue"
 #: admin/memgraph.php:95 admin/netusegraph.php:93
 msgid "Year Netusage Graph"
 msgstr ""
+
+#: admin/active_prods_graph.php:92
+#, fuzzy
+msgid "Year Sales Graph"
+msgstr "Diagramm der Mailqueue"
 
 #: shared/inc/forms/vps_graphs.php:60
 msgid "Yearly VPS usage statistics:"
@@ -7834,12 +7975,13 @@ msgstr "Jemen"
 #: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
 #: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
 #: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
+#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
 #: shared/inc/forms/ticket.php:143 shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:78
 #: shared/securepay/modules/worldpay/main.php:77
 #: shared/securepay/modules/webmoney/main.php:39
 #: shared/securepay/modules/moneybookers/main.php:94
-#: shared/securepay/modules/dineromail/main.php:70
+#: shared/securepay/modules/dineromail/main.php:71
 msgid "Yes"
 msgstr "Ja"
 
@@ -7996,6 +8138,11 @@ msgid ""
 msgstr ""
 "Ihr Guthaben ist ausreichend, um die Registrierung durchzuführen. Bitte "
 "klicken Sie auf den Bestätigungs-Link, und Ihr Auftrag wird durchgeführt."
+
+#: shared/dtcrm/draw.php:117
+#, fuzzy
+msgid "You have selected"
+msgstr "keine Liste ausgewählt"
 
 #: shared/inc/forms/vps_installation.php:334
 msgid ""
@@ -8210,6 +8357,10 @@ msgstr "Konnte nicht mit dem Host verbinden"
 msgid "cz"
 msgstr ""
 
+#: shared/drawlib/dtc_functions.php:1011
+msgid "day"
+msgstr ""
+
 #: admin/inc/ip_usage_report.php:254
 #, fuzzy
 msgid "dedicated"
@@ -8243,6 +8394,11 @@ msgstr "eNETS Testverkäufer-ID: "
 msgid "eXtplorer web file manager"
 msgstr ""
 
+#: shared/dtcrm/draw.php:120
+#, fuzzy
+msgid "each"
+msgstr "Frankreich"
+
 #: shared/inc/fetch.php:469
 msgid ""
 "either your login and password pair is not valid, either your session "
@@ -8259,6 +8415,10 @@ msgstr "hole Admin: "
 msgid "files"
 msgstr "Dateien"
 
+#: shared/dtcrm/draw.php:69
+msgid "for"
+msgstr ""
+
 #: shared/inc/forms/lists.php:415
 msgid "get-N function only for subscribers:"
 msgstr "get-N-Funktion nur für Abonnenten:"
@@ -8267,6 +8427,11 @@ msgstr "get-N-Funktion nur für Abonnenten:"
 #: shared/dtcrm/draw_transferdomain.php:218 shared/dtcrm/draw_whois.php:45
 msgid "here"
 msgstr "hier"
+
+#: shared/inc/forms/admin_stats.php:38
+#, fuzzy
+msgid "hits"
+msgstr "Whois"
 
 #: shared/dtcrm/modules/ovh/main.php:480
 #, fuzzy
@@ -8307,6 +8472,11 @@ msgstr "last_tik_id oder tik_id sind keine Zahl: Hacking-Versuch abgewehrt!"
 #: shared/dtcrm/draw_handle.php:370
 msgid "marked fields are required"
 msgstr "markierte Felder sind erforderlich"
+
+#: shared/drawlib/dtc_functions.php:1007
+#, fuzzy
+msgid "month"
+msgstr "Menge"
 
 #: client/new_account_form.php:583 client/new_account_form.php:584
 #: shared/inc/forms/vps_installation.php:235
@@ -8370,6 +8540,11 @@ msgstr "Betriebssystem-Image"
 msgid "optional"
 msgstr "optional"
 
+#: shared/inc/draw.php:424
+#, fuzzy
+msgid "running on"
+msgstr "läuft"
+
 #: client/new_account_form.php:671
 msgid "selling conditions"
 msgstr "AGB"
@@ -8411,7 +8586,7 @@ msgstr "Wer darf die Whois-Informationen ändern (Admin-Kontakt)?"
 msgid "who will own the domain name and will be the registrant?"
 msgstr "Wem wird die Domain gehören und Registrant sein (Domainbesitzer)?"
 
-#: shared/dtcrm/draw_adddomain.php:252
+#: shared/drawlib/dtc_functions.php:1003 shared/dtcrm/draw_adddomain.php:252
 #: shared/dtcrm/draw_register_forms.php:104
 msgid "year"
 msgstr "Jahr"
@@ -8421,7 +8596,7 @@ msgstr "Jahr"
 msgid "year(s)"
 msgstr "Jahre"
 
-#: shared/dtcrm/draw_adddomain.php:253
+#: shared/drawlib/dtc_functions.php:1003 shared/dtcrm/draw_adddomain.php:253
 #: shared/dtcrm/draw_register_forms.php:105
 #: shared/dtcrm/draw_register_forms.php:106
 #: shared/dtcrm/draw_register_forms.php:107

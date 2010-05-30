@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-29 14:36-0300\n"
+"POT-Creation-Date: 2010-05-30 03:26-0300\n"
 "PO-Revision-Date: 2009-08-27 14:52+0800\n"
 "Last-Translator: Wei Cao <caowei@gplhost.com>\n"
 "Language-Team: Wei Cao <caowei@gplhost.com>\n"
@@ -19,6 +19,11 @@ msgstr ""
 #, fuzzy
 msgid " (Dedicated servers)"
 msgstr "独立服务器："
+
+#: admin/dtcrm/product_manager.php:277
+#, fuzzy
+msgid " (SSL IPs)"
+msgstr "CPU个数："
 
 #: admin/dtcrm/product_manager.php:109
 #, fuzzy
@@ -412,6 +417,30 @@ msgstr "操作"
 msgid "Activate FTP backups:"
 msgstr "激活FTP备份："
 
+#: admin/active_prods_graph.php:86
+#, fuzzy
+msgid "Active Products Statistics for"
+msgstr "邮件排列统计"
+
+#: admin/active_prods_graph.php:45
+msgid "Active VPS"
+msgstr ""
+
+#: admin/active_prods_graph.php:46
+#, fuzzy
+msgid "Active dedicated servers"
+msgstr "独立服务器："
+
+#: admin/active_prods_graph.php:70
+#, fuzzy
+msgid "Active product statistics for"
+msgstr "邮件排列统计"
+
+#: admin/active_prods_graph.php:44
+#, fuzzy
+msgid "Active shared accounts"
+msgstr "有效的 ssh账户数量："
+
 #: admin/mailgraph.php:45
 msgid "Active+incoming+maildrop"
 msgstr ""
@@ -571,6 +600,10 @@ msgstr "Affiliation"
 #: shared/drawlib/cc_code_popup.php:104
 msgid "Afghanistan"
 msgstr "阿富汗"
+
+#: shared/dtcrm/draw.php:160
+msgid "After upgrade, you will have"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:533
 msgid "Age"
@@ -785,6 +818,8 @@ msgstr "可用"
 
 #: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
 #: admin/netusegraph.php:45 admin/netusegraph.php:46
+#: admin/active_prods_graph.php:44 admin/active_prods_graph.php:45
+#: admin/active_prods_graph.php:46
 #, fuzzy
 msgid "Average"
 msgstr "CPU 平均载入"
@@ -1000,6 +1035,10 @@ msgstr "Bytes"
 msgid "CGI-BIN protection"
 msgstr "CGI-BIN 安全防护"
 
+#: admin/inc/monitor.php:99
+msgid "CPU"
+msgstr ""
+
 #: admin/inc/graphs.php:7
 msgid "CPU Load Average"
 msgstr "CPU 平均载入"
@@ -1019,6 +1058,10 @@ msgstr ""
 
 #: admin/cpugraph.php:78
 msgid "CPU load average statistics for"
+msgstr ""
+
+#: shared/dtcrm/draw.php:107
+msgid "Calculate price"
 msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:140
@@ -1786,7 +1829,7 @@ msgid "Day CPU Load Graph"
 msgstr "CPU 平均载入"
 
 #: admin/cpugraph.php:31 admin/mailgraph.php:21 admin/memgraph.php:21
-#: admin/netusegraph.php:21
+#: admin/netusegraph.php:21 admin/active_prods_graph.php:21
 msgid "Day Graph"
 msgstr ""
 
@@ -1798,6 +1841,11 @@ msgstr "邮件排列图表"
 #: admin/memgraph.php:92 admin/netusegraph.php:90
 msgid "Day Netusage Graph"
 msgstr ""
+
+#: admin/active_prods_graph.php:89
+#, fuzzy
+msgid "Day Sales Graph"
+msgstr "邮件排列图表"
 
 #: admin/inc/renewals.php:735
 msgid "Days of expiration"
@@ -2148,11 +2196,11 @@ msgstr "多名尼加共和国"
 msgid "Duch"
 msgstr ""
 
-#: shared/inc/forms/subdomain.php:289
+#: shared/inc/forms/subdomain.php:291
 msgid "Dynamic IP update login: "
 msgstr "动态IP升级登录名："
 
-#: shared/inc/forms/subdomain.php:295
+#: shared/inc/forms/subdomain.php:297
 msgid "Dynamic IP update password: "
 msgstr "动态IP升级密码："
 
@@ -2536,6 +2584,11 @@ msgstr "名："
 msgid "First name: "
 msgstr "名："
 
+#: shared/inc/forms/ticket.php:89
+#, fuzzy
+msgid "First query date"
+msgstr "第一次咨询的日期："
+
 #: admin/inc/draw_user_admin.php:194
 msgid "First query date: "
 msgstr "第一次咨询的日期："
@@ -2552,7 +2605,7 @@ msgstr "支票手续费："
 msgid "Flat fee for accepting wire transfers: "
 msgstr "银行转帐手续费："
 
-#: shared/inc/forms/subdomain.php:300
+#: shared/inc/forms/subdomain.php:302
 msgid ""
 "For unix users, a simple wget command in a cron joe like below will do. "
 "Something like this:"
@@ -2618,6 +2671,11 @@ msgstr "DTC管理控制面板的完整主机名："
 #: admin/inc/dtc_config.php:1330
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr "对于DomainKey 其 public.key 文件的位置的完整路径："
+
+#: shared/dtcrm/draw.php:133
+#, fuzzy
+msgid "Funds added to your account!"
+msgstr "您帐户的余额："
 
 #: shared/drawlib/dtc_functions.php:1017
 msgid "GBytes"
@@ -2748,6 +2806,10 @@ msgstr "几内亚比绍"
 #: shared/drawlib/cc_code_popup.php:198
 msgid "Guyana"
 msgstr "圭亚那"
+
+#: admin/inc/monitor.php:99
+msgid "HDD"
+msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:113
 msgid "HDD I/O:"
@@ -2896,8 +2958,13 @@ msgstr "邮件排列图表"
 msgid "Hour Netusage Graph"
 msgstr ""
 
+#: admin/active_prods_graph.php:88
+#, fuzzy
+msgid "Hour Sales Graph"
+msgstr "邮件排列图表"
+
 #: admin/cpugraph.php:27 admin/mailgraph.php:17 admin/memgraph.php:17
-#: admin/netusegraph.php:17
+#: admin/netusegraph.php:17 admin/active_prods_graph.php:17
 msgid "Hour graph"
 msgstr ""
 
@@ -3882,6 +3949,8 @@ msgstr "MaxMind 答复"
 
 #: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
 #: admin/memgraph.php:46 admin/netusegraph.php:45 admin/netusegraph.php:46
+#: admin/active_prods_graph.php:44 admin/active_prods_graph.php:45
+#: admin/active_prods_graph.php:46
 msgid "Maximum"
 msgstr ""
 
@@ -4077,7 +4146,7 @@ msgid "Month CPU Load Graph"
 msgstr "CPU 平均载入"
 
 #: admin/cpugraph.php:39 admin/mailgraph.php:29 admin/memgraph.php:29
-#: admin/netusegraph.php:29
+#: admin/netusegraph.php:29 admin/active_prods_graph.php:29
 msgid "Month Graph"
 msgstr ""
 
@@ -4089,6 +4158,11 @@ msgstr "邮件排列图表"
 #: admin/memgraph.php:94 admin/netusegraph.php:92
 msgid "Month Netusage Graph"
 msgstr ""
+
+#: admin/active_prods_graph.php:91
+#, fuzzy
+msgid "Month Sales Graph"
+msgstr "邮件排列图表"
 
 #: admin/inc/dtc_config.php:743
 msgid "Monthly"
@@ -4305,7 +4379,7 @@ msgstr "荷兰安替列斯群岛"
 msgid "Netmask"
 msgstr "Netmask"
 
-#: admin/inc/dtc_config.php:406
+#: admin/inc/dtc_config.php:406 admin/inc/monitor.php:99
 msgid "Network"
 msgstr "网络"
 
@@ -4360,6 +4434,11 @@ msgstr "新的 SSH 密码："
 #: shared/drawlib/cc_code_popup.php:265
 msgid "New Zealand"
 msgstr "新西兰"
+
+#: shared/dtcrm/draw.php:142
+#, fuzzy
+msgid "New account price"
+msgstr "新的FTP账户："
 
 #: admin/dtcrm/main.php:23 admin/dtcrm/main.php:36
 msgid "New customer"
@@ -4487,6 +4566,7 @@ msgstr "纽埃"
 #: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
 #: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
 #: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
+#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
 #: shared/inc/forms/ticket.php:144 shared/securepay/modules/cheque/main.php:56
 #: shared/securepay/modules/wiretransfer/main.php:56
 msgid "No"
@@ -4577,6 +4657,10 @@ msgstr "该用户在数据库中不存在，或者这个用户不归您所有，
 #: admin/inc/draw_user_admin.php:365
 msgid "No user waiting!"
 msgstr "没有等待的用户！"
+
+#: admin/dtcrm/product_manager.php:292
+msgid "No-renew"
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:270
 msgid "Norfolk Island"
@@ -4936,7 +5020,7 @@ msgstr "密码："
 msgid "Passwords 1 and 2 do not match!"
 msgstr "密码1和2不匹配！"
 
-#: shared/dtcrm/draw.php:42
+#: shared/dtcrm/draw.php:42 shared/dtcrm/draw.php:143
 msgid "Past account refundal"
 msgstr "旧账户金额"
 
@@ -4978,6 +5062,20 @@ msgstr "路径："
 #: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:1903
 msgid "Paths"
 msgstr "路径"
+
+#: shared/securepay/modules/dineromail/main.php:61
+#, fuzzy
+msgid "Pay by DineroMail"
+msgstr "使用 register_globals=1："
+
+#: shared/securepay/modules/cheque/main.php:46
+msgid "Pay by cheque"
+msgstr ""
+
+#: shared/securepay/modules/wiretransfer/main.php:46
+#, fuzzy
+msgid "Pay by wire transfer"
+msgstr "转账"
 
 #: admin/inc/dtc_config.php:1663
 msgid "PayPal business account email: "
@@ -5152,7 +5250,7 @@ msgstr "请使用下列任意一个选项进行续约"
 msgid "Please renew with one of the following options: "
 msgstr "请使用下面任意一个选项进行续约："
 
-#: admin/inc/dtc_config.php:2070
+#: admin/inc/dtc_config.php:2070 shared/drawlib/dtc_functions.php:209
 #, fuzzy
 msgid "Please select"
 msgstr "请选择！"
@@ -5526,6 +5624,11 @@ msgstr "拒收没有\\收件或抄送人列表的邮件。"
 msgid "Remaining money on my account:"
 msgstr "我的账户余额："
 
+#: shared/dtcrm/draw.php:141
+#, fuzzy
+msgid "Remaining on your account"
+msgstr "您帐户的余额："
+
 #: shared/dtcrm/draw_adddomain.php:310
 #: shared/dtcrm/draw_transferdomain.php:106
 #: shared/dtcrm/draw_renewdomain.php:51
@@ -5827,7 +5930,7 @@ msgstr "沙特阿拉伯"
 msgid "Save"
 msgstr "保存"
 
-#: shared/inc/forms/subdomain.php:240
+#: shared/inc/forms/subdomain.php:242
 msgid "Sbox cgi-bin protection: "
 msgstr "Sbox cgi-bin 保护："
 
@@ -5927,6 +6030,11 @@ msgstr "HELO以后，服务器没有发送 OK："
 msgid ""
 "Server did not send OK after connect, maybe wrong server or server is down: "
 msgstr "连接以后，服务器没有发送OK，也许应用了错误服务器或者服务器不工作："
+
+#: shared/inc/forms/ticket.php:90
+#, fuzzy
+msgid "Server hostname related"
+msgstr "相关的服务器主机名："
 
 #: admin/inc/draw_user_admin.php:195
 msgid "Server hostname related: "
@@ -6117,6 +6225,10 @@ msgstr "西班牙"
 msgid "Spanish"
 msgstr "西班牙"
 
+#: shared/dtcrm/draw_adddomain.php:79
+msgid "Special notes for the setup"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:313
 msgid "Sri Lanka"
 msgstr "斯里兰卡"
@@ -6173,6 +6285,11 @@ msgstr "步骤 1：选择您的升级"
 msgid "Step 2: Enter whois information"
 msgstr "步骤2：输入whois信息"
 
+#: shared/dtcrm/draw.php:122
+#, fuzzy
+msgid "Step 2: proceed to upgrade"
+msgstr "步骤 1：选择您的升级"
+
 #: shared/dtcrm/draw_transferdomain.php:77
 msgid "Step 2: select contacts for domain transfer"
 msgstr "步骤2：选择转让域名的联系方式"
@@ -6185,7 +6302,7 @@ msgstr "步骤3：进入注册"
 msgid "Step1: check if domain is transferable"
 msgstr "步骤1：检查域名是否可以迁移"
 
-#: shared/dtcrm/draw.php:86
+#: shared/dtcrm/draw.php:86 shared/dtcrm/draw.php:118
 msgid "Storage"
 msgstr "存储"
 
@@ -6332,6 +6449,11 @@ msgstr "苏利南"
 #: shared/drawlib/cc_code_popup.php:316
 msgid "Svalbard and Jan Mayen Islands"
 msgstr "斯瓦尔巴特群岛和扬马延岛"
+
+#: admin/inc/monitor.php:99
+#, fuzzy
+msgid "Swap"
+msgstr "Swap I/O："
 
 #: shared/inc/forms/vps_monitoring.php:110
 msgid "Swap I/O:"
@@ -6532,7 +6654,7 @@ msgstr "产品 ID 不是一个有效的整数。"
 msgid "The requested login is not a valid login."
 msgstr "要求的登录不是一个有效的登录。"
 
-#: shared/dtcrm/draw_transferdomain.php:112
+#: shared/dtcrm/draw.php:131 shared/dtcrm/draw_transferdomain.php:112
 #: shared/dtcrm/draw_renewdomain.php:57
 msgid "The transaction failed, please try again!"
 msgstr "执行失败，请再试一次！"
@@ -6820,6 +6942,11 @@ msgstr "总磁盘使用率："
 msgid "Total number of used IPs:"
 msgstr ""
 
+#: shared/dtcrm/draw.php:144
+#, fuzzy
+msgid "Total price"
+msgstr "总价："
+
 #: shared/dtcrm/draw_adddomain.php:311
 #: shared/dtcrm/draw_transferdomain.php:107
 #: shared/dtcrm/draw_renewdomain.php:52 shared/inc/forms/domain_info.php:44
@@ -6860,7 +6987,7 @@ msgstr "总计："
 msgid "Traffic"
 msgstr "流量"
 
-#: admin/inc/monitor.php:18
+#: admin/inc/monitor.php:18 shared/dtcrm/draw.php:119
 msgid "Transfer"
 msgstr "传输"
 
@@ -7072,7 +7199,7 @@ msgstr "在域名中做为wildcard使用："
 msgid "Use active FTP connection to backup server:"
 msgstr "连接到Tucows服务器的加密方式："
 
-#: shared/inc/forms/subdomain.php:276
+#: shared/inc/forms/subdomain.php:278
 msgid "Use an SSL vhost using this IP: "
 msgstr "使用这个IP来使用一个 SSL vhost："
 
@@ -7399,6 +7526,10 @@ msgstr "英属维珍岛"
 msgid "Virgin Islands (U.S.)"
 msgstr "美属维珍岛"
 
+#: shared/inc/draw.php:424
+msgid "Virtual Private Server"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1955
 msgid "Virtual host config-file:"
 msgstr "Virtual host 配置文件："
@@ -7465,7 +7596,7 @@ msgid "Week CPU Load Graph"
 msgstr "CPU 平均载入"
 
 #: admin/cpugraph.php:35 admin/mailgraph.php:25 admin/memgraph.php:25
-#: admin/netusegraph.php:25
+#: admin/netusegraph.php:25 admin/active_prods_graph.php:25
 msgid "Week Graph"
 msgstr ""
 
@@ -7477,6 +7608,11 @@ msgstr "邮件排列图表"
 #: admin/memgraph.php:93 admin/netusegraph.php:91
 msgid "Week Netusage Graph"
 msgstr ""
+
+#: admin/active_prods_graph.php:90
+#, fuzzy
+msgid "Week Sales Graph"
+msgstr "邮件排列图表"
 
 #: admin/inc/dtc_config.php:743
 msgid "Weekly"
@@ -7554,7 +7690,7 @@ msgstr "Whois 的："
 msgid "Whois:"
 msgstr "Whois："
 
-#: shared/inc/forms/subdomain.php:298
+#: shared/inc/forms/subdomain.php:300
 msgid ""
 "Windows users (and UNIX users running WINE) can update their IP address "
 "dynamically by downloading and installing the following open source DTC "
@@ -7598,7 +7734,7 @@ msgid "Year CPU Load Graph"
 msgstr "CPU 平均载入"
 
 #: admin/cpugraph.php:43 admin/mailgraph.php:33 admin/memgraph.php:33
-#: admin/netusegraph.php:33
+#: admin/netusegraph.php:33 admin/active_prods_graph.php:33
 msgid "Year Graph"
 msgstr ""
 
@@ -7610,6 +7746,11 @@ msgstr "邮件排列图表"
 #: admin/memgraph.php:95 admin/netusegraph.php:93
 msgid "Year Netusage Graph"
 msgstr ""
+
+#: admin/active_prods_graph.php:92
+#, fuzzy
+msgid "Year Sales Graph"
+msgstr "邮件排列图表"
 
 #: shared/inc/forms/vps_graphs.php:60
 msgid "Yearly VPS usage statistics:"
@@ -7655,12 +7796,13 @@ msgstr "也门共和国"
 #: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
 #: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
 #: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
+#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
 #: shared/inc/forms/ticket.php:143 shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:78
 #: shared/securepay/modules/worldpay/main.php:77
 #: shared/securepay/modules/webmoney/main.php:39
 #: shared/securepay/modules/moneybookers/main.php:94
-#: shared/securepay/modules/dineromail/main.php:70
+#: shared/securepay/modules/dineromail/main.php:71
 msgid "Yes"
 msgstr "是"
 
@@ -7794,6 +7936,11 @@ msgid ""
 "You have enough funds on your account to proceed with transfert. Press the "
 "confirm button to proceed."
 msgstr "您有足够的金额支付注册过程。点击确认图标继续。"
+
+#: shared/dtcrm/draw.php:117
+#, fuzzy
+msgid "You have selected"
+msgstr "没有选中的列表"
 
 #: shared/inc/forms/vps_installation.php:334
 msgid ""
@@ -8003,6 +8150,10 @@ msgstr "无法连接到主机"
 msgid "cz"
 msgstr ""
 
+#: shared/drawlib/dtc_functions.php:1011
+msgid "day"
+msgstr ""
+
 #: admin/inc/ip_usage_report.php:254
 #, fuzzy
 msgid "dedicated"
@@ -8036,6 +8187,11 @@ msgstr "eNETS 测试 merchant ID："
 msgid "eXtplorer web file manager"
 msgstr ""
 
+#: shared/dtcrm/draw.php:120
+#, fuzzy
+msgid "each"
+msgstr "法国"
+
 #: shared/inc/fetch.php:469
 msgid ""
 "either your login and password pair is not valid, either your session "
@@ -8050,6 +8206,10 @@ msgstr "读取管理员："
 msgid "files"
 msgstr "文件"
 
+#: shared/dtcrm/draw.php:69
+msgid "for"
+msgstr ""
+
 #: shared/inc/forms/lists.php:415
 msgid "get-N function only for subscribers:"
 msgstr "仅订阅用户可使用get-N功能："
@@ -8058,6 +8218,11 @@ msgstr "仅订阅用户可使用get-N功能："
 #: shared/dtcrm/draw_transferdomain.php:218 shared/dtcrm/draw_whois.php:45
 msgid "here"
 msgstr "这里"
+
+#: shared/inc/forms/admin_stats.php:38
+#, fuzzy
+msgid "hits"
+msgstr "Whois"
 
 #: shared/dtcrm/modules/ovh/main.php:480
 #, fuzzy
@@ -8096,6 +8261,11 @@ msgstr "last_tick_id 或者 tik_id 不是一个数据：黑客攻击！"
 #: shared/dtcrm/draw_handle.php:370
 msgid "marked fields are required"
 msgstr "打星号的选项为必填项"
+
+#: shared/drawlib/dtc_functions.php:1007
+#, fuzzy
+msgid "month"
+msgstr "总和"
 
 #: client/new_account_form.php:583 client/new_account_form.php:584
 #: shared/inc/forms/vps_installation.php:235
@@ -8159,6 +8329,11 @@ msgstr "操作系统图形"
 msgid "optional"
 msgstr "选项"
 
+#: shared/inc/draw.php:424
+#, fuzzy
+msgid "running on"
+msgstr "运行正常"
+
 #: client/new_account_form.php:671
 msgid "selling conditions"
 msgstr "销售条款"
@@ -8200,7 +8375,7 @@ msgstr "谁有权限更改 whois 信息（管理员联系人）？"
 msgid "who will own the domain name and will be the registrant?"
 msgstr "谁是域名的拥有者并是注册人（域名拥有者）？"
 
-#: shared/dtcrm/draw_adddomain.php:252
+#: shared/drawlib/dtc_functions.php:1003 shared/dtcrm/draw_adddomain.php:252
 #: shared/dtcrm/draw_register_forms.php:104
 msgid "year"
 msgstr "年"
@@ -8210,7 +8385,7 @@ msgstr "年"
 msgid "year(s)"
 msgstr "年"
 
-#: shared/dtcrm/draw_adddomain.php:253
+#: shared/drawlib/dtc_functions.php:1003 shared/dtcrm/draw_adddomain.php:253
 #: shared/dtcrm/draw_register_forms.php:105
 #: shared/dtcrm/draw_register_forms.php:106
 #: shared/dtcrm/draw_register_forms.php:107

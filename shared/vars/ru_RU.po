@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: git_21mar2008\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-29 14:36-0300\n"
+"POT-Creation-Date: 2010-05-30 03:26-0300\n"
 "PO-Revision-Date: 2009-09-06 08:44+0400\n"
 "Last-Translator: Yuri Kozlov <yuray@komyakino.ru>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
@@ -25,6 +25,11 @@ msgstr ""
 #, fuzzy
 msgid " (Dedicated servers)"
 msgstr "Выделенные серверы: "
+
+#: admin/dtcrm/product_manager.php:277
+#, fuzzy
+msgid " (SSL IPs)"
+msgstr "Количество процессоров: "
 
 #: admin/dtcrm/product_manager.php:109
 #, fuzzy
@@ -424,6 +429,30 @@ msgstr "Действие"
 msgid "Activate FTP backups:"
 msgstr "Активировать резервное копирование по FTP:"
 
+#: admin/active_prods_graph.php:86
+#, fuzzy
+msgid "Active Products Statistics for"
+msgstr "Статистика почтовой очереди"
+
+#: admin/active_prods_graph.php:45
+msgid "Active VPS"
+msgstr ""
+
+#: admin/active_prods_graph.php:46
+#, fuzzy
+msgid "Active dedicated servers"
+msgstr "Выделенные серверы: "
+
+#: admin/active_prods_graph.php:70
+#, fuzzy
+msgid "Active product statistics for"
+msgstr "Статистика почтовой очереди"
+
+#: admin/active_prods_graph.php:44
+#, fuzzy
+msgid "Active shared accounts"
+msgstr "Количество активных записей ssh:"
+
 #: admin/mailgraph.php:45
 msgid "Active+incoming+maildrop"
 msgstr ""
@@ -582,6 +611,10 @@ msgstr "Партнёрство"
 #: shared/drawlib/cc_code_popup.php:104
 msgid "Afghanistan"
 msgstr "Афганистан"
+
+#: shared/dtcrm/draw.php:160
+msgid "After upgrade, you will have"
+msgstr ""
 
 #: admin/inc/draw_user_admin.php:533
 msgid "Age"
@@ -808,6 +841,8 @@ msgstr "Доступен"
 
 #: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
 #: admin/netusegraph.php:45 admin/netusegraph.php:46
+#: admin/active_prods_graph.php:44 admin/active_prods_graph.php:45
+#: admin/active_prods_graph.php:46
 #, fuzzy
 msgid "Average"
 msgstr "Средняя загрузка процессора"
@@ -1023,6 +1058,10 @@ msgstr "Байт"
 msgid "CGI-BIN protection"
 msgstr "защита CGI-BIN"
 
+#: admin/inc/monitor.php:99
+msgid "CPU"
+msgstr ""
+
 #: admin/inc/graphs.php:7
 msgid "CPU Load Average"
 msgstr "Средняя загрузка процессора"
@@ -1042,6 +1081,10 @@ msgstr ""
 
 #: admin/cpugraph.php:78
 msgid "CPU load average statistics for"
+msgstr ""
+
+#: shared/dtcrm/draw.php:107
+msgid "Calculate price"
 msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:140
@@ -1825,7 +1868,7 @@ msgid "Day CPU Load Graph"
 msgstr "Средняя загрузка процессора"
 
 #: admin/cpugraph.php:31 admin/mailgraph.php:21 admin/memgraph.php:21
-#: admin/netusegraph.php:21
+#: admin/netusegraph.php:21 admin/active_prods_graph.php:21
 msgid "Day Graph"
 msgstr ""
 
@@ -1837,6 +1880,11 @@ msgstr "График почтовой очереди"
 #: admin/memgraph.php:92 admin/netusegraph.php:90
 msgid "Day Netusage Graph"
 msgstr ""
+
+#: admin/active_prods_graph.php:89
+#, fuzzy
+msgid "Day Sales Graph"
+msgstr "График почтовой очереди"
 
 #: admin/inc/renewals.php:735
 msgid "Days of expiration"
@@ -2186,11 +2234,11 @@ msgstr "Доминиканская Республика"
 msgid "Duch"
 msgstr ""
 
-#: shared/inc/forms/subdomain.php:289
+#: shared/inc/forms/subdomain.php:291
 msgid "Dynamic IP update login: "
 msgstr "Логин для динамического обновления IP: "
 
-#: shared/inc/forms/subdomain.php:295
+#: shared/inc/forms/subdomain.php:297
 msgid "Dynamic IP update password: "
 msgstr "Пароль для динамического обновления IP: "
 
@@ -2575,6 +2623,11 @@ msgstr "Имя:"
 msgid "First name: "
 msgstr "Имя: "
 
+#: shared/inc/forms/ticket.php:89
+#, fuzzy
+msgid "First query date"
+msgstr "Дата обращения: "
+
 #: admin/inc/draw_user_admin.php:194
 msgid "First query date: "
 msgstr "Дата обращения: "
@@ -2591,7 +2644,7 @@ msgstr "Абонентская плата при оплате чеком: "
 msgid "Flat fee for accepting wire transfers: "
 msgstr "Абонентская плата при оплате банковским переводом: "
 
-#: shared/inc/forms/subdomain.php:300
+#: shared/inc/forms/subdomain.php:302
 msgid ""
 "For unix users, a simple wget command in a cron joe like below will do. "
 "Something like this:"
@@ -2659,6 +2712,11 @@ msgstr "Полное имя хоста с административной па�
 #: admin/inc/dtc_config.php:1330
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr "Полный путь файла public.key для поддержки DomainKey:"
+
+#: shared/dtcrm/draw.php:133
+#, fuzzy
+msgid "Funds added to your account!"
+msgstr "Остаток на вашем счёте: "
 
 #: shared/drawlib/dtc_functions.php:1017
 msgid "GBytes"
@@ -2786,6 +2844,10 @@ msgstr "Гвинея-Бисау"
 #: shared/drawlib/cc_code_popup.php:198
 msgid "Guyana"
 msgstr "Гайана"
+
+#: admin/inc/monitor.php:99
+msgid "HDD"
+msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:113
 msgid "HDD I/O:"
@@ -2937,8 +2999,13 @@ msgstr "График почтовой очереди"
 msgid "Hour Netusage Graph"
 msgstr ""
 
+#: admin/active_prods_graph.php:88
+#, fuzzy
+msgid "Hour Sales Graph"
+msgstr "График почтовой очереди"
+
 #: admin/cpugraph.php:27 admin/mailgraph.php:17 admin/memgraph.php:17
-#: admin/netusegraph.php:17
+#: admin/netusegraph.php:17 admin/active_prods_graph.php:17
 msgid "Hour graph"
 msgstr ""
 
@@ -3964,6 +4031,8 @@ msgstr "MaxMind говорит"
 
 #: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
 #: admin/memgraph.php:46 admin/netusegraph.php:45 admin/netusegraph.php:46
+#: admin/active_prods_graph.php:44 admin/active_prods_graph.php:45
+#: admin/active_prods_graph.php:46
 msgid "Maximum"
 msgstr ""
 
@@ -4160,7 +4229,7 @@ msgid "Month CPU Load Graph"
 msgstr "Средняя загрузка процессора"
 
 #: admin/cpugraph.php:39 admin/mailgraph.php:29 admin/memgraph.php:29
-#: admin/netusegraph.php:29
+#: admin/netusegraph.php:29 admin/active_prods_graph.php:29
 msgid "Month Graph"
 msgstr ""
 
@@ -4172,6 +4241,11 @@ msgstr "График почтовой очереди"
 #: admin/memgraph.php:94 admin/netusegraph.php:92
 msgid "Month Netusage Graph"
 msgstr ""
+
+#: admin/active_prods_graph.php:91
+#, fuzzy
+msgid "Month Sales Graph"
+msgstr "График почтовой очереди"
 
 #: admin/inc/dtc_config.php:743
 msgid "Monthly"
@@ -4392,7 +4466,7 @@ msgstr "Нидерландские Антилы"
 msgid "Netmask"
 msgstr "Сетевая маска"
 
-#: admin/inc/dtc_config.php:406
+#: admin/inc/dtc_config.php:406 admin/inc/monitor.php:99
 msgid "Network"
 msgstr "Сеть"
 
@@ -4447,6 +4521,11 @@ msgstr "Новый пароль SSH: "
 #: shared/drawlib/cc_code_popup.php:265
 msgid "New Zealand"
 msgstr "Новая Зеландия"
+
+#: shared/dtcrm/draw.php:142
+#, fuzzy
+msgid "New account price"
+msgstr "Новая учётная запись FTP: "
 
 #: admin/dtcrm/main.php:23 admin/dtcrm/main.php:36
 msgid "New customer"
@@ -4574,6 +4653,7 @@ msgstr "Ниуэ"
 #: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
 #: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
 #: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
+#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
 #: shared/inc/forms/ticket.php:144 shared/securepay/modules/cheque/main.php:56
 #: shared/securepay/modules/wiretransfer/main.php:56
 msgid "No"
@@ -4666,6 +4746,10 @@ msgstr ""
 #: admin/inc/draw_user_admin.php:365
 msgid "No user waiting!"
 msgstr "Нет ожидающих пользователей!"
+
+#: admin/dtcrm/product_manager.php:292
+msgid "No-renew"
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:270
 msgid "Norfolk Island"
@@ -5031,7 +5115,7 @@ msgstr "Пароль: "
 msgid "Passwords 1 and 2 do not match!"
 msgstr "Первый и второй пароли не совпадают!"
 
-#: shared/dtcrm/draw.php:42
+#: shared/dtcrm/draw.php:42 shared/dtcrm/draw.php:143
 msgid "Past account refundal"
 msgstr "Слияние с имеющимся аккаунтом"
 
@@ -5075,6 +5159,20 @@ msgstr "Пути: "
 #: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:1903
 msgid "Paths"
 msgstr "Пути"
+
+#: shared/securepay/modules/dineromail/main.php:61
+#, fuzzy
+msgid "Pay by DineroMail"
+msgstr "Использовать register_globals=1: "
+
+#: shared/securepay/modules/cheque/main.php:46
+msgid "Pay by cheque"
+msgstr ""
+
+#: shared/securepay/modules/wiretransfer/main.php:46
+#, fuzzy
+msgid "Pay by wire transfer"
+msgstr "Телеграфный перевод"
 
 #: admin/inc/dtc_config.php:1663
 msgid "PayPal business account email: "
@@ -5252,7 +5350,7 @@ msgstr "Обновите с одним из следующих параметр�
 msgid "Please renew with one of the following options: "
 msgstr "Обновите с одним из следующих параметров: "
 
-#: admin/inc/dtc_config.php:2070
+#: admin/inc/dtc_config.php:2070 shared/drawlib/dtc_functions.php:209
 #, fuzzy
 msgid "Please select"
 msgstr "Выбирайте!"
@@ -5630,6 +5728,11 @@ msgstr ""
 msgid "Remaining money on my account:"
 msgstr "Оставшиеся деньги на моём счёте:"
 
+#: shared/dtcrm/draw.php:141
+#, fuzzy
+msgid "Remaining on your account"
+msgstr "Остаток на вашем счёте: "
+
 #: shared/dtcrm/draw_adddomain.php:310
 #: shared/dtcrm/draw_transferdomain.php:106
 #: shared/dtcrm/draw_renewdomain.php:51
@@ -5931,7 +6034,7 @@ msgstr "Саудовская Аравия"
 msgid "Save"
 msgstr "Сохранить"
 
-#: shared/inc/forms/subdomain.php:240
+#: shared/inc/forms/subdomain.php:242
 msgid "Sbox cgi-bin protection: "
 msgstr "Защита Sbox cgi-bin: "
 
@@ -6035,6 +6138,11 @@ msgid ""
 msgstr ""
 "Сервер не послал OK после соединения, может быть не тот сервер или он "
 "выключен: "
+
+#: shared/inc/forms/ticket.php:90
+#, fuzzy
+msgid "Server hostname related"
+msgstr "Относится к серверу с именем хоста: "
 
 #: admin/inc/draw_user_admin.php:195
 msgid "Server hostname related: "
@@ -6225,6 +6333,10 @@ msgstr "Испания"
 msgid "Spanish"
 msgstr "Испания"
 
+#: shared/dtcrm/draw_adddomain.php:79
+msgid "Special notes for the setup"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:313
 msgid "Sri Lanka"
 msgstr "Шри-Ланка"
@@ -6281,6 +6393,11 @@ msgstr "Шаг 1: выберите обновление"
 msgid "Step 2: Enter whois information"
 msgstr "Шаг 2: введите информацию whois"
 
+#: shared/dtcrm/draw.php:122
+#, fuzzy
+msgid "Step 2: proceed to upgrade"
+msgstr "Шаг 1: выберите обновление"
+
 #: shared/dtcrm/draw_transferdomain.php:77
 msgid "Step 2: select contacts for domain transfer"
 msgstr "Шаг 2: выберите контакты для переноса домена"
@@ -6293,7 +6410,7 @@ msgstr "Шаг 3: продолжите регистрацию"
 msgid "Step1: check if domain is transferable"
 msgstr "Шаг1: проверьте, что домен можно перенести"
 
-#: shared/dtcrm/draw.php:86
+#: shared/dtcrm/draw.php:86 shared/dtcrm/draw.php:118
 msgid "Storage"
 msgstr "Хранилище"
 
@@ -6440,6 +6557,11 @@ msgstr "Суринам"
 #: shared/drawlib/cc_code_popup.php:316
 msgid "Svalbard and Jan Mayen Islands"
 msgstr "Шпицберген и Ян Майен"
+
+#: admin/inc/monitor.php:99
+#, fuzzy
+msgid "Swap"
+msgstr "Подкачка В/В:"
 
 #: shared/inc/forms/vps_monitoring.php:110
 msgid "Swap I/O:"
@@ -6653,7 +6775,7 @@ msgstr "ID продукта не является допустимым целы�
 msgid "The requested login is not a valid login."
 msgstr "Запрошенная учётная запись не является правильной."
 
-#: shared/dtcrm/draw_transferdomain.php:112
+#: shared/dtcrm/draw.php:131 shared/dtcrm/draw_transferdomain.php:112
 #: shared/dtcrm/draw_renewdomain.php:57
 msgid "The transaction failed, please try again!"
 msgstr "Транзакция не удалась, попробуйте ещё раз!"
@@ -6961,6 +7083,11 @@ msgstr "Объём используемого места на диске:"
 msgid "Total number of used IPs:"
 msgstr ""
 
+#: shared/dtcrm/draw.php:144
+#, fuzzy
+msgid "Total price"
+msgstr "Конечная цена: "
+
 #: shared/dtcrm/draw_adddomain.php:311
 #: shared/dtcrm/draw_transferdomain.php:107
 #: shared/dtcrm/draw_renewdomain.php:52 shared/inc/forms/domain_info.php:44
@@ -7001,7 +7128,7 @@ msgstr "Всего: "
 msgid "Traffic"
 msgstr "Трафик"
 
-#: admin/inc/monitor.php:18
+#: admin/inc/monitor.php:18 shared/dtcrm/draw.php:119
 msgid "Transfer"
 msgstr "Пересылка"
 
@@ -7213,7 +7340,7 @@ msgstr "Использовать как шаблон для домена:"
 msgid "Use active FTP connection to backup server:"
 msgstr "Тип шифрования при подключении к серверу Tucows:"
 
-#: shared/inc/forms/subdomain.php:276
+#: shared/inc/forms/subdomain.php:278
 msgid "Use an SSL vhost using this IP: "
 msgstr "Использовать SSL vhost с этим IP: "
 
@@ -7542,6 +7669,10 @@ msgstr "Британские Виргинские острова"
 msgid "Virgin Islands (U.S.)"
 msgstr "Виргинские острова Соединённых Штатов"
 
+#: shared/inc/draw.php:424
+msgid "Virtual Private Server"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1955
 msgid "Virtual host config-file:"
 msgstr "Файл настройки виртуальных хостов:"
@@ -7610,7 +7741,7 @@ msgid "Week CPU Load Graph"
 msgstr "Средняя загрузка процессора"
 
 #: admin/cpugraph.php:35 admin/mailgraph.php:25 admin/memgraph.php:25
-#: admin/netusegraph.php:25
+#: admin/netusegraph.php:25 admin/active_prods_graph.php:25
 msgid "Week Graph"
 msgstr ""
 
@@ -7622,6 +7753,11 @@ msgstr "График почтовой очереди"
 #: admin/memgraph.php:93 admin/netusegraph.php:91
 msgid "Week Netusage Graph"
 msgstr ""
+
+#: admin/active_prods_graph.php:90
+#, fuzzy
+msgid "Week Sales Graph"
+msgstr "График почтовой очереди"
 
 #: admin/inc/dtc_config.php:743
 msgid "Weekly"
@@ -7701,7 +7837,7 @@ msgstr "Whois для:"
 msgid "Whois:"
 msgstr "Whois:"
 
-#: shared/inc/forms/subdomain.php:298
+#: shared/inc/forms/subdomain.php:300
 msgid ""
 "Windows users (and UNIX users running WINE) can update their IP address "
 "dynamically by downloading and installing the following open source DTC "
@@ -7746,7 +7882,7 @@ msgid "Year CPU Load Graph"
 msgstr "Средняя загрузка процессора"
 
 #: admin/cpugraph.php:43 admin/mailgraph.php:33 admin/memgraph.php:33
-#: admin/netusegraph.php:33
+#: admin/netusegraph.php:33 admin/active_prods_graph.php:33
 msgid "Year Graph"
 msgstr ""
 
@@ -7758,6 +7894,11 @@ msgstr "График почтовой очереди"
 #: admin/memgraph.php:95 admin/netusegraph.php:93
 msgid "Year Netusage Graph"
 msgstr ""
+
+#: admin/active_prods_graph.php:92
+#, fuzzy
+msgid "Year Sales Graph"
+msgstr "График почтовой очереди"
 
 #: shared/inc/forms/vps_graphs.php:60
 msgid "Yearly VPS usage statistics:"
@@ -7803,12 +7944,13 @@ msgstr "Республика Йемен"
 #: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
 #: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
 #: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
+#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
 #: shared/inc/forms/ticket.php:143 shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:78
 #: shared/securepay/modules/worldpay/main.php:77
 #: shared/securepay/modules/webmoney/main.php:39
 #: shared/securepay/modules/moneybookers/main.php:94
-#: shared/securepay/modules/dineromail/main.php:70
+#: shared/securepay/modules/dineromail/main.php:71
 msgid "Yes"
 msgstr "да"
 
@@ -7961,6 +8103,11 @@ msgid ""
 msgstr ""
 "У вас достаточно средств для продолжения регистрации. Нажмите кнопку "
 "согласия для продолжения."
+
+#: shared/dtcrm/draw.php:117
+#, fuzzy
+msgid "You have selected"
+msgstr "список не выбран"
 
 #: shared/inc/forms/vps_installation.php:334
 msgid ""
@@ -8174,6 +8321,10 @@ msgstr "не удалось подключиться к хосту"
 msgid "cz"
 msgstr ""
 
+#: shared/drawlib/dtc_functions.php:1011
+msgid "day"
+msgstr ""
+
 #: admin/inc/ip_usage_report.php:254
 #, fuzzy
 msgid "dedicated"
@@ -8207,6 +8358,11 @@ msgstr "тестовый коммерческий ID в eNETS: "
 msgid "eXtplorer web file manager"
 msgstr ""
 
+#: shared/dtcrm/draw.php:120
+#, fuzzy
+msgid "each"
+msgstr "Франция"
+
 #: shared/inc/fetch.php:469
 msgid ""
 "either your login and password pair is not valid, either your session "
@@ -8223,6 +8379,10 @@ msgstr "получение admin: "
 msgid "files"
 msgstr "файлы"
 
+#: shared/dtcrm/draw.php:69
+msgid "for"
+msgstr ""
+
 #: shared/inc/forms/lists.php:415
 msgid "get-N function only for subscribers:"
 msgstr "функция get-N только для подписчиков:"
@@ -8231,6 +8391,11 @@ msgstr "функция get-N только для подписчиков:"
 #: shared/dtcrm/draw_transferdomain.php:218 shared/dtcrm/draw_whois.php:45
 msgid "here"
 msgstr "здесь"
+
+#: shared/inc/forms/admin_stats.php:38
+#, fuzzy
+msgid "hits"
+msgstr "Whois"
 
 #: shared/dtcrm/modules/ovh/main.php:480
 #, fuzzy
@@ -8269,6 +8434,11 @@ msgstr "last_tick_id или tik_id не является числом: попы�
 #: shared/dtcrm/draw_handle.php:370
 msgid "marked fields are required"
 msgstr "требуются помеченные поля"
+
+#: shared/drawlib/dtc_functions.php:1007
+#, fuzzy
+msgid "month"
+msgstr "Сумма"
 
 #: client/new_account_form.php:583 client/new_account_form.php:584
 #: shared/inc/forms/vps_installation.php:235
@@ -8332,6 +8502,11 @@ msgstr "образ операционной системы"
 msgid "optional"
 msgstr "необязательно"
 
+#: shared/inc/draw.php:424
+#, fuzzy
+msgid "running on"
+msgstr "Работает нормально"
+
 #: client/new_account_form.php:671
 msgid "selling conditions"
 msgstr "условия продажи"
@@ -8373,7 +8548,7 @@ msgstr "У кого будут права на изменение информа
 msgid "who will own the domain name and will be the registrant?"
 msgstr "Кто будет владеть доменным именем и регистратором (владелец домена)?"
 
-#: shared/dtcrm/draw_adddomain.php:252
+#: shared/drawlib/dtc_functions.php:1003 shared/dtcrm/draw_adddomain.php:252
 #: shared/dtcrm/draw_register_forms.php:104
 msgid "year"
 msgstr "год"
@@ -8383,7 +8558,7 @@ msgstr "год"
 msgid "year(s)"
 msgstr "лет"
 
-#: shared/dtcrm/draw_adddomain.php:253
+#: shared/drawlib/dtc_functions.php:1003 shared/dtcrm/draw_adddomain.php:253
 #: shared/dtcrm/draw_register_forms.php:105
 #: shared/dtcrm/draw_register_forms.php:106
 #: shared/dtcrm/draw_register_forms.php:107

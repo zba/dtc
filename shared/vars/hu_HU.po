@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-29 14:36-0300\n"
+"POT-Creation-Date: 2010-05-30 03:26-0300\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Feher Sandor <sfeher@bluesystem.hu>\n"
 "Language-Team: Hungarian <LL@li.org>\n"
@@ -19,6 +19,11 @@ msgstr ""
 #, fuzzy
 msgid " (Dedicated servers)"
 msgstr "IP cím"
+
+#: admin/dtcrm/product_manager.php:277
+#, fuzzy
+msgid " (SSL IPs)"
+msgstr "Az adatbázisok száma:"
 
 #: admin/dtcrm/product_manager.php:109
 msgid " (VPS)"
@@ -424,6 +429,28 @@ msgstr "Művelet"
 msgid "Activate FTP backups:"
 msgstr ""
 
+#: admin/active_prods_graph.php:86
+msgid "Active Products Statistics for"
+msgstr ""
+
+#: admin/active_prods_graph.php:45
+msgid "Active VPS"
+msgstr ""
+
+#: admin/active_prods_graph.php:46
+#, fuzzy
+msgid "Active dedicated servers"
+msgstr "IP cím"
+
+#: admin/active_prods_graph.php:70
+msgid "Active product statistics for"
+msgstr ""
+
+#: admin/active_prods_graph.php:44
+#, fuzzy
+msgid "Active shared accounts"
+msgstr "Az aktív levelesládák száma:"
+
 #: admin/mailgraph.php:45
 msgid "Active+incoming+maildrop"
 msgstr ""
@@ -589,6 +616,10 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:104
 msgid "Afghanistan"
+msgstr ""
+
+#: shared/dtcrm/draw.php:160
+msgid "After upgrade, you will have"
 msgstr ""
 
 #: admin/inc/draw_user_admin.php:533
@@ -816,6 +847,8 @@ msgstr ""
 
 #: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
 #: admin/netusegraph.php:45 admin/netusegraph.php:46
+#: admin/active_prods_graph.php:44 admin/active_prods_graph.php:45
+#: admin/active_prods_graph.php:46
 msgid "Average"
 msgstr ""
 
@@ -1042,6 +1075,10 @@ msgstr "évek"
 msgid "CGI-BIN protection"
 msgstr ""
 
+#: admin/inc/monitor.php:99
+msgid "CPU"
+msgstr ""
+
 #: admin/inc/graphs.php:7
 msgid "CPU Load Average"
 msgstr ""
@@ -1060,6 +1097,10 @@ msgstr ""
 
 #: admin/cpugraph.php:78
 msgid "CPU load average statistics for"
+msgstr ""
+
+#: shared/dtcrm/draw.php:107
+msgid "Calculate price"
 msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:140
@@ -1848,7 +1889,7 @@ msgid "Day CPU Load Graph"
 msgstr ""
 
 #: admin/cpugraph.php:31 admin/mailgraph.php:21 admin/memgraph.php:21
-#: admin/netusegraph.php:21
+#: admin/netusegraph.php:21 admin/active_prods_graph.php:21
 msgid "Day Graph"
 msgstr ""
 
@@ -1858,6 +1899,10 @@ msgstr ""
 
 #: admin/memgraph.php:92 admin/netusegraph.php:90
 msgid "Day Netusage Graph"
+msgstr ""
+
+#: admin/active_prods_graph.php:89
+msgid "Day Sales Graph"
 msgstr ""
 
 #: admin/inc/renewals.php:735
@@ -2219,11 +2264,11 @@ msgstr ""
 msgid "Duch"
 msgstr ""
 
-#: shared/inc/forms/subdomain.php:289
+#: shared/inc/forms/subdomain.php:291
 msgid "Dynamic IP update login: "
 msgstr "Dinamikus IP frissítés login neve: "
 
-#: shared/inc/forms/subdomain.php:295
+#: shared/inc/forms/subdomain.php:297
 msgid "Dynamic IP update password: "
 msgstr "Dinamikus IP frissítés jelszó: "
 
@@ -2617,6 +2662,10 @@ msgstr "Keresztnév:"
 msgid "First name: "
 msgstr "Keresztnév:"
 
+#: shared/inc/forms/ticket.php:89
+msgid "First query date"
+msgstr ""
+
 #: admin/inc/draw_user_admin.php:194
 msgid "First query date: "
 msgstr ""
@@ -2633,7 +2682,7 @@ msgstr ""
 msgid "Flat fee for accepting wire transfers: "
 msgstr ""
 
-#: shared/inc/forms/subdomain.php:300
+#: shared/inc/forms/subdomain.php:302
 msgid ""
 "For unix users, a simple wget command in a cron joe like below will do. "
 "Something like this:"
@@ -2697,6 +2746,11 @@ msgstr "A DTC admin panel teljes gazdaneve:"
 #: admin/inc/dtc_config.php:1330
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr ""
+
+#: shared/dtcrm/draw.php:133
+#, fuzzy
+msgid "Funds added to your account!"
+msgstr "Az ön számlájának egyenlege: "
 
 #: shared/drawlib/dtc_functions.php:1017
 msgid "GBytes"
@@ -2826,6 +2880,10 @@ msgstr "Általános"
 
 #: shared/drawlib/cc_code_popup.php:198
 msgid "Guyana"
+msgstr ""
+
+#: admin/inc/monitor.php:99
+msgid "HDD"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:113
@@ -2972,8 +3030,12 @@ msgstr ""
 msgid "Hour Netusage Graph"
 msgstr ""
 
+#: admin/active_prods_graph.php:88
+msgid "Hour Sales Graph"
+msgstr ""
+
 #: admin/cpugraph.php:27 admin/mailgraph.php:17 admin/memgraph.php:17
-#: admin/netusegraph.php:17
+#: admin/netusegraph.php:17 admin/active_prods_graph.php:17
 msgid "Hour graph"
 msgstr ""
 
@@ -3948,6 +4010,8 @@ msgstr ""
 
 #: admin/cpugraph.php:54 admin/mailgraph.php:45 admin/mailgraph.php:46
 #: admin/memgraph.php:46 admin/netusegraph.php:45 admin/netusegraph.php:46
+#: admin/active_prods_graph.php:44 admin/active_prods_graph.php:45
+#: admin/active_prods_graph.php:46
 msgid "Maximum"
 msgstr ""
 
@@ -4134,7 +4198,7 @@ msgid "Month CPU Load Graph"
 msgstr ""
 
 #: admin/cpugraph.php:39 admin/mailgraph.php:29 admin/memgraph.php:29
-#: admin/netusegraph.php:29
+#: admin/netusegraph.php:29 admin/active_prods_graph.php:29
 msgid "Month Graph"
 msgstr ""
 
@@ -4144,6 +4208,10 @@ msgstr ""
 
 #: admin/memgraph.php:94 admin/netusegraph.php:92
 msgid "Month Netusage Graph"
+msgstr ""
+
+#: admin/active_prods_graph.php:91
+msgid "Month Sales Graph"
 msgstr ""
 
 #: admin/inc/dtc_config.php:743
@@ -4372,7 +4440,7 @@ msgstr ""
 msgid "Netmask"
 msgstr ""
 
-#: admin/inc/dtc_config.php:406
+#: admin/inc/dtc_config.php:406 admin/inc/monitor.php:99
 msgid "Network"
 msgstr ""
 
@@ -4425,6 +4493,11 @@ msgstr "Változtassa meg a jelszavát:"
 #: shared/drawlib/cc_code_popup.php:265
 msgid "New Zealand"
 msgstr ""
+
+#: shared/dtcrm/draw.php:142
+#, fuzzy
+msgid "New account price"
+msgstr "Új FTP hozzáférés: "
 
 #: admin/dtcrm/main.php:23 admin/dtcrm/main.php:36
 msgid "New customer"
@@ -4554,6 +4627,7 @@ msgstr ""
 #: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
 #: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
 #: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
+#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
 #: shared/inc/forms/ticket.php:144 shared/securepay/modules/cheque/main.php:56
 #: shared/securepay/modules/wiretransfer/main.php:56
 msgid "No"
@@ -4646,6 +4720,10 @@ msgstr ""
 #: admin/inc/draw_user_admin.php:365
 msgid "No user waiting!"
 msgstr "Nincs várakozó felhasználó!"
+
+#: admin/dtcrm/product_manager.php:292
+msgid "No-renew"
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:270
 msgid "Norfolk Island"
@@ -5009,7 +5087,7 @@ msgstr ""
 msgid "Passwords 1 and 2 do not match!"
 msgstr ""
 
-#: shared/dtcrm/draw.php:42
+#: shared/dtcrm/draw.php:42 shared/dtcrm/draw.php:143
 msgid "Past account refundal"
 msgstr ""
 
@@ -5051,6 +5129,20 @@ msgstr "Elérési utak"
 #: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:1903
 msgid "Paths"
 msgstr "Elérési utak"
+
+#: shared/securepay/modules/dineromail/main.php:61
+#, fuzzy
+msgid "Pay by DineroMail"
+msgstr "Állítsa a be a register_globals=1 -re: "
+
+#: shared/securepay/modules/cheque/main.php:46
+msgid "Pay by cheque"
+msgstr ""
+
+#: shared/securepay/modules/wiretransfer/main.php:46
+#, fuzzy
+msgid "Pay by wire transfer"
+msgstr "Transzfer indítása"
 
 #: admin/inc/dtc_config.php:1663
 #, fuzzy
@@ -5236,7 +5328,7 @@ msgstr ""
 msgid "Please renew with one of the following options: "
 msgstr "Kérem jelezze felénk, ha az alábbiak nem stimmelnek:"
 
-#: admin/inc/dtc_config.php:2070
+#: admin/inc/dtc_config.php:2070 shared/drawlib/dtc_functions.php:209
 msgid "Please select"
 msgstr ""
 
@@ -5625,6 +5717,11 @@ msgstr ""
 msgid "Remaining money on my account:"
 msgstr "A számlámon lévő pénz:"
 
+#: shared/dtcrm/draw.php:141
+#, fuzzy
+msgid "Remaining on your account"
+msgstr "Az ön számlájának egyenlege: "
+
 #: shared/dtcrm/draw_adddomain.php:310
 #: shared/dtcrm/draw_transferdomain.php:106
 #: shared/dtcrm/draw_renewdomain.php:51
@@ -5931,7 +6028,7 @@ msgstr ""
 msgid "Save"
 msgstr "Mentés"
 
-#: shared/inc/forms/subdomain.php:240
+#: shared/inc/forms/subdomain.php:242
 msgid "Sbox cgi-bin protection: "
 msgstr ""
 
@@ -6031,6 +6128,11 @@ msgstr ""
 msgid ""
 "Server did not send OK after connect, maybe wrong server or server is down: "
 msgstr ""
+
+#: shared/inc/forms/ticket.php:90
+#, fuzzy
+msgid "Server hostname related"
+msgstr "Névszerver gazdanév: "
 
 #: admin/inc/draw_user_admin.php:195
 msgid "Server hostname related: "
@@ -6232,6 +6334,10 @@ msgstr ""
 msgid "Spanish"
 msgstr ""
 
+#: shared/dtcrm/draw_adddomain.php:79
+msgid "Special notes for the setup"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:313
 msgid "Sri Lanka"
 msgstr ""
@@ -6290,6 +6396,11 @@ msgstr ""
 msgid "Step 2: Enter whois information"
 msgstr "Második lépés: A whois információk megadása"
 
+#: shared/dtcrm/draw.php:122
+#, fuzzy
+msgid "Step 2: proceed to upgrade"
+msgstr "Harmadik lépés: Regisztráció indítása"
+
 #: shared/dtcrm/draw_transferdomain.php:77
 msgid "Step 2: select contacts for domain transfer"
 msgstr "Második lépés: jelölje ki a kapcsolattartókat a domain transzferhez"
@@ -6302,7 +6413,7 @@ msgstr "Harmadik lépés: Regisztráció indítása"
 msgid "Step1: check if domain is transferable"
 msgstr "Első lépés: Transzferálható e a domain"
 
-#: shared/dtcrm/draw.php:86
+#: shared/dtcrm/draw.php:86 shared/dtcrm/draw.php:118
 #, fuzzy
 msgid "Storage"
 msgstr "Tárhely"
@@ -6448,6 +6559,10 @@ msgstr "Az elsődleges dns szerver címe:"
 
 #: shared/drawlib/cc_code_popup.php:316
 msgid "Svalbard and Jan Mayen Islands"
+msgstr ""
+
+#: admin/inc/monitor.php:99
+msgid "Swap"
 msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:110
@@ -6644,7 +6759,7 @@ msgstr ""
 msgid "The requested login is not a valid login."
 msgstr ""
 
-#: shared/dtcrm/draw_transferdomain.php:112
+#: shared/dtcrm/draw.php:131 shared/dtcrm/draw_transferdomain.php:112
 #: shared/dtcrm/draw_renewdomain.php:57
 msgid "The transaction failed, please try again!"
 msgstr "A tranzakció sikertelen, kérem próbálja újra!"
@@ -6917,6 +7032,11 @@ msgstr "Összes felhasznált tárhely:"
 msgid "Total number of used IPs:"
 msgstr ""
 
+#: shared/dtcrm/draw.php:144
+#, fuzzy
+msgid "Total price"
+msgstr "Teljes ár: "
+
 #: shared/dtcrm/draw_adddomain.php:311
 #: shared/dtcrm/draw_transferdomain.php:107
 #: shared/dtcrm/draw_renewdomain.php:52 shared/inc/forms/domain_info.php:44
@@ -6961,7 +7081,7 @@ msgstr ""
 msgid "Traffic"
 msgstr "Összes forgalom"
 
-#: admin/inc/monitor.php:18
+#: admin/inc/monitor.php:18 shared/dtcrm/draw.php:119
 msgid "Transfer"
 msgstr "Forgalom"
 
@@ -7178,7 +7298,7 @@ msgstr "Az aldomain TXT mezője: "
 msgid "Use active FTP connection to backup server:"
 msgstr "A titkosítás típusa, ha a Tucows szerverhez kapcsolódunk:"
 
-#: shared/inc/forms/subdomain.php:276
+#: shared/inc/forms/subdomain.php:278
 msgid "Use an SSL vhost using this IP: "
 msgstr ""
 
@@ -7526,6 +7646,10 @@ msgstr ""
 msgid "Virgin Islands (U.S.)"
 msgstr ""
 
+#: shared/inc/draw.php:424
+msgid "Virtual Private Server"
+msgstr ""
+
 #: admin/inc/dtc_config.php:1955
 msgid "Virtual host config-file:"
 msgstr ""
@@ -7588,7 +7712,7 @@ msgid "Week CPU Load Graph"
 msgstr ""
 
 #: admin/cpugraph.php:35 admin/mailgraph.php:25 admin/memgraph.php:25
-#: admin/netusegraph.php:25
+#: admin/netusegraph.php:25 admin/active_prods_graph.php:25
 msgid "Week Graph"
 msgstr ""
 
@@ -7598,6 +7722,10 @@ msgstr ""
 
 #: admin/memgraph.php:93 admin/netusegraph.php:91
 msgid "Week Netusage Graph"
+msgstr ""
+
+#: admin/active_prods_graph.php:90
+msgid "Week Sales Graph"
 msgstr ""
 
 #: admin/inc/dtc_config.php:743
@@ -7672,7 +7800,7 @@ msgstr ""
 msgid "Whois:"
 msgstr ""
 
-#: shared/inc/forms/subdomain.php:298
+#: shared/inc/forms/subdomain.php:300
 msgid ""
 "Windows users (and UNIX users running WINE) can update their IP address "
 "dynamically by downloading and installing the following open source DTC "
@@ -7715,7 +7843,7 @@ msgid "Year CPU Load Graph"
 msgstr ""
 
 #: admin/cpugraph.php:43 admin/mailgraph.php:33 admin/memgraph.php:33
-#: admin/netusegraph.php:33
+#: admin/netusegraph.php:33 admin/active_prods_graph.php:33
 msgid "Year Graph"
 msgstr ""
 
@@ -7725,6 +7853,10 @@ msgstr ""
 
 #: admin/memgraph.php:95 admin/netusegraph.php:93
 msgid "Year Netusage Graph"
+msgstr ""
+
+#: admin/active_prods_graph.php:92
+msgid "Year Sales Graph"
 msgstr ""
 
 #: shared/inc/forms/vps_graphs.php:60
@@ -7771,12 +7903,13 @@ msgstr ""
 #: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
 #: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
 #: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
+#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
 #: shared/inc/forms/ticket.php:143 shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:78
 #: shared/securepay/modules/worldpay/main.php:77
 #: shared/securepay/modules/webmoney/main.php:39
 #: shared/securepay/modules/moneybookers/main.php:94
-#: shared/securepay/modules/dineromail/main.php:70
+#: shared/securepay/modules/dineromail/main.php:71
 msgid "Yes"
 msgstr "Igen"
 
@@ -7900,6 +8033,10 @@ msgid ""
 msgstr ""
 "Önnek megfelelő mennyiségű pénz van a számláján a regisztrációhoz. "
 "Kattintson a jóváhagyás gombra és a megrendelése elindul."
+
+#: shared/dtcrm/draw.php:117
+msgid "You have selected"
+msgstr ""
 
 #: shared/inc/forms/vps_installation.php:334
 msgid ""
@@ -8118,6 +8255,10 @@ msgstr ""
 msgid "cz"
 msgstr ""
 
+#: shared/drawlib/dtc_functions.php:1011
+msgid "day"
+msgstr ""
+
 #: admin/inc/ip_usage_report.php:254
 #, fuzzy
 msgid "dedicated"
@@ -8154,6 +8295,10 @@ msgstr ""
 msgid "eXtplorer web file manager"
 msgstr ""
 
+#: shared/dtcrm/draw.php:120
+msgid "each"
+msgstr ""
+
 #: shared/inc/fetch.php:469
 msgid ""
 "either your login and password pair is not valid, either your session "
@@ -8168,6 +8313,10 @@ msgstr "adminisztrátor lehívás: "
 msgid "files"
 msgstr ""
 
+#: shared/dtcrm/draw.php:69
+msgid "for"
+msgstr ""
+
 #: shared/inc/forms/lists.php:415
 msgid "get-N function only for subscribers:"
 msgstr ""
@@ -8176,6 +8325,10 @@ msgstr ""
 #: shared/dtcrm/draw_transferdomain.php:218 shared/dtcrm/draw_whois.php:45
 msgid "here"
 msgstr "ide"
+
+#: shared/inc/forms/admin_stats.php:38
+msgid "hits"
+msgstr ""
 
 #: shared/dtcrm/modules/ovh/main.php:480
 msgid "ie"
@@ -8215,6 +8368,11 @@ msgstr ""
 #: shared/dtcrm/draw_handle.php:370
 msgid "marked fields are required"
 msgstr "a megjelölt mezők kötelezőek"
+
+#: shared/drawlib/dtc_functions.php:1007
+#, fuzzy
+msgid "month"
+msgstr "Ország"
 
 #: client/new_account_form.php:583 client/new_account_form.php:584
 #: shared/inc/forms/vps_installation.php:235
@@ -8279,6 +8437,10 @@ msgstr ""
 msgid "optional"
 msgstr "opció"
 
+#: shared/inc/draw.php:424
+msgid "running on"
+msgstr ""
+
 #: client/new_account_form.php:671
 msgid "selling conditions"
 msgstr ""
@@ -8318,7 +8480,7 @@ msgstr ""
 msgid "who will own the domain name and will be the registrant?"
 msgstr "Adja meg a regisztrálni kívánt domain nevét:"
 
-#: shared/dtcrm/draw_adddomain.php:252
+#: shared/drawlib/dtc_functions.php:1003 shared/dtcrm/draw_adddomain.php:252
 #: shared/dtcrm/draw_register_forms.php:104
 msgid "year"
 msgstr "év"
@@ -8328,7 +8490,7 @@ msgstr "év"
 msgid "year(s)"
 msgstr "évek"
 
-#: shared/dtcrm/draw_adddomain.php:253
+#: shared/drawlib/dtc_functions.php:1003 shared/dtcrm/draw_adddomain.php:253
 #: shared/dtcrm/draw_register_forms.php:105
 #: shared/dtcrm/draw_register_forms.php:106
 #: shared/dtcrm/draw_register_forms.php:107
