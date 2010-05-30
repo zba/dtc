@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 0.30.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-05-31 13:01-0300\n"
-"PO-Revision-Date: 2010-05-29 14:45-0300\n"
+"PO-Revision-Date: 2010-05-31 13:45-0300\n"
 "Last-Translator: Fernando Kiernan <fkiernan@id.net.ar>\n"
 "Language-Team: Yosu Cadilla <digitalwares@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -445,7 +445,7 @@ msgstr "Acci&oacute;n"
 
 #: shared/inc/forms/email.php:245
 msgid "Activate Clamav antivirus"
-msgstr ""
+msgstr "Activar antivirus Clamav"
 
 #: admin/inc/dtc_config.php:723
 msgid "Activate FTP backups:"
@@ -453,7 +453,7 @@ msgstr "Activar copias de seguridad de FTP:"
 
 #: shared/inc/forms/email.php:193
 msgid "Activate iGlobalWall protection"
-msgstr ""
+msgstr "Activar la protecci&oacute;n iGLobalWall"
 
 #: admin/active_prods_graph.php:86
 msgid "Active Products Statistics for"
@@ -752,7 +752,7 @@ msgstr "Ant&aacute;rtida"
 
 #: shared/inc/forms/email.php:334
 msgid "Anti-SPAM control"
-msgstr ""
+msgstr "Control Anti-SPAM"
 
 #: shared/inc/forms/lists.php:449
 msgid "Anti-spam mode:"
@@ -2171,7 +2171,7 @@ msgstr "Nombre de dominio para la URL de retorno de afiliaci&oacute;n:"
 #: shared/inc/domain_export.php:314
 msgid ""
 "Domain name is empty in your export file: could not import domain number "
-msgstr ""
+msgstr "El nombre de dominio esta vac&iacute;o en su archivo de exportaci&oacute;n: no se puede importar el dominio n&uacute;mero "
 
 #: shared/dtcrm/draw_adddomain.php:145
 msgid "Domain name is not in correct format. Please enter another name."
@@ -2917,7 +2917,19 @@ msgid ""
 "Antispam software:\n"
 "Grey listing+SPF, only available with Domain Technologie Control\n"
 "http://www.gplhost.com/software-dtc.html\n"
-msgstr ""
+msgstr "Hola,\n"
+"Ud. me escribi&oacute; un email, a dada la gran cantidad\n"
+"de spam que recibo, uso un programa antispam que requiere un mensaje\n"
+"de confirmaci&oacute;n. Esto es muy f&aacute;cil, y solameente debe hacerlo una vez.\n"
+"Haga click en el siguiente v&iacute;nculo, copie el n&uacute;mero que ve en\n"
+"la pantalla y recibir&eacute; el mensaje que me envi&oacute;. Si Ud. no hace click,\n"
+"su mensaje se conseiderar&aacute; de progpaganda y NO lo recibir&eacute;.\n"
+"\n"
+"***URL***\n"
+"\n"
+"Software antispam:\n"
+"Grey listing+SPF, solamente disponible con DTC\n"
+"http://wwwgplhost.com/software-dtc.html\n"
 
 #: shared/inc/draw.php:369
 msgid "Help"
@@ -2957,7 +2969,7 @@ msgstr ""
 
 #: shared/inc/forms/email.php:264
 msgid "Here will go quarantinized messages"
-msgstr ""
+msgstr "Aqu&iacute; estar&aacute; los mensajes en cuarentena"
 
 #: admin/dtcrm/main.php:101
 msgid "Hide client without admin"
@@ -3268,9 +3280,8 @@ msgid "Import a domain file for this user:"
 msgstr "Importar un archivo de dominio para este usuario:"
 
 #: shared/inc/domain_export.php:360
-#, fuzzy
 msgid "Importing database username: "
-msgstr "Nombre de base de datos no permitido"
+msgstr "Importando usuario de base de datos: "
 
 #: shared/inc/forms/lists.php:192
 msgid ""
@@ -3902,19 +3913,16 @@ msgid "Mail server used to send the messages."
 msgstr "Servidor de correo utilizado para enviar mensajes."
 
 #: shared/inc/forms/email.php:220
-#, fuzzy
 msgid "Mail user domain"
-msgstr "Borrar un dominio de usuario:"
+msgstr "Dominio de usuario de correo"
 
 #: shared/inc/forms/email.php:220
-#, fuzzy
 msgid "Mail user from"
-msgstr "Servidor de correo desde donde importar:"
+msgstr "Correo de origen"
 
 #: shared/inc/forms/email.php:220
-#, fuzzy
 msgid "Mail user to (mailling list)"
-msgstr "Editar lista de correo"
+msgstr "Correo de destino (lista)"
 
 #: admin/deamons_state.php:134
 msgid "Mail-newu"
@@ -4158,7 +4166,7 @@ msgstr "Men&uacute;"
 msgid ""
 "Method getUnserializedData() failed, could not import your domain "
 "configuration: "
-msgstr ""
+msgstr "El m&eacute;todo getUnserializedData() fall&oacute;, no se puede importar la configuraci&oacute;n de su dominio: "
 
 #: shared/inc/forms/vps_monitoring.php:125
 #: shared/inc/forms/vps_installation.php:73
@@ -4168,7 +4176,7 @@ msgstr "M&eacute;todo getVPSState fallido"
 #: shared/inc/domain_export.php:273
 msgid ""
 "Method unserialize() failed, could not import your domain configuration: "
-msgstr ""
+msgstr "El m&eacute;todo unserialize() fall&oacute;, no se puede importar la configuraci&oacute;n de su dominio: "
 
 #: shared/drawlib/cc_code_popup.php:249
 msgid "Mexico"
@@ -4878,14 +4886,12 @@ msgid "Number of active subdomains:"
 msgstr "N&uacute;mero de subdominios activos:"
 
 #: shared/inc/domain_export.php:384
-#, fuzzy
 msgid "Number of database owned by user"
-msgstr "N&uacute;mero de bases de datos:"
+msgstr "N&uacute;mero de bases de datos del usuario:"
 
 #: shared/inc/domain_export.php:356
-#, fuzzy
 msgid "Number of database users in this import: "
-msgstr "N&uacute;mero de bases de datos:"
+msgstr "N&uacute;mero de usuarios de bases de datos en esta importaci&oacute;n:"
 
 #: shared/inc/forms/root_admin.php:129
 msgid "Number of databases:"
@@ -5913,7 +5919,7 @@ msgstr "Password SOAP"
 
 #: shared/inc/forms/email.php:340
 msgid "SPAM box name"
-msgstr ""
+msgstr "Nombre de la Carpeta para SPAM"
 
 #: shared/inc/forms/email.php:654
 msgid "SPAM mailbox destination: "
@@ -7627,9 +7633,8 @@ msgid "VPS: Cannot find VPS in db!"
 msgstr "VPS: No se puede encontrar el VPS en la base de datos!"
 
 #: shared/inc/forms/email.php:301
-#, fuzzy
 msgid "Vacation message"
-msgstr "Antig&uumlaut;edad del &uacute;ltimo mensaje"
+msgstr "Mensaje de Vacaciones"
 
 #: admin/inc/draw_user_admin.php:520
 msgid "Validate"
@@ -7854,9 +7859,8 @@ msgstr ""
 "cliente DTC de c&oacute;digo abierto y gratuito:"
 
 #: admin/inc/renewals.php:480
-#, fuzzy
 msgid "Wire"
-msgstr "Zaire"
+msgstr "Dep/Transf"
 
 #: admin/inc/renewals.php:194
 msgid "Wire transfer"
@@ -8172,9 +8176,8 @@ msgid "Your area disk usage:"
 msgstr "Espacio de disco usado:"
 
 #: shared/inc/forms/email.php:208
-#, fuzzy
 msgid "Your bounce message"
-msgstr "Contenido del mensaje de Bounce:"
+msgstr "Su mensaje de Bounce"
 
 #: shared/inc/forms/reseller.php:22
 msgid "Your child accounts:"
@@ -8276,7 +8279,7 @@ msgstr "Sus usuarios"
 
 #: shared/inc/forms/email.php:214
 msgid "Your white list"
-msgstr ""
+msgstr "Su lista blanca"
 
 #: shared/drawlib/cc_code_popup.php:352
 msgid "Yugoslavia"
@@ -8336,9 +8339,8 @@ msgid "check"
 msgstr "chequear"
 
 #: admin/inc/renewals.php:480
-#, fuzzy
 msgid "cheque"
-msgstr "Pagar con Cheque"
+msgstr "cheque"
 
 #: shared/inc/forms/root_admin.php:124
 msgid "client"
@@ -8525,7 +8527,7 @@ msgstr "ninguno"
 
 #: admin/inc/renewals.php:481
 msgid "online: none"
-msgstr ""
+msgstr "online: desconocido"
 
 #: shared/inc/forms/vps_installation.php:249
 msgid "operating system image"
