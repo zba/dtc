@@ -163,7 +163,7 @@ function drawAntispamRules($mailbox){
 	global $pro_mysql_whitelist_table;
 	global $pro_mysql_whitelist_table;
 
-	$bnc_msg = "Hello,
+	$bnc_msg = _("Hello,
 You have tried to write an email to me, and because of the big amount
 of spam I recieved, I use an antispam software that require a message
 confirmation. This is very easy, and you will have to do it only once.
@@ -179,7 +179,7 @@ Thank you for your understanding.
 Antispam software:
 Grey listing+SPF, only available with Domain Technologie Control
 http://www.gplhost.com/software-dtc.html
-";
+");
 
 	$out = "";
 
@@ -190,7 +190,7 @@ http://www.gplhost.com/software-dtc.html
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">";
 
 	if($mailbox["data"]["iwall_protect"] == "yes")	$checked = " checked "; else $checked = "";
-	$out = $form_start."<input type=\"hidden\" name=\"action\" value=\"activate_antispam\"><input type=\"checkbox\" name=\"iwall_on\" value=\"yes\"$checked>Activate iGlobalWall protection
+	$out = $form_start."<input type=\"hidden\" name=\"action\" value=\"activate_antispam\"><input type=\"checkbox\" name=\"iwall_on\" value=\"yes\"$checked>" . _("Activate iGlobalWall protection") . "
 	". drawSubmitButton( _("Ok") ) ."</form>";
 
 	if($mailbox["data"]["iwall_protect"] == "yes"){
@@ -205,19 +205,19 @@ http://www.gplhost.com/software-dtc.html
 			$zebounce = $mailbox["data"]["bounce_msg"];
 		}
 
-		$out .= "<br><h3>Your bounce message:</h3>
+		$out .= "<br><h3>" . _("Your bounce message") . ":</h3>
 		
 		$frm_start<input type=\"hidden\" name=\"action\" value=\"edit_bounce_msg\">
 		<textarea cols=\"80\" rows=\"16\" name=\"bounce_msg\">$zebounce</textarea><br><br>
-		<input type=\"submit\" value=\"Save\"></form>";
+		<input type=\"submit\" value=\"" . _("Save") . "\"></form>";
 
-		$out .= "<h3>Your white list:</h3>";
+		$out .= "<h3>" . _("Your white list") . ":</h3>";
 
 		$q = "SELECT * FROM $pro_mysql_whitelist_table";
 		$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$n = mysql_num_rows($r);
 		$out .= "<table cellpadding=\"0\" cellspacing=\"0\" border=\"1\">
-<tr><td>Mail user from</td><td>&nbsp;</td><td>Mail user domain</td><td>Mail user to (mailling list)</td><td>Action</td></tr>";
+<tr><td>" . _("Mail user from") . "</td><td>&nbsp;</td><td>" . _("Mail user domain") . "</td><td>" . _("Mail user to (mailling list)") . "</td><td>" . _("Action") . "</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$out .= "<tr>$frm_start
@@ -227,10 +227,10 @@ http://www.gplhost.com/software-dtc.html
 			$out .= "<td>@</td>";
 			$out .= "<td><input type=\"text\" name=\"mail_from_domain\" value=\"".$a["mail_from_domain"]."\"></td>";
 			$out .= "<td><input type=\"text\" size=\"30\" name=\"mail_to\" value=\"".$a["mail_to"]."\"></td>";
-			$out .= "<td><input type=\"submit\"  value=\"Save\"></form>
+			$out .= "<td><input type=\"submit\"  value=\"". _("Save") . "\"></form>
 			$frm_start<input type=\"hidden\" name=\"ruleid\" value=\"".$a["id"]."\">
 			<input type=\"hidden\" name=\"action\" value=\"delete_whitelist_rule\">
-			<input type=\"submit\" value=\"Delete\"></form></td></tr>";
+			<input type=\"submit\" value=\"". _("Delete") . "\"></form></td></tr>";
 		}
 		$out .= "<tr>$frm_start
 			<input type=\"hidden\" name=\"action\" value=\"add_whitelist_rule\">
@@ -238,11 +238,11 @@ http://www.gplhost.com/software-dtc.html
 		$out .= "<td>@</td>";
 		$out .= "<td><input type=\"text\" name=\"mail_from_domain\" value=\"\"></td>";
 		$out .= "<td><input type=\"text\" size=\"30\" name=\"mail_to\" value=\"\"></td>";
-		$out .= "<td><input type=\"submit\" value=\"Save\"></form></td></tr>";
+		$out .= "<td><input type=\"submit\" value=\"" . _("Save") . "\"></form></td></tr>";
 		$out .= "</table>";
 	}
 	if($mailbox["data"]["clamav_protect"] == "yes")	$checked = " checked "; else $checked = "";
-	$out .= $form_start."<input type=\"hidden\" name=\"action\" value=\"activate_clamav\"><input type=\"checkbox\" name=\"clamav_on\" value=\"yes\"$checked>Activate Clamav antivirus
+	$out .= $form_start."<input type=\"hidden\" name=\"action\" value=\"activate_clamav\"><input type=\"checkbox\" name=\"clamav_on\" value=\"yes\"$checked>" . _("Activate Clamav antivirus") . "
 	". drawSubmitButton( _("Ok") ) ."</form>";
 	return $out;
 }
@@ -261,7 +261,7 @@ function drawQuarantine($mailbox){
 
 //	$out = $form_start."<input type=\"hidden\" name=\"action\" value=\"activate_antispam\"><input type=\"checkbox\" name=\"iwall_on\" value=\"yes\"$checked>Activate iGlobalWall protection
 //	<input type=\"submit\" value=\"Ok\"></form>";
-	$out = "Here will go quarantinized messages";
+	$out = _("Here will go quarantinized messages");
 
 	return $out;
 }
@@ -298,7 +298,7 @@ function drawAdminTools_emailAccount($mailbox){
 		$use_vacation_msg_no_checked = " checked ";
 	}
 
-	$left .= "<h3>Vacation message</h3>
+	$left .= "<h3>" . _("Vacation message") . "</h3>
 	".$form_start."<input type=\"hidden\" name=\"action\" value=\"dtcemail_vacation_msg\">
 <input type=\"radio\" name=\"use_vacation_msg\" value=\"yes\" $use_vacation_msg_yes_checked>"._("Yes")."<input type=\"radio\" name=\"use_vacation_msg\" value=\"no\" $use_vacation_msg_no_checked>"._("No")."
 <br>
@@ -331,13 +331,13 @@ function drawAdminTools_emailAccount($mailbox){
 		$spambox_no_checked = " checked ";
 	}
 
-	$right .= "<h3>Anti-SPAM control</h3>
+	$right .= "<h3>" . _("Anti-SPAM control") . "</h3>
 <table cellpadding=\"0\" cellspacing=\"0\">
 <tr>
 	<td align=\"right\">Deliver spam to spambox:</td><td>".$form_start."<input type=\"hidden\" name=\"action\" value=\"dtcemail_spambox\">
 <input type=\"radio\" name=\"spam_mailbox_enable\" value=\"yes\" $spambox_yes_checked>"._("Yes")."<input type=\"radio\" name=\"spam_mailbox_enable\" value=\"no\" $spambox_no_checked>"._("No")."</td>
 </tr><tr>
-	<td align=\"right\">SPAM box name:</td><td><input type=\"text\" name=\"spam_mailbox\" value=\"".$mailbox["data"]["spam_mailbox"]."\"></td>
+	<td align=\"right\">" . _("SPAM box name") . ":</td><td><input type=\"text\" name=\"spam_mailbox\" value=\"".$mailbox["data"]["spam_mailbox"]."\"></td>
 </tr><tr>
 	<td></td><td>". drawSubmitButton( _("Ok") ) ."</form></td></tr></table>";
 	// Output the form

@@ -477,11 +477,13 @@ function drawRenewalTables (){
 					}else{
 						$last_expiry_date = $a["last_expiry_date"];
 					}
+					if($payment_type == 'wire') $pay=_("Wire"); else if ($payment_type == 'cheque') $pay=_("cheque");
+					else if ( $payment_type == 'online: none' ) $pay=_("online: none"); else $pay=$payment_type;
 					$new_expiry_date = calculateExpirationDate($last_expiry_date,$product_period_size);
 					$out .= "<tr><td>$product_txt</td><td>$client_id_txt</td><td>$client_name</td><td>".$a["country_code"]."</td>
 					<td>$client_country</td>
 					<td>$vat_collected</td><td>$last_expiry_date -> $new_expiry_date</td><td>".$a["date"]."</td><td>$payment_txt</td>
-					<td>$payment_type</td>
+					<td>$pay</td>
 					<td><a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&date=".$_REQUEST["date"]."&action=nuke_payment&completedorders_id=".$a["id"]."\">"._("Delete")."</a></tr>";
 				}
 				$out .= "</table>";

@@ -81,9 +81,9 @@ function drawEditAdmin($admin){
 	if($allow_add_domain == "check")$adcheck = "selected='selected'";	else $adcheck = "";
 	if($allow_add_domain == "no")	$adno = "selected='selected'";	else $adno = "";
 	$aldom_popup = "<select class=\"dtcDatagrid_input_color\" name=\"allow_add_domain\">
-<option value=\"yes\" $adyes>Yes</option>
-<option value=\"check\" $adcheck>Check</option>
-<option value=\"no\" $adno>No</option>
+<option value=\"yes\" $adyes>" . _("Yes") ."</option>
+<option value=\"check\" $adcheck>" . _("Check") . "</option>
+<option value=\"no\" $adno>". _("No") . "</option>
 </select>
 ";
 

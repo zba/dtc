@@ -19,7 +19,7 @@ function skin_EmailPage_Default (){
 		// Fetch all the user informations, Print a nice error message if failure.
 		if($error == false){
 			$mesg = $admin["mesg"];
-			$login_txt = "<font color=\"red\">Wrong login or password !</font><br>";
+			$login_txt = "<font color=\"red\">" . _("Wrong login or password") . "!</font><br>";
 			$login_txt .= login_emailpanel_form();
 			$login_skined = skin($conf_skin,$login_txt, _("Email panel: ") . _("Login") );
 			$mypage = layout_login_and_languages($login_skined,$lang_sel);

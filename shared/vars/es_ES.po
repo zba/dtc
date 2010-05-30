@@ -1062,7 +1062,7 @@ msgstr "Bytes"
 
 #: shared/inc/forms/root_admin.php:360
 msgid "CGI-BIN protection"
-msgstr "ProtecciÃ³n de los CGI-BIN"
+msgstr "Protecci&oacute;n de los CGI-BIN"
 
 #: admin/inc/monitor.php:99
 msgid "CPU"
@@ -1453,7 +1453,7 @@ msgstr "Confirmar contrase&ntilde;a: "
 
 #: shared/inc/forms/email.php:286
 msgid "Confirm password: "
-msgstr "Confirmar contraseÃ±a:"
+msgstr "Confirmar contrase&ntilde;a:"
 
 #: shared/drawlib/cc_code_popup.php:153
 msgid "Congo"
@@ -3751,7 +3751,7 @@ msgstr "Informaci&oacute;n de acceso (login)"
 #: shared/inc/forms/email.php:395
 msgid "Login successfull. Please select a menu entry on the left..."
 msgstr ""
-"Inicio de sesiÃ³n satisfactorio. Por favor seleccione una opci&oacute;n de "
+"Inicio de sesi&oacute;n satisfactorio. Por favor seleccione una opci&oacute;n de "
 "men&uacute; de la izquierda..."
 
 #: admin/inc/draw_user_admin.php:346 client/recover_pass.php:53
@@ -6324,11 +6324,11 @@ msgstr "Espacio de disco"
 
 #: shared/inc/draw.php:353
 msgid "Sub-accounts (reseller)"
-msgstr "Sub-cuentas (reseller)"
+msgstr "Sub-cuentas (revendedor)"
 
 #: shared/inc/draw.php:513
 msgid "Sub-accounts (reseller):"
-msgstr "Sub-cuentas (reseller):"
+msgstr "Sub-cuentas (revendedor):"
 
 #: shared/inc/draw.php:255
 msgid "Sub-domains"
@@ -8071,7 +8071,7 @@ msgstr "Espacio de disco usado:"
 
 #: shared/inc/forms/reseller.php:22
 msgid "Your child accounts:"
-msgstr "Cuentas a dependientes:"
+msgstr "Cuentas dependientes(revendedores):"
 
 #: shared/dtcrm/draw.php:78
 msgid "Your current account is "
