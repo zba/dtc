@@ -11,11 +11,16 @@ if(file_exists("/usr/share/fpdf/fpdf.php")){
 	define('FPDF_FONTPATH','/usr/share/fpdf/font/');
 	require('/usr/share/fpdf/fpdf.php');
 }else{
-	if(file_exists("$dtcshared_path/fpdf/fpdf.php")){
-		define('FPDF_FONTPATH',"$dtcshared_path/fpdf/font/");
-		require("$dtcshared_path/fpdf/fpdf.php");
+	if(file_exists("/usr/local/share/fpdf/fpdf.php")){
+		define('FPDF_FONTPATH','/usr/local/share/fpdf/font/');
+		require('/usr/local/share/fpdf/fpdf.php');
 	}else{
-		die("FPDF library not found. Pleasse install it in $dtcshared_path/fpdf");
+		if(file_exists("$dtcshared_path/fpdf/fpdf.php")){
+			define('FPDF_FONTPATH',"$dtcshared_path/fpdf/font/");
+			require("$dtcshared_path/fpdf/fpdf.php");
+		}else{
+			die("FPDF library not found. Pleasse install it in $dtcshared_path/fpdf");
+		}
 	}
 }
 
