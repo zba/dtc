@@ -66,7 +66,7 @@ function draw_UpgradeAccount($admin){
 		$refundal = floor($days_remaining * $price_per_days);
 		$owing = floor($days_outstanding * $price_per_days);
 
-		$out .= _("Your past account was: ") .$prod["price_dollar"]." ".$secpayconf_currency_letters." for ".smartDate($prod["period"])."<br>";
+		$out .= _("Your past account was: ") .$prod["price_dollar"]." ".$secpayconf_currency_letters." " . _("for") . " ".smartDate($prod["period"])."<br>";
 		$out .= _("Refund")." (". $days_remaining. _(" days) for upgrading will be: "). "$refundal ".$secpayconf_currency_letters."<br><br>";
 		$out .= _("You have")." (".$days_outstanding._(" days), with ") ."$owing". " " . $secpayconf_currency_letters ._(" remaining to be paid") ."<br>";
 	}else{
@@ -104,7 +104,7 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 
 			$out .= "<td $color $nowrap >$fnt1".smartDate($ro["period"]).$fnt2.'</td></tr>';
 		}
-		$out .= '</table><center><input type="submit" value="Calculate price"></center></form>';
+		$out .= '</table><center><input type="submit" value="' . _("Calculate price") . '"></center></form>';
 		return $out;
 	}
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$_REQUEST["prod_id"]."';";
@@ -114,12 +114,12 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 	$ro = mysql_fetch_array($r);
 
 	$frm_start .= '<input type="hidden" name="prod_id" value="'.$ro["id"].'">';
-	$out .= "You have selected: ".$ro["name"];
-	$out .= " (Storage: ".smartByte($ro["quota_disk"]*1024*1024);
-	$out .= ", Transfer: ".smartByte($ro["bandwidth"]*1024*1024).'), ';
-	$out .= '$'.$ro["price_dollar"].' each '.smartDate($ro["period"]);
+	$out .= _("You have selected") . ": ".$ro["name"];
+	$out .= " (". _("Storage"). ": ".smartByte($ro["quota_disk"]*1024*1024);
+	$out .= ", " . _("Transfer") . ": ".smartByte($ro["bandwidth"]*1024*1024).'), ';
+	$out .= '$'.$ro["price_dollar"].' ' . _("each") . ' '.smartDate($ro["period"]);
 
-	$out .=  "<br><br><i><u>Step 2: proceed to upgrade</u></i><br>";
+	$out .=  "<br><br><i><u>" . _("Step 2: proceed to upgrade") . "</u></i><br>";
 	$remaining = $admin["client"]["dollar"];
 
 	$ze_price = $ro["price_dollar"];
@@ -128,9 +128,9 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 	if(isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "return_from_paypal_upgrade_account"){
 		$ze_refund = isPayIDValidated(addslashes($_REQUEST["pay_id"]));
 		if($ze_refund == 0){
-			$out .= "<font color=\"red\">The transaction failed, please try again!</font>";
+			$out .= "<font color=\"red\">" . _("The transaction failed, please try again!") . "</font>";
 		}else{
-			$out .= "<font color=\"green\">Funds added to your account!</font><br>";
+			$out .= "<font color=\"green\">" . _("Funds added to your account!") . "</font><br>";
 			$q = "UPDATE $pro_mysql_client_table SET dollar = dollar+".$ze_refund." WHERE id='".$admin["info"]["id_client"]."';";
 			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$admin["client"]["dollar"] += $ze_refund;
@@ -138,10 +138,10 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 		}
 	}
 
-	$out .= "Remaining on your account: " . $remaining . "$secpayconf_currency_letters<br>
-New account price: ". $ze_price . "$secpayconf_currency_letters<br>
-Past account refundal: ". $refundal . "$secpayconf_currency_letters<br>
-Total price: ". $heber_price . "$secpayconf_currency_letters<br>";
+	$out .= _("Remaining on your account") . ": " . $remaining . "$secpayconf_currency_letters<br>
+" . _("New account price") . ": ". $ze_price . "$secpayconf_currency_letters<br>
+" . _("Past account refundal") . ": ". $refundal . "$secpayconf_currency_letters<br>
+" . _("Total price") . ": ". $heber_price . "$secpayconf_currency_letters<br>";
 
 	if($heber_price > $remaining){
 		$to_pay = $heber_price - $remaining;
@@ -157,7 +157,7 @@ Total price: ". $heber_price . "$secpayconf_currency_letters<br>";
 	}
 
 	$after_upgrade_remaining = $remaining - $heber_price;
-	$out .= "After upgrade, you will have: " . $after_upgrade_remaining . " " .$secpayconf_currency_letters . "<br><br>";
+	$out .= _("After upgrade, you will have") . ": " . $after_upgrade_remaining . " " .$secpayconf_currency_letters . "<br><br>";
 
 	// Check for confirmation
 	if(isset($_REQUEST["toreg_confirm_register"]) && $_REQUEST["toreg_confirm_register"] != "yes"){

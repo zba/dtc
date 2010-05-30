@@ -76,7 +76,7 @@ $form_start = "
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"product_id\" value=\"".$_REQUEST["product_id"]."\">
 <input type=\"hidden\" name=\"action\" value=\"add_new_service\">".$added1."
-Special notes for the setup:<textarea name=\"custom_notes\" cols=\"50\" rows=\"5\"></textarea><br>
+" . _("Special notes for the setup") . ":<textarea name=\"custom_notes\" cols=\"50\" rows=\"5\"></textarea><br>
 ".submitButtonStart(). _("Register") .submitButtonEnd()."
 ";
 		

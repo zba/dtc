@@ -96,7 +96,7 @@ function drawAdminMonitor (){
 			$out .= "<td $back colspan=\"3\">".$admin["vps"][$j]["vps_server_hostname"].":".$admin["vps"][$j]["vps_xen_name"];
 			
 			$out .= "<table border=\"1\" width=\"100%\" height=\"1\" cellpadding=\"1\" cellspacing=\"1\">";
-			$out .= "<tr><td $back>Network</td><td>HDD</td><td>Swap</td><td>CPU</td></tr>";
+			$out .= "<tr><td $back>" . _("Network") . "</td><td $back>" . _("HDD") . "</td><td $back>" . _("Swap") . "</td><td $back>" . _("CPU") . "</td></tr>";
 			$out .= "<tr><td $back><img width=\"120\" height=\"48\" src=\"vps_stats_network.php?vps_node=".$admin["vps"][$j]["vps_server_hostname"]."&vps_name=".$admin["vps"][$j]["vps_xen_name"]."\"></td>
 <td $back><img width=\"120\" height=\"48\" src=\"vps_stats_hdd.php?vps_node=".$admin["vps"][$j]["vps_server_hostname"]."&vps_name=".$admin["vps"][$j]["vps_xen_name"]."\"></td>
 <td $back><img width=\"120\" height=\"48\" src=\"vps_stats_swap.php?vps_node=".$admin["vps"][$j]["vps_server_hostname"]."&vps_name=".$admin["vps"][$j]["vps_xen_name"]."\"></td>

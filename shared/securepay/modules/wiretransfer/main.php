@@ -42,8 +42,8 @@ function wire_display_icon($pay_id,$amount,$item_name,$return_url,$use_recurring
 <input type="hidden" name="payment_type" value="wire_transfer">
 <input type="hidden" name="currency_code" value="'.$secpayconf_currency_letters.'">
 '.$add_to_form.'
-<input type="image" src="wire.gif" border="0"
-name="submit" alt="'. "Pay by wire transfer" .'">
+<input type="image" src="/dtc/wire.gif" border="0"
+name="submit" alt="'. _("Pay by wire transfer") .'">
 </form>';
 	return $out;
 

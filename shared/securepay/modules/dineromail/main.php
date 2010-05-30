@@ -57,7 +57,8 @@ function dineromail_display_icon($product_id,$amount,$item_name,$return_url,$use
 	$out .= '<input type="hidden" name="usr_apellido" value="">'; // customer's surname
 	$out .= '<input type="hidden" name="usr_tel_numero" value="">'; // customer's phone number
 	$out .= '<input type="hidden" name="usr_email" value="">'; // customer's email
-	$out .= '<input type="image" src="https://argentina.dineromail.com/imagenes/post-login/boton-comprar-01.gif" border="0" name="submit" alt="Pagar con DineroMail">';
+	$out .= '<input type="image" src="https://argentina.dineromail.com/imagenes/post-login/boton-comprar-01.gif" border="0" name="submit" alt="';
+	$out .= _("Pay by DineroMail") . '">';
 	$out .= '</form>';
 
 	return $out;

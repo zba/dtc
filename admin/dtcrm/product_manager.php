@@ -274,7 +274,7 @@ function productManager(){
 
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
-        	"title" => _("Product list editor") ." (SSL IPs)",
+        	"title" => _("Product list editor") . _(" (SSL IPs)"),
         	"action" => "hosting_product_list_ssl",
         	"forward" => array("rub"),
         	"where_condition" => "heb_type='ssl'",
@@ -289,7 +289,7 @@ function productManager(){
 				"legend" => _("Renewal-ID") ,
 				"help" => _("There must be ONLY ONE SSL product at any time, with only ONE renewal product."),
 				"values" => $renew_id_popup,
-				"display_replace" => array("No-renew")
+				"display_replace" => array(_("No-renew"))
 				),
 			"name" => array(
 				"type" => "text",

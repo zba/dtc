@@ -86,8 +86,8 @@ $popup_cats
 				$a2 = mysql_fetch_array($r2);
 				$out .= _("Type of problem:") ." ".$a2["catdescript"]."<br>";
 			}
-			$out .= "First query date: ".$a_t["date"]." ".$a_t["time"]."<br>";
-			$out .= "Server hostname related: ".$a_t["server_hostname"]."<br>";
+			$out .= _("First query date") . ": ".$a_t["date"]." ".$a_t["time"]."<br>";
+			$out .= _("Server hostname related") . ": ".$a_t["server_hostname"]."<br>";
 
 			if($a_t["closed"] == "yes"){
 				$out .= "<font color=\"red\">". _("Replying to an already closed ticket will reopen it."). "</font><br>";

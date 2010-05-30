@@ -206,7 +206,7 @@ function vpsLocationSelector(){
 	GROUP BY $pro_mysql_vps_server_table.location;";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-	$vps_location_popup = "<option value=\"-1\">Please select!</optioon>";
+	$vps_location_popup = "<option value=\"-1\">" . _("Please select") . "!</optioon>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		if(isset($_REQUEST["vps_server_hostname"]) && $_REQUEST["vps_server_hostname"] == $a["hostname"]){
@@ -999,16 +999,16 @@ function smartDate($date){
 	if($ar[0] > 0 ){
 		$plop = $ar[0] +1;
 		$plop -= 1;
-		$out .= $plop." year";
-		if($ar[0] > 1)	$out .= "s";
+		$out .= $plop." " ;
+		if($ar[0] > 1)	$out .= _("years") else $out .= _("year") ;
 	}
 	if($ar[1] > 0 ){
-		$out .= $ar[1]." month";
-		if($ar[1] > 1)	$out .= "s";
+		$out .= $ar[1]." ";
+		if($ar[1] > 1)	$out .= "months" else $out .= _("month") ;
 	}
 	if($ar[2] > 0 ){
-		$out .= $ar[2]." day";
-		if($ar[2] > 1)	$out .= "s";
+		$out .= $ar[2]." ";
+		if($ar[2] > 1)	$out .= "days" else $out .= _("day") ;
 	}
 	return $out;
 }
