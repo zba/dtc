@@ -287,23 +287,43 @@ function domainImport($path_from,$adm_login,$adm_pass){
 		return;
 	}
 
-	// Iterate on all domains of the file
+	// If there is multiple domains in the XLM file, then we have things like this,
+	// as PHP assotiative array, once Unserialize() is done:
+	// <dtc-export-file version="0.1">
+	//   <domains>
+        //      <item>
+	//         <example.com>
+	//           ........
+	//         </example.com>
+	//      </item>
+	//   </domains
+	// </dtc-export-file>
+	// the below code will remove the <item> thing that is on the way,
+	// and quite annoying for using array_keys().
 	if( isset($dom_ar["domains"]["item"]) ){
-		$all_domains = array_keys($dom_ar["domains"]["item"]);
 		$nbr_domains = sizeof($dom_ar["domains"]["item"]);
+		$my_domains = array();
+		for($doms=0;$doms<$nbr_domains;$doms++){
+			$mykey = array_keys($dom_ar["domains"]["item"][$doms]);
+			$my_domains["domains"][ $mykey[0] ] = $dom_ar["domains"]["item"][$doms][$mykey[0]];
+		}
+		$dom_ar = $my_domains;
+		$all_domains = array_keys($dom_ar["domains"]);
 	}else{
 		$all_domains = array_keys($dom_ar["domains"]);
 		$nbr_domains = sizeof($all_domains);
 	}
+	// Iterate on all domains of the file (if there's only one, it's fine too...)
 	for($doms=0;$doms<$nbr_domains;$doms++){
 		// We will work on each domains one by one
 		$dom_name = $all_domains[$doms];
-		if( isset($dom_ar["domains"]["item"]) ){
-			$cur_dom = $dom_ar["domains"]["item"][$dom_name];
-		}else{
-			$cur_dom = $dom_ar["domains"][$dom_name];
+		if($dom_name == "" || $dom_name == "Array"){
+			echo _("Domain name is empty in your export file: could not import domain number ").$doms;
+			return;
 		}
-		$domain_item_name = $dom_name;
+		$console .= "Importing domain: $dom_name<br>";
+		
+		$cur_dom = $dom_ar["domains"][$dom_name];
 		$dom_name = $cur_dom["domain_config"]["name"];
 
 		// Check if the domain exists, if not, add it to the user
