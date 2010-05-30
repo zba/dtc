@@ -277,7 +277,15 @@ function domainImport($path_from,$adm_login,$adm_pass){
                 );
 	$unserializer = new XML_Unserializer($options);
 	$result = $unserializer->unserialize($xml_content);
+	if (PEAR::isError($result)){
+		echo _("Method unserialize() failed, could not import your domain configuration: ").$result->getMessage();
+		return;
+	}
 	$dom_ar = $unserializer->getUnserializedData();
+	if (PEAR::isError($dom_ar)) {
+		echo _("Method getUnserializedData() failed, could not import your domain configuration: ").$dom_ar->getMessage();
+		return;
+	}
 
 	// Iterate on all domains of the file
 	if( isset($dom_ar["domains"]["item"]) ){
