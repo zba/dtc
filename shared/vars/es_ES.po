@@ -843,7 +843,7 @@ msgstr "Cuota de ancho de banda"
 
 #: shared/inc/forms/root_admin.php:394
 msgid "Backup Vhost IP address"
-msgstr "Direcci&oacute;n IP del backup de vhost"
+msgstr "Direcci&oacute;n IP del vhost de respaldo"
 
 #: admin/inc/dtc_config.php:740
 msgid "Backup frequency:"
@@ -1865,7 +1865,7 @@ msgstr ""
 
 #: shared/inc/draw.php:427
 msgid "Dedicated server"
-msgstr "Servidore dedicado"
+msgstr "Servidor dedicado"
 
 #: admin/inc/dtc_config.php:340
 msgid "Dedicated server IP address pool editor"
@@ -3775,7 +3775,7 @@ msgstr "Estad&iacute;sticas de la cola de correo para"
 
 #: admin/mailgraph.php:11
 msgid "Mail queue statistics"
-msgstr "Estadísticas de la cola de correo"
+msgstr "Estadísticas de cola de correo"
 
 #: admin/mailgraph.php:70
 msgid "Mail queue statistics for"
@@ -5465,7 +5465,7 @@ msgstr "Redirecci&oacute;n 2: "
 
 #: shared/dtcrm/draw.php:70
 msgid "Refund"
-msgstr "Reembolso"
+msgstr "El reembolso"
 
 #: shared/inc/forms/my_account.php:194
 msgid "Refund my account:"
@@ -6181,7 +6181,7 @@ msgstr "Estad&iacute;sticas del dominio"
 
 #: shared/inc/draw.php:457 shared/inc/draw.php:461 shared/inc/draw.php:498
 msgid "Statistics:"
-msgstr "EstadÃ­sticas:"
+msgstr "Estad&iacute;sticas:"
 
 #: shared/inc/forms/ticket.php:173
 msgid "Status"
@@ -8014,7 +8014,7 @@ msgstr "Su lista de correo importado"
 
 #: shared/dtcrm/draw.php:69
 msgid "Your past account was: "
-msgstr "Su cuenta antigua era: "
+msgstr "Su saldo anterior era "
 
 #: shared/inc/sql/ssh.php:31 shared/inc/sql/ssh.php:94
 msgid "Your path is restricted to "
