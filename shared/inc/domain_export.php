@@ -360,9 +360,11 @@ function domainImport($path_from,$adm_login,$adm_pass){
 	}
 	if( isset($dom_ar["mysql"])){
 		$n_user = sizeof($dom_ar["mysql"]);
+		$console .= _("Number of database users in this import: ").$n_user."<br>";
 		$musers = array_keys($dom_ar["mysql"]);
 		for($i=0;$i<$n_user;$i++){
 			$username = $musers[$i];
+			$console .= _("Importing database username: ").$username."<br>";
 			unset($user);
 			$user = $dom_ar["mysql"][ $musers[$i] ];
 			$password = $user["password"];
@@ -371,7 +373,7 @@ function domainImport($path_from,$adm_login,$adm_pass){
 			Grant_priv,References_priv,Index_priv,Alter_priv,Show_db_priv,Super_priv,Create_tmp_table_priv,Lock_tables_priv,
 			Execute_priv,Repl_slave_priv,Repl_client_priv,Create_view_priv,Show_view_priv,Create_routine_priv,
 			Alter_routine_priv,Create_user_priv,dtcowner)
-			VALUES ('%','$user','$password','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',
+			VALUES ('%','$username','$password','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',
 			'N','N','N','N','N','N','N','N','$adm_login');";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
@@ -380,25 +382,26 @@ function domainImport($path_from,$adm_login,$adm_pass){
 			Grant_priv,References_priv,Index_priv,Alter_priv,Show_db_priv,Super_priv,Create_tmp_table_priv,Lock_tables_priv,
 			Execute_priv,Repl_slave_priv,Repl_client_priv,Create_view_priv,Show_view_priv,Create_routine_priv,
 			Alter_routine_priv,Create_user_priv,dtcowner)
-			VALUES ('localhost','$user','$password','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',
+			VALUES ('localhost','$username','$password','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',
 			'N','N','N','N','N','N','N','N','$adm_login');";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 			if( isset($user["dbs"])){
 				$n_db = sizeof($user["dbs"]);
+				$console .= _("Number of database owned by user")." ".$username.": ".$n_db."<br>";
 				$mdbs = array_keys($user["dbs"]);
 				for($j=0;$j<$n_db;$j++){
 					$db = $mdbs[$j];
 					$q = "INSERT IGNORE INTO mysql.db (Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Grant_priv,
 					References_priv,Index_priv,Alter_priv,Create_tmp_table_priv,Lock_tables_priv,Create_view_priv,
 					Show_view_priv,Create_routine_priv,Alter_routine_priv,Execute_priv)
-					VALUES('%','$db','$user','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');";
+					VALUES('%','$db','$username','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');";
 					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 					$q = "INSERT IGNORE INTO mysql.db (Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Grant_priv,
 					References_priv,Index_priv,Alter_priv,Create_tmp_table_priv,Lock_tables_priv,Create_view_priv,
 					Show_view_priv,Create_routine_priv,Alter_routine_priv,Execute_priv)
-					VALUES('localhost','$db','$user','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');";
+					VALUES('localhost','$db','$username','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');";
 					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				}
 			}
