@@ -123,7 +123,7 @@ function exportAllDomain($adm_login){
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$dom_ar["domains"][] = array( $a["name"] => getDomainData($a["name"],$adm_login) );
+		$dom_ar["domains"][ $a["name"] ] = getDomainData($a["name"],$adm_login);
 	}
 
 	// Get the MySQL user infos
@@ -136,24 +136,16 @@ function exportAllDomain($adm_login){
 		}
 		$a = mysql_fetch_array($r);
 		$dom_ar["mysql"][ $a["User"] ]["password"] = $a["Password"];
-	}
 
-	// Export the MySQL db names
-	if( isset($dom_ar["mysql"])){
-		$nbr_user = sizeof($dom_ar["mysql"]);
-		$musers = array_keys($dom_ar["mysql"]);
-		for($i=0;$i<$nbr_user;$i++){
-			$user = $musers[$i];
-			$q = "SELECT DISTINCT Db FROM mysql.db WHERE User='$user';";
-			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-			$n = mysql_num_rows($r);
-			if($n == 1){
-				$a = mysql_fetch_array($r);
-				if( ! isset($dom_ar["mysql"][$user]["dbs"])){
-					$dom_ar["mysql"][$user]["dbs"] = array();
-				}
-				$dom_ar["mysql"][$user]["dbs"][ $a["Db"] ] = "yes";
+		$q2 = "SELECT DISTINCT Db FROM mysql.db WHERE User='".$a["User"]."';";
+		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		for($j=0;$j<$n2;$j++){
+			$a2 = mysql_fetch_array($r2);
+			if( ! isset($dom_ar["mysql"][ $a["User"] ]["dbs"])){
+				$dom_ar["mysql"][ $a["User"] ]["dbs"] = array();
 			}
+			$dom_ar["mysql"][ $a["User"] ]["dbs"][ $a2["Db"] ] = "yes";
 		}
 	}
 
@@ -287,7 +279,8 @@ function domainImport($path_from,$adm_login,$adm_pass){
 		return;
 	}
 
-	// If there is multiple domains in the XLM file, then we have things like this,
+	// Because of an issue of the programming of older versions of DTC,
+	// if there was multiple domains in the XLM file, then we have things like this,
 	// as PHP assotiative array, once Unserialize() is done:
 	// <dtc-export-file version="0.1">
 	//   <domains>
