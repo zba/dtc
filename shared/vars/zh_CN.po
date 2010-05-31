@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-30 03:26-0300\n"
+"POT-Creation-Date: 2010-05-31 13:01-0300\n"
 "PO-Revision-Date: 2009-08-27 14:52+0800\n"
 "Last-Translator: Wei Cao <caowei@gplhost.com>\n"
 "Language-Team: Wei Cao <caowei@gplhost.com>\n"
@@ -405,17 +405,25 @@ msgstr "对下列服务器作为备份DNS服务器："
 msgid "Act as backup mail server for the following servers:"
 msgstr "对下列服务器作为备份邮件服务器："
 
-#: admin/inc/renewals.php:428 admin/inc/renewals.php:736
+#: admin/inc/renewals.php:428 admin/inc/renewals.php:738
 #: admin/inc/draw_user_admin.php:368 admin/inc/draw_user_admin.php:428
 #: admin/inc/draw_user_admin.php:447 shared/inc/forms/database.php:41
-#: shared/inc/forms/database.php:82 shared/inc/forms/my_account.php:133
-#: shared/inc/forms/reseller.php:24
+#: shared/inc/forms/database.php:82 shared/inc/forms/email.php:220
+#: shared/inc/forms/my_account.php:133 shared/inc/forms/reseller.php:24
 msgid "Action"
 msgstr "操作"
+
+#: shared/inc/forms/email.php:245
+msgid "Activate Clamav antivirus"
+msgstr ""
 
 #: admin/inc/dtc_config.php:723
 msgid "Activate FTP backups:"
 msgstr "激活FTP备份："
+
+#: shared/inc/forms/email.php:193
+msgid "Activate iGlobalWall protection"
+msgstr ""
 
 #: admin/active_prods_graph.php:86
 #, fuzzy
@@ -674,7 +682,7 @@ msgstr "或者您可以添加另外一个域名："
 msgid "American Samoa"
 msgstr "美国萨摩亚群岛"
 
-#: admin/inc/renewals.php:602 shared/inc/forms/my_account.php:232
+#: admin/inc/renewals.php:604 shared/inc/forms/my_account.php:232
 #: shared/securepay/pay_functions.php:69
 msgid "Amount"
 msgstr "总和"
@@ -715,6 +723,10 @@ msgstr "另一处位置"
 #: shared/drawlib/cc_code_popup.php:111
 msgid "Antarctica"
 msgstr "南极州"
+
+#: shared/inc/forms/email.php:334
+msgid "Anti-SPAM control"
+msgstr ""
 
 #: shared/inc/forms/lists.php:449
 msgid "Anti-spam mode:"
@@ -1201,7 +1213,7 @@ msgstr "更改 RDNS"
 msgid "Change your password:"
 msgstr "更改密码："
 
-#: admin/inc/renewals.php:195
+#: admin/inc/renewals.php:195 shared/inc/forms/root_admin.php:85
 msgid "Check"
 msgstr "支票"
 
@@ -1270,9 +1282,9 @@ msgstr ""
 msgid "Click on the list name to remove the list from the server:<br><br>"
 msgstr ""
 
-#: admin/inc/renewals.php:425 admin/inc/renewals.php:666
-#: admin/inc/renewals.php:697 admin/inc/renewals.php:732
-#: admin/inc/renewals.php:812
+#: admin/inc/renewals.php:425 admin/inc/renewals.php:668
+#: admin/inc/renewals.php:699 admin/inc/renewals.php:734
+#: admin/inc/renewals.php:814
 msgid "Client"
 msgstr "客户"
 
@@ -1297,8 +1309,8 @@ msgstr "客户信息"
 msgid "Client interface"
 msgstr "用户界面"
 
-#: admin/inc/renewals.php:673 admin/inc/renewals.php:712
-#: admin/inc/renewals.php:753 admin/inc/renewals.php:827
+#: admin/inc/renewals.php:675 admin/inc/renewals.php:714
+#: admin/inc/renewals.php:755 admin/inc/renewals.php:829
 msgid "Client name not found!"
 msgstr "没有找到相关的客户名称！"
 
@@ -1573,6 +1585,7 @@ msgid "Country: "
 msgstr "国家："
 
 #: shared/inc/forms/database.php:69 shared/inc/forms/database.php:118
+#: shared/inc/forms/reseller.php:48
 msgid "Create"
 msgstr "创建"
 
@@ -1847,7 +1860,7 @@ msgstr ""
 msgid "Day Sales Graph"
 msgstr "邮件排列图表"
 
-#: admin/inc/renewals.php:735
+#: admin/inc/renewals.php:737
 msgid "Days of expiration"
 msgstr "已过期的日期"
 
@@ -1888,11 +1901,11 @@ msgstr "独立服务器过期时间："
 msgid "Dedicated server hostname"
 msgstr "独立服务器主机名"
 
-#: admin/inc/renewals.php:804
+#: admin/inc/renewals.php:806
 msgid "Dedicated servers renewals"
 msgstr "独立服务器续约"
 
-#: admin/inc/renewals.php:591
+#: admin/inc/renewals.php:593
 msgid "Dedicated servers: "
 msgstr "独立服务器："
 
@@ -1912,14 +1925,15 @@ msgstr "默认 TTL 对于您的 zonefiles："
 msgid "Deferred"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:520
+#: admin/inc/draw_user_admin.php:520 shared/inc/forms/reseller.php:40
 #, fuzzy
 msgid "Del"
 msgstr "删除"
 
-#: admin/inc/renewals.php:485 admin/inc/draw_user_admin.php:414
+#: admin/inc/renewals.php:487 admin/inc/draw_user_admin.php:414
 #: admin/inc/draw_user_admin.php:434 shared/inc/forms/database.php:57
 #: shared/inc/forms/database.php:105 shared/inc/forms/domain_stats.php:104
+#: shared/inc/forms/email.php:233
 msgid "Delete"
 msgstr "删除"
 
@@ -2116,6 +2130,11 @@ msgstr "域名文件："
 msgid "Domain name for affiliation return URL:"
 msgstr "实际目标URL的域名"
 
+#: shared/inc/domain_export.php:314
+msgid ""
+"Domain name is empty in your export file: could not import domain number "
+msgstr ""
+
 #: shared/dtcrm/draw_adddomain.php:145
 msgid "Domain name is not in correct format. Please enter another name."
 msgstr "您输入的域名格式不正确，请重新输入。"
@@ -2276,8 +2295,8 @@ msgstr "埃及"
 msgid "El Salvador"
 msgstr "萨尔瓦多"
 
-#: admin/inc/renewals.php:666 admin/inc/renewals.php:697
-#: admin/inc/renewals.php:733 admin/inc/renewals.php:812
+#: admin/inc/renewals.php:668 admin/inc/renewals.php:699
+#: admin/inc/renewals.php:735 admin/inc/renewals.php:814
 msgid "Email"
 msgstr "Email"
 
@@ -2412,8 +2431,8 @@ msgstr "费用类型"
 msgid "Expiration"
 msgstr "过期"
 
-#: admin/inc/renewals.php:666 admin/inc/renewals.php:697
-#: admin/inc/renewals.php:734 admin/inc/renewals.php:812
+#: admin/inc/renewals.php:668 admin/inc/renewals.php:699
+#: admin/inc/renewals.php:736 admin/inc/renewals.php:814
 msgid "Expiration date"
 msgstr "过期日期"
 
@@ -2839,11 +2858,11 @@ msgid ""
 msgstr ""
 "硬盘空间MBytes。您需要在您的VPS服务器里的dom0，手动改变其大小以激活这些更改。"
 
-#: admin/inc/renewals.php:779
+#: admin/inc/renewals.php:781
 msgid "Has a dedicated"
 msgstr "有一个专用的"
 
-#: admin/inc/renewals.php:776
+#: admin/inc/renewals.php:778
 msgid "Has some domains"
 msgstr "有一些域名"
 
@@ -2862,6 +2881,26 @@ msgstr "标题"
 #: shared/drawlib/cc_code_popup.php:201
 msgid "Heard and McDonald Islands"
 msgstr "Heard 和 McDonald 群岛"
+
+#: shared/inc/forms/email.php:166
+msgid ""
+"Hello,\n"
+"You have tried to write an email to me, and because of the big amount\n"
+"of spam I recieved, I use an antispam software that require a message\n"
+"confirmation. This is very easy, and you will have to do it only once.\n"
+"Just click on the following link, copy the number you see on the\n"
+"screen and I will recieve the message you sent me. If you do not\n"
+"click, then your message will be considered as advertising and I will\n"
+"NOT recieve it.\n"
+"\n"
+"***URL***\n"
+"\n"
+"Thank you for your understanding.\n"
+"\n"
+"Antispam software:\n"
+"Grey listing+SPF, only available with Domain Technologie Control\n"
+"http://www.gplhost.com/software-dtc.html\n"
+msgstr ""
 
 #: shared/inc/draw.php:369
 msgid "Help"
@@ -2897,6 +2936,10 @@ msgstr ""
 "这里用 bytes指明了是多大的邮件并且在发送之前或发送时可以存放在内存中。该功能"
 "\\可以极大的降低系统CPU的加载，但同时可能导致拒绝服务式攻击。默认16k（16384 "
 "bytes）。"
+
+#: shared/inc/forms/email.php:264
+msgid "Here will go quarantinized messages"
+msgstr ""
 
 #: admin/dtcrm/main.php:101
 msgid "Hide client without admin"
@@ -3194,6 +3237,11 @@ msgstr "导入"
 msgid "Import a domain file for this user:"
 msgstr "为这个用户导入一个域文件："
 
+#: shared/inc/domain_export.php:360
+#, fuzzy
+msgid "Importing database username: "
+msgstr "数据库名"
+
 #: shared/inc/forms/lists.php:192
 msgid ""
 "In those fields is specified *ONE* headertoken to match per line. If the "
@@ -3445,7 +3493,7 @@ msgstr ""
 msgid "Kenya"
 msgstr "肯尼亚"
 
-#: admin/inc/renewals.php:774
+#: admin/inc/renewals.php:776
 msgid "Kill VPS and owner"
 msgstr "关闭VPS和拥有者"
 
@@ -3680,8 +3728,8 @@ msgstr "用户数据库的位置："
 msgid "Logged as:"
 msgstr "登录为："
 
-#: admin/inc/renewals.php:666 admin/inc/renewals.php:697
-#: admin/inc/renewals.php:731 admin/inc/renewals.php:812
+#: admin/inc/renewals.php:668 admin/inc/renewals.php:699
+#: admin/inc/renewals.php:733 admin/inc/renewals.php:814
 #: admin/inc/draw_user_admin.php:368 admin/inc/draw_user_admin.php:428
 #: admin/inc/draw_user_admin.php:447 admin/inc/draw_user_admin.php:533
 #: admin/inc/dtc_config.php:499 admin/inc/dtc_config.php:1359
@@ -3806,6 +3854,21 @@ msgstr "导入到本邮件服务器，从（其他邮件服务器）："
 #: shared/inc/forms/lists.php:234
 msgid "Mail server used to send the messages."
 msgstr "曾经发送邮件的服务器。"
+
+#: shared/inc/forms/email.php:220
+#, fuzzy
+msgid "Mail user domain"
+msgstr "删除一个用户域名："
+
+#: shared/inc/forms/email.php:220
+#, fuzzy
+msgid "Mail user from"
+msgstr "导入到本邮件服务器，从（其他邮件服务器）："
+
+#: shared/inc/forms/email.php:220
+#, fuzzy
+msgid "Mail user to (mailling list)"
+msgstr "编辑邮件列表"
 
 #: admin/deamons_state.php:134
 msgid "Mail-newu"
@@ -4052,10 +4115,21 @@ msgstr "内存："
 msgid "Menu"
 msgstr ""
 
+#: shared/inc/domain_export.php:278
+msgid ""
+"Method getUnserializedData() failed, could not import your domain "
+"configuration: "
+msgstr ""
+
 #: shared/inc/forms/vps_monitoring.php:125
 #: shared/inc/forms/vps_installation.php:73
 msgid "Method getVPSState failed"
 msgstr "无法取得VPSState"
+
+#: shared/inc/domain_export.php:273
+msgid ""
+"Method unserialize() failed, could not import your domain configuration: "
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:249
 msgid "Mexico"
@@ -4180,11 +4254,11 @@ msgstr "每月的 Xen 服务器使用量统计："
 msgid "Montserrat"
 msgstr "蒙特色拉特岛"
 
-#: admin/inc/renewals.php:782
+#: admin/inc/renewals.php:784
 msgid "More than one VPS"
 msgstr "多于一个VPS"
 
-#: admin/inc/renewals.php:785
+#: admin/inc/renewals.php:787
 msgid "More than one login"
 msgstr "多于一个登录"
 
@@ -4561,18 +4635,19 @@ msgstr "纽埃"
 #: shared/inc/forms/email.php:311 shared/inc/forms/email.php:338
 #: shared/inc/forms/root_admin.php:48 shared/inc/forms/root_admin.php:58
 #: shared/inc/forms/root_admin.php:68 shared/inc/forms/root_admin.php:78
-#: shared/inc/forms/root_admin.php:236 shared/inc/forms/root_admin.php:356
-#: shared/inc/forms/root_admin.php:362 shared/inc/forms/root_admin.php:480
-#: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
-#: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
-#: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
-#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
-#: shared/inc/forms/ticket.php:144 shared/securepay/modules/cheque/main.php:56
+#: shared/inc/forms/root_admin.php:86 shared/inc/forms/root_admin.php:236
+#: shared/inc/forms/root_admin.php:356 shared/inc/forms/root_admin.php:362
+#: shared/inc/forms/root_admin.php:480 shared/inc/forms/root_admin.php:487
+#: shared/inc/forms/root_admin.php:496 shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:199
+#: shared/inc/forms/subdomain.php:218 shared/inc/forms/subdomain.php:234
+#: shared/inc/forms/subdomain.php:241 shared/inc/forms/ticket.php:144
+#: shared/securepay/modules/cheque/main.php:56
 #: shared/securepay/modules/wiretransfer/main.php:56
 msgid "No"
 msgstr "否"
 
-#: admin/inc/renewals.php:694
+#: admin/inc/renewals.php:696
 msgid "No SSL IP expired"
 msgstr "没有已过期的SSL IP"
 
@@ -4580,7 +4655,7 @@ msgstr "没有已过期的SSL IP"
 msgid "No SSL token available: contact your administrator to request it."
 msgstr "没有可用的 SSL 密匙： 联系您的管理员获得。"
 
-#: admin/inc/renewals.php:728
+#: admin/inc/renewals.php:730
 msgid "No VPS expired"
 msgstr "没有已过期的VPS"
 
@@ -4600,7 +4675,7 @@ msgstr "没有客户ID"
 msgid "No completed orders found."
 msgstr "没有找到完整的订单。"
 
-#: admin/inc/renewals.php:809
+#: admin/inc/renewals.php:811
 msgid "No dedicated server expired"
 msgstr "没有已过期的独立主机"
 
@@ -4636,7 +4711,7 @@ msgstr "没有未解决的支持标签！"
 msgid "No product"
 msgstr "没有产品"
 
-#: admin/inc/renewals.php:663
+#: admin/inc/renewals.php:665
 msgid "No shared account expired."
 msgstr "没有已过期的共享主机账号。"
 
@@ -4777,6 +4852,16 @@ msgstr "有效的 ssh账户数量："
 #: shared/inc/forms/subdomain.php:167
 msgid "Number of active subdomains:"
 msgstr "现有子域名数量："
+
+#: shared/inc/domain_export.php:384
+#, fuzzy
+msgid "Number of database owned by user"
+msgstr "数据库的数量："
+
+#: shared/inc/domain_export.php:356
+#, fuzzy
+msgid "Number of database users in this import: "
+msgstr "数据库的数量："
 
 #: shared/inc/forms/root_admin.php:129
 msgid "Number of databases:"
@@ -5114,7 +5199,7 @@ msgstr "付款日期"
 msgid "Payment gateway"
 msgstr "付款方式"
 
-#: admin/inc/renewals.php:602 shared/inc/forms/invoices.php:42
+#: admin/inc/renewals.php:604 shared/inc/forms/invoices.php:42
 msgid "Payment gateway cost"
 msgstr "付费方式成本"
 
@@ -5148,7 +5233,7 @@ msgstr "待定"
 msgid "Percentage fee: "
 msgstr ""
 
-#: admin/inc/renewals.php:427 admin/inc/renewals.php:602
+#: admin/inc/renewals.php:427 admin/inc/renewals.php:604
 #: admin/dtcrm/product_manager.php:31 admin/dtcrm/product_manager.php:134
 #: admin/dtcrm/product_manager.php:227 admin/dtcrm/product_manager.php:302
 #: shared/dtcrm/draw.php:87
@@ -5422,7 +5507,7 @@ msgstr "产品："
 msgid "Production server"
 msgstr "成品服务器"
 
-#: admin/inc/renewals.php:602
+#: admin/inc/renewals.php:604
 msgid "Profit"
 msgstr "利润"
 
@@ -5809,6 +5894,10 @@ msgstr "SOAP登录"
 msgid "SOAP password"
 msgstr "SOAP密码"
 
+#: shared/inc/forms/email.php:340
+msgid "SPAM box name"
+msgstr ""
+
 #: shared/inc/forms/email.php:654
 msgid "SPAM mailbox destination: "
 msgstr "垃圾邮件发送到："
@@ -5849,11 +5938,11 @@ msgstr ""
 msgid "SSL IP addresses"
 msgstr "SSL IP地址"
 
-#: admin/inc/renewals.php:689
+#: admin/inc/renewals.php:691
 msgid "SSL IPs renewals"
 msgstr "SSL IPs 续约"
 
-#: admin/inc/renewals.php:589
+#: admin/inc/renewals.php:591
 msgid "SSL IPs renewals: "
 msgstr "SSL IPs 续约："
 
@@ -5927,6 +6016,8 @@ msgstr "沙特阿拉伯"
 
 #: admin/inc/dtc_config.php:465 shared/inc/forms/database.php:53
 #: shared/inc/forms/database.php:101 shared/inc/forms/domain_stats.php:98
+#: shared/inc/forms/email.php:212 shared/inc/forms/email.php:230
+#: shared/inc/forms/email.php:241 shared/inc/forms/reseller.php:37
 msgid "Save"
 msgstr "保存"
 
@@ -5996,7 +6087,7 @@ msgstr "塞内加尔"
 msgid "Serbia"
 msgstr "塞尔维亚"
 
-#: admin/inc/renewals.php:812
+#: admin/inc/renewals.php:814
 msgid "Server"
 msgstr "服务器"
 
@@ -6128,11 +6219,11 @@ msgstr "塞舌尔群岛"
 msgid "Shared"
 msgstr "共享"
 
-#: admin/inc/renewals.php:658
+#: admin/inc/renewals.php:660
 msgid "Shared hosting renewals:"
 msgstr "共享托管续约："
 
-#: admin/inc/renewals.php:588
+#: admin/inc/renewals.php:590
 msgid "Shared hosting: "
 msgstr "共享托管："
 
@@ -6161,7 +6252,7 @@ msgstr "展示全部"
 msgid "Show:"
 msgstr "显示："
 
-#: admin/inc/renewals.php:798
+#: admin/inc/renewals.php:800
 msgid "Shutdown"
 msgstr "关闭"
 
@@ -6953,7 +7044,7 @@ msgstr "总价："
 msgid "Total price: "
 msgstr "总价："
 
-#: admin/inc/renewals.php:493
+#: admin/inc/renewals.php:495
 msgid "Total recurring incomes per month:"
 msgstr "每月循环收益总数："
 
@@ -6978,7 +7069,7 @@ msgstr "这个月总传输bytes"
 msgid "Total transfered bytes this month:"
 msgstr "这个月总传输bytes："
 
-#: admin/inc/renewals.php:593
+#: admin/inc/renewals.php:595
 msgid "Total: "
 msgstr "总计："
 
@@ -7363,7 +7454,7 @@ msgstr "乌兹别克斯坦"
 msgid "VAT / GST number:"
 msgstr "增值税号码："
 
-#: admin/inc/renewals.php:427 admin/inc/renewals.php:602
+#: admin/inc/renewals.php:427 admin/inc/renewals.php:604
 msgid "VAT collected"
 msgstr "增值税征收"
 
@@ -7404,7 +7495,7 @@ msgstr "VNC 终端激活: "
 msgid "VNC console password: "
 msgstr "VNC 终端密码: "
 
-#: admin/inc/renewals.php:731
+#: admin/inc/renewals.php:733
 msgid "VPS"
 msgstr "VPS"
 
@@ -7461,7 +7552,7 @@ msgstr "VPS运行系统不被识别"
 msgid "VPS renewal email reminders periodicity"
 msgstr "设定VPS续约的邮件提醒的周期"
 
-#: admin/inc/renewals.php:723
+#: admin/inc/renewals.php:725
 msgid "VPS renewals:"
 msgstr "VPS 续约："
 
@@ -7473,13 +7564,18 @@ msgstr "VPS 服务器"
 msgid "VPS xen number"
 msgstr "VPS xen的数量 "
 
-#: admin/inc/renewals.php:590
+#: admin/inc/renewals.php:592
 msgid "VPS: "
 msgstr "VPS："
 
 #: admin/inc/draw_user_admin.php:488
 msgid "VPS: Cannot find VPS in db!"
 msgstr "VPS：在数据库中没有找到VPS的相关配置"
+
+#: shared/inc/forms/email.php:301
+#, fuzzy
+msgid "Vacation message"
+msgstr "最后一条信息是多久以前"
 
 #: admin/inc/draw_user_admin.php:520
 #, fuzzy
@@ -7699,6 +7795,11 @@ msgstr ""
 "Windows用户（和 运行WINE的UNIX 用户）可以下载并安装下列的开放源代码DTC软件来"
 "自动升级他们的IP地址："
 
+#: admin/inc/renewals.php:480
+#, fuzzy
+msgid "Wire"
+msgstr "扎伊尔"
+
 #: admin/inc/renewals.php:194
 msgid "Wire transfer"
 msgstr "转账"
@@ -7715,7 +7816,7 @@ msgstr "记录参数"
 msgid "Wrong email format for the monitoring email address"
 msgstr "监控邮箱地址的email 格式错误"
 
-#: shared/gfx/skin/bwoup/layout.php:51
+#: shared/gfx/skin/default_layout.php:22 shared/gfx/skin/bwoup/layout.php:51
 #, fuzzy
 msgid "Wrong login or password"
 msgstr "错误登录或者密码。"
@@ -7791,13 +7892,14 @@ msgstr "也门共和国"
 #: shared/inc/forms/email.php:309 shared/inc/forms/email.php:338
 #: shared/inc/forms/root_admin.php:47 shared/inc/forms/root_admin.php:57
 #: shared/inc/forms/root_admin.php:67 shared/inc/forms/root_admin.php:77
-#: shared/inc/forms/root_admin.php:235 shared/inc/forms/root_admin.php:356
-#: shared/inc/forms/root_admin.php:362 shared/inc/forms/root_admin.php:480
-#: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
-#: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
-#: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
-#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
-#: shared/inc/forms/ticket.php:143 shared/securepay/modules/enets/main.php:46
+#: shared/inc/forms/root_admin.php:84 shared/inc/forms/root_admin.php:235
+#: shared/inc/forms/root_admin.php:356 shared/inc/forms/root_admin.php:362
+#: shared/inc/forms/root_admin.php:480 shared/inc/forms/root_admin.php:487
+#: shared/inc/forms/root_admin.php:496 shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:199
+#: shared/inc/forms/subdomain.php:218 shared/inc/forms/subdomain.php:234
+#: shared/inc/forms/subdomain.php:241 shared/inc/forms/ticket.php:143
+#: shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:78
 #: shared/securepay/modules/worldpay/main.php:77
 #: shared/securepay/modules/webmoney/main.php:39
@@ -7982,6 +8084,11 @@ msgstr "您的管理员密码已经更改！"
 msgid "Your area disk usage:"
 msgstr "您的磁盘使用率："
 
+#: shared/inc/forms/email.php:208
+#, fuzzy
+msgid "Your bounce message"
+msgstr "弹回邮件的内容："
+
 #: shared/inc/forms/reseller.php:22
 msgid "Your child accounts:"
 msgstr "您的子账户："
@@ -8079,6 +8186,10 @@ msgstr "您的用户名将被预设到数据库用户名。"
 msgid "Your users"
 msgstr "您的用户"
 
+#: shared/inc/forms/email.php:214
+msgid "Your white list"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:352
 msgid "Yugoslavia"
 msgstr "南斯拉夫"
@@ -8136,6 +8247,11 @@ msgstr "使用您自己的.iso 图形启动"
 #, fuzzy
 msgid "check"
 msgstr "支票"
+
+#: admin/inc/renewals.php:480
+#, fuzzy
+msgid "cheque"
+msgstr "这里"
 
 #: shared/inc/forms/root_admin.php:124
 msgid "client"
@@ -8319,6 +8435,10 @@ msgstr "没有选中的列表"
 #, fuzzy
 msgid "none"
 msgstr "否"
+
+#: admin/inc/renewals.php:481
+msgid "online: none"
+msgstr ""
 
 #: shared/inc/forms/vps_installation.php:249
 msgid "operating system image"

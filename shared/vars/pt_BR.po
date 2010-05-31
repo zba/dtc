@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-30 03:26-0300\n"
+"POT-Creation-Date: 2010-05-31 13:01-0300\n"
 "PO-Revision-Date: 2009-08-28 12:32+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -397,17 +397,25 @@ msgid "Act as backup mail server for the following servers:"
 msgstr ""
 "Actuar como um servidor de backup de DNS para os seguintes servidores :"
 
-#: admin/inc/renewals.php:428 admin/inc/renewals.php:736
+#: admin/inc/renewals.php:428 admin/inc/renewals.php:738
 #: admin/inc/draw_user_admin.php:368 admin/inc/draw_user_admin.php:428
 #: admin/inc/draw_user_admin.php:447 shared/inc/forms/database.php:41
-#: shared/inc/forms/database.php:82 shared/inc/forms/my_account.php:133
-#: shared/inc/forms/reseller.php:24
+#: shared/inc/forms/database.php:82 shared/inc/forms/email.php:220
+#: shared/inc/forms/my_account.php:133 shared/inc/forms/reseller.php:24
 msgid "Action"
 msgstr "Ação"
+
+#: shared/inc/forms/email.php:245
+msgid "Activate Clamav antivirus"
+msgstr ""
 
 #: admin/inc/dtc_config.php:723
 msgid "Activate FTP backups:"
 msgstr "Ativar backups FTP:"
+
+#: shared/inc/forms/email.php:193
+msgid "Activate iGlobalWall protection"
+msgstr ""
 
 #: admin/active_prods_graph.php:86
 #, fuzzy
@@ -667,7 +675,7 @@ msgstr "Ou poderá agora configurar outro dominio :"
 msgid "American Samoa"
 msgstr "Samoa Americana"
 
-#: admin/inc/renewals.php:602 shared/inc/forms/my_account.php:232
+#: admin/inc/renewals.php:604 shared/inc/forms/my_account.php:232
 #: shared/securepay/pay_functions.php:69
 msgid "Amount"
 msgstr "Valor"
@@ -709,6 +717,10 @@ msgstr "Outro local"
 #: shared/drawlib/cc_code_popup.php:111
 msgid "Antarctica"
 msgstr "Antártida"
+
+#: shared/inc/forms/email.php:334
+msgid "Anti-SPAM control"
+msgstr ""
 
 #: shared/inc/forms/lists.php:449
 msgid "Anti-spam mode:"
@@ -1201,7 +1213,7 @@ msgstr "Modificar RDNS"
 msgid "Change your password:"
 msgstr "Modificar sua senha:"
 
-#: admin/inc/renewals.php:195
+#: admin/inc/renewals.php:195 shared/inc/forms/root_admin.php:85
 msgid "Check"
 msgstr "Verificar"
 
@@ -1270,9 +1282,9 @@ msgstr ""
 msgid "Click on the list name to remove the list from the server:<br><br>"
 msgstr ""
 
-#: admin/inc/renewals.php:425 admin/inc/renewals.php:666
-#: admin/inc/renewals.php:697 admin/inc/renewals.php:732
-#: admin/inc/renewals.php:812
+#: admin/inc/renewals.php:425 admin/inc/renewals.php:668
+#: admin/inc/renewals.php:699 admin/inc/renewals.php:734
+#: admin/inc/renewals.php:814
 msgid "Client"
 msgstr "Cliente"
 
@@ -1297,8 +1309,8 @@ msgstr "Informação do cliente"
 msgid "Client interface"
 msgstr "Interface do cliente"
 
-#: admin/inc/renewals.php:673 admin/inc/renewals.php:712
-#: admin/inc/renewals.php:753 admin/inc/renewals.php:827
+#: admin/inc/renewals.php:675 admin/inc/renewals.php:714
+#: admin/inc/renewals.php:755 admin/inc/renewals.php:829
 msgid "Client name not found!"
 msgstr "Nome do cliente não foi encontrado!"
 
@@ -1585,6 +1597,7 @@ msgid "Country: "
 msgstr "País:"
 
 #: shared/inc/forms/database.php:69 shared/inc/forms/database.php:118
+#: shared/inc/forms/reseller.php:48
 msgid "Create"
 msgstr "Criar"
 
@@ -1859,7 +1872,7 @@ msgstr ""
 msgid "Day Sales Graph"
 msgstr "Gráfico da Fila de Correio"
 
-#: admin/inc/renewals.php:735
+#: admin/inc/renewals.php:737
 msgid "Days of expiration"
 msgstr "Dias da expiração"
 
@@ -1900,11 +1913,11 @@ msgstr "Servidor Dedicado expiração:"
 msgid "Dedicated server hostname"
 msgstr "Servidor Dedicado \"hostname\""
 
-#: admin/inc/renewals.php:804
+#: admin/inc/renewals.php:806
 msgid "Dedicated servers renewals"
 msgstr "Renovações de Servidores Dedicados "
 
-#: admin/inc/renewals.php:591
+#: admin/inc/renewals.php:593
 msgid "Dedicated servers: "
 msgstr "Servidores Dedicados:"
 
@@ -1924,14 +1937,15 @@ msgstr "TTL padrão para seus arquivos de zona:"
 msgid "Deferred"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:520
+#: admin/inc/draw_user_admin.php:520 shared/inc/forms/reseller.php:40
 #, fuzzy
 msgid "Del"
 msgstr "Remover"
 
-#: admin/inc/renewals.php:485 admin/inc/draw_user_admin.php:414
+#: admin/inc/renewals.php:487 admin/inc/draw_user_admin.php:414
 #: admin/inc/draw_user_admin.php:434 shared/inc/forms/database.php:57
 #: shared/inc/forms/database.php:105 shared/inc/forms/domain_stats.php:104
+#: shared/inc/forms/email.php:233
 msgid "Delete"
 msgstr "Remover"
 
@@ -2127,6 +2141,11 @@ msgstr "Arquivos de nomes de dominios :"
 msgid "Domain name for affiliation return URL:"
 msgstr "Nome de domínio para filiação retorno URL:"
 
+#: shared/inc/domain_export.php:314
+msgid ""
+"Domain name is empty in your export file: could not import domain number "
+msgstr ""
+
 #: shared/dtcrm/draw_adddomain.php:145
 msgid "Domain name is not in correct format. Please enter another name."
 msgstr "O nome do dominio é inválido, verifique sff."
@@ -2287,8 +2306,8 @@ msgstr "Egito"
 msgid "El Salvador"
 msgstr "El Salvador"
 
-#: admin/inc/renewals.php:666 admin/inc/renewals.php:697
-#: admin/inc/renewals.php:733 admin/inc/renewals.php:812
+#: admin/inc/renewals.php:668 admin/inc/renewals.php:699
+#: admin/inc/renewals.php:735 admin/inc/renewals.php:814
 msgid "Email"
 msgstr "Correio"
 
@@ -2423,8 +2442,8 @@ msgstr "Tipo de despesas"
 msgid "Expiration"
 msgstr "Expiração"
 
-#: admin/inc/renewals.php:666 admin/inc/renewals.php:697
-#: admin/inc/renewals.php:734 admin/inc/renewals.php:812
+#: admin/inc/renewals.php:668 admin/inc/renewals.php:699
+#: admin/inc/renewals.php:736 admin/inc/renewals.php:814
 msgid "Expiration date"
 msgstr "Data de validade"
 
@@ -2852,11 +2871,11 @@ msgstr ""
 "Espaço no disco rígido em MBytes. Você precisará fazer manualmente um "
 "lvresize sobre o dom0 de seu servidor VPS para activar suas alterações."
 
-#: admin/inc/renewals.php:779
+#: admin/inc/renewals.php:781
 msgid "Has a dedicated"
 msgstr "Tem um dedicado"
 
-#: admin/inc/renewals.php:776
+#: admin/inc/renewals.php:778
 msgid "Has some domains"
 msgstr "Tem alguns domínios"
 
@@ -2875,6 +2894,26 @@ msgstr "Header"
 #: shared/drawlib/cc_code_popup.php:201
 msgid "Heard and McDonald Islands"
 msgstr "Ilhas Heard e McDonald"
+
+#: shared/inc/forms/email.php:166
+msgid ""
+"Hello,\n"
+"You have tried to write an email to me, and because of the big amount\n"
+"of spam I recieved, I use an antispam software that require a message\n"
+"confirmation. This is very easy, and you will have to do it only once.\n"
+"Just click on the following link, copy the number you see on the\n"
+"screen and I will recieve the message you sent me. If you do not\n"
+"click, then your message will be considered as advertising and I will\n"
+"NOT recieve it.\n"
+"\n"
+"***URL***\n"
+"\n"
+"Thank you for your understanding.\n"
+"\n"
+"Antispam software:\n"
+"Grey listing+SPF, only available with Domain Technologie Control\n"
+"http://www.gplhost.com/software-dtc.html\n"
+msgstr ""
 
 #: shared/inc/draw.php:369
 msgid "Help"
@@ -2912,6 +2951,10 @@ msgstr ""
 "preparada para envio na memória. It \\ 's reduzindo a quantidade de chamadas "
 "do sistema para prepará-la na memória antes de enviá-lo, mas também pode "
 "levar a ataques de negação de serviço. O padrão é 16K (16384 bytes)."
+
+#: shared/inc/forms/email.php:264
+msgid "Here will go quarantinized messages"
+msgstr ""
 
 #: admin/dtcrm/main.php:101
 msgid "Hide client without admin"
@@ -3226,6 +3269,11 @@ msgstr "Importar"
 msgid "Import a domain file for this user:"
 msgstr "Importar arquivo de domínio para este usuário:"
 
+#: shared/inc/domain_export.php:360
+#, fuzzy
+msgid "Importing database username: "
+msgstr "Nome do banco de dados"
+
 #: shared/inc/forms/lists.php:192
 msgid ""
 "In those fields is specified *ONE* headertoken to match per line. If the "
@@ -3495,7 +3543,7 @@ msgstr ""
 msgid "Kenya"
 msgstr "Quénia"
 
-#: admin/inc/renewals.php:774
+#: admin/inc/renewals.php:776
 msgid "Kill VPS and owner"
 msgstr "Kill VPS e proprietário"
 
@@ -3732,8 +3780,8 @@ msgstr "Localização do banco de dados do usuário:"
 msgid "Logged as:"
 msgstr "Logado como:"
 
-#: admin/inc/renewals.php:666 admin/inc/renewals.php:697
-#: admin/inc/renewals.php:731 admin/inc/renewals.php:812
+#: admin/inc/renewals.php:668 admin/inc/renewals.php:699
+#: admin/inc/renewals.php:733 admin/inc/renewals.php:814
 #: admin/inc/draw_user_admin.php:368 admin/inc/draw_user_admin.php:428
 #: admin/inc/draw_user_admin.php:447 admin/inc/draw_user_admin.php:533
 #: admin/inc/dtc_config.php:499 admin/inc/dtc_config.php:1359
@@ -3858,6 +3906,21 @@ msgstr "Servidor de e-mail para a importação de:"
 #: shared/inc/forms/lists.php:234
 msgid "Mail server used to send the messages."
 msgstr "Servidor de correio utilizado para enviar as mensagens."
+
+#: shared/inc/forms/email.php:220
+#, fuzzy
+msgid "Mail user domain"
+msgstr "Eliminar um utilizador de dominio :"
+
+#: shared/inc/forms/email.php:220
+#, fuzzy
+msgid "Mail user from"
+msgstr "Servidor de e-mail para a importação de:"
+
+#: shared/inc/forms/email.php:220
+#, fuzzy
+msgid "Mail user to (mailling list)"
+msgstr "Editar mailing list"
 
 #: admin/deamons_state.php:134
 msgid "Mail-newu"
@@ -4106,10 +4169,21 @@ msgstr "Memória:"
 msgid "Menu"
 msgstr ""
 
+#: shared/inc/domain_export.php:278
+msgid ""
+"Method getUnserializedData() failed, could not import your domain "
+"configuration: "
+msgstr ""
+
 #: shared/inc/forms/vps_monitoring.php:125
 #: shared/inc/forms/vps_installation.php:73
 msgid "Method getVPSState failed"
 msgstr "O método getVPSState falhou"
+
+#: shared/inc/domain_export.php:273
+msgid ""
+"Method unserialize() failed, could not import your domain configuration: "
+msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:249
 msgid "Mexico"
@@ -4234,11 +4308,11 @@ msgstr "Estatísticas de uso mensais do servidor Xen:"
 msgid "Montserrat"
 msgstr "Montserrat"
 
-#: admin/inc/renewals.php:782
+#: admin/inc/renewals.php:784
 msgid "More than one VPS"
 msgstr "Mais de um VPS"
 
-#: admin/inc/renewals.php:785
+#: admin/inc/renewals.php:787
 msgid "More than one login"
 msgstr "Mais de um login"
 
@@ -4620,18 +4694,19 @@ msgstr "Niue"
 #: shared/inc/forms/email.php:311 shared/inc/forms/email.php:338
 #: shared/inc/forms/root_admin.php:48 shared/inc/forms/root_admin.php:58
 #: shared/inc/forms/root_admin.php:68 shared/inc/forms/root_admin.php:78
-#: shared/inc/forms/root_admin.php:236 shared/inc/forms/root_admin.php:356
-#: shared/inc/forms/root_admin.php:362 shared/inc/forms/root_admin.php:480
-#: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
-#: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
-#: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
-#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
-#: shared/inc/forms/ticket.php:144 shared/securepay/modules/cheque/main.php:56
+#: shared/inc/forms/root_admin.php:86 shared/inc/forms/root_admin.php:236
+#: shared/inc/forms/root_admin.php:356 shared/inc/forms/root_admin.php:362
+#: shared/inc/forms/root_admin.php:480 shared/inc/forms/root_admin.php:487
+#: shared/inc/forms/root_admin.php:496 shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:199
+#: shared/inc/forms/subdomain.php:218 shared/inc/forms/subdomain.php:234
+#: shared/inc/forms/subdomain.php:241 shared/inc/forms/ticket.php:144
+#: shared/securepay/modules/cheque/main.php:56
 #: shared/securepay/modules/wiretransfer/main.php:56
 msgid "No"
 msgstr "Não"
 
-#: admin/inc/renewals.php:694
+#: admin/inc/renewals.php:696
 msgid "No SSL IP expired"
 msgstr "Sem IP SSL expirado"
 
@@ -4640,7 +4715,7 @@ msgid "No SSL token available: contact your administrator to request it."
 msgstr ""
 "Sem chaves SSL disponíveis contate o seu administrador para solicita-las."
 
-#: admin/inc/renewals.php:728
+#: admin/inc/renewals.php:730
 msgid "No VPS expired"
 msgstr "Sem VPS expirados"
 
@@ -4660,7 +4735,7 @@ msgstr "Sem id do cliente"
 msgid "No completed orders found."
 msgstr "Ordem de pedidos completos não encontrados"
 
-#: admin/inc/renewals.php:809
+#: admin/inc/renewals.php:811
 msgid "No dedicated server expired"
 msgstr "Sem servidores dedidados expirados"
 
@@ -4696,7 +4771,7 @@ msgstr "Sem tickets de suporte pendentes!"
 msgid "No product"
 msgstr "Nenhum produto"
 
-#: admin/inc/renewals.php:663
+#: admin/inc/renewals.php:665
 msgid "No shared account expired."
 msgstr "Sem contas compartilhadas expiradas."
 
@@ -4841,6 +4916,16 @@ msgstr "Número de contas de ssh ativas:"
 #: shared/inc/forms/subdomain.php:167
 msgid "Number of active subdomains:"
 msgstr "Número de subdominios activos :"
+
+#: shared/inc/domain_export.php:384
+#, fuzzy
+msgid "Number of database owned by user"
+msgstr "Número de base de dados:"
+
+#: shared/inc/domain_export.php:356
+#, fuzzy
+msgid "Number of database users in this import: "
+msgstr "Número de base de dados:"
 
 #: shared/inc/forms/root_admin.php:129
 msgid "Number of databases:"
@@ -5184,7 +5269,7 @@ msgstr "Data de pagamento"
 msgid "Payment gateway"
 msgstr "Gateway de pagamento"
 
-#: admin/inc/renewals.php:602 shared/inc/forms/invoices.php:42
+#: admin/inc/renewals.php:604 shared/inc/forms/invoices.php:42
 msgid "Payment gateway cost"
 msgstr "Custo do Gateway de pagamento"
 
@@ -5218,7 +5303,7 @@ msgstr "Pendente"
 msgid "Percentage fee: "
 msgstr ""
 
-#: admin/inc/renewals.php:427 admin/inc/renewals.php:602
+#: admin/inc/renewals.php:427 admin/inc/renewals.php:604
 #: admin/dtcrm/product_manager.php:31 admin/dtcrm/product_manager.php:134
 #: admin/dtcrm/product_manager.php:227 admin/dtcrm/product_manager.php:302
 #: shared/dtcrm/draw.php:87
@@ -5497,7 +5582,7 @@ msgstr "Produto:"
 msgid "Production server"
 msgstr "Servidor de Produção"
 
-#: admin/inc/renewals.php:602
+#: admin/inc/renewals.php:604
 msgid "Profit"
 msgstr "Lucro"
 
@@ -5885,6 +5970,10 @@ msgstr "Login SOAP"
 msgid "SOAP password"
 msgstr "Senha SOAP"
 
+#: shared/inc/forms/email.php:340
+msgid "SPAM box name"
+msgstr ""
+
 #: shared/inc/forms/email.php:654
 msgid "SPAM mailbox destination: "
 msgstr "Conta de correio de destino para SPAM: "
@@ -5925,11 +6014,11 @@ msgstr ""
 msgid "SSL IP addresses"
 msgstr "Endereços IP SSL"
 
-#: admin/inc/renewals.php:689
+#: admin/inc/renewals.php:691
 msgid "SSL IPs renewals"
 msgstr "Renovações de IP´s SSL"
 
-#: admin/inc/renewals.php:589
+#: admin/inc/renewals.php:591
 msgid "SSL IPs renewals: "
 msgstr "Renovações IPs SSL:"
 
@@ -6003,6 +6092,8 @@ msgstr "Arábia Saudita"
 
 #: admin/inc/dtc_config.php:465 shared/inc/forms/database.php:53
 #: shared/inc/forms/database.php:101 shared/inc/forms/domain_stats.php:98
+#: shared/inc/forms/email.php:212 shared/inc/forms/email.php:230
+#: shared/inc/forms/email.php:241 shared/inc/forms/reseller.php:37
 msgid "Save"
 msgstr "Salvar"
 
@@ -6073,7 +6164,7 @@ msgstr "Senegal"
 msgid "Serbia"
 msgstr "Sérvia"
 
-#: admin/inc/renewals.php:812
+#: admin/inc/renewals.php:814
 msgid "Server"
 msgstr "Servidor"
 
@@ -6207,11 +6298,11 @@ msgstr "Seychelles"
 msgid "Shared"
 msgstr "Compartilhada"
 
-#: admin/inc/renewals.php:658
+#: admin/inc/renewals.php:660
 msgid "Shared hosting renewals:"
 msgstr "Renovações de hospedagem compartilhada:"
 
-#: admin/inc/renewals.php:588
+#: admin/inc/renewals.php:590
 msgid "Shared hosting: "
 msgstr "Hospedagem Compartilhada:"
 
@@ -6240,7 +6331,7 @@ msgstr "Mostrar todos"
 msgid "Show:"
 msgstr "Exibir:"
 
-#: admin/inc/renewals.php:798
+#: admin/inc/renewals.php:800
 msgid "Shutdown"
 msgstr "Desligar"
 
@@ -7080,7 +7171,7 @@ msgstr "Preço total : "
 msgid "Total price: "
 msgstr "Preço total : "
 
-#: admin/inc/renewals.php:493
+#: admin/inc/renewals.php:495
 msgid "Total recurring incomes per month:"
 msgstr "Total de rendimentos recorrentes por mês:"
 
@@ -7105,7 +7196,7 @@ msgstr "Tráfego total usado este mês (em bytes):"
 msgid "Total transfered bytes this month:"
 msgstr "Tráfego total usado este mês (byte):"
 
-#: admin/inc/renewals.php:593
+#: admin/inc/renewals.php:595
 msgid "Total: "
 msgstr "Total:"
 
@@ -7493,7 +7584,7 @@ msgstr "Uzbequistão"
 msgid "VAT / GST number:"
 msgstr "IVA / GST número:"
 
-#: admin/inc/renewals.php:427 admin/inc/renewals.php:602
+#: admin/inc/renewals.php:427 admin/inc/renewals.php:604
 msgid "VAT collected"
 msgstr "Impostos coletados"
 
@@ -7534,7 +7625,7 @@ msgstr "Ativação de console VNC:"
 msgid "VNC console password: "
 msgstr "Senha do console VNC:"
 
-#: admin/inc/renewals.php:731
+#: admin/inc/renewals.php:733
 msgid "VPS"
 msgstr "VPS"
 
@@ -7591,7 +7682,7 @@ msgstr "Sistema operacional do VPS não foi reconhecido"
 msgid "VPS renewal email reminders periodicity"
 msgstr "Lembretes periódicos de renovação do VPS."
 
-#: admin/inc/renewals.php:723
+#: admin/inc/renewals.php:725
 msgid "VPS renewals:"
 msgstr "Renovações VPS:"
 
@@ -7603,13 +7694,18 @@ msgstr "Servidores VPS"
 msgid "VPS xen number"
 msgstr "Número XEN do VPS"
 
-#: admin/inc/renewals.php:590
+#: admin/inc/renewals.php:592
 msgid "VPS: "
 msgstr "VPS:"
 
 #: admin/inc/draw_user_admin.php:488
 msgid "VPS: Cannot find VPS in db!"
 msgstr "VPS: Não é possível encontrar a VPS no banco de dados!"
+
+#: shared/inc/forms/email.php:301
+#, fuzzy
+msgid "Vacation message"
+msgstr "Última mensagem (idade)"
 
 #: admin/inc/draw_user_admin.php:520
 #, fuzzy
@@ -7833,6 +7929,11 @@ msgstr ""
 "Usuários Windows (e UNIX usando WINE) podem atualizar seus endereços IP "
 "dinamicamente através da instalação do cliente de dns dinâmico do DTC:"
 
+#: admin/inc/renewals.php:480
+#, fuzzy
+msgid "Wire"
+msgstr "Zaire"
+
 #: admin/inc/renewals.php:194
 msgid "Wire transfer"
 msgstr "Wire transfer"
@@ -7849,7 +7950,7 @@ msgstr "Escrever parâmetros"
 msgid "Wrong email format for the monitoring email address"
 msgstr "Formato inválido para o sistema de monitoramento"
 
-#: shared/gfx/skin/bwoup/layout.php:51
+#: shared/gfx/skin/default_layout.php:22 shared/gfx/skin/bwoup/layout.php:51
 #, fuzzy
 msgid "Wrong login or password"
 msgstr "Login ou senha incorretos."
@@ -7927,13 +8028,14 @@ msgstr "República do Iêmen"
 #: shared/inc/forms/email.php:309 shared/inc/forms/email.php:338
 #: shared/inc/forms/root_admin.php:47 shared/inc/forms/root_admin.php:57
 #: shared/inc/forms/root_admin.php:67 shared/inc/forms/root_admin.php:77
-#: shared/inc/forms/root_admin.php:235 shared/inc/forms/root_admin.php:356
-#: shared/inc/forms/root_admin.php:362 shared/inc/forms/root_admin.php:480
-#: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
-#: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
-#: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
-#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
-#: shared/inc/forms/ticket.php:143 shared/securepay/modules/enets/main.php:46
+#: shared/inc/forms/root_admin.php:84 shared/inc/forms/root_admin.php:235
+#: shared/inc/forms/root_admin.php:356 shared/inc/forms/root_admin.php:362
+#: shared/inc/forms/root_admin.php:480 shared/inc/forms/root_admin.php:487
+#: shared/inc/forms/root_admin.php:496 shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:199
+#: shared/inc/forms/subdomain.php:218 shared/inc/forms/subdomain.php:234
+#: shared/inc/forms/subdomain.php:241 shared/inc/forms/ticket.php:143
+#: shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:78
 #: shared/securepay/modules/worldpay/main.php:77
 #: shared/securepay/modules/webmoney/main.php:39
@@ -8140,6 +8242,11 @@ msgstr "A senha do administrador foi alterada!"
 msgid "Your area disk usage:"
 msgstr "Espaço de disco usado :"
 
+#: shared/inc/forms/email.php:208
+#, fuzzy
+msgid "Your bounce message"
+msgstr "Bounce message content: "
+
 #: shared/inc/forms/reseller.php:22
 msgid "Your child accounts:"
 msgstr "Suas contas de revenda:"
@@ -8237,6 +8344,10 @@ msgstr "O seu nome de usuário será usado como prefixo do seu banco de dados."
 msgid "Your users"
 msgstr "Seus usuários"
 
+#: shared/inc/forms/email.php:214
+msgid "Your white list"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:352
 msgid "Yugoslavia"
 msgstr "Iugoslávia"
@@ -8294,6 +8405,11 @@ msgstr "boot na sua própria imagem. iso"
 #, fuzzy
 msgid "check"
 msgstr "Verificar"
+
+#: admin/inc/renewals.php:480
+#, fuzzy
+msgid "cheque"
+msgstr "aqui"
 
 #: shared/inc/forms/root_admin.php:124
 msgid "client"
@@ -8477,6 +8593,10 @@ msgstr "nenhuma lista selecionada"
 #, fuzzy
 msgid "none"
 msgstr "não"
+
+#: admin/inc/renewals.php:481
+msgid "online: none"
+msgstr ""
 
 #: shared/inc/forms/vps_installation.php:249
 msgid "operating system image"

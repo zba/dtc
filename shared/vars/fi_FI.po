@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-30 03:26-0300\n"
+"POT-Creation-Date: 2010-05-31 13:01-0300\n"
 "PO-Revision-Date: 2008-03-01 23:56+0200\n"
 "Last-Translator: Esko Arajärvi <edu@iki.fi>\n"
 "Language-Team: \n"
@@ -287,16 +287,24 @@ msgstr ""
 msgid "Act as backup mail server for the following servers:"
 msgstr ""
 
-#: admin/inc/renewals.php:428 admin/inc/renewals.php:736
+#: admin/inc/renewals.php:428 admin/inc/renewals.php:738
 #: admin/inc/draw_user_admin.php:368 admin/inc/draw_user_admin.php:428
 #: admin/inc/draw_user_admin.php:447 shared/inc/forms/database.php:41
-#: shared/inc/forms/database.php:82 shared/inc/forms/my_account.php:133
-#: shared/inc/forms/reseller.php:24
+#: shared/inc/forms/database.php:82 shared/inc/forms/email.php:220
+#: shared/inc/forms/my_account.php:133 shared/inc/forms/reseller.php:24
 msgid "Action"
+msgstr ""
+
+#: shared/inc/forms/email.php:245
+msgid "Activate Clamav antivirus"
 msgstr ""
 
 #: admin/inc/dtc_config.php:723
 msgid "Activate FTP backups:"
+msgstr ""
+
+#: shared/inc/forms/email.php:193
+msgid "Activate iGlobalWall protection"
 msgstr ""
 
 #: admin/active_prods_graph.php:86
@@ -555,7 +563,7 @@ msgstr ""
 msgid "American Samoa"
 msgstr ""
 
-#: admin/inc/renewals.php:602 shared/inc/forms/my_account.php:232
+#: admin/inc/renewals.php:604 shared/inc/forms/my_account.php:232
 #: shared/securepay/pay_functions.php:69
 msgid "Amount"
 msgstr ""
@@ -592,6 +600,10 @@ msgstr "Toinen sijainti"
 
 #: shared/drawlib/cc_code_popup.php:111
 msgid "Antarctica"
+msgstr ""
+
+#: shared/inc/forms/email.php:334
+msgid "Anti-SPAM control"
 msgstr ""
 
 #: shared/inc/forms/lists.php:449
@@ -1082,7 +1094,7 @@ msgstr ""
 msgid "Change your password:"
 msgstr "Vaihda salasanasi:"
 
-#: admin/inc/renewals.php:195
+#: admin/inc/renewals.php:195 shared/inc/forms/root_admin.php:85
 #, fuzzy
 msgid "Check"
 msgstr " tiedosto"
@@ -1153,9 +1165,9 @@ msgstr ""
 msgid "Click on the list name to remove the list from the server:<br><br>"
 msgstr ""
 
-#: admin/inc/renewals.php:425 admin/inc/renewals.php:666
-#: admin/inc/renewals.php:697 admin/inc/renewals.php:732
-#: admin/inc/renewals.php:812
+#: admin/inc/renewals.php:425 admin/inc/renewals.php:668
+#: admin/inc/renewals.php:699 admin/inc/renewals.php:734
+#: admin/inc/renewals.php:814
 msgid "Client"
 msgstr ""
 
@@ -1181,8 +1193,8 @@ msgstr ""
 msgid "Client interface"
 msgstr ""
 
-#: admin/inc/renewals.php:673 admin/inc/renewals.php:712
-#: admin/inc/renewals.php:753 admin/inc/renewals.php:827
+#: admin/inc/renewals.php:675 admin/inc/renewals.php:714
+#: admin/inc/renewals.php:755 admin/inc/renewals.php:829
 msgid "Client name not found!"
 msgstr ""
 
@@ -1464,6 +1476,7 @@ msgid "Country: "
 msgstr "Maa:"
 
 #: shared/inc/forms/database.php:69 shared/inc/forms/database.php:118
+#: shared/inc/forms/reseller.php:48
 msgid "Create"
 msgstr "Luo"
 
@@ -1726,7 +1739,7 @@ msgstr ""
 msgid "Day Sales Graph"
 msgstr ""
 
-#: admin/inc/renewals.php:735
+#: admin/inc/renewals.php:737
 msgid "Days of expiration"
 msgstr ""
 
@@ -1766,11 +1779,11 @@ msgstr ""
 msgid "Dedicated server hostname"
 msgstr ""
 
-#: admin/inc/renewals.php:804
+#: admin/inc/renewals.php:806
 msgid "Dedicated servers renewals"
 msgstr ""
 
-#: admin/inc/renewals.php:591
+#: admin/inc/renewals.php:593
 msgid "Dedicated servers: "
 msgstr ""
 
@@ -1790,14 +1803,15 @@ msgstr ""
 msgid "Deferred"
 msgstr ""
 
-#: admin/inc/draw_user_admin.php:520
+#: admin/inc/draw_user_admin.php:520 shared/inc/forms/reseller.php:40
 #, fuzzy
 msgid "Del"
 msgstr "Poista"
 
-#: admin/inc/renewals.php:485 admin/inc/draw_user_admin.php:414
+#: admin/inc/renewals.php:487 admin/inc/draw_user_admin.php:414
 #: admin/inc/draw_user_admin.php:434 shared/inc/forms/database.php:57
 #: shared/inc/forms/database.php:105 shared/inc/forms/domain_stats.php:104
+#: shared/inc/forms/email.php:233
 msgid "Delete"
 msgstr "Poista"
 
@@ -1990,6 +2004,11 @@ msgstr "Verkkoaluenimitiedostot:"
 msgid "Domain name for affiliation return URL:"
 msgstr ""
 
+#: shared/inc/domain_export.php:314
+msgid ""
+"Domain name is empty in your export file: could not import domain number "
+msgstr ""
+
 #: shared/dtcrm/draw_adddomain.php:145
 msgid "Domain name is not in correct format. Please enter another name."
 msgstr ""
@@ -2146,8 +2165,8 @@ msgstr ""
 msgid "El Salvador"
 msgstr ""
 
-#: admin/inc/renewals.php:666 admin/inc/renewals.php:697
-#: admin/inc/renewals.php:733 admin/inc/renewals.php:812
+#: admin/inc/renewals.php:668 admin/inc/renewals.php:699
+#: admin/inc/renewals.php:735 admin/inc/renewals.php:814
 msgid "Email"
 msgstr ""
 
@@ -2282,8 +2301,8 @@ msgstr ""
 msgid "Expiration"
 msgstr ""
 
-#: admin/inc/renewals.php:666 admin/inc/renewals.php:697
-#: admin/inc/renewals.php:734 admin/inc/renewals.php:812
+#: admin/inc/renewals.php:668 admin/inc/renewals.php:699
+#: admin/inc/renewals.php:736 admin/inc/renewals.php:814
 msgid "Expiration date"
 msgstr ""
 
@@ -2696,11 +2715,11 @@ msgid ""
 "dom0 of your VPS server to activate the changes."
 msgstr ""
 
-#: admin/inc/renewals.php:779
+#: admin/inc/renewals.php:781
 msgid "Has a dedicated"
 msgstr ""
 
-#: admin/inc/renewals.php:776
+#: admin/inc/renewals.php:778
 msgid "Has some domains"
 msgstr ""
 
@@ -2718,6 +2737,26 @@ msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:201
 msgid "Heard and McDonald Islands"
+msgstr ""
+
+#: shared/inc/forms/email.php:166
+msgid ""
+"Hello,\n"
+"You have tried to write an email to me, and because of the big amount\n"
+"of spam I recieved, I use an antispam software that require a message\n"
+"confirmation. This is very easy, and you will have to do it only once.\n"
+"Just click on the following link, copy the number you see on the\n"
+"screen and I will recieve the message you sent me. If you do not\n"
+"click, then your message will be considered as advertising and I will\n"
+"NOT recieve it.\n"
+"\n"
+"***URL***\n"
+"\n"
+"Thank you for your understanding.\n"
+"\n"
+"Antispam software:\n"
+"Grey listing+SPF, only available with Domain Technologie Control\n"
+"http://www.gplhost.com/software-dtc.html\n"
 msgstr ""
 
 #: shared/inc/draw.php:369
@@ -2748,6 +2787,10 @@ msgid ""
 "sending in memory. It\\'s greatly reducing the amount of write system calls "
 "to prepare it in memory before sending it, but can also lead to denial of "
 "service attacks. Default is 16k (16384 bytes)."
+msgstr ""
+
+#: shared/inc/forms/email.php:264
+msgid "Here will go quarantinized messages"
 msgstr ""
 
 #: admin/dtcrm/main.php:101
@@ -3027,6 +3070,11 @@ msgstr ""
 msgid "Import a domain file for this user:"
 msgstr ""
 
+#: shared/inc/domain_export.php:360
+#, fuzzy
+msgid "Importing database username: "
+msgstr "Tietokannan nimi"
+
 #: shared/inc/forms/lists.php:192
 msgid ""
 "In those fields is specified *ONE* headertoken to match per line. If the "
@@ -3269,7 +3317,7 @@ msgstr ""
 msgid "Kenya"
 msgstr ""
 
-#: admin/inc/renewals.php:774
+#: admin/inc/renewals.php:776
 msgid "Kill VPS and owner"
 msgstr ""
 
@@ -3498,8 +3546,8 @@ msgstr ""
 msgid "Logged as:"
 msgstr ""
 
-#: admin/inc/renewals.php:666 admin/inc/renewals.php:697
-#: admin/inc/renewals.php:731 admin/inc/renewals.php:812
+#: admin/inc/renewals.php:668 admin/inc/renewals.php:699
+#: admin/inc/renewals.php:733 admin/inc/renewals.php:814
 #: admin/inc/draw_user_admin.php:368 admin/inc/draw_user_admin.php:428
 #: admin/inc/draw_user_admin.php:447 admin/inc/draw_user_admin.php:533
 #: admin/inc/dtc_config.php:499 admin/inc/dtc_config.php:1359
@@ -3619,6 +3667,19 @@ msgstr ""
 #: shared/inc/forms/lists.php:234
 msgid "Mail server used to send the messages."
 msgstr ""
+
+#: shared/inc/forms/email.php:220
+msgid "Mail user domain"
+msgstr ""
+
+#: shared/inc/forms/email.php:220
+msgid "Mail user from"
+msgstr ""
+
+#: shared/inc/forms/email.php:220
+#, fuzzy
+msgid "Mail user to (mailling list)"
+msgstr "Luo uusi aliverkkoalue:"
 
 #: admin/deamons_state.php:134
 msgid "Mail-newu"
@@ -3856,9 +3917,20 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
+#: shared/inc/domain_export.php:278
+msgid ""
+"Method getUnserializedData() failed, could not import your domain "
+"configuration: "
+msgstr ""
+
 #: shared/inc/forms/vps_monitoring.php:125
 #: shared/inc/forms/vps_installation.php:73
 msgid "Method getVPSState failed"
+msgstr ""
+
+#: shared/inc/domain_export.php:273
+msgid ""
+"Method unserialize() failed, could not import your domain configuration: "
 msgstr ""
 
 #: shared/drawlib/cc_code_popup.php:249
@@ -3974,11 +4046,11 @@ msgstr ""
 msgid "Montserrat"
 msgstr ""
 
-#: admin/inc/renewals.php:782
+#: admin/inc/renewals.php:784
 msgid "More than one VPS"
 msgstr ""
 
-#: admin/inc/renewals.php:785
+#: admin/inc/renewals.php:787
 msgid "More than one login"
 msgstr ""
 
@@ -4347,18 +4419,19 @@ msgstr ""
 #: shared/inc/forms/email.php:311 shared/inc/forms/email.php:338
 #: shared/inc/forms/root_admin.php:48 shared/inc/forms/root_admin.php:58
 #: shared/inc/forms/root_admin.php:68 shared/inc/forms/root_admin.php:78
-#: shared/inc/forms/root_admin.php:236 shared/inc/forms/root_admin.php:356
-#: shared/inc/forms/root_admin.php:362 shared/inc/forms/root_admin.php:480
-#: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
-#: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
-#: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
-#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
-#: shared/inc/forms/ticket.php:144 shared/securepay/modules/cheque/main.php:56
+#: shared/inc/forms/root_admin.php:86 shared/inc/forms/root_admin.php:236
+#: shared/inc/forms/root_admin.php:356 shared/inc/forms/root_admin.php:362
+#: shared/inc/forms/root_admin.php:480 shared/inc/forms/root_admin.php:487
+#: shared/inc/forms/root_admin.php:496 shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:199
+#: shared/inc/forms/subdomain.php:218 shared/inc/forms/subdomain.php:234
+#: shared/inc/forms/subdomain.php:241 shared/inc/forms/ticket.php:144
+#: shared/securepay/modules/cheque/main.php:56
 #: shared/securepay/modules/wiretransfer/main.php:56
 msgid "No"
 msgstr ""
 
-#: admin/inc/renewals.php:694
+#: admin/inc/renewals.php:696
 msgid "No SSL IP expired"
 msgstr ""
 
@@ -4366,7 +4439,7 @@ msgstr ""
 msgid "No SSL token available: contact your administrator to request it."
 msgstr ""
 
-#: admin/inc/renewals.php:728
+#: admin/inc/renewals.php:730
 msgid "No VPS expired"
 msgstr ""
 
@@ -4386,7 +4459,7 @@ msgstr ""
 msgid "No completed orders found."
 msgstr ""
 
-#: admin/inc/renewals.php:809
+#: admin/inc/renewals.php:811
 msgid "No dedicated server expired"
 msgstr ""
 
@@ -4422,7 +4495,7 @@ msgstr ""
 msgid "No product"
 msgstr ""
 
-#: admin/inc/renewals.php:663
+#: admin/inc/renewals.php:665
 msgid "No shared account expired."
 msgstr ""
 
@@ -4559,6 +4632,15 @@ msgstr ""
 
 #: shared/inc/forms/subdomain.php:167
 msgid "Number of active subdomains:"
+msgstr "Aktiivisten aliverkkoalueiden lukumäärä:"
+
+#: shared/inc/domain_export.php:384
+msgid "Number of database owned by user"
+msgstr ""
+
+#: shared/inc/domain_export.php:356
+#, fuzzy
+msgid "Number of database users in this import: "
 msgstr "Aktiivisten aliverkkoalueiden lukumäärä:"
 
 #: shared/inc/forms/root_admin.php:129
@@ -4889,7 +4971,7 @@ msgstr "Maksupäivä"
 msgid "Payment gateway"
 msgstr ""
 
-#: admin/inc/renewals.php:602 shared/inc/forms/invoices.php:42
+#: admin/inc/renewals.php:604 shared/inc/forms/invoices.php:42
 msgid "Payment gateway cost"
 msgstr ""
 
@@ -4926,7 +5008,7 @@ msgstr ""
 msgid "Percentage fee: "
 msgstr ""
 
-#: admin/inc/renewals.php:427 admin/inc/renewals.php:602
+#: admin/inc/renewals.php:427 admin/inc/renewals.php:604
 #: admin/dtcrm/product_manager.php:31 admin/dtcrm/product_manager.php:134
 #: admin/dtcrm/product_manager.php:227 admin/dtcrm/product_manager.php:302
 #: shared/dtcrm/draw.php:87
@@ -5197,7 +5279,7 @@ msgstr ""
 msgid "Production server"
 msgstr "Tuotantopalvelin"
 
-#: admin/inc/renewals.php:602
+#: admin/inc/renewals.php:604
 #, fuzzy
 msgid "Profit"
 msgstr "Tuote"
@@ -5578,6 +5660,10 @@ msgstr "SOAP-tunnus"
 msgid "SOAP password"
 msgstr ""
 
+#: shared/inc/forms/email.php:340
+msgid "SPAM box name"
+msgstr ""
+
 #: shared/inc/forms/email.php:654
 msgid "SPAM mailbox destination: "
 msgstr ""
@@ -5619,11 +5705,11 @@ msgstr ""
 msgid "SSL IP addresses"
 msgstr "SSL IP -osoitteet"
 
-#: admin/inc/renewals.php:689
+#: admin/inc/renewals.php:691
 msgid "SSL IPs renewals"
 msgstr ""
 
-#: admin/inc/renewals.php:589
+#: admin/inc/renewals.php:591
 msgid "SSL IPs renewals: "
 msgstr ""
 
@@ -5697,6 +5783,8 @@ msgstr ""
 
 #: admin/inc/dtc_config.php:465 shared/inc/forms/database.php:53
 #: shared/inc/forms/database.php:101 shared/inc/forms/domain_stats.php:98
+#: shared/inc/forms/email.php:212 shared/inc/forms/email.php:230
+#: shared/inc/forms/email.php:241 shared/inc/forms/reseller.php:37
 msgid "Save"
 msgstr "Tallenna"
 
@@ -5764,7 +5852,7 @@ msgstr ""
 msgid "Serbia"
 msgstr ""
 
-#: admin/inc/renewals.php:812
+#: admin/inc/renewals.php:814
 msgid "Server"
 msgstr ""
 
@@ -5899,11 +5987,11 @@ msgstr ""
 msgid "Shared"
 msgstr "Jaettu"
 
-#: admin/inc/renewals.php:658
+#: admin/inc/renewals.php:660
 msgid "Shared hosting renewals:"
 msgstr ""
 
-#: admin/inc/renewals.php:588
+#: admin/inc/renewals.php:590
 msgid "Shared hosting: "
 msgstr ""
 
@@ -5934,7 +6022,7 @@ msgstr ""
 msgid "Show:"
 msgstr "Aliverkkoalueet"
 
-#: admin/inc/renewals.php:798
+#: admin/inc/renewals.php:800
 #, fuzzy
 msgid "Shutdown"
 msgstr "Aliverkkoalueet"
@@ -6683,7 +6771,7 @@ msgstr "Kokonaisliikenne:"
 msgid "Total price: "
 msgstr ""
 
-#: admin/inc/renewals.php:493
+#: admin/inc/renewals.php:495
 msgid "Total recurring incomes per month:"
 msgstr ""
 
@@ -6709,7 +6797,7 @@ msgstr ""
 msgid "Total transfered bytes this month:"
 msgstr ""
 
-#: admin/inc/renewals.php:593
+#: admin/inc/renewals.php:595
 msgid "Total: "
 msgstr ""
 
@@ -7091,7 +7179,7 @@ msgstr ""
 msgid "VAT / GST number:"
 msgstr "VAT-numero:"
 
-#: admin/inc/renewals.php:427 admin/inc/renewals.php:602
+#: admin/inc/renewals.php:427 admin/inc/renewals.php:604
 msgid "VAT collected"
 msgstr ""
 
@@ -7135,7 +7223,7 @@ msgstr ""
 msgid "VNC console password: "
 msgstr "Uusi salasana:"
 
-#: admin/inc/renewals.php:731
+#: admin/inc/renewals.php:733
 msgid "VPS"
 msgstr ""
 
@@ -7192,7 +7280,7 @@ msgstr ""
 msgid "VPS renewal email reminders periodicity"
 msgstr ""
 
-#: admin/inc/renewals.php:723
+#: admin/inc/renewals.php:725
 msgid "VPS renewals:"
 msgstr ""
 
@@ -7204,13 +7292,18 @@ msgstr ""
 msgid "VPS xen number"
 msgstr ""
 
-#: admin/inc/renewals.php:590
+#: admin/inc/renewals.php:592
 msgid "VPS: "
 msgstr ""
 
 #: admin/inc/draw_user_admin.php:488
 msgid "VPS: Cannot find VPS in db!"
 msgstr ""
+
+#: shared/inc/forms/email.php:301
+#, fuzzy
+msgid "Vacation message"
+msgstr "Edellisen viestin ikä"
 
 #: admin/inc/draw_user_admin.php:520
 msgid "Validate"
@@ -7415,6 +7508,11 @@ msgid ""
 "client:"
 msgstr ""
 
+#: admin/inc/renewals.php:480
+#, fuzzy
+msgid "Wire"
+msgstr "Aika"
+
 #: admin/inc/renewals.php:194
 msgid "Wire transfer"
 msgstr ""
@@ -7431,7 +7529,7 @@ msgstr ""
 msgid "Wrong email format for the monitoring email address"
 msgstr ""
 
-#: shared/gfx/skin/bwoup/layout.php:51
+#: shared/gfx/skin/default_layout.php:22 shared/gfx/skin/bwoup/layout.php:51
 #, fuzzy
 msgid "Wrong login or password"
 msgstr "Vaihda salasanasi:"
@@ -7505,13 +7603,14 @@ msgstr ""
 #: shared/inc/forms/email.php:309 shared/inc/forms/email.php:338
 #: shared/inc/forms/root_admin.php:47 shared/inc/forms/root_admin.php:57
 #: shared/inc/forms/root_admin.php:67 shared/inc/forms/root_admin.php:77
-#: shared/inc/forms/root_admin.php:235 shared/inc/forms/root_admin.php:356
-#: shared/inc/forms/root_admin.php:362 shared/inc/forms/root_admin.php:480
-#: shared/inc/forms/root_admin.php:487 shared/inc/forms/root_admin.php:496
-#: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
-#: shared/inc/forms/subdomain.php:199 shared/inc/forms/subdomain.php:218
-#: shared/inc/forms/subdomain.php:234 shared/inc/forms/subdomain.php:241
-#: shared/inc/forms/ticket.php:143 shared/securepay/modules/enets/main.php:46
+#: shared/inc/forms/root_admin.php:84 shared/inc/forms/root_admin.php:235
+#: shared/inc/forms/root_admin.php:356 shared/inc/forms/root_admin.php:362
+#: shared/inc/forms/root_admin.php:480 shared/inc/forms/root_admin.php:487
+#: shared/inc/forms/root_admin.php:496 shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:199
+#: shared/inc/forms/subdomain.php:218 shared/inc/forms/subdomain.php:234
+#: shared/inc/forms/subdomain.php:241 shared/inc/forms/ticket.php:143
+#: shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:78
 #: shared/securepay/modules/worldpay/main.php:77
 #: shared/securepay/modules/webmoney/main.php:39
@@ -7674,6 +7773,10 @@ msgstr ""
 msgid "Your area disk usage:"
 msgstr ""
 
+#: shared/inc/forms/email.php:208
+msgid "Your bounce message"
+msgstr ""
+
 #: shared/inc/forms/reseller.php:22
 msgid "Your child accounts:"
 msgstr ""
@@ -7768,6 +7871,10 @@ msgstr ""
 msgid "Your users"
 msgstr "Käyttäjäsi"
 
+#: shared/inc/forms/email.php:214
+msgid "Your white list"
+msgstr ""
+
 #: shared/drawlib/cc_code_popup.php:352
 msgid "Yugoslavia"
 msgstr ""
@@ -7825,6 +7932,10 @@ msgstr ""
 #, fuzzy
 msgid "check"
 msgstr " tiedosto"
+
+#: admin/inc/renewals.php:480
+msgid "cheque"
+msgstr ""
 
 #: shared/inc/forms/root_admin.php:124
 #, fuzzy
@@ -8008,6 +8119,10 @@ msgstr ""
 #, fuzzy
 msgid "none"
 msgstr "Puhelinnumero:"
+
+#: admin/inc/renewals.php:481
+msgid "online: none"
+msgstr ""
 
 #: shared/inc/forms/vps_installation.php:249
 msgid "operating system image"
