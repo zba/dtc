@@ -32,7 +32,7 @@ function dineromail_display_icon($product_id,$amount,$item_name,$return_url,$use
 	global $secpayconf_dineromail_nrocuenta;
 	global $secpayconf_dineromail_tipospago;
 	
-	$ncta = split('/',$secpayconf_dineromail_nrocuenta);
+	$ncta = preg_split('/\//',$secpayconf_dineromail_nrocuenta);
 
 	$amount = round(floatval(str_replace(",",".",$amount)), 2);
 

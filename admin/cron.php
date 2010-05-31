@@ -551,7 +551,7 @@ function checkNamedCronService () {
 	///////////////////////////////////////////////////////
 	// First, see if we have to regenerate deamons files //
 	///////////////////////////////////////////////////////
-	if($cronjob_table_content["gen_named"] == "yes"){
+	if($cronjob_table_content["gen_named"] == "yes" || $cronjob_table_content["gen_reverse"] == "yes" ){
 		echo "Generating Named zonefile ... this may take a while\n";
 		named_generate();
 		system("chgrp $conf_dtc_system_groupname $conf_generated_file_path/named.conf $conf_generated_file_path/named.slavezones.conf");
@@ -619,7 +619,10 @@ function checkNagiosCronService () {
 	if ( 	! $conf_nagios_host or
 		! $conf_nagios_username or  
 		! $conf_nagios_config_file_path or  
-		! $conf_nagios_restart_command ) return;
+		! $conf_nagios_restart_command ) {
+		markCronflagOk ("gen_nagios='no'");
+		return;
+	}
 
 	$cronjob_table_content = getCronFlags();
 	if($cronjob_table_content["gen_nagios"] == "yes"){

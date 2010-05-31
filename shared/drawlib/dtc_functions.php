@@ -1,5 +1,8 @@
 <?php
 
+if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
+@date_default_timezone_set(@date_default_timezone_get());
+
 function find_domain_extension($domain){
 	$pos = strrchr($domain,".");
 	if($pos === FALSE){
@@ -581,7 +584,7 @@ function isFtpLogin($mailbox){
 
 // Check for validity of a database name
 function isDatabase($db){
-	$reg = "(/^[a-zA-Z0-9]+([\_]*)[a-zA-Z0-9]+)\$/";
+	$reg = "/^([a-zA-Z0-9]+([\_]*)[a-zA-Z0-9]+)\$/";
 	if(!preg_match($reg,$db))	return false;
 	else			return true;
 }

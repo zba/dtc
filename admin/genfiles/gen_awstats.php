@@ -107,13 +107,13 @@ fi
 	}
 
 	// Ecriture du fichier
-	$filep = fopen("$conf_generated_file_path/$conf_awstats_stats_script_path", "w+");
+	$filep = fopen("$conf_generated_file_path/awstats_gen.sh", "w+");
 	if( $filep == NULL){
 		die("Cannot open file for writting");
 	}
 	fwrite($filep,$stat_script);
 	fclose($filep);
-	chmod("$conf_generated_file_path/$conf_awstats_stats_script_path",0750);
+	chmod("$conf_generated_file_path/awstats_gen.sh",0750);
 	$console .= "Generated statistic script files for $num_generated_vhosts vhosts !<br>";
 	return true;
 }

@@ -1,5 +1,8 @@
 <?php
 
+if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
+@date_default_timezone_set(@date_default_timezone_get());
+
 $panel_type = "none";
 require("../shared/autoSQLconfig.php");
 require_once("$dtcshared_path/dtc_lib.php");
