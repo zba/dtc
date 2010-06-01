@@ -32,6 +32,7 @@ function drawEditAdmin($admin){
 	$prod_id = $info["prod_id"];
 
 	$allow_add_domain = $info["allow_add_domain"];
+	$max_domain = $info["max_domain"];
 	$resseller_flag = $info["resseller_flag"];
 	$ssh_login_flag = $info["ssh_login_flag"];
 	$ftp_login_flag = $info["ftp_login_flag"];
@@ -128,10 +129,11 @@ function drawEditAdmin($admin){
 	$user_data .= dtcFormLineDraw( _("Product ID:") ,$prodsid);
 	$user_data .= dtcFormLineDraw( _("Number of databases:") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\">",0);
 	$user_data .= dtcFormLineDraw( _("Allow to add domains:") ,$aldom_popup);
-	$user_data .= dtcFormLineDraw( _("Grant sub-account addition rights (reseller):") ,$res_selector,0);
-	$user_data .= dtcFormLineDraw( _("Allow addition of SSH logins:") ,$sshlog_selector);
-	$user_data .= dtcFormLineDraw( _("Allow addition of FTP logins:") ,$ftplog_selector,0);
-	$user_data .= dtcFormLineDraw( _("Allow the use of the package installer:") ,$pkg_install_selector);
+	$user_data .= dtcFormLineDraw( _("Max domain:") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"max_domain\" value=\"$max_domain\">",0);
+	$user_data .= dtcFormLineDraw( _("Grant sub-account addition rights (reseller):") ,$res_selector);
+	$user_data .= dtcFormLineDraw( _("Allow addition of SSH logins:") ,$sshlog_selector,0);
+	$user_data .= dtcFormLineDraw( _("Allow addition of FTP logins:") ,$ftplog_selector);
+	$user_data .= dtcFormLineDraw( _("Allow the use of the package installer:") ,$pkg_install_selector,0);
 	$user_data .= dtcFromOkDraw()."</table></form>";
 
 	// Generate the admin tool configuration module

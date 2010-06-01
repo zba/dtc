@@ -300,14 +300,14 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
         }
         if($a["add_service"] != "yes"){
 		$adm_query = "INSERT INTO $pro_mysql_admin_table
-(adm_login        ,adm_pass              ,last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,allow_add_domain,max_email$admtbl_added1) VALUES
-('$waiting_login','".$a["reqadm_pass"]."','$last_used_lang','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','".$a2["nbr_database"]."','".$a2["allow_add_domain"]."','".$a2["nbr_email"]."'$admtbl_added2);";
+(adm_login        ,adm_pass              ,last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,allow_add_domain,max_domain,max_email$admtbl_added1) VALUES
+('$waiting_login','".$a["reqadm_pass"]."','$last_used_lang','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','".$a2["nbr_database"]."','".$a2["allow_add_domain"]."','".$a2["max_domain"]."','".$a2["nbr_email"]."'$admtbl_added2);";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	}else{
 		if($a2["heb_type"] == "shared"){
 			$adm_query = "UPDATE $pro_mysql_admin_table
 			SET bandwidth_per_month_mb='".$a2["bandwidth"]."', quota='".$a2["quota_disk"]."', nbrdb='".$a2["nbr_database"]."',
-			allow_add_domain='".$a2["allow_add_domain"]."', max_email='".$a2["nbr_email"]."' $admtbl_added3
+			allow_add_domain='".$a2["allow_add_domain"]."', max_domain='".$a2["max_domain"]."', max_email='".$a2["nbr_email"]."' $admtbl_added3
 			WHERE adm_login='$waiting_login';";
 			mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		}

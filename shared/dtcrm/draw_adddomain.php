@@ -135,6 +135,16 @@ $form_start";
 			return _("You curently don't have enough privileges to add domain names. If you often add domain names, you can ask the administrator to do so. To request hosting for a new domain without domain name registration, please write to:")."<br>".
 "<a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC] More domains\">$conf_webmaster_email_addr</a>.";
 		}
+		if($admin["info"]["max_domain"] != 0){
+			$maxdomq = "SELECT COUNT(name) AS numofdomains FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
+			$maxdomr = mysql_query($maxdomq)or die("Cannot query $maxdomq line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$maxdoma = mysql_fetch_array($maxdomr);
+			$num_of_installed_domains = $maxdoma["numofdomains"];
+			if($num_of_installed_domains >= $admin["info"]["max_domain"]){
+				return _("You have reached the maximum number of domains that you are allowed to run with this type of account.
+If you want to add more domain names, you should get in touch by opening a new support ticket.");
+			}
+		}
 		if(!isset($_REQUEST["domain_name"]) || $_REQUEST["domain_name"] == ""){
 			return "<br><b><u>". _("Please enter the domain name you wish to add:") ."</u></b><br>
 $form_start<input type=\"text\" name=\"domain_name\" value=\"\">

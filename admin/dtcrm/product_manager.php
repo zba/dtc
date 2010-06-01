@@ -75,6 +75,12 @@ function productManager(){
 				"values" => array("check","no","yes"),
 				"display_replace" => array(_("check"),_("no"),_("yes"))
 				),
+			"max_domain" => array(
+				"type" => "text",
+				"legend" => _("Max domain"),
+				"help" => _("Maximum number of domain a customer can add by himself on his shared account. Setting a value of zero will mean no limit."),
+				"size" => "3"
+				),
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,

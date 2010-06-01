@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS product (
   bandwidth int(9) NOT NULL default '0',
   period varchar(12) NOT NULL default '0001-00-00',
   allow_add_domain enum('yes','no','check') NOT NULL default 'no',
+  max_domain int(9) NOT NULL default '0',
   heb_type enum('shared','ssl','vps','server') NOT NULL default 'shared',
   renew_prod_id int(11) NOT NULL default '0',
   affiliate_kickback varchar(9) NOT NULL default '',
