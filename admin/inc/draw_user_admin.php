@@ -495,6 +495,9 @@ dtcFromOkDraw()."
 			case "ssl":
 				$heb_type = _("Shared");
 				break;
+			case "shared-upgrade":
+				$heb_type = _("Shared Upgrade");
+				break;
 			case "ssl":
 				$heb_type = _("SSL Token purchase");
 				break;

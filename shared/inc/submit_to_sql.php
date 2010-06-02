@@ -89,6 +89,32 @@ function validateRenewal($renew_id){
 		$q = "UPDATE $pro_mysql_admin_table SET expire='$date_expire' WHERE adm_login='".$renew_entry["adm_login"]."'";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		break;
+	case "shared-upgrade":
+		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find admin login in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$admin = mysql_fetch_array($r);
+
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$renew_entry["product_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find product in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$product = mysql_fetch_array($r);
+
+		$old_expire = $admin["expire"];
+		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
+		$q = "UPDATE $pro_mysql_admin_table SET expire='$date_expire',prod_id='".$renew_entry["product_id"]."',max_email=".$product["nbr_email"].",nbrdb=".$product["nbr_database"].",quota=".$product["quota_disk"].",bandwidth_per_month_mb=".$product["bandwidth"].",allow_add_domain='".$product["allow_add_domain"]."',max_domain=".$product["max_domain"]." WHERE adm_login='".$renew_entry["adm_login"]."'";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		break;
 	case "ssl":
 		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
