@@ -244,14 +244,14 @@ $dtc_database = array(
 			"webnic_password" => "varchar (128) NOT NULL default ''",
 			
 			"ovh_server_url" => "varchar (256) NOT NULL default 'https://www.ovh.com/soapi/soapi-re-1.8.wsdl'",
-            "ovh_username" => "varchar (128) NOT NULL default ''",
-            "ovh_password" => "varchar (128) NOT NULL default ''",
-            "ovh_boolean" => "enum('false','true') NOT NULL default 'true'",
-            "ovh_language" => "enum('fr','en','es','de','pl','it','pt','nl','cz','ie') NOT NULL default 'en'",
+			"ovh_username" => "varchar (128) NOT NULL default ''",
+			"ovh_password" => "varchar (128) NOT NULL default ''",
+			"ovh_boolean" => "enum('false','true') NOT NULL default 'true'",
+			"ovh_language" => "enum('fr','en','es','de','pl','it','pt','nl','cz','ie') NOT NULL default 'en'",
 			"ovh_nicadmin" => "varchar (128) NOT NULL default ''",
-            "ovh_nictech" => "varchar (128) NOT NULL default ''",
-            "ovh_nicowner" => "varchar (128) NOT NULL default ''",
-            "ovh_nicbilling" => "varchar (128) NOT NULL default ''",
+			"ovh_nictech" => "varchar (128) NOT NULL default ''",
+			"ovh_nicowner" => "varchar (128) NOT NULL default ''",
+			"ovh_nicbilling" => "varchar (128) NOT NULL default ''",
 
 			"provide_own_domain_hosts" => "enum('yes','no') NOT NULL default 'no'",
 			"nagios_host" => "varchar(255) NOT NULL default ''",
@@ -263,8 +263,11 @@ $dtc_database = array(
 			"support_ticket_domain" => "varchar(255) NOT NULL default 'default'",
 			"support_ticket_fw_email" => "varchar(255) NOT NULL default 'supportfw'",
 			"all_customers_list_email" => "varchar(255) NOT NULL default 'support'",
-			"all_customers_list_domain" => "varchar(255) NOT NULL default 'default'"
+			"all_customers_list_domain" => "varchar(255) NOT NULL default 'default'",
 
+			"panel_title" => "varchar(255) NOT NULL default 'default'",
+			"panel_subtitle" => "varchar(255) NOT NULL default 'default'",
+			"panel_logo" => "varchar(255) NOT NULL default 'default'"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

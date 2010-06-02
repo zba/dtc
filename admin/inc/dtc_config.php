@@ -1049,6 +1049,8 @@ function generalDaemonCallback(){
 
 function drawGeneralConfig(){
 	global $cc_code_array;
+	global $dtcshared_path;
+	global $conf_skin;
 
 	global $conf_skin;
 	global $dtcshared_path;
@@ -1196,6 +1198,18 @@ function drawGeneralConfig(){
 		"action" => "general_config_skin_chooser",
 		"forward" => array("rub"),
 		"cols" => array(
+			"panel_title" => array(
+				"type" => "text",
+				"legend" => _("Panel title: "),
+				"size" => "30"),
+			"panel_subtitle" => array(
+				"type" => "text",
+				"legend" => _("Panel subtitle: "),
+				"size" => "30"),
+			"panel_logo" => array(
+				"type" => "text",
+				"legend" => _("Panel logo path (relative to ").$dtcshared_path."gfx/skin/".$conf_skin._(") :"),
+				"size" => "30"),
 			"skin" => array(
 				"legend" => _("Select the type of skin:"),
 				"type" => "popup",
