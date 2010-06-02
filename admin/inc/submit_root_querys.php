@@ -286,8 +286,8 @@ if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
 	if($conf_demo_version == "no"){
 		$oldumask = umask(0);
 		if(!file_exists($newadmin_path)){
-			mkdir("$newadmin_path", 0750);
-			$console .= "mkdir $newadmin_path;<br>";
+			mkdir("$newadmin_path", 0750,1);
+			$console .= "mkdir -p $newadmin_path;<br>";
 		}
 		umask($oldumask);
 	}
