@@ -78,7 +78,7 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 			$backup_net .= "echo -n \"mail\"\n";
 			$backup_net .= "tar -cf $owner.$webname.tar $webname/Mailboxs\n";
 			$backup_net .= "echo -n \",lists\"\n";
-			$backup_net .= "tar -cf $owner.$webname.tar $webname/lists\n";
+			$backup_net .= "if [ -d $webname/lists ] ; then tar -rf $owner.$webname.tar $webname/lists ; else echo -n \"(dir not found)\"; fi\n";
 			$q3 = "SELECT subdomain_name FROM $pro_mysql_subdomain_table WHERE domain_name='$webname';";
 			$r3 = mysql_query ($q3)or die("Cannot execute query \"$q3\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
 			$nr3 = mysql_num_rows($r3);
