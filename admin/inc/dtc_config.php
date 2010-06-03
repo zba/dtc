@@ -110,7 +110,15 @@ function configEditorTemplate ($dsc,$conftype="config"){
 			if($i != 0){
 				$vals .= ", ";
 			}
-			$vals .= $keys[$i]."='".$_REQUEST[ $keys[$i] ]."'";
+			if( !isset($_REQUEST[ $keys[$i] ] ) ){
+				$_REQUEST[ $keys[$i] ] = "";
+			}
+			if( !is_array( $_REQUEST[ $keys[$i] ] ) ){
+				$my_value = $_REQUEST[ $keys[$i] ];
+			}else{
+				$my_value = join( ",",$_REQUEST[ $keys[$i] ] );
+			}
+			$vals .= $keys[$i]."='".$my_value."'";
 		}
 		$q = "UPDATE $sql_table SET $vals WHERE 1;";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
@@ -183,6 +191,37 @@ function configEditorTemplate ($dsc,$conftype="config"){
 				$control .= "<option value=\"".$dsc["cols"][ $keys[$i] ]["values"][$j]."\" $selected>$text</option>";
 			}
 			$control = "<select class=\"$input_class\" name=\"".$keys[$i]."\">".$control."</select>";
+			break;
+		case "checkboxcomma":
+			$nb_choices = sizeof($dsc["cols"][ $keys[$i] ]["values"]);
+			//echo "\n ddd: ";
+			//var_dump ($dsc["cols"][ $keys[$i] ]["values"]);
+			//echo "\n asd: ";
+			//var_dump ($$fld);
+			$control = "";
+			$arr_values = split(",",$$fld);
+			//echo "\n eee: ";
+			//var_dump ($arr_values);
+			$cntchk = 0;
+			for($j=0;$j<$nb_choices;$j++){
+				//var_dump(in_array($dsc["cols"][ $keys[$i] ]["values"][$j], $arr_values));
+				if (in_array($dsc["cols"][ $keys[$i] ]["values"][$j], $arr_values)){
+					$selected = " checked ";
+				}else{
+					$selected = "";
+				}
+				if( isset($dsc["cols"][ $keys[$i] ]["display_replace"][$j]) ){
+					$text = $dsc["cols"][ $keys[$i] ]["display_replace"][$j];
+				}else{
+					$text = $dsc["cols"][ $keys[$i] ]["values"][$j];
+				}
+				$control .= "<input type=\"checkbox\" name=\"".$keys[$i]."[]\" value=\"".$dsc["cols"][ $keys[$i] ]["values"][$j]."\" $selected> $text\n";
+				if ($cntchk > 3){
+					$control .= "<br />";
+					$cntchk = 0;
+				}
+				$cntchk++;
+			}
 			break;
 		case "textarea":
 			if( isset($dsc["cols"][ $keys[$i] ]["cols"]) ){
@@ -1818,8 +1857,11 @@ function drawDTCpayConfig(){
 				"size" => "20"),
 			"dineromail_tipospago" => array(
 				"legend" => _("Payments Accepted: "),
-				"type" => "text",
-				"size" => "30"),
+				"type" => "checkboxcomma",
+				"values" => array("2","7","13","4","5","6","14","15","16","17","18"),
+				"display_replace" => array(_("Barcode"),_("DineroMail account funds"),_("Wiretransfer"),_("Credit card in one payment"),
+					_("Credit card in 3 installments"),_("Credit card in 6 installments"),_("Credit card in 9 installments"),
+					_("Credit card in 12 installments"),_("Credit card in 18 installments"),_("Credit card in 24 installments"),_("Credit card in Z plan"))),
 			"dineromail_cargocomision" => array(
 				"legend" => _("Fixed charge fee: "),
 				"type" => "text",
