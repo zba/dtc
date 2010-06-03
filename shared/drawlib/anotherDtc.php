@@ -175,9 +175,9 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 			$inside = str_replace("__DTC_SUBTITLE__", $conf_panel_subtitle ,$inside);
 		}
 		if($conf_panel_logo == "default"){
-			$inside = str_replace("__DTC_LOGO__", "gfx/skin/".$conf_skin."/logo_dtc.gif" ,$inside);
+			$inside = str_replace("__DTC_LOGO__", "gfx/skin/".$conf_skin."/gfx/logo_dtc.gif" ,$inside);
 		}else{
-			$inside = str_replace("__DTC_LOGO__", "gfx/skin/".$conf_skin."/". $conf_panel_logo ,$inside);
+			$inside = str_replace("__DTC_LOGO__", "gfx/skin/".$conf_skin."/gfx/". $conf_panel_logo ,$inside);
 		}
 		$inside = str_replace("__DTC_LANGUAGES_LINKS__",$zeLanguage,$inside);
 		$inside = str_replace("__DTC_VERSION__","V$conf_dtc_version R$conf_dtc_release - $conf_unix_type",$inside);

@@ -62,7 +62,7 @@ function draw_UpgradeAccount($admin){
 		$r = mysql_query($q)or die("Cannot querry: \"$q\" !!!".mysql_error()." line ".__LINE__." in file ".__FILE__);
 		$prod = mysql_fetch_array($r);
 		$ar = explode("-",$prod["period"]);
-		$prod_period = mktime (0,0,0,$ar[1],0,1970+$ar[0]);
+		$prod_period = mktime (0,0,0,$ar[1]+1,1,1970+$ar[0]);
 		$prod_days =  $prod_period / (60*60*24);
 		$price_per_days = $prod["price_dollar"] / $prod_days;
 
@@ -81,13 +81,13 @@ function draw_UpgradeAccount($admin){
 		$out .= _("Your current account is ").smartByte($admin["info"]["quota"]*1024*1024). _(" disk storage and ")
 .smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024). _(" of data transfer each month.") ."<br><br>".
 _("To what capacity would you like to upgrade to?") ."<br>";
-		$q = "SELECT * FROM $pro_mysql_product_table WHERE (quota_disk > '".$admin["info"]["quota"]."' OR bandwidth > '".$admin["info"]["bandwidth_per_month_mb"]."') and heb_type='shared';";
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE (quota_disk > '".$admin["info"]["quota"]."' OR bandwidth > '".$admin["info"]["bandwidth_per_month_mb"]."' or max_domain>".$admin["info"]["max_domain"].") and heb_type='shared';";
 		$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error());
 		$n = mysql_num_rows($r);
 		$out .= "$frm_start";
 		$out .= "<table border=\"1\" cellspacing=\"0\" cellpadding=\"0\" width=\"100%\" height=\"1\">";
 		$out .= "<tr><td></td><td>". _("Product") ."</td><td>". _("Storage") ."</td><td>". _("Bandwidth/month") ."</td>
-			<td>". _("Price") ."</td><td>". _("Period") ."</td></tr>";
+			<td>". _("Max. Domains") ."</td><td>". _("Price") ."</td><td>". _("Period") ."</td></tr>";
 		if ($n > 0 ) {
 			for($i=0;$i<$n;$i++){
 				$ro = mysql_fetch_array($r);
@@ -104,6 +104,7 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 				$out .= "<td $color $nowrap >$fnt1".$ro["name"].$fnt2.'</td>';
 				$out .= "<td $color $nowrap >$fnt1".smartByte($ro["quota_disk"]*1024*1024).$fnt2.'</td>';
 				$out .= "<td $color $nowrap >$fnt1".smartByte($ro["bandwidth"]*1024*1024).$fnt2.'</td>';
+				$out .= "<td $color $nowrap >$fnt1".$ro["max_domain"].$fnt2.'</td>';
 				$out .= "<td $color $nowrap >$fnt1".$ro["price_dollar"].$fnt2.'</td>';
 	
 				$out .= "<td $color $nowrap >$fnt1".smartDate($ro["period"]).$fnt2.'</td></tr>';
@@ -129,6 +130,7 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 	$out .= _("You have selected") . ": ".$ro["name"];
 	$out .= " (". _("Storage"). ": ".smartByte($ro["quota_disk"]*1024*1024);
 	$out .= ", " . _("Transfer") . ": ".smartByte($ro["bandwidth"]*1024*1024).'), ';
+	$out .= ", " . _("Max. Domains") . ": ".$ro["max_domain"]).'), ';
 	$out .= '$'.$ro["price_dollar"].' ' . _("each") . ' '.smartDate($ro["period"]);
 
 	$out .=  "<br><br><i><u>" . _("Step 2: proceed to upgrade") . "</u></i><br>";
