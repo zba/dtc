@@ -842,6 +842,7 @@ $dtc_database = array(
 			"allow_add_domain" => "enum('yes','no','check') NOT NULL default 'no' ",
 			"max_domain" => "int(9) NOT NULL default '0'",
 			"restricted_ftp_path" => "enum('yes','no') NOT NULL default 'no' ",
+			"ftp_login_flag" => "enum('yes','no') NOT NULL default 'yes'",
 			"allow_dns_and_mx_change" => "enum('yes','no') NOT NULL default 'yes' ",
 			"allow_mailing_list_edit" => "enum('yes','no') NOT NULL default 'yes' ",
 			"allow_subdomain_edit" => "enum('yes','no') NOT NULL default 'yes' ",

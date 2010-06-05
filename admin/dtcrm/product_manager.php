@@ -81,14 +81,6 @@ function productManager(){
 				"help" => _("Maximum number of domain a customer can add by himself on his shared account. Setting a value of zero will mean no limit."),
 				"size" => "3"
 				),
-			"restricted_ftp_path" => array(
-				"type" => "radio",
-				"legend" => _("Restricted FTP"),
-				"help" => _("If set to no, users will only be able to create FTP accounts with a path in the html folder of each vhosts."),
-				"values" => array("yes","no"),
-				"display_replace" => array(_("Yes"),_("No")),
-				"default" => "no"
-				),
 			"allow_dns_and_mx_change" => array(
 				"type" => "radio",
 				"legend" => _("DNS & MX"),
@@ -97,13 +89,21 @@ function productManager(){
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no"
 				),
-			"allow_ftp_edit" => array(
+			"ftp_login_flag" => array(
 				"type" => "radio",
 				"legend" => _("FTP"),
 				"help" => _("If set to no, users wont be able to add/remove/edit FTP accounts."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "yes"
+				),
+			"restricted_ftp_path" => array(
+				"type" => "radio",
+				"legend" => _("Restricted FTP"),
+				"help" => _("If set to no, users will only be able to create FTP accounts with a path in the html folder of each vhosts."),
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
+				"default" => "no"
 				),
 			"allow_mailing_list_edit" => array(
 				"type" => "radio",
