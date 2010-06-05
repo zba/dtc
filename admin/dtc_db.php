@@ -769,7 +769,7 @@ $dtc_database = array(
 			"renew_time" => "time NOT NULL default '00:00:00' ",
 			"product_id" => "int(11) NOT NULL default '0' ",
 			"renew_id" => "int(11) NOT NULL default '0' ",
-			"heb_type" => "enum('shared','ssl','vps','server','ssl_renew','shared-renewal') NOT NULL default 'shared' ",
+			"heb_type" => "enum('shared','ssl','vps','server','ssl_renew','shared-upgrade') NOT NULL default 'shared' ",
 			"pay_id" => "int(11) NOT NULL default '0' ",
 			"country_code" => "varchar(4) NOT NULL default 'US' "
 			),
