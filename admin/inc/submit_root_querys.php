@@ -263,7 +263,6 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 		ftp_login_flag='".$_REQUEST["ftp_login_flag"]."',
 		restricted_ftp_path='".$_REQUEST["restricted_ftp_path"]."',
 		allow_dns_and_mx_change='".$_REQUEST["allow_dns_and_mx_change"]."',
-		allow_ftp_edit='".$_REQUEST["allow_ftp_edit"]."',
 		allow_mailing_list_edit='".$_REQUEST["allow_mailing_list_edit"]."',
 		allow_subdomain_edit='".$_REQUEST["allow_subdomain_edit"]."',
 		pkg_install_flag='".$_REQUEST["pkg_install_flag"]."'
