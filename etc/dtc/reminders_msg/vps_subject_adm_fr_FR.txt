@@ -1,0 +1,1 @@
+Le VPS de %%%DTC_ADM_LOGIN%%%, %%%VPS_NUMBER%%% sur %%%VPS_NODE%%%, a expiré il y a %%%EXPIRED_DAYS%%% jours.
