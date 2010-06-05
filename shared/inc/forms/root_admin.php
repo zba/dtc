@@ -35,7 +35,6 @@ function drawEditAdmin($admin){
 	$max_domain = $info["max_domain"];
 	$restricted_ftp_path = $info["restricted_ftp_path"];
 	$allow_dns_and_mx_change = $info["allow_dns_and_mx_change"];
-	$allow_ftp_edit = $info["allow_ftp_edit"];
 	$allow_mailing_list_edit = $info["allow_mailing_list_edit"];
 	$allow_subdomain_edit = $info["allow_subdomain_edit"];
 	$resseller_flag = $info["resseller_flag"];
