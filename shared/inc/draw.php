@@ -136,6 +136,9 @@ function drawAdminTools($admin){
 	$ssh_login_flag = $admin_info["ssh_login_flag"];
 	$ftp_login_flag = $admin_info["ftp_login_flag"];
 	$pkg_install_flag = $admin_info["pkg_install_flag"];
+	$allow_dns_and_mx_change = $admin_info["allow_dns_and_mx_change"];
+	$allow_mailing_list_edit = $admin_info["allow_mailing_list_edit"];
+	$allow_subdomain_edit = $admin_info["allow_subdomain_edit"];
 
 	unset($user_ZEmenu);
 	if($nbr_domain > 0){
@@ -243,19 +246,23 @@ function drawAdminTools($admin){
 			"type" => "link",
 			"link" => "stats");
 
-		$domain_conf_submenu[] = array(
-			"text" => _("DNS and MX") ,
-			"icon" => "box_wnb_nb_picto-mxnsservers.gif",
-			"type" => "link",
-			"link" => "dns");
+		if($allow_dns_and_mx_change == "yes"){
+			$domain_conf_submenu[] = array(
+				"text" => _("DNS and MX") ,
+				"icon" => "box_wnb_nb_picto-mxnsservers.gif",
+				"type" => "link",
+				"link" => "dns");
+		}
 
 		if($admin_data[$i]["primary_dns"] == "default"){
 		  if($domain_parking == "no-parking"){
-			$domain_conf_submenu[] = array(
-				"text" => _("Sub-domains"),
-				"icon" => "box_wnb_nb_picto-subdomains.gif",
-				"type" => "link",
-				"link" => "subdomains");
+			if($allow_subdomain_edit == "yes"){
+				$domain_conf_submenu[] = array(
+					"text" => _("Sub-domains"),
+					"icon" => "box_wnb_nb_picto-subdomains.gif",
+					"type" => "link",
+					"link" => "subdomains");
+			}
                         if($ftp_login_flag == "yes"){
 				$domain_conf_submenu[] = array(
 					"text" => _("FTP accounts") ,
@@ -286,14 +293,14 @@ function drawAdminTools($admin){
 				"type" => "link",
 				"link" => "mailboxs");
 		}
-		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking" && $conf_use_mail_alias_group == "yes"){
+		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking" && $conf_use_mail_alias_group == "yes" && $allow_mailing_list_edit == "yes"){
 			$domain_conf_submenu[] = array(
 				"text" => _("Mail Groups"),
 				"icon" => "box_wnb_nb_picto-mailgroups.gif",
 				"type" => "link",
 				"link" => "mailaliases");
 		}
-		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking"){
+		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking" && $allow_mailing_list_edit == "yes"){
 			$domain_conf_submenu[] = array(
 				"text" => _("Mailing lists"),
 				"icon" => "box_wnb_nb_picto-mailinglists.gif",

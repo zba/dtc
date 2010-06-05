@@ -261,6 +261,11 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 		resseller_flag='".$_REQUEST["resseller_flag"]."',
 		ssh_login_flag='".$_REQUEST["ssh_login_flag"]."',
 		ftp_login_flag='".$_REQUEST["ftp_login_flag"]."',
+		restricted_ftp_path='".$_REQUEST["restricted_ftp_path"]."',
+		allow_dns_and_mx_change='".$_REQUEST["allow_dns_and_mx_change"]."',
+		allow_ftp_edit='".$_REQUEST["allow_ftp_edit"]."',
+		allow_mailing_list_edit='".$_REQUEST["allow_mailing_list_edit"]."',
+		allow_subdomain_edit='".$_REQUEST["allow_subdomain_edit"]."',
 		pkg_install_flag='".$_REQUEST["pkg_install_flag"]."'
 		WHERE adm_login='$adm_login';";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." ".mysql_error());
