@@ -130,7 +130,7 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 	$out .= _("You have selected") . ": ".$ro["name"];
 	$out .= " (". _("Storage"). ": ".smartByte($ro["quota_disk"]*1024*1024);
 	$out .= ", " . _("Transfer") . ": ".smartByte($ro["bandwidth"]*1024*1024).'), ';
-	$out .= ", " . _("Max. Domains") . ": ".$ro["max_domain"]).'), ';
+	$out .= ", " . _("Max. Domains") . ": ".$ro["max_domain"].'), ';
 	$out .= '$'.$ro["price_dollar"].' ' . _("each") . ' '.smartDate($ro["period"]);
 
 	$out .=  "<br><br><i><u>" . _("Step 2: proceed to upgrade") . "</u></i><br>";
