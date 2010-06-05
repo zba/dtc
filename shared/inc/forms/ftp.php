@@ -25,11 +25,11 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	global $conf_domain_based_ftp_logins;
 
 	global $pro_mysql_ftp_table;
-	global $pro_mysql_ftp_table;
+	global $pro_mysql_admin_table;
 
 	checkLoginPassAndDomain($adm_login,$adm_pass,$domain["name"]);
 
-	$q = "SELECT restricted_ftp_path,ftp_login_flag FROM $pro_mysql_ftp_table WHERE adm_login='$adm_login';";
+	$q = "SELECT restricted_ftp_path,ftp_login_flag FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
@@ -45,7 +45,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	// Build the popup values and display values arrays
 	$path_popup_vals = array();
 	$path_popup_disp = array();
-	if($a["restricted_ftp_path"] != "no"){
+	if($a["restricted_ftp_path"] != "yes"){
 		$path_popup_vals[] = "$adm_path";
 		$path_popup_disp[] = "/";
 		$path_popup_vals[] = "$adm_path/$edit_domain";
@@ -53,8 +53,8 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	}
 	$nbr_subdomains = sizeof($domain["subdomains"]);
 	for($i=0;$i<$nbr_subdomains;$i++){
-		if($a["restricted_ftp_path"] != "no"){
-			$sub_name = $domain["subdomains"][$i]["name"];
+		$sub_name = $domain["subdomains"][$i]["name"];
+		if($a["restricted_ftp_path"] != "yes"){
 			$path_popup_vals[] = "$adm_path/$edit_domain/subdomains/$sub_name";
 			$path_popup_disp[] = "/$edit_domain/subdomains/$sub_name";
 		}
