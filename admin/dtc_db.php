@@ -253,6 +253,10 @@ $dtc_database = array(
 			"ovh_nicowner" => "varchar (128) NOT NULL default ''",
 			"ovh_nicbilling" => "varchar (128) NOT NULL default ''",
 
+                        "internetbs_server_url" => "varchar (256) NOT NULL default 'https://testapi.internet.bs/'",
+                        "internetbs_username" => "varchar (128) NOT NULL default ''",
+                        "internetbs_password" => "varchar (128) NOT NULL default ''",
+
 			"provide_own_domain_hosts" => "enum('yes','no') NOT NULL default 'no'",
 			"nagios_host" => "varchar(255) NOT NULL default ''",
 			"nagios_username" => "varchar(255) NOT NULL default ''",
