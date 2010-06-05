@@ -210,7 +210,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 		$cent_selected = " ";
 		$gen_selected = " ";
 		$bsd_selected = " ";
-		$xenpv_selected = " ";
+		$xenhvm_selected = " ";
 		switch($vps["operatingsystem"]){
 		case "debian":
 			$deb_selected = " selected ";
@@ -224,8 +224,8 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 		case "netbsd":
 			$bsd_selected = " selected ";
 			break;
-		case "xenpv":
-			$xenpv_selected = " selected ";
+		case "xenhvm":
+			$xenhvm_selected = " selected ";
 			break;
 		default:
 			break;
@@ -236,7 +236,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 <option value=\"debian-dtc\" $debdtc_selected>Debian with DTC panel (" . _("network install with debootstrap") .")</option>
 <option value=\"centos\" $cent_selected>CentOS (" . _("network install with yum") .")</option>
 <option value=\"netbsd\" $bsd_selected>NetBSD (" . _("network setup with install kernel") .")</option>
-<option value=\"xenpv\" $xenpv_selected>Xen HVM (" . _("boot on your own .iso image") .")</option>";
+<option value=\"xenhvm\" $xenhvm_selected>Xen HVM (" . _("boot on your own .iso image") .")</option>";
 		$installable_os = getInstallableOS($soap_client);
 		$nbr_os = sizeof($installable_os);
 		for($i=0;$i<$nbr_os;$i++){
@@ -281,15 +281,15 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
     " . submitButtonStart() . _("Change NetBSD kernel") . submitButtonEnd() ."
     </form>";
 		}
-		if($vps["operatingsystem"] == "xenpv"){
-			$vps_xenpv_iso = getVPSIso($vps_node,$vps_name,$soap_client);
+		if($vps["operatingsystem"] == "xenhvm"){
+			$vps_xenhvm_iso = getVPSIso($vps_node,$vps_name,$soap_client);
 			$out .= "<br><br>" . _("To upload .iso files so they appear below and you can boot on them, you can upload them using ftp, ") ."xen$vps_name@$vps_node" ._(" using the password of your physical console.")."<br><br>";
-			$boot_device_selector = "<select name=\"xenpv_iso\">
+			$boot_device_selector = "<select name=\"xenhvm_iso\">
 <option value=\"hdd\">". _("Boot on hard drive"). "</option>";
-			$n_iso = sizeof($vps_xenpv_iso);
-			if( is_array($vps_xenpv_iso) ){
+			$n_iso = sizeof($vps_xenhvm_iso);
+			if( is_array($vps_xenhvm_iso) ){
 				for($i=0;$i<$n_iso;$i++){
-					$iso = $vps_xenpv_iso[$i];
+					$iso = $vps_xenhvm_iso[$i];
 					if($vps["howtoboot"] == $iso){
 						$selected = " selected ";
 					}else{
@@ -309,7 +309,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 			}
 
 			$out .= dtcFormTableAttrs();
-			$out .= dtcFormLineDraw( $frm_start. _("Boot device: "), "<input type=\"hidden\" name=\"action\" value=\"change_xenpv_boot_iso\">".$boot_device_selector ,1);
+			$out .= dtcFormLineDraw( $frm_start. _("Boot device: "), "<input type=\"hidden\" name=\"action\" value=\"change_xenhvm_boot_iso\">".$boot_device_selector ,1);
 			$out .= dtcFormLineDraw( _("VNC console password: "), "<input type=\"text\" name=\"vnc_console_pass\" value=\"\">", 0);
 			$out .= dtcFormLineDraw( _("VNC console activation: "), "<input type=\"radio\" name=\"vnc_console_activate\" value=\"yes\" $vncons_act_yes_selected>"._("yes")." <input type=\"radio\" name=\"vnc_console_activate\" value=\"no\" $vncons_act_no_selected>"._("no"),1);
 			$out .= dtcFormLineDraw( "" , submitButtonStart(). _("Write parameters") . submitButtonEnd() , 0);
