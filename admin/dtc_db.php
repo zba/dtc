@@ -298,6 +298,7 @@ $dtc_database = array(
 			"gen_webalizer" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_backup" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_ssh" => "enum('yes','no') NOT NULL default 'no' ",
+			"gen_nagios" => "enum('yes','no') NOT NULL default 'no' ",
 			"lock_flag" => "enum('inprogress','finished') NOT NULL default 'finished' "
 			),
 		"keys" => array(
