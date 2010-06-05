@@ -25,23 +25,39 @@ function drawAdminTools_Ftp($domain,$adm_path){
 	global $conf_domain_based_ftp_logins;
 
 	global $pro_mysql_ftp_table;
+	global $pro_mysql_ftp_table;
 
 	checkLoginPassAndDomain($adm_login,$adm_pass,$domain["name"]);
+
+	$q = "SELECT restricted_ftp_path,ftp_login_flag FROM $pro_mysql_ftp_table WHERE adm_login='$adm_login';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("adm_login $adm_login not found line ".__LINE__." file ".__FILE__);
+	}
+	$a = mysql_fetch_array($r);
+	if($a["ftp_login_flag"] == "no"){
+		die("adm_login $adm_login had no rights to edit FTP accounts line ".__LINE__." file ".__FILE__);
+	}
 
 	$txt = "";
 
 	// Build the popup values and display values arrays
 	$path_popup_vals = array();
 	$path_popup_disp = array();
-	$path_popup_vals[] = "$adm_path";
-	$path_popup_disp[] = "/";
-	$path_popup_vals[] = "$adm_path/$edit_domain";
-	$path_popup_disp[] = "/$edit_domain";
+	if($a["restricted_ftp_path"] != "no"){
+		$path_popup_vals[] = "$adm_path";
+		$path_popup_disp[] = "/";
+		$path_popup_vals[] = "$adm_path/$edit_domain";
+		$path_popup_disp[] = "/$edit_domain";
+	}
 	$nbr_subdomains = sizeof($domain["subdomains"]);
 	for($i=0;$i<$nbr_subdomains;$i++){
-		$sub_name = $domain["subdomains"][$i]["name"];
-		$path_popup_vals[] = "$adm_path/$edit_domain/subdomains/$sub_name";
-		$path_popup_disp[] = "/$edit_domain/subdomains/$sub_name";
+		if($a["restricted_ftp_path"] != "no"){
+			$sub_name = $domain["subdomains"][$i]["name"];
+			$path_popup_vals[] = "$adm_path/$edit_domain/subdomains/$sub_name";
+			$path_popup_disp[] = "/$edit_domain/subdomains/$sub_name";
+		}
 		$path_popup_vals[] = "$adm_path/$edit_domain/subdomains/$sub_name/html";
 		$path_popup_disp[] = "/$edit_domain/subdomains/$sub_name/html";
 	}
