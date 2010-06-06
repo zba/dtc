@@ -193,6 +193,41 @@ _("Email: ") . $infoz["email"] ."<br>";
 	return $out;
 }
 
+function nickHandleCreateCallback($id){
+	global $pro_mysql_handle_table;
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$id';";
+	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Cannot find created nick handle line ".__LINE__." file ".__FILE__);
+	}
+	$a = mysql_fetch_array($r);
+	return registry_create_nick_handle($a);
+}
+
+function nickHandleDeleteCallback($id){
+	global $pro_mysql_handle_table;
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$id';";
+	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Cannot find created nick handle line ".__LINE__." file ".__FILE__);
+	}
+	$a = mysql_fetch_array($r);
+	return registry_delete_nick_handle($a);
+}
+
+function nickHandleEditCallback($id){
+	global $pro_mysql_handle_table;
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$id';";
+	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Cannot find created nick handle line ".__LINE__." file ".__FILE__);
+	}
+	$a = mysql_fetch_array($r);
+	return registry_edit_nick_handle($a);
+}
 
 function drawAdminTools_NickHandles($admin){
 	global $adm_login;
@@ -218,6 +253,12 @@ function drawAdminTools_NickHandles($admin){
 		"where_list" => array(
 			"owner" => $adm_login),
 		"order_by" => "name",
+
+		// Functions to call if some registries need to record nick handles
+		"create_item_callback" => "nickHandleCreateCallback",
+		"delete_item_callback" => "nickHandleDeleteCallback",
+		"edit_item_callback" => "nickHandleEditCallback",
+
 		"cols" => array(
 			"id" => array(
 				"type" => "id",
