@@ -35,7 +35,7 @@ function drawAdminTools_AdminStats($admin){
 	{
 		$stats["total_http"] = 0;
 	}
-	$out .= "<br>HTTP: ".smartByte($stats["total_http"])." ".$stats["total_hit"]." hits";
+	$out .= "<br>HTTP: ".smartByte($stats["total_http"])." ".$stats["total_hit"]." " . _("hits");
 	if (!isset($stats["total_ftp"]))
 	{
 		$stats["total_ftp"] = 0;

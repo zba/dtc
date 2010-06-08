@@ -158,7 +158,12 @@ fi
 
 if [ ${UNAME_MINUS_S} = "FreeBSD" ] ; then
 	echo "FreeBSD detected"
+        . /usr/local/www/dtc/admin/install/bsd_config
 	. /usr/local/www/dtc/admin/install/functions
+        . /usr/local/www/dtc/admin/install/interactive_installer
+        interactiveInstaller
+        DTCinstallPackage
+        DTCsetupDaemons
 fi
 
 if [ -e /etc/gentoo-release ] ; then

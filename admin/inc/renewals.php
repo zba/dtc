@@ -59,7 +59,7 @@ function drawRenewalTables (){
 
 	switch($sousrub){
 	case "spent":
-		$out .= "<h3>Date selection</h3>";
+		$out .= "<h3>"._("Date selection")."</h3>";
 
 		if( !isset($_REQUEST["date_selector"])){
 			// Check the last record to get the last entry by default.
@@ -75,20 +75,20 @@ function drawRenewalTables (){
 				}else{
 					$using_date = $exploded[0] . "-" . $exploded[1];
 				}
-				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=all\">all</a>";
+				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=all\">" . _("all") . "</a>";
 				$date = $using_date;
 				$where_condition = " invoice_date LIKE '$date%' ";
 			}else{
-				$out .= "all";
+				$out .= _("all");
 				$date = "all";
 				$where_condition = " 1 ";
 			}
 		}else if( $_REQUEST["date_selector"] == "all"){
-			$out .= "all";
+			$out .= _("all");
 			$date = "all";
 			$where_condition = " 1 ";
 		}else{
-			$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=all\">all</a>";
+			$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=all\">" . _("all") . "</a>";
 			$date = $_REQUEST["date_selector"];
 			$where_condition = " invoice_date LIKE '$date%' ";
 		}
@@ -314,9 +314,9 @@ function drawRenewalTables (){
 			"forward" => array("rub","sousrub"),
 			"id_fld" => "id",
 			"list_fld_show" => "quick_name",
-			"new_item_title" => "New upstream provider:",
-			"new_item_link" => "New upsream provider",
-			"edit_item_title" => "Edit upstream provider:",
+			"new_item_title" => _("New upstream provider").":",
+			"new_item_link" => _("New upsream provider"),
+			"edit_item_title" => _("Edit upstream provider").":",
 			"check_unique" => array( "quick_name" ),
 			"where_list" => array("always_yes" => "yes"),
 			"cols" => array(
@@ -477,11 +477,13 @@ function drawRenewalTables (){
 					}else{
 						$last_expiry_date = $a["last_expiry_date"];
 					}
+					if($payment_type == 'wire') $pay=_("Wire"); else if ($payment_type == 'cheque') $pay=_("cheque");
+					else if ( $payment_type == 'online: none' ) $pay=_("online: none"); else $pay=$payment_type;
 					$new_expiry_date = calculateExpirationDate($last_expiry_date,$product_period_size);
 					$out .= "<tr><td>$product_txt</td><td>$client_id_txt</td><td>$client_name</td><td>".$a["country_code"]."</td>
 					<td>$client_country</td>
 					<td>$vat_collected</td><td>$last_expiry_date -> $new_expiry_date</td><td>".$a["date"]."</td><td>$payment_txt</td>
-					<td>$payment_type</td>
+					<td>$pay</td>
 					<td><a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&date=".$_REQUEST["date"]."&action=nuke_payment&completedorders_id=".$a["id"]."\">"._("Delete")."</a></tr>";
 				}
 				$out .= "</table>";
@@ -577,7 +579,7 @@ function drawRenewalTables (){
 				$papoum = explode('-',$period);
 				$months = $papoum[1];
 				if($months == 0){
-					echo "Dedicated server product ID $id has zero for the number of month to renew<br>";
+					echo _("Dedicated server product ID $id has zero for the number of month to renew")."<br>";
 				}else{
 					$total_dedicated += $price / $months;
 				}

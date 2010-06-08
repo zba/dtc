@@ -129,6 +129,10 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	global $adm_email_login;
 	global $panel_type;	
 
+	global $conf_panel_title;
+	global $conf_panel_subtitle;
+	global $conf_panel_logo;
+
 	global $conf_skin;
 	global $dtcshared_path;
 	
@@ -137,7 +141,7 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		$zeLanguage = "
 	<td valign=\"top\">&nbsp;</td>
 	<td $nowrap width=\"1\">".anotherLanguageSelection()."</td>";
-		$links = "<a target=\"_blank\" href=\"/dtcdoc/\">". _("Documentation") ."</a> <a target=\"_blank\" href=\"/phpmyadmin/\">PhpMyAdmin</a>";
+		$links = "<a target=\"_blank\" href=\"/dtcdoc/\">". _("Documentation") ."</a> <a target=\"_blank\" href=\"/phpmyadmin/\">". _("PhpMyAdmin") . "</a>";
 	}else{
 		$links = "";
 		$zeLanguage = "";
@@ -159,11 +163,28 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		$fp = fopen($pagetop_filename,"r");
 		$inside = fread($fp,filesize($pagetop_filename));
 		fclose($fp);
-		$inside = str_replace("__DTC_SUBTITLE__", _("Take control of your domain name") ,$inside);
+		// Enable possible customization of the title and logos
+		if($conf_panel_title == "default"){
+			$inside = str_replace("__DTC_TITLE__", _("Domain Technologie Control") ,$inside);
+		}else{
+			$inside = str_replace("__DTC_TITLE__", $conf_panel_title ,$inside);
+		}
+		if($conf_panel_subtitle == "default"){
+			$inside = str_replace("__DTC_SUBTITLE__", _("Take control of your domain name") ,$inside);
+		}else{
+			$inside = str_replace("__DTC_SUBTITLE__", $conf_panel_subtitle ,$inside);
+		}
+		if($conf_panel_logo == "default"){
+			$inside = str_replace("__DTC_LOGO__", "gfx/skin/".$conf_skin."/gfx/logo_dtc.gif" ,$inside);
+		}else{
+			$inside = str_replace("__DTC_LOGO__", "gfx/skin/".$conf_skin."/gfx/". $conf_panel_logo ,$inside);
+		}
 		$inside = str_replace("__DTC_LANGUAGES_LINKS__",$zeLanguage,$inside);
 		$inside = str_replace("__DTC_VERSION__","V$conf_dtc_version R$conf_dtc_release - $conf_unix_type",$inside);
 		$inside = str_replace("__DTC_LINK__",$links,$inside);
 		$inside = str_replace("__AUTH_USER__",_("Logged as:") . " " . $display_user,$inside);
+		$inside = str_replace("__DOCUMENTATION__",_("Documentation"),$inside);
+		$inside = str_replace("__PHPMYADMIN__",_("PhpMyAdmin"),$inside);
 		$inside .= "<script language=\"JavaScript\" type=\"text/javascript\" src=\"gfx/wz_tooltip.js\"></script>";
 		return $inside;
 	}else{

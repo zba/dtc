@@ -178,7 +178,43 @@ function registry_renew_domain($domain_name,$years){
 }
 
 function registry_change_password($adm_login,$adm_pass,$domain,$new_pass){
-	return SRSregistry_change_password($adm_login,$adm_pass,$domain);
+	//return SRSregistry_change_password($adm_login,$adm_pass,$domain);
+}
+
+////////////////////////////////////////////////////////////////////
+////////////////// NICK HANDLE CALLBACK FUNCTIONS //////////////////
+////////////////////////////////////////////////////////////////////
+function registry_create_nick_handle($a){
+	$out = "";
+	$nbr_mods = sizeof($registry_api_modules);
+	for($i=0;$i<$$nbr_mods;$i++){
+		if( isset($registry_api_modules[$i]["registry_create_nick_handle"]) ){
+			$out .= $registry_api_modules[$i]["registry_create_nick_handle"]($a);
+		}
+	}
+	return $out;
+}
+
+function registry_delete_nick_handle($a){
+	$out = "";
+	$nbr_mods = sizeof($registry_api_modules);
+	for($i=0;$i<$$nbr_mods;$i++){
+		if( isset($registry_api_modules[$i]["registry_delete_nick_handle"]) ){
+			$out .= $registry_api_modules[$i]["registry_delete_nick_handle"]($a);
+		}
+	}
+	return $out;
+}
+
+function registry_edit_nick_handle($a){
+	$out = "";
+	$nbr_mods = sizeof($registry_api_modules);
+	for($i=0;$i<$$nbr_mods;$i++){
+		if( isset($registry_api_modules[$i]["registry_edit_nick_handle"]) ){
+			$out .= $registry_api_modules[$i]["registry_edit_nick_handle"]($a);
+		}
+	}
+	return $out;
 }
 
 ?>

@@ -3,33 +3,34 @@
 $panel_type="admin";
 require_once("../shared/autoSQLconfig.php");
 require_once("authme.php");
+require_once("../shared/vars/lang.php");
 
 $rrd = $conf_generated_file_path.'/netusage.rrd';
 $xpoints = 800;
 $ypoints = 160;
-$vert_label = "Network transfer";
+$vert_label = _("Network transfer");
 
 if( isset($_REQUEST["graph"]) ){
 
 	switch($_REQUEST["graph"]){
 		case "hour":
-			$title = 'Hour graph';
+			$title = _('Hour graph');
 			$steps = 3600;
 			break;
 		case "day":
-			$title = 'Day Graph';
+			$title = _('Day Graph');
 			$steps = 3600*24;
 			break;
 		case "week":
-			$title = 'Week Graph';
+			$title = _('Week Graph');
 			$steps = 3600*24*7;
 			break;
 		case "month":
-			$title = 'Month Graph';
+			$title = _('Month Graph');
 			$steps = 3600*24*31;
 			break;
 		case "year":
-			$title = 'Year Graph';
+			$title = _('Year Graph');
 			$steps = 3600*24*365;
 			break;
 		default:
@@ -41,8 +42,8 @@ if( isset($_REQUEST["graph"]) ){
 //	$filename = "/tmp/network_usage_".$_REQUEST["graph"].".png";
 	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
 	$cmd .= "DEF:bytesin=$rrd:bytesin:AVERAGE DEF:bytesout=$rrd:bytesout:AVERAGE ";
-	$cmd .= "'LINE2:bytesin#00ff00:Incoming network traffic in bytes:' 'GPRINT:bytesin:MAX:Maximum\: %0.0lf' 'GPRINT:bytesin:AVERAGE:Average\: %0.0lf/min\\n' ";
-	$cmd .= "'LINE1:bytesout#0000ff:Outgoing network traffic in bytes:' 'GPRINT:bytesout:MAX:Maximum\: %0.0lf' 'GPRINT:bytesout:AVERAGE:Average\: %0.0lf/min\l' ";
+	$cmd .= "'LINE2:bytesin#00ff00:" . _("Incoming network traffic in bytes") .":' 'GPRINT:bytesin:MAX:" . _("Maximum") . "\: %0.0lf' 'GPRINT:bytesin:AVERAGE:" . _("Average") . "\: %0.0lf/min\\n' ";
+	$cmd .= "'LINE1:bytesout#0000ff:" . _("Outgoing network traffic in bytes:") ."' 'GPRINT:bytesout:MAX:" . _("Maximum") ."\: %0.0lf' 'GPRINT:bytesout:AVERAGE:" . _("Average") ."\: %0.0lf/min\l' ";
 	$cmd;
 	exec($cmd,$output);
 
@@ -67,7 +68,7 @@ if( isset($_REQUEST["graph"]) ){
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>Network usage statistics for '.$_SERVER["SERVER_NAME"].'</TITLE>
+<TITLE>' . _("Network usage statistics for") . " " .$_SERVER["SERVER_NAME"].'</TITLE>
 <style type="text/css">
 body{
 	height:100%;
@@ -83,13 +84,13 @@ h1 {
 </style>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
-<H1>Network Usage Statistics for '.$_SERVER["SERVER_NAME"].'</H1>
+<H1>' . _("Network Usage Statistics for") . " " .$_SERVER["SERVER_NAME"].'</H1>
 <center>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="Hour Netusage Graph" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="Day Netusage Graph" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="Week Netusage Graph" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="Month Netusage Graph" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="Year Netusage Graph" width="897" height="253">
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="' . _("Hour Netusage Graph") .'" width="897" height="253"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="' . _("Day Netusage Graph") .'" width="897" height="253"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="' . _("Week Netusage Graph") .'" width="897" height="253"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="' . _("Month Netusage Graph") .'" width="897" height="253"><br>
+<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="' . _("Year Netusage Graph") .'" width="897" height="253">
 </center>
 </body>
 </html>';

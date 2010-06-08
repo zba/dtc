@@ -110,7 +110,15 @@ function configEditorTemplate ($dsc,$conftype="config"){
 			if($i != 0){
 				$vals .= ", ";
 			}
-			$vals .= $keys[$i]."='".$_REQUEST[ $keys[$i] ]."'";
+			if( !isset($_REQUEST[ $keys[$i] ] ) ){
+				$_REQUEST[ $keys[$i] ] = "";
+			}
+			if( !is_array( $_REQUEST[ $keys[$i] ] ) ){
+				$my_value = $_REQUEST[ $keys[$i] ];
+			}else{
+				$my_value = join( ",",$_REQUEST[ $keys[$i] ] );
+			}
+			$vals .= $keys[$i]."='".$my_value."'";
 		}
 		$q = "UPDATE $sql_table SET $vals WHERE 1;";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
@@ -184,6 +192,37 @@ function configEditorTemplate ($dsc,$conftype="config"){
 			}
 			$control = "<select class=\"$input_class\" name=\"".$keys[$i]."\">".$control."</select>";
 			break;
+		case "checkboxcomma":
+			$nb_choices = sizeof($dsc["cols"][ $keys[$i] ]["values"]);
+			//echo "\n ddd: ";
+			//var_dump ($dsc["cols"][ $keys[$i] ]["values"]);
+			//echo "\n asd: ";
+			//var_dump ($$fld);
+			$control = "";
+			$arr_values = split(",",$$fld);
+			//echo "\n eee: ";
+			//var_dump ($arr_values);
+			$cntchk = 0;
+			for($j=0;$j<$nb_choices;$j++){
+				//var_dump(in_array($dsc["cols"][ $keys[$i] ]["values"][$j], $arr_values));
+				if (in_array($dsc["cols"][ $keys[$i] ]["values"][$j], $arr_values)){
+					$selected = " checked ";
+				}else{
+					$selected = "";
+				}
+				if( isset($dsc["cols"][ $keys[$i] ]["display_replace"][$j]) ){
+					$text = $dsc["cols"][ $keys[$i] ]["display_replace"][$j];
+				}else{
+					$text = $dsc["cols"][ $keys[$i] ]["values"][$j];
+				}
+				$control .= "<input type=\"checkbox\" name=\"".$keys[$i]."[]\" value=\"".$dsc["cols"][ $keys[$i] ]["values"][$j]."\" $selected> $text\n";
+				if ($cntchk > 3){
+					$control .= "<br />";
+					$cntchk = 0;
+				}
+				$cntchk++;
+			}
+			break;
 		case "textarea":
 			if( isset($dsc["cols"][ $keys[$i] ]["cols"]) ){
 				$cols = " cols=\"".$dsc["cols"][ $keys[$i] ]["cols"]."\" ";
@@ -228,19 +267,35 @@ while others are made of a unique value. The message templates
 are stored in /etc/dtc, and if not present in: ").$conf_dtcadmin_path."/reminders_msg/",
 		"cols" => array(
 			"vps_renewal_before" => array(
-				"legend" => _("Warnings before expiration: "),
+				"legend" => _("Warnings before expiration for VPS: "),
 				"type" => "text",
 				"size" => "16"),
 			"vps_renewal_after" => array(
-				"legend" => _("Warnings after expiration: "),
+				"legend" => _("Warnings after expiration for VPS: "),
                                 "type" => "text",
                                 "size" => "16"),
 			"vps_renewal_lastwarning" => array(
-				"legend" => _("Last warning: "),
+				"legend" => _("Last warning for VPS: "),
                                 "type" => "text",
                                 "size" => "16"),
 			"vps_renewal_shutdown" => array(
-				"legend" => _("Shutdown warning: "),
+				"legend" => _("Shutdown warning for VPS: "),
+                                "type" => "text",
+                                "size" => "16"),
+			"shared_renewal_before" => array(
+				"legend" => _("Warnings before expiration for Shared Hosting: "),
+				"type" => "text",
+				"size" => "16"),
+			"shared_renewal_after" => array(
+				"legend" => _("Warnings after expiration for Shared Hosting: "),
+                                "type" => "text",
+                                "size" => "16"),
+			"shared_renewal_lastwarning" => array(
+				"legend" => _("Last warning for Shared Hosting: "),
+                                "type" => "text",
+                                "size" => "16"),
+			"shared_renewal_shutdown" => array(
+				"legend" => _("Shutdown warning for Shared Hosting: "),
                                 "type" => "text",
                                 "size" => "16"),
 			"message_subject_header" => array(
@@ -311,7 +366,7 @@ function drawDedicatedIPConfig(){
 	$my_pool_values = array();
 	$my_pool_text = array();
 	$my_pool_values[] = 0;
-	$my_pool_text[] = "Not set";
+	$my_pool_text[] = _("Not set");
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 		$my_pool_values[] = $a["id"];
@@ -343,7 +398,11 @@ function drawDedicatedIPConfig(){
 			"dedicated_server_hostname" => array(
 				"type" => "popup",
 				"values" => $popup_vals,
-				"legend" => _("Dedicated server hostname"))
+				"legend" => _("Dedicated server hostname")),
+			"rdns_addr" => array(
+				"type" => "text",
+				"size" => "30",
+				"legend" => _("RDNS hostname"))
 			)
 	);
 	$out .= dtcDatagrid($dsc);
@@ -376,7 +435,7 @@ function drawIPPoolConfig(){
 				"text" => _("Customize") ),
 			"show_ip_pool_report" => array(
 				"type" => "hyperlink",
-				"legend" => _("show"),
+				"legend" => _("Show"),
 				"text" => _("Show") ),
 			"location" => array(
 				"type" => "text",
@@ -872,7 +931,7 @@ function drawVPSServerConfig(){
 			"edithost" => array(
 				"type" => "hyperlink",
 				"legend" => _("IPs addrs"),
-				"text" => "Edit IPs"),
+				"text" => _("Edit IPs")),
 			"dom0_ips" => array(
 				"type" => "text",
 				"size" => "8",
@@ -918,7 +977,7 @@ function drawVPSServerConfig(){
 		$my_pool_values = array();
 		$my_pool_text = array();
 		$my_pool_values[] = 0;
-		$my_pool_text[] = "Not set";
+		$my_pool_text[] = _("Not set");
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$my_pool_values[] = $a["id"];
@@ -953,6 +1012,10 @@ function drawVPSServerConfig(){
 					"legend" => _("IP Pool"),
 					"values" => $my_pool_values,
 					"display_replace" => $my_pool_text),
+				"rdns_addr" => array(
+					"type" => "text",
+					"size" => "30",
+					"legend" => _("RDNS hostname")),
 				"available" => array(
 					"type" => "radio",
 					"legend" => _("Available"),
@@ -965,13 +1028,13 @@ function drawVPSServerConfig(){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n == 0){
-			$out .= "Create a mailing list @".$conf_main_domain." if you want to write to all users of this VPS server.";
+			$out .= _("Create a mailing list @").$conf_main_domain._(" if you want to write to all users of this VPS server.");
 		}else{
-			$out .= "<h3>Owners of the VPS of <i>".$a["hostname"]."</i> are subscribed automatically to the following mailing list:</h3>";
+			$out .= "<h3>" . _("Owners of the VPS of") . " <i>".$a["hostname"]."</i> " . _("are subscribed automatically to the following mailing list:") . "</h3>";
 			$q2 = "SELECT * FROM $pro_mysql_vps_server_lists_table WHERE hostname='".$a["hostname"]."' ORDER BY list_name;";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
-			$out .= "Click on the list name to remove the list from the server:<br><br>";
+			$out .= _("Click on the list name to remove the list from the server:<br><br>");
 			$conditions = "";
 			for($i=0;$i<$n2;$i++){
 				$a2 = mysql_fetch_array($r2);
@@ -985,7 +1048,7 @@ function drawVPSServerConfig(){
 			$q = "SELECT * FROM $pro_mysql_list_table WHERE domain='$conf_main_domain' $conditions ORDER BY name;";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
-			$out .= "Click on the list name to add the list to the server:<br><br>";
+			$out .= _("Click on the list name to add the list to the server:")."<br><br>";
 			for($i=0;$i<$n;$i++){
 				$a = mysql_fetch_array($r);
 				if($i != 0){
@@ -1025,6 +1088,8 @@ function generalDaemonCallback(){
 
 function drawGeneralConfig(){
 	global $cc_code_array;
+	global $dtcshared_path;
+	global $conf_skin;
 
 	global $conf_skin;
 	global $dtcshared_path;
@@ -1084,7 +1149,7 @@ function drawGeneralConfig(){
                 "edit_callback" => "generalDaemonCallback",
 		"cols" => array (
 			"mta_type" => array(
-				"legend" => "MTA <a href=\"http://pl.wikipedia.org/wiki/MTA\" target=\"_blank\">*</a> : ",
+				"legend" => "MTA <a href=\"http://www.wikipedia.org/wiki/Mail_transfer_agent\" target=\"_blank\">*</a> : ",
 				"type" => "radio",
 				"values" => array("qmail","postfix")),
 			"use_cyrus" => array(
@@ -1109,7 +1174,7 @@ function drawGeneralConfig(){
 				"display_replace" => array(_("Yes"),_("No"))),
 			"use_awstats" => array(
 				"type" => "radio",
-				"legend" => "(<a href=\"http://dtcsupport.gplhost.com/PmWiki/Why-not-using-awstats\">AWStats armful?</a>) " . _("Use awstats: "),
+				"legend" => "(<a href=\"http://dtcsupport.gplhost.com/PmWiki/Why-not-using-awstats\">"._("AWStats armful")."?</a>) " . _("Use awstats: "),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
 			"use_visitors" => array(
@@ -1172,6 +1237,18 @@ function drawGeneralConfig(){
 		"action" => "general_config_skin_chooser",
 		"forward" => array("rub"),
 		"cols" => array(
+			"panel_title" => array(
+				"type" => "text",
+				"legend" => _("Panel title: "),
+				"size" => "30"),
+			"panel_subtitle" => array(
+				"type" => "text",
+				"legend" => _("Panel subtitle: "),
+				"size" => "30"),
+			"panel_logo" => array(
+				"type" => "text",
+				"legend" => _("Panel logo path (relative to ").$dtcshared_path."/gfx/skin/".$conf_skin._(") :"),
+				"size" => "30"),
 			"skin" => array(
 				"legend" => _("Select the type of skin:"),
 				"type" => "popup",
@@ -1669,7 +1746,7 @@ function drawDTCpayConfig(){
 	$out .= configEditorTemplate ($dsc,"secpay");
 
 	$dsc = array(
-		"title" => "MoneyBookers (currently in development):",
+		"title" => _("MoneyBookers (currently in development):"),
 		"action" => "payment_gateway_moneybookers_edit",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -1745,7 +1822,7 @@ function drawDTCpayConfig(){
 	$out .= configEditorTemplate ($dsc,"secpay");
 
 	$dsc = array(
-		"title" => "Maxmind API:",
+		"title" => _("Maxmind API:"),
 		"action" => "maxmind_api_conf_edit",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -1764,6 +1841,37 @@ function drawDTCpayConfig(){
 				"size" => "30")));
 	$out .= configEditorTemplate ($dsc,"secpay");
 
+	$dsc = array(
+		"title" => _("Dineromail:"),
+		"action" => "dineromail_gateway_dineromail_edit",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"use_dineromail" => array(
+				"legend" => _("Use dineromail: "),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))),
+			"dineromail_nrocuenta" => array(
+				"legend" => _("Dineromail Account: "),
+				"type" => "text",
+				"size" => "20"),
+			"dineromail_tipospago" => array(
+				"legend" => _("Payments Accepted: "),
+				"type" => "checkboxcomma",
+				"values" => array("2","7","13","4","5","6","14","15","16","17","18"),
+				"display_replace" => array(_("Barcode"),_("DineroMail account funds"),_("Wiretransfer"),_("Credit card in one payment"),
+					_("Credit card in 3 installments"),_("Credit card in 6 installments"),_("Credit card in 9 installments"),
+					_("Credit card in 12 installments"),_("Credit card in 18 installments"),_("Credit card in 24 installments"),_("Credit card in Z plan"))),
+			"dineromail_cargocomision" => array(
+				"legend" => _("Fixed charge fee: "),
+				"type" => "text",
+				"size" => "6"),
+			"dineromail_porcentajecomision" => array(
+				"legend" => _("Percentage fee: "),
+				"type" => "text",
+				"size" => "6"), ));
+	$out .= configEditorTemplate ($dsc,"secpay");
+
 	return $out;
 }
 
@@ -1774,9 +1882,9 @@ function drawDTCradiusConfig(){
 	$out = "";
 	$dsc = array(
 		"title" => _("NAS config"),
-		"new_item_title" => "Add new NAS:",
-		"new_item_link" => "Add new NAS",
-		"edit_item_title" => "Edit a NAS:",
+		"new_item_title" => _("Add new NAS:"),
+		"new_item_link" => _("Add new NAS"),
+		"edit_item_title" => _("Edit a NAS:"),
 		"table_name" => "nas",
 		"action" => "nas_editor",
 		"forward" => array("rub","sousrub"),
@@ -1808,7 +1916,7 @@ function drawDTCradiusConfig(){
 				"check" => "dtc_pass"),
 			"community" => array(
 				"type" => "text",
-				"legend" => "SNMP community: "),
+				"legend" => _("SNMP community").": "),
 			"description" => array(
 				"type" => "text",
 				"legend" => _("Description: "))));
@@ -1872,7 +1980,7 @@ Each of the following (qmail, apache and named) path will be concatened to this:
 
 
 	$dsc = array(
-		"title" => "<img src=\"gfx/dtc/generate_mail.gif\">Qmail path:",
+		"title" => "<img src=\"gfx/dtc/generate_mail.gif\">"._("Qmail path").":",
 		"action" => "qmail_path_editor",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -2015,7 +2123,7 @@ function drawInvoicingConfig(){
 	$q = "SELECT * FROM $pro_mysql_companies_table WHERE 1;";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-	$comp_names = array("Please select");
+	$comp_names = array(_("Please select"));
 	$comp_ids = array(0);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
@@ -2040,7 +2148,7 @@ function drawInvoicingConfig(){
 	$country_codes = array_reverse($country_codes);
 	$country_fullnames = array_reverse($country_fullnames);
 	$country_codes[] = "00";
-	$country_fullnames[] = "none";
+	$country_fullnames[] = _("none");
 	$country_codes = array_reverse($country_codes);
 	$country_fullnames = array_reverse($country_fullnames);
 

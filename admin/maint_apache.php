@@ -1,6 +1,10 @@
 #!/usr/bin/env php
 <?php
 
+if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
+@date_default_timezone_set(@date_default_timezone_get());
+
+
 $script_start_time = time();
 $start_stamps = mktime();
 $panel_type="cronjob";

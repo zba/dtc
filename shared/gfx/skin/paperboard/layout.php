@@ -67,7 +67,7 @@ function skin_EmailPage(){
 		// Fetch all the user informations, Print a nice error message if failure.
 		if($error == false){
 			$mesg = $admin["mesg"];
-			$login_txt = "<font color=\"red\">Wrong login or password !</font><br>";
+			$login_txt = "<font color=\"red\">"._("Wrong login or password")." !</font><br>";
 			$login_txt .= login_emailpanel_form();
 			$mypage = skin($conf_skin,$login_txt, _("Email panel: ") . _("Login") );
 		}else{
@@ -823,7 +823,7 @@ function skin_LayoutAdminPage (){
 		}
 		$skinedConsole = '<table cellpadding="0" cellspacing="0" class="console">
 		<tr>
-			<td class="console_title">Console output :</td>
+			<td class="console_title">'._("Console outputi").' :</td>
 		</tr>
 		<tr>
 			<td class="console_output"><pre>'.$_SERVER['SERVER_NAME'].':&gt;_'.$console.'<br /><span id="console_content" class="console_content"></span></pre></td>

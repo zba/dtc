@@ -136,6 +136,9 @@ function drawAdminTools($admin){
 	$ssh_login_flag = $admin_info["ssh_login_flag"];
 	$ftp_login_flag = $admin_info["ftp_login_flag"];
 	$pkg_install_flag = $admin_info["pkg_install_flag"];
+	$allow_dns_and_mx_change = $admin_info["allow_dns_and_mx_change"];
+	$allow_mailing_list_edit = $admin_info["allow_mailing_list_edit"];
+	$allow_subdomain_edit = $admin_info["allow_subdomain_edit"];
 
 	unset($user_ZEmenu);
 	if($nbr_domain > 0){
@@ -243,19 +246,23 @@ function drawAdminTools($admin){
 			"type" => "link",
 			"link" => "stats");
 
-		$domain_conf_submenu[] = array(
-			"text" => _("DNS and MX") ,
-			"icon" => "box_wnb_nb_picto-mxnsservers.gif",
-			"type" => "link",
-			"link" => "dns");
+		if($allow_dns_and_mx_change == "yes"){
+			$domain_conf_submenu[] = array(
+				"text" => _("DNS and MX") ,
+				"icon" => "box_wnb_nb_picto-mxnsservers.gif",
+				"type" => "link",
+				"link" => "dns");
+		}
 
 		if($admin_data[$i]["primary_dns"] == "default"){
 		  if($domain_parking == "no-parking"){
-			$domain_conf_submenu[] = array(
-				"text" => _("Sub-domains"),
-				"icon" => "box_wnb_nb_picto-subdomains.gif",
-				"type" => "link",
-				"link" => "subdomains");
+			if($allow_subdomain_edit == "yes"){
+				$domain_conf_submenu[] = array(
+					"text" => _("Sub-domains"),
+					"icon" => "box_wnb_nb_picto-subdomains.gif",
+					"type" => "link",
+					"link" => "subdomains");
+			}
                         if($ftp_login_flag == "yes"){
 				$domain_conf_submenu[] = array(
 					"text" => _("FTP accounts") ,
@@ -286,14 +293,14 @@ function drawAdminTools($admin){
 				"type" => "link",
 				"link" => "mailboxs");
 		}
-		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking" && $conf_use_mail_alias_group == "yes"){
+		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking" && $conf_use_mail_alias_group == "yes" && $allow_mailing_list_edit == "yes"){
 			$domain_conf_submenu[] = array(
-				"text" => "Mail Groups",
+				"text" => _("Mail Groups"),
 				"icon" => "box_wnb_nb_picto-mailgroups.gif",
 				"type" => "link",
 				"link" => "mailaliases");
 		}
-		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking"){
+		if($admin_data[$i]["primary_mx"] == "default" && $domain_parking == "no-parking" && $allow_mailing_list_edit == "yes"){
 			$domain_conf_submenu[] = array(
 				"text" => _("Mailing lists"),
 				"icon" => "box_wnb_nb_picto-mailinglists.gif",
@@ -421,10 +428,10 @@ function drawAdminTools($admin){
 			}else{
 				$web_editor .= "VPS not found!";
 			}
-			$title = "Virtual Private Server $vps_name running on $vps_node";
+			$title = _("Virtual Private Server") . " $vps_name " . _("running on") . " $vps_node";
 		}else if(substr($addrlink,0,7) == "server:"){
 			$web_editor .= drawAdminTools_Dedicated($admin,$dedicated_server_hostname);
-			$title = "Dedicated server: $dedicated_server_hostname";
+			$title = _("Dedicated server") .": $dedicated_server_hostname";
 		}else if(@$add_array[1] == "mailboxs"){
                         $web_editor .= "<img src=\"gfx/toolstitles/mailboxs.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Mailboxes:") ."</u></b><br></font>";
                         $web_editor .= drawAdminTools_Emails($eddomain);
@@ -449,9 +456,9 @@ function drawAdminTools($admin){
 			$web_editor .= drawAdminTools_DomainDNS($admin,$eddomain);
 			$title = _("DNS config of:") ." ".$edit_domain;
 		}else if(@$add_array[1] == "invoices"){
-			$web_editor .= "<img src=\"gfx/toolstitles/stats.png\" align=\"left\"><font size=\"+2\"><b><u>Invoices:</u></b><br></font>";
+			$web_editor .= "<img src=\"gfx/toolstitles/stats.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Invoices") .":</u></b><br></font>";
 			$web_editor .= drawAdminTools_Invoices($admin);
-			$title = "Invoices";
+			$title = _("Invoices");
 		}else if(@$add_array[1] == "stats"){
 			if($add_array[0] == "myaccount"){
 				$web_editor .= "<img src=\"gfx/toolstitles/stats.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Statistics:") ."</u></b><br></font>";
@@ -506,7 +513,7 @@ function drawAdminTools($admin){
 			$web_editor .= "<img src=\"gfx/toolstitles/databases.png\" align=\"left\"><font size=\"+2\"><b><u>". _("File manager:") ."</u></b><br></font>";
 			$web_editor .= "<table width=\"100%\" height=\"100%\" border=\"0\"><tr>
 					<td width=\"1\" height=\"100%\"><img width=\"1\" height=\"600\" src=\"gfx/skin/bwoup/gfx/spacer.gif\"></td>
-					<td width=\"100%\" height=\"100%\"><iframe width=\"100%\" height=\"100%\" src=\"https://dtc.xen650901.gplhost.com/extplorer/\"></iframe></td>
+					<td width=\"100%\" height=\"100%\"><iframe width=\"100%\" height=\"100%\" src=\"/extplorer/\"></iframe></td>
 				</tr></table>";
 			$title = _("eXtplorer web file manager");
 		}else if($add_array[0] == "reseller"){
@@ -518,9 +525,9 @@ function drawAdminTools($admin){
 			$web_editor .= drawPasswordChange();
 			$title = _("Password");
 		}else if($add_array[0] == "ticket"){
-                        $web_editor .= "<img src=\"gfx/toolstitles/ticket.png\" align=\"left\"><font size=\"+2\"><b><u>Support tickets:</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/ticket.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Support tickets:") . "</u></b><br></font>";
 			$web_editor .= drawTickets($admin);
-			$title = "Support ticket system";
+			$title = _("Support ticket system");
 		}else if($add_array[0] == "help"){
                         $web_editor .= "<img src=\"gfx/toolstitles/help.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Help:") ."</u></b><br></font>";
 			$web_editor .= _("<font face=\"Arial, Verdana\">

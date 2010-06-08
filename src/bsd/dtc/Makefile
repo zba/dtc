@@ -25,6 +25,7 @@ RUN_DEPENDS=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server \
 		${LOCALBASE}/${APACHEMODDIR}/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql2-dtc \
 		${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Crypt_CBC \
 		${LOCALBASE}/share/pear/XML/Serializer.php:${PORTSDIR}/devel/pear-XML_Serializer \
+		${LOCALBASE}/share/pear/Net/IPv4.php:${PORTSDIR}/net/pear-Net_IPv4 \
 		${LOCALBASE}/www/cgi-bin/sbox:${PORTSDIR}/www/sbox-dtc \
 		${LOCALBASE}/bin/sudo:${PORTSDIR}/security/sudo \
 		${LOCALBASE}/lib/nss_mysql.so:${PORTSDIR}/net/libnss-mysql \
@@ -52,7 +53,7 @@ DEFAULT_PHP_VER=5
 BROKEN_WITH_PHP=4
 RUN_DEPENDS+=	${LOCALBASE}/bin/pear:${PORTSDIR}/devel/pear
 USE_PHP+=	bz2 gd mbstring mcrypt mysql mysqli openssl pcre \
-		session sockets xml zlib
+		session sockets xml zlib curl
 .endif
 
 .if defined(WITH_WEBALIZER)

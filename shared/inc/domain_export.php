@@ -123,7 +123,7 @@ function exportAllDomain($adm_login){
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$dom_ar["domains"][] = array( $a["name"] => getDomainData($a["name"],$adm_login) );
+		$dom_ar["domains"][ $a["name"] ] = getDomainData($a["name"],$adm_login);
 	}
 
 	// Get the MySQL user infos
@@ -136,24 +136,16 @@ function exportAllDomain($adm_login){
 		}
 		$a = mysql_fetch_array($r);
 		$dom_ar["mysql"][ $a["User"] ]["password"] = $a["Password"];
-	}
 
-	// Export the MySQL db names
-	if( isset($dom_ar["mysql"])){
-		$nbr_user = sizeof($dom_ar["mysql"]);
-		$musers = array_keys($dom_ar["mysql"]);
-		for($i=0;$i<$nbr_user;$i++){
-			$user = $musers[$i];
-			$q = "SELECT DISTINCT Db FROM mysql.db WHERE User='$user';";
-			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-			$n = mysql_num_rows($r);
-			if($n == 1){
-				$a = mysql_fetch_array($r);
-				if( ! isset($dom_ar["mysql"][$user]["dbs"])){
-					$dom_ar["mysql"][$user]["dbs"] = array();
-				}
-				$dom_ar["mysql"][$user]["dbs"][ $a["Db"] ] = "yes";
+		$q2 = "SELECT DISTINCT Db FROM mysql.db WHERE User='".$a["User"]."';";
+		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		for($j=0;$j<$n2;$j++){
+			$a2 = mysql_fetch_array($r2);
+			if( ! isset($dom_ar["mysql"][ $a["User"] ]["dbs"])){
+				$dom_ar["mysql"][ $a["User"] ]["dbs"] = array();
 			}
+			$dom_ar["mysql"][ $a["User"] ]["dbs"][ $a2["Db"] ] = "yes";
 		}
 	}
 
@@ -277,25 +269,54 @@ function domainImport($path_from,$adm_login,$adm_pass){
                 );
 	$unserializer = new XML_Unserializer($options);
 	$result = $unserializer->unserialize($xml_content);
+	if (PEAR::isError($result)){
+		echo _("Method unserialize() failed, could not import your domain configuration: ").$result->getMessage();
+		return;
+	}
 	$dom_ar = $unserializer->getUnserializedData();
+	if (PEAR::isError($dom_ar)) {
+		echo _("Method getUnserializedData() failed, could not import your domain configuration: ").$dom_ar->getMessage();
+		return;
+	}
 
-	// Iterate on all domains of the file
+	// Because of an issue of the programming of older versions of DTC,
+	// if there was multiple domains in the XLM file, then we have things like this,
+	// as PHP assotiative array, once Unserialize() is done:
+	// <dtc-export-file version="0.1">
+	//   <domains>
+        //      <item>
+	//         <example.com>
+	//           ........
+	//         </example.com>
+	//      </item>
+	//   </domains
+	// </dtc-export-file>
+	// the below code will remove the <item> thing that is on the way,
+	// and quite annoying for using array_keys().
 	if( isset($dom_ar["domains"]["item"]) ){
-		$all_domains = array_keys($dom_ar["domains"]["item"]);
 		$nbr_domains = sizeof($dom_ar["domains"]["item"]);
+		$my_domains = array();
+		for($doms=0;$doms<$nbr_domains;$doms++){
+			$mykey = array_keys($dom_ar["domains"]["item"][$doms]);
+			$my_domains["domains"][ $mykey[0] ] = $dom_ar["domains"]["item"][$doms][$mykey[0]];
+		}
+		$dom_ar = $my_domains;
+		$all_domains = array_keys($dom_ar["domains"]);
 	}else{
 		$all_domains = array_keys($dom_ar["domains"]);
 		$nbr_domains = sizeof($all_domains);
 	}
+	// Iterate on all domains of the file (if there's only one, it's fine too...)
 	for($doms=0;$doms<$nbr_domains;$doms++){
 		// We will work on each domains one by one
 		$dom_name = $all_domains[$doms];
-		if( isset($dom_ar["domains"]["item"]) ){
-			$cur_dom = $dom_ar["domains"]["item"][$dom_name];
-		}else{
-			$cur_dom = $dom_ar["domains"][$dom_name];
+		if($dom_name == "" || $dom_name == "Array"){
+			echo _("Domain name is empty in your export file: could not import domain number ").$doms;
+			return;
 		}
-		$domain_item_name = $dom_name;
+		$console .= "Importing domain: $dom_name<br>";
+		
+		$cur_dom = $dom_ar["domains"][$dom_name];
 		$dom_name = $cur_dom["domain_config"]["name"];
 
 		// Check if the domain exists, if not, add it to the user
@@ -314,7 +335,7 @@ function domainImport($path_from,$adm_login,$adm_pass){
 
 		// Reimport all the stuff
 		updateRowValue($pro_mysql_domain_table,"name='$dom_name'",$cur_dom["domain_config"],
-			"safe_mode,sbox_protect,owner,default_subdomain,quota,max_email,max_lists,max_ftp,max_subdomain,max_ssh,primary_dns,other_dns,primary_mx,other_mx,whois,hosting,gen_unresolved_domain_alias,txt_root_entry,txt_root_entry2,catchall_email,domain_parking,registrar_password,ttl,stats_login,stats_pass,stats_subdomain,wildcard_dns,domain_parking_type");
+			"safe_mode,sbox_protect,default_subdomain,quota,max_email,max_lists,max_ftp,max_subdomain,max_ssh,primary_dns,other_dns,primary_mx,other_mx,whois,hosting,gen_unresolved_domain_alias,txt_root_entry,txt_root_entry2,catchall_email,domain_parking,registrar_password,ttl,stats_login,stats_pass,stats_subdomain,wildcard_dns,domain_parking_type");
 		recreateAllRows($pro_mysql_subdomain_table,"domain_name='$dom_name'",$cur_dom["subdomains"],
 			"safe_mode,sbox_protect,subdomain_name,ip,register_globals,associated_txt_record,generate_vhost,ssl_ip,nameserver_for,ttl,srv_record,add_default_charset,customize_vhost",
 			",domain_name",",'$dom_name'");
@@ -332,9 +353,11 @@ function domainImport($path_from,$adm_login,$adm_pass){
 	}
 	if( isset($dom_ar["mysql"])){
 		$n_user = sizeof($dom_ar["mysql"]);
+		$console .= _("Number of database users in this import: ").$n_user."<br>";
 		$musers = array_keys($dom_ar["mysql"]);
 		for($i=0;$i<$n_user;$i++){
 			$username = $musers[$i];
+			$console .= _("Importing database username: ").$username."<br>";
 			unset($user);
 			$user = $dom_ar["mysql"][ $musers[$i] ];
 			$password = $user["password"];
@@ -343,7 +366,7 @@ function domainImport($path_from,$adm_login,$adm_pass){
 			Grant_priv,References_priv,Index_priv,Alter_priv,Show_db_priv,Super_priv,Create_tmp_table_priv,Lock_tables_priv,
 			Execute_priv,Repl_slave_priv,Repl_client_priv,Create_view_priv,Show_view_priv,Create_routine_priv,
 			Alter_routine_priv,Create_user_priv,dtcowner)
-			VALUES ('%','$user','$password','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',
+			VALUES ('%','$username','$password','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',
 			'N','N','N','N','N','N','N','N','$adm_login');";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
@@ -352,25 +375,26 @@ function domainImport($path_from,$adm_login,$adm_pass){
 			Grant_priv,References_priv,Index_priv,Alter_priv,Show_db_priv,Super_priv,Create_tmp_table_priv,Lock_tables_priv,
 			Execute_priv,Repl_slave_priv,Repl_client_priv,Create_view_priv,Show_view_priv,Create_routine_priv,
 			Alter_routine_priv,Create_user_priv,dtcowner)
-			VALUES ('localhost','$user','$password','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',
+			VALUES ('localhost','$username','$password','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',
 			'N','N','N','N','N','N','N','N','$adm_login');";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 			if( isset($user["dbs"])){
 				$n_db = sizeof($user["dbs"]);
+				$console .= _("Number of database owned by user")." ".$username.": ".$n_db."<br>";
 				$mdbs = array_keys($user["dbs"]);
 				for($j=0;$j<$n_db;$j++){
 					$db = $mdbs[$j];
 					$q = "INSERT IGNORE INTO mysql.db (Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Grant_priv,
 					References_priv,Index_priv,Alter_priv,Create_tmp_table_priv,Lock_tables_priv,Create_view_priv,
 					Show_view_priv,Create_routine_priv,Alter_routine_priv,Execute_priv)
-					VALUES('%','$db','$user','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');";
+					VALUES('%','$db','$username','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');";
 					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 
 					$q = "INSERT IGNORE INTO mysql.db (Host,Db,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv,Drop_priv,Grant_priv,
 					References_priv,Index_priv,Alter_priv,Create_tmp_table_priv,Lock_tables_priv,Create_view_priv,
 					Show_view_priv,Create_routine_priv,Alter_routine_priv,Execute_priv)
-					VALUES('localhost','$db','$user','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');";
+					VALUES('localhost','$db','$username','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');";
 					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				}
 			}

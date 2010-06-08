@@ -34,10 +34,10 @@ function drawReseller($admin){
 			$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
 			<input type=\"hidden\" name=\"action\" value=\"change_child_account_values\">
 			<input type=\"hidden\" name=\"account_name\" value=\"".$a["adm_login"]."\">".$a["adm_login"]."</td>
-			<td><input type=\"text\" name=\"new_adm_pass\" value=\"\"></td><td><input type=\"submit\" value=\"Save\"></form>
+			<td><input type=\"text\" name=\"new_adm_pass\" value=\"\"></td><td><input type=\"submit\" value=\"." . _("Save") . "\"></form>
 			<form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
 			<input type=\"hidden\" name=\"action\" value=\"delete_child_account\">
-			<input type=\"hidden\" name=\"account_name\" value=\"".$a["adm_login"]."\"><input type=\"submit\" value=\"Del\"></form></td></tr>";
+			<input type=\"hidden\" name=\"account_name\" value=\"".$a["adm_login"]."\"><input type=\"submit\" value=\"". _("Del") . "\"></form></td></tr>";
 		}
 //		TMDselectTables("treeindex",$pro_mysql_admin_table,"childrens");
 	}
@@ -45,7 +45,7 @@ function drawReseller($admin){
 	$hidden<input type=\"hidden\" name=\"action\" value=\"add_child_account\">
 	<input type=\"text\" name=\"new_adm_login\" value=\"\"></td>
 	<td><input type=\"text\" name=\"new_adm_pass\" value=\"\"></td>
-	<td><input type=\"submit\" value=\"Create\"></form></td></tr></table>";
+	<td><input type=\"submit\" value=\"" . _("Create") . "\"></form></td></tr></table>";
 	return $out;
 }
 

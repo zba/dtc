@@ -101,7 +101,7 @@ function mail_account_generate_maildrop(){
 			system("/bin/mkdir -p $boxpath/Maildir");
 			system("$path_maildirmake $boxpath/Maildir >/dev/null 2>&1");
 			if($quota_maildrop!="0S,0C"){
-				system("$path_maildirmake -q $quota_maildrop $boxpath/Maildir");
+				system("$path_maildirmake -q $quota_maildrop $boxpath/Maildir >/dev/null 2>&1");
 			}
 			putenv("PATH=$PATH");
 			if($quota_maildrop=="0S,0C"){

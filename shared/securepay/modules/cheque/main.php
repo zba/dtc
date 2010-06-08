@@ -42,8 +42,8 @@ function cheque_display_icon($pay_id,$amount,$item_name,$return_url,$use_recurri
 <input type="hidden" name="payment_type" value="cheque">
 <input type="hidden" name="currency_code" value="'.$secpayconf_currency_letters.'">
 '.$add_to_form.'
-<input type="image" src="cheque.gif" border="0"
-name="submit" alt="'. "Pay by cheque" .'">
+<input type="image" src="/dtc/cheque.gif" border="0"
+name="submit" alt="'. _("Pay by cheque") .'">
 </form>';
 	return $out;
 

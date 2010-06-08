@@ -20,6 +20,11 @@ $dtc_database = array(
 			"pass_next_req" => "varchar(128) NOT NULL default '0' ",
 			"pass_expire" => "int(12) NOT NULL default '0' ",
 			"allow_add_domain" => "enum('yes','no','check') NOT NULL default 'check' ",
+			"max_domain" => "int(9) NOT NULL default '0'",
+			"restricted_ftp_path" => "enum('yes','no') NOT NULL default 'no' ",
+			"allow_dns_and_mx_change" => "enum('yes','no') NOT NULL default 'yes' ",
+			"allow_mailing_list_edit" => "enum('yes','no') NOT NULL default 'yes' ",
+			"allow_subdomain_edit" => "enum('yes','no') NOT NULL default 'yes' ",
 			"nbrdb" => "int(9) NOT NULL default '1' ",
 			"resseller_flag" => "enum('yes','no') NOT NULL default 'no' ",
 			"ssh_login_flag" => "enum('yes','no') NOT NULL default 'no'",
@@ -244,14 +249,18 @@ $dtc_database = array(
 			"webnic_password" => "varchar (128) NOT NULL default ''",
 			
 			"ovh_server_url" => "varchar (256) NOT NULL default 'https://www.ovh.com/soapi/soapi-re-1.8.wsdl'",
-            "ovh_username" => "varchar (128) NOT NULL default ''",
-            "ovh_password" => "varchar (128) NOT NULL default ''",
-            "ovh_boolean" => "enum('false','true') NOT NULL default 'true'",
-            "ovh_language" => "enum('fr','en','es','de','pl','it','pt','nl','cz','ie') NOT NULL default 'en'",
+			"ovh_username" => "varchar (128) NOT NULL default ''",
+			"ovh_password" => "varchar (128) NOT NULL default ''",
+			"ovh_boolean" => "enum('false','true') NOT NULL default 'true'",
+			"ovh_language" => "enum('fr','en','es','de','pl','it','pt','nl','cz','ie') NOT NULL default 'en'",
 			"ovh_nicadmin" => "varchar (128) NOT NULL default ''",
-            "ovh_nictech" => "varchar (128) NOT NULL default ''",
-            "ovh_nicowner" => "varchar (128) NOT NULL default ''",
-            "ovh_nicbilling" => "varchar (128) NOT NULL default ''",
+			"ovh_nictech" => "varchar (128) NOT NULL default ''",
+			"ovh_nicowner" => "varchar (128) NOT NULL default ''",
+			"ovh_nicbilling" => "varchar (128) NOT NULL default ''",
+
+                        "internetbs_server_url" => "varchar (256) NOT NULL default 'https://testapi.internet.bs/'",
+                        "internetbs_username" => "varchar (128) NOT NULL default ''",
+                        "internetbs_password" => "varchar (128) NOT NULL default ''",
 
 			"provide_own_domain_hosts" => "enum('yes','no') NOT NULL default 'no'",
 			"nagios_host" => "varchar(255) NOT NULL default ''",
@@ -263,8 +272,11 @@ $dtc_database = array(
 			"support_ticket_domain" => "varchar(255) NOT NULL default 'default'",
 			"support_ticket_fw_email" => "varchar(255) NOT NULL default 'supportfw'",
 			"all_customers_list_email" => "varchar(255) NOT NULL default 'support'",
-			"all_customers_list_domain" => "varchar(255) NOT NULL default 'default'"
+			"all_customers_list_domain" => "varchar(255) NOT NULL default 'default'",
 
+			"panel_title" => "varchar(255) NOT NULL default 'default'",
+			"panel_subtitle" => "varchar(255) NOT NULL default 'default'",
+			"panel_logo" => "varchar(255) NOT NULL default 'default'"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"
@@ -286,6 +298,7 @@ $dtc_database = array(
 			"gen_webalizer" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_backup" => "enum('yes','no') NOT NULL default 'no' ",
 			"gen_ssh" => "enum('yes','no') NOT NULL default 'no' ",
+			"gen_nagios" => "enum('yes','no') NOT NULL default 'no' ",
 			"lock_flag" => "enum('inprogress','finished') NOT NULL default 'finished' "
 			),
 		"keys" => array(
@@ -761,7 +774,7 @@ $dtc_database = array(
 			"renew_time" => "time NOT NULL default '00:00:00' ",
 			"product_id" => "int(11) NOT NULL default '0' ",
 			"renew_id" => "int(11) NOT NULL default '0' ",
-			"heb_type" => "enum('shared','ssl','vps','server','ssl_renew') NOT NULL default 'shared' ",
+			"heb_type" => "enum('shared','ssl','vps','server','ssl_renew','shared-upgrade') NOT NULL default 'shared' ",
 			"pay_id" => "int(11) NOT NULL default '0' ",
 			"country_code" => "varchar(4) NOT NULL default 'US' "
 			),
@@ -827,6 +840,13 @@ $dtc_database = array(
 			"bandwidth" => "int(15) NOT NULL default '0' ",
 			"period" => "varchar(12) NOT NULL default '0001-00-00' ",
 			"allow_add_domain" => "enum('yes','no','check') NOT NULL default 'no' ",
+			"max_domain" => "int(9) NOT NULL default '0'",
+			"restricted_ftp_path" => "enum('yes','no') NOT NULL default 'no' ",
+			"ftp_login_flag" => "enum('yes','no') NOT NULL default 'yes'",
+			"allow_dns_and_mx_change" => "enum('yes','no') NOT NULL default 'yes' ",
+			"allow_mailing_list_edit" => "enum('yes','no') NOT NULL default 'yes' ",
+			"allow_subdomain_edit" => "enum('yes','no') NOT NULL default 'yes' ",
+			"pkg_install_flag" => "enum('yes','no') NOT NULL default 'yes' ",
 			"heb_type" => "enum('shared','ssl','vps','server') NOT NULL default 'shared' ",
 			"renew_prod_id" => "int(11) NOT NULL default '0'",
 			"affiliate_kickback" => "varchar(9) NOT NULL default ''",
@@ -991,7 +1011,13 @@ $dtc_database = array(
 
 			"accept_wiretransfers" => "enum('yes','no') NOT NULL default 'no'",
 			"wiretransfers_flat_fees" => "float(6,2) NOT NULL default '0.00' ",
-			"wiretransfers_bank_details" => "text NOT NULL default ''"
+			"wiretransfers_bank_details" => "text NOT NULL default ''",
+
+			"use_dineromail" => "enum('yes','no') NOT NULL default 'no'",
+			"dineromail_nrocuenta" => "varchar(20) NOT NULL default ''",
+			"dineromail_tipospago" => "varchar(30) NOT NULL default '2,7,13,4,5,6,14,15,16,17,18'",
+			"dineromail_cargocomision" => "float(6,2) NOT NULL default '0.00'",
+			"dineromail_porcentajecomision" => "float(6,2) NOT NULL default '0.00' "
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

@@ -28,24 +28,27 @@ Upstream Authors:
 	- Erwan Lerale <erwan@thiscow.fr> (corrected my *bad* French typos)
 	- Jelle Kalf (Dutch) <JKalf@uno.nl> and
 	  cobaco (aka Bart Cornelis) <cobaco@skolelinux.no> (Duch)
-	- Yuri Kozlov <kozlov.y@gmail.com> (Russian)
-	- Feher Sandor <sfeher@bluesystem.hu> (Hungarian)
+	- Yuri Kozlov <kozlov.y@gmail.com> (Russian / Русский)
+	- Feher Sandor <sfeher@bluesystem.hu> (Hungarian / Magyar)
 	- Jose Toscano <josetg81wireless@yahoo.es> and
 	  Jorge Mendez <solutions@todoimporta.com> and
-	  Patricio Lopez <lankaster.lopez@gmail.com> (Espanol)
-	- Sebastian Pachla <seeb@seeb.net.pl> (Polish)
+	  Patricio Lopez <lankaster.lopez@gmail.com> and
+	  Fernando M. Kiernan <fkiernan@id.net.ar> (Spanish: Español)
+	- Sebastian Pachla <seeb@seeb.net.pl> (Polish / Polnisch)
 	- Andrea Polte <andreapolte@gmx.de> and
-	  Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net> (German)
-	- Esko Arajärvi <edu@iki.fi> (Finish)
+	  Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net> (German / Deutsch)
+	- Esko Arajärvi <edu@iki.fi> (Finish / Viimeistely)
 	- Luca Franceschini <info@atw.it> and
-          Francesco Rana <francesco.rana@sentia.it> (Italiano)
-	- My lovely wife Cao Wei <caowei@gplhost.com> (Simplified Chinese).
-	- Bogdan Ignjatovic <iboki@yahoo.com> (Serbian)
-	- Rodrigo Moglia <rmoglia@gmail.com> (Brasilian Portuguese)
-	- Frederic Boije <frederic.boije@gmail.com> (Swedish)
+          Francesco Rana <francesco.rana@sentia.it> (Italian / Italiano)
+	- My lovely wife Cao Wei <caowei@gplhost.com> (Simplified chinese / 中文简体).
+	- Bogdan Ignjatovic <iboki@yahoo.com> (Serbian / Српски)
+	- Rodrigo Moglia <rmoglia@gmail.com> (Brasilian Portuguese / Português do Brasil)
+	- Frederic Boije <frederic.boije@gmail.com> (Swedish / Svenska)
 
 	A big up to all my sponsors so far in Debian: Roberto C. Sanchez,
-	Daniel Baumann, and many others.
+	Daniel Baumann, and many others. Thanks to Myon, Enrico, Steffen and
+	Mez, for taking the time to review and process my Debian application.
+	Without all the above persons, DTC wouldn't be in Debian and Ubuntu.
 
 Files: admin/sa-learn
 Copyright: (C) 2004, Alexandre Jousset

@@ -10,7 +10,7 @@ function productManager(){
 
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
-        	"title" => _("Product list editor") ." (shared)",
+        	"title" => _("Product list editor") . _(" (shared)"),
         	"action" => "hosting_product_list_shared",
         	"forward" => array("rub"),
         	"where_condition" => "heb_type='shared'",
@@ -72,7 +72,62 @@ function productManager(){
 				"type" => "popup",
 				"legend" => _("Add domain") ,
 				"help" => _("If set to yes, the the admin can add a domain, if set to check, then it will go through moderation, set to no, no domain addition to account is possible by the admin."),
-				"values" => array("check","no","yes")
+				"values" => array("check","no","yes"),
+				"display_replace" => array(_("check"),_("no"),_("yes"))
+				),
+			"max_domain" => array(
+				"type" => "text",
+				"legend" => _("Max domain"),
+				"help" => _("Maximum number of domain a customer can add by himself on his shared account. Setting a value of zero will mean no limit."),
+				"size" => "3"
+				),
+			"allow_dns_and_mx_change" => array(
+				"type" => "checkbox",
+				"legend" => _("DNS & MX"),
+				"help" => _("If set to no, users wont be able to edit the DNS and MX pointer of their domains."),
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
+				"default" => "no"
+				),
+			"ftp_login_flag" => array(
+				"type" => "checkbox",
+				"legend" => _("FTP"),
+				"help" => _("If set to no, users wont be able to add/remove/edit FTP accounts."),
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
+				"default" => "yes"
+				),
+			"restricted_ftp_path" => array(
+				"type" => "checkbox",
+				"legend" => _("Restricted FTP"),
+				"help" => _("If set to no, users will only be able to create FTP accounts with a path in the html folder of each vhosts."),
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
+				"default" => "no"
+				),
+			"allow_mailing_list_edit" => array(
+				"type" => "checkbox",
+				"legend" => _("Lists"),
+				"help" => _("If set to no, users wont be able to add/remove/edit mailing lists and mail alias groups."),
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
+				"default" => "yes"
+				),
+			"allow_subdomain_edit" => array(
+				"type" => "checkbox",
+				"legend" => _("Subdomains"),
+				"help" => _("If set to no, users wont be able to add/remove/edit subdomains."),
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
+				"default" => "yes"
+				),
+			"pkg_install_flag" => array(
+				"type" => "checkbox",
+				"legend" => _("Subdomains"),
+				"help" => _("If set to no, users wont be able to use the package installer."),
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
+				"default" => "yes"
 				),
 			"private" => array(
 				"type" => "checkbox",
@@ -105,7 +160,7 @@ function productManager(){
 
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
-        	"title" => _("Product list editor") ." (VPS)",
+        	"title" => _("Product list editor") . _(" (VPS)"),
         	"action" => "hosting_product_list_vps",
         	"forward" => array("rub"),
         	"where_condition" => "heb_type='vps'",
@@ -198,7 +253,7 @@ function productManager(){
 
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
-        	"title" => _("Product list editor") ." (Dedicated servers)",
+        	"title" => _("Product list editor") . _(" (Dedicated servers)"),
         	"action" => "hosting_product_list_dedicated",
         	"forward" => array("rub"),
         	"where_condition" => "heb_type='server'",
@@ -273,7 +328,7 @@ function productManager(){
 
         $dsc = array(
         	"table_name" => $pro_mysql_product_table,
-        	"title" => _("Product list editor") ." (SSL IPs)",
+        	"title" => _("Product list editor") . _(" (SSL IPs)"),
         	"action" => "hosting_product_list_ssl",
         	"forward" => array("rub"),
         	"where_condition" => "heb_type='ssl'",
@@ -288,7 +343,7 @@ function productManager(){
 				"legend" => _("Renewal-ID") ,
 				"help" => _("There must be ONLY ONE SSL product at any time, with only ONE renewal product."),
 				"values" => $renew_id_popup,
-				"display_replace" => array("No-renew")
+				"display_replace" => array(_("No-renew"))
 				),
 			"name" => array(
 				"type" => "text",

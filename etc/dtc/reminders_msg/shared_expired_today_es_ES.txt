@@ -3,17 +3,17 @@ Asunto: Su cuenta de hosting compartido expira hoy
 
 Hola %%%FIRST_NAME%%%,
 
-Su cuenta de hosting compartido expira hoy, desde: %%%EXPIRATION_DATE%%%
+Su cuenta de hosting compartido expira hoy: %%%EXPIRATION_DATE%%%
 
 Por favor ingrese a su panel de control en
 
 %%%DTC_CLIENT_URL%%%
 
 Con su nombre de usuario %%%DTC_ADM_LOGIN%%%, haga click en la pestaña
-"mi cuenta" y renuevela.
+"mi cuenta" y renuévela.
 
-Mantendremos su cuenta de hosting funcionando algunos dias mas para
-darle tiempo para que renueve su contrato. Despues del periodo de
-gracia su cuenta sera eliminada.
+Mantendremos su cuenta de hosting funcionando algunos días más para
+darle tiempo para que renueve su contrato. Después del período de
+gracia su cuenta será eliminada.
 
 %%%SIGNATURE%%%

@@ -42,7 +42,8 @@ date\n";
 
 	$backup_net = "#!/bin/sh
 date
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin";
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+";
 	
 	//Set it to -F, we will go passive by default, active, if it turned on
 	
@@ -76,6 +77,8 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin";
 			$backup_net .= "echo -n \"$webname (\"\n";
 			$backup_net .= "echo -n \"mail\"\n";
 			$backup_net .= "tar -cf $owner.$webname.tar $webname/Mailboxs\n";
+			$backup_net .= "echo -n \",lists\"\n";
+			$backup_net .= "if [ -d $webname/lists ] ; then tar -rf $owner.$webname.tar $webname/lists ; else echo -n \"(dir not found)\"; fi\n";
 			$q3 = "SELECT subdomain_name FROM $pro_mysql_subdomain_table WHERE domain_name='$webname';";
 			$r3 = mysql_query ($q3)or die("Cannot execute query \"$q3\" !".mysql_error()." line ".__LINE__." file ".__FILE__);
 			$nr3 = mysql_num_rows($r3);
@@ -225,6 +228,8 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin";
 	$restor_net .= "mysql -h$conf_user_mysql_host -u$conf_mysql_login -p$conf_mysql_pass -D mysql -e \"update user set password=password('\$dtcdaemons_pass') where user='dtcdaemons';\"\n";
 	$restor_net .= "echo \"Marking all scripts and DNS zones to be regenerated on next cron.\"\n";
 	$restor_net .= "mysql -h$conf_user_mysql_host -u$conf_mysql_login -p$conf_mysql_pass -D dtc -e \"update domain set generate_flag='yes';\"\n";
+	$restor_net .= "mysql -h$conf_user_mysql_host -u$conf_mysql_login -p$conf_mysql_pass -D dtc -e \"update dedicated_ip set rdns_regen='yes';\"\n";
+	$restor_net .= "mysql -h$conf_user_mysql_host -u$conf_mysql_login -p$conf_mysql_pass -D dtc -e \"update vps_ip set rdns_regen='yes';\"\n";
 	$restor_net .= "mysql -h$conf_user_mysql_host -u$conf_mysql_login -p$conf_mysql_pass -D dtc -e \"update cron_job set qmail_newu='yes',restart_qmail='yes',reload_named='yes',restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_reverse='yes',gen_fetchmail='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes',gen_nagios='yes',lock_flag='finished';\"\n";
 
 	$backup_net .= "date\n";

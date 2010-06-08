@@ -32,6 +32,11 @@ function drawEditAdmin($admin){
 	$prod_id = $info["prod_id"];
 
 	$allow_add_domain = $info["allow_add_domain"];
+	$max_domain = $info["max_domain"];
+	$restricted_ftp_path = $info["restricted_ftp_path"];
+	$allow_dns_and_mx_change = $info["allow_dns_and_mx_change"];
+	$allow_mailing_list_edit = $info["allow_mailing_list_edit"];
+	$allow_subdomain_edit = $info["allow_subdomain_edit"];
 	$resseller_flag = $info["resseller_flag"];
 	$ssh_login_flag = $info["ssh_login_flag"];
 	$ftp_login_flag = $info["ftp_login_flag"];
@@ -81,11 +86,55 @@ function drawEditAdmin($admin){
 	if($allow_add_domain == "check")$adcheck = "selected='selected'";	else $adcheck = "";
 	if($allow_add_domain == "no")	$adno = "selected='selected'";	else $adno = "";
 	$aldom_popup = "<select class=\"dtcDatagrid_input_color\" name=\"allow_add_domain\">
-<option value=\"yes\" $adyes>Yes</option>
-<option value=\"check\" $adcheck>Check</option>
-<option value=\"no\" $adno>No</option>
+<option value=\"yes\" $adyes>" . _("Yes") ."</option>
+<option value=\"check\" $adcheck>" . _("Check") . "</option>
+<option value=\"no\" $adno>". _("No") . "</option>
 </select>
 ";
+
+	// Restriction of FTP path selection
+	if($restricted_ftp_path == "yes"){
+		$restricted_ftp_path_yes = " checked='checked' ";
+		$restricted_ftp_path_no = "";
+	}else{
+		$restricted_ftp_path_yes = "";
+		$restricted_ftp_path_no = " checked='checked' ";
+	}
+	$restricted_ftp_path_selector = "<input type=\"radio\" name=\"restricted_ftp_path\" value=\"yes\"$restricted_ftp_path_yes> "._("Yes")."
+<input type=\"radio\" name=\"restricted_ftp_path\" value=\"no\"$restricted_ftp_path_no> "._("No");
+
+	// Allowing change of DNS and MX
+	if($allow_dns_and_mx_change == "yes"){
+		$allow_dns_and_mx_change_yes = " checked='checked' ";
+		$allow_dns_and_mx_change_no = "";
+	}else{
+		$allow_dns_and_mx_change_yes = "";
+		$allow_dns_and_mx_change_no = " checked='checked' ";
+	}
+	$allow_dns_and_mx_change_selector = "<input type=\"radio\" name=\"allow_dns_and_mx_change\" value=\"yes\"$allow_dns_and_mx_change_yes> "._("Yes")."
+<input type=\"radio\" name=\"allow_dns_and_mx_change\" value=\"no\"$allow_dns_and_mx_change_no> "._("No");
+
+	// Allow users to edit mailing lists
+	if($allow_mailing_list_edit == "yes"){
+		$allow_mailing_list_edit_yes = " checked='checked' ";
+		$allow_mailing_list_edit_no = "";
+	}else{
+		$allow_mailing_list_edit_yes = "";
+		$allow_mailing_list_edit_no = " checked='checked' ";
+	}
+	$allow_mailing_list_edit_selector = "<input type=\"radio\" name=\"allow_mailing_list_edit\" value=\"yes\"$allow_mailing_list_edit_yes> "._("Yes")."
+<input type=\"radio\" name=\"allow_mailing_list_edit\" value=\"no\"$allow_mailing_list_edit_no> "._("No");
+
+	// Allow users to edit subdomains
+	if($allow_subdomain_edit == "yes"){
+		$allow_subdomain_edit_yes = " checked='checked' ";
+		$allow_subdomain_edit_no = "";
+	}else{
+		$allow_subdomain_edit_yes = "";
+		$allow_subdomain_edit_no = " checked='checked' ";
+	}
+	$allow_subdomain_edit_selector = "<input type=\"radio\" name=\"allow_subdomain_edit\" value=\"yes\"$allow_subdomain_edit_yes> "._("Yes")."
+<input type=\"radio\" name=\"allow_subdomain_edit\" value=\"no\"$allow_subdomain_edit_no> "._("No");
 
 	// Generate the user configuration form
 	$user_data = "
@@ -99,7 +148,7 @@ function drawEditAdmin($admin){
 	if ($conf_hide_password == "yes"){
 		$ctrl = "<input class=\"dtcDatagrid_input_color\" type=\"password\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass";
 	} else {
-		$ctrl = "<input type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass";
+		$ctrl = "<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"changed_pass\" value=\"$adm_cur_pass\">$genpass";
 	}
 	$user_data .= dtcFormLineDraw( _("Password:") ,$ctrl);
 
@@ -128,10 +177,15 @@ function drawEditAdmin($admin){
 	$user_data .= dtcFormLineDraw( _("Product ID:") ,$prodsid);
 	$user_data .= dtcFormLineDraw( _("Number of databases:") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"nbrdb\" value=\"".$info["nbrdb"]."\">",0);
 	$user_data .= dtcFormLineDraw( _("Allow to add domains:") ,$aldom_popup);
-	$user_data .= dtcFormLineDraw( _("Grant sub-account addition rights (reseller):") ,$res_selector,0);
-	$user_data .= dtcFormLineDraw( _("Allow addition of SSH logins:") ,$sshlog_selector);
-	$user_data .= dtcFormLineDraw( _("Allow addition of FTP logins:") ,$ftplog_selector,0);
-	$user_data .= dtcFormLineDraw( _("Allow the use of the package installer:") ,$pkg_install_selector);
+	$user_data .= dtcFormLineDraw( _("Max domain:") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"max_domain\" value=\"$max_domain\">",0);
+	$user_data .= dtcFormLineDraw( _("Grant sub-account addition rights (reseller):") ,$res_selector);
+	$user_data .= dtcFormLineDraw( _("Allow addition of SSH logins:") ,$sshlog_selector,0);
+	$user_data .= dtcFormLineDraw( _("Allow addition of FTP logins:") ,$ftplog_selector);
+	$user_data .= dtcFormLineDraw( _("Restrict FTP to the html folder:") ,$restricted_ftp_path_selector,0);
+	$user_data .= dtcFormLineDraw( _("Allow addition of mailing lists and mail groups:") ,$allow_mailing_list_edit_selector);
+	$user_data .= dtcFormLineDraw( _("Allow edition of DNS and MX:") ,$allow_dns_and_mx_change_selector,0);
+	$user_data .= dtcFormLineDraw( _("Allow edition subdomains:") ,$allow_subdomain_edit_selector);
+	$user_data .= dtcFormLineDraw( _("Allow the use of the package installer:") ,$pkg_install_selector,0);
 	$user_data .= dtcFromOkDraw()."</table></form>";
 
 	// Generate the admin tool configuration module
@@ -397,7 +451,7 @@ function drawDomainConfig($admin){
 			);
 		$ret .= dtcDatagrid($dsc);
 		if( isset($_REQUEST["edithost"]) && isHostname($_REQUEST["edithost"]) ){
-			$ret .= "<h3>Custom Apache directives for ".$_REQUEST["edithost"]."</h3>";
+			$ret .= "<h3>". _("Custom Apache directives for") ." ".$_REQUEST["edithost"]."</h3>";
 			$q = "SELECT subdomain_name FROM $pro_mysql_subdomain_table WHERE domain_name='".$_REQUEST["edithost"]."';";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
@@ -411,8 +465,8 @@ function drawDomainConfig($admin){
 			}
 			$ret .= "<br><br>";
 			if( isset($_REQUEST["subdomain"]) && isHostname($_REQUEST["subdomain"]) ){
-				$ret .= "<u>Subdomain: ".$_REQUEST["subdomain"].":</u><br>";
-				$ret .= "Take care: no syntax checkings are done on your custom directives, doing a mistake here could lead to your web server not being able to restart!<br>";
+				$ret .= "<u>". _("Subdomain") .": ".$_REQUEST["subdomain"].":</u><br>";
+				$ret .= _("Take care: no syntax checkings are done on your custom directives, doing a mistake here could lead to your web server not being able to restart!")."<br>";
 				$q = "SELECT customize_vhost FROM $pro_mysql_subdomain_table WHERE subdomain_name='".$_REQUEST["subdomain"]."' AND domain_name='".$_REQUEST["edithost"]."';";
 				$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 				$n = mysql_num_rows($r);
@@ -453,12 +507,12 @@ function drawDomainConfig($admin){
 					"legend" => _("Redirect to:")),
 				"php_memory_limit" => array(
 					"type" => "text",
-					"help" => _(""),
+					"help" => _("Maximum memory used by PHP session"),
 					"size" => 3,
 					"legend" => _("PHP memory limit")),
 				"php_max_execution_time" => array(
 					"type" => "text",
-					"help" => _(""),
+					"help" => _("Maximum time a PHP script can execute"),
 					"size" => 3,
 					"legend" => _("Execution time")),
 				"php_upload_max_filesize" => array(

@@ -30,7 +30,7 @@ h1{text-decoration:none; text-align:center;}
 
 
 <h1>Statistics for <?php echo $_SERVER["HTTP_HOST"]; ?></h1><br><br><br>
-<p>Follow the links bellow to see the web usage statistics:</p><br>
+<p>Follow the links below to see the web usage statistics:</p><br>
 
 <p><?php
 

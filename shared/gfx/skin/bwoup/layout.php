@@ -48,7 +48,7 @@ function skin_EmailPage(){
 		// Fetch all the user informations, Print a nice error message if failure.
 		if($error == false){
 			$mesg = $admin["mesg"];
-			$login_txt = "<font color=\"red\">Wrong login or password !</font><br>";
+			$login_txt = "<font color=\"red\">" . _("Wrong login or password") . " !</font><br>";
 			$login_txt .= login_emailpanel_form();
 			$mypage = skin($conf_skin,$login_txt, _("Email panel: ") . _("Login") );
 		}else{
@@ -512,7 +512,7 @@ function skin_LayoutAdminPage (){
 <table class="box_wnb" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="box_wnb_nb" valign="top">
-    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'."Menu".'</div></div></div></div>
+    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'._("Menu").'</div></div></div></div>
     	'.drawDTCConfigMenu().'
     </td>
     <td class="box_wnb_content" valign="top">
@@ -549,7 +549,7 @@ function skin_LayoutAdminPage (){
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
 		}
 		$skinedConsole = '<table cellpadding="0" cellspacing="0" class="console">
-	  <tr><td class="console_title">Console output :</td>
+	  <tr><td class="console_title">'. _("Console output") .' :</td>
 	  </tr><tr>		<td class="console_output"><pre>'.$_SERVER['SERVER_NAME'].':&gt;_'.$console.'<br><span id="console_content" class="console_content"></span></pre></td></tr></table>';
 
 	  $adm_list = adminList($rand).'
@@ -628,7 +628,7 @@ function bwoupUserEditForms($adm_login,$adm_pass){
 			$pass = $adm_pass;
 		}
 		if(($error = $admin["err"]) != 0){
-			echo("Error fetching admin : $error");
+			echo(_("Error fetching admin")." : $error");
 			$ret["err"] = $admin["err"];
 			$ret["mesg"] = $admin["mesg"];
 			return $ret;

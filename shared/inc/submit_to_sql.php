@@ -89,6 +89,32 @@ function validateRenewal($renew_id){
 		$q = "UPDATE $pro_mysql_admin_table SET expire='$date_expire' WHERE adm_login='".$renew_entry["adm_login"]."'";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		break;
+	case "shared-upgrade":
+		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find admin login in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$admin = mysql_fetch_array($r);
+
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$renew_entry["product_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find product in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$product = mysql_fetch_array($r);
+
+		$old_expire = $admin["expire"];
+		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
+		$q = "UPDATE $pro_mysql_admin_table SET expire='$date_expire',prod_id='".$renew_entry["product_id"]."',max_email=".$product["nbr_email"].",nbrdb=".$product["nbr_database"].",quota=".$product["quota_disk"].",bandwidth_per_month_mb=".$product["bandwidth"].",allow_add_domain='".$product["allow_add_domain"]."',max_domain=".$product["max_domain"]." WHERE adm_login='".$renew_entry["adm_login"]."'";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		break;
 	case "ssl":
 		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -276,11 +302,14 @@ function validateWaitingUser($waiting_login_id){
 		$adm_query = "INSERT INTO $pro_mysql_client_table
 (id,is_company,company_name,vat_num,familyname,christname,addr1,addr2,addr3,
 city,zipcode,state,country,phone,fax,email,
-disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
+disk_quota_mb,bw_quota_per_month_gb,
+special_note) VALUES ('','".$a["iscomp"]."',
 '".addslashes($a["comp_name"])."','".addslashes($a["vat_num"])."','".addslashes($a["family_name"])."','".addslashes($a["first_name"])."',
 '".addslashes($a["addr1"])."','".addslashes($a["addr2"])."','".addslashes($a["addr3"])."','".addslashes($a["city"])."',
 '".addslashes($a["zipcode"])."','".addslashes($a["state"])."','".addslashes($a["country"])."','".addslashes($a["phone"])."',
 '".addslashes($a["fax"])."','".addslashes($a["email"])."','".$a2["quota_disk"]."','". $a2["bandwidth"]/1024 ."',
+'".addslashes($a["restricted_ftp_path"])."','".addslashes($a["allow_dns_and_mx_change"])."',
+'".addslashes($a["ftp_login_flag"])."','".addslashes($a["allow_mailing_list_edit"])."','".addslashes($a["allow_subdomain_edit"])."',
 '".addslashes($a["custom_notes"])."');";
 		$r = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$cid = mysql_insert_id();
@@ -300,14 +329,17 @@ disk_quota_mb,bw_quota_per_month_gb,special_note) VALUES ('','".$a["iscomp"]."',
         }
         if($a["add_service"] != "yes"){
 		$adm_query = "INSERT INTO $pro_mysql_admin_table
-(adm_login        ,adm_pass              ,last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,allow_add_domain,max_email$admtbl_added1) VALUES
-('$waiting_login','".$a["reqadm_pass"]."','$last_used_lang','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','".$a2["nbr_database"]."','".$a2["allow_add_domain"]."','".$a2["nbr_email"]."'$admtbl_added2);";
+(adm_login        ,adm_pass              ,last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,allow_add_domain,max_domain,restricted_ftp_path,allow_dns_and_mx_change,ftp_login_flag,allow_mailing_list_edit,allow_subdomain_edit,max_email$admtbl_added1) VALUES
+('$waiting_login','".$a["reqadm_pass"]."','$last_used_lang','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','".$a2["nbr_database"]."','".$a2["allow_add_domain"]."','".$a2["max_domain"]."',
+'".$a2["restricted_ftp_path"]."','".$a2["allow_dns_and_mx_change"]."','".$a2["ftp_login_flag"]."','".$a2["allow_mailing_list_edit"]."','".$a2["allow_subdomain_edit"]."','".$a2["nbr_email"]."'$admtbl_added2);";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	}else{
 		if($a2["heb_type"] == "shared"){
 			$adm_query = "UPDATE $pro_mysql_admin_table
 			SET bandwidth_per_month_mb='".$a2["bandwidth"]."', quota='".$a2["quota_disk"]."', nbrdb='".$a2["nbr_database"]."',
-			allow_add_domain='".$a2["allow_add_domain"]."', max_email='".$a2["nbr_email"]."' $admtbl_added3
+			allow_add_domain='".$a2["allow_add_domain"]."', max_domain='".$a2["max_domain"]."', restricted_ftp_path='".$a2["restricted_ftp_path"]."',
+			allow_dns_and_mx_change='".$a2["allow_dns_and_mx_change"]."', ftp_login_flag='".$a2["ftp_login_flag"]."', allow_mailing_list_edit='".$a2["allow_mailing_list_edit"]."',
+			allow_subdomain_edit='".$a2["allow_subdomain_edit"]."', max_email='".$a2["nbr_email"]."' $admtbl_added3
 			WHERE adm_login='$waiting_login';";
 			mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		}

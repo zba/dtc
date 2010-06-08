@@ -196,7 +196,7 @@ function drawAdminTools_Subdomain($admin,$domain){
 			"generate_vhost" => array(
 				"type" => "radio",
 				"values" => array("yes","no"),
-				"display_replace" => array ( _("Yes") , _("No") ),
+				"display_replace" => array(_("Yes"),_("No")),
 				"legend" => _("Generate a vhost entry for this subdomain:") ),
 			"add_default_charset" => array(
 				"type" => "popup",
@@ -215,7 +215,7 @@ function drawAdminTools_Subdomain($admin,$domain){
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"default" => "no",
-				"display_replace" => array ( _("Yes") , _("No") ),
+				"display_replace" => array(_("Yes"),_("No")),
 				"legend" => _("Use register_globals=1: ") ),
 			"associated_txt_record" => array(
 				"type" => "text",
@@ -231,12 +231,14 @@ function drawAdminTools_Subdomain($admin,$domain){
 		$dsc["cols"]["safe_mode"] = array(
 				"type" => "radio",
 				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
 				"legend" => "PHP safe mode: ");
 	}
 	if($domain["sbox_protect"] == "no"){
 		$dsc["cols"]["sbox_protect"] = array(
 				"type" => "radio",
 				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
 				"legend" => _("Sbox cgi-bin protection: ") );
 	}
 

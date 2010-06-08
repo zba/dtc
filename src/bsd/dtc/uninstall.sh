@@ -13,5 +13,4 @@ QMAIL_DIR=%%QMAIL_DIR%%
 . %%WWWDIR%%/admin/install/bsd_config
 . %%WWWDIR%%/admin/install/functions
 
-DTCsearchConfigFiles
-DTCuninstallPackage
+. %%WWWDIR%%/admin/install/uninstall

@@ -3,35 +3,42 @@
 if(isset($_REQUEST["gen_named_files"]) && $_REQUEST["gen_named_files"]==1){
 	named_generate();
 	$console .= _("Named conf files generated !") ;
+	$console .= "\n" ;
 }
 
 // Executes the command liste bellow
 if(isset($_REQUEST["gen_perso_vhost"]) && $_REQUEST["gen_perso_vhost"]==1){
 	perso_vhost_generate();
 	$console .= _("Apache vhost file for personal account generated !") ;
+	$console .= "\n" ;
 }
 if(isset($_REQUEST["gen_pro_vhost"]) && $_REQUEST["gen_pro_vhost"]==1){
 	pro_vhost_generate();
 	$console .= _("Apache vhost file generated !") ;
+	$console .= "\n" ;
 }
 
 if(isset($_REQUEST["gen_email_account"]) && $_REQUEST["gen_email_account"] == 1){
 	mail_account_generate();
 	$console .= _("Email user and domain files generated !") ;
+	$console .= "\n" ;
 }
 
 if(isset($_REQUEST["gen_backup_script"]) && $_REQUEST["gen_backup_script"] == 1){
 	backup_script_generate();
 	$console .= _("Backup script generated !") ;
+	$console .= "\n" ;
 }
 
 if(isset($_REQUEST["gen_stat_script"]) && $_REQUEST["gen_stat_script"] == 1){
 	stat_script_generate();
 	$console .= _("Stat script generated !") ;
+	$console .= "\n" ;
 }
 if(isset($_REQUEST["gen_fetchmail_script"]) && $_REQUEST["gen_fetchmail_script"] == 1){
 	fetchmail_generate();
 	$console .= _("Fetchmail script generated !") ;
+	$console .= "\n" ;
 }
 
 
@@ -125,9 +132,9 @@ function listTypePopup(){
 	$admins = "<div class=\"box_wnb_nb_content\">
 <div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">". _("Display and sort by:")  ."<br>
 <select class=\"box_wnb_nb_input\" name=\"admlist_type\">
-<option value=\"Logins\"$selectedlist_logins>Logins
-<option value=\"Names\"$selectedlist_name>Names
-<option value=\"Domains\"$selectedlist_domain>Domains
+<option value=\"Logins\"$selectedlist_logins>" . _("Logins") . "
+<option value=\"Names\"$selectedlist_name>" . _("Names") . "
+<option value=\"Domains\"$selectedlist_domain>" . _("Domains") . "
 </select>
 <div class=\"box_wnb_nb_input_btn_container\" onMouseOver=\"this.className='box_wnb_nb_input_btn_container-hover';\" onMouseOut=\"this.className='box_wnb_nb_input_btn_container';\">
  <div class=\"box_wnb_nb_input_btn_left\"></div>

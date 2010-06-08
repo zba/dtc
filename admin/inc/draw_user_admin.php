@@ -495,6 +495,9 @@ dtcFromOkDraw()."
 			case "ssl":
 				$heb_type = _("Shared");
 				break;
+			case "shared-upgrade":
+				$heb_type = _("Shared Upgrade");
+				break;
 			case "ssl":
 				$heb_type = _("SSL Token purchase");
 				break;
@@ -517,7 +520,7 @@ dtcFromOkDraw()."
 				break;
 			}
 			$waiting_new_users .= "<td>$heb_type</td>";
-			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a href=\"".$_SERVER["PHP_SELF"]."?action=validate_renewal&id=".$a["id"]."\">Validate</a> <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_renewal&id=".$a["id"]."\">Del</a></td>";
+			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a href=\"".$_SERVER["PHP_SELF"]."?action=validate_renewal&id=".$a["id"]."\">". _("Validate") ."</a> <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_renewal&id=".$a["id"]."\">". _("Del") ."</a></td>";
 			$waiting_new_users .= "</tr>";
 		}
 		$waiting_new_users .= "</table>";

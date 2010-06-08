@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Thomas Goirand <thomas@goirand.fr>
 Build-Depends: debhelper (>= 5), po-debconf
 Build-Depends-Indep: gettext
-Standards-Version: 3.8.3
+Standards-Version: 3.8.4
 Dm-Upload-Allowed: yes
 Vcs-Browser: http://git.gplhost.com/gitweb/?p=dtc.git
 Vcs-Git: http://git.gplhost.com/dtc.git
@@ -79,8 +79,8 @@ Description: web control panel for admin and accounting hosting services (fewer 
  does the billing in general (including billing of dedicated servers), has
  integrated support tickets and more.
  .
- This package contains as few dependencies as possible to let you choose what
- daemon you want to use.
+ This meta-package contains as few dependencies as possible to let you choose
+ what daemon you want to use. Even the MySQL server wont be pulled by default.
 
 Package: dtc-cyrus
 Architecture: all

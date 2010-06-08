@@ -134,5 +134,14 @@ support_ticket_domain varchar(255) NOT NULL default 'default',
 support_ticket_fw_email varchar(255) NOT NULL default 'supportfw',
 all_customers_list_email varchar(255) NOT NULL default 'support',
 all_customers_list_domain varchar(255) NOT NULL default 'default',
+
+panel_title varchar(255) NOT NULL default 'default',
+panel_subtitle varchar(255) NOT NULL default 'default',
+panel_logo varchar(255) NOT NULL default 'default',
+
+internetbs_server_url varchar (256) NOT NULL default 'https://testapi.internet.bs/',
+internetbs_username varchar (128) NOT NULL default '',
+internetbs_password varchar (128) NOT NULL default '',
+
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM

@@ -1329,7 +1329,7 @@ function dtcListItemsEdit($dsc){
 		$out .= $dsc["new_item_link"]."<br><br>";
 		$out .= "<h3>".$dsc["new_item_title"]."</h3><br>";
 		if(isset($dsc["max_item"]) && $current_num_items >= $dsc["max_item"]){
-			$out .= "<font color=\"red\">Maximum number reached!</font><br>";
+			$out .= "<font color=\"red\">". _("Maximum number reached") ."!</font><br>";
 		}else{
 			$out .= "<form name=\"".$dsc["action"]."_new_item_frm\" action=\"".$_SERVER["PHP_SELF"]."\">$fw
 				<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_new_item\">".dtcFormTableAttrs();

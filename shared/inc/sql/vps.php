@@ -277,7 +277,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 	}
 }
 
-if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xenpv_boot_iso"){
+if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xenhvm_boot_iso"){
 	if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) != true){
 		$submit_err = _("Access not granted line ") .__LINE__. _(" file ") .__FILE__;
 		$commit_flag = "no";
@@ -287,14 +287,14 @@ if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xenpv_boot_iso"
 		$submit_err = _("Could not connect to VPS server!");
 		$commit_flag = "no";
 	}
-	if( $commit_flag == "yes" && $_REQUEST["xenpv_iso"] != "hdd"){
+	if( $commit_flag == "yes" && $_REQUEST["xenhvm_iso"] != "hdd"){
 		$r = $soap_client->call("reportInstalledIso",array("vpsname" => "xen".$vps_name),"","","");
 		$err = $soap_client->getError();
                 if($err){
                 	$submit_err = _("Could not get installed ISO files!");
                 	$commit_flag = "no";
 		}else{
-			if( ! in_array($_REQUEST["xenpv_iso"],$r)){
+			if( ! in_array($_REQUEST["xenhvm_iso"],$r)){
 				$submit_err = _("The ISO file is not in the server!");
 				$commit_flag = "no";
 			}
@@ -309,7 +309,7 @@ if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xenpv_boot_iso"
 		echo "<font color=\"yes\">" . _("Warning: password of wrong format, DTC will disable VNC console!");
 	}
 	if( $commit_flag == "yes"){
-		$q = "UPDATE $pro_mysql_vps_table SET vncpassword='".mysql_real_escape_string($vnc_console_pass)."',howtoboot='".mysql_real_escape_string($_REQUEST["xenpv_iso"])."' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
+		$q = "UPDATE $pro_mysql_vps_table SET vncpassword='".mysql_real_escape_string($vnc_console_pass)."',howtoboot='".mysql_real_escape_string($_REQUEST["xenhvm_iso"])."' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$q = "SELECT * FROM $pro_mysql_vps_table WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -330,13 +330,13 @@ if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xenpv_boot_iso"
 				$a2 = mysql_fetch_array($r);
 				$ips .= $a2["ip_addr"];
 			}
-			// echo "Now calling writeXenPVconf with" . "xen".$vps_name . " " . $a["ramsize"] . " '$ips' ". $_REQUEST["vnc_console_pass"] . " " . $_REQUEST["xenpv_iso"];
-			$r = $soap_client->call("writeXenPVconf",array(
+			// echo "Now calling writeXenHVMconf with" . "xen".$vps_name . " " . $a["ramsize"] . " '$ips' ". $_REQUEST["vnc_console_pass"] . " " . $_REQUEST["xenhvm_iso"];
+			$r = $soap_client->call("writeXenHVMconf",array(
 					"vpsname" => $vps_name,
 					"ramsize" => $a["ramsize"],
 					"allipaddrs" => $ips,
 					"vncpassword" => $vnc_console_pass,
-					"howtoboot" => $_REQUEST["xenpv_iso"]),
+					"howtoboot" => $_REQUEST["xenhvm_iso"]),
 					"","","");
 		}
 	}
