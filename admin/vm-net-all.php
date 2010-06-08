@@ -7,10 +7,11 @@ require_once("$dtcshared_path/dtc_lib.php");
 if(!isHostnameOrIP($_REQUEST["vps_server_hostname"])){
 	die("VPS node name has wrong format: dying.");
 }
-if(!checkSubdomainFormat($_REQUEST["vps_name"])){
-	die("VPS name has wrong format: dying.");
+if( isset($_REQUEST["vps_name"]) ){
+	if(!checkSubdomainFormat($_REQUEST["vps_name"])){
+		die("VPS name has wrong format: dying.");
+	}
 }
-
 if( $_SERVER["SCRIPT_NAME"] != "/dtc/vm-net-all.php"){
 	require_once("authme.php");
 }else{
@@ -35,16 +36,6 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 
 // HTTP/1.0
 header("Pragma: no-cache");
-
-checkLoginPass($adm_login,$adm_pass);
-
-// Get all the stats info
-$q = "SELECT * FROM $pro_mysql_vps_table WHERE vps_server_hostname='".$_REQUEST["vps_server_hostname"]."' AND vps_xen_name='".$_REQUEST["vps_name"]."' AND owner='$adm_login';";
-//echo $q;
-$r = mysql_query($q)or die("Cannot query $q !");
-$n = mysql_num_rows($r);
-if($n != 1)die("Client not found!");
-$c = mysql_fetch_array($r);
 
 $xpoints = 320;
 $ypoints = 100;
