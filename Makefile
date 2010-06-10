@@ -18,6 +18,10 @@ RELS=1
 VERSION=$(VERS)"-"$(RELS)
 CURDIR?=`pwd`
 
+# What type is the machine building the packages?
+# my_build_host_type can be: FreeBSD, Linux, Darwin
+my_build_host_type=$(shell uname -s)
+
 # BSD stuffs
 BSD_VERSION=$(VERS).$(RELS)
 PKG_BUILD=dtc-$(BSD_VERSION)
@@ -161,7 +165,7 @@ bsd-ports-packages:
 	@mkdir -p $(PKG_PLIST_BUILD)
 	@echo "-> Calling make install-dtc-common to calculate list in $(PKG_PLIST_BUILD)"
 	@make install-dtc-common DESTDIR=$(PKG_PLIST_BUILD) DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
-		DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd 2>&1 >/dev/null
+		DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd
 	@echo "-> Building list of files"
 	@cd $(PKG_PLIST_BUILD) && find . -type f -o -type l | egrep -v "/man/" | sed "s/\.\/usr\/local\///" | sort -r >../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
 	@echo "sbin/dtc-install" >>$(PORT_BUILD)/pkg-plist.tmp
@@ -432,7 +436,7 @@ install-dtc-common:
 
 	# Create the configuration folder
 	mkdir -p $(DTC_ETC_DIRECTORY)
-	if [ $(UNIX_TYPE) = "bsd" ] ; then \
+	if [ $(my_build_host_type) = "FreeBSD" ] ; then \
 		cp -anf etc/dtc/* $(DTC_ETC_DIRECTORY) ; \
 	else \
 		cp -auxf etc/dtc/* $(DTC_ETC_DIRECTORY) ; \
