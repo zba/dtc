@@ -22,6 +22,7 @@ CURDIR?=`pwd`
 # my_build_host_type can be: FreeBSD, Linux, Darwin
 my_build_host_type=$(shell uname -s)
 
+
 # BSD stuffs
 BSD_VERSION=$(VERS).$(RELS)
 PKG_BUILD=dtc-$(BSD_VERSION)
@@ -34,7 +35,8 @@ PORT_BUILD=$(BSD_BUILD_DIR)/$(MAIN_PORT_PATH)
 SRC_COPY_DIR=$(CURDIR)/$(BSD_BUILD_DIR)/$(PKG_BUILD)
 PKG_PLIST_BUILD=$(CURDIR)/${BSD_BUILD_DIR}/PKG_PLIST_BUILD
 
-INSTALL?=install -D
+#Add to the list all host type not supporting "install -D" like FreeBSD
+INSTALL?=$(if $(filter FreeBSD,$(my_build_host_type)),install,install -D)
 INSTALL_DIR?=install -d
 
 # Set defaults (as for Debian as normal platform)
@@ -126,7 +128,7 @@ debian-packages:
 	@echo "--- Making debian source package dtc_$(VERS).orig.tar.gz ---"
 	@mkdir -p debian/tmp/dtc-$(VERS)
 	@echo "-> Copying source package files with make source-copy DESTFOLDER=debian/tmp/dtc-$(VERS)"
-	@make source-copy DESTFOLDER=debian/tmp/dtc-$(VERS)
+	@${MAKE} source-copy DESTFOLDER=debian/tmp/dtc-$(VERS)
 	@echo "-> Creating archive with tar -czf ../../../dtc_$(VERS).orig.tar.gz dtc-$(VERS)"
 	@echo "-> --------------------------------"
 	@echo "-> Uncomment this to make a release"
@@ -141,7 +143,7 @@ bsd-ports-packages:
 	@echo "--- Making source snapshot $(BSD_ARCH_NAME) ---"
 	@mkdir -p $(BSD_BUILD_DIR)
 	@echo "-> Copying source package files with make source-copy DESTFOLDER=$(SRC_COPY_DIR)"
-	@make source-copy DESTFOLDER=$(SRC_COPY_DIR)
+	@${MAKE} source-copy DESTFOLDER=$(SRC_COPY_DIR)
 	@cd $(BSD_BUILD_DIR) && tar -czf $(BSD_ARCH_NAME) $(PKG_BUILD) && cd $(CURDIR)
 	@if ! [ $(BSD_DEST_DIR) = . -o $(BSD_DEST_DIR) = ./ -o $(BSD_DEST_DIR) = $(CURDIR) ] ; then mv $(BSD_BUILD_DIR)/$(BSD_ARCH_NAME) $(BSD_DEST_DIR)/ ; fi
 	@echo " --- Succesfully made BSD source snapshot ${BSD_DEST_DIR}/${BSD_ARCH_NAME} ---"
@@ -164,7 +166,7 @@ bsd-ports-packages:
 
 	@mkdir -p $(PKG_PLIST_BUILD)
 	@echo "-> Calling make install-dtc-common to calculate list in $(PKG_PLIST_BUILD)"
-	@make install-dtc-common DESTDIR=$(PKG_PLIST_BUILD) DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
+	@${MAKE} install-dtc-common DESTDIR=$(PKG_PLIST_BUILD) DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
 		DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd
 	@echo "-> Building list of files"
 	@cd $(PKG_PLIST_BUILD) && find . -type f -o -type l | egrep -v "/man/" | sed "s/\.\/usr\/local\///" | sort -r >../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
@@ -436,7 +438,7 @@ install-dtc-common:
 
 	# Create the configuration folder
 	mkdir -p $(DTC_ETC_DIRECTORY)
-	if [ $(my_build_host_type) = "FreeBSD" ] ; then \
+	if [ ""$(my_build_host_type) = "FreeBSD" ] ; then \
 		cp -anf etc/dtc/* $(DTC_ETC_DIRECTORY) ; \
 	else \
 		cp -auxf etc/dtc/* $(DTC_ETC_DIRECTORY) ; \
@@ -456,8 +458,8 @@ install-dtc-common:
 	fi
 	cp -rf doc/* $(DOC_DIR)
 
-	# Copy the internationnalization stuff
-	make l12n
+	# Copy the internationalization stuff
+	${MAKE} l12n
 	cd shared/vars && cp -rf locale $(APP_INST_DIR)/shared/vars && cd ../..
 
 	rm -rf $(DOC_DIR)/LICENSE
