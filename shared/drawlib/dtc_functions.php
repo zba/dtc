@@ -4,7 +4,16 @@ if(function_exists("date_default_timezone_set") and function_exists("date_defaul
 @date_default_timezone_set(@date_default_timezone_get());
 
 function find_domain_extension($domain){
-	$pos = strrchr($domain,".");
+        global $allTLD;
+
+	# $pos = strrchr($domain,".");
+	$nbr_tld = sizeof($allTLD);
+        for($i=0;$i<$nbr_tld;$i++){
+                if( preg_match("/\\".$allTLD[$i]."\$/",$domain)){
+                        $pos = $allTLD[$i];
+                }
+        }
+
 	if($pos === FALSE){
 		return FALSE;
 	}
@@ -407,9 +416,9 @@ function HTTP_Get($URL,$data, $referrer=""){
 }
 
 function logPay($txt){
-//	$fp = fopen("/tmp/paylog.txt","a");
-//	fwrite($fp,$txt."\n");
-//	fclose($fp);
+	//$fp = fopen("/tmp/paylog.txt","a");
+	//fwrite($fp,$txt."\n");
+	//fclose($fp);
 	echo $txt."<br>";
 }
 

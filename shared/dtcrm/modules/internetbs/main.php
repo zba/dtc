@@ -1,14 +1,23 @@
 <?php
+/**
+ * Internet.bs registry plugin for DTC.
+ *
+ * Go to http://internet.bs/ and sign up for an account. Credit some funds
+ * and then you can request an API key. 
+ *
+ * @author Darren Poulson <daz@tinynetworks.co.uk>
+ * @version 1.0
+ * @package domain_registrar_plugin
+ */
 
-// $post_url is usually something like: pn_reg.cgi
-// and with the help of the configurator, it will be transformed into: https://pay.web.cc/new/cgi-bin/pn_reg.cgi
-// $source is the internetbs username
-// $post_params_hash is a hashtable of the POST parameters
+$tag = "INTERNET-BS";
 
-// returns 99 if there are no $source values present in the request
-// returns error code from URL
-// returns actual content from URL
-
+/**
+ * Post the string to the API server
+ * @param string $url URL to post to
+ * @param string $data Data to post to URL
+ * @return string
+ */
 function InternetbsPostUsingCurl($url,$data) {
         $headers = array();
         $headers[] = 'Content-type: application/x-www-form-urlencoded;charset=UTF-8';
@@ -32,13 +41,18 @@ function InternetbsPostUsingCurl($url,$data) {
         return $ret;
 }
 
-
+/**
+ * Format submition string for server
+ *
+ * @param string $post_url Path to post to on the server
+ * @param array $post_params_hash Array of paramaters to pass to server
+ * @param string $use_post Force use of POST
+ * @return string 
+ */
 function internetbs_submit($post_url, $post_params_hash, $use_post="yes"){
 	global $conf_internetbs_server_url;
 	global $conf_internetbs_username;
         global $conf_internetbs_password;
-	global $errno;
-	global $errstr;
 
 	// Print the variable to be posted yes/no
 
@@ -56,17 +70,31 @@ function internetbs_submit($post_url, $post_params_hash, $use_post="yes"){
         return InternetbsPostUsingCurl($post_url,$strContent);
 }
 
+/**
+ * Checks the availability of the domain
+ * 
+ * @param string $domain_name the domain name to check
+ * @return array
+ */
 function internetbs_registry_check_availability($domain_name){
 	$post_params_hash["domain"] = $domain_name;
-	$response = json_decode(internetbs_submit("/Domain/Check", $post_params_hash));
+	$internetbs_ret = json_decode(internetbs_submit("/Domain/Check", $post_params_hash));
         $ret["is_success"] = 1;
-        if ( $response->{'status'} == "AVAILABLE" ) {
+        if ( $internetbs_ret->{'status'} == "AVAILABLE" ) {
             $ret["attributes"]["status"] = "available";
+	    $ret["attributes"]["minperiod"] = $internetbs_ret->{'minregperiod'};
+	    $ret["attributes"]["maxperiod"] = $internetbs_ret->{'maxregperiod'};
         }
-	$ret["response_text"] = $response->{'status'};
+	$ret["response_text"] = $internetbs_ret->{'status'};
 	return $ret;
 }
 
+/**
+ * Prepare a list of whois contacts for passing to the registrar
+ *
+ * @param array $contacts array of contacts
+ * @return array
+ */
 function internetbs_prepar_whois_params($contacts){
 	if($contacts["owner"]["company"] == ""){
 		$owner = $contacts["owner"]["firstname"]." ".$contacts["owner"]["lastname"];
@@ -120,6 +148,18 @@ function internetbs_prepar_whois_params($contacts){
 	return $post_params_hash;
 }
 
+/**
+ * Register a domain name
+ *
+ * @param string $adm_login Admin login (not used)
+ * @param string $adm_pass Admin password (no used)
+ * @param string $domain_name Domain name to register
+ * @param integer $period Length of registration period requested
+ * @param array $contacts array of contacts to associate with this domain
+ * @param array $dns_servers array of DNS servers to use
+ * @param string $new_user Is this a new user?
+ * @return array
+ */
 function internetbs_registry_register_domain($adm_login,$adm_pass,$domain_name,$period,$contacts,$dns_servers,$new_user){
 	global $conf_internetbs_username;
 	global $conf_internetbs_password;
@@ -141,6 +181,7 @@ function internetbs_registry_register_domain($adm_login,$adm_pass,$domain_name,$
 	$internetbs_ret = json_decode(internetbs_submit("/Domain/Create", $post_params_hash));
 	if($internetbs_ret->product[0]->{'status'} == "SUCCESS"){
 		$ret["is_success"] = 1;
+		$ret["attributes"]["expiration"] = $internetbs_ret->product[0]->{'expiration'};
 	}else{
 		$ret["is_success"] = 0;
                 $ret["response_text"] = $internetbs_ret->{'message'};
@@ -148,18 +189,83 @@ function internetbs_registry_register_domain($adm_login,$adm_pass,$domain_name,$
 	return $ret;
 }
 
+/**
+ * Register a new domain name server with the top level domains
+ * 
+ * @param string $adm_login Admin login (not used)
+ * @param string $adm_pass Admin password (not used)
+ * @param string $subdomain Subdomain to register
+ * @param string $domain_name Domain name on which to register the subdomain
+ * @param integer $ip IP address of subdomain
+ * @return array
+ */
 function internetbs_registry_add_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip){
+	$post_params_hash["host"] = $subdomain.".".$domain_name;
+	$post_params_hash["ip_list"] = $ip;
+        # echo "Adding: ".$post_params_hash['host']." with IP ".$post_params_hash['ip_list']."<br />";
+        $internetbs_ret = json_decode(internetbs_submit("/Domain/Host/Create", $post_params_hash));
+        if($internetbs_ret->{'status'} == "SUCCESS"){
+                $ret["is_success"] = 1;
+        }else{
+                $ret["is_success"] = 0;
+                $ret["response_text"] = $internetbs_ret->{'message'};
+        }
+        return $ret;
+	
 }
 
+/**
+ * Update an existing domain name server with the top level domains
+ *
+ * @param string $adm_login Admin login (not used)
+ * @param string $adm_pass Admin password (not used)
+ * @param string $subdomain Subdomain to register
+ * @param string $domain_name Domain name on which to register the subdomain
+ * @param integer $ip IP address of subdomain
+ * @return array
+ */
 function internetbs_registry_modify_nameserver($adm_login,$adm_pass,$subdomain,$domain_name,$ip){
+	$post_params_hash["host"] = $subdomain.".".$domain_name;
+        $post_params_hash["ip_list"] = $ip;
+        $internetbs_ret = json_decode(internetbs_submit("/Domain/Host/Update", $post_params_hash));
+        if($internetbs_ret->{'status'} == "SUCCESS"){
+                $ret["is_success"] = 1;
+        }else{
+                $ret["is_success"] = 0;
+                $ret["response_text"] = $internetbs_ret->{'message'};
+        }
+        return $ret;
 }
 
+/**
+ * Delete a domain name server from the top level domains
+ *
+ * @param string $adm_login Admin login (not used)
+ * @param string $adm_pass Admin password (not used)
+ * @param string $subdomain Subdomain to register
+ * @param string $domain_name Domain name on which to register the subdomain
+ * @param integer $ip IP address of subdomain
+ * @return array
+ */
 function internetbs_registry_delete_nameserver($adm_login,$adm_pass,$subdomain,$domain_name){
+        $post_params_hash["host"] = $subdomain.".".$domain_name;
+        $internetbs_ret = json_decode(internetbs_submit("/Domain/Host/Delete", $post_params_hash));
+        if($internetbs_ret->{'status'} == "SUCCESS"){
+                $ret["is_success"] = 1;
+        }else{
+                $ret["is_success"] = 0;
+                $ret["response_text"] = $internetbs_ret->{'message'};
+        }
+        return $ret;
+
 }
 
-function internetbs_registry_get_domain_price($domain_name,$period){
-}
-
+/**
+ * Get the WHOIS information for a given domain name
+ * 
+ * @param string $domain_name
+ * @return array
+ */
 function internetbs_registry_get_whois($domain_name){
 	$post_params_hash["domain"] = $domain_name;
 	$post_params_hash["responseformat"] = "TEXT";
@@ -169,6 +275,15 @@ function internetbs_registry_get_whois($domain_name){
 	return $ret;
 }
 
+/** 
+ * Update the WHOIS information for the given domain name
+ * 
+ * @param string $adm_login Admin login (not used)
+ * @param string $adm_pass Admin password (not used)
+ * @param string $domain_name Domain name to edit
+ * @param array $contacts Array of contacts to send
+ * @return array 
+ */
 function internetbs_registry_update_whois_info($adm_login,$adm_pass,$domain_name,$contacts){
 	global $conf_internetbs_username;
 	global $conf_internetbs_password;
@@ -186,28 +301,109 @@ function internetbs_registry_update_whois_info($adm_login,$adm_pass,$domain_name
         return $ret;
 }
 
+/**
+ * 
+ */
 function internetbs_registry_update_whois_dns($adm_login,$adm_pass,$domain_name,$dns){
+        global $conf_internetbs_username;
+        global $conf_internetbs_password;
+        global $conf_addr_primary_dns;
+        global $conf_addr_secondary_dns;
+        # echo "Testing";
+
+        if ($dns[0] == "default") {
+             $dns1 = $conf_addr_primary_dns;
+        }
+
+        if ($dns[1] == "default") {
+             $dns2 = $conf_addr_secondary_dns;
+        }
+
+        $post_params_hash["domain"] = $domain_name;
+        $post_params_hash["ns_list"] = "$dns1,$dns2";
+        $internetbs_ret = json_decode(internetbs_submit("/Domain/Update", $post_params_hash));
+        if($internetbs_ret->product[0]->{'status'} == "SUCCESS"){
+                $ret["is_success"] = 1;
+        }else{
+                $ret["is_success"] = 0;
+                $ret["response_text"] = $internetbs_ret->{'message'};
+        }
+        return $ret;
+
 }
 
-function internetbs_registry_check_transfer($domain){
+
+/**
+ * Check the status of the Registrar Lock on a given domain name
+ *
+ * @param string $domain_name
+ * @return array 
+ */
+function internetbs_registry_check_transfer($domain_name){
+        $post_params_hash["domain"] = $domain_name;
+        $internetbs_ret = json_decode(internetbs_submit("/Domain/Info", $post_params_hash));
+        $ret["is_success"] = 1;
+        if ( $internetbs_ret->{'registrarlock'} == "DISABLED" ) 
+              $ret["attributes"]["transferrable"] = 1;
+        else
+              $ret["attributes"]["transferrable"] = 1;
+        $ret["attributes"]["reason"] = "Registrar Lock: ".$internetbs_ret->{'registrarlock'};
+        
+        return $ret;
+
 }
 
-function internetbs_registry_renew_domain($adm_login,$adm_pass,$domain,$curent_year_expir,$period){
+/**
+ * Renew a domain name with the registrar
+ * 
+ * @param string $domain_name Domain name to be renewed
+ * @param integer $period Length of time to renew for
+ * @return array
+ */
+function internetbs_registry_renew_domain($domain_name,$period){
+        $post_params_hash["domain"] = $domain_name;
+        $post_params_hash["period"] = $period."Y";
+        $internetbs_ret = json_decode(internetbs_submit("/Domain/Renew", $post_params_hash));
+        if ( $internetbs_ret->{'status'} == "SUCCESS" )
+              $ret["is_success"] = 1;
+        else
+              $ret["is_success"] = 0;
+        $ret["message"] = $internetbs_ret->{'message'};
+
+        return $ret;
+
 }
 
-function internetbs_registry_change_password($adm_login,$adm_pass,$domain,$new_pass){
+/**
+ *
+ */
+function internetbs_registry_change_password($adm_login,$adm_pass,$domain_name,$new_pass){
 }
 
-function internetbs_registry_get_auth_code($domain){
-        $post_params_hash["domain"] = $domain;
-        $internetbs_ret = internetbs_submit("/Domain/Info", $post_params_hash,"no");
+
+/**
+ * Get the transfer auth code for the given domain from the registrar
+ * 
+ * @param string $domain_name Domain name for request
+ * @return array
+ */
+function internetbs_registry_get_auth_code($domain_name){
+        $post_params_hash["domain"] = $domain_name;
+        $internetbs_ret = json_decode(internetbs_submit("/Domain/Info", $post_params_hash,"no"));
         $ret["is_success"] = 1;
         $ret["response_text"] = $internetbs_ret->{'transferauthinfo'};
         return $ret;
 }
 
-function internetbs_registry_set_domain_protection($domain,$sel) {
-        $post_params_hash["domain"] = $domain;
+/**
+ * Set the domain name transfer protection status
+ * 
+ * @param string $domain_name Domain name to set protection level on
+ * @param string $sel Protection status to set
+ * @return array
+ */
+function internetbs_registry_set_domain_protection($domain_name,$sel) {
+        $post_params_hash["domain"] = $domain_name;
         switch($sel){
              case "unlocked":
                 $cmd = "/Domain/RegistrarLock/Disable";
@@ -220,12 +416,54 @@ function internetbs_registry_set_domain_protection($domain,$sel) {
                 $cmd = "/Domain/RegistrarLock/Enable";
                 break;
         }
-	$internetbs_ret = internetbs_submit($cmd, $post_params_hash,"no");
+	$internetbs_ret = json_decode(internetbs_submit($cmd, $post_params_hash,"no"));
 	$ret["is_success"] = 1;
         $ret["response_text"] = $internetbs_ret->{'status'};
         return $ret;
 
 }
+
+/**
+ * Transfer a domain name from an existing registrar to this one
+ *
+ * @param string $adm_login
+ * @param string $adm_pass
+ * @param string $domain_name
+ * @param array $contacts
+ * @param array $dns_servers
+ * @param string $new_user
+ * @return array
+ */
+function internetbs_registry_transfer_domain($adm_login,$adm_pass,$domain_name,$contacts,$dns_servers,$new_user,$authcode) {
+        global $conf_internetbs_username;
+        global $conf_internetbs_password;
+        global $conf_addr_primary_dns;
+        global $conf_addr_secondary_dns;
+
+        if ($dns_servers[0] == "default") {
+             $dns1 = $conf_addr_primary_dns;
+        }
+
+        if ($dns_servers[1] == "default") {
+             $dns2 = $conf_addr_secondary_dns;
+        }
+
+        $post_params_hash["transferauthinfo"] = $authcode;
+
+        $post_params_hash = internetbs_prepar_whois_params($contacts);
+        $post_params_hash["domain"] = $domain_name;
+        $post_params_hash["ns_list"] = "$dns1,$dns2";
+        $internetbs_ret = json_decode(internetbs_submit("/Domain/Transfer/Initiate", $post_params_hash));
+        if($internetbs_ret->product[0]->{'status'} == "SUCCESS"){
+                $ret["is_success"] = 1;
+        }else{
+                $ret["is_success"] = 0;
+                $ret["response_text"] = $internetbs_ret->{'message'};
+        }
+        return $ret;
+
+}
+
 
 $configurator = array(
 	"title" => _("InternetBS configuration"),
@@ -244,7 +482,7 @@ $configurator = array(
 		"internetbs_password" => array(
 			"legend" => _("Password: "),
 			"type" => "text",
-			"size" => "20")
+			"size" => "20"),
 		)
 	);
 
@@ -255,7 +493,6 @@ $registry_api_modules[] = array(
 "registry_add_nameserver" => "internetbs_registry_add_nameserver",
 "registry_modify_nameserver" => "internetbs_registry_modify_nameserver",
 "registry_delete_nameserver" => "internetbs_registry_delete_nameserver",
-"registry_get_domain_price" => "internetbs_registry_get_domain_price",
 "registry_register_domain" => "internetbs_registry_register_domain",
 "registry_update_whois_info" => "internetbs_registry_update_whois_info",
 "registry_update_whois_dns" => "internetbs_registry_update_whois_dns",
@@ -264,7 +501,8 @@ $registry_api_modules[] = array(
 "registry_change_password" => "internetbs_registry_change_password",
 "registry_get_whois" => "internetbs_registry_get_whois",
 "registry_get_auth_code" => "internetbs_registry_get_auth_code",
-"registry_set_domain_protection" => "internetbs_registry_set_domain_protection"
+"registry_set_domain_protection" => "internetbs_registry_set_domain_protection",
+"registry_transfert_domain" => "internetbs_registry_transfer_domain"
 );
 
 ?>

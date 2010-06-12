@@ -263,20 +263,26 @@ _("Have another try:") . "<br>$form_start ".make_registration_tld_popup()."</for
 		$years = _("years") ;
 		$out .= _("Please select registran and the 3 contact handles you want to use for registering that domain name.") ."<br><br>$form_start";
 		$out .= whoisHandleSelection($admin);
+		if ( isset($domlookup["attributes"]["minperiod"]) )
+                     $minreg = str_replace("Y", "", $domlookup["attributes"]["maxperiod"]);
+                else
+                     $minreg = 1;
+                if ( isset($domlookup["attributes"]["maxperiod"]) )
+                     $maxreg = str_replace("Y", "", $domlookup["attributes"]["maxperiod"]);
+		else
+		     $maxreg = 10;
 		$out .= "<br>$form_enter_dns_infos<br><br>
 ". _("Select how long you want to register this domain name:") ."<br>
-<select name=\"toreg_period\">
-<option value=\"1\">1 $year</option>
-<option value=\"2\">2 $years</option>
-<option value=\"3\">3 $years</option>
-<option value=\"4\">4 $years</option>
-<option value=\"5\">5 $years</option>
-<option value=\"6\">6 $years</option>
-<option value=\"7\">7 $years</option>
-<option value=\"8\">8 $years</option>
-<option value=\"9\">9 $years</option>
-<option value=\"10\">10 $years</option>
-</select><br><br>
+<select name=\"toreg_period\"><option value=\"1\">1 $year</option>";
+		for ($p=2;$p<=$maxreg;$p++) {
+                   $out .= "<option value=\"$p\"";
+                   if ($p == $minreg)
+                      $out .= " selected>Minimum";
+		   else
+		      $out .= ">";
+                   $out .= " $p $years</option>";
+                }
+                $out .= "</select><br><br>
 ".submitButtonStart(). _("Ok") .submitButtonEnd()."
 </form>
 ";
@@ -318,7 +324,7 @@ $form_start
 		return $out;
 	}
 	$out .= _("Remaining on your account: ") ." $secpayconf_currency_letters" . $remaining . "<br>
-". _("Total price: ") ." \$". $fqdn_price . "<br><br>";
+". _("Total price: ") ." ".$secpayconf_currency_letters."". $fqdn_price . "<br><br>";
 	if($fqdn_price > $remaining){
 		$to_pay = $fqdn_price - $remaining;
 
