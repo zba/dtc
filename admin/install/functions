@@ -3973,14 +3973,25 @@ password ${MYSQL_DTCDAEMONS_PASS}
 		echo "-> Didn't find libnss nsswitch.conf: configuration of libnssmysql aborded"
 	fi
 
-	# Fixup the Lenny /etc/pam.d/common-auth to use libpam-unix2
+	# Fixup the Lenny /etc/pam.d/common-auth to use libpam-unix2 so we can use LibNSSMySQL for ssh logins from vhosts
 	if [ -e /etc/pam.d/common-auth ] ; then
-		if [ -e /lib/security/pam_unix2.so ] ; then
+		# We do this in Lenny only
+		DEB_CODENAME=`lsb_release -c | awk '{print $2}'`
+		if [ "${DEB_CODENAME}" = "lenny" -a -e /lib/security/pam_unix2.so ] ; then
 			if grep "pam_unix.so" /etc/pam.d/common-auth >/dev/null ; then
 				sed -i "s/pam_unix.so/pam_unix2.so/" /etc/pam.d/common-auth
 			fi
 			if grep "nullok_secure" /etc/pam.d/common-auth >/dev/null ; then
 				sed -i "s/nullok_secure/nullok/" /etc/pam.d/common-auth
+			fi
+		# And in SID, we fix back as it breaks ssh logins :/
+		else
+			if grep "pam_unix2.so" /etc/pam.d/common-auth >/dev/null ; then
+				sed -i "s/pam_unix2.so/pam_unix.so/" /etc/pam.d/common-auth
+			fi
+			COMMON_AUTH_NULL_SELECTION=`cat /etc/pam.d/common-auth | grep 'pam_unix' | awk '{print $4}'`
+			if [ "${COMMON_AUTH_NULL_SELECTION}" = "nullok" ; then
+				sed -i "s/nullok/nullok_secure/" /etc/pam.d/common-auth
 			fi
 		fi
 	fi
