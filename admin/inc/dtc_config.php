@@ -194,17 +194,10 @@ function configEditorTemplate ($dsc,$conftype="config"){
 			break;
 		case "checkboxcomma":
 			$nb_choices = sizeof($dsc["cols"][ $keys[$i] ]["values"]);
-			//echo "\n ddd: ";
-			//var_dump ($dsc["cols"][ $keys[$i] ]["values"]);
-			//echo "\n asd: ";
-			//var_dump ($$fld);
 			$control = "";
 			$arr_values = split(",",$$fld);
-			//echo "\n eee: ";
-			//var_dump ($arr_values);
 			$cntchk = 0;
 			for($j=0;$j<$nb_choices;$j++){
-				//var_dump(in_array($dsc["cols"][ $keys[$i] ]["values"][$j], $arr_values));
 				if (in_array($dsc["cols"][ $keys[$i] ]["values"][$j], $arr_values)){
 					$selected = " checked ";
 				}else{
@@ -1090,11 +1083,10 @@ function drawGeneralConfig(){
 	global $cc_code_array;
 	global $dtcshared_path;
 	global $conf_skin;
-
+	global $allTLD;
 	global $conf_skin;
 	global $dtcshared_path;
 	$dir = $dtcshared_path."/gfx/skin/";
-
 	$out = "";
 
 	$dsc = array(
@@ -1136,6 +1128,10 @@ function drawGeneralConfig(){
 				"legend" => _("This server location: "),
 				"values" => array_keys($cc_code_array),
 				"display_replace" => array_values($cc_code_array)),
+			"this_server_default_tld" => array(
+				"type" => "popup",
+				"legend" => _("Registration default TLD: "),
+				"values" => array_values($allTLD)),
 			"selling_conditions_url" => array(
 				"legend" => _("Selling conditions URL: "),
 				"type" => "text",

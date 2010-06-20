@@ -192,6 +192,7 @@ function isTLD($tld){
 
 function domainNamePopup($domain_name=""){
 	global $allTLD;
+	global $conf_this_server_default_tld;
 
 	$out = "";
 
@@ -200,7 +201,11 @@ function domainNamePopup($domain_name=""){
 		if( preg_match("/\\".$allTLD[$i]."\$/",$domain_name)){
 			$selected = " selected ";
 		}else{
-			$selected = "";
+			if ($allTLD[$i] == $conf_this_server_default_tld){
+				$selected = " selected ";
+			}else{
+				$selected = "";
+			}
 		}
 		$out .= "<option value=\"".$allTLD[$i]."\" $selected>". $allTLD[$i] ."</option>";
 	}

@@ -276,7 +276,8 @@ $dtc_database = array(
 
 			"panel_title" => "varchar(255) NOT NULL default 'default'",
 			"panel_subtitle" => "varchar(255) NOT NULL default 'default'",
-			"panel_logo" => "varchar(255) NOT NULL default 'default'"
+			"panel_logo" => "varchar(255) NOT NULL default 'default'",
+			"this_server_default_tld" => "VARCHAR( 10 ) NOT NULL DEFAULT '.com'"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

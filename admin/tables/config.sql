@@ -143,5 +143,7 @@ internetbs_server_url varchar (256) NOT NULL default 'https://testapi.internet.b
 internetbs_username varchar (128) NOT NULL default '',
 internetbs_password varchar (128) NOT NULL default '',
 
+`this_server_default_tld` VARCHAR( 10 ) NOT NULL DEFAULT '.com',
+
 UNIQUE KEY unicrow (unicrow)
 )MAX_ROWS = 1 TYPE=MyISAM
