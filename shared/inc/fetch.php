@@ -264,22 +264,22 @@ function fetchAdminStats($admin){
 				$db_name = mysql_result($r,$i,"Db");
 
 				$query = "SHOW TABLE STATUS FROM $db_name;";
-				$result = mysql_query($query);	
-				if (!$result)
-				{
-					$ret["err"] = 7;
-					$ret["mesg"] = "Cannot query \"$q\" !".mysql_error();
-					mysql_select_db($conf_mysql_db);
-					return $ret;
+				$result = mysql_query($query);
+				if (!$result){
+					// $ret["err"] = 7;
+					// $ret["mesg"] = "Cannot query \"$q\" !".mysql_error();
+					// mysql_select_db($conf_mysql_db);
+					// return $ret;
+				}else{
+					$num_tbl = mysql_num_rows($result);
+					$ret["db"][$i]["du"] = 0;
+					for($j=0;$j<$num_tbl;$j++){
+						$db_du = mysql_result($result,$j,"Data_length");
+						$ret["db"][$i]["du"] += $db_du;
+						$ret["total_du_db"] += $db_du;
+					}
+					$ret["db"][$i]["name"] = $db_name;
 				}
-				$num_tbl = mysql_num_rows($result);
-				$ret["db"][$i]["du"] = 0;
-				for($j=0;$j<$num_tbl;$j++){
-					$db_du = mysql_result($result,$j,"Data_length");
-					$ret["db"][$i]["du"] += $db_du;
-					$ret["total_du_db"] += $db_du;
-				}
-				$ret["db"][$i]["name"] = $db_name;
 			}
 		}
 		mysql_select_db($conf_mysql_db);
