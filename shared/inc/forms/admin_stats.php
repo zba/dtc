@@ -80,7 +80,7 @@ function drawAdminTools_AdminStats($admin){
 
 	$out .= "<br><br><h3>". _("Databases disk usage:") ."</h3>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
-	$out .= "<tr><td$nowrap><b>"._("Database Name")."</b></td><td$nowrap><b>"._("Disk usage")."</b></tr>";
+	$out .= "<tr><td$nowrap class=\"dtcDatagrid_table_titles\"><b>"._("Database Name")."</b></td><td$nowrap class=\"dtcDatagrid_table_titles\"><b>"._("Disk usage")."</b></tr>";
 	if(isset($stats["db"])){
 		$n = sizeof($stats["db"]);
 	}else{
@@ -88,9 +88,9 @@ function drawAdminTools_AdminStats($admin){
 	}
 	for($i=0;$i<$n;$i++){
 		if($i % 2){
-			$bgcolor = "$nowrap nowrap bgcolor=\"#000000\" style=\"color:#FFFFFF\" ";
+			$bgcolor = "$nowrap ";
 		}else{
-			$bgcolor = $nowrap;
+			$bgcolor = "$nowrap class=\"alternatecolorline\" ";
 		}
 		$out .= "<tr>";
 		$out .= "<td$bgcolor>".$stats["db"][$i]["name"]."</td>";
@@ -101,32 +101,28 @@ function drawAdminTools_AdminStats($admin){
 
 	$out .= "<br><br><h3>"._("Domain name traffic and disk usage:")."</h3>";
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="0" cellspacing="1">';
-	$out .= "<tr><td><b>"._("Domain name")."</b></td><td$nowrap><b>"._("Disk usage")."</b></td>
-	<td><b>POP3</b></td><td><b>IMAP</b></td><td><b>SMTP</b></td><td><b>FTP</b></td><td><b>HTTP</b></td>
-	<td$nowrap><b>HTTP HITS</b></td>
-	<td$nowrap><b>". _("Total traffic") ."</b></td></tr>";
+	$out .= "<tr><td class=\"dtcDatagrid_table_titles\"><b>"._("Domain name")."</b></td><td$nowrap class=\"dtcDatagrid_table_titles\"><b>"._("Disk usage")."</b></td>
+	<td class=\"dtcDatagrid_table_titles\"><b>POP3</b></td><td class=\"dtcDatagrid_table_titles\"><b>IMAP</b></td><td class=\"dtcDatagrid_table_titles\"><b>SMTP</b></td><td class=\"dtcDatagrid_table_titles\"><b>FTP</b></td><td class=\"dtcDatagrid_table_titles\"><b>HTTP</b></td>
+	<td$nowrap class=\"dtcDatagrid_table_titles\"><b>HTTP HITS</b></td>
+	<td$nowrap class=\"dtcDatagrid_table_titles\"><b>". _("Total traffic") ."</b></td></tr>";
 	if (isset($stats["domains"]))
 	{
 		for($ad=0;$ad<sizeof($stats["domains"]);$ad++){
 			if($ad % 2){
-				$bgcolor = "$nowrap nowrap bgcolor=\"#000000\" ";
-				$fnt1 = "<font color=\"#FFFFFF\">";
-				$fnt2 = "</font>";
+				$bgcolor = "$nowrap ";
 			}else{
-				$bgcolor = $nowrap;
-				$fnt1 = "";
-				$fnt2 = "";
+				$bgcolor = "$nowrap class=\"alternatecolorline\" ";
 			}
 			$out .= "<tr>";
-			$out .= "<td$bgcolor>$fnt1".$stats["domains"][$ad]["name"]."$fnt2</td>";
-			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["du"])."$fnt2</td>";
-			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["pop"])."$fnt2</td>";
-			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["imap"])."$fnt2</td>";
-			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["smtp"])."$fnt2</td>";
-			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["ftp"])."$fnt2</td>";
-			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["http"])."$fnt2</td>";
-			$out .= "<td$bgcolor>$fnt1".$stats["domains"][$ad]["hit"]."$fnt2</td>";
-			$out .= "<td$bgcolor>$fnt1".smartByte($stats["domains"][$ad]["total_transfer"])."$fnt2</td>";
+			$out .= "<td$bgcolor>".$stats["domains"][$ad]["name"]."</td>";
+			$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["du"])."</td>";
+			$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["pop"])."</td>";
+			$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["imap"])."</td>";
+			$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["smtp"])."</td>";
+			$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["ftp"])."</td>";
+			$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["http"])."</td>";
+			$out .= "<td$bgcolor>".$stats["domains"][$ad]["hit"]."</td>";
+			$out .= "<td$bgcolor>".smartByte($stats["domains"][$ad]["total_transfer"])."</td>";
 			$out .= "</tr>";
 		}
 	}
