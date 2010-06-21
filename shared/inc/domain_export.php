@@ -257,6 +257,9 @@ function domainImport($path_from,$adm_login,$adm_pass){
 	global $pro_mysql_ftp_table;
 	global $pro_mysql_ssh_table;
 
+	global $conf_dtc_system_uid;
+	global $conf_dtc_system_gid;
+
 	// Read the file
 	$fp = fopen($path_from, "r+");
 	$xml_content = fread($fp, filesize($path_from));
@@ -350,6 +353,13 @@ function domainImport($path_from,$adm_login,$adm_pass){
 			"login,password,homedir",",hostname",",'$dom_name'");
 		recreateAllRows($pro_mysql_ssh_table,"hostname='$dom_name'",$cur_dom["ssh"],
 			"login,crypt,password,homedir",",hostname",",'$dom_name'");
+		// Fixes the UID / GID for ssh, ftp and email accounts
+		$q = "UPDATE $pro_mysql_pop_table SET uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid' WHERE mbox_host='$dom_name';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$q = "UPDATE $pro_mysql_ftp_table SET uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid' WHERE hostname='$dom_name';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$q = "UPDATE $pro_mysql_ssh_table SET uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid' WHERE hostname='$dom_name';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	}
 	if( isset($dom_ar["mysql"])){
 		$n_user = sizeof($dom_ar["mysql"]);
