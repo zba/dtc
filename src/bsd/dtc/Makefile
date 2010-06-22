@@ -45,6 +45,8 @@ CONFLICTS=	dtc-toaster-[0-9]* dtc-postfix-courier-[0-9]*
 
 USE_GETTEXT=	yes
 
+USE_GMAKE=	yes
+
 NO_BUILD=	yes
 USE_PHP=	mysql pcre session
 
@@ -130,7 +132,7 @@ MANCOMPRESSED=	no
 do-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-install ${PREFIX}/sbin/dtc-install
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-deinstall ${PREFIX}/sbin/dtc-deinstall
-	@${MAKE} -C ${WRKDIR}/dtc-__VERSION__.__RELEASE__ install-dtc-common INSTALL=install \
+	@${GMAKE} -C ${WRKDIR}/dtc-__VERSION__.__RELEASE__ install-dtc-common INSTALL=install \
 		DTC_APP_DIR=${WWWDIR} DTC_GEN_DIR=${PREFIX}/var/dtc CONFIG_DIR=${PREFIX}/etc DTC_ETC_DIRECTORY=${ETCDIR} \
 		DTC_DOC_DIR=${DOCSDIR} MANUAL_DIR=${MANPREFIX}/man BIN_DIR=${PREFIX}/bin UNIX_TYPE=bsd VERS=__VERSION__
 	@${CAT} ${PKGMESSAGE}
