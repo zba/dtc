@@ -159,7 +159,9 @@ function headAndTailEmailMessage($msg){
 }
 
 $allTLD = array(".com", ".aero", ".asia", ".biz", ".cat", ".coop", ".edu", ".gov", ".info", ".int", ".jobs", ".mil", ".mobi", ".museum", ".name", ".net",".org", ".pro", ".tel", ".travel",
-".ac",".ad",".ae",".af",".ag",".ai",".al",".am",".an",".ao",".aq",".ar",".as",".at",".au",".aw",".ax",".az",
+".ac",".ad",".ae",".af",".ag",".ai",".al",".am",".an",".ao",".aq",
+".ar",".com.ar",".net.ar",".mil.ar",".edu.ar",".org.ar",".tur.ar",".int.ar",".gov.ar",".gob.ar",
+".as",".at",".au",".aw",".ax",".az",
 ".ba",".bb",".bd",".be",".bf",".bg",".bh",".bi",".bj",".bm",".bn",".bo",".br",".bs",".bt",".bw",".by",".bz",
 ".ca",".cc",".cd",".cf",".cg",".ch",".ci",".ck",".cl",".cm",".cn",".co",".cr",".cu",".cv",".cx",".cy",".cz",
 ".de",".dj",".dk",".dm",".do",".dz",
