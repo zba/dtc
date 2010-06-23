@@ -120,7 +120,7 @@ for($i=0;$i<$nbr_tables;$i++){
 		else
 			$q = "CREATE TABLE IF NOT EXISTS ".$tblnames[$i]."(
 ".$varnames[0]." ".$allvars[$varnames[0]].");";
-		echo $q;
+//		echo $q;
 		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 	}
 
