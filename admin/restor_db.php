@@ -279,7 +279,7 @@ $q = "ALTER TABLE `domain` CHANGE `domain_parking_type` `domain_parking_type` en
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Change ip pool table enum
-$q = "ALTER TABLE ip_pool CHANGE `zone_type` `zone_type` enum('support_ticket','ip_per_ip','ip_per_ip_cidr','one_zonefile') default 'one_zonefile'";
+$q = "ALTER TABLE ip_pool CHANGE `zone_type` `zone_type` enum('support_ticket','ip_per_ip','ip_per_ip_cidr','one_zonefile','one_zonefile_with_minus','one_zonefile_with_name','one_zonefile_with_slash') default 'one_zonefile'";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Increase password lenght to 255 chars in thedb

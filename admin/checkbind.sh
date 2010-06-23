@@ -28,6 +28,7 @@ if [ -n "$bindgroup" ]; then
 	chmod 0770 $conf_generated_file_path/slave_zones
 	chown dtc:$bindgroup $conf_generated_file_path/named.conf
 	chmod 0660 $conf_generated_file_path/named.conf
+	chown dtc:$bindgroup $conf_generated_file_path/named.slavezones.conf
 	chmod 0660 $conf_generated_file_path/named.slavezones.conf
 	if [ -e $conf_generated_file_path/reverse_zones ] ; then
 		chown -R dtc:$bindgroup $conf_generated_file_path/reverse_zones

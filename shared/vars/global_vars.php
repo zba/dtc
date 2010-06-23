@@ -96,7 +96,8 @@ if($panel_type != "email" && isset($edit_domain) && !preg_match("/^([a-z0-9]+)([
 //don't save things into the session for cronjobs
 if($panel_type!="cronjob"){
 	// Save menu style preference in session
-	session_register("dtc_use_text_menu");
+	//session_register("dtc_use_text_menu");
+	if(isset($dtc_use_text_menu)) $_SESSION["dtc_use_text_menu"]=$dtc_use_text_menu;
 	if(isset($_SESSION["dtc_use_text_menu"]) && !is_string($_SESSION["dtc_use_text_menu"])){
 		unset($dtc_use_text_menu);
 	}

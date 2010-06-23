@@ -367,7 +367,7 @@ function rnds_generate(){
 	$tbl = array();
 
 	// Take only the zones for which a rdns_regen is set in the vps_ip table
-	$q = "SELECT DISTINCT $pro_mysql_ip_pool_table.id,$pro_mysql_ip_pool_table.ip_addr,$pro_mysql_ip_pool_table.netmask,$pro_mysql_ip_pool_table.zone_type,$pro_mysql_ip_pool_table.custom_part
+	$q = "SELECT DISTINCT $pro_mysql_ip_pool_table.id,$pro_mysql_ip_pool_table.ip_addr,$pro_mysql_ip_pool_table.netmask,$pro_mysql_ip_pool_table.zone_type,$pro_mysql_ip_pool_table.custom_part,$pro_mysql_ip_pool_table.location
 	FROM $pro_mysql_ip_pool_table,$pro_mysql_vps_ip_table
 	WHERE $pro_mysql_vps_ip_table.rdns_regen='yes'
 	AND $pro_mysql_ip_pool_table.id=$pro_mysql_vps_ip_table.ip_pool_id;";
@@ -383,7 +383,7 @@ function rnds_generate(){
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	// Do same for the VPSes
-	$q = "SELECT DISTINCT $pro_mysql_ip_pool_table.id,$pro_mysql_ip_pool_table.ip_addr,$pro_mysql_ip_pool_table.netmask,$pro_mysql_ip_pool_table.zone_type,$pro_mysql_ip_pool_table.custom_part
+	$q = "SELECT DISTINCT $pro_mysql_ip_pool_table.id,$pro_mysql_ip_pool_table.ip_addr,$pro_mysql_ip_pool_table.netmask,$pro_mysql_ip_pool_table.zone_type,$pro_mysql_ip_pool_table.custom_part,$pro_mysql_ip_pool_table.location
 	FROM $pro_mysql_ip_pool_table,$pro_mysql_dedicated_ips_table
 	WHERE $pro_mysql_dedicated_ips_table.rdns_regen='yes'
 	AND $pro_mysql_ip_pool_table.id=$pro_mysql_dedicated_ips_table.ip_pool_id;";
@@ -550,6 +550,231 @@ $allow_trans_str	allow-query { any; };
 			fwrite($filep,$zonefile_content);
 			fclose($filep);
 			break;
+		case "one_zonefile_with_minus":
+			$zone_name = calculate_reverse_mask_and_cidr($pool_ip_addr,$pool_netmask);
+/*			$reverse_dns_file .= "zone \"$zone_name\" conmenos in {
+	type master;
+	file \"$conf_generated_file_path/reverse_zones/$pool_ip_addr\";
+$allow_trans_str	allow-query { any; };
+};
+
+";*/
+			// FIXME: need to use the same kind of technique for the zonefile serial increment as bellow...
+			$zonefile_content = "\$TTL $conf_default_zones_ttl
+@	$conf_default_zones_ttl	IN	SOA	".$conf_addr_primary_dns.". ".$bind_formated_webmaster_email_addr." (
+			$todays_serial; serial
+			$conf_named_soa_refresh ; refresh
+			$conf_named_soa_retry ; retry
+			$conf_named_soa_expire ; expire
+			$conf_named_soa_default_ttl ; default_ttl
+			)
+	IN	NS	".$conf_addr_primary_dns.".
+	IN	NS	".$conf_addr_secondary_dns.".
+";
+			unset($thiszoneIPs);
+			unset($thiszoneVPSIPs);
+			unset($thiszoneDEDIPs);
+			$thiszoneVPSIPs = array();
+			$thiszoneVPSIPs = array();
+			$thiszoneDEDIPs = array();
+			$q2 = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ip_pool_id='$ip_pool_id';";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$num_vps = mysql_num_rows($r2);
+			for($j=0;$j<$num_vps;$j++){
+				$a = mysql_fetch_array($r2);
+				$thiszoneVPSIPs[] = $a;
+				$thiszoneIPs[] = $a;
+			}
+			$q2 = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE ip_pool_id='$ip_pool_id';";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$num_ded = mysql_num_rows($r2);
+			for($j=0;$j<$num_ded;$j++){
+				$a = mysql_fetch_array($r2);
+				$thiszoneVPSIPs[] = $a;
+				$thiszoneIPs[] = $a;
+			}
+			$num_ip = $num_vps + $num_ded;
+			for($j=0;$j<$num_ip;$j++){
+				$a2 = $thiszoneIPs[$j];
+				$the_ip_addr = $a2["ip_addr"];
+				$the_reverse = $a2["rdns_addr"];
+				// FIXME: works only for pool smaller than /24
+				switch($pool_netmask){
+				case "255.255.255.0":
+				case "255.255.255.128":
+				case "255.255.255.192":
+				case "255.255.255.224":
+				case "255.255.255.240":
+				case "255.255.255.248":
+				case "255.255.255.252":
+				case "255.255.255.254":
+					$the_ip_addr_exploded = explode(".",$the_ip_addr);
+					$ip_to_reverse = $the_ip_addr_exploded[3];
+					break;
+				default:
+					die("FIXME: works only for pool smaller than /24 line ".__LINE__." file ".__FILE__);
+				}
+				$zonefile_content .= "$ip_to_reverse	IN	PTR	".$the_reverse.".\n";
+			}
+			$zonefile_content .= $custom_part;
+			// Write $conf_generated_file_path/reverse_zones/$pool_ip_addr
+			$filep = fopen("$conf_generated_file_path/reverse_zones/$pool_ip_addr", "w+");
+			if( $filep == NULL){
+				die("Cannot open file \"$conf_generated_file_path/reverse_zones/$pool_ip_addr\" for writting");
+			}
+			fwrite($filep,$zonefile_content);
+			fclose($filep);
+			break;
+		case "one_zonefile_with_name":
+			$zone_name = $a["location"].".".calculate_reverse_end($pool_ip_addr,$pool_netmask);
+/*			$reverse_dns_file .= "zone \"$zone_name\" con nombre in {
+	type master;
+	file \"$conf_generated_file_path/reverse_zones/$pool_ip_addr\";
+$allow_trans_str	allow-query { any; };
+};
+
+";*/
+			// FIXME: need to use the same kind of technique for the zonefile serial increment as bellow...
+			$zonefile_content = "\$TTL $conf_default_zones_ttl
+@	$conf_default_zones_ttl	IN	SOA	".$conf_addr_primary_dns.". ".$bind_formated_webmaster_email_addr." (
+			$todays_serial; serial
+			$conf_named_soa_refresh ; refresh
+			$conf_named_soa_retry ; retry
+			$conf_named_soa_expire ; expire
+			$conf_named_soa_default_ttl ; default_ttl
+			)
+	IN	NS	".$conf_addr_primary_dns.".
+	IN	NS	".$conf_addr_secondary_dns.".
+";
+			unset($thiszoneIPs);
+			unset($thiszoneVPSIPs);
+			unset($thiszoneDEDIPs);
+			$thiszoneVPSIPs = array();
+			$thiszoneVPSIPs = array();
+			$thiszoneDEDIPs = array();
+			$q2 = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ip_pool_id='$ip_pool_id';";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$num_vps = mysql_num_rows($r2);
+			for($j=0;$j<$num_vps;$j++){
+				$a = mysql_fetch_array($r2);
+				$thiszoneVPSIPs[] = $a;
+				$thiszoneIPs[] = $a;
+			}
+			$q2 = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE ip_pool_id='$ip_pool_id';";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$num_ded = mysql_num_rows($r2);
+			for($j=0;$j<$num_ded;$j++){
+				$a = mysql_fetch_array($r2);
+				$thiszoneVPSIPs[] = $a;
+				$thiszoneIPs[] = $a;
+			}
+			$num_ip = $num_vps + $num_ded;
+			for($j=0;$j<$num_ip;$j++){
+				$a2 = $thiszoneIPs[$j];
+				$the_ip_addr = $a2["ip_addr"];
+				$the_reverse = $a2["rdns_addr"];
+				// FIXME: works only for pool smaller than /24
+				switch($pool_netmask){
+				case "255.255.255.0":
+				case "255.255.255.128":
+				case "255.255.255.192":
+				case "255.255.255.224":
+				case "255.255.255.240":
+				case "255.255.255.248":
+				case "255.255.255.252":
+				case "255.255.255.254":
+					$the_ip_addr_exploded = explode(".",$the_ip_addr);
+					$ip_to_reverse = $the_ip_addr_exploded[3];
+					break;
+				default:
+					die("FIXME: works only for pool smaller than /24 line ".__LINE__." file ".__FILE__);
+				}
+				$zonefile_content .= "$ip_to_reverse	IN	PTR	".$the_reverse.".\n";
+			}
+			$zonefile_content .= $custom_part;
+			// Write $conf_generated_file_path/reverse_zones/$pool_ip_addr
+			$filep = fopen("$conf_generated_file_path/reverse_zones/$pool_ip_addr", "w+");
+			if( $filep == NULL){
+				die("Cannot open file \"$conf_generated_file_path/reverse_zones/$pool_ip_addr\" for writting");
+			}
+			fwrite($filep,$zonefile_content);
+			fclose($filep);
+			break;
+		case "one_zonefile_with_slash":
+			$zone_name = calculate_reverse_mask_and_cidr($pool_ip_addr,$pool_netmask);
+/*			$reverse_dns_file .= "zone \"$zone_name\" con slahs in {
+	type master;
+	file \"$conf_generated_file_path/reverse_zones/$pool_ip_addr\";
+$allow_trans_str	allow-query { any; };
+};
+
+";*/
+			// FIXME: need to use the same kind of technique for the zonefile serial increment as bellow...
+			$zonefile_content = "\$TTL $conf_default_zones_ttl
+@	$conf_default_zones_ttl	IN	SOA	".$conf_addr_primary_dns.". ".$bind_formated_webmaster_email_addr." (
+			$todays_serial; serial
+			$conf_named_soa_refresh ; refresh
+			$conf_named_soa_retry ; retry
+			$conf_named_soa_expire ; expire
+			$conf_named_soa_default_ttl ; default_ttl
+			)
+	IN	NS	".$conf_addr_primary_dns.".
+	IN	NS	".$conf_addr_secondary_dns.".
+";
+			unset($thiszoneIPs);
+			unset($thiszoneVPSIPs);
+			unset($thiszoneDEDIPs);
+			$thiszoneVPSIPs = array();
+			$thiszoneVPSIPs = array();
+			$thiszoneDEDIPs = array();
+			$q2 = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ip_pool_id='$ip_pool_id';";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$num_vps = mysql_num_rows($r2);
+			for($j=0;$j<$num_vps;$j++){
+				$a = mysql_fetch_array($r2);
+				$thiszoneVPSIPs[] = $a;
+				$thiszoneIPs[] = $a;
+			}
+			$q2 = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE ip_pool_id='$ip_pool_id';";
+			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$num_ded = mysql_num_rows($r2);
+			for($j=0;$j<$num_ded;$j++){
+				$a = mysql_fetch_array($r2);
+				$thiszoneVPSIPs[] = $a;
+				$thiszoneIPs[] = $a;
+			}
+			$num_ip = $num_vps + $num_ded;
+			for($j=0;$j<$num_ip;$j++){
+				$a2 = $thiszoneIPs[$j];
+				$the_ip_addr = $a2["ip_addr"];
+				$the_reverse = $a2["rdns_addr"];
+				// FIXME: works only for pool smaller than /24
+				switch($pool_netmask){
+				case "255.255.255.0":
+				case "255.255.255.128":
+				case "255.255.255.192":
+				case "255.255.255.224":
+				case "255.255.255.240":
+				case "255.255.255.248":
+				case "255.255.255.252":
+				case "255.255.255.254":
+					$the_ip_addr_exploded = explode(".",$the_ip_addr);
+					$ip_to_reverse = $the_ip_addr_exploded[3];
+					break;
+				default:
+					die("FIXME: works only for pool smaller than /24 line ".__LINE__." file ".__FILE__);
+				}
+				$zonefile_content .= "$ip_to_reverse	IN	PTR	".$the_reverse.".\n";
+			}
+			$zonefile_content .= $custom_part;
+			// Write $conf_generated_file_path/reverse_zones/$pool_ip_addr
+			$filep = fopen("$conf_generated_file_path/reverse_zones/$pool_ip_addr", "w+");
+			if( $filep == NULL){
+				die("Cannot open file \"$conf_generated_file_path/reverse_zones/$pool_ip_addr\" for writting");
+			}
+			fwrite($filep,$zonefile_content);
+			fclose($filep);
+			break;
 		case "support_ticket":
 			// Nothing to do here...
 			break;
@@ -559,7 +784,7 @@ $allow_trans_str	allow-query { any; };
 	}
 
 
-	$q = "SELECT id,ip_addr,netmask,zone_type,custom_part FROM $pro_mysql_ip_pool_table;";
+	$q = "SELECT id,ip_addr,netmask,zone_type,custom_part,location FROM $pro_mysql_ip_pool_table;";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
@@ -620,6 +845,63 @@ $allow_trans_str	allow-query { any; };
 			break;
 		case "one_zonefile":
 			$zone_name = calculate_reverse_end($pool_ip_addr,$pool_netmask);
+			$reverse_dns_file .= "zone \"$zone_name\" in {
+	type master;
+	file \"$conf_generated_file_path/reverse_zones/$pool_ip_addr\";
+$allow_trans_str	allow-query { any; };
+};
+
+";
+			$slave_dns_file .= "zone \"$zone_name\" in {
+	type slave;
+	file \"$conf_generated_file_path/slave_reverse_zones/$pool_ip_addr\";
+	masters { $conf_ip_slavezone_dns_server; };
+	allow-query { any; };
+};
+
+";
+			break;
+		case "one_zonefile_with_minus":
+			$zone_name = calculate_reverse_mask_and_cidr($pool_ip_addr,$pool_netmask);
+			$zone_name = preg_replace('/\//','-',$zone_name);
+			$zone_name = preg_replace('/^\./','',$zone_name);
+			$reverse_dns_file .= "zone \"$zone_name\" in {
+	type master;
+	file \"$conf_generated_file_path/reverse_zones/$pool_ip_addr\";
+$allow_trans_str	allow-query { any; };
+};
+
+";
+			$slave_dns_file .= "zone \"$zone_name\" in {
+	type slave;
+	file \"$conf_generated_file_path/slave_reverse_zones/$pool_ip_addr\";
+	masters { $conf_ip_slavezone_dns_server; };
+	allow-query { any; };
+};
+
+";
+			break;
+		case "one_zonefile_with_name":
+			$zone_name = $a["location"].".".calculate_reverse_end($pool_ip_addr,$pool_netmask);
+			$reverse_dns_file .= "zone \"$zone_name\" in {
+	type master;
+	file \"$conf_generated_file_path/reverse_zones/$pool_ip_addr\";
+$allow_trans_str	allow-query { any; };
+};
+
+";
+			$slave_dns_file .= "zone \"$zone_name\" in {
+	type slave;
+	file \"$conf_generated_file_path/slave_reverse_zones/$pool_ip_addr\";
+	masters { $conf_ip_slavezone_dns_server; };
+	allow-query { any; };
+};
+
+";
+			break;
+		case "one_zonefile_with_slash":
+			$zone_name = calculate_reverse_mask_and_cidr($pool_ip_addr,$pool_netmask);
+			$zone_name = preg_replace('/^\./','',$zone_name);
 			$reverse_dns_file .= "zone \"$zone_name\" in {
 	type master;
 	file \"$conf_generated_file_path/reverse_zones/$pool_ip_addr\";
@@ -1189,6 +1471,9 @@ $more_mx_server
 	}
 
 	$named_file .= get_remote_ns_domains();
+
+	// include the reverse zone file
+	$named_file .= "include \"$conf_generated_file_path/named.conf.reverse\";\n";
 
 	// include the slave zone file
 //	$named_file .= "include \"$conf_generated_file_path/$conf_named_slavefile_path\";\n";

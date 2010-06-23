@@ -58,7 +58,7 @@ $out .= "server:".$_SERVER['REQUEST_URL'];
 	$out .= '<input type="hidden" name="usr_tel_numero" value="">'."\n"; // customer's phone number
 	$out .= '<input type="hidden" name="usr_email" value="">'."\n"; // customer's email
 	$out .= '<input type="image" src="https://argentina.dineromail.com/imagenes/post-login/boton-comprar-01.gif" border="0" name="submit" alt="';
-	$out .= _("Pay by DineroMail") . '">'."\n";
+	$out .= _("Pay by DineroMail") . '">';
 	$out .= '</form>'."\n";
 
 	return $out;
