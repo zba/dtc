@@ -206,7 +206,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_user_db"){
 	if($commit_flag == "yes"){
 		$q = "DELETE FROM mysql.db WHERE Db='".$_REQUEST["dbname"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		$q = "DROP DATABASE IF EXISTS ".$_REQUEST["dbname"].";";
+		$q = "DROP DATABASE IF EXISTS `".$_REQUEST["dbname"]."`;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$q = "FLUSH PRIVILEGES;";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
