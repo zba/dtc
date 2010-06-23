@@ -175,28 +175,78 @@ Service country: $country
 		}
 	}
 
-	$headers = "From: DTC Robot <$conf_webmaster_email_addr>";
-	$subject = $admin["adm_login"] . " tried to renew $the_prod";
-	mail($conf_webmaster_email_addr, "$conf_message_subject_header $subject", $mail_content, $headers);
 
-	// Save the values in SQL and process the paynow buttons
-	$q = "INSERT INTO $pro_mysql_pending_renewal_table (id,adm_login,renew_date,renew_time,product_id,renew_id,heb_type,country_code)
-	VALUES ('','".$_REQUEST["adm_login"]."',now(),now(),'".$prod_id."','".$client_id."','".$_REQUEST["renew_type"]."','$country');";
-	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-	$renew_id = mysql_insert_id();
+	if ($_REQUEST["inner_action"] == "toreg_confirm_renew" ) {
+		// Adjust money remaining on account after confirmation.
+		$form .= "<br>Cliente: ".$client["id"];
+		$form .= "<br>Quedan: ".$client["dollar"];
+		$form .= "<br>Precio: ".$product["price_dollar"];
+		$q = "UPDATE $pro_mysql_client_table SET dollar=dollar-" . $product["price_dollar"] . " WHERE id='".$client["id"]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 
-	$payid = createCreditCardPaiementID($a["price_dollar"],$renew_id,$a["name"]." (login: ".$_REQUEST["adm_login"].")","no",$prod_id,$vat_rate);
+		validateRenewal($_REQUEST["renew_id"]);
 
-	$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
-	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		$form .= "<br><br><br><a href=\"/\">" . _("Continue") . "</a>";
 
-	$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
-	$paybutton = paynowButton($payid,$a["price_dollar"],$a["name"]." (login: ".$_REQUEST["adm_login"].")",$return_url,$vat_rate);
-	$form .= _("Please click on the button below to send money in your account:") ."<br><br>". $paybutton;
+		$ret["err"] = 0;
+		$ret["mesg"] = $form;
+		return $ret;
+	}else{
 
-	$ret["err"] = 0;
-	$ret["mesg"] = $form;
-	return $ret;
+		$headers = "From: DTC Robot <$conf_webmaster_email_addr>";
+		$subject = $admin["adm_login"] . " tried to renew $the_prod";
+		mail($conf_webmaster_email_addr, "$conf_message_subject_header $subject", $mail_content, $headers);
+
+		// Save the values in SQL and process the paynow buttons
+		$q = "INSERT INTO $pro_mysql_pending_renewal_table (id,adm_login,renew_date,renew_time,product_id,renew_id,heb_type,country_code)
+		VALUES ('','".$_REQUEST["adm_login"]."',now(),now(),'".$prod_id."','".$client_id."','".$_REQUEST["renew_type"]."','$country');";
+		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		$renew_id = mysql_insert_id();
+
+		if($a["price_dollar"] > $client["dollar"]){
+			$payid = createCreditCardPaiementID($a["price_dollar"],$renew_id,$a["name"]." (login: ".$_REQUEST["adm_login"].")","no",$prod_id,$vat_rate);
+	
+			$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
+			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	
+			$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
+			$paybutton = paynowButton($payid,$a["price_dollar"],$a["name"]." (login: ".$_REQUEST["adm_login"].")",$return_url,$vat_rate);
+			$form .= _("Please click on the button below to renew your account:") ."<br><br>". $paybutton;
+
+			$ret["err"] = 0;
+			$ret["mesg"] = $form;
+			return $ret;
+		}
+		else
+		{
+			$payid = createCreditCardPaiementID($a["price_dollar"],$renew_id,$a["name"]." (login: ".$_REQUEST["adm_login"].")","no",$prod_id,$vat_rate);
+
+			$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
+			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
+			$after_upgrade_remaining = $client["dollar"] - $a["price_dollar"];
+			$out = _("After renewal, you will have") . ": " . $after_upgrade_remaining . " " .$secpayconf_currency_letters . "<br><br>";
+
+			// Check for confirmation
+			$frm_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+<input type=\"hidden\" name=\"action\" value=\"renew_myaccount\">
+";
+			$out .= _("You have enough funds on your account to proceed account renewal. Press the confirm button and your order will be proceeded.") ."<br><br>
+$frm_start
+<input type=\"hidden\" name=\"renew_type\" value=\"" . $_REQUEST["renew_type"]. "\">
+<input type=\"hidden\" name=\"adm_login\" value=\"" . $_REQUEST["adm_login"]. "\">
+<input type=\"hidden\" name=\"product_id\" value=\"" . $_REQUEST["product_id"]. "\">
+<input type=\"hidden\" name=\"client_id\" value=\"" . $_REQUEST["client_id"]. "\">
+<input type=\"hidden\" name=\"renew_id\" value=\"" . $renew_id . "\">
+<input type=\"hidden\" name=\"inner_action\" value=\"toreg_confirm_renew\">
+<input type=\"submit\" value=\"". _("Proceed to account renewal") ."\">
+</form>";
+			$ret["err"] = 0;
+			$ret["mesg"] = $out;
+			return $ret;
+
+		}
+	}
 }
 
 ?>

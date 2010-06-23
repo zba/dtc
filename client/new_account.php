@@ -45,7 +45,9 @@ if(!isset($_REQUEST["action"])){
 
 switch($action){
 // Renew a contact (or buy SSL token)
+//Customer is renewing with funds already in his accounts.
 case "contract_renewal":
+case "renew_myaccount":
 	$ret = renew_form();
 	$form = $ret["mesg"];
 	break;

@@ -24,6 +24,7 @@ function draw_UpgradeAccount($admin){
 
 
 	global $secpayconf_currency_letters;
+	global $conf_this_server_country_code;
 
 	if(!isset($secpayconf_currency_letters)){
 		get_secpay_conf();
@@ -47,7 +48,7 @@ function draw_UpgradeAccount($admin){
 		$out .= _("Today is the: ") .date("Y-m-d")."<br>";
 		$today = mktime (0,0,0,date("m"),date("d"),date("Y"));
 		$ar = explode("-",$admin["info"]["expire"]);
-		$expire = mktime (0,0,0,$ar[1],0,$ar[0]);
+		$expire = mktime (0,0,0,$ar[1],$ar[2],$ar[0]);
 		$remaining_seconds = $expire - $today;
 		$days_remaining = $remaining_seconds / (60*60*24);
 		$days_outstanding = 0;
@@ -129,7 +130,7 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 	$frm_start .= '<input type="hidden" name="prod_id" value="'.$ro["id"].'">';
 	$out .= _("You have selected") . ": ".$ro["name"];
 	$out .= " (". _("Storage"). ": ".smartByte($ro["quota_disk"]*1024*1024);
-	$out .= ", " . _("Transfer") . ": ".smartByte($ro["bandwidth"]*1024*1024).'), ';
+	$out .= ", " . _("Transfer") . ": ".smartByte($ro["bandwidth"]*1024*1024).', ';
 	$out .= ", " . _("Max. Domains") . ": ".$ro["max_domain"].'), ';
 	$out .= '$'.$ro["price_dollar"].' ' . _("each") . ' '.smartDate($ro["period"]);
 
@@ -152,79 +153,95 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 		}
 	}
 
+	if(isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "toreg_confirm_register"){
+		$q = "UPDATE $pro_mysql_client_table SET dollar = ". $_REQUEST["amount"] . " WHERE id='".$admin["info"]["id_client"]."';";
+		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		validateRenewal($_REQUEST["renew_id"]);
+
+		$out .= '<BR><BR>' . _("Your Product has been Upgraded.");
+
+		return $out;
+ 	}
+	
 	$out .= _("Remaining on your account") . ": " . $remaining . "$secpayconf_currency_letters<br>
 " . _("New account price") . ": ". $ze_price . "$secpayconf_currency_letters<br>
 " . _("Past account refundal") . ": ". $refundal . "$secpayconf_currency_letters<br>
 " . _("Total price") . ": ". $heber_price . "$secpayconf_currency_letters<br>";
 
+	$payid = createCreditCardPaiementID($heber_price,$admin["info"]["id_client"],
+		"Account upgrade: ".$ro["name"],"no");
+	$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
+	."&addrlink=$addrlink&action=upgrade_myaccount&prod_id=9&inner_action=return_from_paypal_upgrade_account&payid=$payid";
+
+	$service_location = $conf_this_server_country_code;
+
+       	$company_invoicing_id = findInvoicingCompany ($conf_this_server_country_code,$rocli["country"]);
+       	$q = "SELECT * FROM $pro_mysql_companies_table WHERE id='$company_invoicing_id';";
+       	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+       	if($n != 1){
+               	$form = "Cannot find company invoicing line ".__LINE__." file ".__FILE__;
+               	break;
+       	}
+       	$company_invoicing = mysql_fetch_array($r);
+       	// If VAT is set, use it.
+       	if($company_invoicing["vat_rate"] == 0 || $company_invoicing["vat_number"] == ""){
+               	$vat_rate = 0;
+               	$use_vat = "no";
+       	}else{
+               	// Both companies are in europe, in different countries, and customer as a VAT number,
+               	// then there is no VAT and the customer shall pay the VAT in it's own country
+               	// These are the VAT rules in the European Union...
+               	if($client["is_company"] == "yes" && $client["vat_num"] != ""
+                               	&& isset($cc_europe[ $client["country"] ]) && isset($cc_europe[ $company_invoicing["country"] ])
+                               	&& $client["country"] != $company_invoicing["country"]){
+                       	$vat_rate = 0;
+                       	$use_vat = "no";
+               	}else{
+                       	$use_vat = "yes";
+                       	$vat_rate = $company_invoicing["vat_rate"];
+               	}
+       	}
+
+	// Save the values in SQL and process the paynow buttons
+	$q = "INSERT INTO $pro_mysql_pending_renewal_table (id,adm_login,renew_date,renew_time,product_id,renew_id,heb_type,country_code)
+	VALUES ('','".$_REQUEST["adm_login"]."',now(),now(),'".$ro["id"]."','".$rocli["id"]."','shared-upgrade','".$rocli["country"]."');";
+	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$renew_id = mysql_insert_id();
+
 	if($heber_price > $remaining){
 		$to_pay = $heber_price - $remaining;
 
-		$payid = createCreditCardPaiementID($to_pay,$admin["info"]["id_client"],
-			"Account upgrade: ".$ro["name"],"no");
-		$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
-		."&addrlink=$addrlink&action=upgrade_myaccount&prod_id=9&inner_action=return_from_paypal_upgrade_account&payid=$payid";
-
-		$service_location = $conf_this_server_country_code;
-	
-        	$company_invoicing_id = findInvoicingCompany ($conf_this_server_country_code,$rocli["country"]);
-        	$q = "SELECT * FROM $pro_mysql_companies_table WHERE id='$company_invoicing_id';";
-        	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-        	if($n != 1){
-                	$form = "Cannot find company invoicing line ".__LINE__." file ".__FILE__;
-                	break;
-        	}
-        	$company_invoicing = mysql_fetch_array($r);
-        	// If VAT is set, use it.
-        	if($company_invoicing["vat_rate"] == 0 || $company_invoicing["vat_number"] == ""){
-                	$vat_rate = 0;
-                	$use_vat = "no";
-        	}else{
-                	// Both companies are in europe, in different countries, and customer as a VAT number,
-                	// then there is no VAT and the customer shall pay the VAT in it's own country
-                	// These are the VAT rules in the European Union...
-                	if($client["is_company"] == "yes" && $client["vat_num"] != ""
-                                	&& isset($cc_europe[ $client["country"] ]) && isset($cc_europe[ $company_invoicing["country"] ])
-                                	&& $client["country"] != $company_invoicing["country"]){
-                        	$vat_rate = 0;
-                        	$use_vat = "no";
-                	}else{
-                        	$use_vat = "yes";
-                        	$vat_rate = $company_invoicing["vat_rate"];
-                	}
-        	}
-
-		// Save the values in SQL and process the paynow buttons
-		$q = "INSERT INTO $pro_mysql_pending_renewal_table (id,adm_login,renew_date,renew_time,product_id,renew_id,heb_type,country_code)
-		VALUES ('','".$_REQUEST["adm_login"]."',now(),now(),'".$ro["id"]."','".$rocli["id"]."','shared-upgrade','$country');";
-		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		$renew_id = mysql_insert_id();
-
-		$payid = createCreditCardPaiementID($heber_price,$renew_id,"Account upgrade: ".$ro["name"]." (login: ".$_REQUEST["adm_login"].")","no",$prod_id,$vat_rate);
+		$payid = createCreditCardPaiementID($to_pay,$renew_id,"Account upgrade: ".$ro["name"]." (login: ".$_REQUEST["adm_login"].")","no",$prod_id,$vat_rate);
 
 		$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
 		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
-		$payButton = paynowButton($payid,$heber_price,"Account upgrade: ".$ro["name"],$return_url,$vat_rate);
+		$payButton = paynowButton($payid,$to_pay,"Account upgrade: ".$ro["name"],$return_url,$vat_rate);
 
 		$out .= "<br>". _("You currently don't have enough funds on your account. You will be redirected to our payment system. Please click on the button below to pay.") ."<br><br>".$payButton;
 		return $out;
 	}
+	else
+	{
+		$payid = createCreditCardPaiementID($heber_price,$renew_id,"Account upgrade: ".$ro["name"]." (login: ".$_REQUEST["adm_login"].")","no",$ro["id"],$vat_rate);
+
+		$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
+		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 	$after_upgrade_remaining = $remaining - $heber_price;
 	$out .= _("After upgrade, you will have") . ": " . $after_upgrade_remaining . " " .$secpayconf_currency_letters . "<br><br>";
 
 	// Check for confirmation
-	if(isset($_REQUEST["toreg_confirm_register"]) && $_REQUEST["toreg_confirm_register"] != "yes"){
-		$out .= _("You have enough funds on your account to proceed account upgrade. Press the confirm button and your order will be proceeded.") ."<br><br>
+	$out .= _("You have enough funds on your account to proceed account upgrade. Press the confirm button and your order will be proceeded.") ."<br><br>
 $frm_start
-<input type=\"hidden\" name=\"toreg_confirm_register\" value=\"yes\">
+<input type=\"hidden\" name=\"renew_id\" value=\"" . $renew_id . "\">
+<input type=\"hidden\" name=\"amount\" value=\"" . $after_upgrade_remaining . "\">
+<input type=\"hidden\" name=\"inner_action\" value=\"toreg_confirm_register\">
 <input type=\"submit\" value=\"". _("Proceed to account upgrade") ."\">
 </form>";
 		return $out;
+
 	}
-
-
 
 
 	return $out;

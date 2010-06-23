@@ -11,6 +11,7 @@ function drawAdminTools_MyAccount($admin){
 	global $pro_mysql_client_table;
 	global $pro_mysql_ssl_ips_table;
 	global $pro_mysql_product_table;
+	global $pro_mysql_pending_renewal_table;
 	global $secpayconf_currency_letters;
 
 	global $cc_code_array;
@@ -48,8 +49,18 @@ function drawAdminTools_MyAccount($admin){
 				return $out;
 			}
 		}else{
+			// Save the values in SQL and process the paynow buttons
+			$q = "INSERT INTO $pro_mysql_pending_renewal_table (id,adm_login,renew_date,renew_time,product_id,renew_id,heb_type,country_code)
+			VALUES ('','".$_REQUEST["adm_login"]."',now(),now(),'".$ro["id"]."','".$rocli["id"]."','shared-upgrade','$country');";
+			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+			$renew_id = mysql_insert_id();
+
 			$payid = createCreditCardPaiementID(addslashes($_REQUEST["refund_amount"]),$admin["info"]["id_client"],
-				"Refund my account","no");
+				"Refund my account","no",$prod_id,$vat_rate);
+
+			$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
+			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
 			$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
 				."&addrlink=$addrlink&action=refund_myaccount&inneraction=return_from_paypal_refund_my_account&payid=$payid";
 			$paybutton = paynowButton($payid,addslashes($_REQUEST["refund_amount"]),"Refund my account",$return_url);

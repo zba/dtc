@@ -29,6 +29,7 @@ function validateRenewal($renew_id){
 	global $pro_mysql_completedorders_table;
 	global $pro_mysql_client_table;
 	global $pro_mysql_ssl_ips_table;
+	global $pro_mysql_pay_table;
 
 	global $commit_flag;
 	global $submit_err;
@@ -51,7 +52,7 @@ function validateRenewal($renew_id){
 	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$renew_entry["product_id"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-	if($n != 1){
+	if($n != 1 && $renew_entry["heb_type"] != 'add-money'){
 		$submit_err = "Could not find product in table line ".__LINE__." file ".__FILE__;
 		$commit_flag = "no";
 		return false;
@@ -73,6 +74,11 @@ function validateRenewal($renew_id){
 		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
 		$q = "UPDATE $pro_mysql_vps_table SET expire_date='$date_expire' WHERE id='".$renew_entry["renew_id"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$txt_renewal_approved = "
+
+A renewal have been paid! Here is the details of the renewal:
+
+login: ";
 		break;
 	case "shared":
 		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
@@ -88,6 +94,39 @@ function validateRenewal($renew_id){
 		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
 		$q = "UPDATE $pro_mysql_admin_table SET expire='$date_expire' WHERE adm_login='".$renew_entry["adm_login"]."'";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$txt_renewal_approved = "
+
+A renewal have been paid! Here is the details of the renewal:
+
+login: ";
+		break;
+	case "add-money":
+		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find admin login in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$admin = mysql_fetch_array($r);
+		$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$renew_entry["pay_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find payment in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$old_expire = date("Y-m-d");
+		$payment = mysql_fetch_array($r);
+		$q = "UPDATE $pro_mysql_client_table SET dollar = dollar+".$payment["refund_amount"]." WHERE id='".$admin["id_client"]."';";
+		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		$txt_renewal_approved = "
+
+Money has been added to an account! Here is the details:
+
+login: ";
 		break;
 	case "shared-upgrade":
 		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
@@ -110,10 +149,15 @@ function validateRenewal($renew_id){
 		}
 		$product = mysql_fetch_array($r);
 
-		$old_expire = $admin["expire"];
-		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
+		$old_expire = date("Y-m-d");
+		$date_expire = calculateExpirationDate(date("Y-m-d"),$product["period"]);
 		$q = "UPDATE $pro_mysql_admin_table SET expire='$date_expire',prod_id='".$renew_entry["product_id"]."',max_email=".$product["nbr_email"].",nbrdb=".$product["nbr_database"].",quota=".$product["quota_disk"].",bandwidth_per_month_mb=".$product["bandwidth"].",allow_add_domain='".$product["allow_add_domain"]."',max_domain=".$product["max_domain"]." WHERE adm_login='".$renew_entry["adm_login"]."'";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$txt_renewal_approved = "
+
+A Product Upgrade have been paid! Here is the details:
+
+login: ";
 		break;
 	case "ssl":
 		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
@@ -137,6 +181,11 @@ function validateRenewal($renew_id){
 		$date_expire = calculateExpirationDate(date("Y-m-d"),$product["period"]);
 		$q = "UPDATE $pro_mysql_ssl_ips_table SET available='no',adm_login='".$admin["adm_login"]."',expire='$date_expire' WHERE id='".$ssl_token["id"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$txt_renewal_approved = "
+
+A SSL-token have been paid! Here is the details:
+
+login: ";
 		break;
 	case "server":
 		$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE id='".$renew_entry["renew_id"]."';";
@@ -152,6 +201,11 @@ function validateRenewal($renew_id){
 		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
 		$q = "UPDATE $pro_mysql_dedicated_table SET expire_date='$date_expire' WHERE id='".$renew_entry["renew_id"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$txt_renewal_approved = "
+
+A renewal have been paid! Here is the details of the renewal:
+
+login: ";
 		break;
 	case "ssl_renew":
 		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."';";
@@ -176,6 +230,11 @@ function validateRenewal($renew_id){
 		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
 		$q = "UPDATE $pro_mysql_ssl_ips_table SET expire='$date_expire' WHERE  id='".$ssl_ip["id"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$txt_renewal_approved = "
+
+A renewal have been paid! Here is the details of the renewal:
+
+login: ";
 		break;
 	default:
 		die("Unknown heb type line ".__LINE__." file ".__FILE__);
@@ -183,15 +242,21 @@ function validateRenewal($renew_id){
 	}
 
 	global $secpayconf_currency_letters;
-	$txt_renewal_approved = "
+	$txt_renewal_approved .= $renew_entry["adm_login"];
+	if($renew_entry["heb_type"] == 'add-money') {
+	$txt_renewal_approved .= "
+Amount added: " . $payment["refund_amount"]."
 
-A renewal have been paid! Here is the details of the renewal:
-
-login: ".$renew_entry["adm_login"]."
+";
+	}
+	else
+	{
+	$txt_renewal_approved .= "
 Product: ".$product["name"]."(".$product["price_dollar"]." ".$secpayconf_currency_letters.")
 Date: ".$renew_entry["renew_date"]." ".$renew_entry["renew_time"]."
 
 ";
+	}
 
 	$headers = $send_email_header;
 	$headers .= "From: ".$conf_webmaster_email_addr;

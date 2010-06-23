@@ -498,6 +498,9 @@ dtcFromOkDraw()."
 			case "shared-upgrade":
 				$heb_type = _("Shared Upgrade");
 				break;
+			case "add-money":
+				$heb_type = _("Add Money to Account");
+				break;
 			case "ssl":
 				$heb_type = _("SSL Token purchase");
 				break;

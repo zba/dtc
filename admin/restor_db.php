@@ -239,7 +239,7 @@ $q = "ALTER TABLE `product` CHANGE `period` `period` VARCHAR( 12 ) NOT NULL DEFA
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Adding a new field in pending_renewal
-$q = "ALTER TABLE `pending_renewal` CHANGE `heb_type` `heb_type` enum('shared', 'ssl', 'vps', 'server','ssl_renew','shared-upgrade') NOT NULL default 'shared'";
+$q = "ALTER TABLE `pending_renewal` CHANGE `heb_type` `heb_type` enum('shared', 'ssl', 'vps', 'server','ssl_renew','shared-upgrade','add-money') NOT NULL default 'shared'";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Add the pending flag for payments
