@@ -4,7 +4,7 @@
 //$r = new HTTPRequest('http://www.php.net');
 //echo $r->DownloadToString();
 
-class HTTPRequest
+class dtc_HTTPRequest
 {
     var $_fp;        // HTTP socket
     var $_url;        // full URL
@@ -46,7 +46,7 @@ class HTTPRequest
     }
     
     // constructor
-    function HTTPRequest($url)
+    function dtc_HTTPRequest($url)
     {
         $this->_url = $url;
         $this->_scan_url();
@@ -140,7 +140,7 @@ class HTTPRequest
         // redirection?
         if(isset($headers['location']))
         {
-            $http = new HTTPRequest($headers['location']);
+            $http = new dtc_HTTPRequest($headers['location']);
             return($http->DownloadToString($http));
         }
         else 

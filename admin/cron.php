@@ -141,7 +141,7 @@ function commitTriggerToRemoteInternal($a, $recipients){
 			echo "using lynx -source...";
 			$result = exec("lynx -source \"$url\"",$lines,$return_val);
 		}else{
-			$httprequest = new HTTPRequest("$url");
+			$httprequest = new dtc_HTTPRequest("$url");
 			$lines = $httprequest->DownloadToStringArray();
 		}
 		if($lines != FALSE){
