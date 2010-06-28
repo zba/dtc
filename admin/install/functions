@@ -2368,8 +2368,6 @@ echo "virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domai
 					echo "virtual_transport = lmtp:unix:/var/run/cyrus/socket/lmtp
 mailbox_transport = lmtp:unix:/var/run/cyrus/socket/lmtp
 # local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
-					# Fix the master.cf lmtp stuff
-					sed -i "s/lmtp      unix  -       -       -       -       -       lmtp/lmtp      unix  -       -       n       -       -       lmtp/" $TMP_FILE
 				else
 					echo "virtual_transport = cyrus
 mailbox_transport = lmtp:unix:/var/run/socket/lmtp
@@ -2437,7 +2435,17 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 						fi
 					fi
 				fi
-
+        # add postfix to the sasl and mail group, not sure if we still need sasl, but mail is neede for LMTP
+        if [ ""$conf_use_cyrus = "true" ] ; then
+          if [ "$UNIX_TYPE" = "debian" ] ; then
+            echoIfVerbose "Adding postfix to the sasl group"
+            adduser postfix sasl
+            echoIfVerbose "Adding postfix to the mail group"
+            adduser postfix mail
+          else
+            echoIfVerbose "**** For lmtp delivery to work, postfix needs access to /var/run/cyrus/socket/, please add postfix to mail group !"
+          fi
+        fi
 #         SASLTMP_FILE=`${MKTEMP} DTC_install.postfix_sasl.XXXXXX` || exit 1
 #         echo "# Configured by DTC v0.15 : Please don't touch this line !" > ""$SASLTMP_FILE
 #         # CL: for cyrus use saslauthd instead of auxprop!
@@ -2582,6 +2590,15 @@ sa-ham  unix    -       n       n       -       -       pipe
 
 " >> $TMP_FILE2
 				fi
+				
+				# CL: change lmtp from chroot to non chroot, else lmtp delivery won't work
+				if [ ""$conf_use_cyrus = "true" ] ; then
+  				if [ "$UNIX_TYPE" = "debian" ] ; then  			
+    				# Fix the master.cf lmtp stuff
+    				sed -i "s/lmtp      unix  -       -       -       -       -       lmtp/lmtp      unix  -       -       n       -       -       lmtp/" $TMP_FILE2
+				  fi
+			  fi
+				
 				if [ -x /usr/bin/tumgreyspf -o -x ${LOCALBASE}/bin/tumgreyspf ] ; then
 					if [ -x /usr/bin/tumgreyspf ] ; then
 						TMP_TUMGREYPATH=/usr/bin/tumgreyspf
