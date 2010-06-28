@@ -68,6 +68,9 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 	}
 
 //	$out .= "Dedicated server content!";
+	if ( $server_prod["use_radius"] == 'yes' ) {
+		$out .= '<BR><BR>Aca editamos Radius<BR><BR>';
+	}
 	$out .= "<br><br><h3>"._("IP addresses: ")."</h3>";
 	$frm_start = "<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">

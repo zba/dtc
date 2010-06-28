@@ -287,9 +287,19 @@ $q = "ALTER TABLE admin CHANGE adm_pass adm_pass varchar(255) NOT NULL";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Alter the names of two existing fields to match freeradius default ones.
-$q = "ALTER IGNORE TABLE radpostauth CHANGE user username varchar(64) NOT NULL";
+if(findFieldInTable('radpostauth','user')){
+	$q = "ALTER TABLE `radpostauth` DROP `user`";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+}
+if(findFieldInTable('radpostauth','date')){
+	$q = "ALTER TABLE `radpostauth` DROP `date`";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+}
+$q = "ALTER TABLE `radpostauth` CHANGE `authdate` `authdate` timestamp(14) default CURRENT_TIMESTAMP";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-$q = "ALTER IGNORE TABLE radpostauth CHANGE date authdate timestamp(14) NOT NULL";
+
+// Create view for radius password checking
+$q = "create or replace view radcheckview as select * from radcheck union all select id,username,'Cleartext-Password',':=',password from radusergroup";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Alter the default shell value for FreeBSD, as the path will be in /usr/local

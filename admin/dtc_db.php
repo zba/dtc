@@ -962,8 +962,11 @@ $dtc_database = array(
 			"priority" => "int(11) unsigned default 1 "
 			),
 		"primary" => "(id)",
+		"keys" => array(
+			"Username" => "(UserName)",
+			"Dedicated" => "(Dedicated_id)"
+			),
 		"index" => array(
-			"UserName" => "(UserName)",
 			"GroupName" => "(GroupName)"
 			)
 		),
