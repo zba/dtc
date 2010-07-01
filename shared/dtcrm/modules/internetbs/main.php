@@ -108,7 +108,7 @@ function internetbs_prepar_whois_params($contacts){
 	$post_params_hash["registrant_street2"] = $contacts["owner"]["addr2"]." ".$contacts["owner"]["addr3"];
 	$post_params_hash["registrant_city"] = $contacts["owner"]["city"];
 	$post_params_hash["registrant_postalcode"] = $contacts["owner"]["zipcode"];
-	$post_params_hash["registrant_phonenumber"] = "+44.123456789"; // $contacts["owner"]["phone_num"];
+	$post_params_hash["registrant_phonenumber"] = $contacts["owner"]["phone_num"];
 	$post_params_hash["registrant_fax"] = $contacts["owner"]["fax_num"];
 	$post_params_hash["registrant_countrycode"] = $contacts["owner"]["country"];
 	$post_params_hash["registrant_email"] = $contacts["owner"]["email"];
