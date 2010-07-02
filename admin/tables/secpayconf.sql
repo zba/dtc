@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS secpayconf (
   use_maxmind enum('yes','no') NOT NULL default 'no',
   maxmind_login varchar(255) NOT NULL default '',
   maxmind_license_key varchar(255) NOT NULL default '',
+  maxmind_threshold int(3) NOT NULL default '100',
 
   use_webmoney enum('yes','no') NOT NULL default 'no',
   webmoney_license_key varchar(255) NOT NULL default '',

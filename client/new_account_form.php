@@ -291,6 +291,8 @@ function register_user($adding_service="no"){
 	get_secpay_conf();
 	global $secpayconf_maxmind_license_key;
 	global $secpayconf_use_maxmind;
+        global $secpayconf_maxmind_threshold;
+        $maxmind_score = 0;
 	if ($secpayconf_use_maxmind == "yes"){
 		// This has been done in dtc/shared/dtc_lib.php
 		// but could be removed from there... As you like!
@@ -310,10 +312,11 @@ function register_user($adding_service="no"){
 		$hash["emailMD5"] = md5($_REQUEST["email"]);
 		$hash["usernameMD5"] = md5($_REQUEST["reqadm_login"]);
 		$hash["passwordMD5"] = md5($_REQUEST["reqadm_pass"]);
-		trigger_error("MaxMind input: ".serialize($hash),E_USER_NOTICE);
+		// trigger_error("MaxMind input: ".serialize($hash),E_USER_NOTICE);
 		$ccfs = new CreditCardFraudDetection; $ccfs->isSecure = 1;
 		$ccfs->input($hash); $ccfs->query(); $maxmind_output = $ccfs->output();
-		trigger_error("MaxMind output: ".serialize($maxmind_output),E_USER_NOTICE);
+		// trigger_error("MaxMind output: ".serialize($maxmind_output),E_USER_NOTICE);
+		$maxmind_score = $maxmind_output["riskScore"];
 	} else {
 		$maxmind_output = "";
 	}
@@ -410,6 +413,11 @@ Product id: $the_prod
 Customer note: ".$_REQUEST["custom_notes"]."
 $vps_mail_add1
 ";
+	if ($maxmind_score > 0)
+	{
+		$mail_content .= "Maxmind Score: $maxmind_score\n";
+		$mail_content .= "Maxmind Output: $maxmind_output\n";	
+	}
 
 	$headers = "From: DTC Robot <$conf_webmaster_email_addr>";
 	mail($conf_webmaster_email_addr, "$conf_message_subject_header Somebody tried to register an account", $mail_content, $headers);

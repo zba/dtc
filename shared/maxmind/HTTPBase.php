@@ -2,10 +2,10 @@
 
 /* HTTPBase.php
  *
- * Copyright (C) 2005 MaxMind LLC
+ * Copyright (C) 2008 MaxMind, Inc.
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
  *
@@ -14,7 +14,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU General Public
+ * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
@@ -34,6 +34,7 @@ class HTTPBase{
   var $wsIpaddrRefreshTimeout;
   var $wsIpaddrCacheFile;
   var $useDNS;
+  var $ipstr;
   function HTTPBase() {
     $this->isSecure = 0;
     $this->debug = 0;
@@ -229,7 +230,7 @@ class HTTPBase{
       print "readIpAddressFromWeb found ip addresses: " . $content . "\n";
     }
     // TODO fix regexp so that it checks if it only has IP addresses
-    if (preg_match ("/([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/",$content)) {
+    if (ereg ("([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})",$content)) {
       return $content;
     } 
     return "";
@@ -250,6 +251,9 @@ class HTTPBase{
     if ($this->debug == 1) {
       print "number of query keys " + $numquerieskeys + "\n";
     }
+
+    $query_string = "";
+
     for ($i = 0; $i < $numquerieskeys; $i++) {
       //for each element in the hash called queries 
       //append the key and value of the element to the query string
@@ -301,15 +305,15 @@ class HTTPBase{
       // Until we figure this out, will ignore curl errors - (not good i know)
 //      $e = curl_errno($ch);//get error or sucess
 
-      if (($e == 1) & ($this->isSecure == 1)) {
+//      if (($e == 1) & ($this->isSecure == 1)) {
         // HTTPS does not work print error message
-          print "error: this version of curl does not support HTTPS try build curl with SSL or specify \$ccfs->isSecure = 0\n";
-      }
-      if ($e > 0) {
+//          print "error: this version of curl does not support HTTPS try build curl with SSL or specify \$ccfs->isSecure = 0\n";
+//      }
+//      if ($e > 0) {
         //we get a error msg print it
-        print "Received error message $e from curl: " . curl_error($ch) . "\n";
-	return 0;
-      }
+//        print "Received error message $e from curl: " . curl_error($ch) . "\n";
+//	return 0;
+//      }
       //close curl
       curl_close($ch);
     } else {

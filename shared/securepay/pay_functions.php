@@ -143,6 +143,7 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 	global $pro_mysql_pay_table;
 	global $conf_webmaster_email_addr;
 	global $pro_mysql_new_admin_table;
+	global $secpayconf_maxmind_threshold;
 
 	global $secpayconf_currency_letters;
 	global $conf_message_subject_header;
@@ -172,19 +173,33 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 		$cost = $amount_paid - $ar["refund_amount"];
 		$total = $amount_paid;
 	}
+
+	$new_account_array;
+	if($ar["new_account"] == "yes"){
+                $q = "SELECT * FROM $pro_mysql_new_admin_table WHERE paiement_id='".$ar["id"]."';";
+                $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+                $new_account_array = mysql_fetch_array($r);
+	}
+	$maxmind_hash = unserialize($new_account_array["maxmind_output"]);
+	$maxmind_score = $maxmind_hash["riskScore"];
+	if ($maxmind_score > $secpayconf_maxmind_threshold){
+		$q = "UPDATE $pro_mysql_pay_table SET paiement_type='$paiement_type',
+			secpay_site='$secpay_site',paiement_cost='$cost',paiement_total='$total',
+			valid_date='".date("Y-m-j")."', valid_time='".date("H:i:s")."',
+			secpay_custom_id='$secpay_custom_id',valid='pending',pending_reason='MaxMind' WHERE id='$pay_id';";
+	} else {
 	$q = "UPDATE $pro_mysql_pay_table SET paiement_type='$paiement_type',
 		secpay_site='$secpay_site',paiement_cost='$cost',paiement_total='$total',
 		valid_date='".date("Y-m-j")."', valid_time='".date("H:i:s")."',
 		secpay_custom_id='$secpay_custom_id',valid='yes' WHERE id='$pay_id';";
+	}
 	logPay($q);
 	mysql_query($q)or die(logPay("Cannot query \"$q\" ! ".mysql_error()." in file ".__FILE__." line ".__LINE__));
 
 	$txt_userwaiting_account_activated_subject = "$conf_message_subject_header ".$amount_paid." $secpayconf_currency_letters payment occured";
 
 	if($ar["new_account"] == "yes"){
-		$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE paiement_id='".$ar["id"]."';";
-		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		$a = mysql_fetch_array($r);
+		$a = $new_account_array;
 		$added_comments = "Login: ".$a["reqadm_login"]."
 Email: ".$a["email"]."
 Company: ".$a["comp_name"]."

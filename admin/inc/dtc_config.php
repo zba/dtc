@@ -1835,7 +1835,13 @@ function drawDTCpayConfig(){
 			"maxmind_license_key" => array(
 				"legend" => _("Maxmind license key: "),
 				"type" => "text",
-				"size" => "30")));
+				"size" => "30"),
+			"maxmind_threshold" => array(
+				"legend" => _("Maxmind fraud threshold: "),
+				"type" => "number",
+				"size" => "3"),
+
+			));
 	$out .= configEditorTemplate ($dsc,"secpay");
 
 	$dsc = array(
