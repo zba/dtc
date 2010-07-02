@@ -182,7 +182,7 @@ function validatePaiement($pay_id,$amount_paid,$paiement_type,$secpay_site="none
 	}
 	$maxmind_hash = unserialize($new_account_array["maxmind_output"]);
 	$maxmind_score = $maxmind_hash["riskScore"];
-	if ($maxmind_score > $secpayconf_maxmind_threshold){
+	if ($maxmind_score >= $secpayconf_maxmind_threshold){
 		$q = "UPDATE $pro_mysql_pay_table SET paiement_type='$paiement_type',
 			secpay_site='$secpay_site',paiement_cost='$cost',paiement_total='$total',
 			valid_date='".date("Y-m-j")."', valid_time='".date("H:i:s")."',
