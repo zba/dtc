@@ -315,6 +315,13 @@ function productManager(){
 				"legend" => _("Traffic") ,
 				"size" => "5"
 				),
+			"use_radius" => array(
+				"type" => "checkbox",
+				"legend" => _("Use Radius") ,
+				"help" => _("If the Use Radius flag is set this service is used to check a radius user."),
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
+				"default" => "no"),
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,

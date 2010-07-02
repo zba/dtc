@@ -276,7 +276,8 @@ $dtc_database = array(
 
 			"panel_title" => "varchar(255) NOT NULL default 'default'",
 			"panel_subtitle" => "varchar(255) NOT NULL default 'default'",
-			"panel_logo" => "varchar(255) NOT NULL default 'default'"
+			"panel_logo" => "varchar(255) NOT NULL default 'default'",
+			"this_server_default_tld" => "VARCHAR( 10 ) NOT NULL DEFAULT '.com'"
 			),
 		"keys" => array(
 			"unicrow" => "(unicrow)"
@@ -604,27 +605,6 @@ $dtc_database = array(
 			"name" => "(name,owner)"
 			)
 		),
-	"http_accounting" => array(
-		"vars" => array(
-			"id" => "int(14) NOT NULL auto_increment",
-			"vhost" => "varchar(50) NOT NULL ",
-			"bytes_sent" => "bigint(14) unsigned NOT NULL default '0' ",
-			"bytes_receive" => "bigint(14) unsigned NOT NULL default '0' ",
-			"count_hosts" => "int(12) NOT NULL default '0' ",
-			"count_visits" => "int(12) NOT NULL default '0' ",
-			"count_status_200" => "int(12) NOT NULL default '0' ",
-			"count_status_404" => "int(12) NOT NULL default '0' ",
-			"count_impressions" => "int(18) NOT NULL default '0' ",
-			"last_run" => "int(14) NOT NULL default '0' ",
-			"month" => "int(4) NOT NULL default '0' ",
-			"year" => "int(4) NOT NULL default '0' ",
-			"domain" => "varchar(50) NOT NULL "
-			),
-		"primary" => "(id)",
-                "unique" => array(
-                	"vhost" => "(vhost,month,year,domain)"
-			)
-		),
 	"ip_pool" => array (
 		"vars" => array(
 			"id" => "int(11) NOT NULL auto_increment",
@@ -634,7 +614,7 @@ $dtc_database = array(
 			"gateway" => "varchar(16) NOT NULL default ''",
 			"broadcast" => "varchar(16) NOT NULL default ''",
 			"dns" => "varchar(16) NOT NULL default ''",
-			"zone_type" => "enum('support_ticket','ip_per_ip','ip_per_ip_cidr','one_zonefile') default 'one_zonefile'",
+			"zone_type" => "enum('support_ticket','ip_per_ip','ip_per_ip_cidr','one_zonefile','one_zonefile_with_minus','one_zonefile_with_name','one_zonefile_with_slash') default 'one_zonefile'",
 			"custom_part" => "text NOT NULL"
 			),
 		"primary" => "(id)",
@@ -683,6 +663,7 @@ $dtc_database = array(
 			"type" => "varchar(30) NULL default 'other' ",
 			"ports" => "int(5) NULL ",
 			"secret" => "varchar(60) NOT NULL default 'secret' ",
+			"server" => "varchar(64) NULL ",
 			"community" => "varchar(50) NULL ",
 			"description" => "varchar(200) NULL default 'RADIUS Client' "
 			),
@@ -850,7 +831,8 @@ $dtc_database = array(
 			"heb_type" => "enum('shared','ssl','vps','server') NOT NULL default 'shared' ",
 			"renew_prod_id" => "int(11) NOT NULL default '0'",
 			"affiliate_kickback" => "varchar(9) NOT NULL default ''",
-			"private" => "enum('yes','no') NOT NULL default 'no'"
+			"private" => "enum('yes','no') NOT NULL default 'no'",
+			"use_radius" => "enum('yes','no') default 'no' "
 			),
 		"primary" => "(id)",
 		"keys" => array(
@@ -882,7 +864,8 @@ $dtc_database = array(
 			"FramedProtocol" => "varchar(32) NULL ",
 			"FramedIPAddress" => "varchar(15) NOT NULL ",
 			"AcctStartDelay" => "int(12) NULL ",
-			"AcctStopDelay" => "int(12) NULL "
+			"AcctStopDelay" => "int(12) NULL ",
+			"XAscendSessionSrvKey" => "varchar(64) NULL "
 			),
 		"primary" => "(RadAcctId)",
 		"index" => array(
@@ -938,10 +921,10 @@ $dtc_database = array(
 	"radpostauth" => array(
 		"vars" => array(
 			"id" => "int(11) NOT NULL auto_increment",
-			"user" => "varchar(64) NOT NULL ",
+			"username" => "varchar(64) NOT NULL ",
 			"pass" => "varchar(64) NOT NULL ",
 			"reply" => "varchar(32) NOT NULL ",
-			"date" => "timestamp(14) NULL "
+			"authdate" => "timestamp(14) NULL "
 			),
 		"primary" => "(id)"
 		),
@@ -956,6 +939,32 @@ $dtc_database = array(
 		"primary" => "(id)",
 		"index" => array(
 			"UserName" => "(UserName)"
+			)
+		),
+	"radgroup" => array(
+		"vars" => array(
+			"id" => "int(11) unsigned NOT NULL auto_increment",
+			"GroupName" => "varchar(64) NOT NULL ",
+			"Description" => "varchar(253) NOT NULL "
+			),
+		"primary" => "(id)",
+		"index" => array(
+			"GroupName" => "(GroupName)"
+			)
+		),
+	"radusergroup" => array(
+		"vars" => array(
+			"id" => "int(11) unsigned NOT NULL auto_increment",
+			"UserName" => "varchar(64) NOT NULL ",
+			"GroupName" => "varchar(64) NOT NULL ",
+			"Password" => "varchar(253) NOT NULL ",
+			"Dedicated_id" => "int(11) unsigned ",
+			"priority" => "int(11) unsigned default 1 "
+			),
+		"primary" => "(id)",
+		"index" => array(
+			"UserName" => "(UserName)",
+			"GroupName" => "(GroupName)"
 			)
 		),
 	"scheduled_updates" => array(

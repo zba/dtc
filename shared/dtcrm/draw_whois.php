@@ -17,7 +17,7 @@ function newWhois($domain_name,$owner_id,$billing_id,$admin_id,$teck_id,$period,
 
 	$query = "UPDATE $pro_mysql_domain_table SET whois='here',
 	owner_id='$owner_id',admin_id='$admin_id',billing_id='$billing_id',teck_id='$teck_id',
-	creation_date='$now',modification_date='$now',expiration_date='$now',registrar='$registrar',
+	creation_date='$now',modification_date='$now',expiration_date='$expir',registrar='$registrar',
 	primary_dns='".$ns_ar[0]."',other_dns='".$ns_ar[1].$ns_values."' WHERE name='$domain_name';";
 	$result = mysql_query($query)or die("Cannot query \"$query\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 }

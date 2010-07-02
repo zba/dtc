@@ -18,6 +18,11 @@ RELS=1
 VERSION=$(VERS)"-"$(RELS)
 CURDIR?=`pwd`
 
+# What type is the machine building the packages?
+# my_build_host_type can be: FreeBSD, Linux, Darwin
+my_build_host_type=$(shell uname -s)
+
+
 # BSD stuffs
 BSD_VERSION=$(VERS).$(RELS)
 PKG_BUILD=dtc-$(BSD_VERSION)
@@ -30,7 +35,8 @@ PORT_BUILD=$(BSD_BUILD_DIR)/$(MAIN_PORT_PATH)
 SRC_COPY_DIR=$(CURDIR)/$(BSD_BUILD_DIR)/$(PKG_BUILD)
 PKG_PLIST_BUILD=$(CURDIR)/${BSD_BUILD_DIR}/PKG_PLIST_BUILD
 
-INSTALL?=install -D
+#Add to the list all host type not supporting "install -D" like FreeBSD
+INSTALL?=$(if $(filter FreeBSD,$(my_build_host_type)),install,install -D)
 INSTALL_DIR?=install -d
 
 # Set defaults (as for Debian as normal platform)
@@ -122,7 +128,7 @@ debian-packages:
 	@echo "--- Making debian source package dtc_$(VERS).orig.tar.gz ---"
 	@mkdir -p debian/tmp/dtc-$(VERS)
 	@echo "-> Copying source package files with make source-copy DESTFOLDER=debian/tmp/dtc-$(VERS)"
-	@make source-copy DESTFOLDER=debian/tmp/dtc-$(VERS)
+	@${MAKE} source-copy DESTFOLDER=debian/tmp/dtc-$(VERS)
 	@echo "-> Creating archive with tar -czf ../../../dtc_$(VERS).orig.tar.gz dtc-$(VERS)"
 	@echo "-> --------------------------------"
 	@echo "-> Uncomment this to make a release"
@@ -137,7 +143,7 @@ bsd-ports-packages:
 	@echo "--- Making source snapshot $(BSD_ARCH_NAME) ---"
 	@mkdir -p $(BSD_BUILD_DIR)
 	@echo "-> Copying source package files with make source-copy DESTFOLDER=$(SRC_COPY_DIR)"
-	@make source-copy DESTFOLDER=$(SRC_COPY_DIR)
+	@${MAKE} source-copy DESTFOLDER=$(SRC_COPY_DIR)
 	@cd $(BSD_BUILD_DIR) && tar -czf $(BSD_ARCH_NAME) $(PKG_BUILD) && cd $(CURDIR)
 	@if ! [ $(BSD_DEST_DIR) = . -o $(BSD_DEST_DIR) = ./ -o $(BSD_DEST_DIR) = $(CURDIR) ] ; then mv $(BSD_BUILD_DIR)/$(BSD_ARCH_NAME) $(BSD_DEST_DIR)/ ; fi
 	@echo " --- Succesfully made BSD source snapshot ${BSD_DEST_DIR}/${BSD_ARCH_NAME} ---"
@@ -160,8 +166,8 @@ bsd-ports-packages:
 
 	@mkdir -p $(PKG_PLIST_BUILD)
 	@echo "-> Calling make install-dtc-common to calculate list in $(PKG_PLIST_BUILD)"
-	@make install-dtc-common DESTDIR=$(PKG_PLIST_BUILD) DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
-		DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd 2>&1 >/dev/null
+	@${MAKE} install-dtc-common DESTDIR=$(PKG_PLIST_BUILD) DTC_APP_DIR=/usr/local/www DTC_GEN_DIR=/usr/local/var CONFIG_DIR=/usr/local/etc \
+		DTC_DOC_DIR=/usr/local/share/doc MANUAL_DIR=/usr/local/man BIN_DIR=/usr/local/bin UNIX_TYPE=bsd
 	@echo "-> Building list of files"
 	@cd $(PKG_PLIST_BUILD) && find . -type f -o -type l | egrep -v "/man/" | sed "s/\.\/usr\/local\///" | sort -r >../$(MAIN_PORT_PATH)/pkg-plist.tmp && cd $(CURDIR)
 	@echo "sbin/dtc-install" >>$(PORT_BUILD)/pkg-plist.tmp
@@ -269,7 +275,7 @@ shared/securepay/modules/webmoney/main.php \
 shared/securepay/modules/moneybookers/main.php \
 shared/securepay/modules/dineromail/main.php
 
-REGISTRY_API_PHP_SCRIPT_FILES=shared/dtcrm/modules/webnic/main.php shared/dtcrm/modules/ovh/main.php
+REGISTRY_API_PHP_SCRIPT_FILES=shared/dtcrm/modules/webnic/main.php shared/dtcrm/modules/ovh/main.php shared/dtcrm/modules/internetbs/main.php
 
 WEB_SCRIPT_FILES=$(ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES) $(ADMIN_GENFILE_PHP_SCRIPT_FILES) $(ADMIN_INC_PHP_SCRIPT_FILES) \
 $(CLIENT_PHP_SCRIPT_FILES) $(EMAIL_PHP_SCRIPT_FILES) $(SHARED_PHP_SCRIPT_FILES) $(SHARED_INC_PHP_SCRIPT_FILES) \
@@ -342,7 +348,7 @@ shared/securepay/modules/worldpay client email shared/securepay/modules/cheque s
 shared/securepay/modules/moneybookers shared/dtcrm/modules/webnic admin/postfix_checks admin/mod-security shared/gfx/skin/paperboard shared/gfx/skin/paperboard/gfx \
 shared/gfx/skin/paperboard/gfx/treeview shared/gfx/skin/paperboard/gfx/tabs shared/gfx/skin/paperboard/gfx/navbar \
 shared/gfx/toolstitles shared/gfx/skin/paperboard/gfx/css shared/gfx/skin/paperboard/gfx/config-icon shared/gfx/skin/paperboard/gfx/buttons shared/dtcrm/modules/ovh \
-shared/securepay/modules/dineromail
+shared/securepay/modules/dineromail shared/dtcrm/modules/internetbs
 
 LOCALE_TRANS=fr_FR hu_HU it_IT nl_NL ru_RU de_DE zh_CN pl_PL sv_SE pt_PT pt_BR es_ES fi_FI zh_TW sr_RS lv_LV cs_CZ
 
@@ -432,7 +438,7 @@ install-dtc-common:
 
 	# Create the configuration folder
 	mkdir -p $(DTC_ETC_DIRECTORY)
-	if [ $(UNIX_TYPE) = "bsd" ] ; then \
+	if [ ""$(my_build_host_type) = "FreeBSD" ] ; then \
 		cp -anf etc/dtc/* $(DTC_ETC_DIRECTORY) ; \
 	else \
 		cp -auxf etc/dtc/* $(DTC_ETC_DIRECTORY) ; \
@@ -452,8 +458,8 @@ install-dtc-common:
 	fi
 	cp -rf doc/* $(DOC_DIR)
 
-	# Copy the internationnalization stuff
-	make l12n
+	# Copy the internationalization stuff
+	${MAKE} l12n
 	cd shared/vars && cp -rf locale $(APP_INST_DIR)/shared/vars && cd ../..
 
 	rm -rf $(DOC_DIR)/LICENSE

@@ -648,7 +648,7 @@ AND $pro_mysql_admin_table.id_client != '0'";
 	Alias /dtc $conf_dtcclient_path
 	Alias /dtcdoc $conf_dtcdoc_path/html/en
 	Alias /dtcemail $conf_dtcemail_path
-	Alias /dtcadmin $conf_dtcadmin_path
+	Alias /dtcadmin $conf_dtcadmin_path/
 	Alias /stats $web_path/$web_name/subdomains/$web_subname/logs
 	Alias /awstats-icon $conf_tools_prefix/awstats/icon
 	Alias /squirrelmail ".$conf_tools_prefix."/squirrelmail

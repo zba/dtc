@@ -269,6 +269,7 @@ function drawQuarantine($mailbox){
 function drawAdminTools_emailAccount($mailbox){	
 	global $adm_email_login;
 	global $adm_email_pass;
+	global $cyrus_used;
 
 	$url_start = "<a href=\"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass&addrlink=".$_REQUEST["addrlink"];
 	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
@@ -298,48 +299,53 @@ function drawAdminTools_emailAccount($mailbox){
 		$use_vacation_msg_no_checked = " checked ";
 	}
 
-	$left .= "<h3>" . _("Vacation message") . "</h3>
-	".$form_start."<input type=\"hidden\" name=\"action\" value=\"dtcemail_vacation_msg\">
-<input type=\"radio\" name=\"use_vacation_msg\" value=\"yes\" $use_vacation_msg_yes_checked>"._("Yes")."<input type=\"radio\" name=\"use_vacation_msg\" value=\"no\" $use_vacation_msg_no_checked>"._("No")."
-<br>
-<textarea cols=\"40\" rows=\"7\" name=\"vacation_msg_txt\">".$mailbox["data"]["vacation_text"]."</textarea><br>
-". drawSubmitButton( _("Ok") ) ."</form>";
-
+	if (!$cyrus_used){
+  	$left .= "<h3>" . _("Vacation message") . "</h3>
+  	".$form_start."<input type=\"hidden\" name=\"action\" value=\"dtcemail_vacation_msg\">
+  <input type=\"radio\" name=\"use_vacation_msg\" value=\"yes\" $use_vacation_msg_yes_checked>"._("Yes")."<input type=\"radio\" name=\"use_vacation_msg\" value=\"no\" $use_vacation_msg_no_checked>"._("No")."
+  <br>
+  <textarea cols=\"40\" rows=\"7\" name=\"vacation_msg_txt\">".$mailbox["data"]["vacation_text"]."</textarea><br>
+  ". drawSubmitButton( _("Ok") ) ."</form>";
+  }
 	if($mailbox["data"]["localdeliver"] == "yes"){
 		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=no\"><font color=\"green\">"._("Yes")."</font></a>";
 	}else{
 		$deliverUrl = "$url_start&action=dtcemail_set_deliver_local&setval=yes\"><font color=\"red\">"._("No")."</font></a>";
 	}
-	$right = "<h3>". _("Edit your mailbox redirections:") ."</h3>
-". _("Deliver messages locally in INBOX: ") ." $deliverUrl
-<table cellpadding=\"0\" cellspacing=\"0\">
-<tr>
-	<td align=\"right\">".$form_start. _("Redirection 1: ") ."</td>
-	<td><input type=\"hidden\" name=\"action\" value=\"dtcemail_edit_redirect\"><input type=\"text\" name=\"redirect1\" value=\"".$mailbox["data"]["redirect1"]."\"></td>
-</tr><tr>
-	<td>". _("Redirection 2: ") ."</td>
-	<td><input type=\"text\" name=\"redirect2\" value=\"".$mailbox["data"]["redirect2"]."\"></td>
-</tr><tr>
-	<td></td><td>". drawSubmitButton( _("Ok") ) ."</form></td>
-</tr></table><br><br>";
+	if (!$cyrus_used){
+    	$right = "<h3>". _("Edit your mailbox redirections:") ."</h3>
+    ". _("Deliver messages locally in INBOX: ") ." $deliverUrl
+    <table cellpadding=\"0\" cellspacing=\"0\">
+    <tr>
+    	<td align=\"right\">".$form_start. _("Redirection 1: ") ."</td>
+    	<td><input type=\"hidden\" name=\"action\" value=\"dtcemail_edit_redirect\"><input type=\"text\" name=\"redirect1\" value=\"".$mailbox["data"]["redirect1"]."\"></td>
+    </tr><tr>
+    	<td>". _("Redirection 2: ") ."</td>
+    	<td><input type=\"text\" name=\"redirect2\" value=\"".$mailbox["data"]["redirect2"]."\"></td>
+    </tr><tr>
+    	<td></td><td>". drawSubmitButton( _("Ok") ) ."</form></td>
+    </tr></table><br><br>";
 
-	if($mailbox["data"]["spam_mailbox_enable"] == "yes"){
-		$spambox_yes_checked = " checked ";
-		$spambox_no_checked = " ";
-	}else{
-		$spambox_yes_checked = " ";
-		$spambox_no_checked = " checked ";
+    	if($mailbox["data"]["spam_mailbox_enable"] == "yes"){
+    		$spambox_yes_checked = " checked ";
+    		$spambox_no_checked = " ";
+    	}else{
+    		$spambox_yes_checked = " ";
+    		$spambox_no_checked = " checked ";
+    	}
+
+    	$right .= "<h3>" . _("Anti-SPAM control") . "</h3>
+    <table cellpadding=\"0\" cellspacing=\"0\">
+    <tr>
+    	<td align=\"right\">Deliver spam to spambox:</td><td>".$form_start."<input type=\"hidden\" name=\"action\" value=\"dtcemail_spambox\">
+    <input type=\"radio\" name=\"spam_mailbox_enable\" value=\"yes\" $spambox_yes_checked>"._("Yes")."<input type=\"radio\" name=\"spam_mailbox_enable\" value=\"no\" $spambox_no_checked>"._("No")."</td>
+    </tr><tr>
+    	<td align=\"right\">" . _("SPAM box name") . ":</td><td><input type=\"text\" name=\"spam_mailbox\" value=\"".$mailbox["data"]["spam_mailbox"]."\"></td>
+    </tr><tr>
+    	<td></td><td>". drawSubmitButton( _("Ok") ) ."</form></td></tr></table>";
 	}
-
-	$right .= "<h3>" . _("Anti-SPAM control") . "</h3>
-<table cellpadding=\"0\" cellspacing=\"0\">
-<tr>
-	<td align=\"right\">Deliver spam to spambox:</td><td>".$form_start."<input type=\"hidden\" name=\"action\" value=\"dtcemail_spambox\">
-<input type=\"radio\" name=\"spam_mailbox_enable\" value=\"yes\" $spambox_yes_checked>"._("Yes")."<input type=\"radio\" name=\"spam_mailbox_enable\" value=\"no\" $spambox_no_checked>"._("No")."</td>
-</tr><tr>
-	<td align=\"right\">" . _("SPAM box name") . ":</td><td><input type=\"text\" name=\"spam_mailbox\" value=\"".$mailbox["data"]["spam_mailbox"]."\"></td>
-</tr><tr>
-	<td></td><td>". drawSubmitButton( _("Ok") ) ."</form></td></tr></table>";
+	else { $right=""; }
+	
 	// Output the form
 	$out = "<table width=\"100%\" heigh=\"1\">
 <tr>

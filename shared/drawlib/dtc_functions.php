@@ -4,7 +4,16 @@ if(function_exists("date_default_timezone_set") and function_exists("date_defaul
 @date_default_timezone_set(@date_default_timezone_get());
 
 function find_domain_extension($domain){
-	$pos = strrchr($domain,".");
+        global $allTLD;
+
+	# $pos = strrchr($domain,".");
+	$nbr_tld = sizeof($allTLD);
+        for($i=0;$i<$nbr_tld;$i++){
+                if( preg_match("/\\".$allTLD[$i]."\$/",$domain)){
+                        $pos = $allTLD[$i];
+                }
+        }
+
 	if($pos === FALSE){
 		return FALSE;
 	}
@@ -150,7 +159,9 @@ function headAndTailEmailMessage($msg){
 }
 
 $allTLD = array(".com", ".aero", ".asia", ".biz", ".cat", ".coop", ".edu", ".gov", ".info", ".int", ".jobs", ".mil", ".mobi", ".museum", ".name", ".net",".org", ".pro", ".tel", ".travel",
-".ac",".ad",".ae",".af",".ag",".ai",".al",".am",".an",".ao",".aq",".ar",".as",".at",".au",".aw",".ax",".az",
+".ac",".ad",".ae",".af",".ag",".ai",".al",".am",".an",".ao",".aq",
+".ar",".com.ar",".net.ar",".mil.ar",".edu.ar",".org.ar",".tur.ar",".int.ar",".gov.ar",".gob.ar",
+".as",".at",".au",".aw",".ax",".az",
 ".ba",".bb",".bd",".be",".bf",".bg",".bh",".bi",".bj",".bm",".bn",".bo",".br",".bs",".bt",".bw",".by",".bz",
 ".ca",".cc",".cd",".cf",".cg",".ch",".ci",".ck",".cl",".cm",".cn",".co",".cr",".cu",".cv",".cx",".cy",".cz",
 ".de",".dj",".dk",".dm",".do",".dz",
@@ -183,6 +194,7 @@ function isTLD($tld){
 
 function domainNamePopup($domain_name=""){
 	global $allTLD;
+	global $conf_this_server_default_tld;
 
 	$out = "";
 
@@ -191,7 +203,11 @@ function domainNamePopup($domain_name=""){
 		if( preg_match("/\\".$allTLD[$i]."\$/",$domain_name)){
 			$selected = " selected ";
 		}else{
-			$selected = "";
+			if ($allTLD[$i] == $conf_this_server_default_tld){
+				$selected = " selected ";
+			}else{
+				$selected = "";
+			}
 		}
 		$out .= "<option value=\"".$allTLD[$i]."\" $selected>". $allTLD[$i] ."</option>";
 	}
@@ -407,9 +423,9 @@ function HTTP_Get($URL,$data, $referrer=""){
 }
 
 function logPay($txt){
-//	$fp = fopen("/tmp/paylog.txt","a");
-//	fwrite($fp,$txt."\n");
-//	fclose($fp);
+	//$fp = fopen("/tmp/paylog.txt","a");
+	//fwrite($fp,$txt."\n");
+	//fclose($fp);
 	echo $txt."<br>";
 }
 

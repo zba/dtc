@@ -195,7 +195,7 @@ _("Email: ") . $infoz["email"] ."<br>";
 
 function nickHandleCreateCallback($id){
 	global $pro_mysql_handle_table;
-	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$id';";
+	$q = "SELECT * FROM $pro_mysql_handle_table WHERE id='$id';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
@@ -207,7 +207,7 @@ function nickHandleCreateCallback($id){
 
 function nickHandleDeleteCallback($id){
 	global $pro_mysql_handle_table;
-	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$id';";
+	$q = "SELECT * FROM $pro_mysql_handle_table WHERE id='$id';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
@@ -219,7 +219,7 @@ function nickHandleDeleteCallback($id){
 
 function nickHandleEditCallback($id){
 	global $pro_mysql_handle_table;
-	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$id';";
+	$q = "SELECT * FROM $pro_mysql_handle_table WHERE id='$id';";
 	$r = mysql_query($q)or die ("Cannot query $q line: ".__LINE__." file ".__FILE__." sql said:" .mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){

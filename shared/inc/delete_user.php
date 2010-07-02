@@ -19,7 +19,7 @@ function deleteMysqlUserAndDB($adm_login){
 			$db = $row["Db"];
 			// Prevent system db from deletion
 			if($db != $conf_mysql_db && $db != "mysql"){
-				$query2 = "DROP DATABASE IF EXISTS $db";
+				$query2 = "DROP DATABASE IF EXISTS `$db`";
 				mysql_query($query2)or die("Cannot execute query \"$query2\" line ".__line__." file ".__FILE__." mysql said: ".mysql_error());
 			}
 		}

@@ -1706,103 +1706,7 @@ sasl_sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
 			 echo "===> calling $PATH_DTC_ADMIN/install/mk_root_mailbox.php ${main_domain_name}"
 			 php -f $PATH_DTC_ADMIN/install/mk_root_mailbox.php ${main_domain_name}
 		fi # [ ""$UNIX_TYPE = "freebsd" -o $UNIX_TYPE"" = "osx" ]
-		# CL: For mac os and debian (probably also other linux) the conf for smtp must go in /usr/lib/sasl2/...
-		# deffined in $PATH_SASLLIB
-
-		# check if libsql is installed for sasl, else use PAM 
-		if [ -f $PATH_SASLLIB/libsql.so ] ; then
-			echoIfVerbose "===> found $PATH_SASLLIB/libsql.so using sasl with sql"
-			PATH_AUTH_SMTP=$PATH_SASLLIB/smtpd.conf
-			PATH_AUTH_SASLPASSWD=$PATH_SASLLIB/saslpasswd.conf
-			echoIfVerbose "===> Adding configuration inside $PATH_SASLLIB"
-			if [ -f $PATH_AUTH_SMTP ] ; then
-				if ! [ -f $PATH_AUTH_SMTP.DTC.backup ] ; then
-					cp -f $PATH_AUTH_SMTP $PATH_AUTH_SMTP.DTC.backup
-				fi #[ -f $PATH_AUTH_SMTP.DTC.backup ] ;
-			fi #[ -f $PATH_AUTH_SMTP ] ;
-			echo "# Configured by DTC v0.25 : Please don't touch this line !
-pwcheck_method: auxprop
-auxprop_plugin: sql
-sql_engine: mysql
-sql_hostnames: ${conf_mysql_host}
-sql_user: dtcdaemons
-sql_passwd: ${MYSQL_DTCDAEMONS_PASS}
-sql_database: ${conf_mysql_db}
-#password_format: crypt
-#sql_select: SELECT crypt FROM pop_access WHERE fullemail = '%u@%r'
-#sql_update: UPDATE pop_access SET crypt = '%v' WHERE fullemail = '%u@%r'
-sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
-sql_update: UPDATE pop_access SET passwd = '%v' WHERE fullemail = '%u@%r'
-sql_verbose: yes
-# End of DTC configuration v0.25 : please don't touch this line !" >${PATH_AUTH_SMTP}
-
-			if [ -f $PATH_AUTH_SASLPASSWD ] ; then
-				if ! [ -f $PATH_AUTH_SASLPASSWD.DTC.backup ] ; then
-					cp -f $PATH_AUTH_SASLPASSWD $PATH_AUTH_SASLPASSWD.DTC.backup
-				fi #[ -f $PATH_AUTH_SASLPASSWD.DTC.backup ]
-			fi #[ -f $PATH_AUTH_SASLPASSWD ] ;
- 
-			cp -f $PATH_AUTH_SMTP $PATH_AUTH_SASLPASSWD
-			if [ "$UNIX_TYPE" = "debian" ] ; then
-				if [ -e $PATH_POSTFIX_ETC/sasl/smtpd.conf ] ; then
-					mv $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf-remove_by_DTC
-				fi
-				ln -s $PATH_SASLLIB/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf 
-				if [ ! -e /var/spool/postfix/etc/sasldb2 ] ; then
-					ln -s /etc/sasldb2 /var/spool/postfix/etc/sasldb2
-				fi
-			fi
-		else
-			echoIfVerbose "===> $PATH_SASLLIB/libsql.so NOT found, using pam_mysql"
-			PATH_PAMD_SMTP=/etc/pam.d/smtp
-			PATH_PAMD_IMAP=/etc/pam.d/imap
-			PATH_PAMD_SIEVE=/etc/pam.d/sieve
-			PATH_PAMD_POP=/etc/pam.d/pop
-			if [ -e /etc/pam.d/ ] ; then
-				echoIfVerbose "===> Adding configuration inside "$PATH_PAMD_SMTP
-				if [ -f $PATH_PAMD_SMTP ] ; then
-					if ! [ -f $PATH_PAMD_SMTP.DTC.backup ] ; then
-						cp -f $PATH_PAMD_SMTP $PATH_PAMD_SMTP.DTC.backup
-					fi #[ -f $PATH_PAMD_SMTP.DTC.backup ]
-				fi # [ -f $PATH_PAMD_SMTP ]
-				touch $PATH_PAMD_SMTP
-				echo "auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" db="$conf_mysql_db" table=pop_access usercolumn=id passwdcolumn=password crypt=0" >$PATH_PAMD_SMTP
-				if [ ""$conf_use_cyrus = "true" ] ; then
-					echo "account sufficient pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host="${conf_mysql_host}" db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1
-
-auth required pam_mysql.so user=dtcdaemons passwd="${MYSQL_DTCDAEMONS_PASS}" host="${conf_mysql_host}" db="$conf_mysql_db" table=pop_access usercolumn=fullemail passwdcolumn=crypt crypt=1" >$PATH_PAMD_SMTP
-	
-					if [ -f $PATH_PAMD_IMAP ] ; then
-						if ! [ -f $PATH_PAMD_IMAP.DTC.backup ] ; then
-							cp -f $PATH_PAMD_IMAP $PATH_PAMD_IMAP.DTC.backup
-						fi #[ -f $PATH_PAMD_IMAP.DTC.backup ]
-					fi #[ -f $PATH_PAMD_IMAP ]
-					cp -f $PATH_PAMD_SMTP $PATH_PAMD_IMAP
-
-					if [ -f $PATH_PAMD_SIEVE ] ; then
-						if ! [ -f $PATH_PAMD_SIEVE.DTC.backup ] ; then
-							cp -f $PATH_PAMD_SIEVE $PATH_PAMD_SIEVE.DTC.backup
-						fi # [ -f $PATH_PAMD_SIEVE.DTC.backup ]
-					fi #[ -f $PATH_PAMD_SIEVE ]
-					cp -f $PATH_PAMD_SMTP $PATH_PAMD_SIEVE
-	
-					if [ -f $PATH_PAMD_POP ] ; then
-						if ! [ -f $PATH_PAMD_POP.DTC.backup ] ; then
-							cp -f $PATH_PAMD_POP $PATH_PAMD_POP.DTC.backup
-						fi #[ -f $PATH_PAMD_POP.DTC.backup ] ;
-					fi #[ -f $PATH_PAMD_POP ] ;
-					cp -f $PATH_PAMD_SMTP $PATH_PAMD_POP
-				fi #if [ ""$conf_cyrus_enable = "true" ] ;
-			fi #if [ -e /etc/pam.d/ ]
-		fi
-	fi
-	# Fix the sasldb2 link
-	if [ -e /etc/sasldb2 ] ; then
-		rm /etc/sasldb2
-	fi
-	if [ ! -e /etc/sasldb2 ] ; then
-		ln -sf $PATH_DTC_ETC/sasldb2 /etc/sasldb2
-	fi
+	fi # [ ""$conf_use_cyrus = "true" ]
 }
 
 modifyNamedConf () {
@@ -2339,12 +2243,12 @@ OPTIONS=\"-r -c -m /var/spool/postfix/var/run/saslauthd\"" >> $TMP_FILE
 		fi
 	fi
 	# Fixes broken link of the sasldb2
-	if ! [ -f /etc/sasldb2 ] ; then
-		if [ -h /etc/sasldb2 ] ; then
-			rm /etc/sasldb2
-		fi
-		ln -s ${PATH_DTC_ETC}/sasldb2 /etc/sasldb2
-	fi
+  # if ! [ -f /etc/sasldb2 ] ; then
+  #   if [ -h /etc/sasldb2 ] ; then
+  #     rm /etc/sasldb2
+  #   fi
+  #   ln -s ${PATH_DTC_ETC}/sasldb2 /etc/sasldb2
+  # fi
 }
 
 modifyPostfixConfig () {
@@ -2464,8 +2368,6 @@ echo "virtual_mailbox_domains = hash:$PATH_DTC_ETC/postfix_virtual_mailbox_domai
 					echo "virtual_transport = lmtp:unix:/var/run/cyrus/socket/lmtp
 mailbox_transport = lmtp:unix:/var/run/cyrus/socket/lmtp
 # local_recipient_maps = $alias_maps, ... ### CL ToDo! " >> $TMP_FILE
-					# Fix the master.cf lmtp stuff
-					sed -i "s/lmtp      unix  -       -       -       -       -       lmtp/lmtp      unix  -       -       n       -       -       lmtp/" $TMP_FILE
 				else
 					echo "virtual_transport = cyrus
 mailbox_transport = lmtp:unix:/var/run/socket/lmtp
@@ -2533,27 +2435,37 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 						fi
 					fi
 				fi
-
-				SASLTMP_FILE=`${MKTEMP} DTC_install.postfix_sasl.XXXXXX` || exit 1
-				echo "# Configured by DTC v0.15 : Please don't touch this line !" > ""$SASLTMP_FILE
-				# CL: for cyrus use saslauthd instead of auxprop!
-				# and add postfix to the sasl group
-				if [ ""$conf_use_cyrus = "true" ] ; then
-					echo "pwcheck_method: saslauthd
-mech_list: login plain" >> $SASLTMP_FILE
-					if [ "$UNIX_TYPE" = "debian" ] ; then
-						echoIfVerbose "Adding postfix to the sasl group"
-						adduser postfix sasl
-						echoIfVerbose "Adding postfix to the mail group"
-						adduser postfix mail
-					else
-						echo "*** Please add Postfix to the sasl group so it has access to the saslauthd socket"
-					fi
-				else
-					echo "pwcheck_method: auxprop
-mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
-				fi
-				echo "# End of DTC configuration v0.15 : please don't touch this line !" >> $SASLTMP_FILE
+        # add postfix to the sasl and mail group, not sure if we still need sasl, but mail is neede for LMTP
+        if [ ""$conf_use_cyrus = "true" ] ; then
+          if [ "$UNIX_TYPE" = "debian" ] ; then
+            echoIfVerbose "Adding postfix to the sasl group"
+            adduser postfix sasl
+            echoIfVerbose "Adding postfix to the mail group"
+            adduser postfix mail
+          else
+            echoIfVerbose "**** For lmtp delivery to work, postfix needs access to /var/run/cyrus/socket/, please add postfix to mail group !"
+          fi
+        fi
+#         SASLTMP_FILE=`${MKTEMP} DTC_install.postfix_sasl.XXXXXX` || exit 1
+#         echo "# Configured by DTC v0.15 : Please don't touch this line !" > ""$SASLTMP_FILE
+#         # CL: for cyrus use saslauthd instead of auxprop!
+#         # and add postfix to the sasl group
+#         if [ ""$conf_use_cyrus = "true" ] ; then
+#           echo "pwcheck_method: saslauthd
+# mech_list: login plain" >> $SASLTMP_FILE
+#           if [ "$UNIX_TYPE" = "debian" ] ; then
+#             echoIfVerbose "Adding postfix to the sasl group"
+#             adduser postfix sasl
+#             echoIfVerbose "Adding postfix to the mail group"
+#             adduser postfix mail
+#           else
+#             echo "*** Please add Postfix to the sasl group so it has access to the saslauthd socket"
+#           fi
+#         else
+#           echo "pwcheck_method: auxprop
+# mech_list: plain login digest-md5 cram-md5" >> $SASLTMP_FILE
+#         fi
+#         echo "# End of DTC configuration v0.15 : please don't touch this line !" >> $SASLTMP_FILE
 				permit_sasl_authenticated="
 				permit_sasl_authenticated,"
 				sasl_main_dot_cf_rules="
@@ -2678,6 +2590,15 @@ sa-ham  unix    -       n       n       -       -       pipe
 
 " >> $TMP_FILE2
 				fi
+				
+				# CL: change lmtp from chroot to non chroot, else lmtp delivery won't work
+				if [ ""$conf_use_cyrus = "true" ] ; then
+  				if [ "$UNIX_TYPE" = "debian" ] ; then  			
+    				# Fix the master.cf lmtp stuff
+    				sed -i "s/lmtp      unix  -       -       -       -       -       lmtp/lmtp      unix  -       -       n       -       -       lmtp/" $TMP_FILE2
+				  fi
+			  fi
+				
 				if [ -x /usr/bin/tumgreyspf -o -x ${LOCALBASE}/bin/tumgreyspf ] ; then
 					if [ -x /usr/bin/tumgreyspf ] ; then
 						TMP_TUMGREYPATH=/usr/bin/tumgreyspf
@@ -2834,20 +2755,58 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 		fi
 		newaliases
 	fi
+  		# CL: For mac os and debian (probably also other linux) the conf for smtp must go in /usr/lib/sasl2/...
+  		# deffined in $PATH_SASLLIB
 
-	# over-write the configuration for SASL
-	# if sasl with sql is used then just link to the file being created during cyrus installation
-	if [ -e $SASLTMP_FILE ] ; then
-		if [ -f $PATH_SASLLIB/libsql.so ] ; then
-			if [ -f $PATH_POSTFIX_ETC/sasl/smtpd.conf ] ; then
-				mv $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf-remove_by_DTC
-			fi
-			ln -s $PATH_SASLLIB/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf 
-		else
-			cat $SASLTMP_FILE > $PATH_POSTFIX_ETC/sasl/smtpd.conf
-		fi 
-		rm $SASLTMP_FILE
-	fi
+  		# check if libsql is installed for sasl, else use PAM 
+  		# CL: PAM will be removed and replaced by sasl!
+  		if [ -f $PATH_SASLLIB/libsql.so ] ; then
+  			echoIfVerbose "===> found $PATH_SASLLIB/libsql.so using sasl with sql"
+  			PATH_AUTH_SMTP=$PATH_SASLLIB/smtpd.conf
+  			PATH_AUTH_SASLPASSWD=$PATH_SASLLIB/saslpasswd.conf
+  			echoIfVerbose "===> Adding configuration inside $PATH_SASLLIB"
+  			if [ -f $PATH_AUTH_SMTP ] ; then
+  				if ! [ -f $PATH_AUTH_SMTP.DTC.backup ] ; then
+  					cp -f $PATH_AUTH_SMTP $PATH_AUTH_SMTP.DTC.backup
+  				fi #[ -f $PATH_AUTH_SMTP.DTC.backup ] ;
+  			fi #[ -f $PATH_AUTH_SMTP ] ;
+  			echo "# Configured by DTC v0.25 : Please don't touch this line !
+  pwcheck_method: auxprop
+  auxprop_plugin: sql
+  sql_engine: mysql
+  sql_hostnames: ${conf_mysql_host}
+  sql_user: dtcdaemons
+  sql_passwd: ${MYSQL_DTCDAEMONS_PASS}
+  sql_database: ${conf_mysql_db}
+  #password_format: crypt
+  #sql_select: SELECT crypt FROM pop_access WHERE fullemail = '%u@%r'
+  #sql_update: UPDATE pop_access SET crypt = '%v' WHERE fullemail = '%u@%r'
+  sql_select: SELECT passwd FROM pop_access WHERE fullemail = '%u@%r'
+  sql_update: UPDATE pop_access SET passwd = '%v' WHERE fullemail = '%u@%r'
+  sql_verbose: yes
+  # End of DTC configuration v0.25 : please don't touch this line !" >${PATH_AUTH_SMTP}
+
+  			if [ -f $PATH_AUTH_SASLPASSWD ] ; then
+  				if ! [ -f $PATH_AUTH_SASLPASSWD.DTC.backup ] ; then
+  					cp -f $PATH_AUTH_SASLPASSWD $PATH_AUTH_SASLPASSWD.DTC.backup
+  				fi #[ -f $PATH_AUTH_SASLPASSWD.DTC.backup ]
+  			fi #[ -f $PATH_AUTH_SASLPASSWD ] ;
+
+  			cp -f $PATH_AUTH_SMTP $PATH_AUTH_SASLPASSWD
+  			if [ "$UNIX_TYPE" = "debian" ] ; then
+  				if [ -e $PATH_POSTFIX_ETC/sasl/smtpd.conf ] ; then
+  					mv $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf-remove_by_DTC
+  				fi
+  				ln -s $PATH_SASLLIB/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf 
+  				if [ ! -e /var/spool/postfix/etc/sasldb2 ] ; then
+  					ln -s /etc/sasldb2 /var/spool/postfix/etc/sasldb2
+  				fi
+  			fi
+  		else
+  		  echoIfVerbose "===> ********************************************************** "
+  			echoIfVerbose "===> ****** $PATH_SASLLIB/libsql.so NOT found and PAM was removed from the installation, leaving Postfix SASL unconfigured! Please fix me!"
+  		  echoIfVerbose "===> ********************************************************** "
+  		fi # [ -f $PATH_SASLLIB/libsql.so ]
 	# By default, CentOS setup is wrong with maildrop not being SUID
 	if [ "$UNIX_TYPE" = "redhat" -a /usr/bin/maildrop ] ; then
 		chmod +s /usr/bin/maildrop
@@ -3505,6 +3464,24 @@ configFreeRadius () {
 
 		FREERADIUS_CONF=$FREERADIUS_ETC/radiusd.conf  
 		FREERADIUS_SQL_DOT_CONF=$FREERADIUS_ETC/sql.conf 
+		FREERADIUS_SITE_ENABLED_CONF=$FREERADIUS_ETC/sites-enabled/default
+
+		if [ $UNIX_TYPE = freebsd ] ; then
+			if grep "Configured by DTC" /etc/rc.conf >/dev/null ; then
+				# rc.conf already spammed
+				echo -n ""
+			else
+				echo "### Configured by DTC 0.31 - please do not remove" >>/etc/rc.conf
+			fi
+
+			if grep radiusd_enable /etc/rc.conf >/dev/null ; then
+				echo "Freeradius already activated in rc.conf"
+			else
+				echo "Activating freeradius on /etc/rc.conf"
+				echo "radiusd_enable=\"YES\"" >>/etc/rc.conf
+			fi
+		fi
+
 
 		# Backup of freeradius config files
 		if [ -e $FREERADIUS_CONF ] ; then
@@ -3519,15 +3496,18 @@ configFreeRadius () {
 			fi
 		fi
 
+		if [ -e $FREERADIUS_SITE_ENABLED_CONF ] ; then
+			if ! [ -e $FREERADIUS_SITE_ENABLED_CONF".DTCbackup" ] ; then
+				cp $FREERADIUS_SITE_ENABLED_CONF $FREERADIUS_SITE_ENABLED_CONF".DTCbackup"
+			fi
+		fi
+
 		TMP_FILE=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
 		TMP_FILE2=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
-		TMP_FILE3=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
-		TMP_FILE4=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
-		TMP_FILE5=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
-		TMP_FILE6=`${MKTEMP} DTC_install.radius.conf.XXXXXX` || exit 1
 
 		if [ -e /var/log/radacct ] ; then
 			chown -R ${CONF_DTC_SYSTEM_USERNAME} /var/log/radacct
+			chmod -R 770 /var/log/radacct
 		fi
 
 		sed "s/#user = nobody/user = nobody/" $FREERADIUS_CONF >$TMP_FILE
@@ -3536,14 +3516,15 @@ configFreeRadius () {
 		else
 			sed "s/#group = nogroup/group = nogroup/" $TMP_FILE >$TMP_FILE2
 		fi
-		sed "s/log_auth = no/log_auth = yes/" $TMP_FILE2 >$TMP_FILE3
-		sed "s/log_auth_badpass = no/log_auth_badpass = yes/" $TMP_FILE3 >$TMP_FILE4
-		sed "s/log_auth_goodpass = no/log_auth_goodpass = yes/" $TMP_FILE4 >$TMP_FILE5
-		sed "s/#	sql/       sql/" $TMP_FILE5 >$TMP_FILE6 
+		sed "s/auth = no/auth = yes/" $TMP_FILE2 >$TMP_FILE
+		sed "s/auth_badpass = no/auth_badpass = yes/" $TMP_FILE >$TMP_FILE2
+		sed "s/auth_goodpass = no/auth_goodpass = yes/" $TMP_FILE2 >$TMP_FILE
+		sed "s/#	sql$/       sql/" $TMP_FILE >$TMP_FILE2 
+		sed "s/#	\$INCLUDE sql/	\$INCLUDE sql/" $TMP_FILE2 >$TMP_FILE 
 
-		cat <$TMP_FILE6 >$FREERADIUS_CONF
+		cat <$TMP_FILE >$FREERADIUS_CONF
 
-		rm $TMP_FILE $TMP_FILE2 $TMP_FILE3 $TMP_FILE4 $TMP_FILE5 $TMP_FILE6
+		rm $TMP_FILE $TMP_FILE2
 
 		echoIfVerbose "===> Adding directives to sql.conf"
 
@@ -3555,34 +3536,49 @@ configFreeRadius () {
 
 		        TMP_FILE1=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
 		        TMP_FILE2=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
-		        TMP_FILE3=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
-		        TMP_FILE4=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
-		        TMP_FILE5=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
 
 			# Remove the default config
 			grep -v "server =" $FREERADIUS_SQL_DOT_CONF >$TMP_FILE1
 			grep -v "login =" $TMP_FILE1 >$TMP_FILE2
-			grep -v "password =" $TMP_FILE2 >$TMP_FILE3
-			grep -v "radius_db = " $TMP_FILE3 >$TMP_FILE4
-			grep -v "}" $TMP_FILE4 >$TMP_FILE5
+			grep -v "password =" $TMP_FILE2 >$TMP_FILE1
+			grep -v "radius_db = " $TMP_FILE1 >$TMP_FILE2
+			grep -v "readclients *=" $TMP_FILE2 >$TMP_FILE1
+			grep -v "read_groups *=" $TMP_FILE1 >$TMP_FILE2
+			grep -v "}$" $TMP_FILE2 >$TMP_FILE1
 
 			# Install the DTC db config
-		        TMP_FILE=`${MKTEMP} DTC_install.sql.conf.XXXXXX` || exit 1
 		        echo "# Configured by DTC v0.10 : Please don't touch this line !
         # Connect info
+	driver = rlm_sql_mysql
         server = "$conf_mysql_host"
         login = "$conf_mysql_login"
-        password = "$conf_mysql_pass"" >> $TMP_FILE5
-#	        echo "SQLConnectInfo    "$conf_mysql_db"@"$conf_mysql_host" "$conf_mysql_login" "$conf_mysql_pass >> $TMP_FILE4
+        password = "$conf_mysql_pass"" >> $TMP_FILE1
 		        echo "        # Database table configuration
         radius_db = "$conf_mysql_db"
+	readclients=yes
+	read_groups=yes
 # End of DTC configuration v0.10 : please don't touch this line !
 }
-" >> $TMP_FILE5
+" >> $TMP_FILE1
 
-			cat <$TMP_FILE5 >$FREERADIUS_SQL_DOT_CONF
-			rm $TMP_FILE $TMP_FILE1 $TMP_FILE2 $TMP_FILE3 $TMP_FILE4 $TMP_FILE5
+			cat <$TMP_FILE1 >$FREERADIUS_SQL_DOT_CONF
+			rm $TMP_FILE1 $TMP_FILE2
 		fi
+
+		echoIfVerbose "===> Activating sql directives in sites-enabled/default"
+
+		TMP_FILE=`${MKTEMP} DTC_install.sites-enabled.XXXXXX` || exit 1
+		TMP_FILE1=`${MKTEMP} DTC_install.sites-enabled.XXXXXX` || exit 1
+
+		sed "s/#	sql$/       sql/" $FREERADIUS_SITE_ENABLED_CONF >$TMP_FILE
+		sed "s/	unix$/#       unix/" $TMP_FILE >$TMP_FILE1 
+		sed "s/	radutmp$/#       radutmp/" $TMP_FILE1 >$TMP_FILE 
+
+		cat <$TMP_FILE >$FREERADIUS_SITE_ENABLED_CONF
+		rm $TMP_FILE $TMP_FILE1
+
+		#Finally start the daemon
+	        restartDaemonMultiUnix radiusd
 	fi
 }
 
@@ -3973,14 +3969,25 @@ password ${MYSQL_DTCDAEMONS_PASS}
 		echo "-> Didn't find libnss nsswitch.conf: configuration of libnssmysql aborded"
 	fi
 
-	# Fixup the Lenny /etc/pam.d/common-auth to use libpam-unix2
+	# Fixup the Lenny /etc/pam.d/common-auth to use libpam-unix2 so we can use LibNSSMySQL for ssh logins from vhosts
 	if [ -e /etc/pam.d/common-auth ] ; then
-		if [ -e /lib/security/pam_unix2.so ] ; then
+		# We do this in Lenny only
+		DEB_CODENAME=`lsb_release -c | awk '{print $2}'`
+		if [ "${DEB_CODENAME}" = "lenny" -a -e /lib/security/pam_unix2.so ] ; then
 			if grep "pam_unix.so" /etc/pam.d/common-auth >/dev/null ; then
 				sed -i "s/pam_unix.so/pam_unix2.so/" /etc/pam.d/common-auth
 			fi
 			if grep "nullok_secure" /etc/pam.d/common-auth >/dev/null ; then
 				sed -i "s/nullok_secure/nullok/" /etc/pam.d/common-auth
+			fi
+		# And in SID, we fix back as it breaks ssh logins :/
+		else
+			if grep "pam_unix2.so" /etc/pam.d/common-auth >/dev/null ; then
+				sed -i "s/pam_unix2.so/pam_unix.so/" /etc/pam.d/common-auth
+			fi
+			COMMON_AUTH_NULL_SELECTION=`cat /etc/pam.d/common-auth | grep 'pam_unix' | awk '{print $4}'`
+			if [ "${COMMON_AUTH_NULL_SELECTION}" = "nullok" ; then
+				sed -i "s/nullok/nullok_secure/" /etc/pam.d/common-auth
 			fi
 		fi
 	fi
@@ -5335,11 +5342,20 @@ DTCsetupDaemons () {
 	setupAmavisConf
 	modifyClamavConf
 	modifyCyrusPath
-	modifySaslStartAndSaslStartup
+	# CL: Skip saslauthd when using sasl_sql
+	if [ ! -f $PATH_SASLLIB/libsql.so ] ; then
+  	modifySaslStartAndSaslStartup
+	else
+		echoIfVerbose "Using sasl_sql instead of saslauthd, skipping configuration of saslauthd"
+	fi
 	modifyPostfixConfig
 	modifyCyrusImapdConf
 	prepareMlmmjSpool
-	modifyCourierConfig
+	# CL: don't call Courier Config if using cyrus! This will break the installation
+	# /var/lib/dtc/etc/quotawarnmsg: No such file or directory
+	if [ ""$conf_use_cyrus != "true" ] ; then
+	  modifyCourierConfig
+	fi
 	modifyDovecotConfig
 	modifyPureFtpdMySQLConfig
 	configProftpd

@@ -12,8 +12,11 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 	global $registry_api_modules;
 
 	global $form_enter_dns_infos;
+	global $form_enter_auth_code;
 	global $whois_forwareded_params;
 	global $secpayconf_currency_letters;
+
+        global $allTLD;
 
 	get_secpay_conf();
 
@@ -27,8 +30,10 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 	}
 	if($given_fqdn != "none" && !isset($toreg_extention)){
 		$c = strrpos($given_fqdn,".");
-		$toreg_extention = substr($given_fqdn,$c);
-		$toreg_domain = substr($given_fqdn,0,$c);
+		$toreg_extention = find_domain_extension($given_fqdn);
+		$toreg_domain = str_replace($toreg_extention, "", $given_fqdn);
+                # echo "extension: $toreg_extention    domain: $toreg_domain<br />";
+                
 	}
 
 	// Step 1: enter domain name and check domain transferability
@@ -44,11 +49,14 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 	$out .= "<br><h3>". _("Transfer from another registrar to this server:") ."</h3>
 <i><u>". _("Step1: check if domain is transferable") ."</u></i>";
 
+         # echo "Checking1 $toreg_domain$toreg_extention<br />";
+
 	if(!isset($toreg_extention) || $toreg_extention == "" ||
 	!isset($toreg_domain) || $toreg_domain == "" ||
 	($toreg_extention != ".com" && $toreg_extention != ".net" &&
 	$toreg_extention != ".org" && $toreg_extention != ".biz" &&
-	$toreg_extention != ".name" && $toreg_extention != ".info")		){
+	$toreg_extention != ".name" && $toreg_extention != ".info" &&
+	$toreg_extention != ".co.uk")		){
 		$out .= "$form_start<br>
 ". _("Please enter the domain name you wish to transfer:") ."<br>
 ".make_registration_tld_popup();
@@ -59,6 +67,7 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 <input type=\"hidden\" name=\"toreg_extention\" value=\"$toreg_extention\">";
 
 	$regz = registry_check_transfer($toreg_domain.$toreg_extention);
+       # echo "Checking2 $toreg_domain$toreg_extention<br />";
 	if($regz["is_success"] != 1){
 		die("<font color=\"red\">". _("TRANSFER CHECK FAILED: registry server didn't reply successfuly.") ."</font>");
 	}
@@ -82,6 +91,7 @@ $form_start<br>
 		!isset($_REQUEST["toreg_dns2"]) || $_REQUEST["toreg_dns2"] == ""){
 		$out .= $form_start . whoisHandleSelection($admin);
 		$out .= $form_enter_dns_infos;
+                $out .= $form_enter_auth_code;
 		$out .= "<br>".submitButtonStart(). _("Proceed to transfer") .submitButtonEnd() ."</form>";
 		return $out;
 	}
@@ -106,6 +116,11 @@ $form_start<br>
 	$out .= _("Remaining on your account: ") ." " . $remaining . " $secpayconf_currency_letters<br>
 ". _("Total price: ") ." ". $fqdn_price . " $secpayconf_currency_letters<br><br>";
 
+        if ( !isset($_REQUEST["authcode"])) {
+		$out .= $form_enter_auth_code;
+        } else {
+                $out .= ("Auth Code:")." ".$_REQUEST["authcode"]."<br />";
+        }
 	if(isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "return_from_paypal_domain_add"){
 		$ze_refund = isPayIDValidated(addslashes($_REQUEST["pay_id"]));
 		if($ze_refund == 0){
@@ -146,6 +161,7 @@ $paybutton";
 		$out .= _("You have enough funds on your account to proceed with transfert. Press the confirm button to proceed.") ."<br><br>
 $form_start
 <input type=\"hidden\" name=\"toreg_confirm_transfert\" value=\"yes\">
+<input type=\"hidden\" name=\"authcode\" value=\"".$_REQUEST['authcode']."\">
 ".submitButtonStart(). _("Proceed to name-transfert") .submitButtonEnd() ."
 </form>";		return $out;
 	}
@@ -155,6 +171,7 @@ $form_start
 	$billing_id = $_REQUEST["dtcrm_billing_hdl"];
 	$admin_id = $_REQUEST["dtcrm_admin_hdl"];
 	$teck_id = $_REQUEST["dtcrm_teck_hdl"];
+        $authcode = $_REQUEST["authcode"];
 	$contacts = getContactsArrayFromID($owner_id,$billing_id,$admin_id,$teck_id);
 	$dns_servers = array();
 	for($i=1;$i<7;$i++){
@@ -175,7 +192,7 @@ $form_start
 		$new_user = "yes";
 	}
 //	sleep(2);
-	$regz = registry_transfert_domain($adm_login,$adm_pass,$fqdn,$contacts,$dns_servers,$new_user);
+	$regz = registry_transfert_domain($adm_login,$adm_pass,$fqdn,$contacts,$dns_servers,$new_user,$authcode);
 
 	if($regz["is_success"] != 1){
 		$out .= "<font color=\"red\"><b>". _("Transfert failed") ."</b></font><br>
@@ -189,7 +206,14 @@ Server said: <i>" . $regz["response_text"] . "</i><br>";
 	$query = "UPDATE $pro_mysql_client_table SET dollar='$operation' WHERE id='".$admin["info"]["id_client"]."';";
 	mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 
-	addDomainToUser($adm_login,$adm_pass,$fqdn,$adm_pass);
+
+	$q = "SELECT * FROM $pro_mysql_domain_table WHERE domain='$fqdn';";
+        $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+        $n = mysql_num_rows($r);
+
+        // Is this a transfer of a domain already hosted?
+        if ($n == 0) 
+	   addDomainToUser($adm_login,$adm_pass,$fqdn,$adm_pass);
 
 	if($regz["is_success"] == 1){
 		$id = find_registry_id($fqdn);

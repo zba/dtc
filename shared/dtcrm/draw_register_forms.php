@@ -112,4 +112,10 @@ $period_popup = "<select name=\"toreg_period\">
 <option value=\"9\">9 "._("years")."</value>
 </select>";
 
+if(isset($_REQUEST["authcode"])) $authcode=$_REQUEST["authcode"];else     $authcode="";
+$form_enter_auth_code = "
+<br />".("An authorisation code must be requested from the existing registrar of this domain")."
+<br />".("Auth Code")." :<input size=\"24\" type=\"text\" name=\"authcode\" value=\"$authcode\">
+";
+
 ?>

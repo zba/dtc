@@ -58,11 +58,11 @@ function get_remote_mail($a,$recipients){
 //			$rcpthosts_file .= "";
 		}else{
 			if( $panel_type == "cronjob"){
-				echo "\nUsing php HTTPRequest class on ".$a["server_addr"]." with login ".$a["server_login"]."...";
+				echo "\nUsing php dtc_HTTPRequest class on ".$a["server_addr"]." with login ".$a["server_login"]."...";
 			}else{
-				$console .= "<br>Using php HTTPRequest class on ".$a["server_addr"]." with login ".$a["server_login"]."...";
+				$console .= "<br>Using php dtc_HTTPRequest class on ".$a["server_addr"]." with login ".$a["server_login"]."...";
 			}
-			$httprequest = new HTTPRequest("$url");
+			$httprequest = new dtc_HTTPRequest("$url");
 			$lines = $httprequest->DownloadToStringArray();
 			if($lines != FALSE){
 				$nline = sizeof($lines);

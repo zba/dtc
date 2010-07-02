@@ -35,31 +35,31 @@ function dineromail_display_icon($product_id,$amount,$item_name,$return_url,$use
 	$ncta = preg_split('/\//',$secpayconf_dineromail_nrocuenta);
 
 	$amount = round(floatval(str_replace(",",".",$amount)), 2);
-
-	$out = '<form action="https://argentina.dineromail.com/Shop/Shop_Ingreso.asp" method="post">';
-	$out .= '<input type="hidden" name="NombreItem" value="'.$item_name.'">'; // name of the phurchased service
-	$out .= '<input type="hidden" name="TipoMoneda" value="1">'; // currency: 1=pesos 2=dollar
-	$out .= '<input type="hidden" name="PrecioItem" value="'.$amount.'">'; // payment ammount
-	$out .= '<input type="hidden" name="E_Comercio" value="'.$ncta[0].'">'; // dineromail account (without the "/" part and without the final digit)
-	$out .= '<input type="hidden" name="NroItem" value="'.$product_id.'">'; // item id
-	$out .= '<input type="hidden" name="image_url" value="http://">'; // image of the company to place in the payslip
-	$out .= '<input type="hidden" name="DireccionExito" value="'.$return_url.'">'; // where to redirect once the payslip is done and ok
-	$out .= '<input type="hidden" name="DireccionFracaso" value="'.$return_url.'">'; // where to redirect when the data is wrong
-	$out .= '<input type="hidden" name="DireccionEnvio" value="0">'; // if is set to 1, the customer can write s shipping address
-	$out .= '<input type="hidden" name="Mensaje" value="0">'; // if is set to 1, the customer can send a message to the seller
-	$out .= '<input type="hidden" name="MediosPago" value="'.$secpayconf_dineromail_tipospago.'">'; //payment method:
+$out .= "server:".$_SERVER['REQUEST_URL'];
+	$out = '<form action="https://argentina.dineromail.com/Shop/Shop_Ingreso.asp" method="post">'."\n";
+	$out .= '<input type="hidden" name="NombreItem" value="'.$item_name.'">'."\n"; // name of the phurchased service
+	$out .= '<input type="hidden" name="TipoMoneda" value="1">'."\n"; // currency: 1=pesos 2=dollar
+	$out .= '<input type="hidden" name="PrecioItem" value="'.str_replace(',','.',$amount).'">'."\n"; // payment ammount
+	$out .= '<input type="hidden" name="E_Comercio" value="'.$ncta[0].'">'."\n"; // dineromail account (without the "/" part and without the final digit)
+	$out .= '<input type="hidden" name="NroItem" value="'.$product_id.'">."\n"'; // item id
+	$out .= '<input type="hidden" name="image_url" value="http://">'."\n"; // image of the company to place in the payslip
+	$out .= '<input type="hidden" name="DireccionExito" value="'.$_SERVER['HTTP_HOST'].$return_url.'">'."\n"; // where to redirect once the payslip is done and ok
+	$out .= '<input type="hidden" name="DireccionFracaso" value="'.$_SERVER['HTTP_HOST'].$return_url.'">'."\n"; // where to redirect when the data is wrong
+	$out .= '<input type="hidden" name="DireccionEnvio" value="0">'."\n"; // if is set to 1, the customer can write s shipping address
+	$out .= '<input type="hidden" name="Mensaje" value="0">'."\n"; // if is set to 1, the customer can send a message to the seller
+	$out .= '<input type="hidden" name="MediosPago" value="'.$secpayconf_dineromail_tipospago.'">'."\n"; //payment method:
 		// No ingreses ningún valor para aceptar todos los medios de pago.
 		// Ingresa “2” para códigos de barras, “7” para fondos en cuenta DineroMail, “13” para Transferencia
 		// bancaria. Pago en 1, 3, 6, 9, 12, 18 y 24 cuotas con tarjeta de crédito ingresa “4”, “5”, “6”, “14”, “15”, “16” y
 		// “17” respectivamente. Para Plan Z ingresa “18”. O combina los métodos que desees mediante comas (Ej: 4,5,6,13)
-	$out .= '<input type="hidden" name="TRX_ID" value="'.$product_id.'">'; // transaction id
-	$out .= '<input type="hidden" name="usr_nombre" value="">'; // customer's name
-	$out .= '<input type="hidden" name="usr_apellido" value="">'; // customer's surname
-	$out .= '<input type="hidden" name="usr_tel_numero" value="">'; // customer's phone number
-	$out .= '<input type="hidden" name="usr_email" value="">'; // customer's email
+	$out .= '<input type="hidden" name="TRX_ID" value="'.$product_id.'">'."\n"; // transaction id
+	$out .= '<input type="hidden" name="usr_nombre" value="">'."\n"; // customer's name
+	$out .= '<input type="hidden" name="usr_apellido" value="">'."\n"; // customer's surname
+	$out .= '<input type="hidden" name="usr_tel_numero" value="">'."\n"; // customer's phone number
+	$out .= '<input type="hidden" name="usr_email" value="">'."\n"; // customer's email
 	$out .= '<input type="image" src="https://argentina.dineromail.com/imagenes/post-login/boton-comprar-01.gif" border="0" name="submit" alt="';
 	$out .= _("Pay by DineroMail") . '">';
-	$out .= '</form>';
+	$out .= '</form>'."\n";
 
 	return $out;
 }

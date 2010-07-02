@@ -120,7 +120,7 @@ for($i=0;$i<$nbr_tables;$i++){
 		else
 			$q = "CREATE TABLE IF NOT EXISTS ".$tblnames[$i]."(
 ".$varnames[0]." ".$allvars[$varnames[0]].");";
-		echo $q;
+//		echo $q;
 		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 	}
 
@@ -279,11 +279,17 @@ $q = "ALTER TABLE `domain` CHANGE `domain_parking_type` `domain_parking_type` en
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Change ip pool table enum
-$q = "ALTER TABLE ip_pool CHANGE `zone_type` `zone_type` enum('support_ticket','ip_per_ip','ip_per_ip_cidr','one_zonefile') default 'one_zonefile'";
+$q = "ALTER TABLE ip_pool CHANGE `zone_type` `zone_type` enum('support_ticket','ip_per_ip','ip_per_ip_cidr','one_zonefile','one_zonefile_with_minus','one_zonefile_with_name','one_zonefile_with_slash') default 'one_zonefile'";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Increase password lenght to 255 chars in thedb
 $q = "ALTER TABLE admin CHANGE adm_pass adm_pass varchar(255) NOT NULL";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
+// Alter the names of two existing fields to match freeradius default ones.
+$q = "ALTER IGNORE TABLE radpostauth CHANGE user username varchar(64) NOT NULL";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+$q = "ALTER IGNORE TABLE radpostauth CHANGE date authdate timestamp(14) NOT NULL";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Alter the default shell value for FreeBSD, as the path will be in /usr/local
@@ -349,110 +355,5 @@ for($i=0;$i<$n;$i++){
 	}
 }
 echo "\n";
-
-
-//////////////////////////////////////////
-// Repair the bad http_accounting table //
-//////////////////////////////////////////
-echo "=> Repairing broken http_accounting table...";
-// Make a copy of the table with the highest value that must be the good one, without any key...
-
-echo "Copy back http_tmp_table into real table just in case...";
-$q = "INSERT IGNORE INTO http_accounting SELECT * FROM http_tmp_table;";
-$r = mysql_query($q);
-if (!$r)
-{
-	//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
-	echo "[OK, not present]\n";
-}
-
-
-echo "drop existing http_tmp_table...";
-$q = "DROP TABLE http_tmp_table;";
-$r = mysql_query($q);
-if (!$r)
-{
-	//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
-	echo "[OK, not present]\n";
-}
-
-echo "copy...";
-$q = "CREATE TABLE http_tmp_table
-SELECT min( id ) as id, vhost, bytes_sent, count_hosts, count_visits, count_status_200, count_status_404, count_impressions, last_run, `month`, `year`, domain, bytes_receive
-FROM http_accounting
-GROUP BY `vhost`, `month` , `year`, `domain`;";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-echo "drop existing http_accounting_tmp...";
-$q = "DROP TABLE http_accounting_tmp;";
-$r = mysql_query($q);
-if (!$r)
-{
-	//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
-	echo "[OK, not present]\n";
-}
-
-echo "rename...";
-$q = "RENAME TABLE http_accounting TO http_accounting_tmp;";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-echo "truncate...";
-$q = "TRUNCATE http_accounting_tmp;";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-echo "Remove indexes...";
-$q = "SHOW INDEX FROM http_accounting_tmp;";
-$r_indexes = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-$n_indexes = mysql_num_rows($r_indexes);
-for ($i = 0; $i < $n_indexes; $i++){
-	$a_indexes = mysql_fetch_array($r_indexes);
-	$table_name = $a_indexes[0];
-	$index_name = $a_indexes[2];
-	if ($index_name != "PRIMARY"){
-		echo "Removing $index_name from $table_name...";
-		$q = "ALTER TABLE $table_name DROP INDEX $index_name;";
-		$r = mysql_query($q);
-		if (!$r)
-		{
-			echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
-		}
-		
-	}
-}
-
-echo "alter...";
-$q = "ALTER TABLE http_accounting_tmp ADD UNIQUE (`vhost` ,`month` ,`year` ,`domain`);";
-$r = mysql_query($q);
-if (!$r)
-{
-	//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
-}
-
-echo "insert...";
-$q = "INSERT IGNORE INTO http_accounting_tmp SELECT * FROM http_tmp_table;";
-$r = mysql_query($q);
-if (!$r)
-{
-	//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
-}
-
-echo "rename...";
-$q = "RENAME TABLE http_accounting_tmp TO http_accounting;";
-$r = mysql_query($q);
-if (!$r)
-{
-	echo "[ERROR] Failed to rename table, please report this as a bug, and copy paste the output";
-	die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());	
-}
-
-echo "drop...";
-$q = "DROP TABLE http_tmp_table;";
-$r = mysql_query($q);
-if (!$r)
-{
-	//echo "[Warning] Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error();
-	echo "[Warning] Can't drop http_tmp_table, please do so manually...";
-}
-echo "done!\n";
 
 ?>
