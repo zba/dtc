@@ -415,110 +415,153 @@ function dtcDatagrid($dsc){
 			$input_class = "dtcDatagrid_input_color";
 		}
 		for($j=0;$j<$nbr_fld;$j++){
-			$the_fld = $dsc["cols"][ $keys[$j] ];
-			switch($the_fld["type"]){
+			$the_name = $keys[$j];
+			$the_fld = $dsc["cols"][$the_name];
+			if($the_fld["type"] == "forkey"){
+				$fk_found = 0;
+				$the_type = $the_fld["forkey_type"];
+				$forkey_table = $the_fld["table"];
+				$forkey_other_table_fld = $the_fld["other_table_fld"];
+				$forkey_other_table_key = $the_fld["other_table_key"];
+				$forkey_this_table_field = $the_fld["this_table_field"];
+				$qfk = "SELECT $forkey_other_table_fld AS dtcfkfld FROM $forkey_table WHERE $forkey_other_table_key='". $a[ $forkey_this_table_field ] ."';";
+				$rfk = mysql_query($qfk)or die("Cannot query $qfk in ".__FILE__." line ".__LINE__." sql said: ".mysql_error()." when getting foreign key $forkey_fld value in table ".$the_fld["table"]);
+				$nfk = mysql_num_rows($rfk);
+				if($nfk == 1){
+					// afk means array foreign key, not away from keyboard... :)
+					$afk = mysql_fetch_array($rfk);
+					$db_value = $afk["dtcfkfld"];
+					$fk_found = 1;
+				}else{
+					if( isset($the_fld["bk_table"]) && isset($the_fld["bk_other_table_fld"]) && isset($the_fld["bk_other_table_key"]) && isset($the_fld["bk_this_table_field"]) ){
+						$forkey_table = $the_fld["bk_table"];
+						$forkey_other_table_fld = $the_fld["bk_other_table_fld"];
+						$forkey_other_table_key = $the_fld["bk_other_table_key"];
+						$forkey_this_table_field = $the_fld["bk_this_table_field"];
+						$qfk = "SELECT $forkey_other_table_fld AS dtcfkfld FROM $forkey_table WHERE $forkey_other_table_key='". $a[ $forkey_this_table_field ] ."';";
+						$rfk = mysql_query($qfk)or die("Cannot query $qfk in ".__FILE__." line ".__LINE__." sql said: ".mysql_error()." when getting foreign key $forkey_fld value in table ".$the_fld["table"]);
+						$nfk = mysql_num_rows($rfk);
+					}else{
+						$nfk = 0;
+					}
+					if($nfk == 1){
+						$afk = mysql_fetch_array($rfk);
+						$db_value = $afk["dtcfkfld"];
+						$fk_found = 2;
+					}else{
+						$db_value = "Foreign key N/A";
+					}
+				}
+			}else{
+				$the_type = $the_fld["type"];
+				$db_value = $a[ $the_name ];
+			}
+			switch($the_type){
 			case "text":
-				if( isset($dsc["cols"][ $keys[$j] ]["size"])){
-					$size = " size=\"".$dsc["cols"][ $keys[$j] ]["size"]."\" ";
+				if( isset($the_fld["size"])){
+					$size = " size=\"".$the_fld["size"]."\" ";
 				}else{
 					$size = "";
 				}
 				$out .= "<td class=\"$tdclass\">";
-				$out .= "<input class=\"$input_class\" type=\"text\" $size name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\">";
+				$out .= "<input class=\"$input_class\" type=\"text\" $size name=\"".$the_name."\" value=\"".$db_value."\">";
 				$out .= "</td>";
 				break;
 			case "password":
-				if( isset($dsc["cols"][ $keys[$j] ]["size"])){
-					$size = " size=\"".$dsc["cols"][ $keys[$j] ]["size"]."\" ";
+				if( isset($the_fld["size"])){
+					$size = " size=\"".$the_fld["size"]."\" ";
 				}else{
 					$size = "";
 				}
 				$out .= "<td class=\"$tdclass\" style=\"white-space:nowrap;\">";
-				$genpass = autoGeneratePassButton($dsc["action"]."_edit_frm_$i",$keys[$j]);
-				$out .= "<input class=\"$input_class\" type=\"password\" $size name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\">$genpass";
+				$genpass = autoGeneratePassButton($dsc["action"]."_edit_frm_$i",$the_name);
+				$out .= "<input class=\"$input_class\" type=\"password\" $size name=\"".$the_fld."\" value=\"".$a[ $the_fld ]."\">$genpass";
 				$out .= "</td>";
 				break;
 			case "radio":
 				$out .= "<td class=\"$tdclass\">";
-				$nbr_choices = sizeof( $dsc["cols"][ $keys[$j] ]["values"] );
+				$nbr_choices = sizeof( $the_fld["values"] );
 				for($x=0;$x<$nbr_choices;$x++){
-					if($a[ $keys[$j] ] == $dsc["cols"][ $keys[$j] ]["values"][$x]){
+					if($db_value == $the_fld["values"][$x]){
 						$selected = " checked ";
 					}else{
 						$selected = "";
 					}
-					$out .= " <input class=\"$input_class\" type=\"radio\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected> ";
-					if( isset($dsc["cols"][ $keys[$j] ]["display_replace"][$x]) ){
-						$out .= $dsc["cols"][ $keys[$j] ]["display_replace"][$x];
+					$out .= " <input class=\"$input_class\" type=\"radio\" name=\"".$the_name."\" value=\"".$the_fld["values"][$x]."\" $selected> ";
+					if( isset($the_fld["display_replace"][$x]) ){
+						$out .= $the_fld["display_replace"][$x];
 					}else{
-						$out .= $dsc["cols"][ $keys[$j] ]["values"][$x];
+						$out .= $the_fld["values"][$x];
 					}
 				}
 				$out .= "</td>";
 				break;
 			case "checkbox":
 				$out .= "<td class=\"$tdclass\">";
-				if($a[ $keys[$j] ] == $dsc["cols"][ $keys[$j] ]["values"][0]){
+				if($db_value == $the_fld["values"][0]){
 					$selected = " checked ";
 				}else{
 					$selected = "";
 				}
-				$out .= " <input class=\"$input_class\" type=\"checkbox\" name=\"".$keys[$j]."\" value=\"".$dsc["cols"][ $keys[$j] ]["values"][0]."\" $selected> ";
+				$out .= " <input class=\"$input_class\" type=\"checkbox\" name=\"".$the_name."\" value=\"".$the_fld["values"][0]."\" $selected> ";
 				$out .= "</td>";
 				break;
 			case "textarea":
-				if( isset($dsc["cols"][ $keys[$j] ]["cols"])){
-					$cols = " cols=\"".$dsc["cols"][ $keys[$j] ]["cols"]."\" ";
+				if( isset($the_fld["cols"])){
+					$cols = " cols=\"".$the_fld["cols"]."\" ";
 				}else{
 					$cols = "";
 				}
-				if( isset($dsc["cols"][ $keys[$j] ]["rows"])){
-					$rows = " cols=\"".$dsc["cols"][ $keys[$j] ]["rows"]."\" ";
+				if( isset($the_fld["rows"])){
+					$rows = " cols=\"".$the_fld["rows"]."\" ";
 				}else{
 					$rows = "";
 				}
 				$out .= "<td class=\"$tdclass\">";
-				$out .= "<textarea $cols $rows name=\"".$keys[$j]."\">".$a[ $keys[$j] ]."</textarea>";
+				$out .= "<textarea $cols $rows name=\"".$the_name."\">".$db_value."</textarea>";
 				$out .= "</td>";
 				break;
 			case "hyperlink":
 				$out .= "<td class=\"$tdclass\">";
-				$out .= "<a href=\"$fw_link&".$keys[$j]."=".$id."\">";
-				$out .= $dsc["cols"][ $keys[$j] ]["text"]."</a>";
+				$out .= "<a href=\"$fw_link&".$the_name."=".$id."\">";
+				$out .= $the_fld["text"]."</a>";
 				$out .= "</td>";
 				break;
 			case "info":
 				$out .= "<td class=\"$tdclass\">";
-				$out .= $a[ $keys[$j] ];
+				if($the_fld["type"] == "forkey" && isset($the_fld["link"]) && $fk_found == 1){
+					$out .= "<a href=\"".$the_fld["link"]. $a[ $the_name ] ."\">".$db_value."</a>";
+				}else{
+					$out .= $db_value;
+				}
 				$out .= "</td>";
 				break;
 			case "popup":
 				$out .= "<td class=\"$tdclass\">";
-				$out .= "<select class=\"$input_class\" name=\"".$keys[$j]."\">";
-				$nbr_values = sizeof($dsc["cols"][ $keys[$j] ]["values"]);
+				$out .= "<select class=\"$input_class\" name=\"".$the_name."\">";
+				$nbr_values = sizeof($the_fld["values"]);
 				for($x=0;$x<$nbr_values;$x++){
-					if($dsc["cols"][ $keys[$j] ]["values"][$x] == $a[ $keys[$j] ]){
+					if($the_fld["values"][$x] == $db_value){
 						$selected = " selected ";
 					}else{
 						$selected = "";
 					}
-					if( isset($dsc["cols"][ $keys[$j] ]["display_replace"][$x]) ){
-						$display_value_popup = $dsc["cols"][ $keys[$j] ]["display_replace"][$x];
+					if( isset($the_fld["display_replace"][$x]) ){
+						$display_value_popup = $the_fld["display_replace"][$x];
 					}else{
-						$display_value_popup = $dsc["cols"][ $keys[$j] ]["values"][$x];
+						$display_value_popup = $the_fld["values"][$x];
 					}
-					$out .= "<option value=\"".$dsc["cols"][ $keys[$j] ]["values"][$x]."\" $selected>".$display_value_popup."</option>";
+					$out .= "<option value=\"".$the_fld["values"][$x]."\" $selected>".$display_value_popup."</option>";
 				}
 				$out .= "</select>";
 				$out .= "</td>";
 				break;
 			case "id":
-				$id = $a[ $keys[$j] ];
-				$id_hidden = "<input type=\"hidden\" name=\"".$keys[$j]."\" value=\"".$a[ $keys[$j] ]."\">";
-				if($dsc["cols"][ $keys[$j] ]["display"] == "yes"){
+				$id_hidden = "<input type=\"hidden\" name=\"".$the_name."\" value=\"".$db_value."\">";
+				if($dsc["cols"][ $the_name ]["display"] == "yes"){
 					$out .= "<td class=\"$tdclass\">";
 					$out .= $id_hidden;
-					$out .= $a[ $keys[$j] ];
+					$out .= $db_value;
 					$out .= "</td>";
 				}else{
 					$out .= $id_hidden;

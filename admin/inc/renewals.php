@@ -1,5 +1,72 @@
 <?php
 
+// Returns an array as follow:
+// $ret["text"] html code to display
+//     ["where_condition"] the SQL filter to user in your later queries.
+function dateSelector($table,$mysql_date_field,$http_query_field){
+	global $rub;
+	global $sousrub;
+	$out = array();
+	$out["text"] = "<h3>"._("Date selection")."</h3>";
+
+	if( !isset($_REQUEST[$http_query_field])){
+		$q = "SELECT DISTINCT(CONCAT_WS('-',YEAR($mysql_date_field),MONTH($mysql_date_field))) FROM `$table` WHERE 1 ORDER BY $mysql_date_field DESC LIMIT 1";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 0){
+			$a = mysql_fetch_array($r);
+			$exploded = explode("-",$a[0]);
+			$using_date = $exploded[0];
+			if(strlen($exploded[1]) < 2){
+				$using_date = $exploded[0] . "-0" . $exploded[1];
+			}else{
+				$using_date = $exploded[0] . "-" . $exploded[1];
+			}
+			$out["text"] .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&$http_query_field=all\">" . _("all") . "</a>";
+			$date = $using_date;
+			$where_condition = " $mysql_date_field LIKE '$date%' ";
+		}else{
+			$out["text"] .= _("all");
+			$date = "all";
+			$where_condition = " 1 ";
+		}
+	}else if( $_REQUEST[$http_query_field] == "all"){
+		$out["text"] .= _("all");
+		$date = "all";
+		$where_condition = " 1 ";
+	}else{
+		$out["text"] .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&$http_query_field=all\">" . _("all") . "</a>";
+		$date = $_REQUEST["$http_query_field"];
+		$where_condition = " $mysql_date_field LIKE '$date%' ";
+	}
+
+	$q = "SELECT DISTINCT(CONCAT_WS('-',YEAR($mysql_date_field),MONTH($mysql_date_field))) FROM `$table` WHERE 1 ORDER BY $mysql_date_field ";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	for($i=0;$i<$n;$i++){
+		$a = mysql_fetch_array($r);
+		$exploded = explode("-",$a[0]);
+		$using_date = $exploded[0];
+		if(strlen($exploded[1]) < 2){
+			$using_date = $exploded[0] . "-0" . $exploded[1];
+		}else{
+			$using_date = $exploded[0] . "-" . $exploded[1];
+		}
+		if($date != $using_date){
+			$out["text"] .= " - <a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&$http_query_field=".$using_date."\">".$using_date."</a>";
+		}else{
+			$out["text"] .= " - $using_date";
+		}
+	}
+	$out["text"] .= "<br><br>";
+
+	$out["date"] = $date;
+	$out["where_condition"] = $where_condition;
+
+	return $out;
+}
+
+
 function drawRenewalTables (){	
 	global $pro_mysql_product_table;
 	global $pro_mysql_admin_table;
@@ -17,6 +84,8 @@ function drawRenewalTables (){
 	global $pro_mysql_spent_moneyout_table;
 	global $pro_mysql_companies_table;
 	global $pro_mysql_spent_bank_table;
+	global $pro_mysql_client_table;
+	global $pro_mysql_new_admin_table;
 
 	global $secpayconf_currency_letters;
 	global $rub;
@@ -57,62 +126,13 @@ function drawRenewalTables (){
 	}
 	$out .= "</ul>";
 
+
+
 	switch($sousrub){
 	case "spent":
-		$out .= "<h3>"._("Date selection")."</h3>";
-
-		if( !isset($_REQUEST["date_selector"])){
-			// Check the last record to get the last entry by default.
-			$q = "SELECT DISTINCT(CONCAT_WS('-',YEAR(invoice_date),MONTH(invoice_date))) FROM `spent_moneyout` WHERE 1 ORDER BY invoice_date DESC LIMIT 1";
-			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-			$n = mysql_num_rows($r);
-			if($n != 0){
-				$a = mysql_fetch_array($r);
-				$exploded = explode("-",$a[0]);
-				$using_date = $exploded[0];
-				if(strlen($exploded[1]) < 2){
-					$using_date = $exploded[0] . "-0" . $exploded[1];
-				}else{
-					$using_date = $exploded[0] . "-" . $exploded[1];
-				}
-				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=all\">" . _("all") . "</a>";
-				$date = $using_date;
-				$where_condition = " invoice_date LIKE '$date%' ";
-			}else{
-				$out .= _("all");
-				$date = "all";
-				$where_condition = " 1 ";
-			}
-		}else if( $_REQUEST["date_selector"] == "all"){
-			$out .= _("all");
-			$date = "all";
-			$where_condition = " 1 ";
-		}else{
-			$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=all\">" . _("all") . "</a>";
-			$date = $_REQUEST["date_selector"];
-			$where_condition = " invoice_date LIKE '$date%' ";
-		}
-
-		$q = "SELECT DISTINCT(CONCAT_WS('-',YEAR(invoice_date),MONTH(invoice_date))) FROM `spent_moneyout` WHERE 1 ORDER BY invoice_date";
-		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-		$n = mysql_num_rows($r);
-		for($i=0;$i<$n;$i++){
-			$a = mysql_fetch_array($r);
-			$exploded = explode("-",$a[0]);
-			$using_date = $exploded[0];
-			if(strlen($exploded[1]) < 2){
-				$using_date = $exploded[0] . "-0" . $exploded[1];
-			}else{
-				$using_date = $exploded[0] . "-" . $exploded[1];
-			}
-			if($date != $using_date){
-				$out .= " - <a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&date_selector=".$using_date."\">".$using_date."</a>";
-			}else{
-				$out .= " - $using_date";
-			}
-		}
-
-		$out .= "<br><br>";
+		$ret = dateSelector("spent_moneyout","invoice_date","date_selector");
+		$out .= $ret["text"];
+		$where_condition = $ret["where_condition"];
 
 		$q = "SELECT * FROM $pro_mysql_spent_providers_table ";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -408,14 +428,114 @@ function drawRenewalTables (){
 
 		// Display of each month payment list
 		if(isset($_REQUEST["date"])){
+			$ret = dateSelector($pro_mysql_pay_table,"date","date");
+			$out .= $ret["text"];
+			$where_condition = $ret["where_condition"];
+
+			$q = "SELECT id,name FROM $pro_mysql_product_table ";
+			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			$prod_ids = array();
+			$prod_names = array();
+			for($i=0;$i<$n;$i++){
+				$a = mysql_fetch_array($r);
+				$prod_ids[] = $a["id"];
+				$prod_names[] = $a ["name"];
+			}
+
+			$out .= "<h3>"._("Payements for the period: ").$_REQUEST["date"]."</h3>";
+
+			$dsc = array(
+				"title" => _("Payment history"),
+				"table_name" => $pro_mysql_pay_table,
+				"action" => "payment_history_list_editor",
+				"forward" => array("rub","sousrub","date"),
+				"order_by" => "date",
+				"skip_deletion" => "yes",
+				"skip_creation" => "yes",
+				"print_where_condition" => $where_condition,
+				"cols" => array(
+					"id" => array(
+						"type" => "id",
+						"display" => "no",
+						"legend" => "id"),
+					"date" => array(
+						"type" => "text",
+						"size" => "8",
+						"legend" => _("Date")),
+					"id_client" => array(
+						"type" => "forkey",
+						"forkey_type" => "info",
+						"table" => $pro_mysql_client_table,
+						"other_table_fld" => "CONCAT(company_name,': ',familyname,', ',christname)",
+						"other_table_key" => "id",
+						"this_table_field" => "id_client",
+						"link" => "?rub=crm&id=",
+
+						"bk_table" => $pro_mysql_new_admin_table,
+						"bk_other_table_fld" => "CONCAT(comp_name,': ',family_name,', ',first_name)",
+						"bk_other_table_key" => "id",
+						"bk_this_table_field" => "id_client",
+
+						"legend" => _("Customer name")),
+					"product_id" => array(
+						"type" => "popup",
+						"values" => $prod_ids,
+						"display_replace" => $prod_names,
+						"legend" => _("Product")),
+					"refund_amount" => array(
+						"type" => "text",
+						"size" => "8",
+						"legend" => _("Refund amount")),
+					"paiement_cost" => array(
+						"type" => "text",
+						"size" => "4",
+						"legend" => _("Gate cost")),
+					"vat_rate" => array(
+						"type" => "text",
+						"size" => "4",
+						"legend" => _("VAT rate")),
+					"vat_total" => array(
+						"type" => "text",
+						"size" => "4",
+						"legend" => _("VAT total")),
+					 "paiement_total" => array(
+						"type" => "text",
+						"size" => "6",
+						"legend" => _("Grand total")),
+					"paiement_type" => array(
+						"type" => "text",
+						"size" => "6",
+						"legend" => _("Type")),
+					"secpay_site" => array(
+						"type" => "text",
+						"size" => "4",
+						"legend" => _("Gate type")),
+					"new_account" => array(
+						"type" => "popup",
+						"values" => array("no","yes"),
+						"display_replace" => array( _("New account"), _("Renewal") ),
+						"legend" => _("Is renewal")),
+					"valid" => array(
+						"type" => "popup",
+						"values" => array("no","pending","yes"),
+						"display_replace" => array( _("No"), _("Pending"), _("Yes") ),
+						"legend" => _("Validated")),
+					"pending_reason" => array(
+						"type" => "text",
+						"size" => "6",
+						"legend" => _("Pending reason"))
+				));
+			$out .= dtcDatagrid($dsc);
+			return $out;
+
+			$ret = dateSelector($pro_mysql_completedorders_table,"date","date");
 			// Allow nuke of bad payment (hackers?) to have accounting done correctly
 			if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "nuke_payment"){
 				$q = "DELETE FROM $pro_mysql_completedorders_table WHERE id='".$_REQUEST["completedorders_id"]."';";
 				$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			}
-			$out .= "<h3>"._("Payements for the period: ").$_REQUEST["date"]."</h3>";
-			$q = "SELECT * FROM $pro_mysql_completedorders_table
-			WHERE date LIKE '".$_REQUEST["date"]."%' ORDER BY date;";
+
 			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n < 1){
