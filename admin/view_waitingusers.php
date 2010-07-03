@@ -186,7 +186,9 @@ cc_code_popup($b["country"])."</select>",0);
 	$text .= "<input type=\"hidden\" name=\"paiement_id\" value=\"".$b["paiement_id"]."\">";
 	if ($has_payement == 1) {
 		$text .= "<input type=\"hidden\" name=\"secpay_site\" value=\"".$p["secpay_site"]."\">";
-		$text .= dtcFormLineDraw( _("Payment site: ") ,$p["secpay_site"]);
+		$text .= dtcFormLineDraw( _("Payment type: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"paiement_type\" value=\"".$p["paiement_type"]."\">");
+		$text .= dtcFormLineDraw( _("Payment validated: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"valid\" value=\"".$p["valid"]."\">",0);
+		$text .= dtcFormLineDraw( _("Payment site: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"secpay_site\" value=\"".$p["secpay_site"]."\">");
 		$text .= dtcFormLineDraw( _("Refund amount: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"refund_amount\" value=\"".$p["refund_amount"]."\">",0);
 		$text .= dtcFormLineDraw( _("Paiement cost: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"paiement_cost\" value=\"".$p["paiement_cost"]."\">");
 		$text .= dtcFormLineDraw( _("Paiement total: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"paiement_total\" value=\"".$p["paiement_total"]."\">",0);
