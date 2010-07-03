@@ -21,8 +21,7 @@ MASTER_SITES=	ftp://ftp.gplhost.sg/pub/dtc/bsd/ \
 MAINTAINER=	thomas@goirand.fr
 COMMENT=	A hosting web GUI for admin and accounting all hosting services
 
-RUN_DEPENDS=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql50-server \
-		${LOCALBASE}/${APACHEMODDIR}/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql2-dtc \
+RUN_DEPENDS=	${LOCALBASE}/${APACHEMODDIR}/mod_log_sql.so:${PORTSDIR}/www/mod_log_sql2-dtc \
 		${LOCALBASE}/share/pear/Crypt/CBC.php:${PORTSDIR}/security/pear-Crypt_CBC \
 		${LOCALBASE}/share/pear/XML/Serializer.php:${PORTSDIR}/devel/pear-XML_Serializer \
 		${LOCALBASE}/share/pear/Net/IPv4.php:${PORTSDIR}/net/pear-Net_IPv4 \
@@ -46,6 +45,8 @@ CONFLICTS=	dtc-toaster-[0-9]* dtc-postfix-courier-[0-9]*
 USE_GETTEXT=	yes
 
 USE_GMAKE=	yes
+
+USE_MYSQL=	server
 
 NO_BUILD=	yes
 USE_PHP=	mysql pcre session
