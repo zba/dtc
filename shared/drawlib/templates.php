@@ -175,6 +175,7 @@ function dtcDatagrid($dsc){
 	$nbr_forwards = sizeof($dsc["forward"]);
 	$keys_fw = array_keys($dsc["forward"]);
 
+	// Process the "forward" parameter of the grid widget, so that $rub and $sousrub and so on are forwarded
 	$fw = "";
 	$fw_link = $_SERVER["PHP_SELF"]."?";
 	for($i=0;$i<$nbr_forwards;$i++){
@@ -193,6 +194,7 @@ function dtcDatagrid($dsc){
 		}
 	}
 
+	// Get a list of fields in sql and build a "field1, field2" string
 	$nbr_fld = sizeof($dsc["cols"]);
 	$flds = "";
 	$keys = array_keys($dsc["cols"]);
@@ -203,6 +205,7 @@ function dtcDatagrid($dsc){
 		$flds .= $keys[$i];
 	}
 
+	// Start of performing actions (new, update, delete)
 	$action_error_txt = "";
 
 	if(isset($_REQUEST["action"])){
@@ -243,6 +246,7 @@ function dtcDatagrid($dsc){
 					}
 					$qflds .= $keys[$i];
 					$vals .= "'".$dsc["cols"][ $keys[$i] ]["values"][$index_val]."'";
+					$added_one = "yes";
 					break;
 				default:
 					break;
