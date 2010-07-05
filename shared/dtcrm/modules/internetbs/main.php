@@ -111,6 +111,7 @@ function internetbs_prepar_whois_params($contacts){
 	$post_params_hash["registrant_phonenumber"] = $contacts["owner"]["phone_num"];
 	$post_params_hash["registrant_fax"] = $contacts["owner"]["fax_num"];
 	$post_params_hash["registrant_countrycode"] = $contacts["owner"]["country"];
+	$post_params_hash["registrant_language"] = $contacts["owner"]["language"];
 	$post_params_hash["registrant_email"] = $contacts["owner"]["email"];
 	$post_params_hash["admin_organization"] = $contacts["admin"]["company"];
 	$post_params_hash["admin_firstname"] = $contacts["admin"]["firstname"];
@@ -122,6 +123,7 @@ function internetbs_prepar_whois_params($contacts){
 	$post_params_hash["admin_phonenumber"] = $contacts["admin"]["phone_num"];
 	$post_params_hash["admin_fax"] = $contacts["admin"]["fax_num"];
 	$post_params_hash["admin_countrycode"] = $contacts["admin"]["country"];
+	$post_params_hash["admin_language"] = $contacts["admin"]["language"];
 	$post_params_hash["admin_email"] = $contacts["admin"]["email"];
 	$post_params_hash["technical_organization"] = $contacts["teck"]["company"];
 	$post_params_hash["technical_firstname"] = $contacts["teck"]["firstname"];
@@ -133,6 +135,7 @@ function internetbs_prepar_whois_params($contacts){
 	$post_params_hash["technical_phonenumber"] = $contacts["teck"]["phone_num"];
 	$post_params_hash["technical_fax"] = $contacts["teck"]["fax_num"];
 	$post_params_hash["technical_countrycode"] = $contacts["teck"]["country"];
+	$post_params_hash["technical_language"] = $contacts["teck"]["language"];
 	$post_params_hash["technical_email"] = $contacts["teck"]["email"];
 	$post_params_hash["billing_organization"] = $contacts["billing"]["company"];
 	$post_params_hash["billing_firstname"] = $contacts["billing"]["firstname"];
@@ -144,6 +147,7 @@ function internetbs_prepar_whois_params($contacts){
 	$post_params_hash["billing_phonenumber"] = $contacts["billing"]["phone_num"];
 	$post_params_hash["billing_fax"] = $contacts["billing"]["fax_num"];
 	$post_params_hash["billing_countrycode"] = $contacts["billing"]["country"];
+	$post_params_hash["billing_language"] = $contacts["billing"]["language"];
 	$post_params_hash["billing_email"] = $contacts["billing"]["email"];
 	return $post_params_hash;
 }

@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS handle (
   state varchar(32) default NULL,
   country char(2) NOT NULL default '',
   zipcode varchar(32) NOT NULL default '',
+  language char(2) NOT NULL default '',
   phone_num varchar(20) NOT NULL default '',
   fax_num varchar(20) default NULL,
   email varchar(255) NOT NULL default '',

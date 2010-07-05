@@ -596,6 +596,7 @@ $dtc_database = array(
 			"state" => "varchar(32) NULL ",
 			"country" => "char(2) NOT NULL ",
 			"zipcode" => "varchar(32) NOT NULL ",
+			"language" => "char(2) NOT NULL ",
 			"phone_num" => "varchar(20) NOT NULL ",
 			"fax_num" => "varchar(20) NULL ",
 			"email" => "varchar(255) NOT NULL "

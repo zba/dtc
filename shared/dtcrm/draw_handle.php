@@ -71,6 +71,7 @@ _("Zipcode: ") . $infoz["zipcode"] ."<br>".
 _("City: ") . $infoz["city"] ."<br>".
 _("State: ") . $infoz["state"] ."<br>".
 _("Country: ") . $infoz["country"] ."<br>".
+_("Language: ") . $infoz["language"] ."<br>".
 _("Phone number: ") . $infoz["phone_num"] ."<br>".
 _("Fax: ") . $infoz["fax_num"] ."<br>".
 _("Email: ") . $infoz["email"] ."<br>";
@@ -108,6 +109,7 @@ _("Zipcode: ") . $infoz["zipcode"] ."<br>".
 _("City: ") . $infoz["city"] ."<br>".
 _("State: ") . $infoz["state"] ."<br>".
 _("Country: ") . $infoz["country"] ."<br>".
+_("Language: ") . $infoz["language"] ."<br>".
 _("Phone number: ") . $infoz["phone_num"] ."<br>".
 _("Fax: ") . $infoz["fax_num"] ."<br>".
 _("Email: ") . $infoz["email"] ."<br>";
@@ -145,6 +147,7 @@ _("Zipcode: ") . $infoz["zipcode"] ."<br>".
 _("City: ") . $infoz["city"] ."<br>".
 _("State: ") . $infoz["state"] ."<br>".
 _("Country: ") . $infoz["country"] ."<br>".
+_("Language: ") . $infoz["language"] ."<br>".
 _("Phone number: ") . $infoz["phone_num"] ."<br>".
 _("Fax: ") . $infoz["fax_num"] ."<br>".
 _("Email: ") . $infoz["email"] ."<br>";
@@ -182,6 +185,7 @@ _("Zipcode: ") . $infoz["zipcode"] ."<br>".
 _("City: ") . $infoz["city"] ."<br>".
 _("State: ") . $infoz["state"] ."<br>".
 _("Country: ") . $infoz["country"] ."<br>".
+_("Language: ") . $infoz["language"] ."<br>".
 _("Phone number: ") . $infoz["phone_num"] ."<br>".
 _("Fax: ") . $infoz["fax_num"] ."<br>".
 _("Email: ") . $infoz["email"] ."<br>";
@@ -316,6 +320,11 @@ function drawAdminTools_NickHandles($admin){
 				"values" => array_keys($cc_code_array),
 				"display_replace" => array_values($cc_code_array)
 				),
+			"language" => array(
+				"legend" => _("Language: "),
+				"type" => "text",
+				"size" => "2",
+				);
 			"zipcode" => array(
 				"legend" => _("Zipcode: "),
 				"type" => "text",
@@ -383,6 +392,10 @@ function drawAdminTools_NickHandles($admin){
 		$hdlcity = $hdl["city"];
 		$hdlzipcode = $hdl["zipcode"];
 		$hdlcountry = $hdl["country"];
+		if(isset($hdl["language"]))
+			$hdllanguage = $hdl["language"];
+		else
+			$hdllanguage = "";
 		$hdlphone = $hdl["phone_num"];
 		if(isset($hdl["fax_num"]))
 			$hdlfax = $hdl["fax_num"];
@@ -403,6 +416,7 @@ function drawAdminTools_NickHandles($admin){
 		$hdlcity = "";
 		$hdlzipcode = "";
 		$hdlcountry = "";
+		$hdllanguage = "";
 		$hdlphone = "";
 		$hdlfax = "";
 		$hdlemail = "";
@@ -446,6 +460,9 @@ function drawAdminTools_NickHandles($admin){
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Country: ") ."</td>
 	<td><select name=\"country\">".cc_code_popup($hdlcountry)."</select></td>
+</tr><tr>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Language: ") .":<br><i>". _("optional, but required for .eu f.ex.") ."</i></td>
+	<td><input type=\"text\" name=\"language\" value=\"".$hdllanguage."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Phone number: ") ."<br><i>". _("+1.XXXXXXXXXX format") ."</i></td>
 	<td><input type=\"text\" name=\"phone_num\" value=\"".$hdlphone."\"></td>
