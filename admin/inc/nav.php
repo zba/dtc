@@ -170,8 +170,8 @@ function adminList($password=""){
 	}
 
 	if($panel_type!="cronjob"){
-		// Find the current display type
-		// Depreacted: session_register("cur_admlist_type");
+		session_start();
+		if(isset($cur_admlist_type)) $_SESSION["cur_admlist_type"]=$cur_admlist_type;
 	}
 	$list_popup = listTypePopup();
 

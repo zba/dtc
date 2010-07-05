@@ -119,7 +119,8 @@ if(!isset($conf_db_version)){
 }
 
 if($conf_demo_version == 'yes'){
-	session_register("demo_version_has_started");
+	session_start();
+	if(isset($demo_version_has_started)) $_SESSION["demo_version_has_started"]=$demo_version_has_started;
 	if(!isset($_SESSION["demo_version_has_started"]) || $_SESSION["demo_version_has_started"] != "started"){
 		$_SESSION["demo_version_has_started"] = "started";
 		$query = "DELETE FROM admin;";
