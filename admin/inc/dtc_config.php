@@ -1590,6 +1590,7 @@ function drawRegistryApiConfig(){
 
 function drawDTCpayConfig(){
 	global $pro_mysql_secpayconf_table;
+	global $pro_mysql_custom_fld_table;
 
 	$out = "";
 
@@ -1630,6 +1631,50 @@ function drawDTCpayConfig(){
 				"type" => "text",
 				"size" => "6")));
 	$out .= configEditorTemplate ($dsc,"secpay");
+
+	$dsc = array(
+		"title" => _("Custom registration fields"),
+		"table_name" => $pro_mysql_custom_fld_table,
+		"action" => "custom_registration_field_editor",
+		"forward" => array("rub","sousrub"),
+		"order_by" => "widgetorder",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "Id"),
+			"widgetorder" => array(
+				"legend" => _("Display order"),
+				"type" => "text",
+				"size" => "4"),
+			"question" => array(
+				"legend" => _("Question to the user"),
+				"type" => "text",
+				"size" => "30"),
+			"widgettype" => array(
+				"legend" => _("Widget type"),
+				"type" => "popup",
+				"values" => array( "text", "popup", "radio", "textarea")),
+			"widgetvalues" => array(
+				"legend" => _("Possible values"),
+				"type" => "text",
+				"size" => "20"),
+			"widgetdisplay" => array(
+				"legend" => _("Corresponding display"),
+				"type" => "text",
+				"size" => "30"),
+			"mandatory" => array(
+				"legend" => _("Mandatory field"),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
+				"default" => "no")
+			)
+		);
+	$out .= dtcDatagrid($dsc);
+	$out .= _("On the above tables, the possible values are what is is going to be the internal value in the popup or radio buttons,
+which is what is going to be recorded in the database. Values are separated by \"|\". The corresponding display is what will actually
+be displayed to your users instead of the popup value.")."<br>";
 
 	$dsc = array(
 		"title" => _("Cheques and wire transfers:"),
