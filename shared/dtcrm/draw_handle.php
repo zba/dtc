@@ -324,7 +324,7 @@ function drawAdminTools_NickHandles($admin){
 				"legend" => _("Language: "),
 				"type" => "text",
 				"size" => "2",
-				);
+				),
 			"zipcode" => array(
 				"legend" => _("Zipcode: "),
 				"type" => "text",
