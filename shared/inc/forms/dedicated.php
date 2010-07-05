@@ -9,6 +9,7 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 	global $pro_mysql_product_table;
 	global $pro_mysql_dedicated_table;
 	global $pro_mysql_dedicated_ips_table;
+	global $pro_mysql_raduser_table;
 
 	global $secpayconf_currency_letters;
 
@@ -69,7 +70,22 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 
 //	$out .= "Dedicated server content!";
 	if ( $server_prod["use_radius"] == 'yes' ) {
-		$out .= '<BR><BR>Aca editamos Radius<BR><BR>';
+		$out .= '<BR><BR>';
+		$q = "SELECT * FROM $pro_mysql_raduser_table WHERE dedicated_id='".$dedicated["id"]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n == 1){
+			$radius_user = mysql_fetch_array($r);
+			$out .= _("Radius User").": ".$radius_user["UserName"]."<BR>";
+			$out .= _("Radius Password").": ".$radius_user["Password"];
+		}else{
+			if($n == 0){
+				$out .= _("You don't have a Radius Username assigned to this Account. Please Contact Support.");
+			}else{
+				$out .= _("Error Getting Radius Username. Please Contact Support.");
+			}
+		}
+		$out .= '<BR><BR>';
 	}
 	$out .= "<br><br><h3>"._("IP addresses: ")."</h3>";
 	$frm_start = "<form action=\"?\">

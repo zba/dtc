@@ -2093,7 +2093,7 @@ function drawDTCradiusConfig(){
                 $user_ids[] = $a["id"];
         }
 
-        $q = "SELECT * FROM $pro_mysql_dedicated_table,$pro_mysql_product_table WHERE $pro_mysql_dedicated_table.product_id=$pro_mysql_product_table.id and use_radius='yes';";
+        $q = "SELECT server_hostname,$pro_mysql_dedicated_table.id FROM $pro_mysql_dedicated_table,$pro_mysql_product_table WHERE $pro_mysql_dedicated_table.product_id=$pro_mysql_product_table.id and use_radius='yes';";
         $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
         $n = mysql_num_rows($r);
         $dedicated_names = array(_("None"));
@@ -2121,18 +2121,16 @@ function drawDTCradiusConfig(){
 				"type" => "text",
 				"disable_edit" => "yes",
 				"legend" => _("Username")),
-			"password" => array(
+			"Password" => array(
 				"type" => "password",
 				"legend" => _("Password")),
 			"GroupName" => array(
 				"type" => "popup",
-				"disable_edit" => "yes",
 				"legend" => _("Group"),
 				"values" => $group_ids,
 				"display_replace" => $group_names),
 			"Dedicated_id" => array(
 				"type" => "popup",
-				"disable_edit" => "yes",
 				"legend" => _("Associated Dedicated Service"),
 				"values" => $dedicated_ids,
 				"display_replace" => $dedicated_names)));
