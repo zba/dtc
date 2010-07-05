@@ -7,13 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.30.0\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2010-06-26 02:31-0300\n"
-"PO-Revision-Date: 2010-06-02 22:05-0300\n"
-=======
 "POT-Creation-Date: 2010-06-02 21:23-0300\n"
 "PO-Revision-Date: 2010-06-22 22:05-0300\n"
->>>>>>> 03c864217af1ca6b08a8a51a1892cdf664a7a29f
 "Last-Translator: Fernando Kiernan <fkiernan@id.net.ar>\n"
 "Language-Team: Yosu Cadilla <digitalwares@hotmail.com>\n"
 "MIME-Version: 1.0\n"
