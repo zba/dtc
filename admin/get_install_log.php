@@ -36,7 +36,7 @@ if($soap_client != false){
 	}else{
 		session_id(date("dgis"));
 	}
-	session_start();
+	@session_start();
 
 	// initialise $_SESSION on first run
 	if (!isset($_SESSION['callSID'])){

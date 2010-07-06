@@ -37,7 +37,7 @@ $txt_langname = array(
 
 //check to see if we are running in the shell or web
 if($panel_type!="cronjob"){
-	session_start();
+	@session_start();
 	if(isset($lang)) $_SESSION["lang"]=$lang;
 	// If something like phpbb that has $lang on the same domain, this should
 	// avoid problems. This is a lack in php (IMHO)

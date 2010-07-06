@@ -170,7 +170,7 @@ function adminList($password=""){
 	}
 
 	if($panel_type!="cronjob"){
-		session_start();
+		@session_start();
 		if(isset($cur_admlist_type)) $_SESSION["cur_admlist_type"]=$cur_admlist_type;
 	}
 	$list_popup = listTypePopup();
