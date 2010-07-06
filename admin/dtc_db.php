@@ -8,7 +8,7 @@ $dtc_database = array(
 		"vars" => array(
 			"adm_login" => "varchar(64) NOT NULL ",
 			"adm_pass" => "varchar(255) NOT NULL ",
-			"path" => "varchar(128) NOT NULL default '/web/disk4' ",
+			"path" => "varchar(128) NOT NULL default '/var/www/sites' ",
 			"max_email" => "int(12) NOT NULL default '3' ",
 			"max_ftp" => "int(12) NOT NULL default '3' ",
 			"max_ssh" => "int(12) NOT NULL default '3' ",
@@ -46,6 +46,20 @@ $dtc_database = array(
 			"id_clientindex" => "(id_client)"
 			)
 		),
+	"affiliate_payments" => array(
+		"vars" => array(
+			"id" => "int(11) NOT NULL auto_increment",
+			"adm_login" => "varchar(64) NOT NULL default ''",
+			"order_id" => "int(11) NOT NULL",
+			"kickback" => "DECIMAL(10,5) NOT NULL",
+			"date_paid" => "date NULL",
+			),
+		"primary" => "(id)",
+		"keys" => array(
+			"id" => "(id)"
+			)
+		),
+	
 	"backup" => array(
 		"vars" => array(
 			"id" => "int(9) NOT NULL auto_increment",
@@ -57,7 +71,6 @@ $dtc_database = array(
 			),
 		"primary" => "(id)",
 		"keys" => array(
-			"id_2" => "(id)",
 			"id" => "(id)"
 			)
 		),

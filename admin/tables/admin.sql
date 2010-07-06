@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS admin (
   adm_login varchar(64) NOT NULL default '',
   adm_pass varchar(255) NOT NULL default '',
-  path varchar(128) NOT NULL default '/web/disk4',
+  path varchar(255) NOT NULL default '/var/www/sites',
   max_email int(12) NOT NULL default '3',
   max_ftp int(12) NOT NULL default '3',
   quota int(11) NOT NULL default '50',
@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS admin (
   ob_tail varchar(64) NOT NULL default '',
   ob_next varchar(64) NOT NULL default '',
   last_used_lang varchar(32) NOT NULL default 'en_US.UTF-8',
+  max_ssh int(12) NOT NULL default '3',
   PRIMARY KEY  (adm_login),
   UNIQUE KEY adm_login (adm_login),
   UNIQUE KEY path (path)
