@@ -475,7 +475,7 @@ function dtcDatagrid($dsc){
 				}
 				$out .= "<td class=\"$tdclass\" style=\"white-space:nowrap;\">";
 				$genpass = autoGeneratePassButton($dsc["action"]."_edit_frm_$i",$the_name);
-				$out .= "<input class=\"$input_class\" type=\"password\" $size name=\"".$the_fld."\" value=\"".$a[ $the_fld ]."\">$genpass";
+				$out .= "<input class=\"$input_class\" type=\"password\" $size name=\"".$the_name."\" value=\"".$db_value."\">$genpass";
 				$out .= "</td>";
 				break;
 			case "radio":
