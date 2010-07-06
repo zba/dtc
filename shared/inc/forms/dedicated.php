@@ -69,29 +69,47 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 	}
 
 //	$out .= "Dedicated server content!";
+
+	$frm_start = "<form action=\"?\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
+
 	if ( $server_prod["use_radius"] == 'yes' ) {
 		$out .= '<BR><BR>';
 		$q = "SELECT * FROM $pro_mysql_raduser_table WHERE dedicated_id='".$dedicated["id"]."';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
+		$user_ok = 'no';
 		if($n == 1){
 			$radius_user = mysql_fetch_array($r);
-			$out .= _("Radius User").": ".$radius_user["UserName"]."<BR>";
-			$out .= _("Radius Password").": ".$radius_user["Password"];
+			$user_ok = 'yes';
+			$edit_user = $radius_user["UserName"];
+			$edit_password = $radius_user["Password"];
 		}else{
 			if($n == 0){
-				$out .= _("You don't have a Radius Username assigned to this Account. Please Contact Support.");
+				$user_ok = 'yes';
+				$edit_user = '';
+				$edit_password = '';
 			}else{
 				$out .= _("Error Getting Radius Username. Please Contact Support.");
 			}
 		}
-		$out .= '<BR><BR>';
+		if( $user_ok == 'yes' ){
+		$out .= dtcFormTableAttrs();
+		$out .= dtcFormLineDraw("","$frm_start<input type=\"hidden\" name=\"action\" value=\"set_radius_user\">
+<input type=\"hidden\" name=\"dedicated_id\" value=\"".$dedicated["id"]."\">
+" . _("Radius User") . ": <input type=\"text\" name=\"radius_user\" value=\"".$edit_user."\">
+" . _("Password") . ": <input type=\"text\" name=\"radius_password\" value=\"".$edit_password."\">
+</td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
+<div class=\"input_btn_left\"></div>
+<div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Update Radius User")."\"></div>
+<div class=\"input_btn_right\"></div>
+</div></form>",0);
+		$out .= "</table>";
+		}
 	}
 	$out .= "<br><br><h3>"._("IP addresses: ")."</h3>";
-	$frm_start = "<form action=\"?\">
-<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
 
 	$q = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE dedicated_server_hostname='$dedicated_server_hostname'";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
