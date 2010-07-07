@@ -1647,6 +1647,10 @@ function drawDTCpayConfig(){
 				"legend" => _("Display order"),
 				"type" => "text",
 				"size" => "4"),
+			"varname" => array(
+				"legend" => _("Variable name"),
+				"type" => "text",
+				"size" => "15"),
 			"question" => array(
 				"legend" => _("Question to the user"),
 				"type" => "text",

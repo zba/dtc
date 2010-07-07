@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS custom_fld (
   `id` int(9) unsigned NOT NULL auto_increment,
+  `varname` varchar(255) collate latin1_bin NOT NULL,
   `question` varchar(255) collate latin1_bin NOT NULL,
   `widgettype` varchar(255) collate latin1_bin NOT NULL,
   `widgetvalues` varchar(255) collate latin1_bin NOT NULL,

@@ -8,6 +8,8 @@ function register_user($adding_service="no"){
 	global $conf_webmaster_email_addr;
 	global $conf_selling_conditions_url;
 
+	global $pro_mysql_custom_fld_table;
+
 	global $conf_message_subject_header;
 
 	global $secpayconf_currency_letters;
@@ -432,6 +434,7 @@ function registration_form(){
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
 	global $pro_mysql_vps_server_table;
+	global $pro_mysql_custom_fld_table;
 
 	global $conf_selling_conditions_url;
 	global $secpayconf_currency_symbol;
@@ -681,6 +684,73 @@ function registration_form(){
 		$conditions = "";
 	}
 
+	// Manage the output of custom fields.
+	$cust_out = "";
+	$q = "SELECT * FROM $pro_mysql_custom_fld_table ORDER BY widgetorder;";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n > 0){
+		$cust_out .= "<table>";
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			$cust_out .= "<tr><td style=\"white-space: nowrap;text-align: right;\">";
+			$cust_out .= $a["question"];
+			if($a["mandatory"] == "yes"){
+				$cust_out .= $rek;
+			}
+			$cust_out .= " </td><td>";
+			switch($a["widgettype"]){
+			case "radio":
+				$explo_pop = explode("|",$a["widgetvalues"]);
+				$explo_pop2 = explode("|",$a["widgetdisplay"]);
+				$n_pop = sizeof($explo_pop);
+				for($j=0;$j<$n_pop;$j++){
+					if( isset($_REQUEST[ $a["varname"] ]) && $_REQUEST[ $a["varname"] ] == $explo_pop[$j]){
+						$selected = " checked ";
+					}else{
+						$selected = " ";
+					}
+					$cust_out .= "<input type=\"radio\" name=\"".$a["varname"]."\" value=\"".$explo_pop[$j]."\" $selected > ".$explo_pop2[$j];
+				}
+				break;
+			case "popup":
+				$cust_out .= "<select name=\"".$a["varname"]."\">";
+				$explo_pop = explode("|",$a["widgetvalues"]);
+				$explo_pop2 = explode("|",$a["widgetdisplay"]);
+				$n_pop = sizeof($explo_pop);
+				for($j=0;$j<$n_pop;$j++){
+					if( isset($_REQUEST[ $a["varname"] ]) && $_REQUEST[ $a["varname"] ] == $explo_pop[$j]){
+						$selected = " selected ";
+					}else{
+						$selected = " ";
+					}
+					$cust_out .= "<option value=\"".$explo_pop[$j]."\" $selected >".$explo_pop2[$j]."</option>";
+				}
+				$cust_out .= "</select>";
+				break;
+			case "textarea":
+				if( isset($_REQUEST[ $a["varname"] ])){
+					$val = htmlspecialchars($_REQUEST[ $a["varname"] ]);
+				}else{
+					$val = "";
+				}
+				$cust_out .= "<textarea name=\"".$a["varname"]."\">".$val."</textarea>";
+				break;
+			case "text":
+			default:
+				if( isset($_REQUEST[ $a["varname"] ])){
+					$val = htmlspecialchars($_REQUEST[ $a["varname"] ]);
+				}else{
+					$val = "";
+				}
+				$cust_out .= "<input type=\"text\" name=\"".$a["varname"]."\" value=\"$val\">";
+				break;
+			}
+			$cust_out .= "</td></tr>";
+		}
+		$cust_out .= "</table>";
+	}
+
 	$HTML_admin_edit_data = "<a href=\"/dtc\">". _("Go to login") ."</a>
 <script language=\"javascript\">
 
@@ -761,6 +831,8 @@ function hostingProductChanged(){
 $conditions
 <table border=\"0\">
 <tr>
+	<td colspan=\"3\">$cust_out</td>
+</tr><tr>
 	<td>". _("Leave a message describing any specific requirements you might have for your account:") ."</td>
 	<td><textarea name=\"custom_notes\" cols=\"50\" rows=\"5\">$frm_custom_notes</textarea></td>
 	<td><input type=\"submit\" name=\"Login\" value=\"Register\"></td>
