@@ -165,24 +165,25 @@ if($n != 1){
 	$text .= dtcFormLineDraw( _("Login: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"reqadm_login\" value=\"".stripcslashes($b["reqadm_login"])."\">",0);
 	$text .= dtcFormLineDraw( _("Password: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"reqadm_pass\" value=\"".stripcslashes($b["reqadm_pass"])."\">");
 	$text .= dtcFormLineDraw( _("Domain Name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"domain_name\" value=\"".$b["domain_name"]."\">",0);
-	$text .= dtcFormLineDraw( _("Familly name: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"family_name\"value=\"".stripcslashes($b["family_name"])."\">");
-	$text .= dtcFormLineDraw( _("First name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"first_name\" value=\"".stripcslashes($b["first_name"])."\">",0);
+	$text .= dtcFormLineDraw( _("Familly name: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"family_name\"value=\"".htmlspecialchars(stripcslashes($b["family_name"]))."\">");
+	$text .= dtcFormLineDraw( _("First name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"first_name\" value=\"".htmlspecialchars(stripcslashes($b["first_name"]))."\">",0);
 	$text .= dtcFormLineDraw( _("Is it a company: ") ,"<input type=\"radio\" name=\"iscomp\" value=\"yes\" $iscomp_yes > "._("Yes")."
 <input type=\"radio\" name=\"iscomp\" value=\"no\" $iscomp_no > "._("No"));
-	$text .= dtcFormLineDraw( _("Company name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"comp_name\" value=\"".stripcslashes($b["comp_name"])."\">",0);
-	$text .= dtcFormLineDraw( _("VAT number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"vat_num\" value=\"".stripcslashes($b["vat_num"])."\">");
-	$text .= dtcFormLineDraw( _("Address (line1): ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"addr1\" value=\"".stripcslashes($b["addr1"])."\">",0);
-	$text .= dtcFormLineDraw( _("Address (line2): ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"addr2\" value=\"".stripcslashes($b["addr2"])."\">");
-	$text .= dtcFormLineDraw( _("Address (line3): ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"addr3\" value=\"".stripcslashes($b["addr3"])."\">",0);
-	$text .= dtcFormLineDraw( _("City: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"city\" value=\"".stripcslashes($b["city"])."\">");
-	$text .= dtcFormLineDraw( _("Zipcode: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"zipcode\" value=\"".stripcslashes($b["zipcode"])."\">",0);
-	$text .= dtcFormLineDraw( _("State: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"state\" value=\"".stripcslashes($b["state"])."\">");
+	$text .= dtcFormLineDraw( _("Company name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"comp_name\" value=\"".htmlspecialchars(stripcslashes($b["comp_name"]))."\">",0);
+	$text .= dtcFormLineDraw( _("VAT number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"vat_num\" value=\"".htmlspecialchars(stripcslashes($b["vat_num"]))."\">");
+	$text .= dtcFormLineDraw( _("Address (line1): ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"addr1\" value=\"".htmlspecialchars(stripcslashes($b["addr1"]))."\">",0);
+	$text .= dtcFormLineDraw( _("Address (line2): ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"addr2\" value=\"".htmlspecialchars(stripcslashes($b["addr2"]))."\">");
+	$text .= dtcFormLineDraw( _("Address (line3): ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"addr3\" value=\"".htmlspecialchars(stripcslashes($b["addr3"]))."\">",0);
+	$text .= dtcFormLineDraw( _("City: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"city\" value=\"".htmlspecialchars(stripcslashes($b["city"]))."\">");
+	$text .= dtcFormLineDraw( _("Zipcode: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"zipcode\" value=\"".htmlspecialchars(stripcslashes($b["zipcode"]))."\">",0);
+	$text .= dtcFormLineDraw( _("State: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"state\" value=\"".htmlspecialchars(stripcslashes($b["state"]))."\">");
 	$text .= dtcFormLineDraw( _("Country: ") ,"<select class=\"dtcDatagrid_input_alt_color\" name=\"country\">".
 cc_code_popup($b["country"])."</select>",0);
-	$text .= dtcFormLineDraw( _("Phone number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"phone\" value=\"".stripcslashes($b["phone"])."\">");
-	$text .= dtcFormLineDraw( _("Fax: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"fax\" value=\"".stripcslashes($b["fax"])."\">",0);
+	$text .= dtcFormLineDraw( _("Phone number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"phone\" value=\"".htmlspecialchars(stripcslashes($b["phone"]))."\">");
+	$text .= dtcFormLineDraw( _("Fax: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"fax\" value=\"".htmlspecialchars(stripcslashes($b["fax"]))."\">",0);
 	$text .= dtcFormLineDraw( _("Email: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"email\" value=\"".$b["email"]."\">");
-	$text .= dtcFormLineDraw( _("Notes: ") ,"<textarea class=\"dtcDatagrid_input_alt_color\" cols=\"40\" rows=\"5\" name=\"custom_notes\">".stripcslashes($b["custom_notes"])."</textarea>",0);
+	$text .= dtcFormLineDraw( _("Notes: ") ,"<textarea class=\"dtcDatagrid_input_alt_color\" cols=\"40\" rows=\"5\" name=\"custom_notes\">".htmlspecialchars(stripcslashes($b["custom_notes"]))."</textarea>",0);
+	$text .= dtcFormLineDraw( _("Custom fields: ") ,"<textarea class=\"dtcDatagrid_input_alt_color\" cols=\"40\" rows=\"5\" name=\"customfld\">".htmlspecialchars(stripcslashes($b["customfld"]))."</textarea>");
 	$text .= "<input type=\"hidden\" name=\"paiement_id\" value=\"".$b["paiement_id"]."\">";
 	if ($has_payement == 1) {
 		$text .= "<input type=\"hidden\" name=\"secpay_site\" value=\"".$p["secpay_site"]."\">";

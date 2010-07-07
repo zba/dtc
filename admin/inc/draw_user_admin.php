@@ -368,8 +368,8 @@ dtcFromOkDraw()."
 <tr><td>". _("Name") ."</td><td>". _("Login") ."</td><td>". _("Domain name / VPS server hostname") ."</td><td>". _("Product") ."</td><td>". _("Date") . "</td><td>". _("Bank validated") ."</td>$maxmindsays_th<td>". _("Action") ."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
-			$waiting_new_users .= "<tr><td style=\"white-space:nowrap\"><u>".$a["comp_name"].":</u><br>";
-			$waiting_new_users .= $a["family_name"].", ".$a["first_name"]."</td>";
+			$waiting_new_users .= "<tr><td style=\"white-space:nowrap\"><u>".htmlspecialchars($a["comp_name"]).":</u><br>";
+			$waiting_new_users .= htmlspecialchars($a["family_name"]).", ".htmlspecialchars($a["first_name"])."</td>";
 			$waiting_new_users .= "<td>".$a["reqadm_login"]."</td>";
 			$prod_id = $a["product_id"];
 			$q2 = "SELECT * FROM $pro_mysql_product_table WHERE id='$prod_id';";

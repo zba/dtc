@@ -324,9 +324,37 @@ function register_user($adding_service="no"){
 	}
 	// end MaxMind
 
+	$q = "SELECT * FROM $pro_mysql_custom_fld_table ORDER BY widgetorder;";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n > 0){
+		$cust_fld_val = "";
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			if( !isset($_REQUEST[ $a["varname"] ]) || $_REQUEST[ $a["varname"] ] == ""){
+				if($a["mandatory"] == "yes"){
+					$ret["err"] = 2;
+					$ret["mesg"] = _("Mandatory field")." ".$a["varname"]." "._("is empty or incorrect.") ;
+					return $ret;
+				}else{
+					$val = "";
+				}
+			}else{
+				$val = $_REQUEST[ $a["varname"] ];
+			}
+			if($i>0){
+				$cust_fld_val .= "|";
+			}
+			$cust_fld_val .= $a["varname"].":".mysql_real_escape_string($_REQUEST[ $a["varname"] ]);
+		}
+	}else{
+		$cust_fld_val = "";
+	}
+
 	$q = "INSERT INTO $pro_mysql_new_admin_table
 (reqadm_login,
 reqadm_pass,
+customfld,
 domain_name,
 family_name,
 first_name,
@@ -353,6 +381,7 @@ maxmind_output$vps_add1
 )
 VALUES('".$_REQUEST["reqadm_login"]."',
 '".$_REQUEST["reqadm_pass"]."',
+'$cust_fld_val',
 '".$_REQUEST["domain_name"].$domain_tld."',
 '$esc_familyname',
 '$esc_firstname',
