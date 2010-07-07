@@ -5,7 +5,6 @@
 # $FreeBSD$
 #
 
-PORTREVISION=	1
 PKGNAMESUFFIX=	-postix-courier
 
 MAINTAINER=	thomas@goirand.fr

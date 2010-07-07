@@ -5,10 +5,9 @@
 # $FreeBSD: ports/sysutils/dtc-toaster/Makefile,v 1.6 2007/09/29 12:22:20 pav Exp $
 #
 
-PORTREVISION=	4
 PKGNAMESUFFIX=	-toaster
 
-MAINTAINER=	scrappy@freebsd.org
+MAINTAINER=	thomas@goirand.fr
 
 CONFLICTS=	dtc-[0-9]* dtc-postfix-courier-[0-9]*
 
