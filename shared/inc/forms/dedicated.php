@@ -70,7 +70,7 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 
 //	$out .= "Dedicated server content!";
 
-	$frm_start = "<form action=\"?\">
+	$frm_start = "<form name=\"radius\" action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
@@ -97,10 +97,11 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 		}
 		if( $user_ok == 'yes' ){
 		$out .= dtcFormTableAttrs();
+		$genpass = autoGeneratePassButton("radius","radius_password");
 		$out .= dtcFormLineDraw("","$frm_start<input type=\"hidden\" name=\"action\" value=\"set_radius_user\">
 <input type=\"hidden\" name=\"dedicated_id\" value=\"".$dedicated["id"]."\">
 " . _("Radius User") . ": <input type=\"text\" name=\"radius_user\" value=\"".$edit_user."\">
-" . _("Password") . ": <input type=\"text\" name=\"radius_password\" value=\"".$edit_password."\">
+" . _("Password") . ": <input type=\"password\" name=\"radius_password\" value=\"".$edit_password."\">".$genpass."
 </td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
 <div class=\"input_btn_left\"></div>
 <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Update Radius User")."\"></div>
@@ -124,6 +125,12 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 		}else{
 			$alt_color = 1;
 		}
+
+		$frm_start = "<form name=\"iprdns\" action=\"?\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
+
 		$out .= dtcFormLineDraw($a["ip_addr"],"$frm_start<input type=\"hidden\" name=\"action\" value=\"set_dedicated_ip_rdns\">
 <input type=\"hidden\" name=\"ip_addr\" value=\"".$a["ip_addr"]."\">
 <input type=\"text\" name=\"rdns\" value=\"".$a["rdns_addr"]."\">

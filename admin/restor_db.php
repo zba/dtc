@@ -299,7 +299,7 @@ $q = "ALTER TABLE `radpostauth` CHANGE `authdate` `authdate` timestamp(14) defau
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Create view for radius password checking
-$q = "create or replace view radcheckview as select * from radcheck union all select id,username,'Cleartext-Password',':=',password from radusergroup";
+$q = "create or replace view radcheckview as select radcheck.id,radcheck.username,radcheck.attribute,radcheck.op,radcheck.value from radcheck,radusergroup,dedicated where radcheck.username=radusergroup.username and radusergroup.dedicated_id=dedicated.id and date_add(dedicated.expire_date,interval 1 day)>curdate() union all select radusergroup.id,radusergroup.username,'Cleartext-Password',':=',radusergroup.password from radusergroup,dedicated where radusergroup.dedicated_id=dedicated.id and date_add(dedicated.expire_date, interval 1 day)>curdate()";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Alter the default shell value for FreeBSD, as the path will be in /usr/local
