@@ -361,7 +361,7 @@ for($i=0;$i<$n;$i++){
 			echo "Could not open file: ".$path." to change the recipient delimiter!\n";
 		}
 	}else{
-		echo "Could not find file: ".$path." to change the recipient delimiter!\n";
+//		echo "Could not find file: ".$path." to change the recipient delimiter!\n";
 	}
 }
 echo "\n";
