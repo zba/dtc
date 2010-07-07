@@ -334,7 +334,7 @@ admin/tables/ssh_groups.sql admin/tables/ssh_user_group.sql admin/tables/ssl_ips
 admin/tables/tik_admins.sql admin/tables/tik_cats.sql admin/tables/tik_queries.sql admin/tables/vps_ip.sql admin/tables/vps_server.sql \
 admin/tables/vps.sql admin/tables/vps_stats.sql admin/tables/whitelist.sql \
 admin/tables/spent_moneyout.sql admin/tables/spent_providers.sql  admin/tables/spent_type.sql \
-admin/tables/spent_bank.sql admin/tables/registrar_domains.sql
+admin/tables/spent_bank.sql admin/tables/registrar_domains.sql admin/tables/custom_fld.sql
 
 ##################### ETC FILES #########################
 CREATE_DIRS=admin/inc admin/genfiles admin/dtcrm admin/queuegraph admin/memgraph admin/netusegraph admin/cpugraph admin/install admin/tables \
