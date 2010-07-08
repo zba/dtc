@@ -100,8 +100,8 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 		$genpass = autoGeneratePassButton("radius","radius_password");
 		$out .= dtcFormLineDraw("","$frm_start<input type=\"hidden\" name=\"action\" value=\"set_radius_user\">
 <input type=\"hidden\" name=\"dedicated_id\" value=\"".$dedicated["id"]."\">
-" . _("Radius User") . ": <input type=\"text\" name=\"radius_user\" value=\"".$edit_user."\">
-" . _("Password") . ": <input type=\"password\" name=\"radius_password\" value=\"".$edit_password."\">".$genpass."
+" . _("Radius User:") . " <input type=\"text\" name=\"radius_user\" value=\"".$edit_user."\">
+" . _("Password:") . " <input type=\"password\" name=\"radius_password\" value=\"".$edit_password."\">".$genpass."
 </td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
 <div class=\"input_btn_left\"></div>
 <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Update Radius User")."\"></div>
