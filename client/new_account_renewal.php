@@ -184,6 +184,9 @@ Service country: $country
 		$q = "UPDATE $pro_mysql_client_table SET dollar=dollar-" . $product["price_dollar"] . " WHERE id='".$client["id"]."';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 
+		if(!isset($_REQUEST["renew_id"]) || !isRandomNum($_REQUEST["renew_id"])){
+			die("Renew ID is not a number line ".__LINE__." file ".__FILE__);
+		}
 		validateRenewal($_REQUEST["renew_id"]);
 
 		$form .= "<br><br><br><a href=\"/\">" . _("Continue") . "</a>";
