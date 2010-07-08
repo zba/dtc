@@ -37,11 +37,7 @@ $dtc_database = array(
 			"max_ssh" => "int(12) NOT NULL default '3' "
 			),
 		"primary" => "(adm_login)",
-		"keys" => array(
-			"adm_login" => "(adm_login)"
-			),
 		"index" => array(
-			"adm_login_2" => "(adm_login)",
 			"path" => "(path)",
 			"id_clientindex" => "(id_client)"
 			)
@@ -54,10 +50,7 @@ $dtc_database = array(
 			"kickback" => "DECIMAL(10,5) NOT NULL",
 			"date_paid" => "date NULL",
 			),
-		"primary" => "(id)",
-		"keys" => array(
-			"id" => "(id)"
-			)
+		"primary" => "(id)"
 		),
 	
 	"backup" => array(
@@ -69,10 +62,7 @@ $dtc_database = array(
 			"type" => "enum('grant_access','mail_backup','dns_backup','backup_ftp_to','trigger_changes','trigger_mx_changes') NOT NULL default 'grant_access' ",
 			"status" => "enum('pending','done') NOT NULL default 'pending' "
 			),
-		"primary" => "(id)",
-		"keys" => array(
-			"id" => "(id)"
-			)
+		"primary" => "(id)"
 		),
 	"clients" => array(
 		"vars" => array(
@@ -100,10 +90,7 @@ $dtc_database = array(
 			"active" => "enum('yes','no') NOT NULL default 'yes'",
 			"customfld" => "text collate latin1_bin NOT NULL"
 			),
-		"primary" => "(id)",
-		"keys" => array(
-			"id" => "(id)"
-			)
+		"primary" => "(id)"
 		),
 	"commande" => array(
 		"vars" => array(
@@ -120,13 +107,7 @@ $dtc_database = array(
 			"payment_id" => "int(11) NOT NULL default '0' ",
 			"price_devise" => "enum('EUR','USD') NOT NULL default 'EUR' "
 			),
-		"primary" => "(id)",
-		"keys" => array(
-			"id" => "(id)"
-			),
-		"index" => array(
-			"id_2" => "(id)"
-			)
+		"primary" => "(id)"
 		),
 	"completedorders" => array(
 		"vars" => array(
@@ -421,12 +402,9 @@ $dtc_database = array(
 			"month" => "int(2) NOT NULL default '0' ",
 			"year" => "int(4) NOT NULL default '0' "
 			),
+		"primary" => "(id)",
 		"keys" => array(
 			"domain_name" => "(domain_name,month,year)",
-			"id" => "(id)"
-			),
-		"index" => array(
-			"overall_index" => "(domain_name,month,year)"
 			)
 		),
 	"fetchmail" => array(
