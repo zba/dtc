@@ -1,4 +1,4 @@
-CREATE TABLE  IF NOT EXISTS smtp_logs (
+CREATE TABLE IF NOT EXISTS smtp_logs(
   id int(11) NOT NULL auto_increment,
   newmsg_id bigint(20) default NULL,
   bounce_qp int(11) default NULL,
@@ -11,10 +11,11 @@ CREATE TABLE  IF NOT EXISTS smtp_logs (
   delivery_success enum('yes','no') NOT NULL default 'no',
   delivery_id_text varchar(128) NOT NULL default '',
   time_stamp int(14) NOT NULL,
+  msg_id_text varchar(128) NOT NULL default '',
   PRIMARY KEY  (id),
   UNIQUE KEY bounce_qp (bounce_qp),
   UNIQUE KEY newmsg_id (newmsg_id),
   UNIQUE KEY delivery_id_text (delivery_id_text),
   KEY sender_domain (sender_domain),
   KEY delivery_domain (delivery_domain)
-) TYPE=MyISAM;
+)TYPE=MyISAM

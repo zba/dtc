@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS product (
+CREATE TABLE IF NOT EXISTS product(
   id int(11) NOT NULL auto_increment,
   price_dollar varchar(9) NOT NULL default '',
   price_euro varchar(9) NOT NULL default '',
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS product (
   memory_size int(9) NOT NULL default '48',
   nbr_email int(9) NOT NULL default '0',
   nbr_database int(9) NOT NULL default '0',
-  bandwidth int(9) NOT NULL default '0',
+  bandwidth int(15) NOT NULL default '0',
   period varchar(12) NOT NULL default '0001-00-00',
   allow_add_domain enum('yes','no','check') NOT NULL default 'no',
   max_domain int(9) NOT NULL default '0',
@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS product (
   renew_prod_id int(11) NOT NULL default '0',
   affiliate_kickback varchar(9) NOT NULL default '',
   private enum('yes','no') NOT NULL default 'no',
+  use_radius enum('yes','no') default 'no',
   PRIMARY KEY  (id),
   UNIQUE KEY id (id)
-) TYPE=MyISAM
+)TYPE=MyISAM

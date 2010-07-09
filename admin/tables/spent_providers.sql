@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS spent_providers (
+CREATE TABLE IF NOT EXISTS spent_providers(
   id int(9) NOT NULL auto_increment,
   quick_name varchar(64) NOT NULL default '-',
   is_company enum('yes','no') NOT NULL default 'no',
@@ -18,5 +18,5 @@ CREATE TABLE IF NOT EXISTS spent_providers (
   email varchar(255) NOT NULL default '',
   special_note blob,
   always_yes enum('yes','no') NOT NULL default 'yes',
-  PRIMARY KEY (id)
-) TYPE=MyISAM;
+  PRIMARY KEY  (id)
+)TYPE=MyISAM

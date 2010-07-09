@@ -1,21 +1,21 @@
-CREATE TABLE IF NOT EXISTS handle (
+CREATE TABLE IF NOT EXISTS handle(
   id int(16) NOT NULL auto_increment,
   name varchar(32) NOT NULL default '',
   owner varchar(64) NOT NULL default '',
-  company varchar(64) default NULL,
+  company varchar(64) NOT NULL default '',
   firstname varchar(64) NOT NULL default '',
   lastname varchar(64) NOT NULL default '',
   addr1 varchar(100) NOT NULL default '',
   addr2 varchar(100) default NULL,
   addr3 varchar(100) default NULL,
   city varchar(64) NOT NULL default '',
-  state varchar(32) default NULL,
-  country char(2) NOT NULL default '',
+  state varchar(32) NOT NULL default '',
+  country char(2) NOT NULL default 'us',
   zipcode varchar(32) NOT NULL default '',
   language char(2) NOT NULL default 'en',
   phone_num varchar(20) NOT NULL default '',
-  fax_num varchar(20) default NULL,
+  fax_num varchar(20) NOT NULL default '',
   email varchar(255) NOT NULL default '',
   PRIMARY KEY  (id),
   UNIQUE KEY name (name,owner)
-) TYPE=MyISAM;
+)TYPE=MyISAM

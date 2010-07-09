@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS spent_moneyout (
+CREATE TABLE IF NOT EXISTS spent_moneyout(
   id int(11) NOT NULL auto_increment,
   id_company_spending int(11) NOT NULL default '0',
   id_provider int(11) NOT NULL default '0',
@@ -14,5 +14,5 @@ CREATE TABLE IF NOT EXISTS spent_moneyout (
   bank_acct_id int(11) NOT NULL default '0',
   amount decimal(9,2) NOT NULL default '0.00',
   currency_type varchar(10) NOT NULL default 'EUR',
-  PRIMARY KEY (id)
-) TYPE=MyISAM;
+  PRIMARY KEY  (id)
+)TYPE=MyISAM

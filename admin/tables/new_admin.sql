@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS new_admin (
+CREATE TABLE IF NOT EXISTS new_admin(
   id int(9) NOT NULL auto_increment,
   reqadm_login varchar(64) NOT NULL default '',
   reqadm_pass varchar(16) NOT NULL default '',
@@ -17,16 +17,17 @@ CREATE TABLE IF NOT EXISTS new_admin (
   zipcode varchar(32) NOT NULL default '',
   city varchar(64) NOT NULL default '',
   state varchar(32) NOT NULL default '',
-  country char(2) NOT NULL default '',
+  country char(2) NOT NULL default 'us',
   paiement_id int(9) NOT NULL default '0',
   product_id int(9) NOT NULL default '0',
   custom_notes text NOT NULL,
   vps_location varchar(255) NOT NULL default '',
   vps_os varchar(255) NOT NULL default '',
   shopper_ip varchar(16) NOT NULL default '',
-  `date` date NOT NULL default '0000-00-00',
-  `time` time NOT NULL default '00:00:00',
+  date date NOT NULL default '0000-00-00',
+  time time NOT NULL default '00:00:00',
+  maxmind_output text NOT NULL,
   last_used_lang varchar(32) NOT NULL default 'en_US.UTF-8',
   add_service enum('yes','no') NOT NULL default 'no',
   PRIMARY KEY  (id)
-) TYPE=MyISAM;
+)TYPE=MyISAM

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS completedorders (
+CREATE TABLE IF NOT EXISTS completedorders(
   id int(12) NOT NULL auto_increment,
   id_client int(12) NOT NULL default '0',
   domain_name varchar(255) NOT NULL default '',
@@ -10,4 +10,4 @@ CREATE TABLE IF NOT EXISTS completedorders (
   country_code varchar(4) NOT NULL default 'US',
   last_expiry_date date NOT NULL,
   PRIMARY KEY  (id)
-) TYPE=MyISAM;
+)TYPE=MyISAM

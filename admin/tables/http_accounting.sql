@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS http_accounting (
+CREATE TABLE IF NOT EXISTS http_accounting(
   id int(14) NOT NULL auto_increment,
   vhost varchar(50) NOT NULL default '',
   bytes_sent bigint(14) unsigned NOT NULL default '0',
@@ -12,6 +12,6 @@ CREATE TABLE IF NOT EXISTS http_accounting (
   month int(4) NOT NULL default '0',
   year int(4) NOT NULL default '0',
   domain varchar(50) NOT NULL default '',
-  PRIMARY KEY (id),
-  UNIQUE KEY `vhost` (`vhost`,`month`,`year`,`domain`)
-) TYPE=MyISAM;
+  PRIMARY KEY  (id),
+  UNIQUE KEY vhost (vhost,month,year,domain)
+)TYPE=MyISAM

@@ -1,5 +1,5 @@
-CREATE TABLE IF NOT EXISTS ssh_access (
-  `id` int(12) NOT NULL auto_increment,
+CREATE TABLE IF NOT EXISTS ssh_access(
+  id int(12) NOT NULL auto_increment,
   login varchar(50) NOT NULL default '',
   uid int(5) NOT NULL default '1001',
   gid int(5) NOT NULL default '1001',
@@ -25,13 +25,14 @@ CREATE TABLE IF NOT EXISTS ssh_access (
   size int(11) NOT NULL default '0',
   shell varchar(64) NOT NULL default '/bin/dtc-chroot-shell',
   hostname varchar(64) NOT NULL default 'anotherlight.com',
+  vhostip varchar(16) NOT NULL default '0.0.0.0',
   login_count int(11) NOT NULL default '0',
   last_login datetime NOT NULL default '0000-00-00 00:00:00',
   dl_bytes int(14) NOT NULL default '0',
   ul_bytes int(14) NOT NULL default '0',
   dl_count int(14) NOT NULL default '0',
   ul_count int(14) NOT NULL default '0',
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY  (id),
   UNIQUE KEY login (login),
   KEY hostname (hostname)
-) TYPE=MyISAM;
+)TYPE=MyISAM

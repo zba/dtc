@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS paiement (
+CREATE TABLE IF NOT EXISTS paiement(
   id int(11) NOT NULL auto_increment,
   id_client int(11) NOT NULL default '0',
   id_command int(11) NOT NULL default '0',
@@ -8,13 +8,13 @@ CREATE TABLE IF NOT EXISTS paiement (
   paiement_cost decimal(9,2) NOT NULL default '0',
   paiement_total decimal(9,2) NOT NULL default '0',
   paiement_type enum('online','cheque','wire','other','free') NOT NULL default 'online',
-  secpay_site enum('none','paypal','worldpay') NOT NULL default 'none',
+  secpay_site enum('none','paypal','worldpay','enets') NOT NULL default 'none',
   secpay_custom_id int(11) NOT NULL default '0',
   shopper_ip varchar(16) NOT NULL default '0.0.0.0',
   date date NOT NULL default '0000-00-00',
   time time NOT NULL default '00:00:00',
-  valid_date varchar(10) NOT NULL default '0000-00-00',
-  valid_time varchar(8) NOT NULL default '00:00:00',
+  valid_date date NOT NULL default '0000-00-00',
+  valid_time time NOT NULL default '00:00:00',
   valid enum('yes','no','pending') NOT NULL default 'no',
   pending_reason varchar(128) NOT NULL default '',
   new_account enum('yes','no') NOT NULL default 'yes',
@@ -24,4 +24,4 @@ CREATE TABLE IF NOT EXISTS paiement (
   hash_check_key varchar(255) NOT NULL default '0',
   PRIMARY KEY  (id),
   UNIQUE KEY id (id)
-) TYPE=MyISAM;
+)TYPE=MyISAM

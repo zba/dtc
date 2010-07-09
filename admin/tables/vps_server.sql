@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS vps_server (
+CREATE TABLE IF NOT EXISTS vps_server(
   id int(11) NOT NULL auto_increment,
   dom0_ips varchar(255) NOT NULL default '',
   hostname varchar(255) NOT NULL default '',
@@ -9,4 +9,4 @@ CREATE TABLE IF NOT EXISTS vps_server (
   country_code varchar(4) NOT NULL default 'US',
   PRIMARY KEY  (id),
   UNIQUE KEY hostname (hostname)
-) TYPE=MyISAM;
+)TYPE=MyISAM

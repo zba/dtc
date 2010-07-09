@@ -1,26 +1,26 @@
-CREATE TABLE IF NOT EXISTS clients (
+CREATE TABLE IF NOT EXISTS clients(
   id int(9) NOT NULL auto_increment,
   is_company enum('yes','no') NOT NULL default 'no',
-  company_name varchar(64) default NULL,
+  company_name varchar(255) NOT NULL default '',
   vat_num varchar(128) NOT NULL default '',
   familyname varchar(64) NOT NULL default '',
   christname varchar(64) NOT NULL default '',
   addr1 varchar(100) NOT NULL default '',
-  addr2 varchar(100) default NULL,
-  addr3 varchar(100) default NULL,
+  addr2 varchar(100) NOT NULL default '',
+  addr3 varchar(100) NOT NULL default '',
   city varchar(64) NOT NULL default '',
   zipcode varchar(32) NOT NULL default '0',
-  state varchar(32) default NULL,
+  state varchar(32) NOT NULL default '',
   country char(2) NOT NULL default '',
   phone varchar(20) NOT NULL default '0',
-  fax varchar(20) default NULL,
+  fax varchar(20) NOT NULL default '',
   email varchar(255) NOT NULL default '',
-  special_note blob,
+  special_note blob NOT NULL default '',
   dollar decimal(9,2) NOT NULL default '0.00',
   disk_quota_mb int(9) NOT NULL default '0',
   bw_quota_per_month_gb int(9) NOT NULL default '0',
+  expire date NOT NULL default '0000-00-00',
   active enum('yes','no') NOT NULL default 'yes',
   customfld text collate latin1_bin NOT NULL,
-  PRIMARY KEY (id),
-  UNIQUE KEY id (id)
-) TYPE=MyISAM
+  PRIMARY KEY  (id)
+)TYPE=MyISAM

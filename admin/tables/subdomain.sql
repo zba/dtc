@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS subdomain (
+CREATE TABLE IF NOT EXISTS subdomain(
   id int(12) NOT NULL auto_increment,
   safe_mode enum('yes','no') default 'yes',
   sbox_protect enum('yes','no') default 'yes',
@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS subdomain (
   w3_alias enum('yes','no') NOT NULL default 'no',
   associated_txt_record varchar(128) NOT NULL default '',
   generate_vhost enum('yes','no') NOT NULL default 'yes',
+  ttl int(11) NULL default '7200',
   ssl_ip varchar(16) NOT NULL default 'none',
   nameserver_for varchar(64) default NULL,
   srv_record varchar(64) default NULL,
@@ -28,7 +29,8 @@ CREATE TABLE IF NOT EXISTS subdomain (
   use_shared_ssl enum('yes','no') NOT NULL default 'no',
   redirect_url varchar(512) NULL default '',
   srv_record_protocol enum('tcp','udp','sctp') NOT NULL default 'tcp',
-  
   PRIMARY KEY  (id),
-  UNIQUE KEY unic_subdomain (domain_name,subdomain_name)
-) TYPE=MyISAM
+  UNIQUE KEY unic_subdomain (domain_name,subdomain_name),
+  UNIQUE KEY login (login),
+  KEY domain_name_index (domain_name)
+)TYPE=MyISAM

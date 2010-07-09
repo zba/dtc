@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS affiliate_payments (
+CREATE TABLE IF NOT EXISTS affiliate_payments(
   id int(11) NOT NULL auto_increment,
   adm_login varchar(64) NOT NULL default '',
   order_id int(11) NOT NULL,
