@@ -1,11 +1,10 @@
 Source: dtc
 Section: admin
 Priority: extra
-Maintainer: Thomas Goirand <thomas@goirand.fr>
+Maintainer: Thomas Goirand <zigo@debian.org>
 Build-Depends: debhelper (>= 5), po-debconf
 Build-Depends-Indep: gettext
 Standards-Version: 3.8.4
-Dm-Upload-Allowed: yes
 Vcs-Browser: http://git.gplhost.com/gitweb/?p=dtc.git
 Vcs-Git: http://git.gplhost.com/dtc.git
 Homepage: http://www.gplhost.com/software-dtc.html
