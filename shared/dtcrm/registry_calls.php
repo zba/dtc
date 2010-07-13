@@ -187,7 +187,7 @@ function registry_change_password($adm_login,$adm_pass,$domain,$new_pass){
 function registry_create_nick_handle($a){
 	$out = "";
 	$nbr_mods = sizeof($registry_api_modules);
-	for($i=0;$i<$$nbr_mods;$i++){
+	for($i=0;$i<$nbr_mods;$i++){
 		if( isset($registry_api_modules[$i]["registry_create_nick_handle"]) ){
 			$out .= $registry_api_modules[$i]["registry_create_nick_handle"]($a);
 		}
@@ -198,7 +198,7 @@ function registry_create_nick_handle($a){
 function registry_delete_nick_handle($a){
 	$out = "";
 	$nbr_mods = sizeof($registry_api_modules);
-	for($i=0;$i<$$nbr_mods;$i++){
+	for($i=0;$i<$nbr_mods;$i++){
 		if( isset($registry_api_modules[$i]["registry_delete_nick_handle"]) ){
 			$out .= $registry_api_modules[$i]["registry_delete_nick_handle"]($a);
 		}
@@ -209,7 +209,7 @@ function registry_delete_nick_handle($a){
 function registry_edit_nick_handle($a){
 	$out = "";
 	$nbr_mods = sizeof($registry_api_modules);
-	for($i=0;$i<$$nbr_mods;$i++){
+	for($i=0;$i<$nbr_mods;$i++){
 		if( isset($registry_api_modules[$i]["registry_edit_nick_handle"]) ){
 			$out .= $registry_api_modules[$i]["registry_edit_nick_handle"]($a);
 		}
