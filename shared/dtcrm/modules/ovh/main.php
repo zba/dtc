@@ -487,9 +487,9 @@ function ovh_registry_get_auth_code(){
 }
 
 function ovh_registry_add_nick_handle($a){
-echo "add <br />";
 global $pro_mysql_handle_table;
-
+$ovh_nic_mdp = mdpauto();
+echo _("Your Password : "), $ovh_nic_mdp;
 /*
 Parameters
 
@@ -511,7 +511,7 @@ try {
    $session = login_ovh();
 
  //nicCreate
- $result = $soap->nicCreate($session, $a['lastname'], $a['firstname'], "password", $a['email'], $a['phone_num'], $a['fax_num'], $a['addr1'].' '.$a['addr2'].' '.$a['addr3'], $a['city'], $a['state'], $a['zipcode'], $a['country'], "en", false, "other", $a['company'], "legalName", "legalNumber", "vat");
+ $result = $soap->nicCreate($session, $a['lastname'], $a['firstname'], $ovh_nic_mdp, $a['email'], $a['phone_num'], $a['fax_num'], $a['addr1'].' '.$a['addr2'].' '.$a['addr3'], $a['city'], $a['state'], $a['zipcode'], $a['country'], "en", false, "other", $a['company'], "legalName", "legalNumber", "vat");
  
  //logout
    logout_ovh($soap,$session);
@@ -520,7 +520,7 @@ try {
   echo $fault;
 }
 	if (isset($result)){
-        $query = "UPDATE `$pro_mysql_handle_table` SET `ovh_id`='$result' WHERE `id`='$a[id]';";
+        $query = "UPDATE `$pro_mysql_handle_table` SET `ovh_passwd`='$ovh_nic_mdp', `ovh_id`='$result' WHERE `id`='$a[id]';";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!! ".mysql_error());
         }
 }
