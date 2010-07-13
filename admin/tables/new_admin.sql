@@ -29,5 +29,6 @@ CREATE TABLE IF NOT EXISTS new_admin(
   maxmind_output text NOT NULL,
   last_used_lang varchar(32) NOT NULL default 'en_US.UTF-8',
   add_service enum('yes','no') NOT NULL default 'no',
+  customfld text,
   PRIMARY KEY  (id)
 )TYPE=MyISAM

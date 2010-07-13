@@ -87,7 +87,7 @@ $dtc_database = array(
 			"bw_quota_per_month_gb" => "int(9) NOT NULL default '0'",
 			"expire" => "date NOT NULL default '0000-00-00'",
 			"active" => "enum('yes','no') NOT NULL default 'yes'",
-			"customfld" => "text collate latin1_bin NOT NULL"
+			"customfld" => "text"
 		),
 		"primary" => "(id)"
 	),
@@ -680,7 +680,8 @@ $dtc_database = array(
 			"time" => "time NOT NULL default '00:00:00'",
 			"maxmind_output" => "text NOT NULL",
 			"last_used_lang" => "varchar(32) NOT NULL default 'en_US.UTF-8'",
-			"add_service" => "enum('yes','no') NOT NULL default 'no'"
+			"add_service" => "enum('yes','no') NOT NULL default 'no'",
+			"customfld" => "text"
 		),
 		"primary" => "(id)"
 	),
