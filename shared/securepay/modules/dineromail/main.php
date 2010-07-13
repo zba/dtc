@@ -33,9 +33,9 @@ function dineromail_display_icon($product_id,$amount,$item_name,$return_url,$use
 	global $secpayconf_dineromail_tipospago;
 	
 	$ncta = preg_split('/\//',$secpayconf_dineromail_nrocuenta);
-
+	
 	$amount = round(floatval(str_replace(",",".",$amount)), 2);
-//	$out .= "server:".$_SERVER['REQUEST_URL'];
+	
 	$out = '<form action="https://argentina.dineromail.com/Shop/Shop_Ingreso.asp" method="post">'."\n";
 	$out .= '<input type="hidden" name="NombreItem" value="'.$item_name.'">'."\n"; // name of the phurchased service
 	$out .= '<input type="hidden" name="TipoMoneda" value="1">'."\n"; // currency: 1=pesos 2=dollar
@@ -68,7 +68,7 @@ $secpay_modules[] = array(
 	"display_icon" => "dineromail_display_icon",
 	"use_module" => $secpayconf_use_dineromail,
 	"calculate_fee" => "dineromail_calculate_fee",
-	"instant_account" => _("Yes")
+	"instant_account" => _("No")
 );
 
 ?>
