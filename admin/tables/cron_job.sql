@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS cron_job(
   unicrow int(11) NOT NULL default '1',
-  last_cronjob timestamp(14) NOT NULL default '0',
+  last_cronjob timestamp(14) NOT NULL default '0000-00-00',
   qmail_newu enum('yes','no') NOT NULL default 'no',
   restart_qmail enum('yes','no') NOT NULL default 'no',
   reload_named enum('yes','no') NOT NULL default 'no',
