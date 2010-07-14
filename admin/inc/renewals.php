@@ -720,6 +720,12 @@ function drawRenewalTables (){
 		$cur_year = $year - 2;
 		$cur_month = $month;
 		$p_history = "";
+		$selected_country="";
+		$country_array = array();
+		if(isset($_REQUEST["country"])){
+			$selected_country=$_REQUEST["country"];
+		        $p_history .= ("Selected Country:") . $selected_country;	
+		}
 		$p_history .= "<table cellspacing=\"1\" cellpadding=\"1\" border=\"1\">
 		<tr><td>". _("Period") ."</td><td>". _("Amount") ."</td><td>"._("VAT collected")."</td><td>"._("Payment gateway cost")."</td><td>"._("Profit")."</td></tr>";
 		for($i=0;$i<25;$i++){
@@ -727,12 +733,14 @@ function drawRenewalTables (){
 			FROM $pro_mysql_pay_table,$pro_mysql_completedorders_table
 			WHERE $pro_mysql_pay_table.vat_rate!='0.00'
 			AND $pro_mysql_completedorders_table.payment_id = $pro_mysql_pay_table.id
-			AND $pro_mysql_completedorders_table.date LIKE '".$cur_year."-".$cur_month."-%';";
+			AND $pro_mysql_completedorders_table.date LIKE '".$cur_year."-".$cur_month."-%'";
+			if ($selected_country != "") $q2 .= " AND $pro_mysql_completedorders_table.country_code='$selected_country'";
+			$q2 .= ";";
 			$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			$vat_collected = 0;
-			$month_total = 0;
-			$cost_total = 0;
+			$month_total =0;
+			$cost_total=0;
 			for($j=0;$j<$n2;$j++){
 				$a2 = mysql_fetch_array($r2);
 				$tt = $a2["paiement_total"];
@@ -745,7 +753,9 @@ function drawRenewalTables (){
 			$q2 = "SELECT sum(paiement_total) as paiement_total, sum(paiement_cost) as paiement_cost FROM $pro_mysql_completedorders_table,$pro_mysql_pay_table
 			WHERE $pro_mysql_completedorders_table.date LIKE '".$cur_year."-".$cur_month."%'
 			AND $pro_mysql_completedorders_table.payment_id = $pro_mysql_pay_table.id
-			AND $pro_mysql_pay_table.vat_rate = '0.00';";
+			AND $pro_mysql_pay_table.vat_rate = '0.00'";
+			if ($selected_country != "") $q2 .= " AND $pro_mysql_completedorders_table.country_code='$selected_country'";
+			$q2 .= ";";
 			$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 > 0){
@@ -767,6 +777,18 @@ function drawRenewalTables (){
 			if($cur_month < 10)	$cur_month = "0".$cur_month;
 		}
 		$p_history .= "</table>";
+		$p_history .= _("Select country to report on:");
+		
+		$p_history .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub\">ALL</a> ";	
+		$q2 = "SELECT distinct(country_code) from $pro_mysql_completedorders_table;";
+		$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		for($j=0;$j<$n2;$j++){
+			$a2 = mysql_fetch_array($r2);
+			$country = $a2["country_code"];
+			$p_history .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&country=$country\">$country</a> ";	
+		}
+		
 
 		$p_active_prods = "<img src=\"active_prods_graph.php?graph=year\"><br>
 <img src=\"active_prods_graph.php?graph=month\">";
