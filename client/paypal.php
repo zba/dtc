@@ -17,8 +17,10 @@ foreach ($_REQUEST as $key => $value) {
 logPay("Resending query to paypal: ".$req);
 if($secpayconf_paypal_sandbox == "no"){
 	$paypal_server_hostname = "www.paypal.com";
+	$ze_paypal_email = $secpayconf_paypal_email;
 }else{
 	$paypal_server_hostname = "www.sandbox.paypal.com";
+	$ze_paypal_email = $secpayconf_paypal_sandbox_email;
 }
 $paypal_server_script = "/cgi-bin/webscr";
 
@@ -52,8 +54,8 @@ if (!$fp) {
 			// check that receiver_email is your Primary PayPal email
 			// check that payment_amount/payment_currency are correct
 			// process payment
-			if($_REQUEST["business"] != $secpayconf_paypal_email){
-				logPay("db:".$secpayconf_paypal_email."/request:".$_REQUEST["business"]);
+			if($_REQUEST["business"] != $ze_paypal_email){
+				logPay("db:".$ze_paypal_email."/request:".$_REQUEST["business"]);
 				logPay("Business paypal email do not match !");
 				die("This is not our business paypal email!");
 			}
