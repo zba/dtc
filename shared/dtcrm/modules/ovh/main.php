@@ -10,10 +10,10 @@ return $soap;
 }
 
 function login_ovh(){
-	   global $conf_ovh_username;
+	    global $conf_ovh_username;
            global $conf_ovh_password;
            global $conf_ovh_boolean;
-	   global $conf_ovh_language;
+	    global $conf_ovh_language;
 	   
            $ovh_username = $conf_ovh_username;
            $ovh_password = $conf_ovh_password;
@@ -240,7 +240,40 @@ $regz["response_text"] = "Update DNS failed";
 return $regz;
 }
 
-function ovh_registry_update_whois_info(){
+function ovh_registry_update_whois_info($adm_login,$adm_pass,$domain_name,$contacts){
+$ret["is_success"] = 0;
+
+try {
+//login
+   $soap = ovh_open();
+   $session = login_ovh();
+
+ //Admin
+ $soap->serviceModifyContact($session, $domain_name, "DOMAIN", "nicadmin", $contacts['admin']['ovh_id']);
+ 
+ //Teck
+ $soap->serviceModifyContact($session, $domain_name, "DOMAIN", "nictech", $contacts['teck']['ovh_id']);
+
+
+ //Billing
+ $soap->serviceModifyContact($session, $domain_name, "DOMAIN", "nicbilling", $contacts['billing']['ovh_id']);
+
+
+   //logout
+ logout_ovh($soap,$session);
+
+$ret["is_success"] = 1;
+
+} catch(SoapFault $fault) {
+  echo $fault;
+}
+if($ret["is_success"] == 1){
+$ret["response_text"] = "Contacts updated successfully";
+}
+if($ret["is_success"] == 0){
+$ret["response_text"] = "Contacts update failed";
+}
+return $ret;
 }
 
 function ovh_registry_check_transfer($domain) {
@@ -489,7 +522,7 @@ function ovh_registry_get_auth_code(){
 function ovh_registry_add_nick_handle($a){
 global $pro_mysql_handle_table;
 $ovh_nic_mdp = mdpauto();
-echo _("Your Password : "), $ovh_nic_mdp;
+echo _("Your password : "), $ovh_nic_mdp;
 /*
 Parameters
 
