@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS handle(
   phone_num varchar(20) NOT NULL default '',
   fax_num varchar(20) NOT NULL default '',
   email varchar(255) NOT NULL default '',
+  ovh_id varchar(20) default '',
+  ovh_passwd varchar(12) default '',
   PRIMARY KEY  (id),
   UNIQUE KEY name (name,owner)
 )TYPE=MyISAM
