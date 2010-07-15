@@ -843,8 +843,8 @@ setupDTCDatabase () {
 	fi
 
 	# fix the group id for nobody group
-	sed -i "s/CONF_DTC_SYSTEM_UID/${CONF_DTC_SYSTEM_UID}/" ${PATH_DTC_SHARED}"/dtc_db.php"
-	sed -i "s/CONF_DTC_SYSTEM_GID/${CONF_DTC_SYSTEM_GID}/" ${PATH_DTC_SHARED}"/dtc_db.php"
+	sed -i "s/CONF_DTC_SYSTEM_UID/${CONF_DTC_SYSTEM_UID}/" ${PATH_DTC_SHARED}"/admin/dtc_db.php"
+	sed -i "s/CONF_DTC_SYSTEM_GID/${CONF_DTC_SYSTEM_GID}/" ${PATH_DTC_SHARED}"/admin/dtc_db.php"
 
 	curdir=`pwd`
 
@@ -893,17 +893,18 @@ setupDTCDatabase () {
 			$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="ALTER DATABASE apachelogs DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
 	fi
 
-	# fix some tables for 4.1
-	if [ ""$MYSQL_VER -gt 40 ] ; then
-			$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE fetchmail DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
-	fi
-
 	#echo $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db $conf_mysql_pass
 	if [ ""$VERBOSE_INSTALL = "yes" ] ; then
 		cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db "$conf_mysql_pass"
 	else
 		cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db "$conf_mysql_pass" >/dev/null
 	fi
+
+	# fix some tables for 4.1
+	if [ ""$MYSQL_VER -gt 40 ] ; then
+			$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE fetchmail DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
+	fi
+
 	cd $curdir
 	echoIfVerbose "===> Inserting values in MySQL for hosting "$main_domain_name
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO groups (members) VALUES ('zigo')"
