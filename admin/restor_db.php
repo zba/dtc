@@ -8,10 +8,6 @@
 
 echo "==> Restor DB script for DTC\n";
 
-#Eliminates Warning from PHP 5.3.x
-if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
-@date_default_timezone_set(@date_default_timezone_get());
-
 $pro_mysql_host="localhost";
 $pro_mysql_login="root";
 $pro_mysql_db="dtc";
@@ -109,216 +105,246 @@ $nbr_tables = sizeof($tables);
 echo "Checking and updating $nbr_tables table structures:";
 $tblnames = array_keys($tables);
 for($i=0;$i<$nbr_tables;$i++){
-	echo " ".$tblnames[$i];
-	$allvars = $tables[$tblnames[$i]]["vars"];
+	$curtbl = $tblnames[$i];
+	$t = $tables[$curtbl];
+	echo " ".$curtbl;
+	$allvars = $t["vars"];
 	$varnames = array_keys($allvars);
 	$numvars = sizeof($allvars);
-	if( !mysql_table_exists($tblnames[$i]) ){
-		if(strstr($allvars[$varnames[0]],"auto_increment") != NULL)
-			$q = "CREATE TABLE IF NOT EXISTS ".$tblnames[$i]."(
-".$varnames[0]." ".$allvars[$varnames[0]].",PRIMARY KEY (".$varnames[0]."));";
-		else
-			$q = "CREATE TABLE IF NOT EXISTS ".$tblnames[$i]."(
-".$varnames[0]." ".$allvars[$varnames[0]].");";
-//		echo $q;
-		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
-	}
-
-	for($j=0;$j<$numvars;$j++){
-		if(!findFieldInTable($tblnames[$i],$varnames[$j])){
-			if( strstr($allvars[$varnames[$j]], "auto_increment") != FALSE){
-				// In case there was a primary key, drop it!
-				$q = "ALTER IGNORE TABLE ".$tblnames[$i]." DROP PRIMARY KEY;";
-				// Don't die, in some case it can fail!
-				$r = mysql_query($q); // or die("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
-				$q = "ALTER TABLE ".$tblnames[$i]." ADD ".$varnames[$j]." ".$allvars[$varnames[$j]]." PRIMARY KEY;";
-				$r = mysql_query($q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error()."\n");
-			}else{
-				$q = "ALTER TABLE ".$tblnames[$i]." ADD ".$varnames[$j]." ".$allvars[$varnames[$j]]." ;";
-				$r = mysql_query($q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error()."\n");
+	// If no table exist, then build a CREATE TABLE statement
+	if( !mysql_table_exists($curtbl) ){
+		$qc = "CREATE TABLE IF NOT EXISTS ".$curtbl."(\n";
+		for($j=0;$j<$numvars;$j++){
+			if($j != 0){
+				$qc .= ",\n";
+			}
+			$qc .= "  ".$varnames[$j] ." ".$allvars[$varnames[$j]];
+		}
+		if( isset( $t["primary"] ) ){
+			// Todo: remove the parentesys from dtc_db.php and add them here
+			$qc .= ",\n  PRIMARY KEY ".$t["primary"];
+		}
+		if( isset( $t["keys"] )){
+			$nkeys = sizeof($t["keys"]);
+			$ak = array_keys($t["keys"]);
+			for($x=0;$x<$nkeys;$x++){
+				// Todo: add parentesis here, remove them from the dtc_db.php file
+				$qc = ",\n  UNIQUE KEY ".$ak[$x]." ".$t["keys"][ $ak[$x] ];
 			}
 		}
-	}
+		if( isset( $t["index"] )){
+			$nidx = sizeof($t["index"]);
+			$ai = array_keys($t["index"]);
+			for($x=0;$x<$nidx;$x++){
+				$qc .= ",\n  KEY ".$ai[$x]." ".$t["index"][ $ai[$x] ]
+			}
+		}
+		if( isset( $t["max_rows"] )){
+			$qc .= ")MAX_ROWS = 1 TYPE=MyISAM\n";
+		}else{
+			$qc .= ")TYPE=MyISAM\n";
+		}
+		// echo $q;
+		$r = mysql_query($qc)or die("Cannot execute query: \"$qc\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+	// If the table exists already, then check all variables types, primary key, unique keys
+	// and remove useless variables.
+	// All this to make sure that we upgrade correctly each tables.
+	}else{
+		// First, we check if all feilds from dtc_db.php are present
+		for($j=0;$j<$numvars;$j++){
+			$v = $varnames[$j];
+			$vc = $allvars[$v];
+			// If the field is present, create it.
+			$q = "SHOW COLUMNS FROM $curtbl WHERE Field='$v'";
+			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			if($n = 0){
+				// If we are adding a new auto_increment field, then we must drop the current PRIMARY KEY
+				// before adding this new field.
+				if( strstr($vc, "auto_increment") != FALSE){
+					// In case there was a primary key, drop it!
+					$q = "ALTER IGNORE TABLE $curtbl DROP PRIMARY KEY;";
+					// Don't die, in some case it can fail!
+					$r = mysql_query($q); // or die("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+					$q = "ALTER TABLE $curtbl ADD $v $vc PRIMARY KEY;";
+					$r = mysql_query($q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error()."\n");
+				}else{
+					$q = "ALTER TABLE $curtbl ADD $v $vc;";
+					$r = mysql_query($q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error()."\n");
+				}
+			// If it is present in MySQL already, then we need to check if types are marching
+			// if types don't match, then we issue an ALTER TABLE
+			}else{
+				$a = mysql_fetch_array($r);
+				$a_extra = $a["Extra"];
+				$a_type = $a["Type"];
+				switch($a_type){
+				case "blob":
+				case "text":
+					$type = $a_type;
+					break;
+				case "time":
+					if($a["Null"] == "NO"){
+						$type .= $a_type." NOT NULL default '00:00:00'";
+					}else{
+						$type .= $a_type." default NULL";
+					}
+					break;
+				case "date":
+					if($a["Null"] == "NO"){
+						$type .= $a_type." NOT NULL default '0000-00-00'";
+					}else{
+						$type .= $a_type." default NULL";
+					}
+					break;
+				case "datetime":
+					if($a["Null"] == "NO"){
+						$type .= $a_type." NOT NULL default '0000-00-00 00:00:00'";
+					}else{
+						$type .= $a_type." default NULL";
+					}
+					break;
+				case "timestamp":
+					if($a["Null"] == "NO"){
+						$type .= $a_type." NOT NULL default CURRENT_TIMESTAMP";
+					}else{
+						$type .= $a_type." default NULL";
+					}
+				default:
+					if($a_extra == "auto_increment"){
+						$type = $a_type." NOT NULL auto_increment";
+					}else{
+						if($a["Null"] == "NO"){
+							$a_type .= " NOT NULL default '".$a["Default"]."'";
+						}else{
+							$a_type .= " default NULL";
+						}
+					}
+				}
+				// If MySQL and dtc_db.php don't match, it means we need to update the variable type
+				if($a_type != $vt){
+					$q = "ALTER TABLE $curtbl CHANGE $v $v $vc;";
+					echo "\nAltering: $q\n";
+					$r = mysql_query($q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error()."\n");
+				}
+			}
+		}
 
-	if( isset($tables[$tblnames[$i]]["keys"]) ){
-		$allvars = $tables[$tblnames[$i]]["keys"];
-		$numvars = sizeof($allvars);
-		if($numvars > 0){
-			$varnames = array_keys($allvars);
+		// Make sure all the unique keys of dtc_db.php are in MySQL
+		if( isset($t["keys"]) ){
+			$keys = $t["keys"];
+			$numvars = sizeof($keys);
+			$varnames = array_keys($keys);
 			for($j=0;$j<$numvars;$j++){
-				if(!findKeyInTable($tblnames[$i],$varnames[$j])){
-					$var_2_add = "UNIQUE KEY ".$varnames[$j];
-					$q = "ALTER TABLE ".$tblnames[$i]." ADD $var_2_add ".$allvars[$varnames[$j]].";";
+				$key_name = $varnames[$j];
+				if(!findKeyInTable($curtbl,$key_name)){
+					$var_2_add = "UNIQUE KEY ".$key_name;
+					$q = "ALTER TABLE ".$curtbl." ADD $var_2_add ".$keys[$key_name].";";
 					$r = mysql_query($q)or die("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 				}
 			}
 		}
-	}
+		// Make sure all keys in MySQL are also present in dtc_db.php
+		// and dorps the one that aren't in both
 
-	if( isset($tables[$tblnames[$i]]["primary"]) ){
-		$allvars = $tables[$tblnames[$i]]["primary"];
-		// Check if we have a auto_increment value somewhere, it which case we don't touch the PRIMARY key
-		// Simply because it has been done just above !
-		$to_check_var = substr($allvars,1,strlen($allvars)-2);
-		$skip_primary_key_set = "no";
-		if(isset($tables[$tblnames[$i]]["vars"][ $to_check_var ]) ){
-			$to_check_var_content = $tables[$tblnames[$i]]["vars"][ $to_check_var ];
-			if( strstr($to_check_var_content,"auto_increment") != FALSE){
-				$skip_primary_key_set = "yes";
+		// First, check if primary keys in MySQL and in dtc_db.php are matching
+		// So we first get the primary key from DB, and then compare.
+		$q = "SHOW INDEX FROM $curtbl WHERE Key_name='PRIMARY'";
+		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		$pkey = "";
+		for($j=0;$j<$n;$j++){
+			$apk = mysql_fetch_array($r);
+			if($j>0){
+				$pkey .= ",";
 			}
+			$pkey .= $apk["Column_name"];
 		}
-		if($skip_primary_key_set != "yes"){
-			// Always remove and readd the PRIMARY KEY in case it has changed
-			$q = "ALTER IGNORE TABLE ".$tblnames[$i]." DROP PRIMARY KEY;";
+		// Is this a primary key that is new in dtc_db.php?
+		if($n == 0 && isset($t["primary"])){
+			$q = "ALTER IGNORE TABLE $curtbl ADD PRIMARY KEY dtcprimary ".$t["primary"].";";
 			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
-			$q = "ALTER IGNORE TABLE ".$tblnames[$i]." ADD PRIMARY KEY dtcprimary ".$allvars.";";
+		// Does dtc_db.php drops a primary key?
+		}elseif($n > 0 && !isset($t["primary"])){
+			$q = "ALTER IGNORE TABLE $curtbl DROP PRIMARY KEY;";
 			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
-		}
-	}
-
-	if( isset($tables[$tblnames[$i]]["index"]) ){
-		$allvars = $tables[$tblnames[$i]]["index"];
-		$numvars = sizeof($allvars);
-		if($numvars > 0){
-			$varnames = array_keys($allvars);
-			for($j=0;$j<$numvars;$j++){
-				// We have to rebuild indexes in order to get rid of past mistakes in the db in case of panel upgrade
-				if(findKeyInTable($tblnames[$i],$varnames[$j])){
-					$q = "ALTER TABLE ".$tblnames[$i]." DROP INDEX ".$varnames[$j]."";
+		// Are the primary keys in dtc_db and in MySQL different? If yes, drop and add
+		}elseif( "(".$pkey.")" != $t["primary"] ){
+			$pk = $t["primary"];
+			// Check if we have a auto_increment value somewhere, it which case we don't touch the PRIMARY key
+			// Simply because it has been done just above !
+			$nop_pk = substr($pk,1,strlen($pk)-2); // The string without the (parrentesys,between,field,names)
+			if(isset($t["vars"][ $nop_pk ]) ){
+				if( strstr($t["vars"][ $nop_pk ],"auto_increment") === FALSE){
+					// Always remove and readd the PRIMARY KEY in case it has changed
+					$q = "ALTER IGNORE TABLE $curtbl DROP PRIMARY KEY;";
+					$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+					$q = "ALTER IGNORE TABLE $curtbl ADD PRIMARY KEY dtcprimary $pk;";
 					$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 				}
-				$q = "ALTER TABLE ".$tblnames[$i]." ADD INDEX ".$varnames[$j]." ".$allvars[$varnames[$j]].";";
-				$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+			}
+		}
+
+
+		// We have to rebuild indexes in order to get rid of past mistakes in the db in case of panel upgrade
+		$q = "SHOW INDEX FROM admin WHERE Key_name NOT LIKE 'PRIMARY' AND Non_unique='1';";
+		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		for($i=0;$i<$n;$i++){
+			$a = mysql_fetch_array($r);
+			// Drop all indexes
+			$q2 = "ALTER TABLE $curtbl DROP INDEX ".$a["Key_name"].";";
+			$r2 = mysql_query($q2)or die("Cannot execute query: \"$q2\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+		}
+		// The readd all indexes
+		if( isset($t["index"]) ){
+			$indexes = $t["index"];
+			$numvars = sizeof($indexes);
+			if($numvars > 0){
+				$varnames = array_keys($indexes);
+				for($j=0;$j<$numvars;$j++){
+					$v = $varnames[$j];
+					// We have to rebuild indexes in order to get rid of past mistakes in the db in case of panel upgrade
+					if(findKeyInTable($curtbl,$v)){
+						$q = "ALTER TABLE $curtbl DROP INDEX ".$v."";
+						$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+					}
+					$q = "ALTER TABLE $curtbl ADD INDEX ".$v." ".$indexes[$v].";";
+					$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+				}
 			}
 		}
 	}
 }
 echo "\n";
 
-// Converstion from 0.17.0-R3 and earlier versions
-$q = "SHOW TABLES FROM apachelogs";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-$n = mysql_num_rows($r);
-if($n > 0){
-	echo "=> Converting apachelogs table names from # to \$: ";
-}
-for($i=0;$i<$n;$i++){
-	$a = mysql_fetch_array($r);
-	$name = $a["Tables_in_apachelogs"];
-	if(strstr($name,"#")){
-		echo "$name ";
-		$q2 = "SET SQL_QUOTE_SHOW_CREATE = 1;";
-		$r2 = mysql_query($q2)or die("Cannot query \"$q2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		$q2 = "SHOW CREATE TABLE apachelogs.`$name`;";
-		$r2 = mysql_query($q2)or die("Cannot query \"$q2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		$a2 = mysql_fetch_array($r2);
-		$c_tbl = $a2["Create Table"];
-		$c_tbl = strstr($c_tbl,"\n");
-		$new_name = str_replace ( "#", '$', $name);
-		$q2 = "CREATE TABLE IF NOT EXISTS apachelogs.`$new_name`(";
-		$q2 .= $c_tbl.";\n";
-		$r2 = mysql_query($q2)or die("Cannot query \"$q2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		$q2 = "INSERT INTO apachelogs.`$new_name` SELECT * FROM apachelogs.`$name`;\n";
-		$r2 = mysql_query($q2)or die("Cannot query \"$q2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-		$q2 = "DROP TABLE apachelogs.`$name`;\n";
-		$r2 = mysql_query($q2)or die("Cannot query \"$q2\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-	}
-}
-if($n > 0){
-	echo "\n";
-}
-
 # Check all expiration date that are 0000-00-00 and set them to the current date + 10 years
+# This is a safety against user's stupidity...
 $year = date("Y");
 $year = $year + 10;
 $q = "UPDATE admin SET expire='".$year."-".date("m-d")."' WHERE expire='0000-00-00';";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-// Period was a date before, but it doesn't work with MySQL 5, so we are switching it to a varchar //
-$q = "ALTER TABLE `product` CHANGE `period` `period` VARCHAR( 12 ) NOT NULL DEFAULT '0001-00-00';";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-// Adding a new field in pending_renewal
-$q = "ALTER TABLE `pending_renewal` CHANGE `heb_type` `heb_type` enum('shared', 'ssl', 'vps', 'server','ssl_renew','shared-upgrade','add-money') NOT NULL default 'shared'";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-// Add the pending flag for payments
-$q = "ALTER TABLE `paiement` CHANGE `valid` `valid` enum('yes','no','pending') NOT NULL default 'no';";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-// Change VAT rate fld
-$q = "ALTER TABLE `paiement` CHANGE `vat_rate` `vat_rate` decimal(9,2) NOT NULL default '0.00';";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-// Change VAT rate fld
-$q = "ALTER TABLE `companies` CHANGE `vat_rate` `vat_rate` decimal(9,2) NOT NULL default '0.00';";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
 // Fill the new quota_couriermaildrop with values
 $q = "UPDATE pop_access SET quota_couriermaildrop=CONCAT(1024000*quota_size,'S,',quota_files,'C')";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
-// Update the VPS stats table
-$q = "ALTER TABLE vps_stats CHANGE `network_in_count` `network_in_count` bigint(22) default NULL";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-$q = "ALTER TABLE vps_stats CHANGE `network_out_count` `network_out_count` bigint(22) default NULL";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-$q = "ALTER TABLE vps_stats CHANGE `swapio_count` `swapio_count` bigint(22) default NULL";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-$q = "ALTER TABLE vps_stats CHANGE `diskio_count` `diskio_count` bigint(22) default NULL";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-// Set the correct default last_used_lang feild
-$q = "ALTER TABLE new_admin CHANGE last_used_lang last_used_lang varchar(32) NOT NULL default 'en_US.UTF-8'";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-$q = "ALTER TABLE admin CHANGE last_used_lang last_used_lang varchar(32) NOT NULL default 'en_US.UTF-8'";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-// Change domain parking types
-$q = "ALTER TABLE `domain` CHANGE `domain_parking_type` `domain_parking_type` enum('redirect','same_docroot','serveralias') NOT NULL default 'redirect'";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-// Change ip pool table enum
-$q = "ALTER TABLE ip_pool CHANGE `zone_type` `zone_type` enum('support_ticket','ip_per_ip','ip_per_ip_cidr','one_zonefile','one_zonefile_with_minus','one_zonefile_with_name','one_zonefile_with_slash') default 'one_zonefile'";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-// Increase password lenght to 255 chars in thedb
-$q = "ALTER TABLE admin CHANGE adm_pass adm_pass varchar(255) NOT NULL";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-// Alter the names of two existing fields to match freeradius default ones.
-if(findFieldInTable('radpostauth','user')){
-	$q = "ALTER TABLE `radpostauth` DROP `user`";
-	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-}
-if(findFieldInTable('radpostauth','date')){
-	$q = "ALTER TABLE `radpostauth` DROP `date`";
-	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-}
-$q = "ALTER TABLE `radpostauth` CHANGE `authdate` `authdate` timestamp(14) default CURRENT_TIMESTAMP";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
-// Create view for radius password checking
-$q = "create or replace view radcheckview as select radcheck.id,radcheck.username,radcheck.attribute,radcheck.op,radcheck.value from radcheck,radusergroup,dedicated where radcheck.username=radusergroup.username and radusergroup.dedicated_id=dedicated.id and date_add(dedicated.expire_date,interval 1 day)>curdate() union all select radusergroup.id,radusergroup.username,'Cleartext-Password',':=',radusergroup.password from radusergroup,dedicated where radusergroup.dedicated_id=dedicated.id and date_add(dedicated.expire_date, interval 1 day)>curdate()";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-
 // Alter the default shell value for FreeBSD, as the path will be in /usr/local
 if($conf_unix_type == "bsd"){
-	$q = "ALTER TABLE ssh_access CHANGE `shell` `shell` varchar(64) NOT NULL default '/usr/local/bin/dtc-chroot-shell'";
-	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-	$q = "ALTER TABLE ftp_access CHANGE `shell` `shell` varchar(64) NOT NULL default '/usr/local/bin/bash'";
+	$q = "ALTER TABLE ssh_access CHANGE `shell` `varchar(64) NOT NULL default '/usr/local/bin/dtc-chroot-shell'";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 }
 
+// Get all the config values from db
 $q = "SELECT * FROM config";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 $n = mysql_num_rows($r);
 if($n != 1){
-	die("Cannot read config table: not one and only one row...\n");
+	die("Cannot read config table: not one and only one row...");
 }
 $config_vals = mysql_fetch_array($r);
 
-// Get rid of old skins...
+// Get rid of old skins names if they were set previously in the db...
 $zeskin = $config_vals["skin"];
 if( $zeskin == "green2" || $zeskin == "iglobal" || $zeskin == "green_gpl" || $zeskin == "darkblue" || $zeskin == "frame" || $zeskin == "green" || $zeskin == "ruffdogs_mozilla" || $zeskin == "tex" || $zeskin == "muedgrey"){
 	$q = "UPDATE config SET skin='bwoup';";
@@ -361,7 +387,7 @@ for($i=0;$i<$n;$i++){
 			echo "Could not open file: ".$path." to change the recipient delimiter!\n";
 		}
 	}else{
-//		echo "Could not find file: ".$path." to change the recipient delimiter!\n";
+		echo "Could not find file: ".$path." to change the recipient delimiter!\n";
 	}
 }
 echo "\n";

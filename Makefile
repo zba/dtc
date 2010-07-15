@@ -320,22 +320,6 @@ admin/mod-security/modsecurity_crs_30_http_policy.conf admin/mod-security/modsec
 admin/mod-security/modsecurity_crs_40_generic_attacks.conf admin/mod-security/modsecurity_crs_45_trojans.conf \
 admin/mod-security/modsecurity_dtc_web_apps.conf
                                                                         
-##################### SQL TABLES #########################
-INSTALL_SQL_TABLES=admin/tables/admin.sql admin/tables/backup.sql admin/tables/clients.sql admin/tables/commande.sql \
-admin/tables/companies.sql admin/tables/completedorders.sql admin/tables/config.sql admin/tables/cron_job.sql admin/tables/dedicated.sql \
-admin/tables/dedicated_ip.sql admin/tables/ip_pool.sql admin/tables/affiliate_payments.sql admin/tables/vps_server_lists.sql \
-admin/tables/domain.sql admin/tables/email_accouting.sql admin/tables/fetchmail.sql admin/tables/freeradius.sql \
-admin/tables/ftp_access.sql admin/tables/ftp_accounting.sql admin/tables/ftp_logs.sql admin/tables/groups.sql admin/tables/handle.sql \
-admin/tables/http_accounting.sql admin/tables/invoicing.sql admin/tables/ip_port_service.sql admin/tables/mailaliasgroup.sql \
-admin/tables/mailinglist.sql admin/tables/nameservers.sql admin/tables/new_admin.sql admin/tables/paiement.sql \
-admin/tables/pending_queries.sql admin/tables/pending_renewal.sql admin/tables/pop_access.sql admin/tables/product.sql \
-admin/tables/scheduled_updates.sql admin/tables/secpayconf.sql admin/tables/smtp_logs.sql admin/tables/ssh_access.sql \
-admin/tables/ssh_groups.sql admin/tables/ssh_user_group.sql admin/tables/ssl_ips.sql admin/tables/subdomain.sql \
-admin/tables/tik_admins.sql admin/tables/tik_cats.sql admin/tables/tik_queries.sql admin/tables/vps_ip.sql admin/tables/vps_server.sql \
-admin/tables/vps.sql admin/tables/vps_stats.sql admin/tables/whitelist.sql \
-admin/tables/spent_moneyout.sql admin/tables/spent_providers.sql  admin/tables/spent_type.sql \
-admin/tables/spent_bank.sql admin/tables/registrar_domains.sql admin/tables/custom_fld.sql
-
 ##################### ETC FILES #########################
 CREATE_DIRS=admin/inc admin/genfiles admin/dtcrm admin/queuegraph admin/memgraph admin/netusegraph admin/cpugraph admin/install admin/tables \
 shared/gfx/menu shared/gfx/bar shared/gfx/skin/bwoup/gfx/buttons shared/gfx/dtc shared/gfx/pagetop \
@@ -402,9 +386,6 @@ install-dtc-common:
 
 	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) admin/$$i $(APP_INST_DIR)/admin/$$i ; done
 	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) admin/$$i $(APP_INST_DIR)/client/$$i ; done
-
-	# The SQL table scripts
-	@for i in $(INSTALL_SQL_TABLES) ; do $(INSTALL) -m $(ROOT_ONLY_READ) $$i $(APP_INST_DIR)/$$i ; done
 
 	# The man pages
 	$(INSTALL) -m $(MANPAGE_RIGHTS) doc/dtc-chroot-shell.8		$(MAN_DIR)/man8/dtc-chroot-shell.8

@@ -842,9 +842,9 @@ setupDTCDatabase () {
 		MYSQLSHOW=$conf_mysqlshow_cli_path" -p${conf_mysql_pass}"
 	fi
 
-	create_tables=${PATH_DTC_SHARED}"/admin/tables"
 	# fix the group id for nobody group
-	perl -i -p -e "s/65534/${CONF_DTC_SYSTEM_GID}/g" ${create_tables}/*.sql
+	sed -i "s/CONF_DTC_SYSTEM_UID/${CONF_DTC_SYSTEM_UID}/" ${PATH_DTC_SHARED}"/dtc_db.php"
+	sed -i "s/CONF_DTC_SYSTEM_GID/${CONF_DTC_SYSTEM_GID}/" ${PATH_DTC_SHARED}"/dtc_db.php"
 
 	curdir=`pwd`
 
@@ -856,8 +856,8 @@ setupDTCDatabase () {
 		mysql --defaults-file=/etc/mysql/debian.cnf -h${conf_mysql_host} -Dmysql --execute="FLUSH PRIVILEGES"
 	fi
 
-	echoIfVerbose "-> Installing or upgrading DTC database: dtc "
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS "$conf_mysql_db
+	echoIfVerbose "-> Creating db if not exists: ${conf_mysql_db}"
+	$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS "${conf_mysql_db}
 
 	echoIfVerbose "-> Checking version of mysql installed..."
 	# mysql  Ver 14.7 Distrib 4.1.20, for pc-linux-gnu (i386) using readline 5.1
@@ -883,26 +883,15 @@ setupDTCDatabase () {
 	esac
 
 	if [ ""$MYSQL_VER -gt 40 ] ; then
-		echoIfVerbose "Modifying character set to latin1..."
+		echoIfVerbose "Modifying DTC db character set to latin1..."
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="ALTER DATABASE \`$conf_mysql_db\` DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
 	fi
 
-	echoIfVerbose -n " apachelogs"
+	echoIfVerbose "Creating apachelogs db"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="CREATE DATABASE IF NOT EXISTS apachelogs"
 	if [ ""$MYSQL_VER -gt 40 ] ; then
 			$MYSQL -u$conf_mysql_login -h$conf_mysql_host --execute="ALTER DATABASE apachelogs DEFAULT CHARACTER SET latin1 COLLATE latin1_bin;"
 	fi
-
-	echoIfVerbose "===> Create tables in $create_tables"
-	cd $create_tables
-	echoIfVerbose "cd to $create_tables"
-	for i in *.sql ; do
-		table_name=`echo $i | cut -f1 -d"."`
-		echo -n $table_name" "
-		table_create=`cat $i`
-		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db <$i
-	done
-	echoIfVerbose "done."
 
 	# fix some tables for 4.1
 	if [ ""$MYSQL_VER -gt 40 ] ; then
@@ -916,7 +905,7 @@ setupDTCDatabase () {
 		cd $PATH_DTC_ADMIN; $PATH_PHP_CGI $PATH_DTC_ADMIN/restor_db.php -u $conf_mysql_login -h $conf_mysql_host -d $conf_mysql_db "$conf_mysql_pass" >/dev/null
 	fi
 	cd $curdir
-	echoIfVerbose "===> Inserting values in mysql for hosting "$main_domain_name
+	echoIfVerbose "===> Inserting values in MySQL for hosting "$main_domain_name
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO groups (members) VALUES ('zigo')"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO admin (adm_login,adm_pass,path) VALUES ('"$conf_adm_login"','"$conf_adm_pass"','"$conf_hosting_path"/"$conf_adm_login"')"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO domain (name,owner,default_subdomain,generate_flag,ip_addr) VALUES ('"$main_domain_name"','"$conf_adm_login"','www','yes','"$conf_ip_addr"')"
@@ -963,44 +952,20 @@ setupDTCDatabase () {
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET uid='$CONF_DTC_SYSTEM_UID',gid='$CONF_DTC_SYSTEM_GID' WHERE 1"
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE ssh_access SET uid='$CONF_DTC_SYSTEM_UID',gid='$CONF_DTC_SYSTEM_GID' WHERE 1"
 
-	# Here are some DB maintainance for old DTC versions
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE subdomain CHANGE ip ip VARCHAR(255) DEFAULT 'default' NOT NULL"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE ftp_access CHANGE homedir homedir VARCHAR(255) DEFAULT '' NOT NULL"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE crypt crypt VARCHAR(255) DEFAULT '' NOT NULL"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE pop_access CHANGE passwd passwd VARCHAR(255) DEFAULT '' NOT NULL"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE paiement CHANGE secpay_site secpay_site enum('none', 'paypal', 'worldpay','enets') DEFAULT 'none' NOT NULL"
 	# CL: Update crypted passwords only if there is a plaintext password present
 	# else sytems runing without plaintext (like mine) will have some big problems
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET crypt=ENCRYPT(passwd,CONCAT(\"\$1\$\",SUBSTRING(crypt,4,8))) where passwd <>''"
-	# fix size of accounting variables to store more info
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE http_accounting CHANGE bytes_receive bytes_receive BIGINT(14) UNSIGNED NOT NULL DEFAULT '0'"
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER TABLE http_accounting CHANGE bytes_sent bytes_sent BIGINT(14) UNSIGNED NOT NULL DEFAULT '0'"
 
 	# Add dtc userspace info to mysql db if it's not there
 	TMP_FILE=`${MKTEMP} dtc_downer_grep.XXXXXXXX`  || exit 1
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -Dmysql --execute="DESCRIBE user dtcowner" >${TMP_FILE}
 	if ! grep dtcowner ${TMP_FILE} >/dev/null 2>&1 ; then
-		echoIfVerbose "Adding dtcowner column to mysql.user"
+		echoIfVerbose "-> Adding dtcowner column to mysql.user"
 		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE mysql.user ADD dtcowner varchar (255) DEFAULT 'none' NOT NULL"
 	fi
 	if [ -e ${TMP_FILE} ] ; then
 		rm ${TMP_FILE}
 	fi
-
-	# Add a fullemail field to the pop table if not exists.
-	TMP_FILE=`${MKTEMP} dtc_pop_access_grep.XXXXXXXX`  || exit 1
-	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="DESCRIBE pop_access fullemail" >${TMP_FILE}
-	if ! grep fullemail ${TMP_FILE} >/dev/null 2>&1 ; then
-			echoIfVerbose "Adding fullemail column to dtc.pop_access and updating id@mbox_host field."
-		if $MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="ALTER IGNORE TABLE pop_access ADD fullemail varchar (255) DEFAULT 'none' NOT NULL" ; then
-			echo -n ""
-		fi
-		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE pop_access SET fullemail = concat( \`id\`,  '@', \`mbox_host\` )"
-	fi
-	if [ -e ${TMP_FILE} ] ; then
-		rm ${TMP_FILE}
-	fi
-
 
 	# Inserting the user
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="INSERT IGNORE INTO mysql.user (Host, User, Password, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, Reload_priv, Shutdown_priv, Process_priv, File_priv, Grant_priv, References_priv, Index_priv, Alter_priv) VALUES ('%', 'dtcdaemons', PASSWORD('"${MYSQL_DTCDAEMONS_PASS}"'), 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N')"
