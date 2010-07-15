@@ -136,13 +136,13 @@ for($i=0;$i<$nbr_tables;$i++){
 			$nidx = sizeof($t["index"]);
 			$ai = array_keys($t["index"]);
 			for($x=0;$x<$nidx;$x++){
-				$qc .= ",\n  KEY ".$ai[$x]." ".$t["index"][ $ai[$x] ]
+				$qc .= ",\n  KEY ".$ai[$x]." ".$t["index"][ $ai[$x] ];
 			}
 		}
 		if( isset( $t["max_rows"] )){
-			$qc .= ")MAX_ROWS = 1 TYPE=MyISAM\n";
+			$qc .= "\n)MAX_ROWS = 1 TYPE=MyISAM\n";
 		}else{
-			$qc .= ")TYPE=MyISAM\n";
+			$qc .= "\n)TYPE=MyISAM\n";
 		}
 		// echo $q;
 		$r = mysql_query($qc)or die("Cannot execute query: \"$qc\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
@@ -222,7 +222,7 @@ for($i=0;$i<$nbr_tables;$i++){
 					}
 				}
 				// If MySQL and dtc_db.php don't match, it means we need to update the variable type
-				if($a_type != $vt){
+				if($a_type != $vc){
 					$q = "ALTER TABLE $curtbl CHANGE $v $v $vc;";
 					echo "\nAltering: $q\n";
 					$r = mysql_query($q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error()."\n");
@@ -287,10 +287,10 @@ for($i=0;$i<$nbr_tables;$i++){
 
 
 		// We have to rebuild indexes in order to get rid of past mistakes in the db in case of panel upgrade
-		$q = "SHOW INDEX FROM admin WHERE Key_name NOT LIKE 'PRIMARY' AND Non_unique='1';";
+		$q = "SHOW INDEX FROM $curtbl WHERE Key_name NOT LIKE 'PRIMARY' AND Non_unique='1';";
 		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 		$n = mysql_num_rows($r);
-		for($i=0;$i<$n;$i++){
+		for($j=0;$j<$n;$j++){
 			$a = mysql_fetch_array($r);
 			// Drop all indexes
 			$q2 = "ALTER TABLE $curtbl DROP INDEX ".$a["Key_name"].";";
