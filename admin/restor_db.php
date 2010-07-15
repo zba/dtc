@@ -129,7 +129,7 @@ for($i=0;$i<$nbr_tables;$i++){
 			$ak = array_keys($t["keys"]);
 			for($x=0;$x<$nkeys;$x++){
 				// Todo: add parentesis here, remove them from the dtc_db.php file
-				$qc = ",\n  UNIQUE KEY ".$ak[$x]." ".$t["keys"][ $ak[$x] ];
+				$qc .= ",\n  UNIQUE KEY ".$ak[$x]." ".$t["keys"][ $ak[$x] ];
 			}
 		}
 		if( isset( $t["index"] )){
@@ -140,7 +140,7 @@ for($i=0;$i<$nbr_tables;$i++){
 			}
 		}
 		if( isset( $t["max_rows"] )){
-			$qc .= "\n)MAX_ROWS = 1 TYPE=MyISAM\n";
+			$qc .= "\n)MAX_ROWS=1 TYPE=MyISAM\n";
 		}else{
 			$qc .= "\n)TYPE=MyISAM\n";
 		}
@@ -185,46 +185,48 @@ for($i=0;$i<$nbr_tables;$i++){
 					break;
 				case "time":
 					if($a["Null"] == "NO"){
-						$type .= $a_type." NOT NULL default '00:00:00'";
+						$type = $a_type." NOT NULL default '00:00:00'";
 					}else{
-						$type .= $a_type." default NULL";
+						$type = $a_type." default NULL";
 					}
 					break;
 				case "date":
 					if($a["Null"] == "NO"){
-						$type .= $a_type." NOT NULL default '0000-00-00'";
+						$type = $a_type." NOT NULL default '0000-00-00'";
 					}else{
-						$type .= $a_type." default NULL";
+						$type = $a_type." default NULL";
 					}
 					break;
 				case "datetime":
 					if($a["Null"] == "NO"){
-						$type .= $a_type." NOT NULL default '0000-00-00 00:00:00'";
+						$type = $a_type." NOT NULL default '0000-00-00 00:00:00'";
 					}else{
-						$type .= $a_type." default NULL";
+						$type = $a_type." default NULL";
 					}
 					break;
 				case "timestamp":
 					if($a["Null"] == "NO"){
-						$type .= $a_type." NOT NULL default CURRENT_TIMESTAMP";
+						$type = $a_type." NOT NULL default '0'";
 					}else{
-						$type .= $a_type." default NULL";
+						$type = $a_type." default NULL";
 					}
 				default:
 					if($a_extra == "auto_increment"){
 						$type = $a_type." NOT NULL auto_increment";
 					}else{
 						if($a["Null"] == "NO"){
-							$a_type .= " NOT NULL default '".$a["Default"]."'";
+							$type = $a_type." NOT NULL default '".$a["Default"]."'";
 						}else{
-							$a_type .= " default NULL";
+							$type = $a_type." default NULL";
 						}
 					}
 				}
 				// If MySQL and dtc_db.php don't match, it means we need to update the variable type
-				if($a_type != $vc){
+				if($type != $vc){
+					echo "\n\nIn db: \"$type\"\n";
+					echo "In file: $vc\n";
 					$q = "ALTER TABLE $curtbl CHANGE $v $v $vc;";
-					echo "\nAltering: $q\n";
+					echo "Altering: $q\n";
 					$r = mysql_query($q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error()."\n");
 				}
 			}
@@ -268,6 +270,9 @@ for($i=0;$i<$nbr_tables;$i++){
 		}elseif($n > 0 && !isset($t["primary"])){
 			$q = "ALTER IGNORE TABLE $curtbl DROP PRIMARY KEY;";
 			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
+		// If there's no primary key at all, do nothing...
+		}elseif($n == 0 && !isset($t["primary"])){
+			echo "";
 		// Are the primary keys in dtc_db and in MySQL different? If yes, drop and add
 		}elseif( "(".$pkey.")" != $t["primary"] ){
 			$pk = $t["primary"];
