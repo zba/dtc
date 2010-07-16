@@ -1,6 +1,17 @@
 <?php
-// Automatic database array generation for DTC
-// Generation date: 2005-07(Jul)-21 Thursday 00:20
+// Automatic database maintenance.
+// Please, take care, this file is NOT using the MySQL syntax
+// for the fields description, it's a way more restrictive.
+// you have to write either:
+// 	default NULL
+// or as well:
+// NOT NULL default 'something'
+// but not for blob and text types.
+// If you want to have the code that maintains DBs to be more
+// permissive, then you should look into restor_db.php and change it.
+// Happy hacking!
+//	zigo
+
 $dtc_database = array(
 "version" => "1.0.0",
 "tables" => array(
