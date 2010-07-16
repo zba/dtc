@@ -8,7 +8,7 @@ $console = "";
 // This file automates the use of a mysql database. It creates connection
 // to it, and fetch all software config from the config table
 
-$dtcshared_path = "../shared";
+$dtcshared_path = dirname(__FILE__);
 $autoconf_configfile = "mysql_config.php";
 
 require("$dtcshared_path/dtc_version.php");
