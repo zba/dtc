@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+if [ "${1}" = "-l" ] ; then
+	# Show passwords:
+	mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="SELECT pseudo,tikadm_pass FROM tik_admins"
+fi
+
+if [ "${1}" = "-p" ] ; then
+	# Change a password
+	mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="UPDATE tik_admins SET tikadm_pass='${3}' WHERE pseudo='${2}'"
+fi
