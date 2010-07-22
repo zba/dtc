@@ -7,3 +7,6 @@
 34   0 * * * root [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php /usr/share/dtc/admin/reminders.php
 */5  * * * * root  [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php /usr/share/dtc/admin/stat_total_active_prods.php 2>&1 >> /var/log/dtc.log
 34   3 * * * root [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php /usr/share/dtc/admin/maint_apache.php 2>&1 >> /var/log/dtc.log
+
+# cleanup old virus mails older than 30 days, otherwise it will fill up the disk  
+0    3 * * * root /usr/bin/find /var/lib/amavis/virusmails/ -mtime +30 -type f -exec rm -f {} \;
