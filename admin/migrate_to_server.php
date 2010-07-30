@@ -13,6 +13,58 @@ chdir(dirname(__FILE__));
 require("../shared/autoSQLconfig.php"); // Our main configuration file
 require_once("$dtcshared_path/dtc_lib.php");
 
+define("BUF_SIZ", 1024);        # max buffer size
+define("FD_WRITE", 0);        # stdin
+define("FD_READ", 1);        # stdout
+define("FD_ERR", 2);        # stderr
+function my_proc_exec($cmd){
+	$descriptorspec = array(
+		0 => array("pipe", "r"),
+		1 => array("pipe", "w"),
+		2 => array("pipe", "w")
+	);
+
+	$ptr = proc_open($cmd, $descriptorspec, $pipes, NULL, $_ENV);
+	if (!is_resource($ptr))
+		return false;
+
+	while (($buffer = fgets($pipes[FD_READ], BUF_SIZ)) != NULL 
+			|| ($errbuf = fgets($pipes[FD_ERR], BUF_SIZ)) != NULL) {
+		if (!isset($flag)) {
+			$pstatus = proc_get_status($ptr);
+			$first_exitcode = $pstatus["exitcode"];
+			$flag = true;
+		}
+		if (strlen($buffer))
+			echo $buffer;
+		if (strlen($errbuf))
+			echo "ERR: " . $errbuf;
+	}
+
+	foreach ($pipes as $pipe)
+		fclose($pipe);
+
+	/* Get the expected *exit* code to return the value */
+	$pstatus = proc_get_status($ptr);
+	if (!strlen($pstatus["exitcode"]) || $pstatus["running"]) {
+		/* we can trust the retval of proc_close() */
+		if ($pstatus["running"])
+			proc_terminate($ptr);
+		$ret = proc_close($ptr);
+	} else {
+		if ((($first_exitcode + 256) % 256) == 255 
+				&& (($pstatus["exitcode"] + 256) % 256) != 255)
+			$ret = $pstatus["exitcode"];
+		elseif (!strlen($first_exitcode))
+			$ret = $pstatus["exitcode"];
+		elseif ((($first_exitcode + 256) % 256) != 255)
+			$ret = $first_exitcode;
+		else
+			$ret = 0; /* we "deduce" an EXIT_SUCCESS ;) */
+		proc_close($ptr);
+	}
+	return ($ret + 256) % 256;
+}
 
 function printEndTime () {
 	global $script_start_time;
@@ -87,7 +139,7 @@ Use mysql;
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$mdb .= "# User ".$a["User"]." host ".$a["Password"]."
+		$mdb .= "# User ".$a["User"]." host ".$a["Host"]." password ".$a["Password"]."
 
 INSERT IGNORE INTO mysql.user
 (Host, User, Password, Select_priv, Insert_priv,
@@ -178,57 +230,17 @@ WHERE Host='".$a["Host"]."' AND Db='".$a["Db"]."' AND User='".$a["User"]."';
 	fclose($fp);
 }
 
-if($argc !=2)	die("Usage: migrate_to_server.php <destination-server>");
-$dest_srv = $argv[1];
+if($argc !=4)	die("Usage: migrate_to_server.php {bk_dir} {my_ip} {dst_ip}");
+
+# ${bk_dir} ${my_ip} ${dst_ip}
+$bk_dir = $argv[1];
+$my_ip = $argv[2];
+$rem_ip = $argv[3];
 
 echo date("Y m d / H:i:s T",$script_start_time)." Starting DTC migrate job\n";
 
-$bk_dir = tempnam($conf_site_root_host_path,"dtc-migrate_");
-unlink($bk_dir);
-echo "Will start the DB backups in $bk_dir\n";
-if( mkdir($bk_dir,0775,true) === FALSE){
-	die("Could not create backup dir $bk_dir!\n");
-}
 migrate_dump_all_dbs($bk_dir);
-
-$my_SCRIPT = <<<EOSCRIPT
-#!/bin/sh
-
-IF=`route | grep default |awk -- '{ print \$8 }'`
-guessed_ip_addr=`ifconfig \${IF} | grep 'inet addr' | sed 's/.\+inet addr:\([0-9.]\+\).\+/\\1/'`
-# Seems there can be BOTH addr and adr...
-if [ -z "\${guessed_ip_addr}" ] ; then
-        guessed_ip_addr=`ifconfig \${IF} | grep 'inet adr' | sed 's/.\+inet adr:\([0-9.]\+\).\+/\\1/'`
-fi
-echo \$guessed_ip_addr
-EOSCRIPT;
-echo "Getting local IP\n";
-$ips = "$bk_dir/ipscript.sh";
-$fp = fopen($ips,"w+");
-if($fp === FALSE){
-	die("Cound not open $ips file\n");
-}
-fwrite($fp,$my_SCRIPT);
-fclose($fp);
-chmod($ips,0744);
-$my_ip = exec($ips,&$output,&$ret_val);
-
-echo "Getting remote IP\n";
-system("scp $ips $dest_srv:");
-$rem_ip = exec("ssh $dest_srv ./ipscript.sh",&$output,&$ret_val);
-
-echo "Local IP: $my_ip Remote IP: $rem_ip\n";
-
 system("sed -i 's/$my_ip/$rem_ip/' $bk_dir/dtc.sql");
-
-echo "Copying all SQL dumps to remote\n";
-exec("ssh $dest_srv 'mkdir -p $bk_dir'",&$output,&$ret_val);
-system("scp $bk_dir/*.sql $bk_dir/dtc_import_all_dbs.sh $dest_srv:$bk_dir");
-
-echo "Importing SQL dumps in the remote\n";
-echo "Please type the following to execute the migration:\n";
-echo "ssh $dest_srv $bk_dir/dtc_import_all_dbs.sh\n";
-echo "rsync -avz -e ssh /var/www/sites/ $dest_srv:/var/www/sites\n";
 
 printEndTime();
 exit();

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e
+
+usages () {
+	echo "dtc_import_all_dbs <SQL DB FOLDER>"
+	exit 1
+}
+if [ $# -lt 1 ]; then
+	usages
+fi
+if [ $# -gt 1 ]; then
+	usages
+fi
+DB_FOLDER=${1}
+
+cd ${DB_FOLDER}
+echo -n "Importing: "
+for i in *.sql ; do
+	echo -n $i" "
+	mysql --defaults-file=/etc/mysql/debian.cnf <$i
+done
+echo "done!"
