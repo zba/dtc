@@ -56,6 +56,10 @@ if($argc > 6){
         }
 }
 
+#Set default timezona tog et rid of warnings...
+if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
+@date_default_timezone_set(@date_default_timezone_get());
+
 chdir(dirname(__FILE__));
 require("dtc_db.php");
 require("../shared/dtc_version.php");
@@ -292,7 +296,7 @@ for($i=0;$i<$nbr_tables;$i++){
 
 
 		// We have to rebuild indexes in order to get rid of past mistakes in the db in case of panel upgrade
-		$q = "SHOW INDEX FROM $curtbl WHERE Key_name NOT LIKE 'PRIMARY' AND Non_unique='1';";
+		$q = "SHOW INDEX FROM $curtbl WHERE Key_name NOT LIKE 'PRIMARY' AND Non_unique='1' and Seq_in_index='1';";
 		$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		for($j=0;$j<$n;$j++){
@@ -336,7 +340,7 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 
 // Alter the default shell value for FreeBSD, as the path will be in /usr/local
 if($conf_unix_type == "bsd"){
-	$q = "ALTER TABLE ssh_access CHANGE `shell` `varchar(64) NOT NULL default '/usr/local/bin/dtc-chroot-shell'";
+	$q = "ALTER TABLE ssh_access CHANGE shell shell varchar(64) NOT NULL default '/usr/local/bin/dtc-chroot-shell'";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 }
 

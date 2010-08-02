@@ -843,8 +843,8 @@ setupDTCDatabase () {
 	fi
 
 	# fix the group id for nobody group
-	sed -i "s/CONF_DTC_SYSTEM_UID/${CONF_DTC_SYSTEM_UID}/" ${PATH_DTC_SHARED}"/admin/dtc_db.php"
-	sed -i "s/CONF_DTC_SYSTEM_GID/${CONF_DTC_SYSTEM_GID}/" ${PATH_DTC_SHARED}"/admin/dtc_db.php"
+	sed -i -e "s/CONF_DTC_SYSTEM_UID/${CONF_DTC_SYSTEM_UID}/" ${PATH_DTC_SHARED}/admin/dtc_db.php
+	sed -i -e "s/CONF_DTC_SYSTEM_GID/${CONF_DTC_SYSTEM_GID}/" ${PATH_DTC_SHARED}/admin/dtc_db.php
 
 	curdir=`pwd`
 
