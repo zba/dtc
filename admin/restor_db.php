@@ -158,7 +158,7 @@ for($i=0;$i<$nbr_tables;$i++){
 			$q = "SHOW COLUMNS FROM $curtbl WHERE Field='$v'";
 			$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 			$n = mysql_num_rows($r);
-			if($n = 0){
+			if($n == 0){
 				// If we are adding a new auto_increment field, then we must drop the current PRIMARY KEY
 				// before adding this new field.
 				if( strstr($vc, "auto_increment") != FALSE){
