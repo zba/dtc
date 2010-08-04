@@ -2655,7 +2655,7 @@ dkimsign    unix  -       -       n       -       4      smtp
 127.0.0.1:10029 inet  n  -      n       -       5      smtpd
     -o smtpd_use_tls=no
     -o content_filter=
-    -o receive_override_options=no_unknown_recipient_checks,no_header_body_checks
+    -o receive_override_options=no_unknown_recipient_checks,no_header_body_checks,no_address_mappings
     -o smtpd_helo_restrictions=
     -o smtpd_client_restrictions=
     -o smtpd_sender_restrictions=
