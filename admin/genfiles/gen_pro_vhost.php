@@ -222,6 +222,12 @@ $vhost_file .= "# WARNING ! This file is automatically edited by the dtc cron
 # in your httpd.conf or apache.conf See your distribution manual to know where
 # to find this file (somewhere in /etc/httpd or /etc/apache2 or even in
 # /usr/local/etc/apache/httpd.conf ...).
+
+# Disabling TRACE (for security reasons)
+RewriteEngine on
+RewriteCond %{REQUEST_METHOD} ^(DELETE|TRACE|TRACK)
+RewriteRule .* - [F]
+
 ";
 
 	$vhost_file_listen = "";

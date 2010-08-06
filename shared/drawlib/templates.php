@@ -475,7 +475,7 @@ function dtcDatagrid($dsc){
 				}
 				$out .= "<td class=\"$tdclass\" style=\"white-space:nowrap;\">";
 				$genpass = autoGeneratePassButton($dsc["action"]."_edit_frm_$i",$the_name);
-				$out .= "<input class=\"$input_class\" type=\"password\" $size name=\"".$the_name."\" value=\"".$db_value."\">$genpass";
+				$out .= "<input class=\"$input_class\" autocomplete=\"off\" type=\"password\" $size name=\"".$the_name."\" value=\"".$db_value."\">$genpass";
 				$out .= "</td>";
 				break;
 			case "radio":
@@ -609,7 +609,7 @@ function dtcDatagrid($dsc){
 				}
 				$out .= "<td class=\"$tdclass\" style=\"white-space:nowrap;\">";
 				$genpass = autoGeneratePassButton($dsc["action"]."_new_frm",$keys[$j]);
-				$out .= "<input class=\"$input_class\" type=\"password\" $size name=\"".$keys[$j]."\" value=\"\">$genpass";
+				$out .= "<input class=\"$input_class\" autocomplete=\"off\" type=\"password\" $size name=\"".$keys[$j]."\" value=\"\">$genpass";
 				$out .= "</td>";
 				break;
 			case "radio":
@@ -1392,7 +1392,7 @@ function dtcListItemsEdit($dsc){
 					break;
 				case "password":
 					$genpass = autoGeneratePassButton($dsc["action"]."_new_item_frm",$keys[$i]);
-					$ctrl = "<input type=\"password\" name=\"".$keys[$i]."\" value=\"\">$genpass";
+					$ctrl = "<input type=\"password\" autocomplete=\"off\" name=\"".$keys[$i]."\" value=\"\">$genpass";
 					$out .= dtcFormLineDraw($dsc["cols"][ $keys[$i] ]["legend"],$ctrl,$i%2,$help);
 					break;
 				case "text":
