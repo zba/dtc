@@ -71,8 +71,10 @@ echo "===> DTC Migrate script: upload of all files"
 echo "rsync -e ssh -azvp ${RSYNCOPT} /var/www/sites/ ${DST}:/var/www/sites"
 nice rsync -e ssh -azvp ${RSYNCOPT} /var/www/sites/ ${DST}:/var/www/sites
 echo "rsync of the MLMMJ and /etc/dtc folders"
-nice rsync -e ssh -azvp --delete /etc/mlmmj/ ${DST}:/etc/mlmmj
+nice rsync -e ssh -azvp ${RSYNCOPT} /etc/mlmmj/ ${DST}:/etc/mlmmj
 nice rsync -e ssh -azvp /etc/dtc/ ${DST}:/etc/dtc
+# copy the rrd files over too
+nice rsync -e ssh -azvp /var/lib/dtc/etc/*.rrd ${DST}:/var/lib/dtc/etc
 
 echo "===> Starting the DTC installer script on the remote"
 ssh ${DST} ${DTC_PATH}/admin/install/install
