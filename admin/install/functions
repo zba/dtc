@@ -2590,7 +2590,7 @@ tumgreyspf unix  -      n       n       -       -       spawn
 						chmod 4755 $PATH_MAILDROP_BIN
 					fi
 					echo "maildrop  unix  -       n       n       -       -       pipe
-    flags=DRhu user=${CONF_DTC_SYSTEM_USERNAME} argv=$PATH_MAILDROP_BIN -w 90 -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
+    flags=DRhu user=${CONF_DTC_SYSTEM_USERNAME} argv=$PATH_MAILDROP_BIN -a -w 90 -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
 
 " >> $TMP_FILE2
 				fi
