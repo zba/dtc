@@ -2374,33 +2374,33 @@ relay_recipient_maps = hash:$PATH_DTC_ETC/postfix_relay_recipients " >> $TMP_FIL
 					fi
 				fi
 
-				# prepare some sasldb2 files, so that our script latter can fix them
-
-				if [ -e /var/spool/postfix/etc ] ; then
-					touch /var/spool/postfix/etc/sasldb2
-					if [ ! -e $PATH_DTC_ETC/sasldb2 ] ; then
-						cp /var/spool/postfix/etc/sasldb2 $PATH_DTC_ETC/sasldb2
-					fi
-					chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /var/spool/postfix/etc/sasldb2
-					chmod 664 /var/spool/postfix/etc/sasldb2
-				else
-					if [ -d /etc/sasl2 ] ; then
-						touch /etc/sasl2/sasldb2
-						chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /etc/sasl2/sasldb2
-						chmod 664 /etc/sasl2/sasldb2
-					else
-						touch /etc/sasldb2
-						chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /etc/sasldb2
-						chmod 664 /etc/sasldb2
-					fi
-					if [ ! -e $PATH_DTC_ETC/sasldb2 ] ; then
-						if [ -d /etc/sasl2 ] ; then
-							cp /etc/sasl2/sasldb2 $PATH_DTC_ETC/sasldb2
-						else
-							cp /etc/sasldb2 $PATH_DTC_ETC/sasldb2
-						fi
-					fi
-				fi
+#				# prepare some sasldb2 files, so that our script latter can fix them
+#
+#				if [ -e /var/spool/postfix/etc ] ; then
+#					touch /var/spool/postfix/etc/sasldb2
+#					if [ ! -e $PATH_DTC_ETC/sasldb2 ] ; then
+#						cp /var/spool/postfix/etc/sasldb2 $PATH_DTC_ETC/sasldb2
+#					fi
+#					chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /var/spool/postfix/etc/sasldb2
+#					chmod 664 /var/spool/postfix/etc/sasldb2
+#				else
+#					if [ -d /etc/sasl2 ] ; then
+#						touch /etc/sasl2/sasldb2
+#						chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /etc/sasl2/sasldb2
+#						chmod 664 /etc/sasl2/sasldb2
+#					else
+#						touch /etc/sasldb2
+#						chown postfix:${CONF_DTC_SYSTEM_GROUPNAME} /etc/sasldb2
+#						chmod 664 /etc/sasldb2
+#					fi
+#					if [ ! -e $PATH_DTC_ETC/sasldb2 ] ; then
+#						if [ -d /etc/sasl2 ] ; then
+#							cp /etc/sasl2/sasldb2 $PATH_DTC_ETC/sasldb2
+#						else
+#							cp /etc/sasldb2 $PATH_DTC_ETC/sasldb2
+#						fi
+#					fi
+#				fi
         # add postfix to the sasl and mail group, not sure if we still need sasl, but mail is neede for LMTP
         if [ ""$conf_use_cyrus = "true" ] ; then
           if [ "$UNIX_TYPE" = "debian" ] ; then
@@ -2764,9 +2764,9 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
   					mv $PATH_POSTFIX_ETC/sasl/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf-remove_by_DTC
   				fi
   				ln -s $PATH_SASLLIB/smtpd.conf $PATH_POSTFIX_ETC/sasl/smtpd.conf 
-  				if [ ! -e /var/spool/postfix/etc/sasldb2 ] ; then
-  					ln -s /etc/sasldb2 /var/spool/postfix/etc/sasldb2
-  				fi
+# 				if [ ! -e /var/spool/postfix/etc/sasldb2 ] ; then
+#  					ln -s /etc/sasldb2 /var/spool/postfix/etc/sasldb2
+#  				fi
   			fi
   		else
   		  echoIfVerbose "===> ********************************************************** "
