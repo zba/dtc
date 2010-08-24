@@ -443,7 +443,7 @@ function drawDomainConfig($admin){
 					"type" => "popup",
 					"legend" => _("IP address") ,
 					"values" => $site_addrs),
-				"expiration_date"  array(
+				"expiration_date" => array(
 					"type" => "text",
 					"legend" => _("Expiration") ,
 					"size" => "6"),
