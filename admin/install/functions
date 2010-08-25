@@ -3997,6 +3997,11 @@ modifyMysqmail () {
 			echo "mysql_table_pop_access pop_access" >> $TMP_FILE
 			echo "mysql_table_scoreboard email_accounting" >> $TMP_FILE
 			echo "mysql_table_domain domain" >> $TMP_FILE
+			if [ $UNIX_TYPE = freebsd ] ; then
+				echo "syslog_file /var/log/maillog" >>$TMP_FILE
+			else
+				echo "syslog_file /var/log/syslog" >>$TMP_FILE
+			fi
 			echo "# End of DTC Configuration : please do not touch this line !" >> $TMP_FILE
 			echo "" >> $TMP_FILE
 			cat < $TMP_FILE >>$PATH_MYSQMAIL_CONF
@@ -4083,10 +4088,6 @@ modifyMysqmail () {
 #					mkfifo /var/log/pure-ftpd.fifo
 #				fi
 #				echoIfVerbose "Do not forget restart syslog daemon and mysqmail-loggers"
-				if [ $UNIX_TYPE = freebsd ] ; then
-					echo "Linking /var/log/maillog to /var/log/syslog."
-					ln -s /var/log/maillog /var/log/syslog
-				fi
 			fi
 		fi
 	fi
