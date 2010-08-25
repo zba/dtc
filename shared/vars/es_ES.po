@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.30.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-18 20:07-0300\n"
+"POT-Creation-Date: 2010-08-25 12:24+0800\n"
 "PO-Revision-Date: 2010-08-18 20:05-0300\n"
 "Last-Translator: Fernando Kiernan <fkiernan@id.net.ar>\n"
 "Language-Team: Yosu Cadilla <digitalwares@hotmail.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #: admin/dtcrm/product_manager.php:256
 msgid " (Dedicated servers)"
@@ -400,7 +400,8 @@ msgid "APACHE VHOST"
 msgstr "VHOST APACHE"
 
 #: admin/inc/dtc_config.php:1173
-msgid "AWStats armful"
+#, fuzzy
+msgid "AWStats harmful"
 msgstr "Es AWStats da&ntilde;ino"
 
 #: admin/inc/dtc_config.php:1689
@@ -658,7 +659,7 @@ msgstr "Algeria"
 msgid "All customers list address: "
 msgstr "Lista de direcciones de todos los clientes: "
 
-#: shared/inc/forms/root_admin.php:539
+#: shared/inc/forms/root_admin.php:543
 msgid "Allow URL fOpen()"
 msgstr "Permitir URL fOpen()"
 
@@ -713,7 +714,7 @@ msgstr "Ancho de Banda permitido por mes (MB):"
 msgid "Allowed data transfer (GB): "
 msgstr "Transferencia de datos permitida (GB): "
 
-#: shared/inc/forms/root_admin.php:537
+#: shared/inc/forms/root_admin.php:541
 msgid "Allows to open URLs with PHP's fopen() function."
 msgstr "Permite abrir URLs con la funci&oacute;n fopen() de PHP."
 
@@ -872,7 +873,7 @@ msgid "Auth code retrival failed."
 msgstr ""
 "Fall&oacute; la recuperaci&oacute;n de c&oacute;digo de autorizaci&oacute;n."
 
-#: shared/inc/forms/root_admin.php:530
+#: shared/inc/forms/root_admin.php:534
 msgid "Auto start of php sessions"
 msgstr "Auto arranque de sesiones php"
 
@@ -912,7 +913,7 @@ msgstr "La l&iacute;nea del kernel BSD es incorrecta "
 msgid "BW Quota"
 msgstr "Cuota de ancho de banda"
 
-#: shared/inc/forms/root_admin.php:448
+#: shared/inc/forms/root_admin.php:452
 msgid "Backup Vhost IP address"
 msgstr "Direcci&oacute;n IP del vhost de respaldo"
 
@@ -936,7 +937,7 @@ msgstr "Bahrein"
 msgid "Balance after transaction: "
 msgstr "Saldo despu&eacute;s de la transacci&oacute;n:"
 
-#: shared/inc/forms/root_admin.php:636
+#: shared/inc/forms/root_admin.php:640
 msgid "Bandwidth"
 msgstr "Ancho de banda"
 
@@ -945,15 +946,15 @@ msgstr "Ancho de banda"
 msgid "Bandwidth monitor"
 msgstr "Monitor de Ancho de Banda"
 
-#: shared/inc/forms/root_admin.php:705
+#: shared/inc/forms/root_admin.php:709
 msgid "Bandwidth per month"
 msgstr "Ancho de banda por mes"
 
-#: admin/dtcrm/product_manager.php:314 shared/inc/forms/root_admin.php:703
+#: admin/dtcrm/product_manager.php:314 shared/inc/forms/root_admin.php:707
 msgid "Bandwidth per month in GBytes."
 msgstr "Ancho de banda por mes en Gbytes."
 
-#: admin/dtcrm/product_manager.php:221 shared/inc/forms/root_admin.php:635
+#: admin/dtcrm/product_manager.php:221 shared/inc/forms/root_admin.php:639
 msgid "Bandwidth per month in MBytes."
 msgstr "Ancho de banda por mes en Mbytes."
 
@@ -1471,11 +1472,11 @@ msgstr "Generaci&oacute;n de Configuraci&oacute;n"
 msgid "Configuration of domains for"
 msgstr "Configuraci&oacute;n de dominios para"
 
-#: shared/inc/forms/root_admin.php:594
+#: shared/inc/forms/root_admin.php:598
 msgid "Configuration of the VPSes"
 msgstr "Configuraci&oacute;n de los VPS"
 
-#: shared/inc/forms/root_admin.php:668
+#: shared/inc/forms/root_admin.php:672
 msgid "Configuration of the dedicated servers"
 msgstr "Configuraci&oacute;n de los servidores/servicios dedicados"
 
@@ -1483,7 +1484,7 @@ msgstr "Configuraci&oacute;n de los servidores/servicios dedicados"
 msgid "Configuration of the domains"
 msgstr "Configuraci&oacute;n de los dominios"
 
-#: shared/inc/forms/root_admin.php:557
+#: shared/inc/forms/root_admin.php:561
 msgid "Configuration of the subdomain"
 msgstr "Configuraci&oacute;n del subdominio"
 
@@ -1648,7 +1649,7 @@ msgstr "No se pudo enviar \"PASS\" al servidor"
 msgid "Could not write USER to server"
 msgstr "No se pudo enviar \"USER\" al servidor"
 
-#: admin/inc/dtc_config.php:950 shared/inc/forms/root_admin.php:708
+#: admin/inc/dtc_config.php:950 shared/inc/forms/root_admin.php:712
 msgid "Country"
 msgstr "Pa&iacute;s"
 
@@ -1777,7 +1778,7 @@ msgstr "Contrato actual:"
 msgid "Currently installed operating system: "
 msgstr "Sistema operativo instalado actualmente: "
 
-#: shared/inc/forms/root_admin.php:454
+#: shared/inc/forms/root_admin.php:458
 msgid "Custom Apache directives for"
 msgstr "Directivas de Apache personalizadas para"
 
@@ -1785,11 +1786,11 @@ msgstr "Directivas de Apache personalizadas para"
 msgid "Custom RDNS entries for the IP pool"
 msgstr "Entradas personalizadas de RDNS para el pool de IPs"
 
-#: shared/inc/forms/root_admin.php:502
+#: shared/inc/forms/root_admin.php:506
 msgid "Custom apache directives"
 msgstr "Directivas de Apache personalizadas"
 
-#: shared/inc/forms/root_admin.php:499
+#: shared/inc/forms/root_admin.php:503
 msgid "Custom apache directives. There is *no* syntax checking on this field!"
 msgstr ""
 "Directivas de Apache personalizadas. *NO* se chequea la sintaxis de este "
@@ -2525,7 +2526,9 @@ msgstr "Error"
 
 #: shared/inc/forms/dedicated.php:95
 msgid "Error Getting Radius Username. Please Contact Support."
-msgstr "Error ibteniendo el Usuario de Radius. Por favor cont&aacute;ctese con Soporte."
+msgstr ""
+"Error ibteniendo el Usuario de Radius. Por favor cont&aacute;ctese con "
+"Soporte."
 
 #: shared/gfx/skin/bwoup/layout.php:631
 msgid "Error fetching admin"
@@ -2559,7 +2562,7 @@ msgstr "Estonia"
 msgid "Ethiopia"
 msgstr "Etiop&iacute;a"
 
-#: shared/inc/forms/root_admin.php:517
+#: shared/inc/forms/root_admin.php:521
 msgid "Execution time"
 msgstr "Fecha de Ejecuci&oacute;n"
 
@@ -2567,7 +2570,8 @@ msgstr "Fecha de Ejecuci&oacute;n"
 msgid "Expenditure type"
 msgstr "Tipo de Gasto"
 
-#: shared/inc/forms/root_admin.php:621 shared/inc/forms/root_admin.php:690
+#: shared/inc/forms/root_admin.php:448 shared/inc/forms/root_admin.php:625
+#: shared/inc/forms/root_admin.php:694
 msgid "Expiration"
 msgstr "Expiraci&oacute;n"
 
@@ -2780,8 +2784,8 @@ msgstr ""
 msgid "Forbidden database name"
 msgstr "Nombre de base de datos no permitido"
 
-#: shared/inc/forms/root_admin.php:615 shared/inc/forms/root_admin.php:619
-#: shared/inc/forms/root_admin.php:683 shared/inc/forms/root_admin.php:688
+#: shared/inc/forms/root_admin.php:619 shared/inc/forms/root_admin.php:623
+#: shared/inc/forms/root_admin.php:687 shared/inc/forms/root_admin.php:692
 msgid "Format: YYYY-MM-DD."
 msgstr "Formato: AAAA-MM-DD."
 
@@ -3007,7 +3011,7 @@ msgstr "HTTP: "
 msgid "Haiti"
 msgstr "Haiti"
 
-#: shared/inc/forms/root_admin.php:693
+#: shared/inc/forms/root_admin.php:697
 msgid "Hard drive size in MBytes."
 msgstr "Tama&ntilde;o del disco duro en Mbytes."
 
@@ -3016,7 +3020,7 @@ msgstr "Tama&ntilde;o del disco duro en Mbytes."
 msgid "Hard drive space in MBytes."
 msgstr "Espacio de disco duro en Mbytes."
 
-#: shared/inc/forms/root_admin.php:624
+#: shared/inc/forms/root_admin.php:628
 msgid ""
 "Hard drive space in MBytes. You will need to manually do a lvresize on the "
 "dom0 of your VPS server to activate the changes."
@@ -3215,7 +3219,7 @@ msgstr "Hungr&iacute;a"
 msgid "I agree to the"
 msgstr "Acepto las"
 
-#: shared/inc/forms/root_admin.php:496
+#: shared/inc/forms/root_admin.php:500
 msgid "ID"
 msgstr "ID"
 
@@ -3365,7 +3369,9 @@ msgstr ""
 #: admin/dtcrm/product_manager.php:321
 msgid ""
 "If the Use Radius flag is set this service is used to check a radius user."
-msgstr "Si la marca Usar Radius esta tildada este servicio se usa para chequear un usuario de radius."
+msgstr ""
+"Si la marca Usar Radius esta tildada este servicio se usa para chequear un "
+"usuario de radius."
 
 #: admin/dtcrm/product_manager.php:135 admin/dtcrm/product_manager.php:228
 #: admin/dtcrm/product_manager.php:328 admin/dtcrm/product_manager.php:385
@@ -4253,7 +4259,7 @@ msgstr "Mauricio"
 msgid "Max FTP"
 msgstr "Max FTP"
 
-#: shared/inc/forms/root_admin.php:527
+#: shared/inc/forms/root_admin.php:531
 msgid "Max POST file size"
 msgstr "Tama&ntilde;o M&aacute;ximo del archivo POST"
 
@@ -4290,7 +4296,7 @@ msgstr "Memoria m&aacute;xima del mensaje:"
 msgid "Max memory: "
 msgstr "Memoria M&aacute;xima: "
 
-#: shared/inc/forms/root_admin.php:522
+#: shared/inc/forms/root_admin.php:526
 msgid "Max upload file size"
 msgstr "Tama&ntilde;o m&aacute;ximo de archivo de subida"
 
@@ -4309,15 +4315,15 @@ msgstr "MaxMind dice"
 msgid "Maximum"
 msgstr "Máximo"
 
-#: shared/inc/forms/root_admin.php:525
+#: shared/inc/forms/root_admin.php:529
 msgid "Maximum allowed size of POST"
 msgstr "Tama&ntilde;o m&aacute;ximo de POST permitido"
 
-#: shared/inc/forms/root_admin.php:520
+#: shared/inc/forms/root_admin.php:524
 msgid "Maximum allowed size of uploaded file"
 msgstr "Tama&ntilde;o m&aacute;ximo de archivo subido"
 
-#: shared/inc/forms/root_admin.php:510
+#: shared/inc/forms/root_admin.php:514
 msgid "Maximum memory used by PHP session"
 msgstr "Memoria M&aacute;xima usada por una sesi&oacute;n PHP"
 
@@ -4338,7 +4344,7 @@ msgstr "Ha alcanzado el n&uacute;mero m&aacute;ximo de listas"
 msgid "Maximum number reached"
 msgstr "Ha alcanzado el n&uacute;mero m&aacute;ximo"
 
-#: shared/inc/forms/root_admin.php:515
+#: shared/inc/forms/root_admin.php:519
 msgid "Maximum time a PHP script can execute"
 msgstr "M&aacute;ximo tiempo que un programa PHP puede ejecutarse"
 
@@ -4388,11 +4394,11 @@ msgid "Memory and swap usage statistics usage for"
 msgstr "Estad&iacute;sticas de Uso de Memoria y Swap para"
 
 #: admin/dtcrm/product_manager.php:215 admin/dtcrm/product_manager.php:308
-#: shared/inc/forms/root_admin.php:698
+#: shared/inc/forms/root_admin.php:702
 msgid "Memory size in MBytes."
 msgstr "Tama&ntilde;o de memoria en Mbytes."
 
-#: shared/inc/forms/root_admin.php:629
+#: shared/inc/forms/root_admin.php:633
 msgid ""
 "Memory size in MBytes. You will need to manually change the RAM size in the /"
 "etc/xen/xenXX startup configuration file and reboot the VPS to activate the "
@@ -4946,8 +4952,8 @@ msgstr "Niue"
 #: shared/inc/forms/root_admin.php:115 shared/inc/forms/root_admin.php:126
 #: shared/inc/forms/root_admin.php:137 shared/inc/forms/root_admin.php:290
 #: shared/inc/forms/root_admin.php:410 shared/inc/forms/root_admin.php:416
-#: shared/inc/forms/root_admin.php:534 shared/inc/forms/root_admin.php:541
-#: shared/inc/forms/root_admin.php:550 shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/root_admin.php:538 shared/inc/forms/root_admin.php:545
+#: shared/inc/forms/root_admin.php:554 shared/inc/forms/subdomain.php:140
 #: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:199
 #: shared/inc/forms/subdomain.php:218 shared/inc/forms/subdomain.php:234
 #: shared/inc/forms/subdomain.php:241 shared/inc/forms/ticket.php:144
@@ -5236,9 +5242,11 @@ msgid ""
 "by \"|\". The corresponding display is what will actually\n"
 "be displayed to your users instead of the popup value."
 msgstr ""
-"En las tablas de arriba, los valores posibles son los que ser&aacute;n los valores internos en el popup o radio,\n"
-"los que se grabar&aacute;n en la base de datos. Los valores deben serpararse "
-" por \"|\". El Mostrar como es lo que realmente se mostrar&aacute; a los usuarios en lugar de los valores del popup."
+"En las tablas de arriba, los valores posibles son los que ser&aacute;n los "
+"valores internos en el popup o radio,\n"
+"los que se grabar&aacute;n en la base de datos. Los valores deben "
+"serpararse  por \"|\". El Mostrar como es lo que realmente se "
+"mostrar&aacute; a los usuarios en lugar de los valores del popup."
 
 #: admin/inc/dtc_config.php:459
 msgid "One zonefiele per pool with name"
@@ -5329,7 +5337,7 @@ msgstr ""
 "Librer&iacute;as PHP open_basedir <br>\n"
 "(sepraradas por \":\", se restauran en cada instalaci&oacute;n de DTC):"
 
-#: shared/inc/forms/root_admin.php:512
+#: shared/inc/forms/root_admin.php:516
 msgid "PHP memory limit"
 msgstr "L&iacute;mite de memoria PHP"
 
@@ -5687,8 +5695,7 @@ msgstr "Pitcairn"
 #: client/new_account_renewal.php:217
 msgid "Please click on the button below to renew your account:"
 msgstr ""
-"Por favor haga click en el bot&oacute;n de abajo para renovar su "
-"cuenta:"
+"Por favor haga click en el bot&oacute;n de abajo para renovar su cuenta:"
 
 #: shared/inc/forms/database.php:132
 msgid "Please create a MySQL user in order to be able to create a database."
@@ -5859,11 +5866,11 @@ msgstr "Ejecutar la transferencia de dominio"
 #: admin/inc/renewals.php:485 admin/inc/renewals.php:545
 #: admin/inc/draw_user_admin.php:368 admin/inc/draw_user_admin.php:447
 #: client/new_account_form.php:613 shared/dtcrm/draw.php:90
-#: shared/inc/forms/invoices.php:42 shared/inc/forms/root_admin.php:713
+#: shared/inc/forms/invoices.php:42 shared/inc/forms/root_admin.php:717
 msgid "Product"
 msgstr "Producto"
 
-#: shared/inc/forms/root_admin.php:639
+#: shared/inc/forms/root_admin.php:643
 msgid "Product ID"
 msgstr "ID del producto"
 
@@ -6012,11 +6019,11 @@ msgstr ""
 msgid "Recreate:"
 msgstr "Recrear:"
 
-#: shared/inc/forms/root_admin.php:505
+#: shared/inc/forms/root_admin.php:509
 msgid "Redirect URL"
 msgstr "URL de Redirecci&oacute;n:"
 
-#: shared/inc/forms/root_admin.php:507
+#: shared/inc/forms/root_admin.php:511
 msgid "Redirect to:"
 msgstr "Redirigir a:"
 
@@ -6082,7 +6089,7 @@ msgstr "Selecci&oacute;n del Registrador y precio final al usuario"
 msgid "Registrar: "
 msgstr "Registrador: "
 
-#: shared/inc/forms/root_admin.php:616 shared/inc/forms/root_admin.php:685
+#: shared/inc/forms/root_admin.php:620 shared/inc/forms/root_admin.php:689
 msgid "Registration"
 msgstr "Registro"
 
@@ -6368,7 +6375,7 @@ msgstr "Generaci&oacute;n de Password SSH"
 msgid "SSH: "
 msgstr "SSH: "
 
-#: shared/inc/forms/root_admin.php:548
+#: shared/inc/forms/root_admin.php:552
 msgid "SSL"
 msgstr "SSL"
 
@@ -6585,7 +6592,7 @@ msgstr "Hostname del Servidor: "
 msgid "Server monitor"
 msgstr "Monitor del Servidor"
 
-#: shared/inc/forms/root_admin.php:680
+#: shared/inc/forms/root_admin.php:684
 msgid "Server name"
 msgstr "Nombre del servidor"
 
@@ -6627,7 +6634,7 @@ msgstr "Pa&iacute;s del servicio"
 msgid "Service monitoring:"
 msgstr "Monitoreo de servicio:"
 
-#: shared/inc/forms/root_admin.php:532
+#: shared/inc/forms/root_admin.php:536
 msgid "Session autostart"
 msgstr "Auto inicio de sesi&oacute;n"
 
@@ -6861,7 +6868,7 @@ msgstr "Sub-cuentas (revendedor):"
 msgid "Sub-domains"
 msgstr "Subdominios"
 
-#: shared/inc/forms/root_admin.php:468
+#: shared/inc/forms/root_admin.php:472
 msgid "Subdomain"
 msgstr "Subdominio"
 
@@ -7074,7 +7081,7 @@ msgstr ""
 "Tenga cuidado de no agregar la IP del panel de control aqu&iacute; si no "
 "quiere tener conflictos (e impedir el reinicio de apache)!"
 
-#: shared/inc/forms/root_admin.php:469
+#: shared/inc/forms/root_admin.php:473
 msgid ""
 "Take care: no syntax checkings are done on your custom directives, doing a "
 "mistake here could lead to your web server not being able to restart!"
@@ -7147,7 +7154,8 @@ msgstr ""
 msgid ""
 "The Dedicated Server is not owned by you or don't have an already assigned "
 "Radius User."
-msgstr "El Servidor Dedicado no es suyo o no tiene un Usuario de Radius asignado."
+msgstr ""
+"El Servidor Dedicado no es suyo o no tiene un Usuario de Radius asignado."
 
 #: shared/inc/sql/vps.php:298
 msgid "The ISO file is not in the server!"
@@ -7808,7 +7816,7 @@ msgstr "Usar SSL: "
 msgid "Use WebMoney: "
 msgstr "Utilizar WebMoney: "
 
-#: shared/inc/forms/root_admin.php:546
+#: shared/inc/forms/root_admin.php:550
 msgid "Use a shared SSL certificate for this subdomain."
 msgstr "Usar un certificado SSL compartido para este subdominio."
 
@@ -8062,7 +8070,7 @@ msgstr "VPS"
 msgid "VPS IPs for "
 msgstr "IPs de VPS para "
 
-#: shared/inc/forms/root_admin.php:611
+#: shared/inc/forms/root_admin.php:615
 msgid "VPS Name"
 msgstr "Nombre del VPS"
 
@@ -8070,7 +8078,7 @@ msgstr "Nombre del VPS"
 msgid "VPS OS: "
 msgstr "S.O. del VPS: "
 
-#: shared/inc/forms/root_admin.php:608
+#: shared/inc/forms/root_admin.php:612
 msgid "VPS Server"
 msgstr "Servidor VPS"
 
@@ -8502,8 +8510,8 @@ msgstr "Yemen, Rep&uacute;blica de"
 #: shared/inc/forms/root_admin.php:114 shared/inc/forms/root_admin.php:125
 #: shared/inc/forms/root_admin.php:136 shared/inc/forms/root_admin.php:289
 #: shared/inc/forms/root_admin.php:410 shared/inc/forms/root_admin.php:416
-#: shared/inc/forms/root_admin.php:534 shared/inc/forms/root_admin.php:541
-#: shared/inc/forms/root_admin.php:550 shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/root_admin.php:538 shared/inc/forms/root_admin.php:545
+#: shared/inc/forms/root_admin.php:554 shared/inc/forms/subdomain.php:140
 #: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:199
 #: shared/inc/forms/subdomain.php:218 shared/inc/forms/subdomain.php:234
 #: shared/inc/forms/subdomain.php:241 shared/inc/forms/ticket.php:143
@@ -8656,8 +8664,9 @@ msgid ""
 "You have enough funds on your account to proceed account renewal. Press the "
 "confirm button and your order will be proceeded."
 msgstr ""
-"Usted tiene suficientes fondos en su cuenta para proceder a la renovaci&oacute;n. "
-"Presione el bot&oacute;n confirmar y su orden ser&aacute; procesada."
+"Usted tiene suficientes fondos en su cuenta para proceder a la "
+"renovaci&oacute;n. Presione el bot&oacute;n confirmar y su orden ser&aacute; "
+"procesada."
 
 #: shared/dtcrm/draw.php:235
 msgid ""
