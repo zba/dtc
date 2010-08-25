@@ -400,7 +400,6 @@ msgid "APACHE VHOST"
 msgstr "VHOST APACHE"
 
 #: admin/inc/dtc_config.php:1173
-#, fuzzy
 msgid "AWStats harmful"
 msgstr "Es AWStats da&ntilde;ino"
 
