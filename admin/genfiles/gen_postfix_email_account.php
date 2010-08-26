@@ -94,11 +94,11 @@ function mail_account_generate_postfix(){
 
 	$data = ""; // init var for use later on
 
-	#CL: Don create sasldb password when using cyrus. 
-	if($conf_use_cyrus != "yes")
-	{
-		genSasl2PasswdDBStart();
-	}
+//	#CL: Don create sasldb password when using cyrus. 
+//	if($conf_use_cyrus != "yes")
+//	{
+//		genSasl2PasswdDBStart();
+//	}
 	// go through each admin login and find the domains associated 
 	$query = "SELECT * FROM $pro_mysql_admin_table ORDER BY adm_login;";
 	$result = mysql_query ($query)or die("Cannot execute query : \"$query\"");
@@ -255,11 +255,11 @@ function mail_account_generate_postfix(){
 					// Previously: only generate sasl logins for local accounts
 					// In fact, there is no reason to do so. We might want to create a mail account ONLY for sending
 					// some mail, and not receiving.
-					#CL: Not needed for cyrus
-					if($conf_use_cyrus != "yes")
-					{
-						genSasl2PasswdDBEntry($domain_full_name,$id,$passwdtemp,$conf_addr_mail_server);
-					}
+//					#CL: Not needed for cyrus
+//					if($conf_use_cyrus != "yes")
+//					{
+//						genSasl2PasswdDBEntry($domain_full_name,$id,$passwdtemp,$conf_addr_mail_server);
+//					}
 					
 					// setup a postfix mapping for local delivery or vacation flags
 					if ($localdeliver == "yes" || $localdeliver == "true" || $vacation_flag == "yes"){
@@ -489,7 +489,7 @@ function mail_account_generate_postfix(){
 	system("$POSTMAP_BIN $conf_postfix_vmailbox_path");
 	system("$POSTMAP_BIN $conf_postfix_virtual_uid_mapping_path");
 	system("$POSTMAP_BIN $conf_postfix_relay_recipients_path");
-	genSaslFinishConfigAndRights();
+//	genSaslFinishConfigAndRights();
 	system("chown  ".$conf_dtc_system_username.":postfix ".$conf_generated_file_path."/postfix_*");
 	//in case our relay_domains file hasn't been created correctly, we should touch it
 	system("touch $conf_postfix_relay_domains_path");

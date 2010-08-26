@@ -33,7 +33,7 @@ function createTableIfNotExists(){
 				$fp = fopen("tables/$file","r");
 				$table_create_query = fread($fp,filesize("tables/$file"));
 				fclose($fp);
-				$table_name = ereg_replace (".sql", "", $file);
+				$table_name = preg_replace ("/.sql/", "", $file);
 				$query = "SELECT * FROM $table_name WHERE 1 LIMIT 1;";
 				$result = @mysql_query($query);
 				if($result == false){

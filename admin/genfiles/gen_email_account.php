@@ -181,14 +181,14 @@ function genSasl2PasswdDBStart(){
 }
 
 // This is here so we don't have to do that at each function call
-$genSaslDatabaseEntry_SASLPWD2 = "";
-if(file_exists("/usr/sbin/saslpasswd2")){
-	$genSaslDatabaseEntry_SASLPWD2 = "/usr/sbin/saslpasswd2";
-}else{
-	if(file_exists("/usr/local/sbin/saslpasswd2")){
-		$genSaslDatabaseEntry_SASLPWD2 = "/usr/local/sbin/saslpasswd2";
-	}
-}
+//$genSaslDatabaseEntry_SASLPWD2 = "";
+//if(file_exists("/usr/sbin/saslpasswd2")){
+//	$genSaslDatabaseEntry_SASLPWD2 = "/usr/sbin/saslpasswd2";
+//}else{
+//	if(file_exists("/usr/local/sbin/saslpasswd2")){
+//		$genSaslDatabaseEntry_SASLPWD2 = "/usr/local/sbin/saslpasswd2";
+//	}
+//}
 
 function genSasl2PasswdDBEntry($domain_full_name,$id,$passwdtemp,$mailname){
 	global $genSaslDatabaseEntry_SASLPWD2;

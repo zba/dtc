@@ -230,7 +230,7 @@ class HTTPBase{
       print "readIpAddressFromWeb found ip addresses: " . $content . "\n";
     }
     // TODO fix regexp so that it checks if it only has IP addresses
-    if (ereg ("([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})",$content)) {
+    if (preg_match ("/([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/",$content)) {
       return $content;
     } 
     return "";

@@ -154,13 +154,13 @@ function drawAdminTools_MyAccount($admin){
 							}
 						}
 					}
-					$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='ssl';";
-					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-					$n = mysql_num_rows($r);
-					if($n != 1){
+					$prodq = "SELECT * FROM $pro_mysql_product_table WHERE heb_type='ssl';";
+					$prodr = mysql_query($prodq)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+					$prodn = mysql_num_rows($prodr);
+					if($prodn != 1){
 						$ssl_renew_form = _("No ssl product defined.") ;
 					}else{
-						$prod = mysql_fetch_array($r);
+						$prod = mysql_fetch_array($prodr);
 						$ssl_renew_form = "<form action=\"/dtc/new_account.php\">
 <input type=\"hidden\" name=\"action\" value=\"contract_renewal\">
 <input type=\"hidden\" name=\"renew_type\" value=\"ssl_renew\">
