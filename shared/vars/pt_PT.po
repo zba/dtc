@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -5378,19 +5378,9 @@ msgstr "Nome da base de dados"
 msgid "Package version"
 msgstr ""
 
-#: admin/view_waitingusers.php:194
-#, fuzzy
-msgid "Paiement cost: "
-msgstr "Gateway de pagamento"
-
 #: admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Paiement not found!"
-msgstr "Gateway de pagamento"
-
-#: admin/view_waitingusers.php:195
-#, fuzzy
-msgid "Paiement total: "
 msgstr "Gateway de pagamento"
 
 #: shared/drawlib/cc_code_popup.php:275
@@ -5575,6 +5565,11 @@ msgstr "Gateway de pagamento"
 msgid "Payment complete. Proceed to checkout"
 msgstr "Pagamento efectuado, deixe me efectuar a ultima validação."
 
+#: admin/view_waitingusers.php:194
+#, fuzzy
+msgid "Payment cost: "
+msgstr "Gateway de pagamento"
+
 #: admin/inc/renewals.php:249 admin/inc/renewals.php:547
 #: admin/inc/draw_user_admin.php:447
 #, fuzzy
@@ -5608,6 +5603,11 @@ msgstr "Gateway de pagamento"
 #: admin/view_waitingusers.php:192 admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Payment site: "
+msgstr "Gateway de pagamento"
+
+#: admin/view_waitingusers.php:195
+#, fuzzy
+msgid "Payment total: "
 msgstr "Gateway de pagamento"
 
 #: admin/inc/renewals.php:312

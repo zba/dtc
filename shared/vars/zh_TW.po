@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Cynthia Yang <cynthia@mtiglobal.com>\n"
 "Language-Team: Chinese <zh_TW@li.org>\n"
@@ -5305,19 +5305,9 @@ msgstr "綽號"
 msgid "Package version"
 msgstr ""
 
-#: admin/view_waitingusers.php:194
-#, fuzzy
-msgid "Paiement cost: "
-msgstr "找不到形式"
-
 #: admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Paiement not found!"
-msgstr "找不到形式"
-
-#: admin/view_waitingusers.php:195
-#, fuzzy
-msgid "Paiement total: "
 msgstr "找不到形式"
 
 #: shared/drawlib/cc_code_popup.php:275
@@ -5506,6 +5496,11 @@ msgstr "找不到形式"
 msgid "Payment complete. Proceed to checkout"
 msgstr "付款完成。離開"
 
+#: admin/view_waitingusers.php:194
+#, fuzzy
+msgid "Payment cost: "
+msgstr "找不到形式"
+
 #: admin/inc/renewals.php:249 admin/inc/renewals.php:547
 #: admin/inc/draw_user_admin.php:447
 msgid "Payment date"
@@ -5539,6 +5534,11 @@ msgstr "找不到形式"
 #, fuzzy
 msgid "Payment site: "
 msgstr "付款日期"
+
+#: admin/view_waitingusers.php:195
+#, fuzzy
+msgid "Payment total: "
+msgstr "找不到形式"
 
 #: admin/inc/renewals.php:312
 #, fuzzy

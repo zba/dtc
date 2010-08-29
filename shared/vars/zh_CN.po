@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
 "PO-Revision-Date: 2009-08-27 14:52+0800\n"
 "Last-Translator: Wei Cao <caowei@gplhost.com>\n"
 "Language-Team: Wei Cao <caowei@gplhost.com>\n"
@@ -5353,19 +5353,9 @@ msgstr "软件包名字"
 msgid "Package version"
 msgstr "软件包版本"
 
-#: admin/view_waitingusers.php:194
-#, fuzzy
-msgid "Paiement cost: "
-msgstr "对这个时期的支付："
-
 #: admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Paiement not found!"
-msgstr "没有找到相关付费"
-
-#: admin/view_waitingusers.php:195
-#, fuzzy
-msgid "Paiement total: "
 msgstr "没有找到相关付费"
 
 #: shared/drawlib/cc_code_popup.php:275
@@ -5547,6 +5537,11 @@ msgstr "付费方式"
 msgid "Payment complete. Proceed to checkout"
 msgstr "付款完毕，正在校验"
 
+#: admin/view_waitingusers.php:194
+#, fuzzy
+msgid "Payment cost: "
+msgstr "对这个时期的支付："
+
 #: admin/inc/renewals.php:249 admin/inc/renewals.php:547
 #: admin/inc/draw_user_admin.php:447
 msgid "Payment date"
@@ -5577,6 +5572,11 @@ msgstr "没有找到相关付费"
 #, fuzzy
 msgid "Payment site: "
 msgstr "付款系统"
+
+#: admin/view_waitingusers.php:195
+#, fuzzy
+msgid "Payment total: "
+msgstr "没有找到相关付费"
 
 #: admin/inc/renewals.php:312
 msgid "Payment type edition"

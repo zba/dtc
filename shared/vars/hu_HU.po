@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Feher Sandor <sfeher@bluesystem.hu>\n"
 "Language-Team: Hungarian <LL@li.org>\n"
@@ -5411,19 +5411,9 @@ msgstr "Adatbázis név"
 msgid "Package version"
 msgstr ""
 
-#: admin/view_waitingusers.php:194
-#, fuzzy
-msgid "Paiement cost: "
-msgstr "Fizetési átjáró"
-
 #: admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Paiement not found!"
-msgstr "Fizetési átjáró"
-
-#: admin/view_waitingusers.php:195
-#, fuzzy
-msgid "Paiement total: "
 msgstr "Fizetési átjáró"
 
 #: shared/drawlib/cc_code_popup.php:275
@@ -5608,6 +5598,11 @@ msgstr "Fizetési átjáró"
 msgid "Payment complete. Proceed to checkout"
 msgstr "Sikeres fizetés. Ellenőrzöm"
 
+#: admin/view_waitingusers.php:194
+#, fuzzy
+msgid "Payment cost: "
+msgstr "Fizetési átjáró"
+
 #: admin/inc/renewals.php:249 admin/inc/renewals.php:547
 #: admin/inc/draw_user_admin.php:447
 #, fuzzy
@@ -5641,6 +5636,11 @@ msgstr "Fizetési átjáró"
 #: admin/view_waitingusers.php:192 admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Payment site: "
+msgstr "Fizetési átjáró"
+
+#: admin/view_waitingusers.php:195
+#, fuzzy
+msgid "Payment total: "
 msgstr "Fizetési átjáró"
 
 #: admin/inc/renewals.php:312

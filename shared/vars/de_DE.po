@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
 "PO-Revision-Date: 2007-12-26 14:40+0800\n"
 "Last-Translator: Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net>\n"
 "Language-Team: German <de@li.org>\n"
@@ -5450,19 +5450,9 @@ msgstr "Name des Pakets"
 msgid "Package version"
 msgstr "Version des Pakets"
 
-#: admin/view_waitingusers.php:194
-#, fuzzy
-msgid "Paiement cost: "
-msgstr "Zahlungen in diesem Zeitraum:"
-
 #: admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Paiement not found!"
-msgstr "Zahlung nicht gefunden"
-
-#: admin/view_waitingusers.php:195
-#, fuzzy
-msgid "Paiement total: "
 msgstr "Zahlung nicht gefunden"
 
 #: shared/drawlib/cc_code_popup.php:275
@@ -5650,6 +5640,11 @@ msgstr "Zahlungsart"
 msgid "Payment complete. Proceed to checkout"
 msgstr "Zahlung abgeschlossen. Weiter zum Checkout"
 
+#: admin/view_waitingusers.php:194
+#, fuzzy
+msgid "Payment cost: "
+msgstr "Zahlungen in diesem Zeitraum:"
+
 #: admin/inc/renewals.php:249 admin/inc/renewals.php:547
 #: admin/inc/draw_user_admin.php:447
 msgid "Payment date"
@@ -5680,6 +5675,11 @@ msgstr "Zahlung nicht gefunden"
 #, fuzzy
 msgid "Payment site: "
 msgstr "Zahlungsdatum"
+
+#: admin/view_waitingusers.php:195
+#, fuzzy
+msgid "Payment total: "
+msgstr "Zahlung nicht gefunden"
 
 #: admin/inc/renewals.php:312
 msgid "Payment type edition"

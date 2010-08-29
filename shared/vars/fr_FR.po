@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
-"PO-Revision-Date: 2010-06-06 00:27+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
+"PO-Revision-Date: 2010-08-29 16:31+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -353,7 +353,6 @@ msgid "APACHE VHOST"
 msgstr "VHOST APACHE"
 
 #: admin/inc/dtc_config.php:1173
-#, fuzzy
 msgid "AWStats harmful"
 msgstr "AWStats dangereux"
 
@@ -442,9 +441,8 @@ msgid "Add"
 msgstr "Ajouter"
 
 #: admin/inc/draw_user_admin.php:502
-#, fuzzy
 msgid "Add Money to Account"
-msgstr "Ajouter un nom de domaine dans mon compte"
+msgstr "Ajouter de l'argent dans mon compte"
 
 #: shared/inc/forms/lists.php:407
 msgid "Add To: header:"
@@ -589,7 +587,6 @@ msgid "Afghanistan"
 msgstr "Afghanistan"
 
 #: client/new_account_renewal.php:231
-#, fuzzy
 msgid "After renewal, you will have"
 msgstr "Après la mise à jour, vous aurez"
 
@@ -814,7 +811,7 @@ msgstr "Serveurs dédiés actifs"
 #: admin/inc/dtc_config.php:2041 admin/inc/dtc_config.php:2073
 #: admin/inc/dtc_config.php:2163 admin/inc/dtc_config.php:2194
 msgid "Attribute"
-msgstr ""
+msgstr "Attribu"
 
 #: shared/drawlib/cc_code_popup.php:117
 msgid "Australia"
@@ -956,9 +953,8 @@ msgid "Barbados"
 msgstr "Barbade (la)"
 
 #: admin/inc/dtc_config.php:1914
-#, fuzzy
 msgid "Barcode"
-msgstr "Sort code"
+msgstr "Code bare"
 
 #: shared/drawlib/cc_code_popup.php:125
 msgid "Belarus"
@@ -1479,7 +1475,7 @@ msgstr "Copier vers les sous-domaines :"
 
 #: admin/inc/dtc_config.php:1667
 msgid "Corresponding display"
-msgstr ""
+msgstr "Affichage correspondant"
 
 #: shared/drawlib/cc_code_popup.php:156
 msgid "Costa Rica"
@@ -1691,9 +1687,8 @@ msgid "Credit card in 9 installments"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1916
-#, fuzzy
 msgid "Credit card in Z plan"
-msgstr "Carte de crédit"
+msgstr "Carte de crédit dans le plan Z"
 
 #: admin/inc/dtc_config.php:1914
 #, fuzzy
@@ -1752,18 +1747,16 @@ msgstr ""
 "champ !"
 
 #: admin/view_waitingusers.php:186
-#, fuzzy
 msgid "Custom fields: "
-msgstr "Entêtes personnalisés :"
+msgstr "Champs personnalisés :"
 
 #: shared/inc/forms/lists.php:409
 msgid "Custom headers:"
 msgstr "Entêtes personnalisés :"
 
 #: admin/inc/dtc_config.php:1636
-#, fuzzy
 msgid "Custom registration fields"
-msgstr "L'enregistrement a échoué"
+msgstr "Champs personnalisés pour l'enregistrement"
 
 #: admin/inc/dtc_config.php:2438
 msgid "Customer and service country vs company:"
@@ -1779,9 +1772,8 @@ msgid "Customer management"
 msgstr "Gestion client"
 
 #: admin/inc/renewals.php:480
-#, fuzzy
 msgid "Customer name"
-msgstr "Gestion client"
+msgstr "Nom du client"
 
 #: shared/gfx/skin/default_layout.php:131 shared/gfx/skin/bwoup/layout.php:493
 msgid "Customer renewals"
@@ -1826,7 +1818,6 @@ msgid "DNS"
 msgstr "DNS"
 
 #: admin/dtcrm/product_manager.php:86
-#, fuzzy
 msgid "DNS & MX"
 msgstr "DNS et MX"
 
@@ -1950,7 +1941,6 @@ msgid "Day Sales Graph"
 msgstr "Graphique des ventes par jour"
 
 #: admin/inc/graphs.php:57 admin/inc/graphs.php:59
-#, fuzzy
 msgid "Day graph"
 msgstr "Graphique par jour"
 
@@ -2132,9 +2122,8 @@ msgid "Digest max mails:"
 msgstr "Nombre de messages max du digest :"
 
 #: admin/inc/dtc_config.php:1914
-#, fuzzy
 msgid "DineroMail account funds"
-msgstr "Compte Dineromail : "
+msgstr "Argent du compte Dineromail"
 
 #: admin/inc/dtc_config.php:1907
 msgid "Dineromail Account: "
@@ -2167,9 +2156,8 @@ msgid "Display and sort by:"
 msgstr "Afficher et trier par :"
 
 #: admin/inc/dtc_config.php:1647
-#, fuzzy
 msgid "Display order"
-msgstr "Afficher et trier par :"
+msgstr "Ordre d'affichage"
 
 #: shared/drawlib/cc_code_popup.php:163
 msgid "Djibouti"
@@ -2189,9 +2177,8 @@ msgid "Documentation"
 msgstr "Documentation"
 
 #: admin/view_waitingusers.php:167
-#, fuzzy
 msgid "Domain Name: "
-msgstr "Nom de domaine"
+msgstr "Nom de domaine : "
 
 #: shared/drawlib/anotherDtc.php:168
 msgid "Domain Technologie Control"
@@ -2342,9 +2329,8 @@ msgid "Ecuador"
 msgstr "Ecuateur"
 
 #: admin/inc/draw_user_admin.php:412
-#, fuzzy
 msgid "Edit"
-msgstr "Editer les IPs"
+msgstr "Editer"
 
 #: admin/inc/dtc_config.php:927
 msgid "Edit IPs"
@@ -2576,9 +2562,8 @@ msgid "FREE"
 msgstr "LIBRE"
 
 #: admin/dtcrm/product_manager.php:94
-#, fuzzy
 msgid "FTP"
-msgstr "FTP: "
+msgstr "FTP"
 
 #: shared/inc/forms/ftp.php:70
 msgid "FTP account configuration: "
@@ -2820,9 +2805,8 @@ msgid "Gate cost"
 msgstr "Coût du portail de paiement"
 
 #: admin/inc/renewals.php:513
-#, fuzzy
 msgid "Gate type"
-msgstr "Passerelle"
+msgstr "Type de passerelle"
 
 #: admin/inc/dtc_config.php:450
 msgid "Gateway"
@@ -2915,9 +2899,8 @@ msgstr "Montant brut"
 
 #: admin/inc/dtc_config.php:2036 admin/inc/dtc_config.php:2068
 #: admin/inc/dtc_config.php:2133
-#, fuzzy
 msgid "Group"
-msgstr "Groupes d'emails"
+msgstr "Groupe"
 
 #: admin/inc/dtc_config.php:2022
 msgid "Group Attributes checking config"
@@ -2928,9 +2911,8 @@ msgid "Group Reply Attributes config"
 msgstr ""
 
 #: admin/inc/dtc_config.php:1988
-#, fuzzy
 msgid "Group config"
-msgstr "Configuration domaine"
+msgstr "Configuration groupe"
 
 #: shared/drawlib/cc_code_popup.php:195
 msgid "Guadeloupe (French)"
@@ -2966,7 +2948,7 @@ msgstr "HDD E/S:"
 
 #: admin/inc/graphs.php:91
 msgid "HDD activity"
-msgstr ""
+msgstr "Activité disque dur"
 
 #: shared/inc/forms/vps_monitoring.php:260
 msgid "HTTP: "
@@ -3613,9 +3595,8 @@ msgid "Internet Whois Nick Handles management:"
 msgstr "Configuration des nick handles internet des whois internet"
 
 #: shared/dtcrm/modules/internetbs/main.php:473
-#, fuzzy
 msgid "InternetBS configuration"
-msgstr "Configuration Webnic"
+msgstr "Configuration InternetBS"
 
 #: shared/inc/forms/invoices.php:42
 msgid "Invoice"
@@ -3667,9 +3648,8 @@ msgid "Is it a company: "
 msgstr "Est-ce une société : "
 
 #: admin/inc/renewals.php:518
-#, fuzzy
 msgid "Is renewal"
-msgstr "Renouvellements des IPs SSL"
+msgstr "Est un renouvellements"
 
 #: shared/inc/forms/lists.php:174
 msgid ""
@@ -3772,7 +3752,6 @@ msgstr "Langue : "
 #: shared/dtcrm/draw_handle.php:74 shared/dtcrm/draw_handle.php:112
 #: shared/dtcrm/draw_handle.php:150 shared/dtcrm/draw_handle.php:188
 #: shared/dtcrm/draw_handle.php:324 shared/dtcrm/draw_handle.php:464
-#, fuzzy
 msgid "Language: "
 msgstr "Langue : "
 
@@ -3941,9 +3920,8 @@ msgstr ""
 "(laissez vide si vous n'avez pas de serveur MX de backup) :"
 
 #: admin/dtcrm/product_manager.php:110
-#, fuzzy
 msgid "Lists"
-msgstr "Listes max"
+msgstr "Listes"
 
 #: shared/inc/forms/root_admin.php:428
 msgid "Lists max"
@@ -3958,9 +3936,8 @@ msgid "Live"
 msgstr "Live"
 
 #: admin/inc/graphs.php:15 admin/inc/graphs.php:17
-#, fuzzy
 msgid "Local host"
-msgstr "Coût total"
+msgstr "Hôte locale"
 
 #: admin/inc/dtc_config.php:1282
 msgid "Local network area ip address of the vhost using NAT: "
@@ -4200,7 +4177,7 @@ msgstr "Configurer mes serveurs de noms :"
 
 #: admin/inc/dtc_config.php:1671 client/new_account_form.php:337
 msgid "Mandatory field"
-msgstr ""
+msgstr "Champ obligatoire"
 
 #: shared/drawlib/cc_code_popup.php:245
 msgid "Marshall Islands"
@@ -4264,7 +4241,6 @@ msgid "Max upload file size"
 msgstr "Taille mémoire max des fichiers uploadés"
 
 #: shared/dtcrm/draw.php:91 shared/dtcrm/draw.php:134
-#, fuzzy
 msgid "Max. Domains"
 msgstr "Domaine max"
 
@@ -4324,7 +4300,7 @@ msgstr "API Maxmind : "
 
 #: admin/inc/dtc_config.php:1889
 msgid "Maxmind fraud threshold: "
-msgstr ""
+msgstr "Seuil de fraude Maxmind : "
 
 #: admin/inc/dtc_config.php:1885
 msgid "Maxmind license key: "
@@ -4504,7 +4480,6 @@ msgid "Month Sales Graph"
 msgstr "Graphique des ventes par mois"
 
 #: admin/inc/graphs.php:69 admin/inc/graphs.php:71
-#, fuzzy
 msgid "Month graph"
 msgstr "Graphique par mois"
 
@@ -4746,9 +4721,8 @@ msgid "Network transfer"
 msgstr "Transfert réseau"
 
 #: admin/inc/graphs.php:92
-#, fuzzy
 msgid "Network usage"
-msgstr "Réseau"
+msgstr "Utilisation réseau"
 
 #: admin/netusegraph.php:71
 msgid "Network usage statistics for"
@@ -4787,9 +4761,8 @@ msgid "New Zealand"
 msgstr "Nouvelle Zélande"
 
 #: admin/inc/renewals.php:517
-#, fuzzy
 msgid "New account"
-msgstr "Nouveau compte SSH :"
+msgstr "Nouveau compte"
 
 #: shared/dtcrm/draw.php:167
 msgid "New account price"
@@ -4945,9 +4918,8 @@ msgid "No VPS expired"
 msgstr "Pas de VDS expiré"
 
 #: admin/inc/graphs.php:84
-#, fuzzy
 msgid "No VPS server configured"
-msgstr "Pas de VDS expiré"
+msgstr "Pas de serveur VPS configuré"
 
 #: shared/inc/forms/lists.php:413
 msgid "No archives:"
@@ -5030,9 +5002,8 @@ msgid "No-renew"
 msgstr "Pas de renouvellement"
 
 #: admin/inc/dtc_config.php:2103
-#, fuzzy
 msgid "None"
-msgstr "rien"
+msgstr "Rien"
 
 #: shared/drawlib/cc_code_popup.php:271
 msgid "Norfolk Island"
@@ -5214,9 +5185,8 @@ msgid ""
 msgstr ""
 
 #: admin/inc/dtc_config.php:459
-#, fuzzy
 msgid "One zonefiele per pool with name"
-msgstr "Un fichier de zone par pool"
+msgstr "Un fichier de zone par pool avec nom"
 
 #: admin/inc/dtc_config.php:459
 msgid "One zonefile per IP"
@@ -5231,12 +5201,10 @@ msgid "One zonefile per pool"
 msgstr "Un fichier de zone par pool"
 
 #: admin/inc/dtc_config.php:459
-#, fuzzy
 msgid "One zonefile per pool with net-cidr"
-msgstr "Un fichier de zone par IP avec net/cidr"
+msgstr "Un fichier de zone par IP avec net-cidr"
 
 #: admin/inc/dtc_config.php:459
-#, fuzzy
 msgid "One zonefile per pool with net/cidr"
 msgstr "Un fichier de zone par IP avec net/cidr"
 
@@ -5258,9 +5226,8 @@ msgstr "Système d'exploitation :"
 
 #: admin/inc/dtc_config.php:2044 admin/inc/dtc_config.php:2076
 #: admin/inc/dtc_config.php:2166 admin/inc/dtc_config.php:2197
-#, fuzzy
 msgid "Operation"
-msgstr "Expiration"
+msgstr "Opération"
 
 #: shared/inc/forms/dns.php:28
 msgid "Other DNS servers:"
@@ -5346,20 +5313,10 @@ msgstr "Nom du paquet"
 msgid "Package version"
 msgstr "Version du paquet"
 
-#: admin/view_waitingusers.php:194
-#, fuzzy
-msgid "Paiement cost: "
-msgstr "Paiement accepté : "
-
 #: admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Paiement not found!"
 msgstr "Paiement non trouvé"
-
-#: admin/view_waitingusers.php:195
-#, fuzzy
-msgid "Paiement total: "
-msgstr "Titre du panneau : "
 
 #: shared/drawlib/cc_code_popup.php:275
 msgid "Pakistan"
@@ -5543,6 +5500,11 @@ msgstr "Méthode de paiement"
 msgid "Payment complete. Proceed to checkout"
 msgstr "Paiement effectué, je veux continuer"
 
+#: admin/view_waitingusers.php:194
+#, fuzzy
+msgid "Payment cost: "
+msgstr "Cout du paiement : "
+
 #: admin/inc/renewals.php:249 admin/inc/renewals.php:547
 #: admin/inc/draw_user_admin.php:447
 msgid "Payment date"
@@ -5573,6 +5535,11 @@ msgstr "Paiement non trouvé"
 #, fuzzy
 msgid "Payment site: "
 msgstr "Système de paiement"
+
+#: admin/view_waitingusers.php:195
+#, fuzzy
+msgid "Payment total: "
+msgstr "Titre du panneau : "
 
 #: admin/inc/renewals.php:312
 msgid "Payment type edition"
@@ -5971,11 +5938,11 @@ msgstr "SUCCES DU TEST DE RENOUVELLEMENT"
 
 #: shared/inc/forms/dedicated.php:103
 msgid "Radius User:"
-msgstr ""
+msgstr "Utilisateur Radius :"
 
 #: admin/inc/dtc_config.php:2113
 msgid "Radius Users"
-msgstr ""
+msgstr "Utilisateurs Radius"
 
 #: admin/inc/dtc_config.php:709
 msgid "Real name"
@@ -6243,11 +6210,11 @@ msgstr "Sous-comptes revendeur"
 
 #: shared/inc/forms/root_admin.php:184
 msgid "Restrict FTP to the html folder:"
-msgstr ""
+msgstr "Restreindre le FTP dans le dossier html :"
 
 #: admin/dtcrm/product_manager.php:102
 msgid "Restricted FTP"
-msgstr ""
+msgstr "FTP restreint"
 
 #: admin/inc/dtc_config.php:664
 msgid "Resubscribe all users"
@@ -6480,7 +6447,7 @@ msgstr "Sélectionner un client."
 
 #: admin/inc/renewals.php:780
 msgid "Select country to report on:"
-msgstr ""
+msgstr "Choisir le pays pour faire un rapport :"
 
 #: shared/dtcrm/draw_adddomain.php:275
 msgid "Select how long you want to register this domain name:"
@@ -6672,7 +6639,7 @@ msgstr "Hébergement mutualisé : "
 
 #: admin/view_waitingusers.php:201
 msgid "Shopper IP: "
-msgstr ""
+msgstr "IP de l'acheteur :"
 
 #: admin/inc/dtc_config.php:1962
 #, fuzzy
@@ -7141,6 +7108,8 @@ msgid ""
 "The Dedicated Server is not owned by you or don't have an already assigned "
 "Radius User."
 msgstr ""
+"Le serveur dédié ne vous appartient pas ou vous n'avez pas d'utilisateur "
+"Radius assigné."
 
 #: shared/inc/sql/vps.php:298
 msgid "The ISO file is not in the server!"
@@ -7153,7 +7122,7 @@ msgstr "Utilisateur ou mot de passe incorrect !"
 
 #: shared/inc/sql/dedicated.php:51
 msgid "The Radius Username is not correct."
-msgstr ""
+msgstr "Nom d'utilisateur Radius incorrect."
 
 #: shared/dtcrm/draw_whois.php:113
 msgid "The current whois for this domain is as follow:"
@@ -7786,7 +7755,7 @@ msgstr "Utiliser MoneyBookers : "
 
 #: admin/dtcrm/product_manager.php:320
 msgid "Use Radius"
-msgstr ""
+msgstr "Utiliser Radius"
 
 #: admin/inc/dtc_config.php:1103
 msgid "Use SSL: "
@@ -8376,7 +8345,7 @@ msgstr "Whois:"
 
 #: admin/inc/dtc_config.php:1659
 msgid "Widget type"
-msgstr ""
+msgstr "Type de widget"
 
 #: shared/inc/forms/subdomain.php:300
 msgid ""

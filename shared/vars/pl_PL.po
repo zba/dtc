@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
 "PO-Revision-Date: 2009-03-07 02:16+0100\n"
 "Last-Translator: Sebastian Pachla <seeb@seeb.net.pl>\n"
 "Language-Team: Sebastian Pachla <seeb@seeb.net.pl>\n"
@@ -5329,19 +5329,9 @@ msgstr "Nazwa pakietu"
 msgid "Package version"
 msgstr "Wersja pakietu"
 
-#: admin/view_waitingusers.php:194
-#, fuzzy
-msgid "Paiement cost: "
-msgstr "Metoda płatności!"
-
 #: admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Paiement not found!"
-msgstr "Nie znaleziono płatności"
-
-#: admin/view_waitingusers.php:195
-#, fuzzy
-msgid "Paiement total: "
 msgstr "Nie znaleziono płatności"
 
 #: shared/drawlib/cc_code_popup.php:275
@@ -5530,6 +5520,11 @@ msgstr "Metoda płatności!"
 msgid "Payment complete. Proceed to checkout"
 msgstr "Dokonano płatności, Proszę sprawdzić"
 
+#: admin/view_waitingusers.php:194
+#, fuzzy
+msgid "Payment cost: "
+msgstr "Metoda płatności!"
+
 #: admin/inc/renewals.php:249 admin/inc/renewals.php:547
 #: admin/inc/draw_user_admin.php:447
 msgid "Payment date"
@@ -5560,6 +5555,11 @@ msgstr "Nie znaleziono płatności"
 #, fuzzy
 msgid "Payment site: "
 msgstr "System płatności"
+
+#: admin/view_waitingusers.php:195
+#, fuzzy
+msgid "Payment total: "
+msgstr "Nie znaleziono płatności"
 
 #: admin/inc/renewals.php:312
 msgid "Payment type edition"

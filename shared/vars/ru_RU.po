@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: git_21mar2008\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
 "PO-Revision-Date: 2009-09-06 08:44+0400\n"
 "Last-Translator: Yuri Kozlov <yuray@komyakino.ru>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
@@ -5443,19 +5443,9 @@ msgstr "Имя пакета"
 msgid "Package version"
 msgstr "Версия пакета"
 
-#: admin/view_waitingusers.php:194
-#, fuzzy
-msgid "Paiement cost: "
-msgstr "Платежи за период: "
-
 #: admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Paiement not found!"
-msgstr "Платёж не найден"
-
-#: admin/view_waitingusers.php:195
-#, fuzzy
-msgid "Paiement total: "
 msgstr "Платёж не найден"
 
 #: shared/drawlib/cc_code_popup.php:275
@@ -5644,6 +5634,11 @@ msgstr "Способ оплаты"
 msgid "Payment complete. Proceed to checkout"
 msgstr "Оплата завершена. Переход к итогам"
 
+#: admin/view_waitingusers.php:194
+#, fuzzy
+msgid "Payment cost: "
+msgstr "Платежи за период: "
+
 #: admin/inc/renewals.php:249 admin/inc/renewals.php:547
 #: admin/inc/draw_user_admin.php:447
 msgid "Payment date"
@@ -5674,6 +5669,11 @@ msgstr "Платёж не найден"
 #, fuzzy
 msgid "Payment site: "
 msgstr "Дата оплаты"
+
+#: admin/view_waitingusers.php:195
+#, fuzzy
+msgid "Payment total: "
+msgstr "Платёж не найден"
 
 #: admin/inc/renewals.php:312
 msgid "Payment type edition"

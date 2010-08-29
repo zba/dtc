@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
 "PO-Revision-Date: 2009-03-10 14:40+0800\n"
 "Last-Translator: Francesco Rana <francesco.rana@sentia.it>\n"
 "Language-Team: Italian <it@li.org>\n"
@@ -5538,19 +5538,9 @@ msgstr "Nome pacchetto"
 msgid "Package version"
 msgstr "Versione pacchetto"
 
-#: admin/view_waitingusers.php:194
-#, fuzzy
-msgid "Paiement cost: "
-msgstr "Pagamenti per il periodo: "
-
 #: admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Paiement not found!"
-msgstr "Gateway per pagamento"
-
-#: admin/view_waitingusers.php:195
-#, fuzzy
-msgid "Paiement total: "
 msgstr "Gateway per pagamento"
 
 #: shared/drawlib/cc_code_popup.php:275
@@ -5745,6 +5735,11 @@ msgstr "Gateway per pagamento"
 msgid "Payment complete. Proceed to checkout"
 msgstr "Pagamento effettuato, lasciami continuare."
 
+#: admin/view_waitingusers.php:194
+#, fuzzy
+msgid "Payment cost: "
+msgstr "Pagamenti per il periodo: "
+
 #: admin/inc/renewals.php:249 admin/inc/renewals.php:547
 #: admin/inc/draw_user_admin.php:447
 #, fuzzy
@@ -5778,6 +5773,11 @@ msgstr "Gateway per pagamento"
 #: admin/view_waitingusers.php:192 admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Payment site: "
+msgstr "Gateway per pagamento"
+
+#: admin/view_waitingusers.php:195
+#, fuzzy
+msgid "Payment total: "
 msgstr "Gateway per pagamento"
 
 #: admin/inc/renewals.php:312
