@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-29 16:31+0800\n"
-"PO-Revision-Date: 2010-08-29 16:58+0800\n"
-"Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
+"PO-Revision-Date: 2010-09-01 10:28+0100\n"
+"Last-Translator: Gregory Fardel <gregory@fardel.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -504,11 +504,11 @@ msgstr "Afghanistan"
 
 #: client/new_account_renewal.php:231
 msgid "After renewal, you will have"
-msgstr "Après la mise à jour, vous aurez"
+msgstr "Après le renouvellement, vous aurez"
 
 #: shared/dtcrm/draw.php:232
 msgid "After upgrade, you will have"
-msgstr "Après la mise à jour, vous aurez"
+msgstr "Après la mise à niveau, vous aurez"
 
 #: admin/inc/draw_user_admin.php:539
 msgid "Age"
@@ -713,7 +713,7 @@ msgstr "Autriche"
 
 #: shared/inc/forms/domain_info.php:69
 msgid "Auth code retrival failed."
-msgstr "Récupération de l'auth code a échoué."
+msgstr "Récupération de l'auth code échouée."
 
 #: shared/inc/forms/root_admin.php:534
 msgid "Auto start of php sessions"
@@ -7244,7 +7244,7 @@ msgstr "To: ou Cc: non obligatoire:"
 
 #: shared/dtcrm/draw.php:48
 msgid "Today is the: "
-msgstr "Nous somme le: "
+msgstr "Nous sommes le: "
 
 #: shared/drawlib/cc_code_popup.php:326
 msgid "Togo"
@@ -8322,7 +8322,7 @@ msgstr ""
 
 #: shared/inc/forms/my_account.php:253
 msgid "You can customize the <code>return</code> variable to redirect the user to any particular landing page that exists on our Web site (though we recommend the product page as per the example).  Then, when one of your visitors clicks on that link to buy a product from us, he will be redirected to our Web site.  Once he buys, you will automatically be credited a payment depending on the product that your visitor bought."
-msgstr "Vous pouvez customiser la variable de retour de l'utilisateur pour n'importe quelle page qui existe sur votre site web (cependant, nous vous recommandons d'utiliser la page produit, comme dans l'exemple). Alors, lorsqu'un visiteur cliquera sur ce lien pour acheter un produit avec nous, il sera redirigé vers notre site. Une fois qu'il aura acheté, vous serez automatiquement crédité du paiement, dépendant du produit que le visiteur aura acheté."
+msgstr "Vous pouvez customiser la variable de retour de l'utilisateur pour n'importe quelle page qui existe sur votre site web (cependant, nous vous recommandons d'utiliser la page produit, comme dans l'exemple). Lorsqu'un visiteur cliquera sur ce lien pour acheter un de nos produits, il sera redirigé vers notre site. Une fois qu'il aura acheté, vous serez automatiquement crédité du paiement, dépendant du produit que le visiteur aura acheté."
 
 #: shared/inc/forms/vps_installation.php:195
 msgid "You cannot start your VPS if it has expired. Please renew it if you want the boot up (xm start) button to appear here."
@@ -8330,7 +8330,7 @@ msgstr "Vous ne pouvez démarrer votre VPS si il a expiré. Merci de le renouvel
 
 #: shared/dtcrm/draw_adddomain.php:135
 msgid "You curently don't have enough privileges to add domain names. If you often add domain names, you can ask the administrator to do so. To request hosting for a new domain without domain name registration, please write to:"
-msgstr "Vous n'avez pas les droits nécessaires à l'ajout de nom de domaine sur votre compte. Si vous désirez ajouter des domaines sans enregistrement, vous pouvez demander a l'administrateur de le faire pour vous en écrivant à:"
+msgstr "Vous n'avez pas les droits  pour l'ajout de nom de domaine sur votre compte. Si vous désirez ajouter des domaines sans enregistrement, vous pouvez demander a l'administrateur de le faire pour vous en écrivant à:"
 
 #: shared/dtcrm/draw.php:77
 msgid "You currently don't have a validated account. Please contact customer support."
@@ -8345,7 +8345,7 @@ msgstr "Vous n'avez aucun jeton SSL pour le moment."
 #: shared/dtcrm/draw_transferdomain.php:155
 #: shared/dtcrm/draw_renewdomain.php:85
 msgid "You currently don't have enough funds on your account. You will be redirected to our payment system. Please click on the button below to pay."
-msgstr "Vous n'avez pas assez d'argent sur votre compte. Vous serez redirigé sur notre système de paiement. Veuillez cliquer sur le bouton suivant pour payer."
+msgstr "Vous n'avez pas assez de crédit sur votre compte. Vous allez être redirigé sur notre système de paiement. Veuillez cliquer sur le bouton suivant pour effectuer le paiement."
 
 #: shared/inc/forms/my_account.php:256
 msgid "You do not have a client account, so there is no money in your account."
@@ -8359,7 +8359,7 @@ msgstr "Vous n'avez pas d'ID client. Veuillez nous contacter"
 
 #: shared/inc/sql/ssh.php:24
 msgid "You don't have the SSH login flag!"
-msgstr "Vous n'avez pas les droits pour le SSH !"
+msgstr "Vous n'avez pas les droits pour le login SSH !"
 
 #: shared/dtcrm/draw.php:75
 msgid "You have"
@@ -8371,28 +8371,28 @@ msgstr "Vous avez annulé le paiement, votre compte ne sera pas validé. Pour re
 
 #: client/new_account_renewal.php:237
 msgid "You have enough funds on your account to proceed account renewal. Press the confirm button and your order will be proceeded."
-msgstr "Vous avez assez d'argent sur votre compte pour procéder au renouvellement. Veuillez cliquer sur le bouton suivant pour continuer."
+msgstr "Vous avez assez de crédit sur votre compte pour procéder au renouvellement du compte. Veuillez cliquer sur le bouton de confirmation pour effectuer la commande."
 
 #: shared/dtcrm/draw.php:235
 msgid "You have enough funds on your account to proceed account upgrade. Press the confirm button and your order will be proceeded."
-msgstr "Vous avez assez d'argent sur votre compte pour procéder à l'enregistrement. Veuillez cliquer sur le bouton suivant pour continuer."
+msgstr "Vous avez assez de crédit sur votre compte pour procéder à la mise à niveau du compte. Veuillez cliquer sur le bouton de confirmation pour effectuer la commande."
 
 #: shared/dtcrm/draw_adddomain.php:356
 msgid "You have enough funds on your account to proceed with registration. Press the confirm button to proceed."
-msgstr "Vous avez assez d'argent sur votre compte pour faire l'enregistrement. Cliquez sur le bouton de confirmation pour procéder."
+msgstr "Vous avez assez de crédit sur votre compte pour effectuer l'enregistrement. Cliquez sur le bouton de confirmation pour procéder."
 
 #: shared/dtcrm/draw_transferdomain.php:161
 #: shared/dtcrm/draw_renewdomain.php:93
 msgid "You have enough funds on your account to proceed with transfert. Press the confirm button to proceed."
-msgstr "Vous avez assez d'argent sur votre compte pour faire le transfert. Cliquez sur le bouton de confirmation pour procéder."
+msgstr "Vous avez assez de crédit sur votre compte pour effectuer le transfert. Cliquez sur le bouton de confirmation pour procéder."
 
 #: shared/dtcrm/draw_adddomain.php:144
 msgid ""
 "You have reached the maximum number of domains that you are allowed to run with this type of account.\n"
 "If you want to add more domain names, you should get in touch by opening a new support ticket."
 msgstr ""
-"Vous avez atteint le nombre maximum de nom de domaines que vous êtes autorise a utiliser avec ce type de compte.\n"
-"Si vous voulez ajouter plus de nom de domaines, alors vous devez entrer en contact avec le support en ouvrant un nouveau ticket de support."
+"Vous avez atteint le nombre maximum de noms de domaines que vous êtes autorisé a utiliser avec ce type de compte.\n"
+"Si vous souhaitez ajouter plus de noms de domaines, veuillez prendre contact avec le support en ouvrant un nouveau ticket de support."
 
 #: shared/dtcrm/draw.php:131
 msgid "You have selected"
@@ -8429,11 +8429,11 @@ msgstr "Votre mot de passe"
 
 #: shared/inc/forms/my_account.php:213
 msgid "Your address (please tell us if the following is not correct):"
-msgstr "Merci de nous avertir si les informations ci-dessous n'étaient pas correctes :"
+msgstr "Votre adresse (Veuillez nous informer si les informations ci-dessous ne sont pas correctes) :"
 
 #: shared/inc/draw.php:65
 msgid "Your administrator password has been changed!"
-msgstr "Votre mot de passe d'administrateur a été changé !"
+msgstr "Votre mot de passe administrateur a été changé !"
 
 #: shared/inc/forms/domain_info.php:186
 msgid "Your area disk usage:"
@@ -8473,11 +8473,11 @@ msgstr "Votre dossier par défaut pour les nouveaux comptes:"
 
 #: shared/inc/forms/domain_info.php:22
 msgid "Your domain is not registered here."
-msgstr "Votre domaine n'est pas enregistre ici."
+msgstr "Votre domaine n'est pas enregistré ici."
 
 #: shared/dtcrm/draw_whois.php:44
 msgid "Your domain name has been registred elsewhere (i.e. not on this site). To order its transfer, please click "
-msgstr "Votre nom de domaine a été enregistré ailleurs (eg pas sur ce site).Pour demander un transfère ici, veuillez cliquez "
+msgstr "Votre nom de domaine a été enregistré ailleurs (C'est-à-dire, pas sur ce site). Pour effectuer son transfère ici, veuillez cliquer "
 
 #: shared/dtcrm/draw_adddomain.php:177
 msgid "Your domain name is now ready:"
@@ -8527,15 +8527,15 @@ msgstr "Votre chemin est restreint à "
 
 #: client/new_account.php:323
 msgid "Your registration has been recorded in our database."
-msgstr "Votre enregistrement à été enregistré dans notre base de donnée."
+msgstr "Votre enregistrement a été inscrit dans notre base de données."
 
 #: shared/inc/forms/database.php:74
 msgid "Your username will be prepended to the database name."
-msgstr "Vos noms de bases de données seront sufixés par votre nom d'utilisateur."
+msgstr "votre nom d'utilisateur sera préfixé au nom de la base de données."
 
 #: shared/inc/forms/database.php:35
 msgid "Your username will be prepended to the database username."
-msgstr "Vos noms de bases de données seront sufixés par votre nom d'utilisateur."
+msgstr "Votre nom d'utilisateur sera ppréfixé au nom d'utilisateur de la base de données."
 
 #: shared/inc/forms/database.php:33
 msgid "Your users"
@@ -8715,7 +8715,7 @@ msgstr "n'est PAS renouvelable. Le serveur d'enregistrement a retourné : "
 
 #: shared/dtcrm/draw_adddomain.php:238
 msgid "is already in use in this server: you can't register that domain name."
-msgstr "est déjà dans ce serveur : vous ne pouvez pas l'enregistrer."
+msgstr "est déjà utilisé sur ce serveur : vous ne pouvez pas enregistrer ce nom de domaine."
 
 #: client/new_account_form.php:337
 msgid "is empty or incorrect."
