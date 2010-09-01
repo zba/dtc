@@ -436,6 +436,10 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 		fi
 	fi
 
+	if [ "${UNIX_TYPE}" = "freebsd" -a -f /usr/local/www/phpMyAdmin/config.inc.php ] ; then
+		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /usr/local/www/phpMyAdmin/config.inc.php
+	fi
+
 	# Mailgraph stuffs...
 	if [ -d /var/lib/mailgraph ] ; then
 		chown ${CONF_DTC_SYSTEM_USERNAME} /var/lib/mailgraph
@@ -1359,6 +1363,8 @@ modifyHTTPD_CONF () {
 				echo "Activating apache on /etc/rc.conf"
 				echo "apache22_enable=\"YES\"" >>/etc/rc.conf
 			fi
+			cp $PATH_DTC_ADMIN/install/bsdsquirrelmail.conf `dirname $PATH_HTTPD_CONF`/Includes
+			cp $PATH_DTC_ADMIN/install/bsdphpmyadmin.conf `dirname $PATH_HTTPD_CONF`/Includes
 		fi
 		if ! [ -f $PATH_HTTPD_CONF.DTC.backup ]
 		then
