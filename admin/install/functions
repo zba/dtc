@@ -4067,11 +4067,11 @@ modifyMysqmail () {
 				restartDaemonMultiUnix mysqmail-pure-ftp-logger
 			fi
 		fi
-		if [ -f $SYSLOG_CONF ] ; then
-			if grep "Configured by DTC 0.22" $SYSLOG_CONF >/dev/null
-			then
-				echoIfVerbose "$SYSLOG_CONF has been configured before..."
-			else
+#		if [ -f $SYSLOG_CONF ] ; then
+#			if grep "Configured by DTC 0.22" $SYSLOG_CONF >/dev/null
+#			then
+#				echoIfVerbose "$SYSLOG_CONF has been configured before..."
+#			else
 #				if ! [ -f $SYSLOG_CONF.DTC.backup ]
 #				then
 #					echoIfVerbose "===> Backuping "$SYSLOG_CONF
@@ -4094,8 +4094,8 @@ modifyMysqmail () {
 #					mkfifo /var/log/pure-ftpd.fifo
 #				fi
 #				echoIfVerbose "Do not forget restart syslog daemon and mysqmail-loggers"
-			fi
-		fi
+#			fi
+#		fi
 	fi
 }
 
