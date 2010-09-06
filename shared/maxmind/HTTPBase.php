@@ -216,7 +216,7 @@ class HTTPBase{
         while (!feof($fp)) {
           $buf .= fgets($fp, 128);
         }
-        $lines = split("\n", $buf);
+        $lines = preg_split("/\n/", $buf);
         // get the content
         $content = $lines[count($lines)-1];
         //close the connection
@@ -349,7 +349,7 @@ class HTTPBase{
           while (!feof($fp)) {
             $buf .= fgets($fp, 128);
           }
-          $lines = split("\n", $buf);
+          $lines = preg_split("/\n/", $buf);
           // get the content
           $content = $lines[count($lines)-1];
           //close the connection

@@ -195,7 +195,7 @@ function configEditorTemplate ($dsc,$conftype="config"){
 		case "checkboxcomma":
 			$nb_choices = sizeof($dsc["cols"][ $keys[$i] ]["values"]);
 			$control = "";
-			$arr_values = split(",",$$fld);
+			$arr_values = preg_split("/,/",$$fld);
 			$cntchk = 0;
 			for($j=0;$j<$nb_choices;$j++){
 				if (in_array($dsc["cols"][ $keys[$i] ]["values"][$j], $arr_values)){

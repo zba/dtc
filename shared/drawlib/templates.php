@@ -896,7 +896,7 @@ function dtcListItemsEdit($dsc){
 				case "mail_alias_group":
 					$mail_alias_group_raw = trim($_REQUEST[ $keys[$i] ],"\r\n");
 					$mail_alias_nocr = str_replace("\r", "", $mail_alias_group_raw);
-					$mail_alias_array = split("\n", $mail_alias_nocr);
+					$mail_alias_array = preg_split("/\n/", $mail_alias_nocr);
 					for($x=0;$x<count($mail_alias_array);$x++)
 					{
 						if ( ! isValidEmail($mail_alias_array[$x]) )
@@ -1188,7 +1188,7 @@ function dtcListItemsEdit($dsc){
 				case "mail_alias_group":
 					$mail_alias_group_raw = trim($_REQUEST[ $keys[$i] ],"\r\n");
 					$mail_alias_nocr = str_replace("\r", "", $mail_alias_group_raw);
-					$mail_alias_array = split("\n", $mail_alias_nocr);
+					$mail_alias_array = preg_split("/\n/", $mail_alias_nocr);
 					for($x=0;$x<count($mail_alias_array);$x++)
 					{
 						if ( ! isValidEmail($mail_alias_array[$x]) )
