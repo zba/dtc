@@ -2,13 +2,13 @@
 
 $theTopsIcons = '
 <div class="nav">
-	<a href="'.$_SERVER["PHP_SELF"].'?">Home</a>
-	<a href="'.$_SERVER["PHP_SELF"].'?sousrub=dtcadmin">DTC Admin Panel</a>
-	<a href="'.$_SERVER["PHP_SELF"].'?sousrub=dtc">DTC Client Panel</a>
-	<a href="'.$_SERVER["PHP_SELF"].'?sousrub=dtcemail">DTC Email Panel</a>
-	<a href="'.$_SERVER["PHP_SELF"].'?sousrub=squirrelmail">SquirrelMail</a>
-	<a href="'.$_SERVER["PHP_SELF"].'?sousrub=phpmyadmin">PhpMyAdmin</a>
-	<a href="'.$_SERVER["PHP_SELF"].'?sousrub=register">New account</a>
+	<a href="?">Home</a>
+	<a href="?sousrub=dtcadmin">DTC Admin Panel</a>
+	<a href="?sousrub=dtc">DTC Client Panel</a>
+	<a href="?sousrub=dtcemail">DTC Email Panel</a>
+	<a href="?sousrub=squirrelmail">SquirrelMail</a>
+	<a href="?sousrub=phpmyadmin">PhpMyAdmin</a>
+	<a href="?sousrub=register">New account</a>
 </div>	';
 
 $ZeContentWindowTitle = "General Server News And Infos|gplhost.gif";

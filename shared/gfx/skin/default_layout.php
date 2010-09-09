@@ -220,7 +220,7 @@ function skin_Navbar_Default() {
 	$menu = "";
 	// User management icon
 	if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] != "" && $_REQUEST["rub"] != "user" && $_REQUEST["rub"] != "domain_config" && $_REQUEST["rub"] != "adminedit"){
-		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=user$added_logpass\">";
+		$menu .= "<a href=\"?rub=user$added_logpass\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/admins.png\"><br>".
 		 _("Users administration") ;
@@ -240,7 +240,7 @@ function skin_Navbar_Default() {
 		}else{
 			$url_addon = "";
 		}
-		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&admlist_type=Names".$url_addon."\">";
+		$menu .= "<a href=\"?rub=crm&admlist_type=Names".$url_addon."\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/crm.png\"><br>".
 		 _("Customer management") ;
@@ -251,7 +251,7 @@ function skin_Navbar_Default() {
 	$menu = "";
 	// Monitor button
 	if(!isset($rub) || $rub != "monitor"){
-		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=monitor\">";
+		$menu .= "<a href=\"?rub=monitor\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>".
 		 _("Bandwidth monitor") ;
@@ -263,7 +263,7 @@ function skin_Navbar_Default() {
 
 	// The graph button
 	if(!isset($rub) || $rub != "graph"){
-		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=graph\">";
+		$menu .= "<a href=\"?rub=graph\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>".
 		 _("Server monitor") ;
@@ -274,7 +274,7 @@ function skin_Navbar_Default() {
 	$menu = "";
 
 	if(!isset($rub) || $rub != "renewal"){
-		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=renewal\">";
+		$menu .= "<a href=\"?rub=renewal\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/renewals.png\"><br>".
 		 _("Renewals management") ;
@@ -288,7 +288,7 @@ function skin_Navbar_Default() {
 	if(file_exists("dtcrm")){
 		// Product manager
 		if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "product"){
-			$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=product\">";
+			$menu .= "<a href=\"?rub=product\">";
 		}
 		$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/product_manager.png\"><br>
 	". _("Hosting product manager") ;
@@ -301,7 +301,7 @@ function skin_Navbar_Default() {
 
 	// Generate daemon files icon
 	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "generate"){
-		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate\">";
+		$menu .= "<a href=\"?rub=generate\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/daemons.png\"><br>".
 		 _("Configuration generation") ;
@@ -313,7 +313,7 @@ function skin_Navbar_Default() {
 
 	// Main config panel icon
 	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "config"){
-		$menu .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=config\">";
+		$menu .= "<a href=\"?rub=config\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/config_panel.png\"><br>".
 		 _("DTC general configuration") ;

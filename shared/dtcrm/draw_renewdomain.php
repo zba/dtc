@@ -8,7 +8,7 @@ function drawNameRenew($domain_name,$admin){
 	global $pro_mysql_client_table;
 	global $pro_mysql_domain_table;
 	
-	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$form_start = "<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -65,7 +65,7 @@ if($admin["info"]["id_client"] != 0){
 	if($fqdn_price > $remaining){
 		$payid = createCreditCardPaiementID($fqdn_price,$admin["info"]["id_client"],
 			"Domain name renew ".$_REQUEST["toreg_extention"],"no");
-		$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
+		$return_url = htmlentities($_SERVER["PHP_SELF"])."?adm_login=$adm_login&adm_pass=$adm_pass"
 			."&addrlink=$addrlink&add_domain_type=".$_REQUEST["add_domain_type"]
 			."&add_regortrans=".$_REQUEST["add_regortrans"]."&toreg_domain=".$_REQUEST["toreg_domain"]
 			."&toreg_extention=".$_REQUEST["toreg_extention"]."&dtcrm_owner_hdl=".$_REQUEST["dtcrm_owner_hdl"]

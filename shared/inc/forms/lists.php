@@ -87,7 +87,7 @@ $txt .= "<tr><td>&nbsp;</td><td><input type=\"submit\" name=\"modifylistdata\" v
 
 		if($nbr_email < $max_email){
 			$txt .= "
-<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
+<form action=\"?\" method=\"post\">
 <table border=\"1\"><tr><td align=\"right\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">

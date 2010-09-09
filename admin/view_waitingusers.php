@@ -155,7 +155,7 @@ if($n != 1){
 	}
 	$vps_location_popup = "<select name=\"vps_location\">".$vps_location_popup."</select>";
 	
-	$text = "<form action=\"".$_SERVER["PHP_SELF"]."\" method = \"POST\">
+	$text = "<form action=\"?\" method = \"POST\">
 <input type=\"hidden\" name=\"reqadm_id\" value=\"".$_REQUEST["reqadm_id"]."\">
 ";
 	$text .= dtcFormTableAttrs();

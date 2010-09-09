@@ -86,7 +86,7 @@ owner,domain_name,subdomain,ip)VALUES(
 		if($i > 0){
 			$out .= " - ";
 		}
-		$out .= "<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_id=" .
+		$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_id=" .
 			$row["id"] ."\">" . $row["subdomain"] . "." . $row["domain_name"] . "</a>";
 	}
 
@@ -95,9 +95,9 @@ owner,domain_name,subdomain,ip)VALUES(
 		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 		if(mysql_num_rows($result) != 1) die("Nameserver not found !!!");
 		$row = mysql_fetch_array($result);
-		$out .= "<br><br><a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">New name server</a><br>
+		$out .= "<br><br><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">New name server</a><br>
 <b><u>". _("Edit a name server:") ."</u></b><br>
-<form action=\"". $_SERVER["PHP_SELF"] ."\">
+<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\"> 
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">   
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">   
@@ -109,7 +109,7 @@ owner,domain_name,subdomain,ip)VALUES(
 ". _("IP address of name server:") ."<input type=\"text\" name=\"ip\" value=\"". $row["ip"] ."\">
 <input type=\"submit\" value=\"Ok\">
 </form>
-<form action=\"". $_SERVER["PHP_SELF"] ."\">
+<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\"> 
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">    
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">    
@@ -123,7 +123,7 @@ owner,domain_name,subdomain,ip)VALUES(
 	}else{
 		$out .= "<br><br><b><u>". _("Register a new name server:") ."</u></b><br>
 		". _("What subzone do you want to use (example: ns1):") ."
-<form action=\"". $_SERVER["PHP_SELF"] ."\">
+<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">   
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">   

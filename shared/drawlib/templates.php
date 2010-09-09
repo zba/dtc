@@ -177,7 +177,7 @@ function dtcDatagrid($dsc){
 
 	// Process the "forward" parameter of the grid widget, so that $rub and $sousrub and so on are forwarded
 	$fw = "";
-	$fw_link = $_SERVER["PHP_SELF"]."?";
+	$fw_link = "?";
 	for($i=0;$i<$nbr_forwards;$i++){
 		if($dsc["forward"][$i] == "adm_pass"){
 			$fw .= "<input type=\"hidden\" name=\"".$dsc["forward"][$i]."\" value=\"".$adm_pass."\">";
@@ -406,7 +406,7 @@ function dtcDatagrid($dsc){
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$out .= "<tr><form name=\"".$dsc["action"]."_edit_frm_$i\" action=\"".$_SERVER["PHP_SELF"]."\">$fw<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_edit\">";
+		$out .= "<tr><form name=\"".$dsc["action"]."_edit_frm_$i\" action=\"?\">$fw<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_edit\">";
 		if(($i % 2) == 1 && isset($gfx_form_entry_label_background)){
 			$tdclass = "dtcDatagrid_table_flds_alt";
 			$input_class = "dtcDatagrid_input_alt_color";
@@ -573,7 +573,7 @@ function dtcDatagrid($dsc){
 		if(isset($dsc["skip_deletion"]) && $dsc["skip_deletion"] == "yes"){
 			$out .= "<td class=\"$tdclass\">&nbsp;</td></tr>";
 		}else{
-			$out .= "<td class=\"$tdclass\"><form action=\"".$_SERVER["PHP_SELF"]."\">$fw$id_hidden
+			$out .= "<td class=\"$tdclass\"><form action=\"?\">$fw$id_hidden
 			<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_delete\">".dtcDeleteButton()."</form></td>";
 			$out .= "</form></tr>";
 		}
@@ -587,7 +587,7 @@ function dtcDatagrid($dsc){
 			$input_class = "dtcDatagrid_input_color";
 		}
 		// Write the NEW stuff...
-		$out .= "<tr><form name=\"".$dsc["action"]."_new_frm\" id=\"".$dsc["action"]."_new_frm\" action=\"".$_SERVER["PHP_SELF"]."\">$fw<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_new\">";
+		$out .= "<tr><form name=\"".$dsc["action"]."_new_frm\" id=\"".$dsc["action"]."_new_frm\" action=\"?\">$fw<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_new\">";
 		for($j=0;$j<$nbr_fld;$j++){
 			$the_fld = $dsc["cols"][ $keys[$j] ];
 			switch($the_fld["type"]){
@@ -742,7 +742,7 @@ function dtcListItemsEdit($dsc){
 	$keys_fw = array_keys($dsc["forward"]);
 
 	$fw = "";
-	$fw_link = $_SERVER["PHP_SELF"]."?";
+	$fw_link = "?";
 	for($i=0;$i<$nbr_forwards;$i++){
 		if($dsc["forward"][$i] == "adm_pass"){
 			$fw .= "<input type=\"hidden\" name=\"".$dsc["forward"][$i]."\" value=\"".$adm_pass."\">";
@@ -1378,7 +1378,7 @@ function dtcListItemsEdit($dsc){
 		if(isset($dsc["max_item"]) && $current_num_items >= $dsc["max_item"]){
 			$out .= "<font color=\"red\">". _("Maximum number reached") ."!</font><br>";
 		}else{
-			$out .= "<form name=\"".$dsc["action"]."_new_item_frm\" action=\"".$_SERVER["PHP_SELF"]."\">$fw
+			$out .= "<form name=\"".$dsc["action"]."_new_item_frm\" action=\"?\">$fw
 				<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_new_item\">".dtcFormTableAttrs();
 			for($i=0;$i<$nbr_fld;$i++){
 				if( isset($dsc["cols"][ $keys[$i] ]["help"])){
@@ -1512,7 +1512,7 @@ function dtcListItemsEdit($dsc){
 		$n = mysql_num_rows($r);
 		if($n == 1){
 			$a = mysql_fetch_array($r);
-			$out .= "<form name=\"".$dsc["action"]."_save_item_frm\" action=\"".$_SERVER["PHP_SELF"]."\">$fw";
+			$out .= "<form name=\"".$dsc["action"]."_save_item_frm\" action=\"?\">$fw";
 			$out .= "<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_save_item\">";
 			$out .= "<input type=\"hidden\" name=\"subaction\" value=\"".$dsc["action"]."_edit_item\">";
 			$out .= "<input type=\"hidden\" name=\"item\" value=\"".$a[ $dsc["id_fld"] ]."\">";
@@ -1641,7 +1641,7 @@ function dtcListItemsEdit($dsc){
 					break;
 				}
 			}
-			$delete_button = "<form action=\"".$_SERVER["PHP_SELF"]."\">$fw
+			$delete_button = "<form action=\"?\">$fw
 			<input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."_delete_item"."\">
 			<input type=\"hidden\" name=\"$id_fldname\" value=\"$id_fld_value\">
 			".dtcDeleteButton()."</form>";

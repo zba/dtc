@@ -212,7 +212,7 @@ Service country: $country
 			$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
 			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	
-			$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
+			$return_url = htmlentities($_SERVER["PHP_SELF"])."?action=return_from_pay&regid=$payid";
 			$paybutton = paynowButton($payid,$a["price_dollar"],$a["name"]." (login: ".$_REQUEST["adm_login"].")",$return_url,$vat_rate);
 			$form .= _("Please click on the button below to renew your account:") ."<br><br>". $paybutton;
 
@@ -231,7 +231,7 @@ Service country: $country
 			$out = _("After renewal, you will have") . ": " . $after_upgrade_remaining . " " .$secpayconf_currency_letters . "<br><br>";
 
 			// Check for confirmation
-			$frm_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+			$frm_start = "<form action=\"?\">
 <input type=\"hidden\" name=\"action\" value=\"renew_myaccount\">
 ";
 			$out .= _("You have enough funds on your account to proceed account renewal. Press the confirm button and your order will be proceeded.") ."<br><br>

@@ -190,7 +190,7 @@ function drawEditAdmin($admin){
 
 	// Generate the admin tool configuration module
 	// Deletion of domains :
-	$url = "".$_SERVER["PHP_SELF"]."?delete_admin_user=$adm_login&rub=$rub";
+	$url = "?delete_admin_user=$adm_login&rub=$rub";
 	$confirmed_url = dtcJavascriptConfirmLink( _("Are your sure you want to delete this user? This will erase all his hosted domain names, files, and databases !!!") ,$url);
 	$domain_conf = "<a href=\"$confirmed_url\"><b>". _("Delete the user") ."</b></a><br><br>";
 	if(isset($data)){
@@ -465,7 +465,7 @@ function drawDomainConfig($admin){
 					$ret .= " - ";
 				}
 				$subname = $a["subdomain_name"];
-				$ret .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub&edithost=".$_REQUEST["edithost"]."&subdomain=$subname\">$subname</a>";
+				$ret .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&rub=$rub&edithost=".$_REQUEST["edithost"]."&subdomain=$subname\">$subname</a>";
 			}
 			$ret .= "<br><br>";
 			if( isset($_REQUEST["subdomain"]) && isHostname($_REQUEST["subdomain"]) ){
@@ -479,7 +479,7 @@ function drawDomainConfig($admin){
 				}
 				$ze_dom = mysql_fetch_array($r);
 				$customization = $ze_dom["customize_vhost"];
-				/*$ret .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+				/*$ret .= "<form action=\"?\">
 				<input type=\"hidden\" name=\"rub\" value=\"$rub\">
 				<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 				<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">

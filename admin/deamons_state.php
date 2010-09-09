@@ -332,7 +332,7 @@ function drawServerStatus(){
 }
 
 echo "<html><head>
-<META HTTP-EQUIV=\"Refresh\" CONTENT=\"15;URL=".$_SERVER["PHP_SELF"]."\">".'<SCRIPT language="JavaScript">
+<META HTTP-EQUIV=\"Refresh\" CONTENT=\"15;URL=?\">".'<SCRIPT language="JavaScript">
 <!--
 var left_minutes='.(9-(date("i") % 10)).';
 var left_seconds='.(60-date("s")).';

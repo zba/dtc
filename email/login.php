@@ -8,7 +8,7 @@ function login_emailpanel_form(){
 <a href=\"/dtc/new_account.php\">". _("Register a new account") ."</a> -
 <a href=\"/dtc/recover_pass.php\">". _("Recover password"). "</a>
 
-<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
+<form action=\"?\" method=\"post\">
 <table>
 <tr>
 	<td align=\"right\">". _("Email: ") ."</td>

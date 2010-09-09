@@ -88,11 +88,11 @@ h1 {
 <BODY BGCOLOR="#FFFFFF">
 <H1>' . _("Memory and swap usage statistics usage for") . ' '.$_SERVER["SERVER_NAME"].'</H1>
 <center>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="' . _("Hour Netusage Graph") . '" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="' . _("Day Netusage Graph") . '" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="' . _("Week Netusage Graph") . '" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="' . _("Month Netusage Graph") . '" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="' . _("Year Netusage Graph") . '" width="897" height="253">
+<IMG BORDER="0" SRC="?graph=hour" ALT="' . _("Hour Netusage Graph") . '" width="897" height="253"><br>
+<IMG BORDER="0" SRC="?graph=day" ALT="' . _("Day Netusage Graph") . '" width="897" height="253"><br>
+<IMG BORDER="0" SRC="?graph=week" ALT="' . _("Week Netusage Graph") . '" width="897" height="253"><br>
+<IMG BORDER="0" SRC="?graph=month" ALT="' . _("Month Netusage Graph") . '" width="897" height="253"><br>
+<IMG BORDER="0" SRC="?graph=year" ALT="' . _("Year Netusage Graph") . '" width="897" height="253">
 </center>
 </body>
 </html>';

@@ -37,7 +37,7 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 	}
 
 	// Step 1: enter domain name and check domain transferability
-	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$form_start = "<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -135,7 +135,7 @@ $form_start<br>
 	if($fqdn_price > $remaining){
 		$payid = createCreditCardPaiementID($fqdn_price,$admin["info"]["id_client"],
 			"Domain name registration ".$_REQUEST["toreg_extention"],"no");
-		$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
+		$return_url = htmlentities($_SERVER["PHP_SELF"])."?adm_login=$adm_login&adm_pass=$adm_pass"
 			."&addrlink=$addrlink&add_domain_type=".$_REQUEST["add_domain_type"]
 			."&add_regortrans=".$_REQUEST["add_regortrans"]."&toreg_domain=".$_REQUEST["toreg_domain"]
 			."&toreg_extention=".$_REQUEST["toreg_extention"]."&dtcrm_owner_hdl=".$_REQUEST["dtcrm_owner_hdl"]
@@ -239,7 +239,7 @@ Server said: <i>" . $regz["response_text"] . "</i><br>";
 
 	$out .= "<font color=\"green\"><b>". _("Successfully added your domain name to the hosting database") ."</b></font><br>";
 
-	$out .= _("Click") . " " ."<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">". _("here") ."</a>". " " . _("to refresh the menu or add another domain name.") ;
+	$out .= _("Click") . " " ."<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">". _("here") ."</a>". " " . _("to refresh the menu or add another domain name.") ;
 
 // END OF DOMAIN NAME TRANSFERT //
 /////////////////////////////////////

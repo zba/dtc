@@ -31,7 +31,7 @@ function drawAdminTools_AddDomain($admin){
 	$out = "";
 
 $form_start = "
-<form action=\"".$_SERVER["PHP_SELF"]."\">
+<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -115,7 +115,7 @@ $form_start";
 //			if($i > 0){
 //				$out .= " - ";
 //			}
-			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+			$out .= "<form action=\"?\">
 			<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 			<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 			<input type=\"hidden\" name=\"action\" value=\"add_new_service\">
@@ -176,7 +176,7 @@ $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
 		addDomainToUser($adm_login,$adm_pass,$_REQUEST["domain_name"]);
 		return "<br><u><b>". _("Your domain name is now ready:") ."</b></u><br>
 ". _("Now you can go to check its configuration by clicking here:") ."<br>
-<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=".$_REQUEST["domain_name"]."\">".$_REQUEST["domain_name"]."</a><br>
+<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=".$_REQUEST["domain_name"]."\">".$_REQUEST["domain_name"]."</a><br>
 <br>
 ". _("Alternatively, you can add another domain name:") ."
 $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
@@ -330,7 +330,7 @@ $form_start
 
 		$payid = createCreditCardPaiementID($to_pay,$admin["info"]["id_client"],
 				"Domain name registration ".$_REQUEST["toreg_extention"],"no");
-		$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
+		$return_url = htmlentities($_SERVER["PHP_SELF"])."?adm_login=$adm_login&adm_pass=$adm_pass"
 		."&addrlink=$addrlink&action=dtcrm_add_domain&add_domain_type=".$_REQUEST["add_domain_type"]
 		."&add_regortrans=".$_REQUEST["add_regortrans"]."&toreg_domain=".$_REQUEST["toreg_domain"]
 		."&toreg_extention=".$_REQUEST["toreg_extention"]."&dtcrm_owner_hdl=".$_REQUEST["dtcrm_owner_hdl"]
@@ -426,7 +426,7 @@ Server said: <i>" . $regz["response_text"] . "</i><br>";
 
 	$out .= "<font color=\"green\"><b>". _("Successfully added your domain name to the hosting database") ."</b></font><br>";
 
-	$out .= _("Click") . " " ."<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">". _("here") ."</a>". " " . _("to refresh the menu or add another domain name.") ;
+	$out .= _("Click") . " " ."<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">". _("here") ."</a>". " " . _("to refresh the menu or add another domain name.") ;
 
 // END OF DOMAIN NAME REGISTRATION //
 /////////////////////////////////////

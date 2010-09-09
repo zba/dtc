@@ -85,11 +85,11 @@ h1 {
 <BODY BGCOLOR="#FFFFFF">
 <H1>' . _("Mail queue Statistics for") . ' '.$_SERVER["SERVER_NAME"].'</H1>
 <center>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="' . _("Hour Mail Queue Graph") . '" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="' . _("Day Mail Queue Graph") . '" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="' . _("Week Mail Queue Graph") . '" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="' . _("Month Mail Queue Graph") . '" width="897" height="253"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="' . _("Year Mail Queue Graph") . '" width="897" height="253">
+<IMG BORDER="0" SRC="?graph=hour" ALT="' . _("Hour Mail Queue Graph") . '" width="897" height="253"><br>
+<IMG BORDER="0" SRC="?graph=day" ALT="' . _("Day Mail Queue Graph") . '" width="897" height="253"><br>
+<IMG BORDER="0" SRC="?graph=week" ALT="' . _("Week Mail Queue Graph") . '" width="897" height="253"><br>
+<IMG BORDER="0" SRC="?graph=month" ALT="' . _("Month Mail Queue Graph") . '" width="897" height="253"><br>
+<IMG BORDER="0" SRC="?graph=year" ALT="' . _("Year Mail Queue Graph") . '" width="897" height="253">
 </center>
 </body>
 </html>';

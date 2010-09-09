@@ -69,92 +69,6 @@ function drawImportedMail($mailbox){
 		);
         $out = dtcListItemsEdit($dsc);
 	return $out;
-
-
-/*	$out = "";
-
-	if(isset($errTxt) && $errTxt != ""){
-		$out .= "<font color=\"red\">$errTxt</font><br>";
-	}
-
-	$url_start = "<a href=\"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass&addrlink=".$_REQUEST["addrlink"];
-	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
-<input type=\"hidden\" name=\"adm_email_login\" value=\"$adm_email_login\">
-<input type=\"hidden\" name=\"adm_email_pass\" value=\"$adm_email_pass\">
-<input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">";
-
-	$q = "SELECT * FROM $pro_mysql_fetchmail_table WHERE domain_user='".$mailbox["data"]["id"]."' AND domain_name='".$mailbox["data"]["mbox_host"]."';";
-	$r = mysql_query($q)or die("Cannot query $q ! line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-	$n = mysql_num_rows($r);
-	$out .= "<table border=\"1\">
-	
-	<!-- to translate -->
-<tr><td>". _("Address email") ."</td><td>". _("Mailbox type") ."</td><td>". _("Server address :") . "</td><td>". _("Login") ."</td><td>". _("Password:") ."</td><td>". _("Use") ."</td><td>". _("Action") ."</td></tr>";
-	for($i=0;$i<$n;$i++){
-		$a = mysql_fetch_array($r);
-		$pop3_selected = "";
-		$imap4_selected = "";
-		$msn_selected = "";
-		$hotmail_selected = "";
-		$yahoo_selected = "";
-		$gmail_selected = "";
-		switch($a["mailbox_type"]){
-		case "POP3":
-			$pop3_selected = " selected ";
-			break;
-		case "IMAP4":
-			$imap4_selected = " selected ";
-			break;
-		case "MSN":
-			$msn_selected = " selected ";
-			break;
-		case "HOTMAIL":
-			$hotmail_selected = " selected ";
-			break;
-		case "GMAIL":
-			$yahoo_selected = " selected ";
-		default:
-			break;
-		}
-		$popup_boxtype = "<select name=\"mailbox_type\">
-			<option value=\"POP3\"$pop3_selected>POP3</option>
-			<option value=\"IMAP4\"$imap4_selected>IMAP4</option>
-			<option value=\"MSN\"$msn_selected>MSN</option>
-			<option value=\"HOTMAIL\"$hotmail_selected>HOTMAIL</option>
-			<option value=\"GMAIL\"$yahoo_selected>GMAIL</option></select>";
-		if($a[""] == "yes"){
-			$useit = "";
-		}
-		$popup_boxtype = $a["mailbox_type"]."<input type=\"hidden\" name=\"mailbox_type\" value=\"".$a["mailbox_type"]."\">";
-		$out .= "<tr>
-			<td>$form_start<input type=\"hidden\" name=\"action\" value=\"modify_fetchmail\"><input type=\"hidden\" name=\"boxid\" value=\"".$a["id"]."\"><input type=\"text\" name=\"email_addr\" value=\"".$a["pop3_email"]."\"></td>
-			<td>$popup_boxtype</td>
-			<td><input type=\"text\" name=\"server_addr\" value=\"".$a["pop3_server"]."\"></td>
-			<td><input type=\"text\" name=\"login\" value=\"".$a["pop3_login"]."\"></td>
-			<td><input type=\"text\" name=\"pass\" value=\"".$a["pop3_pass"]."\"></td>
-			<td>Use</td>
-			<td><input type=\"submit\" value=\"Save\"></form>$form_start<input type=\"hidden\" name=\"action\" value=\"del_fetchmail\">
-			<input type=\"hidden\" name=\"boxid\" value=\"".$a["id"]."\"><input type=\"submit\" value=\"delete\"></form></td></tr>";
-	}
-	$out .= "<tr>
-		<td>$form_start<input type=\"hidden\" name=\"action\" value=\"add_fetchmail\"><input type=\"text\" name=\"email_addr\" value=\"\"></td>
-		<td><select name=\"mailbox_type\">
-			<option value=\"POP3\">POP3</option>
-			<option value=\"IMAP4\">IMAP4</option>
-			<option value=\"MSN\">MSN</option>
-			<option value=\"HOTMAIL\">HOTMAIL</option>
-			<option value=\"GMAIL\">GMAIL</option>
-		</select></td>
-		<td><input type=\"text\" name=\"server_addr\" value=\"\"></td>
-		<td><input type=\"text\" name=\"login\" value=\"\"></td>
-		<td><input type=\"text\" name=\"pass\" value=\"\"></td>
-		<td><input type=\"checkbox\" name=\"use\" value=\"yes\" checked\"></td>
-		<td><input type=\"submit\" value=\"Add\"></form></td></tr>";
-	$out .= "</table>";
-
-	return $out;
-*/
-
 }
 
 function drawAntispamRules($mailbox){
@@ -183,8 +97,8 @@ http://www.gplhost.com/software-dtc.html
 
 	$out = "";
 
-	$url_start = "<a href=\"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass&addrlink=".$_REQUEST["addrlink"];
-	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$url_start = "<a href=\"?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass&addrlink=".$_REQUEST["addrlink"];
+	$form_start = "<form action=\"?\">
 <input type=\"hidden\" name=\"adm_email_login\" value=\"$adm_email_login\">
 <input type=\"hidden\" name=\"adm_email_pass\" value=\"$adm_email_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">";
@@ -194,7 +108,7 @@ http://www.gplhost.com/software-dtc.html
 	". drawSubmitButton( _("Ok") ) ."</form>";
 
 	if($mailbox["data"]["iwall_protect"] == "yes"){
-		$frm_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+		$frm_start = "<form action=\"?\">
 <input type=\"hidden\" name=\"adm_email_login\" value=\"".$_REQUEST["adm_email_login"]."\">
 <input type=\"hidden\" name=\"adm_email_pass\" value=\"".$_REQUEST["adm_email_pass"]."\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">";
@@ -253,8 +167,8 @@ function drawQuarantine($mailbox){
 
 	$out = "";
 
-	$url_start = "<a href=\"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass&addrlink=".$_REQUEST["addrlink"];
-	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$url_start = "<a href=\"?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass&addrlink=".$_REQUEST["addrlink"];
+	$form_start = "<form action=\"?\">
 <input type=\"hidden\" name=\"adm_email_login\" value=\"$adm_email_login\">
 <input type=\"hidden\" name=\"adm_email_pass\" value=\"$adm_email_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">";
@@ -271,8 +185,8 @@ function drawAdminTools_emailAccount($mailbox){
 	global $adm_email_pass;
 	global $cyrus_used;
 
-	$url_start = "<a href=\"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass&addrlink=".$_REQUEST["addrlink"];
-	$form_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$url_start = "<a href=\"?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass&addrlink=".$_REQUEST["addrlink"];
+	$form_start = "<form action=\"?\">
 <input type=\"hidden\" name=\"adm_email_login\" value=\"$adm_email_login\">
 <input type=\"hidden\" name=\"adm_email_pass\" value=\"$adm_email_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">";
@@ -376,8 +290,8 @@ function drawAdminTools_emailPanel($mailbox){
 		"type" => "link",
 		"link" => "fetchmail");
 
-	$logout = "<a href=\"".$_SERVER["PHP_SELF"]."?action=logout\">". _("Logout") ."</a>";
-	$mymenu = makeTreeMenu($user_menu,$addrlink,"".$_SERVER["PHP_SELF"]."?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass","addrlink");
+	$logout = "<a href=\"?action=logout\">". _("Logout") ."</a>";
+	$mymenu = makeTreeMenu($user_menu,$addrlink,"?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass","addrlink");
 
 	switch($addrlink){
 	case "My Email":
@@ -730,7 +644,7 @@ function drawAdminTools_Emails($domain){
 		$catch_popup .= "<option value=\"".$a["id"]."\" $selected>".$a["id"]."</option>";
         }
 	$out .= "<b><u>". _("Catch-all email set to deliver to") .":</u></b><br>";
-	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$out .= "<form action=\"?\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">

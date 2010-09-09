@@ -846,7 +846,7 @@ function hostingProductChanged(){
 </script><br>
 <br>
 <i>" . _("Feilds with a <font color=\"red\">*</font> are mandatory.") . "</i><br>
-<form name=\"newuser_form\" action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
+<form name=\"newuser_form\" action=\"?\" methode=\"post\">
 <input type=\"hidden\" name=\"action\" value=\"new_user_request\">
 <table>
 <tr>

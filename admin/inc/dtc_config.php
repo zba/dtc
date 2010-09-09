@@ -146,7 +146,7 @@ function configEditorTemplate ($dsc,$conftype="config"){
 	}
 
 	$out .= dtcFormTableAttrs();
-	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$out .= "<form action=\"?\">
 <input type=\"hidden\" name=\"action\" value=\"".$dsc["action"]."\">$fw";
 	for($i=0;$i<$n;$i++){
 		$fld = $prefix.$keys[$i];
@@ -486,7 +486,7 @@ function drawIPPoolConfig(){
 			$a = mysql_fetch_array($r);
 			$out .= "<h3>"._("Custom RDNS entries for the IP pool")." " .$a["location"] . " (" . $a["ip_addr"] . " / " . $a["netmask"] . "):</h3>";
 			$out .= _("The following will be appened at the end of the reverse zone file.");
-			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+			$out .= "<form action=\"?\">
 <input type=\"hidden\" name=\"rub\" value=\"$rub\">
 <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
 <input type=\"hidden\" name=\"editpool\" value=\"".$_REQUEST["editpool"]."\">
@@ -655,7 +655,7 @@ function drawTicketConfig(){
 			}
 		}
 	}
-	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$out .= "<form action=\"?\">
 <input type=\"hidden\" name=\"rub\" value=\"$rub\">
 <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
 <input type=\"hidden\" name=\"action\" value=\"resubscript_all_users\">
@@ -1035,7 +1035,7 @@ function drawVPSServerConfig(){
 					$out .= " - ";
 				}
 				$conditions .= " AND name!='".$a2["list_name"]."'";
-				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?action=vps_server_list_remove&rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&edithost=".$_REQUEST["edithost"]."&list_name=".$a2["list_name"]."\">".$a2["list_name"]."</a>";
+				$out .= "<a href=\"?action=vps_server_list_remove&rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&edithost=".$_REQUEST["edithost"]."&list_name=".$a2["list_name"]."\">".$a2["list_name"]."</a>";
 			}
 			$out .= "<br><br>";
 			$q = "SELECT * FROM $pro_mysql_list_table WHERE domain='$conf_main_domain' $conditions ORDER BY name;";
@@ -1047,7 +1047,7 @@ function drawVPSServerConfig(){
 				if($i != 0){
 					$out .= " - ";
 				}
-				$out .= "<a href=\"".$_SERVER["PHP_SELF"]."?action=vps_server_list_add&rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&edithost=".$_REQUEST["edithost"]."&name=".$a["name"]."\">".$a["name"]."</a>";
+				$out .= "<a href=\"?action=vps_server_list_add&rub=".$_REQUEST["rub"]."&sousrub=".$_REQUEST["sousrub"]."&edithost=".$_REQUEST["edithost"]."&name=".$a["name"]."\">".$a["name"]."</a>";
 			}
 		}
 	}
@@ -1058,7 +1058,7 @@ function drawRegistrySelection(){
 	global $pro_mysql_registry_table;
 	$out = "<h3>". _("Registry selection") ."</h3>";
 	$out .= "";
-	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$out .= "<form action=\"?\">
 <input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
 <input type=\"hidden\" name=\"sousrub\" value=\"".$_REQUEST["sousrub"]."\">
 <input type=\"hidden\" name=\"action\" value=\"add_mx_trigger_backup\">

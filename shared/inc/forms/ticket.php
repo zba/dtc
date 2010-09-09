@@ -36,7 +36,7 @@ function drawTickets($admin){
 			$popup_cats .= "<option value=\"".$a["id"]."\">".$a["catdescript"]."</option>";
 		}
 
-		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+		$out .= "<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -128,7 +128,7 @@ $popup_cats
 				$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i>".$replied_by."</td><td$bg>".nl2br(stripslashes($a["text"]))."</td></tr>";
 			}
 			$out .= "</table>";
-			$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
+			$out .= "<form action=\"?\" method=\"post\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"subaction\" value=\"view_ticket\">
@@ -152,7 +152,7 @@ $popup_cats
 		}
 	// The main screen
 	}else{
-		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
+		$out .= "<form action=\"?\" method=\"post\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"subaction\" value=\"new_ticket\">
@@ -188,7 +188,7 @@ $popup_cats
 				$a2 = mysql_fetch_array($r2);
 				$out .= "<td>".$a2["catname"]."</td>";
 			}
-			$out .= "<td>".$a["server_hostname"]."</td><td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&subaction=view_ticket&tik_id=".$a["id"]."\">".stripslashes($a["subject"])."</a></td>";
+			$out .= "<td>".$a["server_hostname"]."</td><td><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&subaction=view_ticket&tik_id=".$a["id"]."\">".stripslashes($a["subject"])."</a></td>";
 			$out .= "</tr>";
 		}
 		$out .= "</table>";

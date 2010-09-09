@@ -133,7 +133,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		<u>Description:</u> ".$pkg_info["long_desc"]."<br>
 		<u>Version:</u> ".$pkg_info["version"]."<br><br>";
 
-		$txt .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+		$txt .= "<form action=\"?\">
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 		<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">";
@@ -237,7 +237,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 				<td>".$pkg_info["version"]."</td>
 				<td>".$pkg_info["need_database"]."</td>
 				<td style=\"white-space:nowrap;text-align=right\" nowrap>".smartByte($pkg_info["unpack_disk_usage"])."</td>
-				<td><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&action=prepareinstall&pkg=$package\">". _("Install") ."</a></td></tr>";
+				<td><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&action=prepareinstall&pkg=$package\">". _("Install") ."</a></td></tr>";
 		}
 	}
 

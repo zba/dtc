@@ -20,7 +20,7 @@ function DTCRMlistClients(){
 	}
 
 	$text = "<div style=\"white-space: nowrap\" nowrap>
-<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=0\">". _("New customer") ."</a>
+<a href=\"?rub=crm&id=0\">". _("New customer") ."</a>
 </a><br><br>";
 
 	$query = "SELECT * FROM $pro_mysql_client_table ORDER BY familyname";
@@ -34,7 +34,7 @@ function DTCRMlistClients(){
 	}
 	$client_list[] = array(
 		"text" => _("New customer") ,
-		"link" => $_SERVER["PHP_SELF"]."?rub=crm&id=0",
+		"link" => "?rub=crm&id=0",
 		"selected" => $selected);
 	for($i=0;$i<$num_rows;$i++){
 		$row = mysql_fetch_array($result);
@@ -52,13 +52,12 @@ function DTCRMlistClients(){
 		}
 		if($do_display == "yes"){
 			if(!isset($id_client) || $row["id"] != $_REQUEST["id"]){
-				$text .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"]."\">";
-				$url = $_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"];
+				$text .= "<a href=\"?rub=crm&id=".$row["id"]."\">";
 				$selected = "no";
 			}else{
-				$url = $_SERVER["PHP_SELF"]."?rub=crm&id=".$row["id"];
 				$selected = "yes";
 			}
+			$url = "?rub=crm&id=".$row["id"];
 			if($row["is_company"] == "yes"){
 				if(strlen($row["company_name"]) > 15){
 					$company = substr($row["company_name"],0,14)."...: ";
@@ -95,7 +94,7 @@ function DTCRMlistClients(){
 		$selectedlist_show_all = " selected";
 	}
        $list_prefs = "<div class=\"box_wnb_nb_content\">
-<div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">". _("Show:")  ."<br>
+<div style=\"white-space: nowrap\" nowrap><form action=\"?\"><font size=\"-2\">". _("Show:")  ."<br>
 <input type=\"hidden\" name=\"rub\" value=\"crm\">
 <select class=\"box_wnb_nb_input\" name=\"clientlist_type\">
 <option value=\"hide-no-admins\"$selectedlist_hide_no_admin>". _("Hide client without admin") ."
@@ -125,14 +124,14 @@ function DTCRMclientAdmins(){
 		$a = mysql_fetch_array($r);
 		if($i > 0)
 			$text .= " - ";
-		$text .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=crm&id=".$_REQUEST["id"]."&action=remove_admin_from_client&adm_name=".$a["adm_login"]."\">".$a["adm_login"]."</a>";
+		$text .= "<a href=\"?rub=crm&id=".$_REQUEST["id"]."&action=remove_admin_from_client&adm_name=".$a["adm_login"]."\">".$a["adm_login"]."</a>";
 	}
 
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='0'";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
         $n = mysql_num_rows($r);
 	$text .= "<br><br><h3>". _("Add an administrator to this customer:") ."</h3><br>";
-	$text .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$text .= "<form action=\"?\">
 <table cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tr><td><input type=\"hidden\" name=\"rub\" value=\"".$_REQUEST["rub"]."\">
 <input type=\"hidden\" name=\"id\" value=\"".$_REQUEST["id"]."\">
 <input type=\"hidden\" name=\"action\" value=\"add_admin_to_client\">
@@ -204,7 +203,7 @@ function DTCRMeditClients(){
 	}else{
 		$specnot = "";
 	}
-	$text = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$text = "<form action=\"?\">
 <input type=\"hidden\" name=\"rub\" value=\"crm\">
 <input type=\"hidden\" name=\"id\" value=\"$cid\">$hidden_inputs
 ";
@@ -313,7 +312,7 @@ cc_code_popup($row["country"])."</select>",0);
  <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"Save\"></div>
  <div class=\"input_btn_right\"></div>
 </div></form>
-<form><form action=\"".$_SERVER["PHP_SELF"]."\">
+<form><form action=\"?\">
 <input type=\"hidden\" name=\"rub\" value=\"crm\">
 <input type=\"hidden\" name=\"delete_id\" value=\"$cid\">
 <input type=\"hidden\" name=\"action\" value=\"delete_customer_id\">
