@@ -359,7 +359,7 @@ function skin_LayoutClientPage ($menu_content,$main_content,$main_content_title)
       <td class="box_wnb_nb" valign="top">
 	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'. _("Your domains") .'</div></div></div></div>
 	<div class="box_wnb_tv_container">
-	<img src="gfx/skin/bwoup/gfx/spacer.gif" width="220" height="1">
+	<img src="gfx/skin/bwoup/gfx/spacer.gif" width="280" height="1">
 	'.$menu_content.'
 	</div>
       </td>
