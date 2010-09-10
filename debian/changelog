@@ -1,8 +1,116 @@
-dtc (0.31.1-1) unstable; urgency=low
+dtc (0.32.0-1) unstable; urgency=low
 
   * New upstream release.
 
- -- Thomas Goirand <thomas@goirand.fr>  Mon, 07 Sep 2009 02:01:49 +0800
+ -- Thomas Goirand <zigo@debian.org>  Fri, 10 Sep 2010 13:04:04 +0800
+
+dtc (0.30.20-1) unstable; urgency=low
+
+  * New upstream release fixing the following:
+    - [v0.30.19] Corrects some spelling issues in debian/control, adds the
+    debian/source/format file (still format 1.0 as there's no need for patches,
+    because upstream == debian maintainer).
+    - [v0.30.19] Non debian-specific bugfixing as follow:
+      - Orders the "Add VPS" by server_hostname,vps_xen_name
+      - check for existance of maildirsize before attempting chown
+      - fixed a typo when redirecting the postsuper output
+      - chown of some files for xen servers nodes were missing
+      - forbids certain names for mysql dbs (mysql, apachelogs, etc.)
+      - makes an SSL vhost available when a user holding one is deleted
+      - checks if os is 64 bits when managing lib64 folder
+      - a typo in the email signatures
+      - a button to delete a support ticket thread silently
+      - Using an export XML file to import all the configuration of a virtual
+      administrator now works (previously, it was working only with a single
+      domain name). MySQL db definition exports are now also working, and
+      UID/GID are fixed as they should in the DB for FTP/SSH/MAIL.
+      - Using mkdir -p instead of just mkdir when creating a new user path.
+    - [v0.30.20] Non debian-specific bugfixing as follow:
+      - Removed the total_du warning in the "My Account" screen.
+      - Now rendering the statistics table with CSS and not ugly html
+      - Killed the code for "repairing" http_accounting table that was in fact
+      reseting user bandwidth stats for the current month at each upgrade.
+      - Now /dtcadmin (vs /dtcadmin/) works again
+      - Renamed the HTTPRequest class to dtc_HTTPRequest in order to avoid
+      conflicts with the PHP PEAR library.
+    - Added a global graphic overview of VPS servers (I/O, CPU, net...)
+
+ -- Thomas Goirand <thomas@goirand.fr>  Fri, 25 Jun 2010 12:25:19 +0800
+
+dtc (0.30.18-1) unstable; urgency=low
+
+  * New upstream release fixing the following:
+    - [v0.30.11] Repaired the monitor.php.
+    - [v0.30.11] Increased the default ssh connection rate in the firewall.
+    - [v0.30.11] Changed the text of the 406.php as it was quite missleading.
+    - [v0.30.12] Fixed a bug with the email generation in the panel.
+    - [v0.30.12] textaera -> textarea in the template
+    - [v0.30.12] recalculate webalizer stats script debuged.
+    - [v0.30.13] Bug in gen_maildrop_userdb.php - maildirmake hangs if target
+    directory tree not created thanks to Konstantin <f-kons@yandex.ru>
+    (Closes: #556734)
+    - [v0.30.13] Do not create a Maildir if email ID is cyrus or cyradm
+    (Closes: #557360)
+    - [v0.30.13] Added the prods_graph.php that was missing for Makefile.
+    - [v0.30.14] If email quota is set to zero, then there's no quota at all.
+    - [v0.30.15] Fixes /dtc/ client access to VPS graphs.
+    - [v0.30.16] Fixes unix rights issue for /var/log/dtc-stats-daemon.log
+    - [v0.30.16] Fixes rDNS generation
+    - [v0.30.16] Fixes fetchmail generation when no account has been added.
+    - [v0.30.16] Fixes Fixes the max record fetch by dtc-stats-daemon so it
+    has less chances to reach the php-cli maximum memory limit.
+    - [v0.30.17] Added an IP pool usage function showing the ip to host map
+    what the IP are used for (vps, dedicated, ssl or dom0) and the free IPs.
+    - [v0.30.18] Increased the max password lenght (Closes: #566651).
+    - [v0.30.18] Fixed the default admin site for URL and the new .htaccess.
+    - [v0.30.18] Removed test mode from dkim signature that was advertised in
+    the DNS, making domains fail the dkim signature checks on some mail
+    servers.
+    - [v0.30.18] Added some stuffs in the .htaccess that were missing.
+    - [v0.30.18] Now, it's impossible to create a db called dtc, mysql,
+    apachelogs, or information_schema.
+    - [v0.30.18] Now using the correct configured domain and not just the
+    main_domain for the support
+    - [v0.30.18] Fixed USER_ADD_CMD and GROUP_ADD_CMD variables in the
+    installer.
+    - [v0.30.18] Added bulgaria in the EU VAT system.
+    - [v0.30.18] Added chown of the slave_reverse_zones folder.
+    - [v0.30.18] Replaced the warnings by custom error messages in
+    renewals.php
+    - [v0.30.18] Set a default rDNS of the form
+    mx.xenXX.nodeYYYY.example.com for new VPSes that match the default hostname
+
+ -- Thomas Goirand <thomas@goirand.fr>  Mon, 25 Jan 2010 12:15:21 +0800
+
+dtc (0.30.10-1) unstable; urgency=low
+
+  * New upstream release fixing the following:
+    - Removed the "array, cannot fetch admin" in the /dtcadmin interface.
+    - Removed a Notice warning when generating the named config files and no
+    VPS is present in the db.
+    - Reverted the dtc_see_password patch for IE as it's not working.
+    - Fixed the entries in the DNS for the default IN A pointers to VPSes.
+    - nodes_zones.conf generated correctly.
+  * Bumped Standards-Version to 3.8.3.
+  * Added registration of the DTC doc in doc-base
+
+ -- Thomas Goirand <thomas@goirand.fr>  Tue, 29 Sep 2009 16:53:18 +0800
+
+dtc (0.30.8-1) unstable; urgency=high
+
+  * New upstream release fixing the following:
+    - gen_named_files.php for the automated hostnames now works.
+    - fixed bad printing of mailboxes (re)creation
+    - fixed an bug when generating the fetchmail script
+    - fixed the monitor.php when a customer has multiple admins
+    - dtc_see_password also works in IE
+    - corrected the cron for the wrong nagios variables
+    - logrotate script didn't have an endscript statement
+    - corrected the the call to updateUsingCron() in the sql/vps.php
+    - fixed the dom0 and VPS automatic VPS hostname creation
+    - added missing MySQL privileges
+
+ -- Thomas Goirand <thomas@goirand.fr>  Thu, 10 Sep 2009 03:18:35 +0800
 
 dtc (0.30.6-1) unstable; urgency=low
 
