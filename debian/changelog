@@ -1,6 +1,8 @@
 dtc (0.32.0-1) unstable; urgency=low
 
   * New upstream release.
+  * Not including the Windows dynamic IP updater source and binary, as they
+    cannot be built in Debian (Closes: #566650).
 
  -- Thomas Goirand <zigo@debian.org>  Fri, 10 Sep 2010 13:04:04 +0800
 
