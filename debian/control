@@ -11,7 +11,7 @@ Homepage: http://www.gplhost.com/software-dtc.html
 
 Package: dtc-common
 Architecture: all
-Depends: ${misc:Depends}, apache2, bind9, bzip2, ca-certificates, chrootuid, cpio, cron, file, gawk, libapache2-mod-log-sql-mysql, libapache2-mod-php5, libnss-mysql-bg | libnss-mysql, libnusoap-php, libpam-mysql, libsasl2-modules-sql, libpam-unix2, locales-all | language-pack-en, lsb-release, mhonarc, mime-support, mlmmj, mysql-client, ncftp, net-tools, openssl, php5, php5-cli, php5-gd, php5-mysql, php-pear, php-fpdf, php-crypt-cbc, php-mail-mime, php5-curl, php-net-ipv4, php-xml-serializer, pure-ftpd-mysql | proftpd-mysql | proftpd-mod-mysql, rrdtool, sasl2-bin, sbox-dtc, ssh, sudo, unzip, webalizer, zip, patch
+Depends: ${misc:Depends}, apache2, bind9, bzip2, ca-certificates, chrootuid, cpio, cron, file, gawk, libapache2-mod-log-sql-mysql, libapache2-mod-php5, libnss-mysql-bg | libnss-mysql, libnusoap-php, libpam-mysql, libsasl2-modules-sql, libpam-unix2, locales-all | language-pack-en, lsb-release, mhonarc, mime-support, mlmmj, mysql-client, ncftp, net-tools, openssl, php5, php5-cli, php5-gd, php5-mysql, php-pear, php-fpdf, php-crypt-cbc, php-mail-mime, php5-curl, php-net-ipv4, php-xml-serializer, postfix, postfix-tls, postfix-mysql, pure-ftpd-mysql | proftpd-mysql | proftpd-mod-mysql, rrdtool, sasl2-bin, sbox-dtc, ssh, sudo, unzip, webalizer, zip, patch
 Recommends: libapache2-mod-bwshare
 Conflicts: dtc (<< 0.25.1), dtc-postfix-courier (<< 0.25.1)
 Suggests: dtc-postfix-courier | dtc-cyrus
@@ -41,7 +41,7 @@ Description: a small anti-DoS firewall script for your web, ftp and mail servers
 
 Package: dtc-postfix-dovecot
 Architecture: all
-Depends: ${misc:Depends}, amavisd-new, clamav, clamav-daemon, clamav-freshclam, courier-maildrop | maildrop, dtc-core (=${binary:Version}), dovecot-imapd, dovecot-pop3d, courier-authlib-mysql, courier-authlib-userdb, courier-authdaemon, postfix, postfix-tls, mysql-server, spamassassin, spamc
+Depends: ${misc:Depends}, amavisd-new, clamav, clamav-daemon, clamav-freshclam, courier-maildrop | maildrop, dtc-core (=${binary:Version}), dovecot-imapd, dovecot-pop3d, courier-authlib-mysql, courier-authlib-userdb, courier-authdaemon, mysql-server, spamassassin, spamc
 Description: A meta package to setup a minimal DTC server with Dovecot
  Domain Technologie Control (DTC) is a control panel aiming at commercial
  hosting. Using a web GUI for the administration and accounting all hosting
@@ -61,7 +61,7 @@ Description: A meta package to setup a minimal DTC server with Dovecot
 Package: dtc-core
 Architecture: all
 Depends: ${misc:Depends}, dtc-common (=${binary:Version}), debconf, mysql-client, libsasl2-2, libsasl2-modules
-Suggests: courier-authmysql, courier-authlib-mysql, dovecot, postfix, qmail, postfix-tls, mysql-server, mysqmail, awstats, courier-base, sqwebmail, cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2
+Suggests: courier-authmysql, courier-authlib-mysql, dovecot, mysql-server, mysqmail, awstats, courier-base, sqwebmail, cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2
 Conflicts: dtc-postfix-courier, dtc-cyrus
 Replaces: dtc-postfix-courier, dtc-cyrus
 Description: web control panel for admin and accounting hosting services (fewer depends)
@@ -84,7 +84,7 @@ Description: web control panel for admin and accounting hosting services (fewer 
 Package: dtc-cyrus
 Architecture: all
 Depends: ${misc:Depends}, amavisd-new, clamav, clamav-daemon, clamav-freshclam, dtc-common (=${binary:Version}), debconf, mysql-client, mysql-server, libsasl2-2, libsasl2-modules , cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2, cyrus-imapd-2.2, cyrus-pop3d-2.2, libsasl2-modules-sql | libpam-mysql, spamassassin, spamc
-Suggests: courier-authmysql, courier-authlib-mysql, dovecot, postfix, qmail, postfix-tls, mysqmail, awstats, courier-base, sqwebmail
+Suggests: courier-authmysql, courier-authlib-mysql, mysqmail, awstats, courier-base, sqwebmail
 Conflicts: dtc-postfix-courier, dtc-core
 Replaces: dtc-postfix-courier, dtc-core
 Description: web control panel for admin and accounting hosting services (cyrus depends)
@@ -107,7 +107,7 @@ Description: web control panel for admin and accounting hosting services (cyrus 
 
 Package: dtc-postfix-courier
 Architecture: all
-Depends: ${misc:Depends}, amavisd-new, clamav, clamav-daemon, clamav-freshclam, dtc-common (=${binary:Version}), courier-maildrop | maildrop , courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-authlib-userdb, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, debconf, libsasl2-modules, mysql-client, mysql-server, postfix (>= 2.0), postfix-mysql, postfix-tls (>= 2.0) | postfix (>= 2.2.10), spamassassin, spamc
+Depends: ${misc:Depends}, amavisd-new, clamav, clamav-daemon, clamav-freshclam, dtc-common (=${binary:Version}), courier-maildrop | maildrop , courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-authlib-userdb, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, debconf, libsasl2-modules, mysql-client, mysql-server, spamassassin, spamc
 Conflicts: dtc-core, dtc-cyrus
 Replaces: dtc-core, dtc-cyrus
 Suggests: mysqmail
