@@ -2742,11 +2742,16 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
   					cp -f $PATH_AUTH_SMTP $PATH_AUTH_SMTP.DTC.backup
   				fi #[ -f $PATH_AUTH_SMTP.DTC.backup ] ;
   			fi #[ -f $PATH_AUTH_SMTP ] ;
+			if [ "${conf_mysql_host}" = "localhost" ] ; then
+				my_smtp_mysql_host="127.0.0.1"
+			else
+				my_smtp_mysql_host=${conf_mysql_host}
+			fi
   			echo "# Configured by DTC v0.25 : Please don't touch this line !
   pwcheck_method: auxprop
   auxprop_plugin: sql
   sql_engine: mysql
-  sql_hostnames: ${conf_mysql_host}
+  sql_hostnames: ${my_smtp_mysql_host}
   sql_user: dtcdaemons
   sql_passwd: ${MYSQL_DTCDAEMONS_PASS}
   sql_database: ${conf_mysql_db}
