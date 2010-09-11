@@ -4670,6 +4670,14 @@ createChrootTemplate () {
 	echoIfVerbose "-> Done chroot template!"
 }
 
+fixesExtplorer () {
+	if [ -d "/etc/extplorer" -a -f "/usr/share/doc/dtc/contrib/extplorer.htusers.php" ] ; then
+		if ! [ -f "/etc/extplorer/.htusers.php" ] ; then
+			cp /usr/share/doc/dtc/contrib/extplorer.htusers.php /etc/extplorer
+		fi
+	fi
+}
+
 checkBsdKernel () {
 	echoIfVerbose "===> Checking BSD type"
 	kernel=`uname -a | awk '{print $1}'`;
@@ -5347,6 +5355,7 @@ DTCsetupDaemons () {
 	modifyNSSConfig
 	modifyMysqmail
 	modifyCrontab
+	fixesExtplorer
 	if [ $UNIX_TYPE = freebsd ]
 	then
 		if grep "End of DTC configuration" /etc/rc.conf >/dev/null ; then
