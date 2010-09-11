@@ -322,12 +322,12 @@ admin/mod-security/modsecurity_crs_40_generic_attacks.conf admin/mod-security/mo
 admin/mod-security/modsecurity_dtc_web_apps.conf
                                                                         
 ##################### ETC FILES #########################
-CREATE_DIRS=admin/inc admin/genfiles admin/dtcrm admin/queuegraph admin/memgraph admin/netusegraph admin/cpugraph admin/install admin/tables \
+CREATE_DIRS=admin/inc admin/genfiles admin/dtcrm admin/queuegraph admin/memgraph admin/netusegraph admin/cpugraph admin/install \
 shared/gfx/menu shared/gfx/bar shared/gfx/skin/bwoup/gfx/buttons shared/gfx/dtc shared/gfx/pagetop \
 shared/gfx/securepay shared/gfx/language/en/pub shared/gfx/language/fr/pub shared/gfx/language/ru/pub shared/gfx/language/nl/pub \
 shared/gfx/skin/bwoup/gfx/config-icon shared/gfx/skin/bwoup/gfx/buttons shared/gfx/skin/bwoup/gfx/tabs \
 shared/gfx/skin/bwoup/gfx/treeview shared/gfx/skin/bwoup/gfx/navbar shared/inc/forms shared/inc/sql shared/404_template shared/drawlib \
-shared/dtcrm/srs shared/dtcrm/webnic.cc shared/vars shared/visitors_template shared/template shared/maxmind \
+shared/vars shared/visitors_template shared/template shared/maxmind \
 admin/patches shared/securepay/modules shared/securepay/modules/paypal shared/securepay/modules/enets shared/securepay/modules/webmoney \
 shared/securepay/modules/worldpay client email shared/securepay/modules/cheque shared/securepay/modules/wiretransfer \
 shared/securepay/modules/moneybookers shared/dtcrm/modules/webnic admin/postfix_checks admin/mod-security shared/gfx/skin/paperboard shared/gfx/skin/paperboard/gfx \
