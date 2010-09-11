@@ -4673,7 +4673,11 @@ createChrootTemplate () {
 fixesExtplorer () {
 	if [ -d "/etc/extplorer" -a -f "/usr/share/doc/dtc/contrib/extplorer.htusers.php" ] ; then
 		if ! [ -f "/etc/extplorer/.htusers.php" ] ; then
-			cp /usr/share/doc/dtc/contrib/extplorer.htusers.php /etc/extplorer
+			cp /usr/share/doc/dtc/contrib/extplorer.htusers.php /etc/extplorer/.htusers.php
+		else
+			if [ `cat /etc/extplorer/.htusers.php | wc -l` = 0 ] ; then
+				cp /usr/share/doc/dtc/contrib/extplorer.htusers.php /etc/extplorer/.htusers.php
+			fi
 		fi
 	fi
 }
