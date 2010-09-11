@@ -663,6 +663,7 @@ AND $pro_mysql_admin_table.id_client != '0'";
 	Alias /awstats-icon $conf_tools_prefix/awstats/icon
 	Alias /squirrelmail ".$conf_tools_prefix."/squirrelmail
 	Alias /roundcube /var/lib/roundcube
+	Alias /extplorer /usr/share/extplorer
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html
 	<Directory $web_path/$web_name/subdomains/$web_subname/html>
