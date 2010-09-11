@@ -208,7 +208,8 @@ bsd-ports-packages:
 ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES=admin/404.php admin/bw_per_month.php admin/index.php admin/cpugraph.php admin/mailgraph.php admin/deamons_state.php \
 admin/view_waitingusers.php admin/memgraph.php admin/netusegraph.php admin/vps_stats_cpu.php \
 admin/vps_stats_hdd.php admin/vps_stats_network.php admin/vps_stats_swap.php admin/patch_saslatuhd_startup admin/dtc_db.php admin/dkfilter.patch \
-admin/logPushlet.php admin/xanjaxXHR.js admin/authme.php admin/active_prods_graph.php
+admin/logPushlet.php admin/xanjaxXHR.js admin/authme.php admin/active_prods_graph.php \
+admin/install/bsdsquirrelmail.conf admin/install/bsdphpmyadmin.conf
 
 ADMIN_GENFILE_PHP_SCRIPT_FILES=admin/genfiles/gen_awstats.php admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_perso_vhost.php \
 admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_backup_script.php admin/genfiles/gen_pro_vhost.php \
@@ -310,7 +311,7 @@ USER_ALSO=$(DTC_CRON_PHP_SCRIPT_FILES) $(DTC_CRON_SH_SCRIPT_FILES) $(DTC_WEB_SH_
 
 INSTALL_FOLDER_SCRIPTS=admin/install/mk_root_mailbox.php admin/install/bsd_config admin/install/gentoo_config admin/install/slack_config \
 admin/install/debian_config admin/install/install admin/install/osx_config admin/install/uninstall admin/install/functions \
-admin/install/interactive_installer admin/install/redhat_config admin/install/bsdsquirrelmail.conf admin/install/bsdphpmyadmin.conf
+admin/install/interactive_installer admin/install/redhat_config 
 
 PATCH_FILES=admin/patches/phpmyadmin_cookie.auth.lib.php.patch admin/patches/spamassassin_default_start.patch admin/patches/phpmyadmin_htaccess.patch \
 admin/postfix_checks/body_checks admin/postfix_checks/relaying_stoplist admin/postfix_checks/header_checks admin/postfix_checks/mime_header_checks \
