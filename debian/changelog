@@ -1,4 +1,4 @@
-dtc (0.32.0-1) unstable; urgency=low
+dtc (0.32.1-1) unstable; urgency=low
 
   * New upstream release.
   * Not including the Windows dynamic IP updater source and binary, as they
