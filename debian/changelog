@@ -1,4 +1,4 @@
-dtc (0.32.2-0) unstable; urgency=low
+dtc (0.32.2-1) unstable; urgency=low
 
   * New upstream release fixing templates.php:
     Fixes templates.php so that the raw primary key ID is fetch before anything
