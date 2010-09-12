@@ -414,6 +414,12 @@ function dtcDatagrid($dsc){
 			$tdclass = "dtcDatagrid_table_flds";
 			$input_class = "dtcDatagrid_input_color";
 		}
+		// Get the primary key of the table raw before anything else.
+		for($j=0;$j<$nbr_fld;$j++){
+			if($dsc["cols"][ $keys[$j] ]["type"] == "id"){
+				$id = $a[ $keys[$j] ];
+			}
+		}
 		for($j=0;$j<$nbr_fld;$j++){
 			$the_name = $keys[$j];
 			$the_fld = $dsc["cols"][$the_name];
