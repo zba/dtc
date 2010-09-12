@@ -1,3 +1,11 @@
+dtc (0.32.2-0) unstable; urgency=low
+
+  * New upstream release fixing templates.php:
+    Fixes templates.php so that the raw primary key ID is fetch before anything
+    else, which fixes dataGrid with hyperlink.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 12 Sep 2010 16:44:21 +0800
+
 dtc (0.32.1-1) unstable; urgency=low
 
   * New upstream release.
