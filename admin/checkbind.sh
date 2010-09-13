@@ -2,6 +2,7 @@
 conf_generated_file_path=$1
 
 bindgroup=`cat /etc/group | cut -f 1 -d: | grep named`
+binduser=`cat /etc/passwd | cut -f 1 -d: | grep named`
 
 # That part is from old < 0.25 version, removing it...
 #nobodygroup=`cat /etc/group | cut -f 1 -d: | grep ^nobody`
@@ -18,12 +19,19 @@ if [ -z "$bindgroup" ] ; then
 	bindgroup=`cat /etc/group | cut -f 1 -d: | grep bind`
 fi
 
+if [ -z "$binduser" ] ; then
+        binduser=`cat /etc/passwd | cut -f 1 -d: | grep bind`
+fi
+
 if [ -n "$bindgroup" ]; then
 	echo "Changing $conf_generated_file_path/zones permissions to 770 $bindgroup:$nobodygroup"
         chown -R dtc:$bindgroup $conf_generated_file_path/zones
 	chmod -R 0660 $conf_generated_file_path/zones
 	chmod 0770 $conf_generated_file_path/zones
-        chown -R dtc:$bindgroup $conf_generated_file_path/slave_zones
+	# make sure the slave_zones are owned by $binduser so that refreshes work
+        chown -R $binduser:$bindgroup $conf_generated_file_path/slave_zones
+	# the directory can be owned by dtc
+        chown dtc:$bindgroup $conf_generated_file_path/slave_zones
 	chmod -R 0660 $conf_generated_file_path/slave_zones
 	chmod 0770 $conf_generated_file_path/slave_zones
 	chown dtc:$bindgroup $conf_generated_file_path/named.conf
@@ -36,9 +44,12 @@ if [ -n "$bindgroup" ]; then
 		chmod 0770 $conf_generated_file_path/reverse_zones
 	fi
 	if [ -e $conf_generated_file_path/slave_reverse_zones ] ; then
-		chown -R dtc:$bindgroup $conf_generated_file_path/slave_reverse_zones
+		# make sure the slave_reverse_zones are owned by $binduser so that refreshes work
+		chown -R $binduser:$bindgroup $conf_generated_file_path/slave_reverse_zones
+		# the directory can be owned by dtc
+		chown dtc:$bindgroup $conf_generated_file_path/slave_reverse_zones
 		chmod -R 0660 $conf_generated_file_path/slave_reverse_zones
-		chmod 0770 $conf_generated_file_path/reverse_zones
+		chmod 0770 $conf_generated_file_path/slave_reverse_zones
 	fi
 	if [ -e $conf_generated_file_path/named.conf.reverse ] ; then
 		chown dtc:$bindgroup $conf_generated_file_path/named.conf.reverse
@@ -48,6 +59,7 @@ if [ -n "$bindgroup" ]; then
 		chown dtc:$bindgroup $conf_generated_file_path/named.conf.slave.reverse
 		chmod 0660 $conf_generated_file_path/named.conf.slave.reverse
 	fi
+	# why do we change the slave_reverse_zones path again here?
 	if [ -e $conf_generated_file_path/slave_reverse_zones ] ; then
 		chown dtc:$bindgroup $conf_generated_file_path/slave_reverse_zones
 		chmod +x $conf_generated_file_path/slave_reverse_zones
