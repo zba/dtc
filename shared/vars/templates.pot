@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -507,11 +507,11 @@ msgid "Refund amount: "
 msgstr ""
 
 #: admin/view_waitingusers.php:194
-msgid "Paiement cost: "
+msgid "Payment cost: "
 msgstr ""
 
 #: admin/view_waitingusers.php:195
-msgid "Paiement total: "
+msgid "Payment total: "
 msgstr ""
 
 #: admin/view_waitingusers.php:196

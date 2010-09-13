@@ -16,7 +16,7 @@ if [ ! -d ""$MY_PATH ] ; then
 fi
 
 # TODO: find a way to detect the version with MKTEMP="mktemp -p /tmp"
-MKTEMP="/bin/mktemp -t"
+MKTEMP="mktemp -t"
 
 
 if [ "`uname -s`" = "FreeBSD" ]; then
@@ -28,8 +28,12 @@ else
 fi
 
 if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
-	gen_pass=`mktemp -t "" | cut -d'.' -f2`
-	gen_pass=${gen_pass}`mktemp -t "" | cut -d'.' -f2`
+		TMP_FILE=`${MKTEMP} ""`
+		gen_pass=`echo $TMP_FILE | cut -d'.' -f2`
+		rm -f ${TMP_FILE}
+		TMP_FILE=`${MKTEMP} ""`
+		gen_pass=${gen_pass}`echo $TMP_FILE | cut -d'.' -f2`
+		rm -f ${TMP_FILE}
 else
 	# This new one works as well with sh!
 	gen_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
@@ -39,8 +43,12 @@ if [ -z "$SSL_PASSPHRASE" ] ; then
 fi
 
 if [ $UNIX_TYPE"" = "freebsd" -o $UNIX_TYPE"" = "osx" ] ; then
-	gen_pass=`mktemp -t "" | cut -d'.' -f2`
-	gen_pass=${gen_pass}`mktemp -t "" | cut -d'.' -f2`
+		TMP_FILE=`${MKTEMP} ""`
+		gen_pass=`echo $TMP_FILE | cut -d'.' -f2`
+		rm -f ${TMP_FILE}
+		TMP_FILE=`${MKTEMP} ""`
+		gen_pass=${gen_pass}`echo $TMP_FILE | cut -d'.' -f2`
+		rm -f ${TMP_FILE}
 else
 	# This new one works as well with sh!
 	gen_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`

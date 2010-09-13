@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.30.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
 "PO-Revision-Date: 2010-08-18 20:05-0300\n"
 "Last-Translator: Fernando Kiernan <fkiernan@id.net.ar>\n"
 "Language-Team: Yosu Cadilla <digitalwares@hotmail.com>\n"
@@ -5376,17 +5376,9 @@ msgstr "Nombre del paquete"
 msgid "Package version"
 msgstr "Versi&oacute;n del paquete"
 
-#: admin/view_waitingusers.php:194
-msgid "Paiement cost: "
-msgstr "Costo del pago: "
-
 #: admin/view_waitingusers.php:199
 msgid "Paiement not found!"
 msgstr "Pago no encontrado!"
-
-#: admin/view_waitingusers.php:195
-msgid "Paiement total: "
-msgstr "Total del pago: "
 
 #: shared/drawlib/cc_code_popup.php:275
 msgid "Pakistan"
@@ -5572,6 +5564,10 @@ msgstr "M&eacute;todo de pago"
 msgid "Payment complete. Proceed to checkout"
 msgstr "Pago realizado. Continuar"
 
+#: admin/view_waitingusers.php:194
+msgid "Payment cost: "
+msgstr "Costo del pago: "
+
 #: admin/inc/renewals.php:249 admin/inc/renewals.php:547
 #: admin/inc/draw_user_admin.php:447
 msgid "Payment date"
@@ -5600,6 +5596,10 @@ msgstr "Pago no encontrado"
 #: admin/view_waitingusers.php:192 admin/view_waitingusers.php:199
 msgid "Payment site: "
 msgstr "Sitio de pago"
+
+#: admin/view_waitingusers.php:195
+msgid "Payment total: "
+msgstr "Total del pago: "
 
 #: admin/inc/renewals.php:312
 msgid "Payment type edition"

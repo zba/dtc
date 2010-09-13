@@ -7,7 +7,7 @@ function login_form(){
 <a href=\"new_account.php\">". _("Register a new account") ."</a> -
 <a href=\"recover_pass.php\">". _("Recover password") ."</a>
 
-<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
+<form action=\"?\" method=\"post\">
 <table>
 <tr>
 	<td align=\"right\">". _("Login: ") ."</td>

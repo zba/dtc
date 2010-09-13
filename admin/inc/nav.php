@@ -56,43 +56,43 @@ $top_commands = "
 <table border=\"0\" width=\"100%\" height=\"1\">
 <tr><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_pro_vhost=1&gen_stat_script=1&gen_named_files=1&gen_backup_script=1&gen_email_account=1&gen_fetchmail_script=1\">
+	<a href=\"?rub=generate&gen_pro_vhost=1&gen_stat_script=1&gen_named_files=1&gen_backup_script=1&gen_email_account=1&gen_fetchmail_script=1\">
 	<img border=\"0\" src=\"gfx/dtc/all_scripts.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">". _("ALL FILES AND SCRIPTS") ."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_pro_vhost=1\">
+	<a href=\"?rub=generate&gen_pro_vhost=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_web.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">". _("APACHE VHOST") ."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_email_account=1\">
+	<a href=\"?rub=generate&gen_email_account=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_mail.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">". _("E-MAIL ACCOUNTS") ."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_named_files=1\">
+	<a href=\"?rub=generate&gen_named_files=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_named.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">". _("NAMED ZONES FILES") ."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&reinit_named_zones=1\">
+	<a href=\"?rub=generate&reinit_named_zones=1\">
 	<img border=\"0\" src=\"gfx/dtc/reinit_named.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">". _("REINIT NAMED ZONES") ."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_backup_script=1\">
+	<a href=\"?rub=generate&gen_backup_script=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_backup.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">". _("BACKUP SCRIPTS") ."</font></a>
 </div>
 </td><td valign=\"bottom\">
 <div align=\"center\">
-	<a href=\"".$_SERVER["PHP_SELF"]."?rub=generate&gen_fetchmail_script=1\">
+	<a href=\"?rub=generate&gen_fetchmail_script=1\">
 	<img border=\"0\" src=\"gfx/dtc/generate_mail.gif\"><br>
 	<font face=\"Arial\" size=\"-2\">". _("FETCHMAIL SCRIPTS") ."</font></a>
 </div>
@@ -130,7 +130,7 @@ function listTypePopup(){
 	}
 
 	$admins = "<div class=\"box_wnb_nb_content\">
-<div style=\"white-space: nowrap\" nowrap><form action=\"".$_SERVER["PHP_SELF"]."\"><font size=\"-2\">". _("Display and sort by:")  ."<br>
+<div style=\"white-space: nowrap\" nowrap><form action=\"?\"><font size=\"-2\">". _("Display and sort by:")  ."<br>
 <select class=\"box_wnb_nb_input\" name=\"admlist_type\">
 <option value=\"Logins\"$selectedlist_logins>" . _("Logins") . "
 <option value=\"Names\"$selectedlist_name>" . _("Names") . "
@@ -185,7 +185,7 @@ function adminList($password=""){
 		"adm_login" => "",
 		"adm_pass" => "");
 
-	$admins = "<a href=\"".$_SERVER["PHP_SELF"]."?\">". _("New virtual admin")  ."</a><br>";
+	$admins = "<a href=\"?\">". _("New virtual admin")  ."</a><br>";
 	if(isset($rub)){
 		$added_rub = "&rub=".$_REQUEST["rub"];
 	}else{
@@ -211,7 +211,7 @@ function adminList($password=""){
 			} else {
 				$admin_owner = "";
 			}
-			$admins .= "<br><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$admin_login&adm_pass=$zepass$added_rub\">$admin_login $admin_owner</a>";
+			$admins .= "<br><a href=\"?adm_login=$admin_login&adm_pass=$zepass$added_rub\">$admin_login $admin_owner</a>";
 			$dsc["admins"][] = array(
 				"text" => $admin_login,
 				"adm_login" => $admin["adm_login"],
@@ -230,7 +230,7 @@ function adminList($password=""){
 				$row2 = mysql_fetch_array($result2);
 				$linkadm_login = $row2["adm_login"];
 				$linkadm_pass = $row2["adm_pass"];
-				$admins .= "&nbsp;&nbsp;&nbsp;<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass$added_rub\">$linkadm_login</a><br>";
+				$admins .= "&nbsp;&nbsp;&nbsp;<a href=\"?adm_login=$linkadm_login&adm_pass=$linkadm_pass$added_rub\">$linkadm_login</a><br>";
 			}
 		}
 
@@ -256,7 +256,7 @@ function adminList($password=""){
 					$row2 = mysql_fetch_array($result2);
 					$linkadm_login = $row2["adm_login"];
 					$linkadm_pass = $row2["adm_pass"];
-					$admins .= "&nbsp;&nbsp;&nbsp;<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$linkadm_pass$added_rub\">$linkadm_login</a><br>";
+					$admins .= "&nbsp;&nbsp;&nbsp;<a href=\"?adm_login=$linkadm_login&adm_pass=$linkadm_pass$added_rub\">$linkadm_login</a><br>";
 					if($is_company){
 						$text = $company.": ";
 					}else{
@@ -290,7 +290,7 @@ function adminList($password=""){
 				$row2 = mysql_fetch_array($result2);
 				$linkadm_login = $row2["adm_login"];
 				$linkadm_pass = $row2["adm_pass"];
-				$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$zepass$added_rub\">$domain_name</a><br>";
+				$admins .= "<a href=\"?adm_login=$linkadm_login&adm_pass=$zepass$added_rub\">$domain_name</a><br>";
 				$dsc["admins"][] = array(
 					"text" => $domain_name,
 					"adm_login" => $linkadm_login,
@@ -313,7 +313,7 @@ function adminList($password=""){
 				$row2 = mysql_fetch_array($result2);
 				$linkadm_login = $row2["adm_login"];
 				$linkadm_pass = $row2["adm_pass"];
-				$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$zepass$added_rub\">$vps_name</a><br>";
+				$admins .= "<a href=\"?adm_login=$linkadm_login&adm_pass=$zepass$added_rub\">$vps_name</a><br>";
 				$dsc["admins"][] = array(
 					"text" => $vps_name,
 					"adm_login" => $linkadm_login,
@@ -336,7 +336,7 @@ function adminList($password=""){
 				$row2 = mysql_fetch_array($result2);
 				$linkadm_login = $row2["adm_login"];
 				$linkadm_pass = $row2["adm_pass"];
-				$admins .= "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$linkadm_login&adm_pass=$zepass$added_rub\">$server_hostname</a><br>";
+				$admins .= "<a href=\"?adm_login=$linkadm_login&adm_pass=$zepass$added_rub\">$server_hostname</a><br>";
 				$dsc["admins"][] = array(
 					"text" => $server_hostname,
 					"adm_login" => $linkadm_login,

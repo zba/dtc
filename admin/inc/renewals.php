@@ -22,7 +22,7 @@ function dateSelector($table,$mysql_date_field,$http_query_field){
 			}else{
 				$using_date = $exploded[0] . "-" . $exploded[1];
 			}
-			$out["text"] .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&$http_query_field=all\">" . _("all") . "</a>";
+			$out["text"] .= "<a href=\"?rub=$rub&sousrub=$sousrub&$http_query_field=all\">" . _("all") . "</a>";
 			$date = $using_date;
 			$where_condition = " $mysql_date_field LIKE '$date%' ";
 		}else{
@@ -35,7 +35,7 @@ function dateSelector($table,$mysql_date_field,$http_query_field){
 		$date = "all";
 		$where_condition = " 1 ";
 	}else{
-		$out["text"] .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&$http_query_field=all\">" . _("all") . "</a>";
+		$out["text"] .= "<a href=\"?rub=$rub&sousrub=$sousrub&$http_query_field=all\">" . _("all") . "</a>";
 		$date = $_REQUEST["$http_query_field"];
 		$where_condition = " $mysql_date_field LIKE '$date%' ";
 	}
@@ -53,7 +53,7 @@ function dateSelector($table,$mysql_date_field,$http_query_field){
 			$using_date = $exploded[0] . "-" . $exploded[1];
 		}
 		if($date != $using_date){
-			$out["text"] .= " - <a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&sousrub=$sousrub&$http_query_field=".$using_date."\">".$using_date."</a>";
+			$out["text"] .= " - <a href=\"?rub=$rub&sousrub=$sousrub&$http_query_field=".$using_date."\">".$using_date."</a>";
 		}else{
 			$out["text"] .= " - $using_date";
 		}
@@ -604,7 +604,7 @@ function drawRenewalTables (){
 					<td>$client_country</td>
 					<td>$vat_collected</td><td>$last_expiry_date -> $new_expiry_date</td><td>".$a["date"]."</td><td>$payment_txt</td>
 					<td>$pay</td>
-					<td><a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&date=".$_REQUEST["date"]."&action=nuke_payment&completedorders_id=".$a["id"]."\">"._("Delete")."</a></tr>";
+					<td><a href=\"?rub=$rub&date=".$_REQUEST["date"]."&action=nuke_payment&completedorders_id=".$a["id"]."\">"._("Delete")."</a></tr>";
 				}
 				$out .= "</table>";
 			}
@@ -763,7 +763,7 @@ function drawRenewalTables (){
 				$cost_total += $a2["paiement_cost"];
 				$month_total += $a2["paiement_total"];
 				$profit = $month_total - $cost_total - $vat_collected;
-				$p_history .= "<tr><td style=\"text-align:right;\"><a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&date=".$cur_year."-".$cur_month."\">".$cur_year."-".$cur_month."</a></td>
+				$p_history .= "<tr><td style=\"text-align:right;\"><a href=\"?rub=$rub&date=".$cur_year."-".$cur_month."\">".$cur_year."-".$cur_month."</a></td>
 				<td style=\"text-align:right;\">".$month_total." $secpayconf_currency_letters</td>
 				<td style=\"text-align:right;\">".round($vat_collected,2)." $secpayconf_currency_letters</td>
 				<td style=\"text-align:right;\">".round($cost_total,2)." $secpayconf_currency_letters</td>
@@ -779,14 +779,14 @@ function drawRenewalTables (){
 		$p_history .= "</table>";
 		$p_history .= _("Select country to report on:");
 		
-		$p_history .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub\">ALL</a> ";	
+		$p_history .= "<a href=\"?rub=$rub\">ALL</a> ";	
 		$q2 = "SELECT distinct(country_code) from $pro_mysql_completedorders_table;";
 		$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n2 = mysql_num_rows($r2);
 		for($j=0;$j<$n2;$j++){
 			$a2 = mysql_fetch_array($r2);
 			$country = $a2["country_code"];
-			$p_history .= "<a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&country=$country\">$country</a> ";	
+			$p_history .= "<a href=\"?rub=$rub&country=$country\">$country</a> ";	
 		}
 		
 
@@ -915,7 +915,7 @@ function drawRenewalTables (){
 							$r2 = mysql_query($q2)or die("Cannot querry ".$q2." line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 							$n2 = mysql_num_rows($r2);
 							if($n2 == 0){
-								$kill_owner_txt = "<a href=\"".$_SERVER["PHP_SELF"]."?action=kill_vps_and_owner&adm_login=".$admin["adm_login"]."&client_id=".$admin["id_client"]."&vps_name=".$a["vps_xen_name"]."&server_hostname=".$a["vps_server_hostname"]."&vps_id=".$a["id"]."\">"._("Kill VPS and owner")."</a>";
+								$kill_owner_txt = "<a href=\"?action=kill_vps_and_owner&adm_login=".$admin["adm_login"]."&client_id=".$admin["id_client"]."&vps_name=".$a["vps_xen_name"]."&server_hostname=".$a["vps_server_hostname"]."&vps_id=".$a["id"]."\">"._("Kill VPS and owner")."</a>";
 							}else{
 								$kill_owner_txt = _("Has some domains");
 							}
@@ -939,7 +939,7 @@ function drawRenewalTables (){
 				<td>".$a2["email"]."</td>
 				<td $bgcolor>".$a["expire_date"]."</td>
 				<td $bgcolor>". calculateAge($a["expire_date"],"00:00:00") ."</td>
-				<td><a href=\"".$_SERVER["PHP_SELF"]."?rub=$rub&action=shutdown_expired_vps&server_hostname=".$a["vps_server_hostname"]."&vps_name=".$a["vps_xen_name"]."\">"._("Shutdown")."</a> - $kill_owner_txt</td></tr>";
+				<td><a href=\"?rub=$rub&action=shutdown_expired_vps&server_hostname=".$a["vps_server_hostname"]."&vps_name=".$a["vps_xen_name"]."\">"._("Shutdown")."</a> - $kill_owner_txt</td></tr>";
 			}
 			$out .= "</table>";
 		}

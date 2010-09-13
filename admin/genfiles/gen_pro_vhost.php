@@ -650,8 +650,12 @@ AND $pro_mysql_admin_table.id_client != '0'";
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/logs");
 				vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
-				$vhost_file .= "	Alias /phpmyadmin ".$conf_tools_prefix."/phpmyadmin
-	Alias /dtc $conf_dtcclient_path
+				if ( $conf_unix_type == "bsd" ) {
+					$vhost_file .= "	Alias /phpmyadmin ".$conf_tools_prefix."/phpMyAdmin\n";
+				}else{
+					$vhost_file .= "	Alias /phpmyadmin ".$conf_tools_prefix."/phpmyadmin\n";
+				}
+				$vhost_file .= "	Alias /dtc $conf_dtcclient_path
 	Alias /dtcdoc $conf_dtcdoc_path/html/en
 	Alias /dtcemail $conf_dtcemail_path
 	Alias /dtcadmin $conf_dtcadmin_path/
@@ -659,6 +663,7 @@ AND $pro_mysql_admin_table.id_client != '0'";
 	Alias /awstats-icon $conf_tools_prefix/awstats/icon
 	Alias /squirrelmail ".$conf_tools_prefix."/squirrelmail
 	Alias /roundcube /var/lib/roundcube
+	Alias /extplorer /usr/share/extplorer
 	php_admin_value sendmail_from webmaster@$web_name
 	DocumentRoot $web_path/$web_name/subdomains/$web_subname/html
 	<Directory $web_path/$web_name/subdomains/$web_subname/html>

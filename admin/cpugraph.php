@@ -93,11 +93,11 @@ h1 {
 <BODY BGCOLOR="#FFFFFF">
 <H1>' . _("CPU load average Statistics for") . ' ' .$_SERVER["SERVER_NAME"].'</H1>
 <center>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="' . _("Hour CPU Load Graph") . '" width="897" height="239"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="' . _("Day CPU Load Graph") . '" width="897" height="239"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="' . _("Week CPU Load Graph") . '" width="897" height="239"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="' . _("Month CPU Load Graph") . '" width="897" height="239"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="' . _("Year CPU Load Graph") . '" width="897" height="239">
+<IMG BORDER="0" SRC="?graph=hour" ALT="' . _("Hour CPU Load Graph") . '" width="897" height="239"><br>
+<IMG BORDER="0" SRC="graph=day" ALT="' . _("Day CPU Load Graph") . '" width="897" height="239"><br>
+<IMG BORDER="0" SRC="?graph=week" ALT="' . _("Week CPU Load Graph") . '" width="897" height="239"><br>
+<IMG BORDER="0" SRC="?graph=month" ALT="' . _("Month CPU Load Graph") . '" width="897" height="239"><br>
+<IMG BORDER="0" SRC="?graph=year" ALT="' . _("Year CPU Load Graph") . '" width="897" height="239">
 </center>
 </body>
 </html>';

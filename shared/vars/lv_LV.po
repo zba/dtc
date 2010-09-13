@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Domain Technologie Control (DTC) - git 2008.11.19\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Coool (Nauris Ešenvalds) <coool@vivonet.lv>\n"
 "Language-Team: Coool (Nauris Ešenvalds) <coool@vivonet.lv>\n"
@@ -5112,20 +5112,10 @@ msgstr "Paketes nosaukums"
 msgid "Package version"
 msgstr ""
 
-#: admin/view_waitingusers.php:194
-#, fuzzy
-msgid "Paiement cost: "
-msgstr "Apmaksas datums"
-
 #: admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Paiement not found!"
 msgstr "Produkts nav atrasts datu bāzē"
-
-#: admin/view_waitingusers.php:195
-#, fuzzy
-msgid "Paiement total: "
-msgstr "Apmaksas datums"
 
 #: shared/drawlib/cc_code_popup.php:275
 msgid "Pakistan"
@@ -5301,6 +5291,11 @@ msgstr "Apmaksas datums"
 msgid "Payment complete. Proceed to checkout"
 msgstr ""
 
+#: admin/view_waitingusers.php:194
+#, fuzzy
+msgid "Payment cost: "
+msgstr "Apmaksas datums"
+
 #: admin/inc/renewals.php:249 admin/inc/renewals.php:547
 #: admin/inc/draw_user_admin.php:447
 msgid "Payment date"
@@ -5331,6 +5326,11 @@ msgstr ""
 #: admin/view_waitingusers.php:192 admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Payment site: "
+msgstr "Apmaksas datums"
+
+#: admin/view_waitingusers.php:195
+#, fuzzy
+msgid "Payment total: "
 msgstr "Apmaksas datums"
 
 #: admin/inc/renewals.php:312

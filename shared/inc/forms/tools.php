@@ -22,7 +22,7 @@ function subdomainSelector($domain){
 			$link1 = "";
 			$link2 = "";
 		}else{
-			$link1 = "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_subdomain=".$domain["subdomains"][$i]["name"]."\">";
+			$link1 = "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_subdomain=".$domain["subdomains"][$i]["name"]."\">";
 			$link2 = "</a>";
 		}
 		$out .= $link1.$domain["subdomains"][$i]["name"].$link2;
@@ -48,7 +48,7 @@ function drawAdminTools_Tools($domain){
 			$link1 = "";
 			$link2 = "";
 		}else{
-			$link1 = "<a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_subdomain=".$domain["subdomains"][$i]["name"]."&edit_folder=/\">";
+			$link1 = "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&edit_subdomain=".$domain["subdomains"][$i]["name"]."&edit_folder=/\">";
 			$link2 = "</a>";
 		}
 		$out .= "$link1 / $link2";
@@ -97,7 +97,7 @@ function drawAdminTools_Tools($domain){
 		$txt ="";
 
 		$txt .= "<table align=\"left\"><tr><td colspan=\"2\"><b>Password Protect Directories</b><br></td></tr>
-	<form action=\"".$_SERVER["PHP_SELF"]."\">
+	<form action=\"?\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -232,13 +232,13 @@ function prot_dir_select(){
 		$abs_path_raw=str_replace("../","",$dirs[$c]);
 		$abs_path = str_replace("//","/",$abs_path_raw);
 		$usr_path = explode("html",$abs_path);
-		$txt .= "<tr><td align='left' bgcolor=".$bgc."><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&addrlink=".$_REQUEST["addrlink"]."&adm_pass=$adm_pass&encrypt_directory=$abs_path/&modify=yes\">Modify</a>";
+		$txt .= "<tr><td align='left' bgcolor=".$bgc."><a href=\"?adm_login=$adm_login&addrlink=".$_REQUEST["addrlink"]."&adm_pass=$adm_pass&encrypt_directory=$abs_path/&modify=yes\">Modify</a>";
 		$txt .= "</td>";
 //        $txt .= "<td bgcolor=".$bgc."><FONT SIZE='1' FACE='verdana,sans-serif'>  ".str_replace("../","",$dirs[$c])."</td></tr>";
 		if (isset($usr_path[1])){
-			$txt .= "<td bgcolor=".$bgc."><FONT SIZE='1' FACE='verdana,sans-serif'><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&addrlink=".$_REQUEST["addrlink"]."&adm_pass=$adm_pass&subdir=".$usr_path[1]."/\">".$usr_path[1]."</a></td></tr>";
+			$txt .= "<td bgcolor=".$bgc."><FONT SIZE='1' FACE='verdana,sans-serif'><a href=\"?adm_login=$adm_login&addrlink=".$_REQUEST["addrlink"]."&adm_pass=$adm_pass&subdir=".$usr_path[1]."/\">".$usr_path[1]."</a></td></tr>";
 		} else {
-			$txt .= "<td bgcolor=".$bgc."><FONT SIZE='1' FACE='verdana,sans-serif'><a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&addrlink=".$_REQUEST["addrlink"]."&adm_pass=$adm_pass&subdir=".$usr_path[0]."/\">".$usr_path[0]."</a></td></tr>";
+			$txt .= "<td bgcolor=".$bgc."><FONT SIZE='1' FACE='verdana,sans-serif'><a href=\"?adm_login=$adm_login&addrlink=".$_REQUEST["addrlink"]."&adm_pass=$adm_pass&subdir=".$usr_path[0]."/\">".$usr_path[0]."</a></td></tr>";
 		}
 	}
 	return $txt;
@@ -258,7 +258,7 @@ function passwd_read($file2){
 		fclose($handle);
 		//$output_form .= str_replace(":|","<br>",$output);
 		$linebrk_contents = explode(":|", $contents);
-		$txt .= "<form action=\"".$_SERVER["PHP_SELF"]."\">";
+		$txt .= "<form action=\"?\">";
 		$txt .= "<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">";
 		$txt .= "<input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">";
 		$txt .= "<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">";

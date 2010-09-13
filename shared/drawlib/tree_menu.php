@@ -11,7 +11,7 @@ function MTMcalculateLinkTo($entry){
 
 	$MTM_curadrTbl[$MTM_recur_lvl] = $entry["arbo"];
 	$entrylink = $entry["link"];
-	$ret .= $_SERVER["PHP_SELF"]."?mtm_addr=";
+	$ret .= htmlentities($_SERVER["PHP_SELF"])."?mtm_addr=";
 	for($i=0;$i<=$MTM_recur_lvl;$i++){
 		if($i>0){
 			$ret .= "/";

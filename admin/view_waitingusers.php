@@ -155,7 +155,7 @@ if($n != 1){
 	}
 	$vps_location_popup = "<select name=\"vps_location\">".$vps_location_popup."</select>";
 	
-	$text = "<form action=\"".$_SERVER["PHP_SELF"]."\" method = \"POST\">
+	$text = "<form action=\"?\" method = \"POST\">
 <input type=\"hidden\" name=\"reqadm_id\" value=\"".$_REQUEST["reqadm_id"]."\">
 ";
 	$text .= dtcFormTableAttrs();
@@ -191,8 +191,8 @@ cc_code_popup($b["country"])."</select>",0);
 		$text .= dtcFormLineDraw( _("Payment validated: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"valid\" value=\"".$p["valid"]."\">",0);
 		$text .= dtcFormLineDraw( _("Payment site: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"secpay_site\" value=\"".$p["secpay_site"]."\">");
 		$text .= dtcFormLineDraw( _("Refund amount: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"refund_amount\" value=\"".$p["refund_amount"]."\">",0);
-		$text .= dtcFormLineDraw( _("Paiement cost: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"paiement_cost\" value=\"".$p["paiement_cost"]."\">");
-		$text .= dtcFormLineDraw( _("Paiement total: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"paiement_total\" value=\"".$p["paiement_total"]."\">",0);
+		$text .= dtcFormLineDraw( _("Payment cost: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"paiement_cost\" value=\"".$p["paiement_cost"]."\">");
+		$text .= dtcFormLineDraw( _("Payment total: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"paiement_total\" value=\"".$p["paiement_total"]."\">",0);
 		$text .= dtcFormLineDraw( _("Vat rate: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"vat_rate\" value=\"".$p["vat_rate"]."\">");
 		$text .= dtcFormLineDraw( _("Vat total: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"vat_total\" value=\"".$p["vat_total"]."\">",0);
 	}else{

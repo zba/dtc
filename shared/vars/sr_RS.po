@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-25 12:24+0800\n"
+"POT-Creation-Date: 2010-08-29 16:31+0800\n"
 "PO-Revision-Date: 2008-09-03 22:00+0100\n"
 "Last-Translator: Pera <iboki@yahoo.com>\n"
 "Language-Team: Pera <iboki@yahoo.com>\n"
@@ -5424,19 +5424,9 @@ msgstr "Ime paketa"
 msgid "Package version"
 msgstr "Verzija paketa"
 
-#: admin/view_waitingusers.php:194
-#, fuzzy
-msgid "Paiement cost: "
-msgstr "Uplata nije nađena!"
-
 #: admin/view_waitingusers.php:199
 #, fuzzy
 msgid "Paiement not found!"
-msgstr "Uplata nije nađena!"
-
-#: admin/view_waitingusers.php:195
-#, fuzzy
-msgid "Paiement total: "
 msgstr "Uplata nije nađena!"
 
 #: shared/drawlib/cc_code_popup.php:275
@@ -5627,6 +5617,11 @@ msgstr "Uplata nije nađena!"
 msgid "Payment complete. Proceed to checkout"
 msgstr "Payment complete. Proceed to checkout"
 
+#: admin/view_waitingusers.php:194
+#, fuzzy
+msgid "Payment cost: "
+msgstr "Uplata nije nađena!"
+
 #: admin/inc/renewals.php:249 admin/inc/renewals.php:547
 #: admin/inc/draw_user_admin.php:447
 msgid "Payment date"
@@ -5658,6 +5653,11 @@ msgstr "Uplata nije nađena!"
 #, fuzzy
 msgid "Payment site: "
 msgstr "Sistem za plaćanje"
+
+#: admin/view_waitingusers.php:195
+#, fuzzy
+msgid "Payment total: "
+msgstr "Uplata nije nađena!"
 
 #: admin/inc/renewals.php:312
 msgid "Payment type edition"

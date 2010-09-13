@@ -190,7 +190,7 @@ function mail_account_generate_postfix(){
 						$domain_parent = $alias["domain_parent"];
 						$ainc = $alias["autoinc"];
 						$mailbox_cleanup1 = str_replace("\r\n", "\n", $alias["delivery_group"]);
-						$mailbox_cleanup2 = split("\n", $mailbox_cleanup1);
+						$mailbox_cleanup2 = preg_split("/\n/", $mailbox_cleanup1);
 						$deliver_mailbox = '';
 						if ( $k==0 ) $domains_postmasters_file.= "# Mail Alias Groups for : ".$domain_parent."\n";
 						for($x=0;$x<count($mailbox_cleanup2);$x++)

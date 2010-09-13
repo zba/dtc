@@ -31,7 +31,7 @@ function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admi
 
 	global $pro_mysql_handle_table;
 
-	$link_create = "<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=myaccount/nickhandles\">". _("Create a new handle") ."</a>";
+	$link_create = "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=myaccount/nickhandles\">". _("Create a new handle") ."</a>";
 
 	$query = "SELECT * FROM $pro_mysql_handle_table WHERE owner='$adm_login';";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
@@ -360,7 +360,7 @@ function drawAdminTools_NickHandles($admin){
 		if($i != 0){
 			$out .= " - ";
 		}
-		$out .= "<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&hdl_id=".$row["id"]."\">".$row["name"]."</a>";
+		$out .= "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&hdl_id=".$row["id"]."\">".$row["name"]."</a>";
 	}
 
 	if(isset($_REQUEST["hdl_id"]) && $_REQUEST["hdl_id"] != ""){
@@ -369,7 +369,7 @@ function drawAdminTools_NickHandles($admin){
 		$query = "SELECT * FROM $pro_mysql_handle_table WHERE id='$hdl_id' AND owner='$adm_login';";
 		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 		$hdl = mysql_fetch_array($result);
-		$out .= "<br><br><a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">New handle</a><br>
+		$out .= "<br><br><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink\">New handle</a><br>
 		<b><u>Edit existing nick-handle ".$hdl["name"].":</u></b><br>";
 		$hidden_inputs = "<input type=\"hidden\" name=\"action\" value=\"update_nickhandle\">";
 		$name_of_hdl = "<input type=\"hidden\" name=\"name\" value=\"".$hdl["name"]."\">".$hdl["name"];
@@ -422,7 +422,7 @@ function drawAdminTools_NickHandles($admin){
 		$hdlemail = "";
 	}
 	$rf = "<font color=\"red\">*</font>";	// Required field
-	$out .= "($rf ". _("marked fields are required") .")<form action=\"". $_SERVER["PHP_SELF"] ."\">
+	$out .= "($rf ". _("marked fields are required") .")<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">$hidden_inputs
 <input type=\"hidden\" name=\"hdl_id\" value=\"$hdl_id\">

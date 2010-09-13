@@ -43,18 +43,18 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "recover_lost_pass"){
 			if($i != 0){
 				$recover_txt .= " - ";
 			}
-			$recover_txt .= "<a href=\"".$_SERVER["PHP_SELF"]."?action=recover_lost_pass&adm_lost_login=$login\">$login</a>";
+			$recover_txt .= "<a href=\"?action=recover_lost_pass&adm_lost_login=$login\">$login</a>";
 		}
 	}
 }else{
 	$recover_l_txt = dtcFormTableAttrs();
-	$recover_l_txt .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$recover_l_txt .= "<form action=\"?\">
 <input type=\"hidden\" name=\"action\" value=\"recover_lost_pass\">";
 	$recover_l_txt .= dtcFormLineDraw( _("Login:") ,"<input type=\"text\" name=\"adm_lost_login\">",0);
 	$recover_l_txt .= dtcFromOkDraw()."</table></form>";
 
 	$recover_r_txt = dtcFormTableAttrs();
-	$recover_r_txt .= "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$recover_r_txt .= "<form action=\"?\">
 <input type=\"hidden\" name=\"action\" value=\"recover_lost_pass\">";
 	$recover_r_txt .= dtcFormLineDraw( _("Email:") ,"<input type=\"text\" name=\"adm_lost_email\">",0);
 	$recover_r_txt .= dtcFromOkDraw()."</table></form>";

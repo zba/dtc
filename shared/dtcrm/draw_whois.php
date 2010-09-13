@@ -42,7 +42,7 @@ function drawAdminTools_Whois($admin,$eddomain){
 			$out .= drawNameTransfer($admin,$domain_name);
 		}else{
 			$out .= _("Your domain name has been registred elsewhere (i.e. not on this site). To order its transfer, please click ") .
-"<a href=\"". $_SERVER["PHP_SELF"] ."?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&add_domain_type=domregandhosting&dtcrm_action=transfer_domain\">". _("here") ."</a>.<br><br>
+"<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&add_domain_type=domregandhosting&dtcrm_action=transfer_domain\">". _("here") ."</a>.<br><br>
 ". _("If you want to keep your current registrar, you have to make the whois point to these DNS:") ."<br><br>
 ". _("Primary DNS:") ."<b>$conf_addr_primary_dns</b><br>
 ". _("Secondary DNS:") ."<b>$conf_addr_secondary_dns</b>
@@ -100,7 +100,7 @@ function drawAdminTools_Whois($admin,$eddomain){
 		$out .= "<br><h3>". _("Your domain name whois data:") ."</h3>
 ";
 
-		$out .= "<form action=\"". $_SERVER["PHP_SELF"] ."\">
+		$out .= "<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">

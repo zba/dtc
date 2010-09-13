@@ -85,11 +85,11 @@ h1 {
 <BODY BGCOLOR="#FFFFFF">
 <H1>' . _("Active Products Statistics for") . ' '.$_SERVER["SERVER_NAME"].'</H1>
 <center>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=hour" ALT="' . _("Hour Sales Graph") . '"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=day" ALT="' . _("Day Sales Graph") . '"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=week" ALT="' . _("Week Sales Graph") . '"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=month" ALT="' . _("Month Sales Graph") . '"><br>
-<IMG BORDER="0" SRC="'.$_SERVER["PHP_SELF"].'?graph=year" ALT="' . _("Year Sales Graph") . '">
+<IMG BORDER="0" SRC="?graph=hour" ALT="' . _("Hour Sales Graph") . '"><br>
+<IMG BORDER="0" SRC="?graph=day" ALT="' . _("Day Sales Graph") . '"><br>
+<IMG BORDER="0" SRC="?graph=week" ALT="' . _("Week Sales Graph") . '"><br>
+<IMG BORDER="0" SRC="?graph=month" ALT="' . _("Month Sales Graph") . '"><br>
+<IMG BORDER="0" SRC="?graph=year" ALT="' . _("Year Sales Graph") . '">
 </center>
 </body>
 </html>';

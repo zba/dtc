@@ -34,7 +34,7 @@ function draw_UpgradeAccount($admin){
 	$out = "";
 	$nowrap = 'style="white-space:nowrap"';
 
-	$frm_start = "<form action=\"".$_SERVER["PHP_SELF"]."\">
+	$frm_start = "<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -170,7 +170,7 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 
 	$payid = createCreditCardPaiementID($heber_price,$admin["info"]["id_client"],
 		"Account upgrade: ".$ro["name"],"no");
-	$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
+	$return_url = htmlentities($_SERVER["PHP_SELF"])."?adm_login=$adm_login&adm_pass=$adm_pass"
 	."&addrlink=$addrlink&action=upgrade_myaccount&prod_id=9&inner_action=return_from_paypal_upgrade_account&payid=$payid";
 
 	$service_location = $conf_this_server_country_code;

@@ -294,7 +294,7 @@ case "add_new_service":
 	$payid = createCreditCardPaiementID($product["price_dollar"] + $product["setup_fee"],$insert_id,$product["name"]." (login: ".$_REQUEST["adm_login"].")","yes",$product["id"],$vat_rate);
 	$q = "UPDATE $pro_mysql_new_admin_table SET paiement_id='$payid' WHERE id='$insert_id';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
+	$return_url = htmlentities($_SERVER["PHP_SELF"])."?action=return_from_pay&regid=$payid";
 	$paybutton =paynowButton($payid,$product["price_dollar"] + $product["setup_fee"],$product["name"]." (login: ".$_REQUEST["adm_login"].")",$return_url,$vat_rate,$secpayconf_use_paypal_recurring);
 
 	$master_total = $product["price_dollar"] + $product["setup_fee"];
@@ -388,7 +388,7 @@ case "reg_new_user":
 					$payid = createCreditCardPaiementID($product["price_dollar"] + $product["setup_fee"],$reguser["id"],$product["name"]." (login: ".$newadmin["reqadm_login"].")","yes",$product["id"],$vat_rate);
 					$q = "UPDATE $pro_mysql_new_admin_table SET paiement_id='$payid' WHERE id='".$reguser["id"]."';";
 					$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-					$return_url = $_SERVER["PHP_SELF"]."?action=return_from_pay&regid=$payid";
+					$return_url = htmlentities($_SERVER["PHP_SELF"])."?action=return_from_pay&regid=$payid";
 					$paybutton =paynowButton($payid,$product["price_dollar"] + $product["setup_fee"],$product["name"]." (login: ".$newadmin["reqadm_login"].")",$return_url,$vat_rate,$secpayconf_use_paypal_recurring);
 				}
 				if($print_form == "yes"){

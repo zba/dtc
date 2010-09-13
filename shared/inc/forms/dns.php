@@ -9,7 +9,7 @@ function drawAdminTools_DomainDNS($admin,$eddomain){
 
 	// The domain DNS configuration
 	$domain_dns_mx_conf_form = "
-<form action=\"".$_SERVER["PHP_SELF"]."\">
+<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$eddomain["name"]."\">

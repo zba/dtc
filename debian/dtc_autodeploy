@@ -72,7 +72,7 @@ export LANGUAGE="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 locale-gen
-apt-get --force-yes --assume-yes install dtc-toaster
+apt-get --force-yes --assume-yes install dtc-toaster postfix postfix-tls postfix-mysql
 
 # Set debconf back to medium priority, using Dialog
 echo "debconf debconf/frontend select Dialog

@@ -80,14 +80,14 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 		<input type=\"hidden\" name=\"edit_domain\" value=\"".$eddomain["name"]."\">";
 	
 	if(empty($a["stats_login"])){
-		$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
+		$out .= "<tr><td><form action=\"?\">$hidden
 		<input type=\"hidden\" name=\"action\" value=\"add_stats_login\">
 		". _("Login:") ." <input type=\"text\" name=\"stats_login\" value=\"\"> ". _("Password:"). " 
 		<input type=\"text\" name=\"stats_pass\" value=\"\"></td></tr>
 		<tr><td>". _("Copy to subdomains:") ." <input type=\"checkbox\" name=\"stats_subdomain\" value=\"\"></td></tr>
 		<tr><td><input type=\"submit\" value=\"". _("Ok") ."\"></form></td></tr>";
 	}else{
-		$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
+		$out .= "<tr><td><form action=\"?\">$hidden
 		<input type=\"hidden\" name=\"action\" value=\"modify_stats_login_pass\">
 		". _("Login:") ." <input type=\"text\" name=\"stats_login\" value=\"".$a["stats_login"]."\">
 		". _("Password:") ." <input type=\"password\" name=\"stats_pass\" value=\"".$a["stats_pass"]."\"></td></tr>
@@ -96,7 +96,7 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 			$out .= "checked";
 		$out .= "></td></tr>
 		<tr><td><input type=\"submit\" value=\"". _("Save") ."\"></form>
-		<form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
+		<form action=\"?\">$hidden
 		<input type=\"hidden\" name=\"action\" value=\"del_stats_login\">
 		<input type=\"hidden\" name=\"stats_login\" value=\"".$a["stats_login"]."\">
 		<input type=\"hidden\" name=\"stats_pass\" value=\"".$a["stats_pass"]."\">

@@ -1,7 +1,6 @@
 <?php
 
 function drawAdminTools_MyAccount($admin){
-	global $PHP_SELF;
 	global $adm_login;
 	global $adm_pass;
 	global $addrlink;
@@ -18,7 +17,7 @@ function drawAdminTools_MyAccount($admin){
 
 	get_secpay_conf();
 
-	$frm_start = "<form action=\"$PHP_SELF\">
+	$frm_start = "<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
@@ -61,7 +60,7 @@ function drawAdminTools_MyAccount($admin){
 			$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
 			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
-			$return_url = $_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass"
+			$return_url = htmlentities($_SERVER["PHP_SELF"])."?adm_login=$adm_login&adm_pass=$adm_pass"
 				."&addrlink=$addrlink&action=refund_myaccount&inneraction=return_from_paypal_refund_my_account&payid=$payid";
 			$paybutton = paynowButton($payid,addslashes($_REQUEST["refund_amount"]),"Refund my account",$return_url);
 			$out .= "<b><u>Pay \$".$_REQUEST["refund_amount"]." on my account:</u></b><br>";

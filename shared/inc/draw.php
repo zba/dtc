@@ -68,7 +68,7 @@ function drawPasswordChange(){
 
 	$out = "<h3>". _("Change your password:") ."</h3><br>
 $pass_submit_err
-<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
+<form action=\"?\" method=\"post\">
 ".dtcFormTableAttrs()."
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -378,12 +378,12 @@ function drawAdminTools($admin){
 		"type" => "link",
 		"link" => "help");
 
-	$mymenu = makeTreeMenu($user_menu,$addrlink,"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass","addrlink");
-	$mymenu .= "<div align=\"center\" class=\"box_wnb_nb_content\"><a href=\"".$_SERVER["PHP_SELF"]."?\">". _("Logout") ."</a>";
+	$mymenu = makeTreeMenu($user_menu,$addrlink,"?adm_login=$adm_login&adm_pass=$adm_pass","addrlink");
+	$mymenu .= "<div align=\"center\" class=\"box_wnb_nb_content\"><a href=\"?\">". _("Logout") ."</a>";
 	if($dtc_use_text_menu == "no"){
-		$mymenu .= " - <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=yes\">". _("Use text menu") ."</a>";
+		$mymenu .= " - <a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=yes\">". _("Use text menu") ."</a>";
 	}else{
-		$mymenu .= " - <a href=\"".$_SERVER["PHP_SELF"]."?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=no\">". _("Use image menu")."</a>";
+		$mymenu .= " - <a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addlink=$addrlink&use_text_menu=no\">". _("Use image menu")."</a>";
 	}
 	$mymenu .= "</div>";
 

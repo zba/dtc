@@ -260,6 +260,8 @@ function domainImport($path_from,$adm_login,$adm_pass){
 	global $conf_dtc_system_uid;
 	global $conf_dtc_system_gid;
 
+	global $console;
+
 	// Read the file
 	$fp = fopen($path_from, "r+");
 	$xml_content = fread($fp, filesize($path_from));

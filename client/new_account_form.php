@@ -7,6 +7,7 @@ function register_user($adding_service="no"){
 	global $pro_mysql_vps_server_table;
 	global $conf_webmaster_email_addr;
 	global $conf_selling_conditions_url;
+	global $conf_main_domain;
 
 	global $pro_mysql_custom_fld_table;
 
@@ -78,7 +79,7 @@ function register_user($adding_service="no"){
 		return $ret;
 	}
 
-	if($_REQUEST["domain_name"] == "" || !isTLD($_REQUEST["domain_tld"])){
+	if($_REQUEST["domain_name"] == "" || ( !isTLD($_REQUEST["domain_tld"]) && ($_REQUEST["domain_tld"] != "." . $conf_main_domain))){
 		$domain_tld = "";
 	}else{
 		$domain_tld = $_REQUEST["domain_tld"];
@@ -305,7 +306,7 @@ function register_user($adding_service="no"){
 		$hash["city"] = $_REQUEST["city"];
 		$hash["postal"] = $_REQUEST["zipcode"];
 		$hash["country"] = $_REQUEST["country"];
-		$maildomain = split("@",$_REQUEST["email"],2);
+		$maildomain = preg_split("/@/",$_REQUEST["email"],2);
 		$hash["domain"] = $maildomain[1];
 		$hash["custPhone"] = $_REQUEST["phone"];
 		$hash["license_key"] = $secpayconf_maxmind_license_key;
@@ -845,7 +846,7 @@ function hostingProductChanged(){
 </script><br>
 <br>
 <i>" . _("Feilds with a <font color=\"red\">*</font> are mandatory.") . "</i><br>
-<form name=\"newuser_form\" action=\"".$_SERVER["PHP_SELF"]."\" methode=\"post\">
+<form name=\"newuser_form\" action=\"?\" methode=\"post\">
 <input type=\"hidden\" name=\"action\" value=\"new_user_request\">
 <table>
 <tr>

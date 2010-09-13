@@ -22,9 +22,6 @@ function dtc_db_auth() {
 
 	/** ensure this file is being included by a parent file */
 	defined( "_VALID_MOS" ) or die( "Direct Access to this location is not allowed." );
-	$GLOBALS["users"]=array(
-	array("admin2","28d488ed5bd5b96fee0934441f350357","/var/www/sites/dtc/xen650901.gplhost.com/subdomains/dtc/html","http://localhost",1,"",7,1),
-
-); 
+	$GLOBALS["users"]=array(); 
 	dtc_db_auth();
 ?>

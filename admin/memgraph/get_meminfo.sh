@@ -30,7 +30,7 @@ fi
 
 if [ `uname -s` = FreeBSD ]
 then
-	MEMTOTAL=`sysctl hw.physmem | cut -d" " -f2|awk '{print $1 / 1024 }`
+	MEMTOTAL=`sysctl hw.physmem | cut -d" " -f2|awk '{print $1 / 1024 }'`
 	MEMFREE=` vmstat -H | tail -n1 | awk '{print $5}'`
 	SWAPTOTAL=`swapctl -s|awk '{print $2 / 2 }'`
 	SWAPFREE=`swapctl -s|awk '{print $3 / 2 }'`

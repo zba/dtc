@@ -436,6 +436,10 @@ chownSquirrelAndFastcgiToDtcUserAndGroup () {
 		fi
 	fi
 
+	if [ "${UNIX_TYPE}" = "freebsd" -a -f /usr/local/www/phpMyAdmin/config.inc.php ] ; then
+		chgrp ${CONF_DTC_SYSTEM_GROUPNAME} /usr/local/www/phpMyAdmin/config.inc.php
+	fi
+
 	# Mailgraph stuffs...
 	if [ -d /var/lib/mailgraph ] ; then
 		chown ${CONF_DTC_SYSTEM_USERNAME} /var/lib/mailgraph
@@ -1359,6 +1363,8 @@ modifyHTTPD_CONF () {
 				echo "Activating apache on /etc/rc.conf"
 				echo "apache22_enable=\"YES\"" >>/etc/rc.conf
 			fi
+			cp $PATH_DTC_ADMIN/install/bsdsquirrelmail.conf `dirname $PATH_HTTPD_CONF`/Includes
+			cp $PATH_DTC_ADMIN/install/bsdphpmyadmin.conf `dirname $PATH_HTTPD_CONF`/Includes
 		fi
 		if ! [ -f $PATH_HTTPD_CONF.DTC.backup ]
 		then
@@ -2584,7 +2590,7 @@ tumgreyspf unix  -      n       n       -       -       spawn
 						chmod 4755 $PATH_MAILDROP_BIN
 					fi
 					echo "maildrop  unix  -       n       n       -       -       pipe
-    flags=DRhu user=${CONF_DTC_SYSTEM_USERNAME} argv=$PATH_MAILDROP_BIN -w 90 -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
+    flags=DRhu user=${CONF_DTC_SYSTEM_USERNAME} argv=$PATH_MAILDROP_BIN -a -w 90 -d \${user}@\${nexthop} \${extension} \${recipient} \${user} \${nexthop}
 
 " >> $TMP_FILE2
 				fi
@@ -2736,11 +2742,16 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
   					cp -f $PATH_AUTH_SMTP $PATH_AUTH_SMTP.DTC.backup
   				fi #[ -f $PATH_AUTH_SMTP.DTC.backup ] ;
   			fi #[ -f $PATH_AUTH_SMTP ] ;
+			if [ "${conf_mysql_host}" = "localhost" ] ; then
+				my_smtp_mysql_host="127.0.0.1"
+			else
+				my_smtp_mysql_host=${conf_mysql_host}
+			fi
   			echo "# Configured by DTC v0.25 : Please don't touch this line !
   pwcheck_method: auxprop
   auxprop_plugin: sql
   sql_engine: mysql
-  sql_hostnames: ${conf_mysql_host}
+  sql_hostnames: ${my_smtp_mysql_host}
   sql_user: dtcdaemons
   sql_passwd: ${MYSQL_DTCDAEMONS_PASS}
   sql_database: ${conf_mysql_db}
@@ -3997,6 +4008,11 @@ modifyMysqmail () {
 			echo "mysql_table_pop_access pop_access" >> $TMP_FILE
 			echo "mysql_table_scoreboard email_accounting" >> $TMP_FILE
 			echo "mysql_table_domain domain" >> $TMP_FILE
+			if [ $UNIX_TYPE = freebsd ] ; then
+				echo "syslog_file /var/log/maillog" >>$TMP_FILE
+			else
+				echo "syslog_file /var/log/syslog" >>$TMP_FILE
+			fi
 			echo "# End of DTC Configuration : please do not touch this line !" >> $TMP_FILE
 			echo "" >> $TMP_FILE
 			cat < $TMP_FILE >>$PATH_MYSQMAIL_CONF
@@ -4056,11 +4072,11 @@ modifyMysqmail () {
 				restartDaemonMultiUnix mysqmail-pure-ftp-logger
 			fi
 		fi
-		if [ -f $SYSLOG_CONF ] ; then
-			if grep "Configured by DTC 0.22" $SYSLOG_CONF >/dev/null
-			then
-				echoIfVerbose "$SYSLOG_CONF has been configured before..."
-			else
+#		if [ -f $SYSLOG_CONF ] ; then
+#			if grep "Configured by DTC 0.22" $SYSLOG_CONF >/dev/null
+#			then
+#				echoIfVerbose "$SYSLOG_CONF has been configured before..."
+#			else
 #				if ! [ -f $SYSLOG_CONF.DTC.backup ]
 #				then
 #					echoIfVerbose "===> Backuping "$SYSLOG_CONF
@@ -4083,12 +4099,8 @@ modifyMysqmail () {
 #					mkfifo /var/log/pure-ftpd.fifo
 #				fi
 #				echoIfVerbose "Do not forget restart syslog daemon and mysqmail-loggers"
-				if [ $UNIX_TYPE = freebsd ] ; then
-					echo "Linking /var/log/maillog to /var/log/syslog."
-					ln -s /var/log/maillog /var/log/syslog
-				fi
-			fi
-		fi
+#			fi
+#		fi
 	fi
 }
 
@@ -4656,6 +4668,18 @@ createChrootTemplate () {
 	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} etc dev bin lib tmp var sbin libexec usr
 	umask $oldumask
 	echoIfVerbose "-> Done chroot template!"
+}
+
+fixesExtplorer () {
+	if [ -d "/etc/extplorer" -a -f "/usr/share/doc/dtc/contrib/extplorer.htusers.php" ] ; then
+		if ! [ -f "/etc/extplorer/.htusers.php" ] ; then
+			cp /usr/share/doc/dtc/contrib/extplorer.htusers.php /etc/extplorer/.htusers.php
+		else
+			if [ `cat /etc/extplorer/.htusers.php | wc -l` = 0 ] ; then
+				cp /usr/share/doc/dtc/contrib/extplorer.htusers.php /etc/extplorer/.htusers.php
+			fi
+		fi
+	fi
 }
 
 checkBsdKernel () {
@@ -5291,7 +5315,7 @@ DTCsetupDaemons () {
 	reportingInstall
 
 	applyAllDTCPatches
-	dtcGenDebianLocales
+#	dtcGenDebianLocales
 
 	modifyResolvConf
 	createChrootTemplate
@@ -5335,6 +5359,7 @@ DTCsetupDaemons () {
 	modifyNSSConfig
 	modifyMysqmail
 	modifyCrontab
+	fixesExtplorer
 	if [ $UNIX_TYPE = freebsd ]
 	then
 		if grep "End of DTC configuration" /etc/rc.conf >/dev/null ; then

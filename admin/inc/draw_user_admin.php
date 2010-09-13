@@ -231,7 +231,7 @@ function drawNewAdminForm(){
 		}else{
 			$out .= "<font color=\"#FF0000\">"._("No")."</font><br>";
 		}
-		$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"post\">
+		$out .= "<form action=\"?\" method=\"post\">
 		<input type=\"hidden\" name=\"subaction\" value=\"ticket_reply\">
 		<textarea cols=\"100\" rows=\"10\" wrap=\"physical\" name=\"ticketbody\"></textarea><br>
 		<input type=\"hidden\" name=\"tik_id\" value=\"".$_REQUEST["tik_id"]."\">
@@ -410,8 +410,8 @@ dtcFromOkDraw()."
 					print_r(unserialize($a["maxmind_output"]),true))."</pre></td>";
 			}
 			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_id=".$a["id"]."\">". _("Edit") ."</a><br/>
-			<a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_user&reqadm_id=".$a["id"]."\">". _("Add") ."</a><br/>
-			<a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_user&reqadm_id=".$a["id"]."\">". _("Delete") ."</a></td>";
+			<a href=\"?action=valid_waiting_user&reqadm_id=".$a["id"]."\">". _("Add") ."</a><br/>
+			<a href=\"?action=delete_waiting_user&reqadm_id=".$a["id"]."\">". _("Delete") ."</a></td>";
 			$waiting_new_users .= "</tr>";
 		}
 		$waiting_new_users .= "</table>";
@@ -430,8 +430,8 @@ dtcFromOkDraw()."
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<td>".$a["adm_login"]."</td>";
 			$waiting_new_users .= "<td>".$a["domain_name"]."</td>";
-			$waiting_new_users .= "<td><a href=\"".$_SERVER["PHP_SELF"]."?action=valid_waiting_domain_to_user&reqid=".$a["id"]."\">". _("Add") ."</a>
-- <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_waiting_domain_to_user&reqid=".$a["id"]."\">". _("Delete") ."</a></td></tr>";
+			$waiting_new_users .= "<td><a href=\"?action=valid_waiting_domain_to_user&reqid=".$a["id"]."\">". _("Add") ."</a>
+- <a href=\"?action=delete_waiting_domain_to_user&reqid=".$a["id"]."\">". _("Delete") ."</a></td></tr>";
 		}
 		$waiting_new_users .= "</table>";
 	}
@@ -523,7 +523,7 @@ dtcFromOkDraw()."
 				break;
 			}
 			$waiting_new_users .= "<td>$heb_type</td>";
-			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a href=\"".$_SERVER["PHP_SELF"]."?action=validate_renewal&id=".$a["id"]."\">". _("Validate") ."</a> <a href=\"".$_SERVER["PHP_SELF"]."?action=delete_renewal&id=".$a["id"]."\">". _("Del") ."</a></td>";
+			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a href=\"?action=validate_renewal&id=".$a["id"]."\">". _("Validate") ."</a> <a href=\"?action=delete_renewal&id=".$a["id"]."\">". _("Del") ."</a></td>";
 			$waiting_new_users .= "</tr>";
 		}
 		$waiting_new_users .= "</table>";
@@ -558,7 +558,7 @@ dtcFromOkDraw()."
 				$cat = $a2["catname"];
 			}
 			$age = calculateAge($a["date"],$a["time"]);
-			$waiting_new_users .= "<td style=\"white-space:nowrap;\">$age</td><td>$cat</td><td style=\"white-space:nowrap;\"><a href=\"".$_SERVER["PHP_SELF"]."?subaction=resolv_ticket&tik_id=".$a["id"]."\">".htmlspecialchars(stripslashes($a["subject"]))."</a></td>";
+			$waiting_new_users .= "<td style=\"white-space:nowrap;\">$age</td><td>$cat</td><td style=\"white-space:nowrap;\"><a href=\"?subaction=resolv_ticket&tik_id=".$a["id"]."\">".htmlspecialchars(stripslashes($a["subject"]))."</a></td>";
 			$next_reply_id = $a["reply_id"];
 			$last_reply_text = "<font color=\"green\">". _("Admin"). "</font>";
 			$last_message_date = $a["date"];

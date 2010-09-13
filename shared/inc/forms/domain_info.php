@@ -48,7 +48,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 						$out .= dtcFormLineDraw( "", "<font color=\"red\">"._("Insufisant balance for the transaction, please go to \"My account\" and add money.")."</font>",0);
 						$out .= "</table>";
 					}else{
-						$out .= dtcFormLineDraw( "", "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+						$out .= dtcFormLineDraw( "", "<form action=\"?\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$webname."\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -70,7 +70,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 				}else{
 					$txt = $authcode["response_text"];
 				}
-	                        $frm = "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	                        $frm = "<form action=\"?\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -114,7 +114,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 					$a["protection"] = $sel;
 				}
 			}
-                        $frm = "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+                        $frm = "<form action=\"?\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -199,7 +199,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 		$radio_yes = "";
 	}
 
-	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	$out .= "<form action=\"?\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -209,7 +209,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 
 	$out .= "<h3>". _("Domain parking:") ."</h3>";
 	$out .= _("This domain will be the alias of the following domain (domain parking):");
-	$out .= "<form action=\"".$_SERVER["PHP_SELF"]."\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+	$out .= "<form action=\"?\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">

@@ -45,13 +45,13 @@ function drawDataBase($database){
 	$dblist_user = "";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
+		$out .= "<tr><td><form action=\"?\">$hidden
 		<input type=\"hidden\" name=\"action\" value=\"modify_dbuser_pass\">
 		<input type=\"hidden\" name=\"dbuser\" value=\"".$a["User"]."\">
 		".$a["User"]."</td>
 		<td><input type=\"text\" name=\"db_pass\" value=\"\"></td>
 		<td><input type=\"submit\" value=\"". _("Save") ."\"></form></td>
-		<td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
+		<td><form action=\"?\">$hidden
 		<input type=\"hidden\" name=\"action\" value=\"del_dbuser\">
 		<input type=\"hidden\" name=\"dbuser\" value=\"".$a["User"]."\">
 		<input type=\"submit\" value=\"". _("Delete") ."\"></form></td></tr>";
@@ -62,7 +62,7 @@ function drawDataBase($database){
 		}
 		$dblist_user[] = $a["User"];
 	}
-	$out .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
+	$out .= "<tr><td><form action=\"?\">$hidden
 	<input type=\"hidden\" name=\"action\" value=\"add_dbuser\">
 	<input type=\"text\" name=\"dbuser\" value=\"\"></td>
 	<td><input type=\"text\" name=\"db_pass\" value=\"\"></td>
@@ -94,12 +94,12 @@ function drawDataBase($database){
 				}
 			}
 			$dblist .= "<tr><td>".$row["Db"]."</td>";
-			$dblist .= "<td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
+			$dblist .= "<td><form action=\"?\">$hidden
 			<input type=\"hidden\" name=\"action\" value=\"change_db_owner\">
 			<input type=\"hidden\" name=\"dbname\" value=\"".$row["Db"]."\">
 			<select name=\"dbuser\">$dblist_user_popup</select></td>";
 			$dblist .= "<td><input type=\"submit\" value=\"". _("Save") ."\"></form></td>
-			<td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
+			<td><form action=\"?\">$hidden
 			<input type=\"hidden\" name=\"action\" value=\"delete_user_db\">
 			<input type=\"hidden\" name=\"dbname\" value=\"".$row["Db"]."\">
 			<input type=\"submit\" value=\"". _("Delete") ."\"></form></td></tr>";
@@ -111,7 +111,7 @@ function drawDataBase($database){
 				$dblist_user_popup .= "<option value=\"".$dblist_user[$j]."\">".$dblist_user[$j]."</option>";
 			}
 
-			$dblist .= "<tr><td><form action=\"".$_SERVER["PHP_SELF"]."\">$hidden
+			$dblist .= "<tr><td><form action=\"?\">$hidden
 		<input type=\"hidden\" name=\"action\" value=\"add_dbuser_db\">
 		<input type=\"text\" name=\"newdb_name\"></td>
 				<td><select name=\"dbuser\">$dblist_user_popup</select></td>

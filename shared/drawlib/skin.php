@@ -242,7 +242,7 @@ function makeVertiMenu($entrys_array,$gfx_path){
 			$rollover = $menu_entry["rollover"];
 			$link = $menu_entry["link"];
 			$alt = $menu_entry["alt"];
-			if(false == strstr($_SERVER["PHP_SELF"],$link)){
+			if(false == strstr(htmlentities($_SERVER["PHP_SELF"]),$link)){
 				$rolledImg = makeImgRollover("$gfx_path/$image","$gfx_path/$rollover",$alt);
 				$imgToDraw = "<a href=\"$link\">$rolledImg</a>";
 			}else{
