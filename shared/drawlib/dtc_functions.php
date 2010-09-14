@@ -542,7 +542,7 @@ function checkSubdomainFormat($name){
 	if($name == ""){
 		return false;
 	}
-	if(preg_match("/^([a-z0-9]+)([.a-z0-9-]*)([.a-z0-9]+)\$/",$name))
+	if(preg_match("/^([_a-z0-9]+)([_.a-z0-9-]*)([_.a-z0-9]+)\$/",$name))
 		return true;
 	else{
 		if(preg_match("/^([a-z0-9])\$/",$name))
