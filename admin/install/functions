@@ -1624,6 +1624,7 @@ unixhierarchysep: yes
 
 sasl_pwcheck_method: auxprop
 auxprop_plugin: sql
+sasl_mech_list: plain login digest-md5 cram-md5
 
 sasl_sql_engine: mysql
 sasl_sql_hostnames: ${conf_mysql_host}
@@ -2749,6 +2750,7 @@ maildrop_destination_recipient_limit = 1" >> $TMP_FILE
 			fi
   			echo "# Configured by DTC v0.25 : Please don't touch this line !
   pwcheck_method: auxprop
+  mech_list: plain login digest-md5 cram-md5
   auxprop_plugin: sql
   sql_engine: mysql
   sql_hostnames: ${my_smtp_mysql_host}
