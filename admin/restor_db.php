@@ -338,6 +338,10 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 $q = "UPDATE pop_access SET quota_couriermaildrop=CONCAT(1024000*quota_size,'S,',quota_files,'C')";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
+// Sets the fullemail field correctly, as it might be wrong in some setups.
+$q = "UPDATE pop_access SET fullemail = concat( `id`,  '@', `mbox_host` )";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
 // Alter the default shell value for FreeBSD, as the path will be in /usr/local
 if($conf_unix_type == "bsd"){
 	$q = "ALTER TABLE ssh_access CHANGE shell shell varchar(64) NOT NULL default '/usr/local/bin/dtc-chroot-shell'";
