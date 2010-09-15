@@ -2922,7 +2922,19 @@ modifyCourierConfig () {
 	fi
 
 	if [ ! -e ${COURIER_FOLDER}/quotawarnmsg ] ; then
-		ln -s ${COURIER_FOLDER}/quotawarnmsg $PATH_DTC_ETC/quotawarnmsg
+		# if we don't have $PATH_DTC_ETC yet, create it
+                if [ ! -e $PATH_DTC_ETC ]; then
+                        mkdir -p $PATH_DTC_ETC
+                fi
+		# if we don't have a COURIER folder yet, create it
+                if [ ! -e ${COURIER_FOLDER} ]; then
+                        mkdir -p ${COURIER_FOLDER}
+                fi
+		# don't relink this if it exists already
+		if [ ! -h $PATH_DTC_ETC/quotawarnmsg ]; then
+                        ln -s ${COURIER_FOLDER}/quotawarnmsg $PATH_DTC_ETC/quotawarnmsg
+                fi
+		# finally add the quota warning message
 		if [ ! -e $PATH_DTC_ETC/quotawarnmsg ] ; then
 			echo "From: Mail Delivery System <postmaster@${main_domain_name}>
 Reply-To: postmaster@${main_domain_name}
