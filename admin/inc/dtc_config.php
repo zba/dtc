@@ -1245,6 +1245,10 @@ function drawGeneralConfig(){
 				"type" => "text",
 				"legend" => _("Panel logo path (relative to ").$dtcshared_path."/gfx/skin/".$conf_skin._(") :"),
 				"size" => "30"),
+			"panel_logolink" => array(
+				"type" => "text",
+				"legend" => _("Panel logo link: "),
+				"size" => "30"),
 			"skin" => array(
 				"legend" => _("Select the type of skin:"),
 				"type" => "popup",

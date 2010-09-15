@@ -132,7 +132,8 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 	global $conf_panel_title;
 	global $conf_panel_subtitle;
 	global $conf_panel_logo;
-
+	global $conf_panel_logolink;
+	
 	global $conf_skin;
 	global $dtcshared_path;
 	
@@ -175,9 +176,20 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 			$inside = str_replace("__DTC_SUBTITLE__", $conf_panel_subtitle ,$inside);
 		}
 		if($conf_panel_logo == "default"){
-			$inside = str_replace("__DTC_LOGO__", "gfx/skin/".$conf_skin."/gfx/logo_dtc.gif" ,$inside);
+			// Prefer a default logo in PNG format
+			$panel_logo = "gfx/skin/".$conf_skin."/gfx/logo_dtc.png";
+			if (!file_exists($dtcshared_path."/".$panel_logo)) {
+				// fall-back to GIF format
+				$panel_logo = "gfx/skin/".$conf_skin."/gfx/logo_dtc.gif";
+			}
+			$inside = str_replace("__DTC_LOGO__", $panel_logo ,$inside);
 		}else{
 			$inside = str_replace("__DTC_LOGO__", "gfx/skin/".$conf_skin."/gfx/". $conf_panel_logo ,$inside);
+		}
+		if($conf_panel_logolink == "default"){
+			$inside = str_replace("__DTC_LOGOLINK__", "http://www.gplhost.com/software-dtc.html", $inside);
+		}else{
+			$inside = str_replace("__DTC_LOGOLINK__", $conf_panel_logolink, $inside);
 		}
 		$inside = str_replace("__DTC_LANGUAGES_LINKS__",$zeLanguage,$inside);
 		$inside = str_replace("__DTC_VERSION__","V$conf_dtc_version R$conf_dtc_release - $conf_unix_type",$inside);
