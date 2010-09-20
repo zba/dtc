@@ -75,6 +75,7 @@ nice rsync -e ssh -azvp ${RSYNCOPT} /etc/mlmmj/ ${DST}:/etc/mlmmj
 nice rsync -e ssh -azvp /etc/dtc/ ${DST}:/etc/dtc
 # copy the rrd files over too
 nice rsync -e ssh -azvp /var/lib/dtc/etc/*.rrd ${DST}:/var/lib/dtc/etc
-
+# copy the squirrelmail prefs and address book
+nice rsync -e  ssh -azvp /var/lib/squirrelmail/data/ ${DST}:/var/lib/squirrelmail/data
 echo "===> Starting the DTC installer script on the remote"
 ssh ${DST} ${DTC_PATH}/admin/install/install
