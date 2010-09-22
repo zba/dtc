@@ -50,6 +50,8 @@ USE_MYSQL=	server
 
 NO_BUILD=	yes
 USE_PHP=	mysql pcre session
+MAN8=		dtc-chroot-shell.8
+MANCOMPRESSED=	no
 
 .if defined(WITH_PHP5)
 DEFAULT_PHP_VER=5
@@ -130,16 +132,16 @@ RUN_DEPENDS+=	${LOCALBASE}/sbin/radiusd:${PORTSDIR}/net/freeradius2
 .endif
 
 SUB_FILES=	dtc-install dtc-deinstall
-SUB_LIST+=	WWWDIR=${WWWDIR} QMAIL_DIR="${QMAIL_DIR}"
-MAN8=		dtc-chroot-shell.8
-MANCOMPRESSED=	no
+SUB_LIST+=	WWWDIR="${WWWDIR}" QMAIL_DIR="${QMAIL_DIR}"
+
+.include <bsd.port.pre.mk>
 
 do-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-install ${PREFIX}/sbin/dtc-install
 	@${INSTALL_SCRIPT} ${WRKDIR}/dtc-deinstall ${PREFIX}/sbin/dtc-deinstall
-	@${GMAKE} -C ${WRKDIR}/dtc-__VERSION__.__RELEASE__ install-dtc-common INSTALL=install \
+	@${GMAKE} -C ${WRKSRC} install-dtc-common INSTALL=install \
 		DTC_APP_DIR=${WWWDIR} DTC_GEN_DIR=${PREFIX}/var/dtc CONFIG_DIR=${PREFIX}/etc DTC_ETC_DIRECTORY=${ETCDIR} \
 		DTC_DOC_DIR=${DOCSDIR} MANUAL_DIR=${MANPREFIX}/man BIN_DIR=${PREFIX}/bin UNIX_TYPE=bsd VERS=__VERSION__
 	@${CAT} ${PKGMESSAGE}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
