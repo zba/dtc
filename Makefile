@@ -161,7 +161,7 @@ bsd-ports-packages:
 	@cp $(BSD_SOURCE_DIR)/dtc/pkg-message $(PORT_BUILD)
 	@cp $(BSD_SOURCE_DIR)/dtc/pkg-descr $(PORT_BUILD)
 	@echo "MD5 ($(BSD_ARCH_NAME)) = "`if [ -e /sbin/md5 ] ; then md5 -r $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | cut -f1 -d" " ; else md5sum $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | cut -f1 -d" " ; fi` >$(PORT_BUILD)/distinfo
-	@echo "SHA256 ($(BSD_ARCH_NAME)) = "`if [ -e /sbin/sha256 ] ; then sha256 -r $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | cut -f1 -d" " ; fi` >>$(PORT_BUILD)/distinfo
+	@echo "SHA256 ($(BSD_ARCH_NAME)) = "`if [ -e /sbin/sha256 ] ; then sha256 -r $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | cut -f1 -d" " ; else sha256sum $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | cut -f1 -d" " ; fi` >>$(PORT_BUILD)/distinfo
 	@echo "SIZE ($(BSD_ARCH_NAME)) = "`ls -ALln $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | awk '{print $$5}'` >>$(PORT_BUILD)/distinfo
 
 	@mkdir -p $(PKG_PLIST_BUILD)
