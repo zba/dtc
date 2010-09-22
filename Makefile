@@ -209,7 +209,6 @@ ADMIN_ROOTFOLDER_PHP_SCRIPT_FILES=admin/404.php admin/bw_per_month.php admin/ind
 admin/view_waitingusers.php admin/memgraph.php admin/netusegraph.php admin/vps_stats_cpu.php \
 admin/vps_stats_hdd.php admin/vps_stats_network.php admin/vps_stats_swap.php admin/patch_saslatuhd_startup admin/dtc_db.php admin/dkfilter.patch \
 admin/logPushlet.php admin/xanjaxXHR.js admin/authme.php admin/active_prods_graph.php \
-admin/migrate_to_server.php \
 admin/install/bsdsquirrelmail.conf admin/install/bsdphpmyadmin.conf
 
 ADMIN_GENFILE_PHP_SCRIPT_FILES=admin/genfiles/gen_awstats.php admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_perso_vhost.php \
@@ -222,8 +221,7 @@ admin/genfiles/mailfilter_vacation_template admin/genfiles/gen_nagios.php
 ADMIN_INC_PHP_SCRIPT_FILES=admin/inc/renewals.php \
 admin/inc/draw_user_admin.php admin/inc/dtc_config.php \
 admin/inc/monitor.php admin/inc/submit_root_querys.php admin/inc/graphs.php admin/inc/nav.php \
-admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/submit_to_sql.php admin/inc/ip_usage_report.php \
-admin/guess_ip.sh admin/dtc_migrate admin/dtc_import_all_dbs
+admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/submit_to_sql.php admin/inc/ip_usage_report.php
 
 # Todo: have the client/vps_stats_* be taken from the admin folder!
 ADMIN_AND_CLIENT_FILES=vps_stats_cpu.php vps_stats_hdd.php vps_stats_network.php vps_stats_swap.php vm-cpu.php vm-io.php vm-net.php \
@@ -292,7 +290,9 @@ CLIENT_PICTURES=client/enets_pay_icon.gif client/favicon.ico client/cheque.gif c
 ALL_PICS=$(NEW_SITES_TEMPLATE_IMG) $(CLIENT_PICTURES)
 ################# EXECUTABLE SCRIPTS #################
 # Owned by root, ran by root
-ROOT_CRON_PHP_SCRIPT_FILES=admin/cron.php admin/reminders.php admin/restor_db.php admin/backup_db.php admin/support-receive.php
+ROOT_CRON_PHP_SCRIPT_FILES=admin/cron.php admin/reminders.php admin/restor_db.php admin/backup_db.php admin/support-receive.php \
+admin/migrate_to_server.php admin/guess_ip.sh admin/dtc_migrate admin/dtc_import_all_dbs
+
 # Owned by root, executed as DTC
 DTC_CRON_PHP_SCRIPT_FILES=admin/accesslog.php admin/maint_apache.php admin/stat_total_active_prods.php
 # Owned by root, executed by root
