@@ -1,3 +1,10 @@
+dtc (0.32.4-1) unstable; urgency=low
+
+  * New upstream release fixing:
+    - Corrects the isValidEmail regular expression (security fix).
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 26 Sep 2010 20:17:07 +0800
+
 dtc (0.32.3-1) unstable; urgency=low
 
   * New upstream release fixing:
