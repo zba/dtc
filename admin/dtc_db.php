@@ -808,7 +808,7 @@ $dtc_database = array(
 			"name" => "varchar(255) NOT NULL default ''",
 			"quota_disk" => "int(9) NOT NULL default '0'",
 			"memory_size" => "int(9) NOT NULL default '48'",
-			"virt_type" => "enum ('xen','vz','kvm','virtualbox') NOT NULL default 'xen'",
+			"virt_type" => "enum('xen','vz','kvm','virtualbox') NOT NULL default 'xen'",
 			"nbr_email" => "int(9) NOT NULL default '0'",
 			"nbr_database" => "int(9) NOT NULL default '0'",
 			"bandwidth" => "int(15) NOT NULL default '0'",
@@ -1372,7 +1372,7 @@ $dtc_database = array(
                         "location" => "varchar(64) NOT NULL default ''",
                         "soap_login" => "varchar(64) NOT NULL default ''",
                         "soap_pass" => "varchar(64) NOT NULL default ''",
-                        "virt_type" => "enum ('xen','vz','kvm','virtualbox') NOT NULL default 'xen'",
+                        "virt_type" => "enum('xen','vz','kvm','virtualbox') NOT NULL default 'xen'",
 			"lvmenable" => "enum('yes','no') NOT NULL default 'yes'",
 			"country_code" => "varchar(4) NOT NULL default 'US'"
 		),
