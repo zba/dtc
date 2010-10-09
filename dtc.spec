@@ -1,6 +1,6 @@
 Name: dtc-core
 Version: __VERSION__
-Release: 0.1.20100917
+Release: 0.1.20101009
 License: LGPL
 Group: System Environment/Daemons
 URL: http://www.gplhost.com/software-dtc.html
