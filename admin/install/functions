@@ -2472,7 +2472,7 @@ disable_vrfy_command = yes
 smtp_tls_security_level = may
 
 smtpd_client_connection_rate_limit=20
-smtpd_client_messages_rate_limit=20
+smtpd_client_message_rate_limit=20
 smtpd_client_recipient_rate_limit=20
 anvil_rate_time_unit = 60s
 
