@@ -16,7 +16,7 @@ function dtc_db_auth() {
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$GLOBALS["users"][] = array($a["adm_login"],md5($a["adm_pass"]),$a["path"],"http://localhost",1,"",7,1);
+		$GLOBALS["users"][] = array($a["adm_login"],md5($a["adm_pass"]),$a["path"],"http://localhost",1,"",1,1);
 	}
 }
 
