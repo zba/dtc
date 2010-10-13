@@ -186,6 +186,7 @@ $dtc_database = array(
 			"use_mail_alias_group" => "enum('yes','no') NOT NULL default 'yes'",
 			"use_ssl" => "enum('yes','no') NOT NULL default 'no'",
 			"use_shared_ssl" => "enum('yes','no') NOT NULL default 'no'",
+			"force_use_https" => "enum('yes','no') NOT NULL default 'no'",
 			"use_nated_vhost" => "enum('yes','no') NOT NULL default 'no'",
 			"nated_vhost_ip" => "varchar(16) NOT NULL default '192.168.0.2'",
 			"addr_backup_mail_server" => "varchar(255) NOT NULL default ''",

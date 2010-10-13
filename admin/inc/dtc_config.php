@@ -1109,6 +1109,11 @@ function drawGeneralConfig(){
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
+			"force_use_https" => array(
+				"legend" => _("Force HTTPS use: "),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"domain_based_ftp_logins" => array(
 				"legend" => _("Use @domain.com ftp logins: "),
 				"type" => "radio",
