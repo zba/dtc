@@ -8,29 +8,29 @@ require_once("../shared/vars/lang.php");
 $rrd = $conf_generated_file_path.'/mailqueues.rrd';
 $xpoints = 800;
 $ypoints = 160;
-$vert_label = _("Mail queue statistics");
+$vert_label = addslashes(_("Mail queue statistics"));
 
 if( isset($_REQUEST["graph"]) ){
 
 	switch($_REQUEST["graph"]){
 		case "hour":
-			$title = _('Hour graph');
+			$title = addslashes(_('Hour graph'));
 			$steps = 3600;
 			break;
 		case "day":
-			$title = _('Day Graph');
+			$title = addslashes(_('Day Graph'));
 			$steps = 3600*24;
 			break;
 		case "week":
-			$title = _('Week Graph');
+			$title = addslashes(_('Week Graph'));
 			$steps = 3600*24*7;
 			break;
 		case "month":
-			$title = _('Month Graph');
+			$title = addslashes(_('Month Graph'));
 			$steps = 3600*24*31;
 			break;
 		case "year":
-			$title = _('Year Graph');
+			$title = addslashes(_('Year Graph'));
 			$steps = 3600*24*365;
 			break;
 		default:
@@ -42,8 +42,8 @@ if( isset($_REQUEST["graph"]) ){
 //	$filename = "/tmp/mail_queue_usage_".$_REQUEST["graph"].".png";
 	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
 	$cmd .= "DEF:active=$rrd:active:AVERAGE DEF:deferred=$rrd:deferred:AVERAGE ";
-	$cmd .= "'LINE2:active#00ff00:" . _("Active+incoming+maildrop") . ":' 'GPRINT:active:MAX:" . _("Maximum") . "\: %0.0lf' 'GPRINT:active:AVERAGE:" . _("Average") . "\: %0.0lf/min\\n' ";
-	$cmd .= "'LINE1:deferred#ff0000:" . _("Deferred") . ":' 'GPRINT:deferred:MAX:" . _("Maximum") . "\: %0.0lf' 'GPRINT:deferred:AVERAGE:" . _("Average") . "\: %0.0lf/min\l' ";
+	$cmd .= "'LINE2:active#00ff00:" . addslashes(_("Active+incoming+maildrop")) . ":' 'GPRINT:active:MAX:" . addslashes(_("Maximum")) . "\: %0.0lf' 'GPRINT:active:AVERAGE:" . addslashes(_("Average")) . "\: %0.0lf/min\\n' ";
+	$cmd .= "'LINE1:deferred#ff0000:" . addslashes(_("Deferred")) . ":' 'GPRINT:deferred:MAX:" . addslashes(_("Maximum")) . "\: %0.0lf' 'GPRINT:deferred:AVERAGE:" . addslashes(_("Average")) . "\: %0.0lf/min\l' ";
 	exec($cmd,$output);
 
 	$filesize = filesize($filename);
