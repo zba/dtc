@@ -682,7 +682,14 @@ AND $pro_mysql_admin_table.id_client != '0'";
 	</IfModule>
 	<IfModule mod_security2.c>
 		SecRuleEngine Off
-        </IfModule>
+	</IfModule>";
+	if($conf_force_use_https == "yes" && $conf_use_ssl == "yes"){
+		$vhost_file .= "
+	RewriteEngine On
+	RewriteCond %{HTTPS} off
+	RewriteRule (.*) https://$conf_administrative_site$1 [R,L]";
+	}
+$vhost_file .= "
 </VirtualHost>
 
 ";

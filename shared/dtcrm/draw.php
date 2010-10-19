@@ -82,7 +82,7 @@ function draw_UpgradeAccount($admin){
 		$out .= _("Your current account is ").smartByte($admin["info"]["quota"]*1024*1024). _(" disk storage and ")
 .smartByte($admin["info"]["bandwidth_per_month_mb"]*1024*1024). _(" of data transfer each month.") ."<br><br>".
 _("To what capacity would you like to upgrade to?") ."<br>";
-		$q = "SELECT * FROM $pro_mysql_product_table WHERE (quota_disk > '".$admin["info"]["quota"]."' OR bandwidth > '".$admin["info"]["bandwidth_per_month_mb"]."' or max_domain>".$admin["info"]["max_domain"].") and heb_type='shared';";
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE (quota_disk > '".$admin["info"]["quota"]."' OR bandwidth > '".$admin["info"]["bandwidth_per_month_mb"]."' or max_domain>".$admin["info"]["max_domain"].") and heb_type='shared' AND privates='no';";
 		$r = mysql_query($q)or die("Cannot query \"$q\" !".mysql_error());
 		$n = mysql_num_rows($r);
 		$out .= "$frm_start";

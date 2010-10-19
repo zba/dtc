@@ -460,7 +460,9 @@ function dtcDatagrid($dsc){
 				}
 			}else{
 				$the_type = $the_fld["type"];
-				$db_value = $a[ $the_name ];
+				if($the_type != "hyperlink"){
+					$db_value = $a[ $the_name ];
+				}
 			}
 			switch($the_type){
 			case "text":

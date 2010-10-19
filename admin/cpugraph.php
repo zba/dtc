@@ -8,7 +8,7 @@ require_once("../shared/vars/lang.php");
 $rrd = $conf_generated_file_path.'/cpu.rrd';
 $xpoints = 800;
 $ypoints = 160;
-$vert_label = _("CPU Load average");
+$vert_label = addslashes(_("CPU Load average"));
 
 if( file_exists("/usr/bin/rrdtool") ) {
 	$rrdpath = "/usr/bin/rrdtool";
@@ -24,23 +24,23 @@ if( isset($_REQUEST["graph"]) ){
 
 	switch($_REQUEST["graph"]){
 		case "hour":
-			$title = _('Hour graph');
+			$title = addslashes(_('Hour graph'));
 			$steps = 3600;
 			break;
 		case "day":
-			$title = _('Day Graph');
+			$title = addslashes(_('Day Graph'));
 			$steps = 3600*24;
 			break;
 		case "week":
-			$title = _('Week Graph');
+			$title = addslashes(_('Week Graph'));
 			$steps = 3600*24*7;
 			break;
 		case "month":
-			$title = _('Month Graph');
+			$title = addslashes(_('Month Graph'));
 			$steps = 3600*24*31;
 			break;
 		case "year":
-			$title = _('Year Graph');
+			$title = addslashes(_('Year Graph'));
 			$steps = 3600*24*365;
 			break;
 		default:
@@ -51,7 +51,7 @@ if( isset($_REQUEST["graph"]) ){
 	$filename = tempnam("/tmp","dtc_cpugraph");
 	$cmd = $rrdpath . " graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
 	$cmd .= "DEF:loadaverage=$rrd:loadaverage:AVERAGE ";
-	$cmd .= "'LINE1:loadaverage#ff0000:" . _("CPU Load average") . "*100:' 'GPRINT:loadaverage:MAX:" . _("Maximum") . "\: %0.0lf' 'GPRINT:loadaverage:AVERAGE:" . _("Average") . "\: %0.0lf/min\\n' ";
+	$cmd .= "'LINE1:loadaverage#ff0000:" . addslashes(_("CPU Load average")) . "*100:' 'GPRINT:loadaverage:MAX:" . addslashes(_("Maximum")) . "\: %0.0lf' 'GPRINT:loadaverage:AVERAGE:" . addslashes(_("Average")) . "\: %0.0lf/min\\n' ";
 	exec($cmd,$output);
 
 	$filesize = filesize($filename);
@@ -94,7 +94,7 @@ h1 {
 <H1>' . _("CPU load average Statistics for") . ' ' .$_SERVER["SERVER_NAME"].'</H1>
 <center>
 <IMG BORDER="0" SRC="?graph=hour" ALT="' . _("Hour CPU Load Graph") . '" width="897" height="239"><br>
-<IMG BORDER="0" SRC="graph=day" ALT="' . _("Day CPU Load Graph") . '" width="897" height="239"><br>
+<IMG BORDER="0" SRC="?graph=day" ALT="' . _("Day CPU Load Graph") . '" width="897" height="239"><br>
 <IMG BORDER="0" SRC="?graph=week" ALT="' . _("Week CPU Load Graph") . '" width="897" height="239"><br>
 <IMG BORDER="0" SRC="?graph=month" ALT="' . _("Month CPU Load Graph") . '" width="897" height="239"><br>
 <IMG BORDER="0" SRC="?graph=year" ALT="' . _("Year CPU Load Graph") . '" width="897" height="239">

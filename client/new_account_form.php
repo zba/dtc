@@ -485,8 +485,19 @@ function registration_form(){
 		$heb_type_condition = " heb_type='".$a["heb_type"]."' ";
 		$heb_type = $a["heb_type"];
 	}else{
-		$heb_type_condition = " 1 ";
-		$heb_type = "all";
+		$heb_types = array('shared', 'ssl', 'vps', 'server');
+		if(isset($_REQUEST["heb_type"]) && preg_match("/[a-zA-Z0-9]/", $_REQUEST["heb_type"])){
+		    if(in_array(strtolower($_REQUEST["heb_type"]),$heb_types)){
+			$heb_type_condition = " heb_type='".strtolower($_REQUEST["heb_type"])."' ";
+			$heb_type = strtolower($_REQUEST["heb_type"]);
+		    }else{
+				$heb_type_condition = " 1 ";
+				$heb_type = "all";
+		    }
+		}else{
+			$heb_type_condition = " 1 ";
+			$heb_type = "all";
+		}
 	}
 
 	$prod_popup = "";

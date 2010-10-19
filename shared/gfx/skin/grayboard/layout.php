@@ -381,6 +381,7 @@ function skin_NewAccountPage ($form){
 	global $confirm_javascript;
 	global $java_script;
 	global $skinCssString;
+	global $lang;
 	switch($lang){
 	case "fr":
 		$iepower = "IePower_fr.js";

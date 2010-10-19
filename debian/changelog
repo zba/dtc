@@ -1,3 +1,35 @@
+dtc (0.32.4-1) unstable; urgency=low
+
+  * New upstream release fixing:
+    - Corrects the isValidEmail regular expression (security fix).
+    - Corrects the isMailbox regular expression (security fix).
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 26 Sep 2010 20:17:07 +0800
+
+dtc (0.32.3-1) unstable; urgency=low
+
+  * New upstream release fixing:
+    - Some French translation corrections.
+    - Fully updated german translation
+    - Added DNS download script in doc/contrib
+    - Added the dtc_migrate script in the Makefile so it is shipped
+    - Sets the fullemail fields uppon upgrade (few old installs didn't have it)
+    - Added the grayboard field dirs creation in the Makefile (FreeBSD)
+    - Fixed the __DTC_TITLE__ in the grayboard skin
+    - Fixed a lang warning in the grayboard skin
+    - Modified php-pear-Net-IPv4 depeneds in the RPM of DTC
+    - Added slavezone_update in doc/contrib
+    - Fixed domain name transfer for internetbs (typo)
+    - Removed a Notice warning in the templates.php (minor fix)
+    - Migration script also rsync /var/lib/squirrelmail/data
+    - Fixed the default_admin_page to allow the heb_type to be forwarded to the
+    new_account.php script.
+    - Fixed the cpugraph.php day graph (typo)
+    - Added parameter validations of product_id before displaying in the
+    default_admin_site.php (possible XSS).
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 22 Sep 2010 18:19:37 +0800
+
 dtc (0.32.2-1) unstable; urgency=low
 
   * New upstream release fixing templates.php:

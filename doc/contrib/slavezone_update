@@ -35,6 +35,7 @@ FILESIZE=$(/usr//bin/stat -c%s "${TEMP_OUTFILE2}")
 # don't overwrite the working slavezones.conf if the generated one is zero bytes
 if [ $FILESIZE -gt 0 ]; then
         /bin/mv ${TEMP_OUTFILE2} /etc/bind/named.slavezones.conf
+	chown bind.bind /etc/bind/named.slavezones.conf
         /usr/sbin/rndc reload
 fi
 

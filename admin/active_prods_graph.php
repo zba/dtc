@@ -8,29 +8,29 @@ require_once("../shared/vars/lang.php");
 $rrd = $conf_generated_file_path.'/stat_total_active_prods.rrd';
 $xpoints = 400;
 $ypoints = 160;
-$vert_label = ("Active products");
+$vert_label = addslashes(_("Active products"));
 
 if( isset($_REQUEST["graph"]) ){
 
 	switch($_REQUEST["graph"]){
 		case "hour":
-			$title = _('Hour graph');
+			$title = addslashes(_('Hour graph'));
 			$steps = 3600;
 			break;
 		case "day":
-			$title = _('Day Graph');
+			$title = addslashes(_('Day Graph'));
 			$steps = 3600*24;
 			break;
 		case "week":
-			$title = _('Week Graph');
+			$title = addslashes(_('Week Graph'));
 			$steps = 3600*24*7;
 			break;
 		case "month":
-			$title = _('Month Graph');
+			$title = addslashes(_('Month Graph'));
 			$steps = 3600*24*31;
 			break;
 		case "year":
-			$title = _('Year Graph');
+			$title = addslashes(_('Year Graph'));
 			$steps = 3600*24*365;
 			break;
 		default:
@@ -41,9 +41,9 @@ if( isset($_REQUEST["graph"]) ){
 	$filename = tempnam("/tmp","dtc_netgraph");
 	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
 	$cmd .= "DEF:vps=$rrd:vps:AVERAGE DEF:dedicated=$rrd:dedicated:AVERAGE DEF:shared=$rrd:shared:AVERAGE ";
-	$cmd .= "'AREA:shared#0000ff:" . _("Active shared accounts") . ":' 'GPRINT:shared:MAX:" . _("Maximum") . "\: %0.0lf' 'GPRINT:shared:AVERAGE:" . _("Average") . "\: %0.0lf/min\l' ";
-	$cmd .= "'STACK:vps#00ff00:" . _("Active VPS") . ":' 'GPRINT:vps:MAX:" . _("Maximum") . "\: %0.0lf' 'GPRINT:vps:AVERAGE:" . _("Average") . "\: %0.0lf/min\\n' ";
-	$cmd .= "'STACK:dedicated#ff0000:" . _("Active dedicated servers") . ":' 'GPRINT:dedicated:MAX:" . _("Maximum") . "\: %0.0lf' 'GPRINT:dedicated:AVERAGE:" . _("Average") . "\: %0.0lf/min\l' ";
+	$cmd .= "'AREA:shared#0000ff:" . addslashes(_("Active shared accounts")) . ":' 'GPRINT:shared:MAX:" . addslashes(_("Maximum")) . "\: %0.0lf' 'GPRINT:shared:AVERAGE:" . addslashes(_("Average")) . "\: %0.0lf/min\l' ";
+	$cmd .= "'STACK:vps#00ff00:" . addslashes(_("Active VPS")) . ":' 'GPRINT:vps:MAX:" . addslashes(_("Maximum")) . "\: %0.0lf' 'GPRINT:vps:AVERAGE:" . addslashes(_("Average")) . "\: %0.0lf/min\\n' ";
+	$cmd .= "'STACK:dedicated#ff0000:" . addslashes(_("Active dedicated servers")) . ":' 'GPRINT:dedicated:MAX:" . addslashes(_("Maximum")) . "\: %0.0lf' 'GPRINT:dedicated:AVERAGE:" . addslashes(_("Average")) . "\: %0.0lf/min\l' ";
 	exec($cmd,$output);
 
 	$filesize = filesize($filename);

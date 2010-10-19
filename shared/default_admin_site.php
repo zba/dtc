@@ -35,7 +35,7 @@ $ZeContent = '<div class="top">
 	</em></p>
         </div> ';
 
-if( isset($_REQUEST['sousrub']) ){
+if( isset($_REQUEST['sousrub']) && preg_match("/[a-zA-Z0-9]/", $_REQUEST["sousrub"])){
 	$sousrub = $_REQUEST["sousrub"];
 }else{
 	$sousrub = "";
@@ -46,7 +46,18 @@ if($sousrub == "register"){
 	$ZeContent = '
 	
 <div id="FRAMEDIV_ID" style="width:100%;height:100%;display:none;">
-<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="//'.$_SERVER["HTTP_HOST"].'/dtc/new_account.php?product_id='.$_REQUEST["product_id"].'" width="100%">  </iframe>
+<iframe id="FRAME_ID" allowtransparency="true" overflow="visible" frameborder="0" src="//'.$_SERVER["HTTP_HOST"].'/dtc/new_account.php?product_id=';
+	if(isset($_REQUEST["product_id"]) && preg_match("/[a-zA-Z0-9]/", $_REQUEST["product_id"])){
+		$ZeContent .= $_REQUEST["product_id"];
+	}
+$_REQUEST["product_id"];
+	$heb_types = array('shared', 'ssl', 'vps', 'server');
+	if(isset($_REQUEST["heb_type"]) && preg_match("/[a-zA-Z0-9]/", $_REQUEST["heb_type"])){
+		if(in_array(strtolower($_REQUEST["heb_type"]),$heb_types)){
+			$ZeContent .= '&heb_type='.strtolower($_REQUEST["heb_type"]);
+		    }
+		}
+	$ZeContent .= '" width="100%">  </iframe>
       </div>
 
 ';

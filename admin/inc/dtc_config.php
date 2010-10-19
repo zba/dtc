@@ -870,7 +870,7 @@ function checkIPAssigned(){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 0){
-			$a = mysql_array($r);
+			$a = mysql_fetch_array($r);
 			$action_error_txt = _("The IP address $test_ip is already assigned to a dedicated server: cannot assign this one!");
 			$action_error_txt .= "<br>". _("Server hostname: ") . $a["dedicated_server_hostname"];
 			$ret_val = false;
@@ -1109,6 +1109,11 @@ function drawGeneralConfig(){
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
+			"force_use_https" => array(
+				"legend" => _("Force HTTPS use: "),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))),
 			"domain_based_ftp_logins" => array(
 				"legend" => _("Use @domain.com ftp logins: "),
 				"type" => "radio",
@@ -1244,6 +1249,10 @@ function drawGeneralConfig(){
 			"panel_logo" => array(
 				"type" => "text",
 				"legend" => _("Panel logo path (relative to ").$dtcshared_path."/gfx/skin/".$conf_skin._(") :"),
+				"size" => "30"),
+			"panel_logolink" => array(
+				"type" => "text",
+				"legend" => _("Panel logo link: "),
 				"size" => "30"),
 			"skin" => array(
 				"legend" => _("Select the type of skin:"),

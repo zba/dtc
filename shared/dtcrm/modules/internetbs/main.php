@@ -129,7 +129,7 @@ function internetbs_prepar_whois_params($contacts){
 	$post_params_hash["technical_firstname"] = $contacts["teck"]["firstname"];
 	$post_params_hash["technical_lastname"] = $contacts["teck"]["lastname"];
 	$post_params_hash["technical_street"] = $contacts["teck"]["addr1"];
-	$post_params_hash["technical_street2"] = $contacts["teck"]["addr2"]." ".$contacts["tech"]["addr3"];
+	$post_params_hash["technical_street2"] = $contacts["teck"]["addr2"]." ".$contacts["teck"]["addr3"];
 	$post_params_hash["technical_city"] = $contacts["teck"]["city"];
 	$post_params_hash["technical_postalcode"] = $contacts["teck"]["zipcode"];
 	$post_params_hash["technical_phonenumber"] = $contacts["teck"]["phone_num"];
@@ -452,9 +452,8 @@ function internetbs_registry_transfer_domain($adm_login,$adm_pass,$domain_name,$
              $dns2 = $conf_addr_secondary_dns;
         }
 
-        $post_params_hash["transferauthinfo"] = $authcode;
-
         $post_params_hash = internetbs_prepar_whois_params($contacts);
+        $post_params_hash["transferauthinfo"] = $authcode;
         $post_params_hash["domain"] = $domain_name;
         $post_params_hash["ns_list"] = "$dns1,$dns2";
         $internetbs_ret = json_decode(internetbs_submit("/Domain/Transfer/Initiate", $post_params_hash));
