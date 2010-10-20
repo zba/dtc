@@ -233,18 +233,20 @@ cc_code_popup($row["country"])."</select>",0);
 	// Manage to print the answers of the custom fields;
 	// We first, out of the custom_fld field, get an array with the custom field varname as key
 	// and the customer's answer as data.
-	$explo_row = explode("|", htmlspecialchars(stripcslashes($row["customfld"])));
-	$n_custf = sizeof($explo_row);
 	$customer_custom_fields = array();
-	for($i=0;$i<$n_custf;$i++){
-		$one_fld = $explo_row[$i];
-		$pos_data = strpos($one_fld,":");
-		if($pos_data === false){
-			continue;
+	if( isset($row["customfld"]) ){
+		$explo_row = explode("|", htmlspecialchars(stripcslashes($row["customfld"])));
+		$n_custf = sizeof($explo_row);
+		for($i=0;$i<$n_custf;$i++){
+			$one_fld = $explo_row[$i];
+			$pos_data = strpos($one_fld,":");
+			if($pos_data === false){
+				continue;
+			}
+			$varname = substr($one_fld,0,$pos_data);
+			$value = substr($one_fld,$pos_data+1);
+			$customer_custom_fields[ $varname ] = $value;
 		}
-		$varname = substr($one_fld,0,$pos_data);
-		$value = substr($one_fld,$pos_data+1);
-		$customer_custom_fields[ $varname ] = $value;
 	}
 
 	$q = "SELECT * FROM $pro_mysql_custom_fld_table WHERE 1 ORDER BY widgetorder;";
