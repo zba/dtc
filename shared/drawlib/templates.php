@@ -521,7 +521,7 @@ function dtcDatagrid($dsc){
 					$cols = "";
 				}
 				if( isset($the_fld["rows"])){
-					$rows = " cols=\"".$the_fld["rows"]."\" ";
+					$rows = " rows=\"".$the_fld["rows"]."\" ";
 				}else{
 					$rows = "";
 				}
