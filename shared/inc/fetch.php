@@ -587,6 +587,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 			return $ret;
 		}
 		unset($subs);
+		$subs = array();
 		for($j=0;$j<$num_rows2;$j++){
 			$row2 = mysql_fetch_array($result2);
 			unset($subdomain);
