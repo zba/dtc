@@ -52,7 +52,7 @@ rem_dir=`ssh ${DST} "${MKTEMP} -d DTC_migrate.XXXXXX"`
 echo ${rem_dir}
 
 php migrate_to_server.php ${bk_dir} ${my_ip} ${rem_ip}
-sed -i "s/${my_ip}/${rem_ip}/" ${bk_dir}/dtc.sql
+sed -i "s/${my_ip}/${rem_ip}/g" ${bk_dir}/dtc.sql
 
 echo "Copying SQL files to remote:"
 scp ${bk_dir}/*.sql ${DTC_PATH}/admin/dtc_import_all_dbs $DST:$rem_dir
@@ -77,7 +77,5 @@ nice rsync -e ssh -azvp /etc/dtc/ ${DST}:/etc/dtc
 nice rsync -e ssh -azvp /var/lib/dtc/etc/*.rrd ${DST}:/var/lib/dtc/etc
 # copy the squirrelmail prefs and address book
 nice rsync -e  ssh -azvp /var/lib/squirrelmail/data/ ${DST}:/var/lib/squirrelmail/data
-# change the domain table IPs with the new one
-ssh ${DST} 'mysql --defaults-file=/etc/mysql/debian.cnf --execute="UPDATE domain SET ip_addr"'
 echo "===> Starting the DTC installer script on the remote"
 ssh ${DST} ${DTC_PATH}/admin/install/install
