@@ -362,6 +362,9 @@ function domainImport($path_from,$adm_login,$adm_pass){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$q = "UPDATE $pro_mysql_ssh_table SET uid='$conf_dtc_system_uid',gid='$conf_dtc_system_gid' WHERE hostname='$dom_name';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		// Fixes the pop_access fullemail field.
+		$q = "UPDATE $pro_mysql_pop_table SET fullemail = concat( `id`,  '@', `mbox_host` ) WHERE mbox_host='$dom_name';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	}
 	if( isset($dom_ar["mysql"])){
 		$n_user = sizeof($dom_ar["mysql"]);

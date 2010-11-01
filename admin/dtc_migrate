@@ -52,7 +52,7 @@ rem_dir=`ssh ${DST} "${MKTEMP} -d DTC_migrate.XXXXXX"`
 echo ${rem_dir}
 
 php migrate_to_server.php ${bk_dir} ${my_ip} ${rem_ip}
-sed -i 's/$my_ip/$rem_ip/' ${bk_dir}/dtc.sql
+sed -i "s/${my_ip}/${rem_ip}/g" ${bk_dir}/dtc.sql
 
 echo "Copying SQL files to remote:"
 scp ${bk_dir}/*.sql ${DTC_PATH}/admin/dtc_import_all_dbs $DST:$rem_dir
@@ -69,7 +69,7 @@ echo "done"
 
 echo "===> DTC Migrate script: upload of all files"
 echo "rsync -e ssh -azvp ${RSYNCOPT} /var/www/sites/ ${DST}:/var/www/sites"
-nice rsync -e ssh -azvp ${RSYNCOPT} /var/www/sites/ ${DST}:/var/www/sites
+nice rsync -e ssh -azvp ${RSYNCOPT} /var/www/sites/ ${DST}:/var/www/sites || true
 echo "rsync of the MLMMJ and /etc/dtc folders"
 nice rsync -e ssh -azvp ${RSYNCOPT} /etc/mlmmj/ ${DST}:/etc/mlmmj
 nice rsync -e ssh -azvp /etc/dtc/ ${DST}:/etc/dtc

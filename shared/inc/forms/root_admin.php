@@ -502,7 +502,7 @@ function drawDomainConfig($admin){
 					"type"=> "textarea",
 					"help"=> _("Custom apache directives. There is *no* syntax checking on this field!"),
 					"cols"=> "40",
-					"rows"=> "70",
+					"rows"=> "30",
 					"legend" => _("Custom apache directives")),
 				"redirect_url" => array(
 					"type" => "text",

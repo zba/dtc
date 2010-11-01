@@ -693,7 +693,7 @@ function drawTicketConfig(){
 
 	$dsc = array(
 		"table_name" => $pro_mysql_tik_admins_table,
-		"title" => _("List of the administrators receiving request for support messages:"),
+		"title" => _("List of the administrators allowed to login and receiving support messages:"),
 		"action" => "tik_admins",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -715,7 +715,7 @@ function drawTicketConfig(){
 				"legend" => _("Password")),
 			"available" => array(
 				"type" => "radio",
-				"legend" => _("Available"),
+				"legend" => _("Available (will receive tickets)"),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")))
 			)

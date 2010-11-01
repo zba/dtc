@@ -931,7 +931,7 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 		$unamestring = exec("uname -m",$unameout,$unameret);
 		$arch = $unameout[0];
 		if($arch == "x86_64"){
-			$folder_list = " lib64";
+			$folder_list .= " lib64";
 		}
 		foreach ( explode(" " , $folder_list) as $subdir) {
 			createSymLink("subdomains/www/$subdir", "$admin_path/$domain_name/$subdir");
