@@ -448,7 +448,7 @@ $vps_mail_add1
 	if ($maxmind_score > 0)
 	{
 		$mail_content .= "Maxmind Score: $maxmind_score\n";
-		$mail_content .= "Maxmind Output: $maxmind_output\n";	
+		$mail_content .= "Maxmind Output: " . serialize($maxmind_output) . "\n";	
 	}
 
 	$headers = "From: DTC Robot <$conf_webmaster_email_addr>";
