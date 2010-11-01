@@ -445,7 +445,7 @@ Product id: $the_prod
 Customer note: ".$_REQUEST["custom_notes"]."
 $vps_mail_add1
 ";
-	if ($maxmind_score > 0)
+	if ($secpayconf_use_maxmind == "yes")
 	{
 		$mail_content .= "Maxmind Score: $maxmind_score\n";
 		$mail_content .= "Maxmind Output: " . serialize($maxmind_output) . "\n";	
