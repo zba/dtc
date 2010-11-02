@@ -449,7 +449,7 @@ function drawRenewalTables (){
 				"title" => _("Payment history"),
 				"table_name" => $pro_mysql_pay_table,
 				"action" => "payment_history_list_editor",
-				"forward" => array("rub","sousrub","date"),
+				"forward" => array("rub","date"),
 				"order_by" => "date",
 				"skip_deletion" => "yes",
 				"skip_creation" => "yes",
