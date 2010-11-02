@@ -464,6 +464,28 @@ function drawRenewalTables (){
 						"size" => "8",
 						"legend" => _("Date")),
 					"id_client" => array(
+						"type" => "double_forkey",
+						"forkey_type" => "info",
+
+						// payment_table ["id"] gives us a key to search in completed oders
+						// for the client_id. Then we use that client_id to find the customer infos.
+						"table_1st_ind" => $pro_mysql_completedorders_table,
+						"fldwhere_1st_ind_orig" => "id",
+						"fldwhere_1st_ind" => "payment_id",
+						"searchkey_1st_ind" => "id_client",
+						"table_2nd_ind" => $pro_mysql_client_table,
+						"display_flds_2nd_ind" => "CONCAT(company_name,': ',familyname,', ',christname)",
+						"link_start" => "?rub=crm&id=",
+
+						// If not found, we fall back to search in the new_admin table
+						"table_back" => $pro_mysql_new_admin_table,
+						"fldwhere_back_orig" => "id_client",
+						"fldwhere_back" => "id",
+						"display_flds_back" => "CONCAT(comp_name,': ',family_name,', ',first_name)",
+						"link_start" => "view_waitingusers.php?reqadm_id=",
+
+						"legend" => _("Customer name")),
+					/*"id_client" => array(
 						"type" => "forkey",
 						"forkey_type" => "info",
 						"table" => $pro_mysql_client_table,
@@ -477,7 +499,7 @@ function drawRenewalTables (){
 						"bk_other_table_key" => "id",
 						"bk_this_table_field" => "id_client",
 
-						"legend" => _("Customer name")),
+						"legend" => _("Customer name")),*/
 					"product_id" => array(
 						"type" => "popup",
 						"values" => $prod_ids,
