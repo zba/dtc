@@ -538,9 +538,9 @@ function dtcDatagrid($dsc){
 			case "info":
 				$out .= "<td class=\"$tdclass\">";
 				if($the_fld["type"] == "forkey" && isset($the_fld["link"]) && $fk_found == 1){
-					$out .= "<a href=\"".$the_fld["link"]. $a[ $the_name ] ."\">".$db_value."</a>";
+					$out .= "<a href=\"".$the_fld["link"]. $a[ $the_name ] ."\" style=\"white-space:nowrap;\">".$db_value."</a>";
 				}else{
-					$out .= $db_value;
+					$out .= "<span style=\"white-space:nowrap;\">".$db_value."</span>";
 				}
 				$out .= "</td>";
 				break;
