@@ -3137,9 +3137,14 @@ ${DOVECOT_SSL_CERT_CONF}
 				rm  $TMP_FILE
 			fi
 			if [ ""$DOVECOT_POSTONE ] ; then
+				if [ "${conf_mysql_host}" = "localhost" ] ; then
+					DOVECOT_MYSQL="${MYSQL_DB_SOCKET_PATH}"
+				else
+					DOVECOT_MYSQL="${conf_mysql_host} port=3306"
+				fi
 				# there is a new configuration for 1.0.x
 				echo "
-connect = host=$MYSQL_DB_SOCKET_PATH port=3306 dbname=$conf_mysql_db user=dtcdaemons password=${MYSQL_DTCDAEMONS_PASS} client_flags=0
+connect = host=$DOVECOT_MYSQL dbname=$conf_mysql_db user=dtcdaemons password=${MYSQL_DTCDAEMONS_PASS} client_flags=0
 driver = mysql
 default_pass_scheme = PLAIN
 password_query = SELECT passwd AS password FROM pop_access WHERE id = '%n' AND mbox_host = '%d'
