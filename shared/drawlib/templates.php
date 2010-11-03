@@ -423,7 +423,43 @@ function dtcDatagrid($dsc){
 		for($j=0;$j<$nbr_fld;$j++){
 			$the_name = $keys[$j];
 			$the_fld = $dsc["cols"][$the_name];
-			if($the_fld["type"] == "forkey"){
+			if($the_fld["type"] ==  "double_forkey"){
+				unset($dbl_forkey_link);
+				$fk_found = 0;
+				$the_type = $the_fld["forkey_type"];
+				// Query the 1st indirection table
+				$qrent = "SELECT ".$the_fld["searchkey_1st_ind"]." FROM ".$the_fld["table_1st_ind"]." WHERE ".$the_fld["fldwhere_1st_ind"]."='".$a[ $the_fld["fldwhere_1st_ind_orig"] ]."';";
+				$rrent = mysql_query($qrent)or die("Cannot query $qrent in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());
+				$nrent = mysql_num_rows($rrent);
+				if($nrent == 1){
+					$arent = mysql_fetch_array($rrent);
+					$cid = $arent[ $the_fld["searchkey_1st_ind"] ];
+					$qcli = "SELECT ".$the_fld["display_flds_2nd_ind"]." FROM ".$the_fld["table_2nd_ind"]." WHERE ".$the_fld["fldwhere_1st_ind_orig"]."='$cid';";
+					$rcli = mysql_query($qcli)or die("Cannot query $qcli in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());
+					$ncli = mysql_num_rows($rrent);
+					if($ncli == 1){
+						$acli = mysql_fetch_array($rcli);
+						$db_value = $acli[ $the_fld["display_flds_2nd_ind"] ];
+						$fk_found = 1;
+						$fk_link_more = $cid;
+						$dbl_forkey_link = $the_fld["link_start"].$cid;
+					}else{
+						$db_value = "Not found";
+					}
+				}else{
+					$qnrent = "SELECT ".$the_fld["display_flds_back"]." FROM ".$the_fld["table_back"]." WHERE ".$the_fld["fldwhere_back"]."='".$a[ $the_fld["fldwhere_back_orig"] ]."';";
+					$rnrent = mysql_query($qnrent)or die("Cannot query $qnrent in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());
+					$nnrent = mysql_num_rows($rnrent);
+					if($nnrent == 1){
+						$ancli = mysql_fetch_array($rnrent);
+						$db_value = $ancli[ $the_fld["display_flds_back"] ];
+						$fk_found = 1;
+						$dbl_forkey_link = $the_fld["link_start"].$a[ $the_fld["fldwhere_back_orig"] ];
+					}else{
+						$db_value = "Not found";
+					}
+				}
+			}else if($the_fld["type"] == "forkey"){
 				$fk_found = 0;
 				$the_type = $the_fld["forkey_type"];
 				$forkey_table = $the_fld["table"];
@@ -538,9 +574,11 @@ function dtcDatagrid($dsc){
 			case "info":
 				$out .= "<td class=\"$tdclass\">";
 				if($the_fld["type"] == "forkey" && isset($the_fld["link"]) && $fk_found == 1){
-					$out .= "<a href=\"".$the_fld["link"]. $a[ $the_name ] ."\">".$db_value."</a>";
+					$out .= "<a href=\"".$the_fld["link"]. $a[ $the_name ] ."\" style=\"white-space:nowrap;\">".$db_value."</a>";
+				}else if($the_fld["type"] == "double_forkey" && $fk_found == 1){
+					$out .= "<a href=\"".$dbl_forkey_link."\" target=\"_blank\" style=\"white-space:nowrap;\">".$db_value."</a>";
 				}else{
-					$out .= $db_value;
+					$out .= "<span style=\"white-space:nowrap;\">".$db_value."</span>";
 				}
 				$out .= "</td>";
 				break;
