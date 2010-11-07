@@ -96,7 +96,7 @@ if( isset($_REQUEST["graph"]) ){
 	for($i=0;$i<$num_rrd;$i++){
 		$rrd = "/var/lib/dtc/dtc-xenservers-rrds/".$_REQUEST["vps_server_hostname"]."/".$all_rrd_files[$i];
 		$cmd .= "DEF:cpu$i=$rrd:cpuseconds:AVERAGE ";
-		$cmd .= "CDEF:percentcpu$i=cpu$i,10,/ ";
+		$cmd .= "CDEF:percentcpu$i=cpu$i,1.5,* ";
 		$cmd .= "CDEF:percentcpuzero$i=percentcpu$i,DUP,UN,EXC,0,EXC,IF ";
 	}
 	for($i=0;$i<$num_rrd;$i++){
