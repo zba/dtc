@@ -15,6 +15,7 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/domain_stats.php");
 	require("$dtcshared_path/inc/forms/dns.php");
 	require("$dtcshared_path/inc/forms/subdomain.php");
+	require("$dtcshared_path/inc/forms/user_cronjobs.php");
 	require("$dtcshared_path/inc/forms/lists.php");
 	require("$dtcshared_path/inc/forms/ticket.php");
 	//udns.us add
@@ -139,6 +140,7 @@ function drawAdminTools($admin){
 	$allow_dns_and_mx_change = $admin_info["allow_dns_and_mx_change"];
 	$allow_mailing_list_edit = $admin_info["allow_mailing_list_edit"];
 	$allow_subdomain_edit = $admin_info["allow_subdomain_edit"];
+	$allow_cronjob_edit = $admin_info["allow_cronjob_edit"];
 
 	unset($user_ZEmenu);
 	if($nbr_domain > 0){
@@ -262,6 +264,13 @@ function drawAdminTools($admin){
 					"icon" => "box_wnb_nb_picto-subdomains.gif",
 					"type" => "link",
 					"link" => "subdomains");
+			}
+			if($allow_cronjob_edit == "yes"){
+				$domain_conf_submenu[] = array(
+					"text" => _("Cron jobs"),
+					"icon" => "box_wnb_nb_picto-subdomains.gif",
+					"type" => "link",
+					"link" => "cronjobs");
 			}
                         if($ftp_login_flag == "yes"){
 				$domain_conf_submenu[] = array(
@@ -477,6 +486,10 @@ function drawAdminTools($admin){
                         $web_editor .= "<img src=\"gfx/toolstitles/subdomains.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Subdomains:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_Subdomain($admin,$eddomain);
 			$title = _("Subdomains of ") .$edit_domain;
+		}else if(@$add_array[1] == "cronjobs"){
+			$web_editor .= "<img src=\"gfx/toolstitles/subdomains.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Cron jobs:") ."</u></b><br></font>";
+			$web_editor .= drawAdminTools_User_CronJob($admin,$eddomain);
+			$title = _("Cron jobs of ") .$edit_domain;
 		}else if(@$add_array[1] == "ftp-accounts"){
                         $web_editor .= "<img src=\"gfx/toolstitles/ftp-accounts.png\" align=\"left\"><font size=\"+2\"><b><u>". _("FTP accounts") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_Ftp($eddomain,$adm_path);

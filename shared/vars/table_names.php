@@ -58,4 +58,5 @@ $pro_mysql_raduser_table = "radusergroup";
 $pro_mysql_radreply_table = "radreply";
 $pro_mysql_radcheck_table = "radcheck";
 $pro_mysql_custom_fld_table = "custom_fld";
+$pro_mysql_user_cron_table = "user_cron";
 ?>
