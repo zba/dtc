@@ -560,7 +560,7 @@ function checkSubdomainFormat($name){
 // Check if a string is an ssh key
 // TO BE DONE!!!
 function isSSHKey($ssh_key){
-	if(preg_match("/^ssh-[rd]s[as] ([.a-zA-Z0-9+/=]+)\$/",$ssh_key)){
+	if(preg_match("/^ssh-[rd]s[as] ([.a-zA-Z0-9\+/\=]+)\$/",$ssh_key)){
 		return true;
 	}else{
 		return false;
