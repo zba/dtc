@@ -8,7 +8,7 @@ require_once("../shared/vars/lang.php");
 $rrd = $conf_generated_file_path.'/memusage.rrd';
 $xpoints = 800;
 $ypoints = 160;
-$vert_label = addslashes(_("Memory usage stats"));
+$vert_label = _("Memory usage stats");
 
 if( isset($_REQUEST["graph"]) ){
 
@@ -40,7 +40,7 @@ if( isset($_REQUEST["graph"]) ){
 	$range = - $steps;
 	$filename = tempnam("/tmp","dtc_memgraph");
 //	$filename = "/tmp/memory_usage_".$_REQUEST["graph"].".png";
-	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
+	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label "$vert_label" --title '$title' --lazy --interlaced ";
 	$cmd .= "DEF:totalmem=$rrd:totalmem:AVERAGE DEF:freemem=$rrd:freemem:AVERAGE ";
 	$cmd .= "DEF:totalswap=$rrd:totalswap:AVERAGE DEF:freeswap=$rrd:freeswap:AVERAGE ";
 	$cmd .= "'LINE1:totalmem#0000AA:" . addslashes(_("Total available memory")) . ":' 'GPRINT:totalmem:MAX:" . addslashes(_("Maximum")) . "\: %0.0lf' ";
