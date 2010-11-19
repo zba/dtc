@@ -175,7 +175,7 @@ function checkSMTP(){
 		return false;
 	}
 	// echo "Sending login<br>";
-	if(!fwrite($soc,"HELO dtc-check@gplhost.com\n")){
+	if(!fwrite($soc,"HELO gplhost.com\n")){
 		$errTxt = _("Could not write HELLO to server");
 		return false;
 	}
