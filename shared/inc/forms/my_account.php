@@ -35,7 +35,7 @@ function drawAdminTools_MyAccount($admin){
 
 	if(isset($_REQUEST["action"]) && $id_client != 0 && $_REQUEST["action"] == "refund_myaccount"){
 		if(isset($_REQUEST["inneraction"]) && $_REQUEST["inneraction"] == "return_from_paypal_refund_my_account"){
-			$ze_refund = isPayIDValidated(addslashes($_REQUEST["payid"]));
+			$ze_refund = isPayIDValidated(mysql_real_escape_string($_REQUEST["payid"]));
 			if($ze_refund == 0){
 				$out .= "<font color=\"red\">The transaction failed, please try again!</font>";
 				return $out;
@@ -54,7 +54,7 @@ function drawAdminTools_MyAccount($admin){
 			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$renew_id = mysql_insert_id();
 
-			$payid = createCreditCardPaiementID(addslashes($_REQUEST["refund_amount"]),$admin["info"]["id_client"],
+			$payid = createCreditCardPaiementID(mysql_real_escape_string($_REQUEST["refund_amount"]),$admin["info"]["id_client"],
 				"Refund my account","no",$prod_id,$vat_rate);
 
 			$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
@@ -62,7 +62,7 @@ function drawAdminTools_MyAccount($admin){
 
 			$return_url = htmlentities($_SERVER["PHP_SELF"])."?adm_login=$adm_login&adm_pass=$adm_pass"
 				."&addrlink=$addrlink&action=refund_myaccount&inneraction=return_from_paypal_refund_my_account&payid=$payid";
-			$paybutton = paynowButton($payid,addslashes($_REQUEST["refund_amount"]),"Refund my account",$return_url);
+			$paybutton = paynowButton($payid,mysql_real_escape_string($_REQUEST["refund_amount"]),"Refund my account",$return_url);
 			$out .= "<b><u>Pay \$".$_REQUEST["refund_amount"]." on my account:</u></b><br>";
 			$out .=" Please click on the button below to pay your acount.<br><br>$paybutton";
 			return $out;

@@ -53,7 +53,7 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 		$submit_err .= _("Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9<br>\n") ;
 		$commit_flag = "no";
 	}
-	$_REQUEST["newssh_path"] = addslashes($_REQUEST["newssh_path"]);
+	$_REQUEST["newssh_path"] = mysql_real_escape_string($_REQUEST["newssh_path"]);
 
 	$crypt_ssh_password = crypt($_REQUEST["newssh_pass"], dtc_makesalt());
 
@@ -110,7 +110,7 @@ if(isset($_REQUEST["update_ssh_account"]) && $_REQUEST["update_ssh_account"] == 
 	$crypt_ssh_password = crypt($_REQUEST["edssh_pass"], dtc_makesalt());
 
 	if($commit_flag == "yes"){
-		$adm_query = "UPDATE $pro_mysql_ssh_table SET homedir='".addslashes($new_path)."', crypt='".$crypt_ssh_password."', password='".$_REQUEST["edssh_pass"]."' WHERE login ='".$_REQUEST["edssh_account"]."' AND hostname='$edit_domain' LIMIT 1;";
+		$adm_query = "UPDATE $pro_mysql_ssh_table SET homedir='".mysql_real_escape_string($new_path)."', crypt='".$crypt_ssh_password."', password='".$_REQUEST["edssh_pass"]."' WHERE login ='".$_REQUEST["edssh_account"]."' AND hostname='$edit_domain' LIMIT 1;";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\"");
 	}
 	updateUsingCron("gen_ssh='yes'");

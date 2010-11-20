@@ -10,7 +10,7 @@ if(!isset($commit_flag)){
 function checkDedicatedAdmin($adm_login,$adm_pass,$dedicated_server_hostname){
 	global $pro_mysql_dedicated_table;
 	checkLoginPass($adm_login,$adm_pass);
-	$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE owner='$adm_login' AND server_hostname='".addslashes($dedicated_server_hostname)."';";
+	$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE owner='$adm_login' AND server_hostname='".mysql_real_escape_string($dedicated_server_hostname)."';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n == 1){
@@ -370,12 +370,12 @@ customfld,
 city,zipcode,state,country,phone,fax,email,
 disk_quota_mb,bw_quota_per_month_gb,
 special_note) VALUES ('','".$a["iscomp"]."',
-'".addslashes($a["comp_name"])."','".addslashes($a["vat_num"])."','".addslashes($a["family_name"])."','".addslashes($a["first_name"])."',
-'".addslashes($a["addr1"])."','".addslashes($a["addr2"])."','".addslashes($a["addr3"])."',
+'".mysql_real_escape_string($a["comp_name"])."','".mysql_real_escape_string($a["vat_num"])."','".mysql_real_escape_string($a["family_name"])."','".mysql_real_escape_string($a["first_name"])."',
+'".mysql_real_escape_string($a["addr1"])."','".mysql_real_escape_string($a["addr2"])."','".mysql_real_escape_string($a["addr3"])."',
 '".mysql_real_escape_string($a["customfld"])."',
-'".addslashes($a["city"])."','".addslashes($a["zipcode"])."','".addslashes($a["state"])."','".addslashes($a["country"])."','".addslashes($a["phone"])."',
-'".addslashes($a["fax"])."','".addslashes($a["email"])."','".$a2["quota_disk"]."','". $a2["bandwidth"]/1024 ."',
-'".addslashes($a["custom_notes"])."');";
+'".mysql_real_escape_string($a["city"])."','".mysql_real_escape_string($a["zipcode"])."','".mysql_real_escape_string($a["state"])."','".mysql_real_escape_string($a["country"])."','".mysql_real_escape_string($a["phone"])."',
+'".mysql_real_escape_string($a["fax"])."','".mysql_real_escape_string($a["email"])."','".$a2["quota_disk"]."','". $a2["bandwidth"]/1024 ."',
+'".mysql_real_escape_string($a["custom_notes"])."');";
 		$r = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$cid = mysql_insert_id();
 	}
