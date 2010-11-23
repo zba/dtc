@@ -2646,7 +2646,6 @@ submission  inet  n     -       n       -       -       smtpd
     -o smtpd_etrn_restrictions=reject
     -o smtpd_sasl_auth_enable=yes
     -o content_filter=dkimsign:[127.0.0.1]:10028
-    -o receive_override_options=no_address_mappings
     -o smtpd_recipient_restrictions=permit_mynetworks,permit_sasl_authenticated,reject
 
 #
