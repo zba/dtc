@@ -14,23 +14,23 @@ if( isset($_REQUEST["graph"]) ){
 
 	switch($_REQUEST["graph"]){
 		case "hour":
-			$title = addslashes(_('Hour graph'));
+			$title = _('Hour graph');
 			$steps = 3600;
 			break;
 		case "day":
-			$title = addslashes(_('Day Graph'));
+			$title = _('Day Graph');
 			$steps = 3600*24;
 			break;
 		case "week":
-			$title = addslashes(_('Week Graph'));
+			$title = _('Week Graph');
 			$steps = 3600*24*7;
 			break;
 		case "month":
-			$title = addslashes(_('Month Graph'));
+			$title = _('Month Graph');
 			$steps = 3600*24*31;
 			break;
 		case "year":
-			$title = addslashes(_('Year Graph'));
+			$title = _('Year Graph');
 			$steps = 3600*24*365;
 			break;
 		default:
@@ -40,13 +40,13 @@ if( isset($_REQUEST["graph"]) ){
 	$range = - $steps;
 	$filename = tempnam("/tmp","dtc_memgraph");
 //	$filename = "/tmp/memory_usage_".$_REQUEST["graph"].".png";
-	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label "$vert_label" --title '$title' --lazy --interlaced ";
+	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label \"$vert_label\" --title \"$title\" --lazy --interlaced ";
 	$cmd .= "DEF:totalmem=$rrd:totalmem:AVERAGE DEF:freemem=$rrd:freemem:AVERAGE ";
 	$cmd .= "DEF:totalswap=$rrd:totalswap:AVERAGE DEF:freeswap=$rrd:freeswap:AVERAGE ";
-	$cmd .= "'LINE1:totalmem#0000AA:" . addslashes(_("Total available memory")) . ":' 'GPRINT:totalmem:MAX:" . addslashes(_("Maximum")) . "\: %0.0lf' ";
-	$cmd .= "'LINE1:freemem#7777ff:" . addslashes(_("Minimum free memory")) . ":' 'GPRINT:freemem:MIN:" . addslashes(_("Minimum")) . "\: %0.0lf\\n' ";
-	$cmd .= "'LINE1:totalswap#00ff00:" . addslashes(_("Total swap")) . ":' 'GPRINT:freemem:MAX:" . addslashes(_("Maxmium")) . "\: %0.0lf' ";
-	$cmd .= "'LINE1:freeswap#ff0000:" . addslashes(_("Free swap")) . ":' 'GPRINT:freeswap:MIN:" . addslashes(_("Minimum")) . "\: %0.0lf' ";
+	$cmd .= "\"LINE1:totalmem#0000AA:" . _("Total available memory") . ":\" \"GPRINT:totalmem:MAX:" . _("Maximum") . "\: %0.0lf\" ";
+	$cmd .= "\"LINE1:freemem#7777ff:" . _("Minimum free memory") . ":\" \"GPRINT:freemem:MIN:" . _("Minimum") . "\: %0.0lf\\n\" ";
+	$cmd .= "\"LINE1:totalswap#00ff00:" . _("Total swap") . ":\" \"GPRINT:freemem:MAX:" . _("Maxmium") . "\: %0.0lf\" ";
+	$cmd .= "\"LINE1:freeswap#ff0000:" . _("Free swap") . ":\" \"GPRINT:freeswap:MIN:" . _("Minimum") . "\: %0.0lf\" ";
 	exec($cmd,$output);
 
 	$filesize = filesize($filename);

@@ -8,29 +8,29 @@ require_once("../shared/vars/lang.php");
 $rrd = $conf_generated_file_path.'/netusage.rrd';
 $xpoints = 800;
 $ypoints = 160;
-$vert_label = addslashes(_("Network transfer"));
+$vert_label = _("Network transfer");
 
 if( isset($_REQUEST["graph"]) ){
 
 	switch($_REQUEST["graph"]){
 		case "hour":
-			$title = addslashes(_('Hour graph'));
+			$title = _('Hour graph');
 			$steps = 3600;
 			break;
 		case "day":
-			$title = addslashes(_('Day Graph'));
+			$title = _('Day Graph');
 			$steps = 3600*24;
 			break;
 		case "week":
-			$title = addslashes(_('Week Graph'));
+			$title = _('Week Graph');
 			$steps = 3600*24*7;
 			break;
 		case "month":
-			$title = addslashes(_('Month Graph'));
+			$title = _('Month Graph');
 			$steps = 3600*24*31;
 			break;
 		case "year":
-			$title = addslashes(_('Year Graph'));
+			$title = _('Year Graph');
 			$steps = 3600*24*365;
 			break;
 		default:
@@ -40,10 +40,10 @@ if( isset($_REQUEST["graph"]) ){
 	$range = - $steps;
 	$filename = tempnam("/tmp","dtc_netgraph");
 //	$filename = "/tmp/network_usage_".$_REQUEST["graph"].".png";
-	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label '$vert_label' --title '$title' --lazy --interlaced ";
+	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label \"$vert_label\" --title \"$title\" --lazy --interlaced ";
 	$cmd .= "DEF:bytesin=$rrd:bytesin:AVERAGE DEF:bytesout=$rrd:bytesout:AVERAGE ";
-	$cmd .= "'LINE2:bytesin#00ff00:" . addslashes(_("Incoming network traffic in bytes")) .":' 'GPRINT:bytesin:MAX:" . addslashes(_("Maximum")) . "\: %0.0lf' 'GPRINT:bytesin:AVERAGE:" . addslashes(_("Average")) . "\: %0.0lf/min\\n' ";
-	$cmd .= "'LINE1:bytesout#0000ff:" . addslashes(_("Outgoing network traffic in bytes:")) ."' 'GPRINT:bytesout:MAX:" . addslashes(_("Maximum")) ."\: %0.0lf' 'GPRINT:bytesout:AVERAGE:" . _("Average") ."\: %0.0lf/min\l' ";
+	$cmd .= "\"LINE2:bytesin#00ff00:" . _("Incoming network traffic in bytes") .":\" \"GPRINT:bytesin:MAX:" . _("Maximum") . "\: %0.0lf\" 'GPRINT:bytesin:AVERAGE:" . _("Average") . "\: %0.0lf/min\\n' ";
+	$cmd .= "\"LINE1:bytesout#0000ff:" . _("Outgoing network traffic in bytes:") ."\" \"GPRINT:bytesout:MAX:" . _("Maximum") ."\: %0.0lf\" 'GPRINT:bytesout:AVERAGE:" . _("Average") ."\: %0.0lf/min\l' ";
 	$cmd;
 	exec($cmd,$output);
 
