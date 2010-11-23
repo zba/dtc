@@ -28,7 +28,7 @@ function renew_form(){
 		return $ret;
 	}
 
-	$q = "SELECT adm_login,id_client FROM $pro_mysql_admin_table WHERE adm_login='".addslashes($_REQUEST["adm_login"])."';";
+	$q = "SELECT adm_login,id_client FROM $pro_mysql_admin_table WHERE adm_login='".mysql_real_escape_string($_REQUEST["adm_login"])."';";
 	$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
@@ -42,7 +42,7 @@ function renew_form(){
 	if(isset($_REQUEST["renew_type"]) && ($_REQUEST["renew_type"] == "ssl" || $_REQUEST["renew_type"] == "ssl_renew")){
 		$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type ='ssl';";
 	}else{
-		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".addslashes($_REQUEST["product_id"])."';";
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".mysql_real_escape_string($_REQUEST["product_id"])."';";
 	}
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);

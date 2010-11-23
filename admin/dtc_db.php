@@ -1304,6 +1304,21 @@ $dtc_database = array(
 			"got_reply2" => "(got_reply)"
 		)
 	),
+	"user_cron" => array(
+		"vars" => array(
+			"id" => "int(11) NOT NULL auto_increment",
+			"cron_name" => "varchar(128) NOT NULL default ''",
+			"domain_name" => "varchar(128) NOT NULL default ''",
+			"subdomain_name" => "varchar(255) NOT NULL default ''",
+			"minute" => "varchar(4) NOT NULL default '0'",
+			"hour" => "varchar(4) NOT NULL default '0'",
+			"day_of_month" => "varchar(2) NOT NULL default '0'",
+			"mon" => "varchar(2) NOT NULL default '0'",
+			"dow" => "varchar(2) NOT NULL default '0'",
+			"uri" => "varchar(128) NOT NULL default 'my_cron.php?param=value'"
+		),
+		"primary" => "(id)"
+	),
 	"usergroup" => array(
 		"vars" => array(
 			"id" => "int(11) NOT NULL auto_increment",

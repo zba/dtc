@@ -1,3 +1,41 @@
+dtc (0.32.7-1) unstable; urgency=low
+
+  * Removed all addslashes() calls for the graphs, replaced it with some double
+    quotes, so that l12n is working as expected (unbreaks graphs of 0.32.6).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 23 Nov 2010 12:57:23 +0800
+
+dtc (0.32.6-1) unstable; urgency=low
+
+  * New upstream version fixing the following:
+  - Fixed the HELO in the daemon status so that it doesn't fail in CentOS.
+  - Fixed l12n of graphs using single quotes.
+  - Switched some add_slashes to mysql_real_escape_string.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 22 Nov 2010 12:32:09 +0800
+
+dtc (0.32.5-1) unstable; urgency=low
+
+  * New upstream version with the following bug correction:
+  - Fixed eXtplorer rights, so users can't see other user names.
+  - Fixed s/smtpd_client_messages_rate_limit/smtpd_client_message_rate_limit/
+  in /etc/postfix/main.cf.
+  - A typo in dtc_config.php error message handling.
+  - Some addslashes in the server graphs needed by recent localization.
+  - More pl_PO.po localization to polish (thanks to Seeb).
+  - Removed a PHP warning in the CRM editor if no custom fields in registration
+  - Corrects the migration script so it changes the db to the new IP correctly.
+  - Fixes templates.php for the number of rows in textarea type.
+  - Removes a warning in fetch.php when a domain has no subdomains.
+  - Fixes the fullemail field after an import.
+  - Corrects symlink creation when building a new vhost folder.
+  - Allows dovecot to work with a remote MySQL.
+  - Fixes renewals.php so it displays correctly payments (include new code in
+  templates.php) and removes a warning.
+  - Corrects the scale of vm-cpu-all.php so that it displays correctly.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 08 Nov 2010 15:56:32 +0800
+
 dtc (0.32.4-1) unstable; urgency=low
 
   * New upstream release fixing:

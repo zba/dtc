@@ -39,7 +39,7 @@ function register_user($adding_service="no"){
 	}
 
 	if(isset($_REQUEST["product_id"])){
-		$esc_product_id = addslashes($_REQUEST["product_id"]);
+		$esc_product_id = mysql_real_escape_string($_REQUEST["product_id"]);
 	}
 
 	if(!isRandomNum($esc_product_id)){
@@ -109,7 +109,7 @@ function register_user($adding_service="no"){
 			$ret["mesg"] = _("VPS location not selected!") ;
 			return $ret;
 		}
-		$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".addslashes($_REQUEST["vps_server_hostname"])."';";
+		$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".mysql_real_escape_string($_REQUEST["vps_server_hostname"])."';";
 		$r = mysql_query($q)or die("Cannot query $q ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1){
@@ -130,7 +130,7 @@ function register_user($adding_service="no"){
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
-			$esc_familyname = addslashes($_REQUEST["familyname"]);
+			$esc_familyname = mysql_real_escape_string($_REQUEST["familyname"]);
 		}else{
 			$esc_familyname = $_REQUEST["familyname"];
 		}
@@ -142,7 +142,7 @@ function register_user($adding_service="no"){
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
-			$esc_firstname = addslashes($_REQUEST["firstname"]);
+			$esc_firstname = mysql_real_escape_string($_REQUEST["firstname"]);
 		}else{
 			$esc_firstname = $_REQUEST["firstname"];
 		}
@@ -154,26 +154,26 @@ function register_user($adding_service="no"){
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
-			$esc_phone = addslashes($_REQUEST["phone"]);
+			$esc_phone = mysql_real_escape_string($_REQUEST["phone"]);
 		}else{
 			$esc_phone = $_REQUEST["phone"];
 		}
 	}
 
 	if (!get_magic_quotes_gpc()){
-		$esc_fax = addslashes($_REQUEST["fax"]);
+		$esc_fax = mysql_real_escape_string($_REQUEST["fax"]);
 	}else{
 		$esc_fax = $_REQUEST["fax"];
 	}
 
 	if (!get_magic_quotes_gpc()){
-		$esc_compname = addslashes($_REQUEST["compname"]);
+		$esc_compname = mysql_real_escape_string($_REQUEST["compname"]);
 	}else{
 		$esc_compname = $_REQUEST["compname"];
 	}
 
 	if (!get_magic_quotes_gpc()){
-		$esc_vat_num = addslashes($_REQUEST["vat_num"]);
+		$esc_vat_num = mysql_real_escape_string($_REQUEST["vat_num"]);
 	}else{
 		$esc_vat_num = $_REQUEST["vat_num"];
 	}
@@ -184,20 +184,20 @@ function register_user($adding_service="no"){
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
-			$esc_address1 = addslashes($_REQUEST["address1"]);
+			$esc_address1 = mysql_real_escape_string($_REQUEST["address1"]);
 		}else{
 			$esc_address1 = $_REQUEST["address1"];
 		}
 	}
 
 	if (!get_magic_quotes_gpc()){
-		$esc_address2 = addslashes($_REQUEST["address2"]);
+		$esc_address2 = mysql_real_escape_string($_REQUEST["address2"]);
 	}else{
 		$esc_address2 = $_REQUEST["address2"];
 	}
 
 	if (!get_magic_quotes_gpc()){
-		$esc_address3 = addslashes($_REQUEST["address3"]);
+		$esc_address3 = mysql_real_escape_string($_REQUEST["address3"]);
 	}else{
 		$esc_address3 = $_REQUEST["address3"];
 	}
@@ -208,7 +208,7 @@ function register_user($adding_service="no"){
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
-			$esc_zipcode = addslashes($_REQUEST["zipcode"]);
+			$esc_zipcode = mysql_real_escape_string($_REQUEST["zipcode"]);
 		}else{
 			$esc_zipcode = $_REQUEST["zipcode"];
 		}
@@ -220,20 +220,20 @@ function register_user($adding_service="no"){
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
-			$esc_city = addslashes($_REQUEST["city"]);
+			$esc_city = mysql_real_escape_string($_REQUEST["city"]);
 		}else{
 			$esc_city = $_REQUEST["city"];
 		}
 	}
 
 	if (!get_magic_quotes_gpc()){
-		$esc_state = addslashes($_REQUEST["state"]);
+		$esc_state = mysql_real_escape_string($_REQUEST["state"]);
 	}else{
 		$esc_state = $_REQUEST["state"];
 	}
 
 	if (!get_magic_quotes_gpc()){
-		$esc_custom_notes = addslashes($_REQUEST["custom_notes"]);
+		$esc_custom_notes = mysql_real_escape_string($_REQUEST["custom_notes"]);
 	}else{
 		$esc_custom_notes = $_REQUEST["custom_notes"];
 	}
@@ -281,7 +281,7 @@ function register_user($adding_service="no"){
 	$vps_mail_add1 = "";
 	if($db_product["heb_type"] == "vps"){
 		if (!get_magic_quotes_gpc()){
-			$esc_vps_os = addslashes($_REQUEST["vps_os"]);
+			$esc_vps_os = mysql_real_escape_string($_REQUEST["vps_os"]);
 		}else{
 			$esc_vps_os = $_REQUEST["vps_os"];
 		}

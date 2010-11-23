@@ -12,7 +12,7 @@
         die("Database error trying to use database 'apachelogs', does it exist?\n");
 
     if ( ! empty($argv[1]) )
-        if ( mysql_query("select count(*) from ".addslashes($argv[1])) )
+        if ( mysql_query("select count(*) from ".mysql_real_escape_string($argv[1])) )
             $tablename=addslashes($argv[1]);
         else
             die("table '".$argv[1]."' not found, is this the correct table name?\n");

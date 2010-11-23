@@ -61,7 +61,7 @@ function drawTestimonialsForm($destination_script){
 
 function recordTestimonials($validation_script,$deletion_script,$administrator_email){
   $out = "Recording your query in database...<br>";
-  $q = "INSERT INTO testimonials (url,company,comment) VALUES ('".addslashes($_REQUEST["addr_web"])."','".addslashes($_REQUEST["comp_name"])."','".addslashes($_REQUEST["comment"])."');";
+  $q = "INSERT INTO testimonials (url,company,comment) VALUES ('".mysql_real_escape_string($_REQUEST["addr_web"])."','".mysql_real_escape_string($_REQUEST["comp_name"])."','".mysql_real_escape_string($_REQUEST["comment"])."');";
   $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
   $reqid = mysql_insert_id();
 
@@ -87,7 +87,7 @@ Host: ".$_SERVER["REMOTE_ADDR"]."
 
 function validateTestimonials(){
   $out = "Validating testimonial id ".$_REQUEST["id"];
-  $q = "UPDATE testimonials SET publish='yes' WHERE id='".addslashes($_REQUEST["id"])."' AND publish='no';";
+  $q = "UPDATE testimonials SET publish='yes' WHERE id='".mysql_real_escape_string($_REQUEST["id"])."' AND publish='no';";
   $r = mysql_query($q)or die("Cannot query $q line ".__line__." file ".__FILE__." mysql said: ".mysql_error());
   $out .= "...done<br>";
   return $out;
@@ -95,7 +95,7 @@ function validateTestimonials(){
 
 function deleteTestimonials(){
   $out = "Deleting testimonial id '".$_REQUEST["id"]."'<br>";
-  $q = "DELETE FROM testimonials WHERE id='".addslashes($_REQUEST["id"])."' AND publish='no' LIMIT 1;";
+  $q = "DELETE FROM testimonials WHERE id='".mysql_real_escape_string($_REQUEST["id"])."' AND publish='no' LIMIT 1;";
   $r = mysql_query($q)or die("Cannot query $q line ".__line__." file ".__FILE__." mysql said: ".mysql_error());
   $out .= "...done<br>";
   return $out;

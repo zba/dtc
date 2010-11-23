@@ -141,7 +141,7 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 	$heber_price = $ze_price - $refundal;
 
 	if(isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "return_from_paypal_upgrade_account"){
-		$ze_refund = isPayIDValidated(addslashes($_REQUEST["pay_id"]));
+		$ze_refund = isPayIDValidated(mysql_real_escape_string($_REQUEST["pay_id"]));
 		if($ze_refund == 0){
 			$out .= "<font color=\"red\">" . _("The transaction failed, please try again!") . "</font>";
 		}else{

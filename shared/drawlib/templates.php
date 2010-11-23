@@ -1053,9 +1053,9 @@ function dtcListItemsEdit($dsc){
 					$values .= "'default'";
 				}else{
 					if(isset($dsc["cols"][ $keys[$i] ]["happen_domain"])){
-						$values .= "'".addslashes($_REQUEST[ $keys[$i] ]).$dsc["cols"][ $keys[$i] ]["happen_domain"]."'";
+						$values .= "'".mysql_real_escape_string($_REQUEST[ $keys[$i] ]).$dsc["cols"][ $keys[$i] ]["happen_domain"]."'";
 					}else{
-						$values .= "'".addslashes($_REQUEST[ $keys[$i] ])."'";
+						$values .= "'".mysql_real_escape_string($_REQUEST[ $keys[$i] ])."'";
 					}
 					// if the crypt field is set, then we use this as the SQL field to populate the crypted password into
 					if(isset($dsc["cols"][ $keys[$i] ]["cryptfield"])){
@@ -1082,9 +1082,9 @@ function dtcListItemsEdit($dsc){
 					$values .= "'default'";
 				}else{
 					if(isset($dsc["cols"][ $keys[$i] ]["happen_domain"])){
-						$values .= "'".addslashes($_REQUEST[ $keys[$i] ]).$dsc["cols"][ $keys[$i] ]["happen_domain"]."'";
+						$values .= "'".mysql_real_escape_string($_REQUEST[ $keys[$i] ]).$dsc["cols"][ $keys[$i] ]["happen_domain"]."'";
 					}else{
-						$values .= "'".addslashes($_REQUEST[ $keys[$i] ])."'";
+						$values .= "'".mysql_real_escape_string($_REQUEST[ $keys[$i] ])."'";
 					}
 				}
 				$added_one = "yes";
@@ -1109,7 +1109,7 @@ function dtcListItemsEdit($dsc){
 					$values .= ",";
 				}
 				$fld_names .= $keys[$i];
-				$values .= "'".addslashes($_REQUEST[ $keys[$i] ])."'";
+				$values .= "'".mysql_real_escape_string($_REQUEST[ $keys[$i] ])."'";
 				$added_one = "yes";
 				break;
 			}
@@ -1302,7 +1302,7 @@ function dtcListItemsEdit($dsc){
 			switch($dsc["cols"][ $keys[$i] ]["type"]){
 			case "id":
 				$id_fldname = $keys[$i];
-				$id_fld_value = addslashes($_REQUEST[ $keys[$i] ]);
+				$id_fld_value = mysql_real_escape_string($_REQUEST[ $keys[$i] ]);
 				break;
 			case "readonly":
 				break;
@@ -1323,7 +1323,7 @@ function dtcListItemsEdit($dsc){
 					}else if( isset($dsc["cols"][ $keys[$i] ]["empty_makes_default"]) && $dsc["cols"][ $keys[$i] ]["empty_makes_default"] == "yes" && $_REQUEST[ $keys[$i] ] == ""){
 						$reqs .= $keys[$i]."='default'";
 					}else{
-						$reqs .= $keys[$i]."='".addslashes($_REQUEST[ $keys[$i] ]).$happen."'";
+						$reqs .= $keys[$i]."='".mysql_real_escape_string($_REQUEST[ $keys[$i] ]).$happen."'";
 						// if the crypt field is set, then we use this as the SQL field to populate the crypted password into
 						if(isset($dsc["cols"][ $keys[$i] ]["cryptfield"])){
 							if($added_one == "yes"){
@@ -1340,7 +1340,7 @@ function dtcListItemsEdit($dsc){
 				if($added_one == "yes"){
 					$reqs .= ",";
 				}
-				$reqs .= $keys[$i]."='".addslashes($_REQUEST[ $keys[$i] ])."'";
+				$reqs .= $keys[$i]."='".mysql_real_escape_string($_REQUEST[ $keys[$i] ])."'";
 				$added_one = "yes";
 				break;
 			case "checkbox":
@@ -1373,7 +1373,7 @@ function dtcListItemsEdit($dsc){
 		for($i=0;$i<$nbr_fld;$i++){
 			if($dsc["cols"][ $keys[$i] ]["type"] == "id"){
 				$id_fldname = $keys[$i];
-				$id_fld_value = addslashes($_REQUEST[ $keys[$i] ]);
+				$id_fld_value = mysql_real_escape_string($_REQUEST[ $keys[$i] ]);
 			}
 		}
 		if( isset($id_fldname) && isset($id_fld_value) ){
@@ -1553,7 +1553,7 @@ function dtcListItemsEdit($dsc){
 	}else{
 		$out .= "<a href=\"$fw_link&subaction=".$dsc["action"]."_new_item\">".$dsc["new_item_link"]."</a><br><br>";
 		$out .= "<h3>".$dsc["edit_item_title"]."</h3><br>";
-		$q = "SELECT * FROM ".$dsc["table_name"]." $where AND ".$dsc["id_fld"]."='".addslashes($_REQUEST["item"])."';";
+		$q = "SELECT * FROM ".$dsc["table_name"]." $where AND ".$dsc["id_fld"]."='".mysql_real_escape_string($_REQUEST["item"])."';";
 		$r = mysql_query($q)or die("Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n == 1){

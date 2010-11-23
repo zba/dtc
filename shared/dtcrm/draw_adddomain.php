@@ -300,7 +300,7 @@ $form_start
 
 	// Check if paiement has just occured !
 	if(isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "return_from_paypal_domain_add"){
-		$ze_refund = isPayIDValidated(addslashes($_REQUEST["pay_id"]));
+		$ze_refund = isPayIDValidated(mysql_real_escape_string($_REQUEST["pay_id"]));
 		if($ze_refund == 0){
 			$out .= "<font color=\"red\">The transaction failed, please try again!</font>";
 		}else{

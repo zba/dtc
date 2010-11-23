@@ -76,7 +76,7 @@ case "edit_whitelist_rule":
 case "edit_bounce_msg":
 //&action=edit_bounce_msg&bounce_msg=Hello%2C%0D%0AYou+have+tried+to+write+an+email+to+me%2C+and+because+of+the+big+amount%0D%0Aof+spam+I+recieved%2C+I+use+an+antispam+software+that+require+a+message%0D%0Aconfirmation.+This+is+very+easy%2C+and+you+will+have+to+do+it+only+once.%0D%0AJust+click+on+the+following+link%2C+copy+the+number+you+see+on+the%0D%0Ascreen+and+I+will+recieve+the+message+you+sent+me.+If+you+do+not%0D%0Aclick%2C+then+your+message+will+be+considered+as+advertising+and+I+will%0D%0ANOT+recieve+it.%0D%0A%0D%0A***URL***%0D%0A%0D%0AThank+you+for+your+understanding.%0D%0A
 	if(strstr($_REQUEST["bounce_msg"],"***URL***")){
-		$q = "UPDATE $pro_mysql_pop_table SET bounce_msg='".addslashes($_REQUEST["bounce_msg"])."' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
+		$q = "UPDATE $pro_mysql_pop_table SET bounce_msg='".mysql_real_escape_string($_REQUEST["bounce_msg"])."' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	}else{
 		echo "Bounce message MUST contain ***URL***";
@@ -176,7 +176,7 @@ case "dtcemail_vacation_msg":
 	}else{
 		$use_vacation_msg = "no";
 	}
-	$q = "UPDATE $pro_mysql_pop_table SET vacation_flag='$use_vacation_msg',vacation_text='".addslashes($_REQUEST["vacation_msg_txt"])."'
+	$q = "UPDATE $pro_mysql_pop_table SET vacation_flag='$use_vacation_msg',vacation_text='".mysql_real_escape_string($_REQUEST["vacation_msg_txt"])."'
 	WHERE id='$user' AND mbox_host='$host' LIMIT 1;";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$q = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',gen_qmail='yes' WHERE 1";

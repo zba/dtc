@@ -3,7 +3,7 @@
 function checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name){
 	global $pro_mysql_vps_table;
 	checkLoginPass($adm_login,$adm_pass);
-	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_login' AND vps_server_hostname='".addslashes($vps_node)."' AND vps_xen_name='".addslashes($vps_name)."';";
+	$q = "SELECT * FROM $pro_mysql_vps_table WHERE owner='$adm_login' AND vps_server_hostname='".mysql_real_escape_string($vps_node)."' AND vps_xen_name='".mysql_real_escape_string($vps_name)."';";
 	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n == 1){

@@ -43,7 +43,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_ticket"){
 	}else{
 		$hash = createSupportHash();
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,subject,text,cat_id,initial_ticket,server_hostname,hash)
-		VALUES ('','$adm_login','".date("Y-m-d")."','".date("H:i:s")."','".addslashes($_REQUEST["subject"])."','".addslashes($_REQUEST["ticketbody"])."','".addslashes($_REQUEST["issue_cat_id"])."','yes','".addslashes($_REQUEST["server_hostname"])."','$hash');";
+		VALUES ('','$adm_login','".date("Y-m-d")."','".date("H:i:s")."','".mysql_real_escape_string($_REQUEST["subject"])."','".mysql_real_escape_string($_REQUEST["ticketbody"])."','".mysql_real_escape_string($_REQUEST["issue_cat_id"])."','yes','".mysql_real_escape_string($_REQUEST["server_hostname"])."','$hash');";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		mailTicketToAllAdmins($_REQUEST["subject"],$_REQUEST["ticketbody"],$adm_login);
 	}
@@ -56,7 +56,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_ticket_reply"){
 	}else{
 		// Insert the new ticket
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,subject,text,cat_id,initial_ticket,server_hostname,in_reply_of_id,request_close)
-		VALUES ('','$adm_login','".date("Y-m-d")."','".date("H:i:s")."','".addslashes($_REQUEST["subject"])."','".addslashes($_REQUEST["ticketbody"])."','".addslashes($_REQUEST["cat_id"])."','no','".addslashes($_REQUEST["server_hostname"])."','".addslashes($_REQUEST["last_tik_id"])."','".addslashes($_REQUEST["request_to_close"])."');";
+		VALUES ('','$adm_login','".date("Y-m-d")."','".date("H:i:s")."','".mysql_real_escape_string($_REQUEST["subject"])."','".mysql_real_escape_string($_REQUEST["ticketbody"])."','".mysql_real_escape_string($_REQUEST["cat_id"])."','no','".mysql_real_escape_string($_REQUEST["server_hostname"])."','".mysql_real_escape_string($_REQUEST["last_tik_id"])."','".mysql_real_escape_string($_REQUEST["request_to_close"])."');";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$ins_id = mysql_insert_id();
 		// Update the chained list of tickets

@@ -7,8 +7,8 @@ $panel_type="cronjob";
 require_once("$dtcshared_path/dtc_lib.php");
 
 $q = "SELECT * FROM $pro_mysql_backup_table WHERE
-server_login='".addslashes($_REQUEST["login"])."'
-AND server_pass='".addslashes($_REQUEST["pass"])."'
+server_login='".mysql_real_escape_string($_REQUEST["login"])."'
+AND server_pass='".mysql_real_escape_string($_REQUEST["pass"])."'
 AND server_addr='".$_SERVER["REMOTE_ADDR"]."';";
 $r = mysql_query($q)or die("Cannot query $q ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 $n = mysql_num_rows($r);
