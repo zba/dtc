@@ -255,12 +255,12 @@ shared/inc/forms/ftp.php shared/inc/forms/invoices.php shared/inc/forms/lists.ph
 shared/inc/forms/my_account.php shared/inc/forms/packager.php shared/inc/forms/reseller.php shared/inc/forms/root_admin.php \
 shared/inc/forms/ssh.php shared/inc/forms/subdomain.php shared/inc/forms/ticket.php \
 shared/inc/forms/tools.php shared/inc/forms/vps.php shared/inc/forms/vps_dom0graphs.php \
+shared/inc/forms/user_cronjobs.php \
 shared/inc/sql/database.php shared/inc/sql/dedicated.php \
 shared/inc/sql/dns.php shared/inc/sql/domain_info.php \
 shared/inc/sql/domain_stats.php shared/inc/sql/email.php \
 shared/inc/sql/lists.php shared/inc/sql/reseller.php shared/inc/sql/ssh.php \
 shared/inc/sql/subdomain.php shared/inc/sql/ticket.php \
-shared/inc/sql/user_cronjobs.php \
 shared/inc/sql/vps.php
 
 SKIN_STUFF=shared/gfx/skin/default_layout.php shared/gfx/skin/bwoup/layout.php
