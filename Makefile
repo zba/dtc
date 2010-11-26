@@ -291,7 +291,7 @@ ALL_PICS=$(NEW_SITES_TEMPLATE_IMG) $(CLIENT_PICTURES)
 ################# EXECUTABLE SCRIPTS #################
 # Owned by root, ran by root
 ROOT_CRON_PHP_SCRIPT_FILES=admin/cron.php admin/reminders.php admin/restor_db.php admin/backup_db.php admin/support-receive.php \
-admin/migrate_to_server.php admin/guess_ip.sh admin/dtc_migrate admin/dtc_import_all_dbs rbl_change.sh dtcpassadm
+admin/migrate_to_server.php admin/guess_ip.sh admin/dtc_migrate admin/dtc_import_all_dbs admin/rbl_change.sh admin/dtcpassadm
 
 # Owned by root, executed as DTC
 DTC_CRON_PHP_SCRIPT_FILES=admin/accesslog.php admin/maint_apache.php admin/stat_total_active_prods.php
