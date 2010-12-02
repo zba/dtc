@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-08-29 16:31+0800\n"
-"PO-Revision-Date: 2010-09-04 17:31+0800\n"
+"PO-Revision-Date: 2010-12-02 20:50+0800\n"
 "Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
 "Language-Team: Wei Cao <caowei@gplhost.com>\n"
 "MIME-Version: 1.0\n"
@@ -2540,7 +2540,7 @@ msgstr "使用webarchive："
 
 #: shared/dtcrm/modules/ovh/main.php:612
 msgid "English"
-msgstr ""
+msgstr "英语"
 
 #: shared/dtcrm/draw_adddomain.php:209
 msgid "Enter the domain name you want to register:"
@@ -2767,7 +2767,7 @@ msgstr "斐济"
 
 #: shared/inc/draw.php:352
 msgid "File manager"
-msgstr ""
+msgstr "文件管理"
 
 #: shared/inc/draw.php:513
 #, fuzzy
@@ -3066,7 +3066,7 @@ msgstr "圭亚那"
 
 #: admin/inc/monitor.php:99
 msgid "HDD"
-msgstr ""
+msgstr "HDD"
 
 #: shared/inc/forms/vps_monitoring.php:113
 msgid "HDD I/O:"
