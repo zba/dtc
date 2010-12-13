@@ -1,5 +1,7 @@
 #!/usr/bin/env php
 <?php
+// For sites with high traffic and stats to generate - prevent "MySQL server has gone away" error
+ini_set('mysql.connect_timeout', 300);
 
 if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
 @date_default_timezone_set(@date_default_timezone_get());
@@ -16,7 +18,7 @@ function delete_old_files_in_tmp(){
 	global $conf_mysql_db;
 	global $conf_webalizer_country_graph;
 	global $pro_mysql_domain_table;
-	global $conf_dtcshared_path;
+	global $dtcshared_path;
 	global $conf_generated_file_path;
 
 	global $conf_use_webalizer;
@@ -45,7 +47,7 @@ function make_stats(){
 	global $conf_mysql_db;
 	global $conf_webalizer_country_graph;
 	global $pro_mysql_domain_table;
-	global $conf_dtcshared_path;
+	global $dtcshared_path;
 	global $conf_generated_file_path;
 
 	global $conf_use_webalizer;
@@ -155,7 +157,7 @@ function make_stats(){
 
 							// copy the template file
 							if (!file_exists("$fullpath/visitors.php")){
-								copy("$conf_dtcshared_path/visitors_template/visitors.php", "$fullpath/visitors.php");
+								copy("$dtcshared_path/visitors_template/visitors.php", "$fullpath/visitors.php");
 							}
 						}
 
@@ -245,7 +247,7 @@ fi
 function make_log_archive (){
 	global $conf_mysql_db;
 	global $pro_mysql_domain_table;
-	global $conf_dtcshared_path;
+	global $dtcshared_path;
 
 	$today_midnight = mktime(0,0,0);
 
