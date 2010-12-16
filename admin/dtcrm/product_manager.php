@@ -123,7 +123,7 @@ function productManager(){
 				),
 			"pkg_install_flag" => array(
 				"type" => "checkbox",
-				"legend" => _("Subdomains"),
+				"legend" => _("Installer"),
 				"help" => _("If set to no, users wont be able to use the package installer."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
