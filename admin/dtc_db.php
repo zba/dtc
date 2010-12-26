@@ -323,6 +323,30 @@ $dtc_database = array(
 		),
 		"primary" => "(id)"
 	),
+		"custom_heb_types" => array(
+		"vars" => array(
+			"id" => "int(11) NOT NULL auto_increment",
+			"name" => "varchar(32) NOT NULL default ''",
+			"reqdomain" => "enum('yes','no') NOT NULL default 'no'"
+		),
+		"primary" => "(id)",
+		"keys" => array(
+			"name" => "(name)"
+		)
+	),
+	"custom_heb_types_fld" => array(
+		"vars" => array(
+			"id" => "int(9) NOT NULL auto_increment",
+			"varname" => "varchar(255) NOT NULL default ''",
+			"question" => "varchar(255) NOT NULL default ''",
+			"widgettype" => "varchar(255) NOT NULL default ''",
+			"widgetvalues" => "varchar(255) NOT NULL default ''",
+			"widgetdisplay" => "varchar(255) NOT NULL default ''",
+			"widgetorder" => "int(9) NOT NULL default '0'",
+			"custom_heb_type_id" => "int(11) NOT NULL default '0'"
+		),
+		"primary" => "(id)"
+	),
 	"dedicated" => array(
 		"vars" => array(
 			"id" => "int(11) NOT NULL auto_increment",
@@ -822,11 +846,13 @@ $dtc_database = array(
 			"allow_subdomain_edit" => "enum('yes','no') NOT NULL default 'yes'",
 			"pkg_install_flag" => "enum('yes','no') NOT NULL default 'yes'",
 			"ftp_login_flag" => "enum('yes','no') NOT NULL default 'yes'",
-			"heb_type" => "enum('shared','ssl','vps','server') NOT NULL default 'shared'",
+			"heb_type" => "enum('shared','ssl','vps','server','custom') NOT NULL default 'shared'",
 			"renew_prod_id" => "int(11) NOT NULL default '0'",
 			"affiliate_kickback" => "varchar(9) NOT NULL default ''",
 			"private" => "enum('yes','no') NOT NULL default 'no'",
-			"use_radius" => "enum('yes','no') NOT NULL default 'no'"
+			"use_radius" => "enum('yes','no') NOT NULL default 'no'",
+			"custom_heb_type" => "int(11) NOT NULL default '0'",
+			"custom_heb_type_fld" => "text"
 		),
 		"primary" => "(id)",
 		"keys" => array(

@@ -248,6 +248,9 @@ function dtcDatagrid($dsc){
 					$vals .= "'".$dsc["cols"][ $keys[$i] ]["values"][$index_val]."'";
 					$added_one = "yes";
 					break;
+				case "custom_fld":
+					//
+					break;
 				default:
 					break;
 				}
@@ -305,6 +308,18 @@ function dtcDatagrid($dsc){
 						$vals .= " ".$dsc["cols"][ $keys[$i] ]["cryptfield"]."='".crypt($_REQUEST[ $keys[$i] ], dtc_makesalt())."' ";
 					}
                                         break;
+				case "custom_fld":
+					if($added_one == "yes"){
+						$vals .= ", ";
+					}
+					$arr_request = array();
+					foreach ($_REQUEST[ $keys[$i] ] as $req_field => $req_value){
+						$arr_request[] = $req_field.":".$req_value;
+					}
+					$txt_request = join("|",$arr_request);
+					$vals .= " ".$keys[$i]."='".$txt_request."' ";
+					$added_one = "yes";
+					break;
 				default:
 					if($added_one == "yes"){
 						$vals .= ", ";
@@ -366,6 +381,9 @@ function dtcDatagrid($dsc){
 				$jshelp = " onmouseover=\"Tip('". addslashes($dsc["cols"][ $keys[$i] ]["help"]) ."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" ";
 			}else{
 				$jshelp = "";
+			}
+			if (!isset($dsc["cols"][ $keys[$i] ]["legend"])){
+				$dsc["cols"][ $keys[$i] ]["legend"] = "";
 			}
 			$out .= "<td $jshelp class=\"dtcDatagrid_table_titles\">".$dsc["cols"][ $keys[$i] ]["legend"]."</td>";
 		}
@@ -497,7 +515,11 @@ function dtcDatagrid($dsc){
 			}else{
 				$the_type = $the_fld["type"];
 				if($the_type != "hyperlink"){
-					$db_value = $a[ $the_name ];
+					if (isset($a[ $the_name ])){
+						$db_value = $a[ $the_name ];
+					}else{
+						$db_value = "";
+					}
 				}
 			}
 			switch($the_type){
@@ -612,6 +634,79 @@ function dtcDatagrid($dsc){
 				}else{
 					$out .= $id_hidden;
 				}
+				break;
+			case "custom_fld":
+				$out .= "<td class=\"$tdclass\">";
+				
+				// Manage the output of custom fields.
+				$customer_custom_fields = array();
+				$explo_row = explode("|", htmlspecialchars(stripcslashes($db_value)));
+				$n_custf = sizeof($explo_row);
+				for($ix=0;$ix<$n_custf;$ix++){
+					$one_fld = $explo_row[$ix];
+					$pos_data = strpos($one_fld,":");
+					if($pos_data === false){
+						continue;
+					}
+					$varname = substr($one_fld,0,$pos_data);
+					$value = substr($one_fld,$pos_data+1);
+					$customer_custom_fields[ $varname ] = $value;
+				}
+				$qa = "SELECT ".$the_fld["main_table"].".* FROM ".$the_fld["main_table"]." INNER JOIN ".$the_fld["second_table"]." ON ".$the_fld["main_join_clause"]." INNER JOIN ".$the_fld["third_table"]." ON ".$the_fld["second_join_clause"]." WHERE ".$the_fld["where_field"]." = $id ORDER BY ".$the_fld["order_field"].";";
+				//echo " | ".$qa." ";
+				$ra = mysql_query($qa)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				$na = mysql_num_rows($ra);
+				$init_alt = 1;
+
+				for($iz=0;$iz<$na;$iz++){
+					$aa = mysql_fetch_array($ra);
+					if(isset($customer_custom_fields[ $aa["varname"] ])){
+						$val = $customer_custom_fields[ $aa["varname"] ];
+					}else{
+						$val = "";
+					}
+					switch($aa["widgettype"]){
+					case "radio":
+						$explo_popup = explode("|",$aa["widgetvalues"]);
+						$explo_popup2 = explode("|",$aa["widgetdisplay"]);
+						$n_val = sizeof($explo_popup);
+						$widget = "";
+						for($jz=0;$jz<$n_val;$jz++){
+							if($val == $the_name[$explo_popup[$jz]]){
+								$sel = " checked ";
+							}else{
+								$sel = " ";
+							}
+							$widget .= "<input type=\"radio\" name=\"".$the_name."[".$aa["varname"]."]\" value=\"".$explo_popup[$jz]."\" $sel > ".$explo_popup2[$jz];
+						}
+						break;
+					case "popup":
+						$explo_popup = explode("|",$aa["widgetvalues"]);
+						$explo_popup2 = explode("|",$aa["widgetdisplay"]);
+						$n_val = sizeof($explo_popup);
+						$widget = "<select name=\"".$the_name."[".$aa["varname"]."]\">";
+						for($jz=0;$jz<$n_val;$jz++){
+							if($val == $the_name[$explo_popup[$jz]]){
+								$sel = " selected ";
+							}else{
+								$sel = " ";
+							}
+							$widget .= "<option value=\"".$explo_popup[$jz]."\" $sel >".$explo_popup2[$jz]."</option>";
+						}
+						$widget .= "</select>";
+						break;
+					case "textarea":
+						$widget = "<textarea name=\"".$the_name."[".$aa["varname"]."]\">".htmlspecialchars($val)."</textarea>";
+						break;
+					case "text":
+					default:
+						$widget = "<input size=\"40\" type=\"text\" name=\"".$the_name."[".$aa["varname"]."]\" value=\"".htmlspecialchars($val)."\">";
+						break;
+					}
+					$out .= $aa["question"].": ".$widget; //,$init_alt);
+				}
+
+				$out .= "</td>";
 				break;
 			}
 		}

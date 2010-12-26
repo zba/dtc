@@ -52,8 +52,8 @@ if($sousrub == "register"){
 	}
 $_REQUEST["product_id"];
 	$heb_types = array('shared', 'ssl', 'vps', 'server');
-	if(isset($_REQUEST["heb_type"]) && preg_match("/[a-zA-Z0-9]/", $_REQUEST["heb_type"])){
-		if(in_array(strtolower($_REQUEST["heb_type"]),$heb_types)){
+	if(isset($_REQUEST["heb_type"]) && preg_match("/[a-zA-Z0-9\_]/", $_REQUEST["heb_type"])){
+		if(in_array(strtolower($_REQUEST["heb_type"]),$heb_types) or preg_match("/custom_[0-9]{1,11}/", $_REQUEST["heb_type"])){
 			$ZeContent .= '&heb_type='.strtolower($_REQUEST["heb_type"]);
 		    }
 		}

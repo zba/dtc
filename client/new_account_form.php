@@ -15,6 +15,8 @@ function register_user($adding_service="no"){
 
 	global $secpayconf_currency_letters;
 
+	global $pro_mysql_custom_heb_types_table;
+
 	global $gettext_lang;
 
 	get_secpay_conf();
@@ -47,7 +49,7 @@ function register_user($adding_service="no"){
 		$ret["mesg"] = _("Product ID not valid!");
 		return $ret;
 	}
-	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='$esc_product_id';";
+	$q = "SELECT $pro_mysql_product_table.*, $pro_mysql_custom_heb_types_table.reqdomain FROM $pro_mysql_product_table LEFT JOIN $pro_mysql_custom_heb_types_table ON $pro_mysql_product_table.custom_heb_type = $pro_mysql_custom_heb_types_table.id WHERE $pro_mysql_product_table.id='$esc_product_id';";
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
@@ -85,14 +87,14 @@ function register_user($adding_service="no"){
 		$domain_tld = $_REQUEST["domain_tld"];
 	}
 
-	// If shared or ssl hosting, we MUST do type checkings
-	if($db_product["heb_type"] == "shared" || $db_product["heb_type"] == "ssl" || $db_product["heb_type"] == "dedicated"){
+	// If shared or ssl hosting or custom with domain, we MUST do type checkings
+	if($db_product["heb_type"] == "shared" || $db_product["heb_type"] == "ssl" || $db_product["heb_type"] == "dedicated" || ($db_product["heb_type"] == "custom" && $db_product[reqdomain] == "yes")){
 		if(!isHostnameOrIP($_REQUEST["domain_name"].$_REQUEST["domain_tld"])){
 			$ret["err"] = 2;
 			$ret["mesg"] = _("Domain name seems to be incorrect.") ;
 			return $ret;
 		}
-	// If not a shared, a dedicated or ssl account, it's a VPS:
+	// If not a shared, a dedicated or ssl account, it's a VPS or custom without domain:
 	// we don't care if it's umpty, but we take care of mysql insertion anyway
 	// so if there is a domain name, then we check it's consistency, but we don't
 	// do much more if there's nothing...
@@ -466,6 +468,8 @@ function registration_form(){
 	global $pro_mysql_vps_server_table;
 	global $pro_mysql_custom_fld_table;
 
+	global $pro_mysql_custom_heb_types_table;
+
 	global $conf_selling_conditions_url;
 	global $secpayconf_currency_symbol;
 
@@ -486,10 +490,15 @@ function registration_form(){
 		$heb_type = $a["heb_type"];
 	}else{
 		$heb_types = array('shared', 'ssl', 'vps', 'server');
-		if(isset($_REQUEST["heb_type"]) && preg_match("/[a-zA-Z0-9]/", $_REQUEST["heb_type"])){
-		    if(in_array(strtolower($_REQUEST["heb_type"]),$heb_types)){
-			$heb_type_condition = " heb_type='".strtolower($_REQUEST["heb_type"])."' ";
-			$heb_type = strtolower($_REQUEST["heb_type"]);
+		if(isset($_REQUEST["heb_type"]) && preg_match("/[a-zA-Z0-9\_]/", $_REQUEST["heb_type"])){
+		    if(in_array(strtolower($_REQUEST["heb_type"]),$heb_types) or preg_match("/custom_[0-9]{1,11}/", $_REQUEST["heb_type"])){
+				if (in_array(strtolower($_REQUEST["heb_type"]),$heb_types)){
+					$heb_type_condition = " heb_type='".strtolower($_REQUEST["heb_type"])."' ";
+					$heb_type = strtolower($_REQUEST["heb_type"]);
+				}else{
+					$heb_type_condition = " heb_type='".str_replace('custom_', '', $_REQUEST["heb_type"])."' ";
+				$heb_type = str_replace('custom_', '', $_REQUEST["heb_type"])."' ";
+				}
 		    }else{
 				$heb_type_condition = " 1 ";
 				$heb_type = "all";
@@ -502,13 +511,21 @@ function registration_form(){
 
 	$prod_popup = "";
 	$p_jscript = " prod_popup_htype = new Array();";
-	$q = "SELECT * FROM $pro_mysql_product_table WHERE $heb_type_condition AND renew_prod_id='0' AND private='no' ORDER BY id";
+	$q = "SELECT $pro_mysql_product_table.*, $pro_mysql_custom_heb_types_table.reqdomain FROM $pro_mysql_product_table LEFT JOIN $pro_mysql_custom_heb_types_table ON $pro_mysql_product_table.custom_heb_type = $pro_mysql_custom_heb_types_table.id WHERE $heb_type_condition AND renew_prod_id='0' AND private='no' ORDER BY id";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	$prod_popup .= "<option value=\"-1\">"._("Please select!")."</optioon>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$p_jscript .= " prod_popup_htype[".$a["id"]."] = '".$a["heb_type"]."';\n";
+				if ($a["heb_type"] == "custom"){
+			if($a["reqdomain"] == "yes"){
+				$p_jscript .= " prod_popup_htype[".$a["id"]."] = 'custom_domain';\n";
+			}else{
+				$p_jscript .= " prod_popup_htype[".$a["id"]."] = 'custom_nodomain';\n";
+			}
+		}else{
+			$p_jscript .= " prod_popup_htype[".$a["id"]."] = '".$a["heb_type"]."';\n";
+		}
 		if(isset($_REQUEST["product_id"]) && $a["id"] == $_REQUEST["product_id"]){
 			$prod_popup .= "<option value=\"".$a["id"]."\" selected>".$a["name"]." / ".$a["price_dollar"]."$secpayconf_currency_symbol</option>\n";
 		}else{
@@ -837,6 +854,20 @@ function hostingProductChanged(){
 		e.style.display = 'block';
 		f.style.visibility = 'visible';
 		f.style.display = 'block';
+		}else if(hosting_type == 'custom_nodomain'){
+		a.style.visibility = 'hidden';
+		a.style.display = 'none';
+		b.style.visibility = 'hidden';
+		b.style.display = 'none';
+
+		c.style.visibility = 'hidden';
+		c.style.display = 'none';
+		d.style.visibility = 'hidden';
+		d.style.display = 'none';
+		e.style.visibility = 'hidden';
+		e.style.display = 'none';
+		f.style.visibility = 'hidden';
+		f.style.display = 'none';
 	}else{
 		a.style.visibility = 'visible';
 		a.style.display = 'block';

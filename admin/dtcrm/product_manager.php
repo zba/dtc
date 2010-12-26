@@ -3,18 +3,20 @@
 function productManager(){
         global $pro_mysql_product_table;
         global $secpayconf_currency_symbol;
+        global $pro_mysql_custom_heb_types_table;
+        global $pro_mysql_custom_heb_types_fld_table;
 
         if(!isset($secpayconf_currency_symbol)){
         	get_secpay_conf();
         }
 
-        $dsc = array(
-        	"table_name" => $pro_mysql_product_table,
-        	"title" => _("Product list editor") . _(" (shared)"),
-        	"action" => "hosting_product_list_shared",
-        	"forward" => array("rub"),
-        	"where_condition" => "heb_type='shared'",
-        	"cols" => array(
+		$dsc = array(
+			"table_name" => $pro_mysql_product_table,
+			"title" => _("Product list editor") . _(" (shared)"),
+			"action" => "hosting_product_list_shared",
+			"forward" => array("rub"),
+			"where_condition" => "heb_type='shared'",
+			"cols" => array(
 			"id" => array(
 				"type" => "id",
 				"display" => "yes",
@@ -141,13 +143,13 @@ function productManager(){
 	$out = dtcDatagrid($dsc);
 
 	// Build the product ID popup
-        $qp = "SELECT id,name FROM $pro_mysql_product_table WHERE renew_prod_id='0' AND heb_type='vps'";
-        $rp = mysql_query($qp)or die("Cannot query \"$qp\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-        $np = mysql_num_rows($rp);
-        $renew_id_popup = array();
-        $renew_id_popup[] = 0;
-        $renew_id_replace = array();
-        $renew_id_replace[] = _("Not a renewal product");
+	$qp = "SELECT id,name FROM $pro_mysql_product_table WHERE renew_prod_id='0' AND heb_type='vps'";
+	$rp = mysql_query($qp)or die("Cannot query \"$qp\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	$np = mysql_num_rows($rp);
+	$renew_id_popup = array();
+	$renew_id_popup[] = 0;
+	$renew_id_replace = array();
+	$renew_id_replace[] = _("Not a renewal product");
 	for($j=0;$j<$np;$j++){
 		$ap = mysql_fetch_array($rp);
 		$renew_id_popup[] = $ap["id"];
@@ -158,13 +160,13 @@ function productManager(){
 		}
 	}
 
-        $dsc = array(
-        	"table_name" => $pro_mysql_product_table,
-        	"title" => _("Product list editor") . _(" (VPS)"),
-        	"action" => "hosting_product_list_vps",
-        	"forward" => array("rub"),
-        	"where_condition" => "heb_type='vps'",
-        	"cols" => array(
+		$dsc = array(
+			"table_name" => $pro_mysql_product_table,
+			"title" => _("Product list editor") . _(" (VPS)"),
+			"action" => "hosting_product_list_vps",
+			"forward" => array("rub"),
+			"where_condition" => "heb_type='vps'",
+			"cols" => array(
 			"id" => array(
 				"type" => "id",
 				"display" => "yes",
@@ -229,18 +231,18 @@ function productManager(){
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
-        		)
-        	);
+			)
+		);
 	$out .= dtcDatagrid($dsc);
 
 	// Build the product ID popup
-        $qp = "SELECT id,name FROM $pro_mysql_product_table WHERE renew_prod_id='0' AND heb_type='server'";
-        $rp = mysql_query($qp)or die("Cannot query \"$qp\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-        $np = mysql_num_rows($rp);
-        $renew_id_popup = array();
-        $renew_id_popup[] = 0;
-        $renew_id_replace = array();
-        $renew_id_replace[] = _("Not a renewal product");
+		$qp = "SELECT id,name FROM $pro_mysql_product_table WHERE renew_prod_id='0' AND heb_type='server'";
+		$rp = mysql_query($qp)or die("Cannot query \"$qp\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$np = mysql_num_rows($rp);
+		$renew_id_popup = array();
+		$renew_id_popup[] = 0;
+		$renew_id_replace = array();
+		$renew_id_replace[] = _("Not a renewal product");
 	for($j=0;$j<$np;$j++){
 		$ap = mysql_fetch_array($rp);
 		$renew_id_popup[] = $ap["id"];
@@ -251,13 +253,13 @@ function productManager(){
 		}
 	}
 
-        $dsc = array(
-        	"table_name" => $pro_mysql_product_table,
-        	"title" => _("Product list editor") . _(" (Dedicated servers)"),
-        	"action" => "hosting_product_list_dedicated",
-        	"forward" => array("rub"),
-        	"where_condition" => "heb_type='server'",
-        	"cols" => array(
+		$dsc = array(
+			"table_name" => $pro_mysql_product_table,
+			"title" => _("Product list editor") . _(" (Dedicated servers)"),
+			"action" => "hosting_product_list_dedicated",
+			"forward" => array("rub"),
+			"where_condition" => "heb_type='server'",
+			"cols" => array(
 			"id" => array(
 				"type" => "id",
 				"display" => "yes",
@@ -329,17 +331,17 @@ function productManager(){
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
-        		)
-        	);
+				)
+			);
 	$out .= dtcDatagrid($dsc);
 
-        $dsc = array(
-        	"table_name" => $pro_mysql_product_table,
-        	"title" => _("Product list editor") . _(" (SSL IPs)"),
-        	"action" => "hosting_product_list_ssl",
-        	"forward" => array("rub"),
-        	"where_condition" => "heb_type='ssl'",
-        	"cols" => array(
+		$dsc = array(
+			"table_name" => $pro_mysql_product_table,
+			"title" => _("Product list editor") . _(" (SSL IPs)"),
+			"action" => "hosting_product_list_ssl",
+			"forward" => array("rub"),
+			"where_condition" => "heb_type='ssl'",
+			"cols" => array(
 			"id" => array(
 				"type" => "id",
 				"display" => "yes",
@@ -386,9 +388,163 @@ function productManager(){
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
-        		)
-        	);
+			)
+		);
 	$out .= dtcDatagrid($dsc);
+		// Build the product ID popup
+		$qp = "SELECT id,name FROM ".$pro_mysql_custom_heb_types_table;
+		$rp = mysql_query($qp)or die("Cannot query \"$qp\" !!! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$np = mysql_num_rows($rp);
+		$type_id_popup = array();
+		$type_id_replace = array();
+	for($j=0;$j<$np;$j++){
+		$ap = mysql_fetch_array($rp);
+		$type_id_popup[] = $ap["id"];
+		if(strlen($ap["name"]) > 20){
+			$type_id_replace[] = $ap["id"]. ": " .substr($ap["name"],0,17)."...";
+		}else{
+			$type_id_replace[] = $ap["id"]. ": " .$ap["name"];
+		}
+	}
+		$dsc = array(
+			"table_name" => $pro_mysql_product_table,
+			"title" => _("Product list editor") . _(" (Custom)"),
+			"action" => "hosting_product_list_custom",
+			"forward" => array("rub"),
+			"where_condition" => "heb_type='custom'",
+			"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "yes",
+				"legend" => "Id"
+				),
+			"name" => array(
+				"type" => "text",
+				"legend" => _("Name") ,
+				"size" => "30"
+				),
+			"period" => array(
+				"type" => "text",
+				"help" => _("Period for the product with format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, write 0001-02-03. "),
+				"legend" => _("Period") ,
+				"size" => "10"
+				),
+			"price_dollar" => array(
+				"type" => "text",
+				"legend" => _("Price") ,
+				"size" => "4"
+				),
+			"setup_fee" => array(
+				"type" => "text",
+				"legend" => _("Setup fee") ,
+				"size" => "4"
+				),
+			"affiliate_kickback" => array(
+				"type" => "text",
+				"help" => _("This is the amount of money that you will give back to the affiliate account that made the sell possible."),
+				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
+				"size" => "4"
+				),
+			"custom_heb_type" => array(
+				"type" => "popup",
+				"help" => _("The custom product types (set in custom heb types)."),
+				"legend" => _("Custom product type") ,
+				"values" => $type_id_popup,
+				"display_replace" => $type_id_replace
+				),
+			"custom_heb_type_fld" => array(
+				"type" => "custom_fld",
+				"legend" => _("Custom fields"),
+				"main_table" => $pro_mysql_custom_heb_types_fld_table,
+				"second_table" => $pro_mysql_custom_heb_types_table,
+				"third_table" => $pro_mysql_product_table,
+				"main_join_clause" => $pro_mysql_custom_heb_types_fld_table.".custom_heb_type_id = ".$pro_mysql_custom_heb_types_table.".id",
+				"second_join_clause" => $pro_mysql_custom_heb_types_table.".id = ".$pro_mysql_product_table.".custom_heb_type",
+				"where_field" => $pro_mysql_product_table.".id", 
+				"order_field" => "widgetorder"
+				),
+			"private" => array(
+				"type" => "checkbox",
+				"legend" => _("Private") ,
+				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
+				"default" => "no")
+			)
+		);
+	$out .= dtcDatagrid($dsc);
+
+		$dsc = array(
+			"table_name" => $pro_mysql_custom_heb_types_table,
+			"title" => _("Product list editor") . _(" (Custom Heb Types)"),
+			"action" => "hosting_list_custom_heb_types",
+			"forward" => array("rub"),
+			"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "yes",
+				"legend" => "id"),
+			"name" => array(
+				"type" => "text",
+				"legend" => "name"),
+			"reqdomain" => array(
+				"type" => "checkbox",
+				"legend" => _("Requires Domain Name") ,
+				"help" => _("If the reqdomain flag is set, then this product ill prompt for a domain name in the registration form."),
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No")),
+				"default" => "no")
+			)
+		);
+	$out .= dtcDatagrid($dsc);
+
+	$dsc = array(
+		"title" => _("Custom fields for custom product types"),
+		"table_name" => $pro_mysql_custom_heb_types_fld_table,
+		"action" => "custom_product_field_editor",
+		"forward" => array("rub"),
+		"order_by" => "custom_heb_type_id,widgetorder",
+		"cols" => array(
+			"id" => array(
+				"type" => "id",
+				"display" => "no",
+				"legend" => "Id"),
+			"widgetorder" => array(
+				"legend" => _("Display order"),
+				"type" => "text",
+				"size" => "4"),
+			"varname" => array(
+				"legend" => _("Variable name"),
+				"type" => "text",
+				"size" => "15"),
+			"question" => array(
+				"legend" => _("Question to the user"),
+				"type" => "text",
+				"size" => "30"),
+			"widgettype" => array(
+				"legend" => _("Widget type"),
+				"type" => "popup",
+				"values" => array( "text", "popup", "radio", "textarea")),
+			"widgetvalues" => array(
+				"legend" => _("Possible values"),
+				"type" => "text",
+				"size" => "20"),
+			"widgetdisplay" => array(
+				"legend" => _("Corresponding display"),
+				"type" => "text",
+				"size" => "30"),
+			"custom_heb_type_id" => array(
+				"type" => "popup",
+				"help" => _("The custom product types (set in custom heb types)."),
+				"legend" => _("Custom product type") ,
+				"values" => $type_id_popup,
+				"display_replace" => $type_id_replace)
+			)
+		);
+	$out .= dtcDatagrid($dsc);
+	$out .= _("On the above tables, the possible values are what is is going to be the internal value in the popup or radio buttons,
+which is what is going to be recorded in the database. Values are separated by \"|\". The corresponding display is what will actually
+be displayed to your users instead of the popup value.")."<br>";
 
 	$out .= helpLink("PmWiki/HostingProductManager");
 	return $out;
