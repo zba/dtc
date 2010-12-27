@@ -88,7 +88,7 @@ function register_user($adding_service="no"){
 	}
 
 	// If shared or ssl hosting or custom with domain, we MUST do type checkings
-	if($db_product["heb_type"] == "shared" || $db_product["heb_type"] == "ssl" || $db_product["heb_type"] == "dedicated" || ($db_product["heb_type"] == "custom" && $db_product[reqdomain] == "yes")){
+	if($db_product["heb_type"] == "shared" || $db_product["heb_type"] == "ssl" || $db_product["heb_type"] == "dedicated" || ($db_product["heb_type"] == "custom" && $db_product["reqdomain"] == "yes")){
 		if(!isHostnameOrIP($_REQUEST["domain_name"].$_REQUEST["domain_tld"])){
 			$ret["err"] = 2;
 			$ret["mesg"] = _("Domain name seems to be incorrect.") ;
@@ -246,10 +246,16 @@ function register_user($adding_service="no"){
 		return $ret;
 	}
 
-	if($_REQUEST["iscomp"] == "yes"){
-		$esc_comp = "yes";
-	}else if($_REQUEST["iscomp"] == "no"){
-		$esc_comp = "no";
+	if (isset($_REQUEST["iscomp"])){
+		if($_REQUEST["iscomp"] == "yes"){
+			$esc_comp = "yes";
+		}else if($_REQUEST["iscomp"] == "no"){
+			$esc_comp = "no";
+		}else{
+			$ret["err"] = 2;
+			$ret["mesg"] = _("Is company radio button is wrong!") ;
+			return $ret;
+		}
 	}else{
 		$ret["err"] = 2;
 		$ret["mesg"] = _("Is company radio button is wrong!") ;
