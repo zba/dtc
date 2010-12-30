@@ -36,6 +36,7 @@ $dtc_database = array(
 			"allow_dns_and_mx_change" => "enum('yes','no') NOT NULL default 'yes'",
 			"allow_mailing_list_edit" => "enum('yes','no') NOT NULL default 'yes'",
 			"allow_subdomain_edit" => "enum('yes','no') NOT NULL default 'yes'",
+			"allow_cronjob_edit" => "enum('yes','no') NOT NULL default 'yes'",
 			"nbrdb" => "int(9) NOT NULL default '1'",
 			"resseller_flag" => "enum('yes','no') NOT NULL default 'no'",
 			"ssh_login_flag" => "enum('yes','no') NOT NULL default 'no'",
