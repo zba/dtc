@@ -1,3 +1,9 @@
+dtc (0.33.1-2) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 30 Dec 2010 17:18:45 +0800
+
 dtc (0.32.7-1) unstable; urgency=low
 
   * Removed all addslashes() calls for the graphs, replaced it with some double
