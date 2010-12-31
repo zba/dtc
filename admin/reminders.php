@@ -122,7 +122,7 @@ function sendVPSReminderEmail($remaining_days,$file,$send_webmaster_copy="no"){
 		$headers .= "From: ".$conf_webmaster_email_addr;
 		$subject = readCustomizedMessage("reminders_msg/vps_subject",$admin["adm_login"]);
 		$subject = getCustomizedReminderNoHeader($subject,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
-		mail($conf_webmaster_email_addr,"$conf_message_subject_header $subject",$msg_2_send,$headers);
+		mail($client["email"],"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		if($send_webmaster_copy == "yes"){
 			$subject = readCustomizedMessage("reminders_msg/vps_subject_adm",$admin["adm_login"]);
 			$subject = getCustomizedReminderNoHeader($subject,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
