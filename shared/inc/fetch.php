@@ -273,8 +273,8 @@ function fetchAdminStats($admin){
 				}else{
 					$num_tbl = mysql_num_rows($result);
 					$ret["db"][$i]["du"] = 0;
-					for($j=0;$j<$num_tbl;$j++){
-						$db_du = mysql_result($result,$j,"Data_length");
+					for($k=0;$k<$num_tbl;$k++){
+						$db_du = mysql_result($result,$k,"Data_length");
 						$ret["db"][$i]["du"] += $db_du;
 						$ret["total_du_db"] += $db_du;
 					}
