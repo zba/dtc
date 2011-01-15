@@ -30,7 +30,8 @@ BSD_ARCH_NAME=$(PKG_BUILD).tar.gz
 BSD_DEST_DIR?=..
 BSD_SOURCE_DIR=src/bsd
 BSD_BUILD_DIR?=$(BSD_SOURCE_DIR)/tmp
-MAIN_PORT_PATH=sysutils/dtc
+BSD_CATEGORIES?=sysutils
+MAIN_PORT_PATH=$(BSD_CATEGORIES)/dtc
 PORT_BUILD=$(BSD_BUILD_DIR)/$(MAIN_PORT_PATH)
 SRC_COPY_DIR=$(CURDIR)/$(BSD_BUILD_DIR)/$(PKG_BUILD)
 PKG_PLIST_BUILD=$(CURDIR)/${BSD_BUILD_DIR}/PKG_PLIST_BUILD
@@ -151,7 +152,7 @@ bsd-ports-packages:
 	@echo " --- Making BSD port tree for version "${BSD_VERSION}" ---"
 	@echo "===> Creating port files in $(PORT_BUILD)"
 	@mkdir -p $(PORT_BUILD)/files						# Make  dtc port dir and copy static files in it
-	@sed "s/__VERSION__/$(VERS)/" $(BSD_SOURCE_DIR)/dtc/Makefile | sed "s/__RELEASE__/$(RELS)/" >$(PORT_BUILD)/Makefile	# Create Makefile with correct port version
+	@sed "s/__VERSION__/$(BSD_VERSION)/" $(BSD_SOURCE_DIR)/dtc/Makefile | sed "s/__CATEGORIES__/$(BSD_CATEGORIES)/" >$(PORT_BUILD)/Makefile	# Create Makefile with correct port version and categories
 	@cp $(BSD_SOURCE_DIR)/dtc/install.sh $(PORT_BUILD)/files/dtc-install.in		# Create package install script
 	@chmod 644 $(PORT_BUILD)/files/dtc-install.in
 	@cp $(BSD_SOURCE_DIR)/dtc/uninstall.sh $(PORT_BUILD)/files/dtc-deinstall.in		# Create package uninstall script
@@ -160,7 +161,6 @@ bsd-ports-packages:
 	@chmod 644 $(PORT_BUILD)/files/patch-Makefile
 	@cp $(BSD_SOURCE_DIR)/dtc/pkg-message $(PORT_BUILD)
 	@cp $(BSD_SOURCE_DIR)/dtc/pkg-descr $(PORT_BUILD)
-	@echo "MD5 ($(BSD_ARCH_NAME)) = "`if [ -e /sbin/md5 ] ; then md5 -r $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | cut -f1 -d" " ; else md5sum $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | cut -f1 -d" " ; fi` >$(PORT_BUILD)/distinfo
 	@echo "SHA256 ($(BSD_ARCH_NAME)) = "`if [ -e /sbin/sha256 ] ; then sha256 -r $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | cut -f1 -d" " ; else sha256sum $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | cut -f1 -d" " ; fi` >>$(PORT_BUILD)/distinfo
 	@echo "SIZE ($(BSD_ARCH_NAME)) = "`ls -ALln $(BSD_DEST_DIR)/$(BSD_ARCH_NAME) | awk '{print $$5}'` >>$(PORT_BUILD)/distinfo
 
@@ -187,15 +187,15 @@ bsd-ports-packages:
 	
 
 	@echo "-> Adding slave ports to the archive"
-	@mkdir -p $(BSD_BUILD_DIR)/sysutils/dtc-postfix-courier
-	@cp $(BSD_SOURCE_DIR)/dtc-postfix-courier/Makefile $(BSD_BUILD_DIR)/sysutils/dtc-postfix-courier
-	@cp $(BSD_SOURCE_DIR)/dtc-postfix-courier/pkg-descr $(BSD_BUILD_DIR)/sysutils/dtc-postfix-courier
-	@mkdir -p $(BSD_BUILD_DIR)/sysutils/dtc-toaster
-	@cp $(BSD_SOURCE_DIR)/dtc-toaster/Makefile $(BSD_BUILD_DIR)/sysutils/dtc-toaster
-	@cp $(BSD_SOURCE_DIR)/dtc-toaster/pkg-descr $(BSD_BUILD_DIR)/sysutils/dtc-toaster
+	@mkdir -p $(BSD_BUILD_DIR)/$(BSD_CATEGORIES)/dtc-postfix-courier
+	@cp $(BSD_SOURCE_DIR)/dtc-postfix-courier/Makefile $(BSD_BUILD_DIR)/$(BSD_CATEGORIES)/dtc-postfix-courier
+	@cp $(BSD_SOURCE_DIR)/dtc-postfix-courier/pkg-descr $(BSD_BUILD_DIR)/$(BSD_CATEGORIES)/dtc-postfix-courier
+	@mkdir -p $(BSD_BUILD_DIR)/$(BSD_CATEGORIES)/dtc-toaster
+	@cp $(BSD_SOURCE_DIR)/dtc-toaster/Makefile $(BSD_BUILD_DIR)/$(BSD_CATEGORIES)/dtc-toaster
+	@cp $(BSD_SOURCE_DIR)/dtc-toaster/pkg-descr $(BSD_BUILD_DIR)/$(BSD_CATEGORIES)/dtc-toaster
 
 	@echo "===> Creating archive file"
-	@cd $(BSD_BUILD_DIR) && tar -czf dtcBSDport-$(BSD_VERSION).tar.gz sysutils && cd $(CURDIR)
+	@cd $(BSD_BUILD_DIR) && tar -czf dtcBSDport-$(BSD_VERSION).tar.gz $(BSD_CATEGORIES) && cd $(CURDIR)
 	@mv $(BSD_BUILD_DIR)/dtcBSDport-"$(BSD_VERSION)".tar.gz $(BSD_DEST_DIR)
 	@echo "--- Successfully made BSD port tree $(BSD_DEST_DIR)/dtcBSDport-$(BSD_VERSION).tar.gz ---"
 	@echo "===> Deleting temp files"

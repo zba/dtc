@@ -6,8 +6,8 @@
 #
 
 PORTNAME=	dtc
-PORTVERSION=	__VERSION__.__RELEASE__
-CATEGORIES=	sysutils
+PORTVERSION=	__VERSION__
+CATEGORIES=	__CATEGORIES__
 MASTER_SITES=	ftp://ftp.gplhost.sg/pub/dtc/bsd/ \
 		ftp://qala-sg.apt-proxy.gplhost.sg/pub/dtc/bsd/ \
 		ftp://601.apt-proxy.gplhost.com/pub/dtc/bsd/ \
@@ -124,7 +124,7 @@ RUN_DEPENDS+=	${LOCALBASE}/sbin/dovecot:${PORTSDIR}/mail/dovecot
 .endif
 
 .if defined(WITH_MYSQMAIL)
-RUN_DEPENDS+=	${LOCALBASE}/sbin/mysqmail-postfix-logger:${PORTSDIR}/sysutils/mysqmail
+RUN_DEPENDS+=	${LOCALBASE}/sbin/mysqmail-postfix-logger:${PORTSDIR}/__CATEGORIES__/mysqmail
 .endif
 
 .if defined(WITH_FREERADIUS)
