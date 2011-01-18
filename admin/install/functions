@@ -4,6 +4,8 @@ if [ -f $DTC_SAVED_INSTALL_CONFIG ] ; then
 	. ${DTC_SAVED_INSTALL_CONFIG}
 fi
 
+. ${PATH_DTC_ADMIN}/install/minimal_chroot
+
 LIST_CHROOT_DIRS="bin var lib sbin tmp usr dev etc"
 if [ `uname -m` = "x86_64" ] ; then
 	LIST_CHROOT_DIRS="$LIST_CHROOT_DIRS lib64"

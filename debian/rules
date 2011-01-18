@@ -9,9 +9,6 @@ clean:
 	dh_testdir
 	dh_testroot
 	dh_clean
-	rm -f debian/dtc-core.postinst debian/dtc-core.config debian/dtc-core.prerm \
-		debian/dtc-postfix-courier.postinst debian/dtc-postfix-courier.config debian/dtc-postfix-courier.prerm \
-		debian/dtc-cyrus.postinst debian/dtc-cyrus.config debian/dtc-cyrus.prerm
 	$(MAKE) clean
 
 	# As per advice from Christian Perrier
@@ -21,15 +18,6 @@ install:
 	dh_testdir
 	dh_testroot
 	dh_clean -k 
-	cp debian/master.postinst debian/dtc-core.postinst
-	cp debian/master.config debian/dtc-core.config
-	cp debian/master.prerm debian/dtc-core.prerm
-	cp debian/master.postinst debian/dtc-postfix-courier.postinst
-	cp debian/master.config debian/dtc-postfix-courier.config
-	cp debian/master.prerm debian/dtc-postfix-courier.prerm
-	cp debian/master.postinst debian/dtc-cyrus.postinst
-	cp debian/master.config debian/dtc-cyrus.config
-	cp debian/master.prerm debian/dtc-cyrus.prerm
 
 	dh_installdirs
 
