@@ -669,6 +669,9 @@ AND $pro_mysql_admin_table.id_client != '0'";
 	<Directory $web_path/$web_name/subdomains/$web_subname/html>
 		Allow from all
 	</Directory>
+	<Directory $web_path/$web_name/subdomains/$web_subname/logs>
+		Allow from all
+	</Directory>
 # No ScriptAlias: we want to use system's /usr/lib/cgi-bin !!!
 #	ScriptAlias /cgi-bin $web_path/$web_name/subdomains/$web_subname/cgi-bin
 	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log

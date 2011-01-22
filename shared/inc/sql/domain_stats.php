@@ -5,6 +5,7 @@
 // Stats account submition to mysql database //
 ///////////////////////////////////////////////
 //action=add_Stats_login&stats_login=statslogin&stats_password=pass&stats_subdomains=
+$txt_dbsql_password_are_made_only_with_standards_chars_and_numbers_and_size = _("Login and Password can only contain standard chars and numbers and must have a length of 4 or more.") . "<br>\n";
 
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_stats_login"){
 	checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
@@ -16,7 +17,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_stats_login"){
 	}
 	
 	if(!isDTCPassword($_REQUEST["stats_login"]) || !isDTCPassword($_REQUEST["stats_pass"])){
-		$submit_err .= $txt_dbsql_password_are_made_only_with_standards_chars_and_numbers_and_size[$lang]."<br>\n";
+		$submit_err .= $txt_dbsql_password_are_made_only_with_standards_chars_and_numbers_and_size;
 		$commit_flag = "no";
 	}
 	
@@ -28,7 +29,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_stats_login"){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		exec("$conf_htpasswd_path -cb $admin_path/$edit_domain/.htpasswd ".$_REQUEST["stats_login"]." ".$_REQUEST["stats_pass"]."");
 		if($stats_subdomain_flag == "yes"){	
-			$q="SELECT subdomain_name FROM subdomain where domain_name='".$edit_domain."';";
+			$q="SELECT subdomain_name,generate_vhost FROM subdomain where domain_name='".$edit_domain."' and generate_vhost='yes';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$num_rows = mysql_num_rows($r);
 			for($i=0;$i<$num_rows;$i++){
@@ -48,16 +49,18 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_stats_login"){
 			}
 		}else{
 			$filename=$admin_path."/".$edit_domain."/subdomains/www/logs/.htaccess";
-			$handle = fopen($filename,'w');		
+			if ( file_exists($filename)){
+				$handle = fopen($filename,'w');		
 
-			if($handle != NULL){
-				if (fwrite($handle, $htaccess) === FALSE) {
-				    echo "Cannot write to file ($filename)";
-				    exit;
-				}
+				if($handle != NULL){
+					if (fwrite($handle, $htaccess) === FALSE) {
+				    	echo "Cannot write to file ($filename)";
+				    	exit;
+					}
 				fclose($handle);
-			}else{
-				echo "Could not open file $filename !";
+				}else{
+					echo "Could not open file $filename !";
+				}
 			}
 		}	
 	} 
@@ -77,7 +80,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "modify_stats_login_pass
 	$htaccess="AuthName \"Webstats Login!\" \nAuthType Basic \nAuthUserFile ".$admin_path."/".$edit_domain."/.htpasswd \nrequire valid-user";
 
 	if(!isDTCPassword($_REQUEST["stats_login"]) || !isDTCPassword($_REQUEST["stats_pass"])){
-		$submit_err .= $txt_dbsql_password_are_made_only_with_standards_chars_and_numbers_and_size[$lang]."<br>\n";
+		$submit_err .= $txt_dbsql_password_are_made_only_with_standards_chars_and_numbers_and_size;
 		$commit_flag = "no";
 	}	
 	
@@ -88,7 +91,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "modify_stats_login_pass
 		exec("$conf_htpasswd_path -cb $admin_path/$edit_domain/.htpasswd ".$_REQUEST["stats_login"]." ".$_REQUEST["stats_pass"]."");	
 
 		if($stats_subdomain_flag == "yes"){			
-			$q="SELECT subdomain_name FROM subdomain where domain_name='".$edit_domain."';";
+			$q="SELECT subdomain_name FROM subdomain where domain_name='".$edit_domain."' and generate_vhost='yes';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$num_rows = mysql_num_rows($r);
 			for($i=0;$i<$num_rows;$i++){
@@ -151,7 +154,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "del_stats_login"){
 	$admin_path=getAdminPath($adm_login);
 	
 	if(!isDTCPassword($_REQUEST["stats_login"])){
-		$submit_err .= $txt_dbsql_password_are_made_only_with_standards_chars_and_numbers_and_size[$lang]."<br>\n";
+		$submit_err .= $txt_dbsql_password_are_made_only_with_standards_chars_and_numbers_and_size;
 		$commit_flag = "no";
 	}
 	

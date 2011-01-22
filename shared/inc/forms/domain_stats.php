@@ -15,7 +15,7 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 	$out = "";
 
 //	sum_http($eddomain["name"]);
-	$query_http = "SELECT bytes_sent FROM $pro_mysql_acc_http_table WHERE domain='".$eddomain["name"]."'
+	$query_http = "SELECT sum(bytes_sent) as bytes_sent FROM $pro_mysql_acc_http_table WHERE domain='".$eddomain["name"]."'
 	AND month='".date("n")."' AND year='".date("Y")."'";
 	$result_http = mysql_query($query_http)or die("Cannot execute query \"$query_http\"");
 	$num_rows = mysql_num_rows($result_http);
@@ -25,7 +25,7 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 		$http_amount = 0;
 
 //	sum_ftp($eddomain["name"]);
-	$q = "SELECT transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$eddomain["name"]."'
+	$q = "SELECT sum(transfer) as transfer FROM $pro_mysql_acc_ftp_table WHERE sub_domain='".$eddomain["name"]."'
 	AND month='".date("m")."' AND year='".date("Y")."'";
 	$r = mysql_query($q) or die("Cannot execute query \"$q\" !".mysql_error().
 	" line ".__LINE__." file ".__FILE__);
@@ -36,15 +36,18 @@ function drawAdminTools_DomainStats($admin,$eddomain){
 		$ftp_amount = 0;
 
 //	sum_email($eddomain["name"]);
-    $q = "SELECT smtp_trafic,pop_trafic,imap_trafic FROM $pro_mysql_acc_email_table WHERE domain_name='".$eddomain["name"]."'
+    $q = "SELECT sum(smtp_trafic) as smtp_trafic,sum(pop_trafic) as pop_trafic,sum(imap_trafic) as imap_trafic FROM $pro_mysql_acc_email_table WHERE domain_name='".$eddomain["name"]."'
 	AND month='".date("m")."' AND year='".date("Y")."'";
     $r = mysql_query($q) or die("Cannot execute query \"$q\" !".mysql_error().
 	" line ".__LINE__." file ".__FILE__);
     $num_rows = mysql_num_rows($r);
 	if($num_rows > 0){
 	    $smtp_trafic = mysql_result($r,0,"smtp_trafic");
+	    if (is_null($smtp_trafic)) $smtp_trafic = 0;
 	    $pop_trafic = mysql_result($r,0,"pop_trafic");
+	    if (is_null($pop_trafic)) $pop_trafic = 0;
 	    $imap_trafic = mysql_result($r,0,"imap_trafic");
+	    if (is_null($imap_trafic)) $imap_trafic = 0;
 	}else{
 		$smtp_trafic = 0;
 		$pop_trafic = 0;

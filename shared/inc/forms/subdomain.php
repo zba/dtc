@@ -44,7 +44,7 @@ function subdomainCreateDirsCallBack($id){
 			exec("cp -fulpRv $conf_chroot_path/* $newsubdomain_dirpath");
 		}
 		system ("if [ ! -e $newsubdomain_dirpath/html/index.* ]; then cp -rf $conf_generated_file_path/template/* $newsubdomain_dirpath/html; fi");
-		updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes',gen_backup='yes'");
+		updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes',gen_backup='yes',gen_webalizer='yes'");
 	}
 	return;
 }

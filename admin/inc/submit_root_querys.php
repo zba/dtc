@@ -191,7 +191,7 @@ if(isset($_REQUEST["modify_domain_config"]) && $_REQUEST["modify_domain_config"]
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" !!!");
 
 	// Tell the cron job to activate the changes (because ip could have change)
-	$adm_query = "UPDATE $pro_mysql_cronjob_table SET gen_vhosts='yes',gen_named='yes',reload_named='yes',restart_apache='yes',gen_backup='yes' WHERE 1;";
+	$adm_query = "UPDATE $pro_mysql_cronjob_table SET gen_vhosts='yes',gen_named='yes',reload_named='yes',restart_apache='yes',gen_backup='yes',gen_webalizer='yes' WHERE 1;";
 	mysql_query($adm_query);
 }
 
