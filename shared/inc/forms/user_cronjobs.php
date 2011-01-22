@@ -24,26 +24,51 @@ function drawAdminTools_User_CronJob($admin,$domain){
 	$minute_popup = array();
 	$minute_display = array();
 	$minute_popup[] = "*";
-	$minute_display = _("Every minutes");
+	$minute_display[] = _("Every minutes");
 	$minute_popup[] = "0/2";
-	$minute_display = _("Each 2 minutes");
+	$minute_display[] = _("Each 2 minutes");
 	$minute_popup[] = "0/3";
-	$minute_display = _("Each 3 minutes");
+	$minute_display[] = _("Each 3 minutes");
 	$minute_popup[] = "0/4";
-	$minute_display = _("Each 4 minutes");
+	$minute_display[] = _("Each 4 minutes");
 	$minute_popup[] = "0/5";
-	$minute_display = _("Each 5 minutes");
+	$minute_display[] = _("Each 5 minutes");
 	$minute_popup[] = "0/10";
-	$minute_display = _("Each 10 minutes");
+	$minute_display[] = _("Each 10 minutes");
 	$minute_popup[] = "0/15";
-	$minute_display = _("Each 15 minutes");
+	$minute_display[] = _("Each 15 minutes");
 	$minute_popup[] = "0/20";
-	$minute_display = _("Each 20 minutes");
+	$minute_display[] = _("Each 20 minutes");
 	$minute_popup[] = "0/30";
-	$minute_display = _("Each 30 minutes");
+	$minute_display[] = _("Each 30 minutes");
 	for($i=0;$i<60;$i++){
 		$minute_popup[] = $i;
-		$minute_display = _("When the minute is: ").$i;
+		$minute_display[] = _("When the minute is: ").$i;
+	}
+
+	$hour_popup = array();
+	$hour_display = array();
+	$hour_popup[] = "*";
+	$hour_display[] = _("Every hour");
+	$hour_popup[] = "0/2";
+	$hour_display[] = _("Each 2 hours");
+	$hour_popup[] = "0/3";
+	$hour_display[] = _("Each 3 hours");
+	$hour_popup[] = "0/4";
+	$hour_display[] = _("Each 4 hours");
+	$hour_popup[] = "0/5";
+	$hour_display[] = _("Each 5 hours");
+	$hour_popup[] = "0/10";
+	$hour_display[] = _("Each 10 hours");
+	$hour_popup[] = "0/15";
+	$hour_display[] = _("Each 15 hours");
+	$hour_popup[] = "0/20";
+	$hour_display[] = _("Each 20 hours");
+	$hour_popup[] = "0/30";
+	$hour_display[] = _("Each 30 hours");
+	for($i=0;$i<24;$i++){
+		$hour_popup[] = $i;
+		$hour_display[] = _("When the hour is: ").$i;
 	}
 
 	$dsc = array(
@@ -55,8 +80,9 @@ function drawAdminTools_User_CronJob($admin,$domain){
 		"action" => "user_cron_editor",
 		"forward" => array("adm_login","adm_pass","addrlink"),
 		"id_fld" => "id",
+		"list_fld_show" => "cron_name",
 		"where_list" => array(
-			"domain_name" => $domain["domain_name"]),
+			"domain_name" => $domain["name"]),
 		"order_by" => "cron_name",
 		"cols" => array(
 			"id" => array(
@@ -81,8 +107,9 @@ function drawAdminTools_User_CronJob($admin,$domain){
 				),
 			"hour" => array (
 				"type" => "popup",
-				"legend" => _("Minutes:"),
-				"values" => $minute_popup
+				"legend" => _("Hour:"),
+				"display_replace" => $hour_display,
+				"values" => $hour_popup
 				),
 			"uri" => array (
 				"type" => "text",
