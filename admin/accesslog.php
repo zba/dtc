@@ -1,8 +1,5 @@
 #!/usr/bin/env php
 <?php
-// For sites with high traffic and stats to generate - prevent "MySQL server has gone away" error
-ini_set('mysql.connect_timeout', 300);
-
 if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
 @date_default_timezone_set(@date_default_timezone_get());
 
@@ -216,6 +213,17 @@ fi
 					}else{
 						echo "table empty\n";
 					}
+					// For sites with high traffic and stats to generate - prevent "MySQL server has gone away" error
+					// Check if database still alive
+					$is_db_alive = "SELECT FROM apachelogs.`".$table_name."` WHERE time_stamp='".$end."' LIMIT 0,1";
+					// If not trying reconnect
+					if (!mysql_query($is_db_alive)) {
+						mysql_close();
+						if(connect2base() == false){
+							die("Cannot connect to database !!!");
+						}
+					}
+															
 					$query_dump = "DELETE FROM apachelogs.`".$table_name."` WHERE time_stamp<='".$end."'";
 					$result_dump = mysql_query($query_dump) or die("Cannot execute query \"$query_dump\" file ".__FILE__." line ".__LINE__.": ".mysql_error());
 
