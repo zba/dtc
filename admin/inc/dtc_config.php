@@ -1248,7 +1248,7 @@ function drawGeneralConfig(){
 				"size" => "30"),
 			"panel_logo" => array(
 				"type" => "text",
-				"legend" => _("Panel logo path (relative to ").$dtcshared_path."/gfx/skin/".$conf_skin._(") :"),
+				"legend" => _("Panel logo path (relative to ").$dtcshared_path."/gfx/skin/".$conf_skin."/gfx"._(") :"),
 				"size" => "30"),
 			"panel_logolink" => array(
 				"type" => "text",

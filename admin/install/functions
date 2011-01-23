@@ -1049,6 +1049,11 @@ setupDTCDatabase () {
 	# Setup good values depending on Unix distribution
 	$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET dtcadmin_path='${PATH_DTC_ADMIN}', dtcclient_path='${PATH_DTC_CLIENT}', dtcdoc_path='${PATH_DTC_SHARED}/doc', dtcemail_path='${PATH_DTC_SHARED}/email' WHERE 1"
 
+	# Adjust dtcdoc path to correct value for FreeBSD
+	if [ $UNIX_TYPE = freebsd ] ; then
+		$MYSQL -u$conf_mysql_login -h$conf_mysql_host -D$conf_mysql_db --execute="UPDATE config SET dtcdoc_path='/usr/local/share/doc/dtc' WHERE 1"
+	fi
+
 	# Add the config for nated vhosts if needed
 	if [ "$conf_use_nated_vhosts" = "yes" -o "$conf_use_nated_vhosts" = "true" ] ; then
 		echoIfVerbose "Setting-up values in MySQL for using NAT"
@@ -1367,6 +1372,7 @@ modifyHTTPD_CONF () {
 			fi
 			cp $PATH_DTC_ADMIN/install/bsdsquirrelmail.conf `dirname $PATH_HTTPD_CONF`/Includes
 			cp $PATH_DTC_ADMIN/install/bsdphpmyadmin.conf `dirname $PATH_HTTPD_CONF`/Includes
+			cp $PATH_DTC_ADMIN/install/bsddtcdoc.conf `dirname $PATH_HTTPD_CONF`/Includes
 		fi
 		if ! [ -f $PATH_HTTPD_CONF.DTC.backup ]
 		then
