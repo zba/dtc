@@ -18,6 +18,7 @@ if ( ! /^Precedence: (bulk|list|junk)/ && \
      ! /^Subject:.*Mail System Error.*Returned Mail/ && \
      ! /^X-AutoReply.*/ && \
      ! /^X-Mail-Autoreply.*/ && \
+     ! /^X-DTC-Support-Ticket.*/ && \
      ! /^X-Spam-Flag: YES/ )
 {
 	cc "| mailbot -A 'X-AutoReply-From: dtc-autoreply' -A 'X-Mail-Autoreply: dtc-autoreply' -t $RESPOND -c 'UTF-8' -d $RESPONDDB -D 1 -A 'From: $RECIPIENT' -s 'Auto Response: from $RECIPIENT' /usr/sbin/sendmail -t"

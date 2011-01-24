@@ -30,6 +30,7 @@ $thehostname
 **********
 ";
 		$headers = $send_email_header;
+		$headers .= "X-DTC-Support-Ticket: Reply-From-Customer\n";
 		$headers .= "From: ".$conf_webmaster_email_addr;
 		mail($a["email"],"$conf_message_subject_header $adm_login has submitted a support ticket",$content,$headers);
 	}
