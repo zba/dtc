@@ -1412,6 +1412,13 @@ $more_mx_server
 						$this_site_file .= "$web_subname	$sub_ttl	IN	$the_ip_writed\n";
 					}
 				}
+				if ($subdomain["ipv4_round_robin"] != ""){
+					$rr_expl = explode("|",$subdomain["ipv4_round_robin"]);
+					$nbr_rr = sizeof($rr_expl);
+					for($rr_i=0;$rr_i<$nbr_rr;$rr_i++){
+						$this_site_file .= "$web_subname\t$sub_ttl\tIN\tA\t".$rr_expl[$rr_i]."\n";
+					}
+				}
 				if ($subdomain["ip6"] != "" && $subdomain["ip6"] != "default") {
                                         $this_site_file .= "$web_subname        $sub_ttl        IN      AAAA    ".$subdomain["ip6"]."\n";
                                 }

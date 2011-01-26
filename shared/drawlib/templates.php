@@ -970,6 +970,21 @@ function dtcListItemsEdit($dsc){
 						}
 					}
 					break;
+				case "list_of_ip":
+					if( isset($dsc["cols"][ $keys[$i] ]["can_be_empty"]) &&
+						$dsc["cols"][ $keys[$i] ]["can_be_empty"] == "yes" &&
+						$_REQUEST[ $keys[$i] ] == ""){
+						break;
+					}
+					$mylist_of_ip = explode("|",$_REQUEST[ $keys[$i] ]);
+					$number_of_ip = sizeof($mylist_of_ip);
+					for($g=0;$g<$number_of_ip;$g++){
+						if( !isIP($mylist_of_ip[$g]) ){
+							$commit_flag = "no";
+							$commit_err .= $keys[$i].": invalid IP list<br>";
+						}
+					}
+					break;
 				case "subdomain_or_ip":
 					if( !checkSubdomainFormat($_REQUEST[ $keys[$i] ]) && !isIP($_REQUEST[ $keys[$i] ]) ){
 						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
@@ -1259,6 +1274,21 @@ function dtcListItemsEdit($dsc){
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
 							$commit_err .= $keys[$i].": not a subdomain<br>";
+						}
+					}
+					break;
+				case "list_of_ip":
+					if( isset($dsc["cols"][ $keys[$i] ]["can_be_empty"]) &&
+						$dsc["cols"][ $keys[$i] ]["can_be_empty"] == "yes" &&
+						$_REQUEST[ $keys[$i] ] == ""){
+						break;
+					}
+					$mylist_of_ip = explode("|",$_REQUEST[ $keys[$i] ]);
+					$number_of_ip = sizeof($mylist_of_ip);
+					for($g=0;$g<$number_of_ip;$g++){
+						if( !isIP($mylist_of_ip[$g]) ){
+							$commit_flag = "no";
+							$commit_err .= $keys[$i].": invalid IP list<br>";
 						}
 					}
 					break;

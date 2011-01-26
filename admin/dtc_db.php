@@ -1233,6 +1233,7 @@ $dtc_database = array(
 			"path" => "varchar(64) NOT NULL default ''",
 			"webalizer_generate" => "varchar(8) NOT NULL default 'no'",
 			"ip" => "varchar(255) NOT NULL default 'default'",
+			"ipv4_round_robin" => "varchar(255) NOT NULL default ''",
 			"ip6" => "varchar(255) NOT NULL default ''",
 			"register_globals" => "enum('yes','no') NOT NULL default 'no'",
 			"login" => "varchar(16) default NULL",

@@ -187,6 +187,18 @@ function drawAdminTools_Subdomain($admin,$domain){
 				"can_be_empty" => "yes",
 				"empty_makes_default" => "yes",
 				"legend" => _("IP address or CNAME: ") ),
+			"ipv4_round_robin" => array(
+				"type" => "text",
+				"check" => "list_of_ip",
+				"can_be_empty" => "yes",
+				"legend" => _("Supplementary IP list for round robin: ") ),
+			"ttl" => array(
+				"type" => "text",
+				"check" => "number",
+				"can_be_empty" => "no",
+				"default" => "7200",
+				"legend" => _("TTL"),
+				),
                         "ip6" => array(
                                 "type" => "text",
                                 "check" => "ip6",
