@@ -46,7 +46,7 @@ function register_user($adding_service="no"){
 
 	if(!isRandomNum($esc_product_id)){
 		$ret["err"] = 2;
-		$ret["mesg"] = _("Product ID not valid!");
+		$ret["mesg"] = _("Product ID not valid.");
 		return $ret;
 	}
 	$q = "SELECT $pro_mysql_product_table.*, $pro_mysql_custom_heb_types_table.reqdomain FROM $pro_mysql_product_table LEFT JOIN $pro_mysql_custom_heb_types_table ON $pro_mysql_product_table.custom_heb_type = $pro_mysql_custom_heb_types_table.id WHERE $pro_mysql_product_table.id='$esc_product_id';";
@@ -62,22 +62,22 @@ function register_user($adding_service="no"){
 	// Do field format checking and escaping for all fields
 	if( !preg_match("/^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)\$/",$_REQUEST["reqadm_login"]) ){
 		$ret["err"] = 2;
-		$ret["mesg"] = _("User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.") ;
+		$ret["mesg"] = _("User login format incorrect. Username must contain only letters and numbers and contain 4 to 16 characters.") ;
 		return $ret;
 	}
 	if($_REQUEST["reqadm_login"] == "root" || $_REQUEST["reqadm_login"] == "debian-sys-maint"){
 		$ret["err"] = 2;
-		$ret["mesg"] = _("Username invalid: please choose something else other than root or debian-sys-maint") ;
+		$ret["mesg"] = _("Username invalid: please choose a name other than root or debian-sys-maint") ;
 		return $ret;
 	}
 	if(!isDTCPassword($_REQUEST["reqadm_pass"])){
 		$ret["err"] = 2;
-		$ret["mesg"] = _("Password format incorrect. Please use letters and numbers only and from 4 to 16 chars.") ;
+		$ret["mesg"] = _("Password format incorrect. Password must contain only letters and numbers and contain 4 to 16 characters.") ;
 		return $ret;
 	}
 	if($_REQUEST["reqadm_pass"] != $_REQUEST["reqadm_pass2"]){
 		$ret["err"] = 2;
-		$ret["mesg"] = _("Passwords 1 and 2 do not match!") ;
+		$ret["mesg"] = _("Passwords do not match.") ;
 		return $ret;
 	}
 
@@ -108,7 +108,7 @@ function register_user($adding_service="no"){
 	if($db_product["heb_type"] == "vps"){
 		if($_REQUEST["vps_server_hostname"] == "-1"){
 			$ret["err"] = 2;
-			$ret["mesg"] = _("VPS location not selected!") ;
+			$ret["mesg"] = _("VPS location not selected.") ;
 			return $ret;
 		}
 		$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".mysql_real_escape_string($_REQUEST["vps_server_hostname"])."';";
@@ -128,7 +128,7 @@ function register_user($adding_service="no"){
 
 	if(!isset($_REQUEST["familyname"]) || $_REQUEST["familyname"]==""){
 		$ret["err"] = 2;
-		$ret["mesg"] = _("Required field family name missing.") ;
+		$ret["mesg"] = _("Required field last name missing.") ;
 		return $ret;
 	}else{
 		if (!get_magic_quotes_gpc()){
@@ -253,18 +253,18 @@ function register_user($adding_service="no"){
 			$esc_comp = "no";
 		}else{
 			$ret["err"] = 2;
-			$ret["mesg"] = _("Is company radio button is wrong!") ;
+			$ret["mesg"] = _("Company option wrong.") ;
 			return $ret;
 		}
 	}else{
 		$ret["err"] = 2;
-		$ret["mesg"] = _("Is company radio button is wrong!") ;
+		$ret["mesg"] = _("Company option wrong.") ;
 		return $ret;
 	}
 
 	if($conf_selling_conditions_url != "none" && (!isset($_REQUEST["condition"]) || $_REQUEST["condition"] != "yes")){
 		$ret["err"] = 2;
-		$ret["mesg"] = _("Selling conditions not accepted!") ;
+		$ret["mesg"] = _("Terms and Conditions not accepted.") ;
 		return $ret;
 	}
 
@@ -273,7 +273,7 @@ function register_user($adding_service="no"){
 	$n = mysql_num_rows($r);
 	if($n > 0){
 		$ret["err"] = 3;
-		$ret["mesg"] = _("Username already taken! Try again.") ;
+		$ret["mesg"] = _("Username already taken. Try again.") ;
 		return $ret;
 	}
 	$q = "SELECT reqadm_login FROM $pro_mysql_new_admin_table WHERE reqadm_login='".$_REQUEST["reqadm_login"]."';";
@@ -281,7 +281,7 @@ function register_user($adding_service="no"){
 	$n = mysql_num_rows($r);
 	if($n > 0){
 		$ret["err"] = 3;
-		$ret["mesg"] = _("Username already taken! Try again.") ;
+		$ret["mesg"] = _("Username already taken. Try again.") ;
 		return $ret;
 	}
 	$vps_add1 = "";
@@ -424,7 +424,7 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
-		echo "<font color=\"red\">". _("Cannot find product id!") ."</font>";
+		echo "<font color=\"red\">". _("Cannot find product ID.") ."</font>";
 		$the_prod = $esc_product_id." (0 $secpayconf_currency_letters)";
 	}else{
 		$a = mysql_fetch_array($r);
@@ -432,7 +432,7 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 	}
 
 	$mail_content = "
-Somebody tried to register an account. Here is the details of the new user:
+New account registered. Here are the details of the new user:
 
 login: ".$_REQUEST["reqadm_login"]."
 pass: ".$_REQUEST["reqadm_pass"]."
@@ -520,7 +520,7 @@ function registration_form(){
 	$q = "SELECT $pro_mysql_product_table.*, $pro_mysql_custom_heb_types_table.reqdomain FROM $pro_mysql_product_table LEFT JOIN $pro_mysql_custom_heb_types_table ON $pro_mysql_product_table.custom_heb_type = $pro_mysql_custom_heb_types_table.id WHERE $heb_type_condition AND renew_prod_id='0' AND private='no' ORDER BY id";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-	$prod_popup .= "<option value=\"-1\">"._("Please select!")."</optioon>";
+	$prod_popup .= "<option value=\"-1\">"._("Please select.")."</optioon>";
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
 				if ($a["heb_type"] == "custom"){
@@ -684,17 +684,17 @@ function registration_form(){
 	}
 	$client_info = "<table>
 <tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Familly name: ") . $rek ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Last Name: ") . $rek ."</td>
 	<td><input type=\"text\" name=\"familyname\" value=\"$frm_family_name\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("First name: ") . $rek ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("First Name: ") . $rek ."</td>
 	<td><input type=\"text\" name=\"firstname\" value=\"$frm_firstname\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Is it a company: ") . $rek ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Company Account: ") . $rek ."</td>
 	<td><input type=\"radio\" name=\"iscomp\" value=\"yes\"$compyes>"._("Yes")."
 <input type=\"radio\" name=\"iscomp\" value=\"no\"$compno>"._("No")."</td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Company name: ") ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Company Name: ") ."</td>
 	<td><input type=\"text\" name=\"compname\" value=\"$frm_compname\"></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">". _("VAT/GST Number: ") ."</td>
@@ -703,7 +703,7 @@ function registration_form(){
 	<td style=\"white-space: nowrap;text-align: right;\">". _("Email: ") . $rek ."</td>
 	<td><input type=\"text\" name=\"email\" value=\"$frm_email\"></td>
 </tr><tr>
-	<td style=\"white-space: nowrap;text-align: right;\">". _("Phone number: ") . $rek ."</td>
+	<td style=\"white-space: nowrap;text-align: right;\">". _("Phone Number: ") . $rek ."</td>
 	<td><input type=\"text\" name=\"phone\" value=\"$frm_phone\"></td>
 </tr><tr>
 	<td style=\"white-space: nowrap;text-align: right;\">". _("Fax: ") ."</td>
@@ -743,7 +743,7 @@ function registration_form(){
 	$addr_skined = $client_addr;
 
 	if($conf_selling_conditions_url != "none"){
-		$conditions = "<input type=\"checkbox\" name=\"condition\" value=\"yes\"> " . $rek  . _("I agree to the") ." <a href=\"$conf_selling_conditions_url\">". _("selling conditions") ."</a>";
+		$conditions = "<input type=\"checkbox\" name=\"condition\" value=\"yes\"> " . $rek  . _("I agree to the") ." <a href=\"$conf_selling_conditions_url\">". _("Terms and Conditions") ."</a>";
 	}else{
 		$conditions = "";
 	}
@@ -893,7 +893,7 @@ function hostingProductChanged(){
 
 </script><br>
 <br>
-<i>" . _("Feilds with a <font color=\"red\">*</font> are mandatory.") . "</i><br>
+<i>" . _("Fields with a <font color=\"red\">*</font> are mandatory.") . "</i><br>
 <form name=\"newuser_form\" action=\"?\" methode=\"post\">
 <input type=\"hidden\" name=\"action\" value=\"new_user_request\">
 <table>

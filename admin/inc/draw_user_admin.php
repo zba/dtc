@@ -176,7 +176,7 @@ function drawNewAdminForm(){
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1){
-			return _("Cannot find ticket!");
+			return _("Cannot find ticket.");
 		}
 		$a = mysql_fetch_array($r);
 		$out .= _("Subject: ") .htmlspecialchars(stripslashes($a["subject"]))."<br>";
@@ -185,15 +185,15 @@ function drawNewAdminForm(){
 		$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n2 = mysql_num_rows($r2);
 		if($n2 != 1){
-			$tmp = _("Type not found!");
+			$tmp = _("Type not found.");
 		}else{
 			$a2 = mysql_fetch_array($r2);
 			$tmp = $a2["catdescript"]."<br>";
 		}
-		$out .= _("Type:") .$tmp;
-		$out .= _("First query date: ") .$a["date"]." ".$a["time"]."<br>";
-		$out .= _("Server hostname related: ") .$a["server_hostname"]."<br>";
-		$out .= _("Admin login: ") .$a["adm_login"]."<br><br>";
+		$out .= _("Type:") .$tmp. " <br>";
+		$out .= _("First Query Date: ") .$a["date"]." ".$a["time"]."<br>";
+		$out .= _("Related Server Hostname: ") .$a["server_hostname"]."<br>";
+		$out .= _("Admin Login: ") .$a["adm_login"]."<br><br>";
 		
 		$out .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"0\">";
 		$next_tikq = $_REQUEST["tik_id"];
@@ -203,7 +203,7 @@ function drawNewAdminForm(){
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n != 1){
-				$out .= _("Cannot find ticket!");
+				$out .= _("Cannot find ticket.");
 				break;
 			}
 			$a = mysql_fetch_array($r);
@@ -215,7 +215,7 @@ function drawNewAdminForm(){
 				$bg = " bgcolor=\"#FFFFAA\" ";
 			}
 			if($a["admin_or_user"] == "admin"){
-                        	$replied_by = "<br>"._("Replied by:")." ".$a["admin_name"];
+                        	$replied_by = "<br>"._("Replied to By:")." ".$a["admin_name"];
 			}else{
 				$replied_by = "";
 			}
@@ -239,22 +239,22 @@ function drawNewAdminForm(){
 		<input type=\"hidden\" name=\"last_tik_id\" value=\"$last_tik\">
 		<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
  <div class=\"input_btn_left\"></div>
- <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"answer\" value=\"". _("Send reply") ."\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"answer\" value=\"". _("Send Reply") ."\"></div>
  <div class=\"input_btn_right\"></div>
 </div>
 		<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
  <div class=\"input_btn_left\"></div>
- <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"answer_close\" value=\"". _("Send reply and close ticket") ."\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"answer_close\" value=\"". _("Send Reply and Close Ticket") ."\"></div>
  <div class=\"input_btn_right\"></div>
 </div>
 		<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
  <div class=\"input_btn_left\"></div>
- <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"close\" value=\"". _("Close without reply") ."\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"close\" value=\"". _("Close Without Reply") ."\"></div>
  <div class=\"input_btn_right\"></div>
 </div>
 		<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
  <div class=\"input_btn_left\"></div>
- <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"delete_thread\" value=\"". _("Delete thread silently") ."\"></div>
+ <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" name=\"delete_thread\" value=\"". _("Delete Thread Silently") ."\"></div>
  <div class=\"input_btn_right\"></div>
 </div>
 		</form>";
@@ -284,7 +284,7 @@ function drawNewAdminForm(){
 			}
 			$admin = mysql_fetch_array($r);
 			if($admin["id_client"] == "0"){
-				return _("The virtual administrator for which you are trying to manage a support ticket has no client file. Go in the Customer management screen and create a client file for this administrator.");
+				return _("The virtual administrator for which you are trying to manage a support ticket has no client file. Create a client file in the Customer Management screen for this administrator.");
 			}
 			$q = "SELECT * FROM $pro_mysql_client_table WHERE id='".$admin["id_client"]."';";
 			$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
@@ -362,10 +362,10 @@ dtcFromOkDraw()."
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$waiting_new_users .= "<b>". _("No user waiting!") ."</b>";
+		$waiting_new_users .= "<b>". _("No new user requests waiting.") ."</b>";
 	}else{
 		$waiting_new_users .= "<table width=\"100%\"border=\"1\">
-<tr><td>". _("Name") ."</td><td>". _("Login") ."</td><td>". _("Domain name / VPS server hostname") ."</td><td>". _("Product") ."</td><td>". _("Date") . "</td><td>". _("Bank validated") ."</td>$maxmindsays_th<td>". _("Action") ."</td></tr>";
+<tr><td>". _("Name") ."</td><td>". _("Login") ."</td><td>". _("Domain Name / VPS Server Hostname") ."</td><td>". _("Product") ."</td><td>". _("Date") . "</td><td>". _("Bank Validated") ."</td>$maxmindsays_th<td>". _("Action") ."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><td style=\"white-space:nowrap\"><u>".htmlspecialchars($a["comp_name"]).":</u><br>";
@@ -376,8 +376,8 @@ dtcFromOkDraw()."
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$dom_name = _("Cannot find product in db!");
-				$prod_name = _("Cannot find product in db!");
+				$dom_name = _("Cannot find product in database.");
+				$prod_name = _("Cannot find product in database.");
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				$prod_name = $a2["name"];
@@ -390,7 +390,7 @@ dtcFromOkDraw()."
 			$waiting_new_users .= "<td>$dom_name</td><td>$prod_name</td>";
 			$waiting_new_users .= "<td>".$a["date"]." ".$a["time"]."<br>".calculateAge($a["date"],$a["time"])."</td>";
 			if($a["paiement_id"] == 0){
-				$waiting_new_users .= "<td>". _("No pay ID!") ."</td>";
+				$waiting_new_users .= "<td>". _("No payment ID.") ."</td>";
 			}else{
 				$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$a["paiement_id"]."';";
 				$r2 = mysql_query($q)or die("Cannot select $q line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -422,10 +422,10 @@ dtcFromOkDraw()."
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$waiting_new_users .= "<br><b>". _("No domain waiting!") ."</b><br>";
+		$waiting_new_users .= "<br><b>". _("No Domains Waiting.") ."</b><br>";
 	}else{
 		$waiting_new_users .= "<table border=\"1\">
-	<tr><td>". _("Login") ."</td><td>". _("Domain name") ."</td><td>". _("Action") ."</td></tr>";
+	<tr><td>". _("Login") ."</td><td>". _("Domain Name") ."</td><td>". _("Action") ."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<td>".$a["adm_login"]."</td>";
@@ -441,10 +441,10 @@ dtcFromOkDraw()."
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$waiting_new_users .= "<b>". _("No pending renewals!") ."</b><br>";
+		$waiting_new_users .= "<b>". _("No pending renewals.") ."</b><br>";
 	}else{
 		$waiting_new_users .= "<table border=\"1\">
-<tr><td>". _("Login")."</td><td>". _("Product") ."</td><td>". _("Payment date") ."</td><td>". _("Bank validated") ."</td><td>". _("Type") ."</td><td>". _("Action") ."</td></tr>";
+<tr><td>". _("Login")."</td><td>". _("Product") ."</td><td>". _("Payment Date") ."</td><td>". _("Bank Validated") ."</td><td>". _("Type") ."</td><td>". _("Action") ."</td></tr>";
 		for($i=0;$i<$n;$i++){
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><td>".$a["adm_login"]."</td>";
@@ -452,7 +452,7 @@ dtcFromOkDraw()."
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$prod_name = _("Cannot find product!");
+				$prod_name = _("Cannot find product.");
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				$prod_name = $a2["name"]." (".$a2["price_dollar"]." $secpayconf_currency_letters: ".$a2["period"].")";
@@ -463,7 +463,7 @@ dtcFromOkDraw()."
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$bank = _("Cannot find payment!");
+				$bank = _("Cannot find payment.");
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				switch($a2["valid"]){
@@ -485,7 +485,7 @@ dtcFromOkDraw()."
 				$q2 = "SELECT * FROM $pro_mysql_vps_table WHERE id='".$a["renew_id"]."'";
 				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 				if($n2 != 1){
-					$heb_type = _("VPS: Cannot find VPS in db!");
+					$heb_type = _("VPS: Cannot find VPS in database.");
 				}else{
 					$a2 = mysql_fetch_array($r2);
 					$heb_type = "VPS: ".$a2["vps_xen_name"]."@".$a2["vps_server_hostname"];
@@ -511,7 +511,7 @@ dtcFromOkDraw()."
 				$q2 = "SELECT * FROM $pro_mysql_dedicated_table WHERE id='".$a["renew_id"]."'";
 				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 				if($n2 != 1){
-					$tmp = _("Cannot find server in db!");
+					$tmp = _("Cannot find server in database.");
 				}else{
 					$a2 = mysql_fetch_array($r2);
 					$tmp = $a2["server_hostname"];
@@ -533,7 +533,7 @@ dtcFromOkDraw()."
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
-		$waiting_new_users .= "<b>". _("No pending support tickets!") ."</b><br>";
+		$waiting_new_users .= "<b>". _("No pending support tickets.") ."</b><br>";
 	}else{
 		$waiting_new_users .= "<table border=\"1\">
 <tr><td>". _("Login") ."</td><td>". _("Age") ."</td><td>". _("Type") ."</td><td>". _("Subject") ."</td><td>". _("Last message from"). "</td><td>" ._("Last message age"). "</td></tr>";
@@ -552,7 +552,7 @@ dtcFromOkDraw()."
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$cat = _("Type not found!");
+				$cat = _("Type not found.");
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				$cat = $a2["catname"];

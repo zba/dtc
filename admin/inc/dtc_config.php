@@ -29,34 +29,34 @@ function drawDTCConfigMenu(){
 			"text" => gettext("General"),
 			"icon" => "box_wnb_nb_picto-general.gif"),
 		"ticket" => array(
-			"text" => gettext("Support and auth"),
+			"text" => gettext("Support and Ticketing"),
 			"icon" => "box_wnb_nb_picto-supportickets.gif"),
 		"ip" => array(
-			"text" => gettext("IP addresses and network"),
+			"text" => gettext("IP Addresses and Network"),
 			"icon" => "box_wnb_nb_picto-ipaddresses.gif"),
 		"sslip" => array(
-			"text" => gettext("SSL IP addresses"),
+			"text" => gettext("SSL IP Addresses"),
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"ip_pool" => array(
-			"text" => gettext("IP addresses pool"),
+			"text" => gettext("IP Address Pools"),
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"nagios" => array(
-			"text" => _("Nagios host"),
+			"text" => _("Nagios Config"),
 			"icon" => "box_wnb_nb_picto-sslip.gif"),
 		"dedicatedip" => array(
-			"text" => _("Dedicated server IPs"),
+			"text" => _("Dedicated Server IPs"),
 			"icon" => "box_wnb_nb_picto-dedicatedservers.gif"),
 		"zonefile" => array(
-			"text" => gettext("Named zonefiles"),
+			"text" => gettext("Named Zonefiles"),
 			"icon" => "box_wnb_nb_picto-namedzonefiles.gif"),
 		"backup" => array(
-			"text" => gettext("MX and NS backup servers"),
+			"text" => gettext("MX and NS Backup Servers"),
 			"icon" => "box_wnb_nb_picto-mxnsservers.gif"),
 		"ftpbackup" => array(
-			"text" => gettext("FTP backup"),
+			"text" => gettext("FTP Backup"),
 			"icon" => "box_wnb_nb_picto-ftpbackup.gif"),
 		"vps" => array(
-			"text" => gettext("VPS servers"),
+			"text" => gettext("VPS Servers"),
 			"icon" => "box_wnb_nb_picto-vpsservers.gif"),
 		"radius" => array(
 			"text" => "Radius",
@@ -65,13 +65,13 @@ function drawDTCConfigMenu(){
 			"text" => gettext("Paths"),
 			"icon" => "box_wnb_nb_picto-paths.gif"),
 		"payconf" => array(
-			"text" => gettext("Payment gateway"),
+			"text" => gettext("Payment Gateways"),
 			"icon" => "box_wnb_nb_picto-payementgateway.gif"),
 		"renewals" => array(
 			"text" => _("Renewals"),
 			"icon" => "box_wnb_nb_picto-renewals.gif"),
 		"registryapi" => array(
-			"text" => _("Domain name registration"),
+			"text" => _("Domain Name Registration"),
 			"icon" => "box_wnb_nb_picto-domainnamereg.gif"),
 		"companies" => array(
 			"text" => _("Companies"),
@@ -251,20 +251,20 @@ function drawRenewalsConfig(){
 	$out = "";
 
 	$dsc = array(
-		"title" => _("VPS renewal email reminders periodicity"),
+		"title" => _("VPS renewal email reminder configuration"),
 		"action" => "vps_renewal_period",
 		"forward" => array("rub","sousrub"),
 		"desc" => _("These numbers represent the days before and after expiration.
 Warnings before and after expiration can be listed separated by |,
-while others are made of a unique value. The message templates
+while single warnings accept one value. The message templates
 are stored in /etc/dtc, and if not present in: ").$conf_dtcadmin_path."/reminders_msg/",
 		"cols" => array(
 			"vps_renewal_before" => array(
-				"legend" => _("Warnings before expiration for VPS: "),
+				"legend" => _("Warning before expiration for VPS: "),
 				"type" => "text",
 				"size" => "16"),
 			"vps_renewal_after" => array(
-				"legend" => _("Warnings after expiration for VPS: "),
+				"legend" => _("Warning after expiration for VPS: "),
                                 "type" => "text",
                                 "size" => "16"),
 			"vps_renewal_lastwarning" => array(
@@ -276,11 +276,11 @@ are stored in /etc/dtc, and if not present in: ").$conf_dtcadmin_path."/reminder
                                 "type" => "text",
                                 "size" => "16"),
 			"shared_renewal_before" => array(
-				"legend" => _("Warnings before expiration for Shared Hosting: "),
+				"legend" => _("Warning before expiration for Shared Hosting: "),
 				"type" => "text",
 				"size" => "16"),
 			"shared_renewal_after" => array(
-				"legend" => _("Warnings after expiration for Shared Hosting: "),
+				"legend" => _("Warning after expiration for Shared Hosting: "),
                                 "type" => "text",
                                 "size" => "16"),
 			"shared_renewal_lastwarning" => array(
@@ -292,7 +292,7 @@ are stored in /etc/dtc, and if not present in: ").$conf_dtcadmin_path."/reminder
                                 "type" => "text",
                                 "size" => "16"),
 			"message_subject_header" => array(
-				"legend" => _("Reminders and registration message subject header:"),
+				"legend" => _("Reminders and registration messages subject header:"),
                                 "type" => "text",
                                 "size" => "16")
 			)
@@ -306,7 +306,7 @@ function drawNagiosConfig(){
 	$out = "";
 
 	$dsc = array(
-		"title" => _("Nagios monitoring"),
+		"title" => _("Nagios Monitoring"),
 		"action" => "vps_renewal_period",
 		"forward" => array("rub","sousrub"),
 		"desc" => _("DTC lets you auto-configure a Nagios monitoring server, enabling your VPS customers know when their services are working. This works by generating the Nagios configuration file and copying it using SCP to the remote Nagios server, then using SSH to restart the remote Nagios service.<br><br>
@@ -352,7 +352,7 @@ function drawDedicatedIPConfig(){
 	$r = mysql_query($q) or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n == 0){
-		$out .= "<font color=\"red\">". _("Warning: no IP pool in the database!") ."</font>";
+		$out .= "<font color=\"red\">". _("Warning: no IP pool in the database") ."</font>";
 	}
 	unset($my_pool_values);
 	unset($my_pool_text);
@@ -369,7 +369,7 @@ function drawDedicatedIPConfig(){
 
 	$dsc = array(
 		"table_name" => $pro_mysql_dedicated_ips_table,
-		"title" => _("Dedicated server IP address pool editor"),
+		"title" => _("Dedicated Server IP Address Pool Editor"),
 		"action" => "dedicated_ip_list",
 		"order_by" => "dedicated_server_hostname,ip_addr",
 		"forward" => array("rub","sousrub"),
@@ -382,7 +382,7 @@ function drawDedicatedIPConfig(){
 				"legend" => "id"),
 			"ip_addr" => array(
 				"type" => "text",
-				"legend" => _("IPs addrs")),
+				"legend" => _("IPs address")),
 			"ip_pool_id" => array(
 				"type" => "popup",
 				"legend" => _("IP Pool"),
@@ -391,11 +391,11 @@ function drawDedicatedIPConfig(){
 			"dedicated_server_hostname" => array(
 				"type" => "popup",
 				"values" => $popup_vals,
-				"legend" => _("Dedicated server hostname")),
+				"legend" => _("Dedicated Server Hostname")),
 			"rdns_addr" => array(
 				"type" => "text",
 				"size" => "30",
-				"legend" => _("RDNS hostname"))
+				"legend" => _("RDNS Hostname"))
 			)
 	);
 	$out .= dtcDatagrid($dsc);
@@ -481,7 +481,7 @@ function drawIPPoolConfig(){
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__file__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1){
-			$out .= "<font color=\"red\">"._("Error: no IP pool by that ID!")."</font>";
+			$out .= "<font color=\"red\">"._("Error: no IP pool by that ID.")."</font>";
 		}else{
 			$a = mysql_fetch_array($r);
 			$out .= "<h3>"._("Custom RDNS entries for the IP pool")." " .$a["location"] . " (" . $a["ip_addr"] . " / " . $a["netmask"] . "):</h3>";
@@ -693,7 +693,7 @@ function drawTicketConfig(){
 
 	$dsc = array(
 		"table_name" => $pro_mysql_tik_admins_table,
-		"title" => _("List of the administrators allowed to login and receiving support messages:"),
+		"title" => _("List of administrators permitted to manage support messages:"),
 		"action" => "tik_admins",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -703,13 +703,13 @@ function drawTicketConfig(){
 				"legend" => "id"),
 			"pseudo" => array(
 				"type" => "text",
-				"legend" => _("Nick name")),
+				"legend" => _("Nickname")),
 			"realname" => array(
 				"type" => "text",
-				"legend" => _("Real name")),
+				"legend" => _("Real Name")),
 			"email" => array(
 				"type" => "text",
-				"legend" => _("Email addr")),
+				"legend" => _("Email Address")),
 			"tikadm_pass" => array(
 				"type" => "password",
 				"legend" => _("Password")),
@@ -747,12 +747,12 @@ function drawFTPBacupConfig(){
 	global $lang;
 
 	$dsc = array(
-		"title" => _("FTP backup configuration"),
+		"title" => _("FTP Backup Configuration"),
 		"action" => "ftp_backup_configuration",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
 			"ftp_backup_activate" => array(
-				"legend" => _("Activate FTP backups:"),
+				"legend" => _("Activate FTP Backups:"),
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
@@ -800,7 +800,7 @@ function checkIPAssigned(){
 	                                $_REQUEST["action"] != "dedicated_ip_list_edit" && $_REQUEST["action"] != "dedicated_ip_list_new" &&
 					$_REQUEST["action"] != "vps_server_ip_list_edit" && $_REQUEST["action"] != "vps_server_ip_list_new" &&
 					$_REQUEST["dom0_ips"] == ""){
-		$action_error_txt = _("Please enter an IP address for your dom0!");
+		$action_error_txt = _("Please enter an IP address for your dom0.");
 		return false;
 	}
 	// Then we check all IPs separated by | one by one
@@ -838,7 +838,7 @@ function checkIPAssigned(){
 				$q_nbr_ips = sizeof($q_all_dom0_ips);
 				for($k=0;$k<$q_nbr_ips;$k++){
 					if($q_all_dom0_ips[$k] == $test_ip){
-						$action_error_txt = _("The IP address $test_ip is already assigned to a dom0: cannot assign to this one!");
+						$action_error_txt = _("The IP address $test_ip is already assigned to a dom0: cannot assign to this one.");
 						$ret_val = false;
 					}
 				}
@@ -907,7 +907,7 @@ function drawVPSServerConfig(){
 
 	global $conf_main_domain;
 
-	$out = "<h3>"._("VPS Server and IP addresses registry edition")."</h3>";
+	$out = "<h3>"._("VPS Servers and IP addresses")."</h3>";
 	$dsc = array(
 		"table_name" => $pro_mysql_vps_server_table,
 		"title" => _("VPS Server list:"),
@@ -923,7 +923,7 @@ function drawVPSServerConfig(){
 				"legend" => "id"),
 			"edithost" => array(
 				"type" => "hyperlink",
-				"legend" => _("IPs addrs"),
+				"legend" => _("IPs addresses"),
 				"text" => _("Edit IPs")),
 			"dom0_ips" => array(
 				"type" => "text",
@@ -963,7 +963,7 @@ function drawVPSServerConfig(){
 		$r = mysql_query($q) or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n == 0){
-			$out .= "<font color=\"red\">". _("Warning: no IP pool in the database!") ."</font>";
+			$out .= "<font color=\"red\">". _("Warning: no IP pools in the database.") ."</font>";
 		}
 		unset($my_pool_values);
 		unset($my_pool_text);
@@ -995,7 +995,7 @@ function drawVPSServerConfig(){
 					"legend" => "id"),
 				"vps_xen_name" => array(
 					"type" => "text",
-					"help" => _("Names of your VPS should always be like 01, 02, 03 ... (including the leading zero)."),
+					"help" => _("Names of your VPS should always be in the form 01, 02, 03 ... (including the leading zero)."),
 					"legend" => _("VPS xen number")),
 				"ip_addr" => array(
 					"type" => "text",
@@ -1105,12 +1105,12 @@ function drawGeneralConfig(){
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
 			"use_shared_ssl" => array(
-				"legend" => _("(<a href=\"http://dtcsupport.gplhost.com/PmWiki/Name-based-shared-SSL-vhosts\">Shared SSL warnings!</a>)Allow use of name based shared SSL vhosts: "),
+				"legend" => _("(<a href=\"http://dtcsupport.gplhost.com/PmWiki/Name-based-shared-SSL-vhosts\">Shared SSL warnings</a>) Allow use of name based shared SSL vhosts: "),
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
 			"force_use_https" => array(
-				"legend" => _("Force HTTPS use: "),
+				"legend" => _("Force HTTPS use for contol panel: "),
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
@@ -1138,7 +1138,7 @@ function drawGeneralConfig(){
 				"legend" => _("Registration default TLD: "),
 				"values" => array_values($allTLD)),
 			"selling_conditions_url" => array(
-				"legend" => _("Selling conditions URL: "),
+				"legend" => _("Terms and Conditions URL: "),
 				"type" => "text",
 				"size" => "40")));
 	$out .= configEditorTemplate ($dsc);
@@ -1213,11 +1213,11 @@ function drawGeneralConfig(){
 				"display_replace" => array("Roundcube","Squirrelmail"),
 				"values" => array("roundcube","squirrelmail")),
 			"apache_directoryindex" => array(
-				"legend" => _("Apache DirectoryIndex: "),
+				"legend" => _("Apache DirectoryIndex Config: "),
 				"size" => "50",
 				"type" => "text"),
 			"spam_keep_days" => array(
-				"legend" => _("Keep spams for n days"),
+				"legend" => _("Keep spam email for n days"),
 				"type"	=> "text")));
 	$out .= configEditorTemplate ($dsc);
 
@@ -1359,7 +1359,7 @@ function drawNamedConfig(){
 				"type" => "text",
 				"size" => "50"),
 			"ip_allowed_dns_transfer" => array(
-				"legend" => _("List the DNS server IPs allowed to do zone<br>
+				"legend" => _("List the DNS server IPs allowed to perform zone<br>
 transfers separated by &quot;|&quot; (pipe)<br>
 (leave blank if you don't have backup DNS server):"),
 				"type" => "text",
@@ -1399,7 +1399,7 @@ function drawBackupConfig(){
 
 	$dsc = array(
 		"table_name" => $pro_mysql_backup_table,
-		"title" => _("Allow those servers to list this server's domain names for doing backup:"),
+		"title" => _("List of servers that may fetch a secondary zone configuration from this server:"),
 		"action" => "backup_grant_access_editor",
 		"forward" => array("rub","sousrub"),
 		"where_condition" => "type='grant_access'",
@@ -1426,7 +1426,7 @@ function drawBackupConfig(){
 
 	$dsc = array(
 		"table_name" => $pro_mysql_backup_table,
-		"title" => _("Tell the following servers when a domain is added or removed :"),
+		"title" => _("Notify the following servers when a domain is added or removed :"),
 		"action" => "trigger_dns_update_editor",
 		"forward" => array("rub","sousrub"),
 		"where_condition" => "type='trigger_changes'",
@@ -1451,7 +1451,7 @@ function drawBackupConfig(){
 
 	$dsc = array(
 		"table_name" => $pro_mysql_backup_table,
-		"title" => _("Tell the following servers when an email is added or removed :"),
+		"title" => _("Notify the following servers when an email is added or removed :"),
 		"action" => "trigger_mx_update_editor",
 		"forward" => array("rub","sousrub"),
 		"where_condition" => "type='trigger_mx_changes'",
@@ -1621,7 +1621,7 @@ function drawDTCpayConfig(){
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
 			"affiliate_return_domain" => array(
-				"legend" => _("Domain name for affiliation return URL:"),
+				"legend" => _("DNS name for affiliate return URL:"),
 				"type" => "text"
 				)));
 	$out .= configEditorTemplate($dsc);
@@ -2251,17 +2251,17 @@ function drawDTCpathConfig(){
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
 			"dtcshared_path" => array(
-				"legend" => _("Path of your DTC shared directory:"),
+				"legend" => _("DTC shared directory path:"),
 				"type" => "text"),
 			"site_root_host_path" => array(
-				"legend" => _("Your default new account directory:"),
+				"legend" => _("Default new account directory:"),
 				"type" => "text"),
 			"chroot_path" => array(
 				"legend" => _("Path of the cgi-wrapper disk template (chroot for SBOX):"),
 				"type" => "text"),
 			"generated_file_path" => array(
-				"legend" => _("Path where DTC will be restricted for generating it's configuration files for daemons.<br>
-Each of the following (qmail, apache and named) path will be concatened to this:"),
+				"legend" => _("Base path to DTC-generated daemon configuration files.<br>
+All of the DTC daemon config files defined on this page will be saved here:"),
 				"type" => "text"),
 			"htpasswd_path" => array(
 				"legend" => _("Apache htpasswd path"),
@@ -2362,7 +2362,7 @@ function drawCompaniesConfig(){
 			"name" => array(
 				"type" => "text",
 				"size" => "30",
-				"legend" => _("Company name:")),
+				"legend" => _("Company Name:")),
 			"address" => array(
 				"type" => "textarea",
 				"cols" => "60",
@@ -2376,15 +2376,15 @@ function drawCompaniesConfig(){
 			"registration_number" => array(
 				"type" => "text",
 				"size" => "30",
-				"legend" => _("Registration number:")),
+				"legend" => _("Registration Number:")),
 			"vat_number" => array(
 				"type" => "text",
 				"size" => "30",
-				"legend" => _("VAT number:")),
+				"legend" => _("VAT Number:")),
 			"vat_rate" => array(
 				"type" => "text",
 				"size" => "10",
-				"legend" => _("VAT rate:")),
+				"legend" => _("VAT Rate:")),
 			"logo_path" => array(
 				"type" => "text",
                                 "size" => "30",
@@ -2398,7 +2398,7 @@ function drawCompaniesConfig(){
 				"type" => "textarea",
 				"cols" => "60",
 				"rows" => "5",
-				"legend" => _("Invoice footer:") )));
+				"legend" => _("Invoice Footer:") )));
 	$out .= dtcListItemsEdit($dsc);
 	return $out;
 }
@@ -2444,7 +2444,7 @@ function drawInvoicingConfig(){
 
 	$dsc = array(
 		"table_name" => $pro_mysql_invoicing_table,
-		"title" => _("Customer and service country vs company:"),
+		"title" => _("Customer and Service country vs. Company:"),
 		"action" => "cust_and_serv_country_vs_comp",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -2454,17 +2454,17 @@ function drawInvoicingConfig(){
 				"legend" => "id"),
 			"service_country_code" => array(
 				"type" => "popup",
-				"legend" => _("Service country"),
+				"legend" => _("Service Country"),
 				"values" => $country_codes,
 				"display_replace" => $country_fullnames),
 			"customer_country_code" => array(
 				"type" => "popup",
-				"legend" => _("Customer country"),
+				"legend" => _("Customer Country"),
 				"values" => $country_codes,
 				"display_replace" => $country_fullnames),
 			"company_id" => array(
 				"type" => "popup",
-				"legend" => _("Company name"),
+				"legend" => _("Company Name"),
 				"values" => $comp_ids,
 				"display_replace" => $comp_names)
 			)

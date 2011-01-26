@@ -234,7 +234,7 @@ Service country: $country
 			$frm_start = "<form action=\"?\">
 <input type=\"hidden\" name=\"action\" value=\"renew_myaccount\">
 ";
-			$out .= _("You have enough funds on your account to proceed account renewal. Press the confirm button and your order will be proceeded.") ."<br><br>
+			$out .= _("You have sufficient funds in your account. Press the confirm button and your order will be processed.") ."<br><br>
 $frm_start
 <input type=\"hidden\" name=\"renew_type\" value=\"" . $_REQUEST["renew_type"]. "\">
 <input type=\"hidden\" name=\"adm_login\" value=\"" . $_REQUEST["adm_login"]. "\">

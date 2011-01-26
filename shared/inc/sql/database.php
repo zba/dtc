@@ -23,7 +23,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_dbuser"){
 		$dbuser = $_REQUEST["dbuser"];
 	}
 	if(!isDTCPassword($_REQUEST["db_pass"])){
-		$submit_err .= _("Password must consist of only letters and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.") ."<br>\n";
+		$submit_err .= _("Password must consist of only letters and numbers (a-zA-Z0-9) and should be between 6 and 16 characters long.") ."<br>\n";
 		$commit_flag = "no";
 	}
 	if($commit_flag == "yes"){

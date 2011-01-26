@@ -54,7 +54,7 @@ function drawAdminTools_Aliases($domain){
 				"rows" => "7")
 			),
 		"check_unique" => array( "id"),
-		"check_unique_msg" => _("Email address is already in use!")
+		"check_unique_msg" => _("Email address is already in use.")
 		);
         $list_items = dtcListItemsEdit($dsc);
 

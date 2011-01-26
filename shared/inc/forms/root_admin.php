@@ -183,15 +183,15 @@ function drawEditAdmin($admin){
 	$user_data .= dtcFormLineDraw( _("Allow addition of FTP logins:") ,$ftplog_selector);
 	$user_data .= dtcFormLineDraw( _("Restrict FTP to the html folder:") ,$restricted_ftp_path_selector,0);
 	$user_data .= dtcFormLineDraw( _("Allow addition of mailing lists and mail groups:") ,$allow_mailing_list_edit_selector);
-	$user_data .= dtcFormLineDraw( _("Allow edition of DNS and MX:") ,$allow_dns_and_mx_change_selector,0);
-	$user_data .= dtcFormLineDraw( _("Allow edition subdomains:") ,$allow_subdomain_edit_selector);
+	$user_data .= dtcFormLineDraw( _("Allow addition of DNS and MX:") ,$allow_dns_and_mx_change_selector,0);
+	$user_data .= dtcFormLineDraw( _("Allow addition of subdomains:") ,$allow_subdomain_edit_selector);
 	$user_data .= dtcFormLineDraw( _("Allow the use of the package installer:") ,$pkg_install_selector,0);
 	$user_data .= dtcFromOkDraw()."</table></form>";
 
 	// Generate the admin tool configuration module
 	// Deletion of domains :
 	$url = "?delete_admin_user=$adm_login&rub=$rub";
-	$confirmed_url = dtcJavascriptConfirmLink( _("Are your sure you want to delete this user? This will erase all his hosted domain names, files, and databases !!!") ,$url);
+	$confirmed_url = dtcJavascriptConfirmLink( _("Are your sure you want to delete this user? This will DELETE all the user's hosted domain names, files, and databases.") ,$url);
 	$domain_conf = "<a href=\"$confirmed_url\"><b>". _("Delete the user") ."</b></a><br><br>";
 	if(isset($data)){
 		$domain_conf .= "<h3>". _("Delete a user domain:") ."</h3><br>";
@@ -202,7 +202,7 @@ function drawEditAdmin($admin){
 				$domain_conf .= " - ";
 			}
 			$url = "?adm_login=$adm_login&adm_pass=$adm_pass&deluserdomain=$dom&rub=$rub";
-			$js_url = dtcJavascriptConfirmLink( _("Are you sure you want to delete this domain name ? This will erase all hosted files for this domain!!!") ,$url);
+			$js_url = dtcJavascriptConfirmLink( _("Are you sure you want to delete this domain name? This will DELETE all hosted files for this domain.") ,$url);
 			$domain_conf .= "<a href=\"$js_url\">$dom</a>";
 		}
 		$domain_conf .= "</b><br><br>";
@@ -294,7 +294,7 @@ function drawEditAdmin($admin){
  <div class=\"input_btn_right\"></div>
 </div></td></tr></table></form>";
 	}else{
-		$domain_conf .= _("To add a VPS, you need to setup some free IPs VPS in the general config and setup some VPS products.");
+		$domain_conf .= _("To add a VPS, you need to add IPs to the VPS IPs section in the general config as well as create at least one VPS product.");
 	}
 
 	// Deletion of dedicated
@@ -387,7 +387,7 @@ function drawDomainConfig($admin){
 		}
 		$dsc = array(
 			"table_name" => $pro_mysql_domain_table,
-			"title" => _("Configuration of the domains"),
+			"title" => _("Domain Configuration"),
 			"action" => "change_domain_config",
 			"forward" => array("rub","adm_login","adm_pass"),
 			"skip_deletion" => "yes",
@@ -470,7 +470,7 @@ function drawDomainConfig($admin){
 			$ret .= "<br><br>";
 			if( isset($_REQUEST["subdomain"]) && isHostname($_REQUEST["subdomain"]) ){
 				$ret .= "<u>". _("Subdomain") .": ".$_REQUEST["subdomain"].":</u><br>";
-				$ret .= _("Take care: no syntax checkings are done on your custom directives, doing a mistake here could lead to your web server not being able to restart!")."<br>";
+				$ret .= _("IMPORTANT: No syntax checking is done on your custom directives - a mistake here could lead to your web server not restarting properly.")."<br>";
 				$q = "SELECT customize_vhost FROM $pro_mysql_subdomain_table WHERE subdomain_name='".$_REQUEST["subdomain"]."' AND domain_name='".$_REQUEST["edithost"]."';";
 				$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 				$n = mysql_num_rows($r);
@@ -500,7 +500,7 @@ function drawDomainConfig($admin){
 					"legend" => _("ID")),
 				"customize_vhost" => array(
 					"type"=> "textarea",
-					"help"=> _("Custom apache directives. There is *no* syntax checking on this field!"),
+					"help"=> _("Custom apache directives. NOTE - There is *no* syntax checking on this field."),
 					"cols"=> "40",
 					"rows"=> "30",
 					"legend" => _("Custom apache directives")),
@@ -521,12 +521,12 @@ function drawDomainConfig($admin){
 					"legend" => _("Execution time")),
 				"php_upload_max_filesize" => array(
 					"type" => "text",
-					"help" => _("Maximum allowed size of uploaded file"),
+					"help" => _("Maximum uploaded file size"),
 					"size" => 2,
 					"legend" => _("Max upload file size")),
 				"php_post_max_size" => array(
 					"type" => "text",
-					"help" => _("Maximum allowed size of POST"),
+					"help" => _("Maximum POST data size"),
 					"size" => 2,
 					"legend" => _("Max POST file size")),
 				"php_session_auto_start" => array(

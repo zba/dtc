@@ -208,12 +208,12 @@ function DTCRMeditClients(){
 <input type=\"hidden\" name=\"id\" value=\"$cid\">$hidden_inputs
 ";
 	$text .= dtcFormTableAttrs();
-	$text .= dtcFormLineDraw( _("Familly name: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_familyname\"value=\"".htmlspecialchars(stripcslashes($row["familyname"]))."\">");
-	$text .= dtcFormLineDraw( _("First name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_christname\" value=\"".htmlspecialchars(stripcslashes($row["christname"]))."\">",0);
-	$text .= dtcFormLineDraw( _("Is it a company: ") ,"<input type=\"radio\" name=\"ed_is_company\" value=\"yes\" $iscomp_yes > "._("Yes")."
+	$text .= dtcFormLineDraw( _("Last Name: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_familyname\"value=\"".htmlspecialchars(stripcslashes($row["familyname"]))."\">");
+	$text .= dtcFormLineDraw( _("First Name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_christname\" value=\"".htmlspecialchars(stripcslashes($row["christname"]))."\">",0);
+	$text .= dtcFormLineDraw( _("Company Account: ") ,"<input type=\"radio\" name=\"ed_is_company\" value=\"yes\" $iscomp_yes > "._("Yes")."
 <input type=\"radio\" name=\"ed_is_company\" value=\"no\" $iscomp_no > "._("No"));
-	$text .= dtcFormLineDraw( _("Company name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_company_name\" value=\"".htmlspecialchars(stripcslashes($row["company_name"]))."\">",0);
-	$text .= dtcFormLineDraw( _("VAT number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_vat_num\" value=\"".htmlspecialchars(stripcslashes($row["vat_num"]))."\">");
+	$text .= dtcFormLineDraw( _("Company Name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_company_name\" value=\"".htmlspecialchars(stripcslashes($row["company_name"]))."\">",0);
+	$text .= dtcFormLineDraw( _("VAT Number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_vat_num\" value=\"".htmlspecialchars(stripcslashes($row["vat_num"]))."\">");
 	$text .= dtcFormLineDraw( _("Address (line1): ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_addr1\" value=\"".htmlspecialchars(stripcslashes($row["addr1"]))."\">",0);
 	$text .= dtcFormLineDraw( _("Address (line2): ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_addr2\" value=\"".htmlspecialchars(stripcslashes($row["addr2"]))."\">");
 	$text .= dtcFormLineDraw( _("Address (line3): ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_addr3\" value=\"".htmlspecialchars(stripcslashes($row["addr3"]))."\">",0);
@@ -222,7 +222,7 @@ function DTCRMeditClients(){
 	$text .= dtcFormLineDraw( _("State: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_state\" value=\"".htmlspecialchars(stripcslashes($row["state"]))."\">");
 	$text .= dtcFormLineDraw( _("Country: ") ,"<select class=\"dtcDatagrid_input_alt_color\" name=\"ed_country\">".
 cc_code_popup($row["country"])."</select>",0);
-	$text .= dtcFormLineDraw( _("Phone number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_phone\" value=\"".htmlspecialchars(stripcslashes($row["phone"]))."\">");
+	$text .= dtcFormLineDraw( _("Phone Number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_phone\" value=\"".htmlspecialchars(stripcslashes($row["phone"]))."\">");
 	$text .= dtcFormLineDraw( _("Fax: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_fax\" value=\"".htmlspecialchars(stripcslashes($row["fax"]))."\">",0);
 	$text .= dtcFormLineDraw( _("Email: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_email\" value=\"".$row["email"]."\">");
 	$text .= dtcFormLineDraw( _("Notes: ") ,"<textarea class=\"dtcDatagrid_input_alt_color\" cols=\"40\" rows=\"5\" name=\"ed_special_note\">".htmlspecialchars(stripcslashes($specnot))."</textarea>",0);

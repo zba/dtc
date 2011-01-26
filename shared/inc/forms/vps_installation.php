@@ -236,7 +236,7 @@ submitButtonStart() . _("File system check (fsck)") . submitButtonEnd() ."
 <option value=\"debian-dtc\" $debdtc_selected>Debian with DTC panel (" . _("network install with debootstrap") .")</option>
 <option value=\"centos\" $cent_selected>CentOS (" . _("network install with yum") .")</option>
 <option value=\"netbsd\" $bsd_selected>NetBSD (" . _("network setup with install kernel") .")</option>
-<option value=\"xenhvm\" $xenhvm_selected>Xen HVM (" . _("boot on your own .iso image") .")</option>";
+<option value=\"xenhvm\" $xenhvm_selected>Xen HVM (" . _("boot your own .iso image") .")</option>";
 		$installable_os = getInstallableOS($soap_client);
 		$nbr_os = sizeof($installable_os);
 		for($i=0;$i<$nbr_os;$i++){

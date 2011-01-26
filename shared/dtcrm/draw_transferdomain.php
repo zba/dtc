@@ -69,7 +69,7 @@ function drawNameTransfer($admin,$given_fqdn="none"){
 	$regz = registry_check_transfer($toreg_domain.$toreg_extention);
        # echo "Checking2 $toreg_domain$toreg_extention<br />";
 	if($regz["is_success"] != 1){
-		die("<font color=\"red\">". _("TRANSFER CHECK FAILED: registry server didn't reply successfuly.") ."</font>");
+		die("<font color=\"red\">". _("TRANSFER CHECK FAILED: registry server did not respond correctly.") ."</font>");
 	}
 
 	if($regz["attributes"]["transferrable"] != 1){
@@ -126,7 +126,7 @@ $form_start<br>
 		if($ze_refund == 0){
 			$out .= "<font color=\"red\">". _("The transaction failed, please try again!") ."</font>";
 		}else{
-			$out .= "<font color=\"green\">". _("Your account has been credited!") ."</font><br>";
+			$out .= "<font color=\"green\">". _("Your account has been credited.") ."</font><br>";
 			$q = "UPDATE $pro_mysql_client_table SET dollar = dollar+".$ze_refund." WHERE id='".$admin["info"]["id_client"]."';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$remaining += $ze_refund;
@@ -152,17 +152,17 @@ $form_start<br>
 		$paybutton = paynowButton($payid,$fqdn_price,
 			"Domain name registration ".$_REQUEST["toreg_extention"],$return_url);
 
-		$out .= _("You currently don't have enough funds on your account. You will be redirected to our payment system. Please click on the button below to pay.") ."<br><br>
+		$out .= _("You currently don't have enough funds in your account. You will be redirected to our payment system. Please click on the button below to pay.") ."<br><br>
 $paybutton";
 		return $out;
 	}
 	// Check for confirmation
 	if(!isset($_REQUEST["toreg_confirm_transfert"]) || $_REQUEST["toreg_confirm_transfert"] != "yes"){
-		$out .= _("You have enough funds on your account to proceed with transfert. Press the confirm button to proceed.") ."<br><br>
+		$out .= _("You have enough funds in your account to proceed with transfer. Press the confirm button to continue.") ."<br><br>
 $form_start
 <input type=\"hidden\" name=\"toreg_confirm_transfert\" value=\"yes\">
 <input type=\"hidden\" name=\"authcode\" value=\"".$_REQUEST['authcode']."\">
-".submitButtonStart(). _("Proceed to name-transfert") .submitButtonEnd() ."
+".submitButtonStart(). _("Proceed with name transfer") .submitButtonEnd() ."
 </form>";		return $out;
 	}
 	///////////////////////////////////////
@@ -195,7 +195,7 @@ $form_start
 	$regz = registry_transfert_domain($adm_login,$adm_pass,$fqdn,$contacts,$dns_servers,$new_user,$authcode);
 
 	if($regz["is_success"] != 1){
-		$out .= "<font color=\"red\"><b>". _("Transfert failed") ."</b></font><br>
+		$out .= "<font color=\"red\"><b>". _("Transfer failed") ."</b></font><br>
 ". _("Server said: ") ."<i>" . $regz["response_text"] . "</i>";
 		return $out;
 	}

@@ -21,7 +21,7 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 	$adm_path = getAdminPath($adm_login);
 
 	if(!hasSSHLoginFlag($adm_login)){
-		$submit_err .= _("You don't have the SSH login flag!") ;
+		$submit_err .= _("You don't have SSH login permissions.") ;
 		$commit_flag = "no";
 	}
 
@@ -50,7 +50,7 @@ if(isset($_REQUEST["newsshaccount"]) && $_REQUEST["newsshaccount"] == "Ok"){
 		$commit_flag = "no";
 	}
 	if(!isDTCPassword($_REQUEST["newssh_pass"])){
-		$submit_err .= _("Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9<br>\n") ;
+		$submit_err .= _("Incorrect SSH password: from 6 to 16 characters, a-z A-Z 0-9<br>\n") ;
 		$commit_flag = "no";
 	}
 	$_REQUEST["newssh_path"] = mysql_real_escape_string($_REQUEST["newssh_path"]);
@@ -103,7 +103,7 @@ if(isset($_REQUEST["update_ssh_account"]) && $_REQUEST["update_ssh_account"] == 
 	}
 
 	if(!isDTCPassword($_REQUEST["edssh_pass"])){
-		$submit_err .= _("Incorrect SSH password: from 6 to 16 chars, a-z A-Z 0-9") ;
+		$submit_err .= _("Incorrect SSH password: from 6 to 16 characters, a-z A-Z 0-9") ;
 		$commit_flag = "no";
 	}
 

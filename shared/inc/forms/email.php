@@ -30,7 +30,7 @@ function drawImportedMail($mailbox){
 		"id_fld" => "id",
 		"list_fld_show" => "pop3_email",
 		"max_item" => 3,
-		"num_item_txt" => _("Number of active fetchmail imported email:") ,
+		"num_item_txt" => _("Number of active fetchmail imported email boxes:") ,
 		"where_list" => array(
 			"domain_name" => $mydomain,
 			"domain_user" => $myuserid),
@@ -78,13 +78,13 @@ function drawAntispamRules($mailbox){
 	global $pro_mysql_whitelist_table;
 
 	$bnc_msg = _("Hello,
-You have tried to write an email to me, and because of the big amount
-of spam I recieved, I use an antispam software that require a message
+You have sent an email to me, but due to the large amount
+of spam I recieve, I use antispam software that requires message
 confirmation. This is very easy, and you will have to do it only once.
 Just click on the following link, copy the number you see on the
-screen and I will recieve the message you sent me. If you do not
-click, then your message will be considered as advertising and I will
-NOT recieve it.
+screen and I will receive the message you sent me. If you do not
+click, then your message will be considered spam and I will
+NOT receive it.
 
 ***URL***
 
@@ -254,7 +254,7 @@ function drawAdminTools_emailAccount($mailbox){
     	<td align=\"right\">Deliver spam to spambox:</td><td>".$form_start."<input type=\"hidden\" name=\"action\" value=\"dtcemail_spambox\">
     <input type=\"radio\" name=\"spam_mailbox_enable\" value=\"yes\" $spambox_yes_checked>"._("Yes")."<input type=\"radio\" name=\"spam_mailbox_enable\" value=\"no\" $spambox_no_checked>"._("No")."</td>
     </tr><tr>
-    	<td align=\"right\">" . _("SPAM box name") . ":</td><td><input type=\"text\" name=\"spam_mailbox\" value=\"".$mailbox["data"]["spam_mailbox"]."\"></td>
+    	<td align=\"right\">" . _("SPAM mailbox name") . ":</td><td><input type=\"text\" name=\"spam_mailbox\" value=\"".$mailbox["data"]["spam_mailbox"]."\"></td>
     </tr><tr>
     	<td></td><td>". drawSubmitButton( _("Ok") ) ."</form></td></tr></table>";
 	}
@@ -564,12 +564,12 @@ function drawAdminTools_Emails($domain){
 				"legend" => _("Password:") ),
 			"spam_mailbox_enable" => array(
 				"type" => "checkbox",
-				"help" => _("If selected, spams will be sent in a SPAM folder and wont reach your inbox. Later you can check this folder with the webmail or using IMAP."),
+				"help" => _("If selected, spam will be saved in a SPAM folder and won't reach your inbox. Later you may check this folder with webmail or an IMAP client."),
 				"values" => array( "yes","no"),
 				"legend" => _("Enable SPAM filtering: ") ),
 			"spam_mailbox" => array(
 				"type" => "text",
-				"help" => _("Name of the SPAM folder to receive the spam (the above option has to be activated)."),
+				"help" => _("Name of the SPAM folder (the above option has to be activated)."),
 				"default" => "SPAM",
 				"legend" => _("SPAM mailbox destination: ") ),
 			)
@@ -620,7 +620,7 @@ function drawAdminTools_Emails($domain){
 			"type" => "checkbox",
 			"values" => array( "yes","no"),
 			"default" => "no",
-			"legend" => _("Check to send a bounce message (vacation): ") );
+			"legend" => _("Check to send a bounce (vacation) message: ") );
 		$dsc["cols"]["vacation_text"] = array(
 			"type" => "textarea",
 			"legend" => _("Bounce message content: ") ,

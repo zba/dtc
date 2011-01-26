@@ -120,7 +120,7 @@ function subscribers_list($list_path){
 	global $addrlink;
 	global $edit_domain;
 
-	$out = "<br><h3>". _("Subscriber list (click to unsubscribe):") ."</h3><br><br>";
+	$out = "<br><h3>". _("Subscriber list (click the address to unsubscribe):") ."</h3><br><br>";
 
 	$path = $list_path."/subscribers.d";
 

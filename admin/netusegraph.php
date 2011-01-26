@@ -42,7 +42,7 @@ if( isset($_REQUEST["graph"]) ){
 //	$filename = "/tmp/network_usage_".$_REQUEST["graph"].".png";
 	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label \"$vert_label\" --title \"$title\" --lazy --interlaced ";
 	$cmd .= "DEF:bytesin=$rrd:bytesin:AVERAGE DEF:bytesout=$rrd:bytesout:AVERAGE ";
-	$cmd .= "\"LINE2:bytesin#00ff00:" . _("Incoming network traffic in bytes") .":\" \"GPRINT:bytesin:MAX:" . _("Maximum") . "\: %0.0lf\" 'GPRINT:bytesin:AVERAGE:" . _("Average") . "\: %0.0lf/min\\n' ";
+	$cmd .= "\"LINE2:bytesin#00ff00:" . _("Incoming network traffic in bytes:") .":\" \"GPRINT:bytesin:MAX:" . _("Maximum") . "\: %0.0lf\" 'GPRINT:bytesin:AVERAGE:" . _("Average") . "\: %0.0lf/min\\n' ";
 	$cmd .= "\"LINE1:bytesout#0000ff:" . _("Outgoing network traffic in bytes:") ."\" \"GPRINT:bytesout:MAX:" . _("Maximum") ."\: %0.0lf\" 'GPRINT:bytesout:AVERAGE:" . _("Average") ."\: %0.0lf/min\l' ";
 	$cmd;
 	exec($cmd,$output);
@@ -68,7 +68,7 @@ if( isset($_REQUEST["graph"]) ){
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>' . _("Network usage statistics for") . " " .$_SERVER["SERVER_NAME"].'</TITLE>
+<TITLE>' . _("Network Usage Statistics for") . " " .$_SERVER["SERVER_NAME"].'</TITLE>
 <style type="text/css">
 body{
 	height:100%;

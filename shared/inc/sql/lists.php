@@ -212,7 +212,7 @@ if(isset($_REQUEST["addnewlisttodomain"]) && $_REQUEST["addnewlisttodomain"] == 
 	}
 	
 	//dtc send an email to the owner
-	$subject = str_replace("#name#",$name, _("List #name#@#domain# successfully created!") );
+	$subject = str_replace("#name#",$name, _("List #name#@#domain# successfully created.") );
 	$subject = str_replace("#domain#",$edit_domain,$subject);
 	$msg = str_replace("#name#",$name, _("You can control your mailing list by email or by control panel.
 You can send a email to the following addresses to execute the listed command:

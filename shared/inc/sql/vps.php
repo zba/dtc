@@ -3,7 +3,7 @@
 function remoteVPSAction($vps_node,$vps_name,$action){
 	$soap_client = connectToVPSServer($vps_node);
 	if($soap_client === false){
-		echo "<font color=\"red\">". _("Could not connect to VPS server!") ."</font>";
+		echo "<font color=\"red\">". _("Could not connect to VPS server.") ."</font>";
 		return;
 	}
 	switch($action){
@@ -143,7 +143,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xm_console_ssh_p
 	if($commit_flag == "yes"){
 		$soap_client = connectToVPSServer($vps_node);
 		if($soap_client === false){
-			echo "<font color=\"red\">". _("Could not connect to VPS server!") ."</font>";
+			echo "<font color=\"red\">". _("Could not connect to VPS server.") ."</font>";
 			return;
 		}
 		$r = $soap_client->call("changeVPSxmPassword",array("vpsname" => "xen".$vps_name,"password" => $_REQUEST["new_password"]),"","","");
@@ -162,12 +162,12 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xm_console_ssh_k
 	}
 	if( !isSSHKey($_REQUEST["new_key"])){
 		$commit_flag = "no";
-		$submit_err = "Need to add the code for checking ssh key string validity!";
+		$submit_err = "Need to add the code for checking ssh key string validity.";
 	}
 	if($commit_flag == "yes"){
 		$soap_client = connectToVPSServer($vps_node);
 		if($soap_client === false){
-			echo "<font color=\"red\">". _("Could not connect to VPS server!") ."</font>";
+			echo "<font color=\"red\">". _("Could not connect to VPS server.") ."</font>";
 			return;
 		}
 		$r = $soap_client->call("changeVPSsshKey",array("vpsname" => "xen".$vps_name,"keystring" => $_REQUEST["new_key"]),"","","");
@@ -187,7 +187,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "fsck_vps"){
 	if($commit_flag == "yes"){
 		$soap_client = connectToVPSServer($vps_node);
 		if($soap_client === false){
-			echo "<font color=\"red\">". _("Could not connect to VPS server!") ."</font>";
+			echo "<font color=\"red\">". _("Could not connect to VPS server.") ."</font>";
 			return;
 		}
 		$r = $soap_client->call("fsckVPSpartition",array("vpsname" => "xen".$vps_name),"","","");
@@ -252,7 +252,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "reinstall_os"){
 	if($commit_flag == "yes"){
 		$soap_client = connectToVPSServer($vps_node);
 		if($soap_client === false){
-			echo "<font color=\"red\">". _("Could not connect to VPS server!") ."</font>";
+			echo "<font color=\"red\">". _("Could not connect to VPS server.") ."</font>";
 			return;
 		}
 
@@ -284,18 +284,18 @@ if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xenhvm_boot_iso
 	}
 	$soap_client = connectToVPSServer($vps_node);
 	if($soap_client === false){
-		$submit_err = _("Could not connect to VPS server!");
+		$submit_err = _("Could not connect to VPS server.");
 		$commit_flag = "no";
 	}
 	if( $commit_flag == "yes" && $_REQUEST["xenhvm_iso"] != "hdd"){
 		$r = $soap_client->call("reportInstalledIso",array("vpsname" => "xen".$vps_name),"","","");
 		$err = $soap_client->getError();
                 if($err){
-                	$submit_err = _("Could not get installed ISO files!");
+                	$submit_err = _("Could not get installed ISO files.");
                 	$commit_flag = "no";
 		}else{
 			if( ! in_array($_REQUEST["xenhvm_iso"],$r)){
-				$submit_err = _("The ISO file is not in the server!");
+				$submit_err = _("The ISO file is not in the server.");
 				$commit_flag = "no";
 			}
 		}
@@ -306,7 +306,7 @@ if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_xenhvm_boot_iso
 		$vnc_console_pass = $_REQUEST["vnc_console_pass"];
 	}
 	if( !isDTCPassword( $_REQUEST["vnc_console_pass"]) && $_REQUEST["vnc_console_activate"] == "yes"){
-		echo "<font color=\"yes\">" . _("Warning: password of wrong format, DTC will disable VNC console!");
+		echo "<font color=\"yes\">" . _("Warning: incorrect password format, DTC will disable VNC console.");
 	}
 	if( $commit_flag == "yes"){
 		$q = "UPDATE $pro_mysql_vps_table SET vncpassword='".mysql_real_escape_string($vnc_console_pass)."',howtoboot='".mysql_real_escape_string($_REQUEST["xenhvm_iso"])."' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";
@@ -388,7 +388,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_bsd_kernel_type"
 	if($commit_flag == "yes"){
 		$soap_client = connectToVPSServer($vps_node);
 		if($soap_client === false){
-			echo "<font color=\"red\">". _("Could not connect to VPS server!") ."</font>";
+			echo "<font color=\"red\">". _("Could not connect to VPS server.") ."</font>";
 			return;
 		}
 		$q = "UPDATE $pro_mysql_vps_table SET bsdkernel='".$_REQUEST["bsdkernel"]."' WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node';";

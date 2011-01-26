@@ -194,7 +194,7 @@ function anotherTopBanner($inside,$drawLanguageSelect="no"){
 		$inside = str_replace("__DTC_LANGUAGES_LINKS__",$zeLanguage,$inside);
 		$inside = str_replace("__DTC_VERSION__","V$conf_dtc_version R$conf_dtc_release - $conf_unix_type",$inside);
 		$inside = str_replace("__DTC_LINK__",$links,$inside);
-		$inside = str_replace("__AUTH_USER__",_("Logged as:") . " " . $display_user,$inside);
+		$inside = str_replace("__AUTH_USER__",_("Logged in as:") . " " . $display_user,$inside);
 		$inside = str_replace("__DOCUMENTATION__",_("Documentation"),$inside);
 		$inside = str_replace("__PHPMYADMIN__",_("PhpMyAdmin"),$inside);
 		$inside .= "<script language=\"JavaScript\" type=\"text/javascript\" src=\"gfx/wz_tooltip.js\"></script>";

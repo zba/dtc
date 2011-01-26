@@ -287,7 +287,7 @@ function drawAdminTools_Subdomain($admin,$domain){
 		$dsc["cols"]["ssl_ip"] = array(
 			"type" => "popup",
 			"values" => $ssl_ips,
-			"legend" => _("Use an SSL vhost using this IP: ")
+			"legend" => _("SSL vhost listens on this IP: ")
 			);
 	}
 

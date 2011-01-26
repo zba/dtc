@@ -1,5 +1,5 @@
 <?php
-
+Please note that you need to create at least one mailbox and one FTP account in order for the daemon status to work correctly.
 ////////////////////////////////////
 // Create the top banner and menu //
 ////////////////////////////////////
@@ -138,9 +138,9 @@ function skin_LayoutAdminPage_Default (){
 		$zemain_content = skin($conf_skin,drawRrdtoolGraphs (), _("Server statistic graphs") );
 		break;
 	case "generate": // Gen Config Files
-		$mainFrameCells[] = skin($conf_skin,$top_commands, _("Launching the configuration files generation") );
-		$the_iframe = "<br><br>"._("Please note that you need to create at least one email and one FTP account in order to have the daemon status working!")."<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
-		$mainFrameCells[] = skin($conf_skin,$the_iframe, _("Deamons states") ); // fixed bug by seeb
+		$mainFrameCells[] = skin($conf_skin,$top_commands, _("Starting configuration file generation") );
+		$the_iframe = "<br><br>"._("Please note that you need to create at least one mailbox and one FTP account in order for the daemon status to work correctly.")."<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
+		$mainFrameCells[] = skin($conf_skin,$the_iframe, _("Daemon Status") ); // fixed bug by seeb
 		// The console
 		$mainFrameCells[] = skinConsole();
 		$zemain_content = makeVerticalFrame($mainFrameCells);
@@ -156,7 +156,7 @@ function skin_LayoutAdminPage_Default (){
 		break;
 	case "product":
 		$bla = productManager();
-		$zemain_content = skin($conf_skin,$bla, _("Hosting product manager") );
+		$zemain_content = skin($conf_skin,$bla, _("Hosting Product Manager") );
 		break;
 	case "user": // User Config
 	case "domain_config":
@@ -178,7 +178,7 @@ function skin_LayoutAdminPage_Default (){
 			$q = "UPDATE $pro_mysql_config_table SET root_admin_random_pass='$rand', pass_expire='$expirationTIME';";
 			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
 		}
-		$leftFrameCells[] = skin($conf_skin,adminList($rand), _("Admins list") );
+		$leftFrameCells[] = skin($conf_skin,adminList($rand), _("Admin List") );
 		// Make the frame
 		$leftFrame = makeVerticalFrame($leftFrameCells);
 
@@ -223,7 +223,7 @@ function skin_Navbar_Default() {
 		$menu .= "<a href=\"?rub=user$added_logpass\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/admins.png\"><br>".
-		 _("Users administration") ;
+		 _("User Administration") ;
 	if(isset($_REQUEST["rub"]) && $_REQUEST["rub"] == "" && $_REQUEST["rub"] != "user"){
 		$menu .= "</a>";
 	}
@@ -243,7 +243,7 @@ function skin_Navbar_Default() {
 		$menu .= "<a href=\"?rub=crm&admlist_type=Names".$url_addon."\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/crm.png\"><br>".
-		 _("Customer management") ;
+		 _("Customer Management") ;
 	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "crm"){
 		$menu .= "</a>";
 	}
@@ -254,7 +254,7 @@ function skin_Navbar_Default() {
 		$menu .= "<a href=\"?rub=monitor\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>".
-		 _("Bandwidth monitor") ;
+		 _("Bandwidth Monitor") ;
 	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "monitor"){
 		$menu .= "</a>";
 	}
@@ -266,7 +266,7 @@ function skin_Navbar_Default() {
 		$menu .= "<a href=\"?rub=graph\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/bw_icon.png\"><br>".
-		 _("Server monitor") ;
+		 _("Server Monitor") ;
 	if(!isset($rub) || $rub != "graph"){
 		$menu .= "</a>";
 	}
@@ -277,7 +277,7 @@ function skin_Navbar_Default() {
 		$menu .= "<a href=\"?rub=renewal\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/renewals.png\"><br>".
-		 _("Renewals management") ;
+		 _("Renewal Management") ;
 
 	if(!isset($rub) || $rub != "renewal"){
 		$menu .= "</a>";
@@ -291,7 +291,7 @@ function skin_Navbar_Default() {
 			$menu .= "<a href=\"?rub=product\">";
 		}
 		$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/product_manager.png\"><br>
-	". _("Hosting product manager") ;
+	". _("Hosting Product Manager") ;
 		if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "product"){
 			$menu .= "</a>";
 		}
@@ -304,7 +304,7 @@ function skin_Navbar_Default() {
 		$menu .= "<a href=\"?rub=generate\">";
 	}
 	$menu .= "<img border=\"0\" alt=\"*\" src=\"gfx/menu/daemons.png\"><br>".
-		 _("Configuration generation") ;
+		 _("Configuration Generation") ;
 	if(!isset($_REQUEST["rub"]) || $_REQUEST["rub"] != "generate"){
 		$menu .= "</a>";
 	}

@@ -31,13 +31,13 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 			// Domain renewals
 			if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "renew_domain"){
 				$out .= dtcFormTableAttrs();
-				$out .= dtcFormLineDraw( _("Money on your account: "), $admin["client"]["dollar"]." $secpayconf_currency_letters",1);
+				$out .= dtcFormLineDraw( _("Money in your account: "), $admin["client"]["dollar"]." $secpayconf_currency_letters",1);
 				$tld = find_domain_extension($webname);
 				$out .= dtcFormLineDraw( _("Type of extension: "),$tld,0);
 				$out .= dtcFormLineDraw( _("Renewal for how many years: "),$_REQUEST["num_years"],1);
 				$price = find_domain_price($tld);
 				if($price === FALSE){
-					$out .= dtcFormLineDraw( "", "<font color=\"red\">"._("Price for the domain not found!")."</font>",0);
+					$out .= dtcFormLineDraw( "", "<font color=\"red\">"._("Price for the domain not found.")."</font>",0);
 					$out .= "</table>";
 				}else{
 					$price = $_REQUEST["num_years"] * $price;
@@ -45,7 +45,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 					$remaining = $admin["client"]["dollar"] - $price;
 					$out .= dtcFormLineDraw( _("Balance after transaction: "), $remaining." $secpayconf_currency_letters",1);
 					if($remaining < 0){
-						$out .= dtcFormLineDraw( "", "<font color=\"red\">"._("Insufisant balance for the transaction, please go to \"My account\" and add money.")."</font>",0);
+						$out .= dtcFormLineDraw( "", "<font color=\"red\">"._("Insufficient balance for the transaction, please go to \"My account\" and add money.")."</font>",0);
 						$out .= "</table>";
 					}else{
 						$out .= dtcFormLineDraw( "", "<form action=\"?\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
@@ -66,7 +66,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 				// Domain auth code
 				$authcode = registry_get_auth_code($webname);
 				if($authcode === FALSE || $authcode["is_success"] != 1){
-					$txt = _("Auth code retrival failed.");
+					$txt = _("Auth code retrieval failed.");
 				}else{
 					$txt = $authcode["response_text"];
 				}
@@ -208,7 +208,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 <input type=\"hidden\" name=\"change_unresolv_alias\" value=\"Ok\"><br>".submitButtonStart()._("Ok").submitButtonEnd()."</form><br><br>";
 
 	$out .= "<h3>". _("Domain parking:") ."</h3>";
-	$out .= _("This domain will be the alias of the following domain (domain parking):");
+	$out .= _("This domain will be an alias of the following domain (domain parking):");
 	$out .= "<form action=\"?\"><input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">
 <input type=\"hidden\" name=\"edit_domain\" value=\"".$_REQUEST["addrlink"]."\">

@@ -17,11 +17,11 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "recover_lost_pass"){
 		$r = mysql_query($q) or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1){
-			$recover_txt .= _("Could not find such login into our database!");
+			$recover_txt .= _("Could not find login.");
 		}else{
 			$a = mysql_fetch_array($r);
 			// Create the email message, add header and footer
-			$message = _("Dear customer, You or somebody else tried the recovery password procedure. Here is your password: %%%RECOVERED_PASSWORD%%%");
+			$message = _("Dear customer, You recently requested that your login information be reset. Here is your current password: %%%RECOVERED_PASSWORD%%%");
 			$msg = str_replace("%%%RECOVERED_PASSWORD%%%",$a["adm_pass"],$message);
 			$msg = headAndTailEmailMessage($msg);
 

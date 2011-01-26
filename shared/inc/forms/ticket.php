@@ -72,7 +72,7 @@ $popup_cats
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1){
-			$out .= _("Ticket not found!") ;
+			$out .= _("Ticket not found.") ;
 		}else{
 			$a_t = mysql_fetch_array($r);
 			$out .= _("Subject:") ." ".stripslashes($a_t["subject"])."<br>";
@@ -81,7 +81,7 @@ $popup_cats
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
 			if($n2 != 1){
-				$out .= _("Type: type not found!") ;
+				$out .= _("Type: type not found.") ;
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				$out .= _("Type of problem:") ." ".$a2["catdescript"]."<br>";
@@ -100,7 +100,7 @@ $popup_cats
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$n = mysql_num_rows($r);
 				if($n != 1){
-					$out .= _("Ticket not found!") ;
+					$out .= _("Ticket not found.") ;
 					break;
 				}
 				$a = mysql_fetch_array($r);
@@ -121,7 +121,7 @@ $popup_cats
 					}else{
 						$realname = _("Not found!");
 					}
-					$replied_by = "<br>"._("Replied by:")." ".$realname;
+					$replied_by = "<br>"._("Replied to By:")." ".$realname;
 				}else{
 					$replied_by = "";
 				}

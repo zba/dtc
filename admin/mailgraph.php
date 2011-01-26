@@ -8,7 +8,7 @@ require_once("../shared/vars/lang.php");
 $rrd = $conf_generated_file_path.'/mailqueues.rrd';
 $xpoints = 800;
 $ypoints = 160;
-$vert_label = _("Mail queue statistics");
+$vert_label = _("Mail Queue Statistics");
 
 if( isset($_REQUEST["graph"]) ){
 
@@ -67,7 +67,7 @@ if( isset($_REQUEST["graph"]) ){
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>' . _("Mail queue statistics for") . ' '.$_SERVER["SERVER_NAME"].'</TITLE>
+<TITLE>' . _("Mail Queue Statistics for") . ' '.$_SERVER["SERVER_NAME"].'</TITLE>
 <style type="text/css">
 body{
 	height:100%;
@@ -83,7 +83,7 @@ h1 {
 </style>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
-<H1>' . _("Mail queue Statistics for") . ' '.$_SERVER["SERVER_NAME"].'</H1>
+<H1>' . _("Mail Queue Statistics for") . ' '.$_SERVER["SERVER_NAME"].'</H1>
 <center>
 <IMG BORDER="0" SRC="?graph=hour" ALT="' . _("Hour Mail Queue Graph") . '" width="897" height="253"><br>
 <IMG BORDER="0" SRC="?graph=day" ALT="' . _("Day Mail Queue Graph") . '" width="897" height="253"><br>

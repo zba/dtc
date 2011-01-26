@@ -76,7 +76,7 @@ $form_start = "
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"product_id\" value=\"".$_REQUEST["product_id"]."\">
 <input type=\"hidden\" name=\"action\" value=\"add_new_service\">".$added1."
-" . _("Special notes for the setup") . ":<textarea name=\"custom_notes\" cols=\"50\" rows=\"5\"></textarea><br>
+" . _("Special setup notes:") . ":<textarea name=\"custom_notes\" cols=\"50\" rows=\"5\"></textarea><br>
 ".submitButtonStart(). _("Register") .submitButtonEnd()."
 ";
 		
@@ -90,7 +90,7 @@ $form_start = "
 		$out .= "<br><h3>". _("What do you want to add:") ."</h3>
 $form_start";
 		if($conf_use_registrar_api == "yes"){
-			$out .= "<input type=\"radio\" name=\"add_domain_type\" value=\"domregandhosting\" checked>". _("Hosting + domain name registration or transfer")."<br>";
+			$out .= "<input type=\"radio\" name=\"add_domain_type\" value=\"domregandhosting\" checked>". _("Hosting plus domain name registration or transfer")."<br>";
 			$add_domain_type_checked = " ";
 		}else{
 			$add_domain_type_checked = " checked ";
@@ -132,7 +132,7 @@ $form_start";
 		// The don't want name registration or transfer,
 		// Simply add the domain.
 		if($admin["info"]["allow_add_domain"] == "no"){
-			return _("You curently don't have enough privileges to add domain names. If you often add domain names, you can ask the administrator to do so. To request hosting for a new domain without domain name registration, please write to:")."<br>".
+			return _("You curently don't have enough privileges to add domain names. If you often add domain names, you can ask the administrator to add this capability to your account. To request hosting for a new domain without domain name registration, please write to:")."<br>".
 "<a href=\"mailto:$conf_webmaster_email_addr?subject=[DTC] More domains\">$conf_webmaster_email_addr</a>.";
 		}
 		if($admin["info"]["max_domain"] != 0){
@@ -141,7 +141,7 @@ $form_start";
 			$maxdoma = mysql_fetch_array($maxdomr);
 			$num_of_installed_domains = $maxdoma["numofdomains"];
 			if($num_of_installed_domains >= $admin["info"]["max_domain"]){
-				return _("You have reached the maximum number of domains that you are allowed to run with this type of account.
+				return _("You have reached the maximum number of domains that you are allowed to configure with this type of account.
 If you want to add more domain names, you should get in touch by opening a new support ticket.");
 			}
 		}
@@ -175,10 +175,10 @@ $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
 		}
 		addDomainToUser($adm_login,$adm_pass,$_REQUEST["domain_name"]);
 		return "<br><u><b>". _("Your domain name is now ready:") ."</b></u><br>
-". _("Now you can go to check its configuration by clicking here:") ."<br>
+". _("You may verify the configuration by clicking here:") ."<br>
 <a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=".$_REQUEST["domain_name"]."\">".$_REQUEST["domain_name"]."</a><br>
 <br>
-". _("Alternatively, you can add another domain name:") ."
+". _("You may add another domain name:") ."
 $form_start<input type=\"text\" name=\"domain_name\" value=\"\">
 ".submitButtonStart(). _("Ok") .submitButtonEnd()."
 </form>
@@ -214,7 +214,7 @@ $form_start ".make_registration_tld_popup()."</form>";
 	$fqdn = $_REQUEST["toreg_domain"] . $_REQUEST["toreg_extention"];
 	$domlookup = registry_check_availability($fqdn);
 	if($domlookup["is_success"] != 1){
-		$out .= "<font color=\"red\">". _("Could not connect to domain registration server: please try again later!") 
+		$out .= "<font color=\"red\">". _("Could not connect to domain registration server: please try again later.") 
 			."</font><br>".$domlookup['response_text'];
 		return $out;
 	}
@@ -236,7 +236,7 @@ Have another try:<br>$form_start ".make_registration_tld_popup()."</form>";
 	if($n != 0){
 		$out .= "<br>
 ". _("The domain name") . " <b>$fqdn</b> ". _("is already in use in this server: you can't register that domain name.")."<br>".
-_("Have another try:") . "<br>$form_start ".make_registration_tld_popup()."</form>";
+_("Try again:") . "<br>$form_start ".make_registration_tld_popup()."</form>";
 		return $out;
 	}
 
@@ -261,7 +261,7 @@ _("Have another try:") . "<br>$form_start ".make_registration_tld_popup()."</for
 
 		$year = _("year") ;
 		$years = _("years") ;
-		$out .= _("Please select registran and the 3 contact handles you want to use for registering that domain name.") ."<br><br>$form_start";
+		$out .= _("Please select registrant and the 3 contact handles (Admin, Tech, Billing) you want to use for registering the domain name.") ."<br><br>$form_start";
 		$out .= whoisHandleSelection($admin);
 		if ( isset($domlookup["attributes"]["minperiod"]) )
                      $minreg = str_replace("Y", "", $domlookup["attributes"]["maxperiod"]);
@@ -272,7 +272,7 @@ _("Have another try:") . "<br>$form_start ".make_registration_tld_popup()."</for
 		else
 		     $maxreg = 10;
 		$out .= "<br>$form_enter_dns_infos<br><br>
-". _("Select how long you want to register this domain name:") ."<br>
+". _("Select the registration period for this domain name:") ."<br>
 <select name=\"toreg_period\"><option value=\"1\">1 $year</option>";
 		for ($p=2;$p<=$maxreg;$p++) {
                    $out .= "<option value=\"$p\"";
@@ -343,7 +343,7 @@ $form_start
 		$paybutton = paynowButton($payid,$to_pay,
 				"Domain name registration ".$_REQUEST["toreg_extention"],$return_url);
 
-		$out .= _("You currently don't have enough funds on your account. You will be redirected to our payment system. Please click on the button below to pay.") ."<br>
+		$out .= _("You currently don't have enough funds in your account. You will be redirected to our payment system. Please click on the button below to pay.") ."<br>
 <br><br>
 $form_start
 ".submitButtonStart(). _("Payment complete. Proceed to checkout") .submitButtonEnd()."
@@ -353,10 +353,10 @@ $form_start
 
 	// Check for confirmation
 	if(!isset($_REQUEST["toreg_confirm_register"]) || $_REQUEST["toreg_confirm_register"] != "yes"){
-		$out .= _("You have enough funds on your account to proceed with registration. Press the confirm button to proceed.") ."<br><br>
+		$out .= _("You have enough funds on your account to continue with registration. Press the confirm button to proceed.") ."<br><br>
 $form_start
 <input type=\"hidden\" name=\"toreg_confirm_register\" value=\"yes\">
-".submitButtonStart(). _("Proceed to name-registration") .submitButtonEnd()."
+".submitButtonStart(). _("Proceed to name registration") .submitButtonEnd()."
 </form>";
 		return $out;
 	}

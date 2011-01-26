@@ -53,17 +53,17 @@ function drawPasswordChange(){
 	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "change_adm_pass"){
 	        $commit_flag = "yes"; //Init the commit_flag
 		if(!isDTCPassword($_REQUEST["new_pass1"]) || !isDTCPassword($_REQUEST["new_pass2"])){
-			$pass_submit_err .= _("This is not a valid password!")."<br>\n";
+			$pass_submit_err .= _("This is not a valid password.")."<br>\n";
 			$commit_flag = "no";
 		}
 		if($_REQUEST["new_pass1"] != $_REQUEST["new_pass2"]){
-			$pass_submit_err .= _("Password 1 does not match password 2!")."<br>\n";
+			$pass_submit_err .= _("Passwords do not match.")."<br>\n";
 			$commit_flag = "no";
 		}
 		if($commit_flag == "yes"){
 			$q = "UPDATE $pro_mysql_admin_table SET adm_pass='".$_REQUEST["new_pass1"]."' WHERE adm_login='$adm_login';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-			$pass_submit_err .= _("Your administrator password has been changed!")."<br>\n";
+			$pass_submit_err .= _("Your administrator password has been changed.")."<br>\n";
 		}
 	}
 
@@ -162,7 +162,7 @@ function drawAdminTools($admin){
 		"link" => "adddomain");
 	if($conf_use_registrar_api == "yes" && $nbr_domain > 0){
 		$user_ZEmenu[] = array(
-			"text" => _("DNS Nick handles") ,
+			"text" => _("DNS NIC handles") ,
 			"icon" => "box_wnb_nb_picto-nickhandles.gif",
 			"type" => "link",
 			"link" => "nickhandles");
@@ -503,9 +503,9 @@ function drawAdminTools($admin){
 			$web_editor .= drawAdminTools_PackageInstaller($eddomain,$adm_path);			
 			$title = _("Package") .": ".$edit_domain;
 		}else if(@$add_array[1] == "nickhandles"){
-                        $web_editor .= "<img src=\"gfx/toolstitles/nickhandles.png\" align=\"left\"><font size=\"+2\"><b><u>". _("DNS Nick handles") ."</u></b><br></font>";
+                        $web_editor .= "<img src=\"gfx/toolstitles/nickhandles.png\" align=\"left\"><font size=\"+2\"><b><u>". _("DNS NIC handles") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_NickHandles($admin);
-			$title = _("Internet Whois Nick Handles management:") ;
+			$title = _("Internet Whois NIC Handle management:") ;
 		}else if(@$add_array[1] == "adddomain"){
                         $web_editor .= "<img src=\"gfx/toolstitles/adddomain.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Add a domain or service:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_AddDomain($admin);
@@ -532,7 +532,7 @@ function drawAdminTools($admin){
 		}else if($add_array[0] == "reseller"){
                         $web_editor .= "<img src=\"gfx/toolstitles/reseller.png\" align=\"left\"><font size=\"+2\"><b><u>"._("Sub-accounts (reseller):") ."</u></b><br></font>";
 			$web_editor .= drawReseller($admin);	
-			$title = _("Resseller child accounts");
+			$title = _("Reseller child accounts");
 		}else if($add_array[0] == "password"){
                         $web_editor .= "<img src=\"gfx/toolstitles/password.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Password:") ."</u></b><br></font>";
 			$web_editor .= drawPasswordChange();
@@ -548,7 +548,7 @@ function drawAdminTools($admin){
 <div align=\"justify\">
 <font size=\"+1\"><u>1. What is DTC</u></font><br><br>
 DTC is a tool we made especialy for you. With it, you can take the control of your domain administration : you can manage all your
-subdomains, emails, ftp or ssh accounts, and manage your VPS. DTC does also billing and invoices, plus many other things.<br><br>
+subdomains, email boxes, ftp or ssh accounts, and manage your VPS. DTC also does billing and invoices, plus many other things.<br><br>
 
 All this tool and all the software it uses and configure have been release under the <a href=\"http://www.gnu.org/\">GPL</a>
 (GNU Public Licence), which means that you can have a copy of this interface source code, modify it and use it as you wish, as long as
@@ -651,7 +651,7 @@ effect in realtime.<br><br>
 		}else{
                         $web_editor .= "<img src=\"gfx/toolstitles/domains.png\" align=\"left\"><font size=\"+2\"><b><u>$addrlink:</u></b><br></font>";
 			$web_editor .= drawAdminTools_DomainInfo($admin,$eddomain);
-			$title = _("General information of ") .$edit_domain;
+			$title = _("General Information ") .$edit_domain;
 		}
 		$edition = skin($conf_skin,$web_editor,$title);
 	}else{

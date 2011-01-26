@@ -8,7 +8,7 @@ require_once("../shared/vars/lang.php");
 $rrd = $conf_generated_file_path.'/stat_total_active_prods.rrd';
 $xpoints = 400;
 $ypoints = 160;
-$vert_label = _("Active products");
+$vert_label = _("Active Products");
 
 if( isset($_REQUEST["graph"]) ){
 
@@ -41,9 +41,9 @@ if( isset($_REQUEST["graph"]) ){
 	$filename = tempnam("/tmp","dtc_netgraph");
 	$cmd = "rrdtool graph $filename --imgformat PNG --width $xpoints --height $ypoints --start $range --end now --vertical-label \"$vert_label\" --title \"$title\" --lazy --interlaced ";
 	$cmd .= "DEF:vps=$rrd:vps:AVERAGE DEF:dedicated=$rrd:dedicated:AVERAGE DEF:shared=$rrd:shared:AVERAGE ";
-	$cmd .= "\"AREA:shared#0000ff:" . _("Active shared accounts") . ":\" \"GPRINT:shared:MAX:" . _("Maximum") . "\: %0.0lf\" \"GPRINT:shared:AVERAGE:" . _("Average") . "\: %0.0lf/min\l\" ";
+	$cmd .= "\"AREA:shared#0000ff:" . _("Active Shared Accounts") . ":\" \"GPRINT:shared:MAX:" . _("Maximum") . "\: %0.0lf\" \"GPRINT:shared:AVERAGE:" . _("Average") . "\: %0.0lf/min\l\" ";
 	$cmd .= "\"STACK:vps#00ff00:" . _("Active VPS") . ":\" \"GPRINT:vps:MAX:" . _("Maximum") . "\: %0.0lf\" \"GPRINT:vps:AVERAGE:" . _("Average") . "\: %0.0lf/min\\n\" ";
-	$cmd .= "\"STACK:dedicated#ff0000:" . _("Active dedicated servers") . ":\" \"GPRINT:dedicated:MAX:" . _("Maximum") . "\: %0.0lf\" \"GPRINT:dedicated:AVERAGE:" . _("Average") . "\: %0.0lf/min\l\" ";
+	$cmd .= "\"STACK:dedicated#ff0000:" . _("Active Dedicated Servers") . ":\" \"GPRINT:dedicated:MAX:" . _("Maximum") . "\: %0.0lf\" \"GPRINT:dedicated:AVERAGE:" . _("Average") . "\: %0.0lf/min\l\" ";
 	exec($cmd,$output);
 
 	$filesize = filesize($filename);
@@ -67,7 +67,7 @@ if( isset($_REQUEST["graph"]) ){
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>' . _("Active product statistics for") . ' '.$_SERVER["SERVER_NAME"].'</TITLE>
+<TITLE>' . _("Active Product Statistics for") . ' '.$_SERVER["SERVER_NAME"].'</TITLE>
 <style type="text/css">
 body{
 	height:100%;

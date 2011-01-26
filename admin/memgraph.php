@@ -45,7 +45,7 @@ if( isset($_REQUEST["graph"]) ){
 	$cmd .= "DEF:totalswap=$rrd:totalswap:AVERAGE DEF:freeswap=$rrd:freeswap:AVERAGE ";
 	$cmd .= "\"LINE1:totalmem#0000AA:" . _("Total available memory") . ":\" \"GPRINT:totalmem:MAX:" . _("Maximum") . "\: %0.0lf\" ";
 	$cmd .= "\"LINE1:freemem#7777ff:" . _("Minimum free memory") . ":\" \"GPRINT:freemem:MIN:" . _("Minimum") . "\: %0.0lf\\n\" ";
-	$cmd .= "\"LINE1:totalswap#00ff00:" . _("Total swap") . ":\" \"GPRINT:freemem:MAX:" . _("Maxmium") . "\: %0.0lf\" ";
+	$cmd .= "\"LINE1:totalswap#00ff00:" . _("Total swap") . ":\" \"GPRINT:freemem:MAX:" . _("Maximum") . "\: %0.0lf\" ";
 	$cmd .= "\"LINE1:freeswap#ff0000:" . _("Free swap") . ":\" \"GPRINT:freeswap:MIN:" . _("Minimum") . "\: %0.0lf\" ";
 	exec($cmd,$output);
 
@@ -70,7 +70,7 @@ if( isset($_REQUEST["graph"]) ){
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <HTML>
 <HEAD>
-<TITLE>' . _("Memory and swap usage statistics for") . ' '.$_SERVER["SERVER_NAME"].'</TITLE>
+<TITLE>' . _("Memory and Swap Usage Statistics for") . ' '.$_SERVER["SERVER_NAME"].'</TITLE>
 <style type="text/css">
 body{
 	height:100%;
@@ -86,7 +86,7 @@ h1 {
 </style>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF">
-<H1>' . _("Memory and swap usage statistics usage for") . ' '.$_SERVER["SERVER_NAME"].'</H1>
+<H1>' . _("Memory and Swap Usage Statistics for") . ' '.$_SERVER["SERVER_NAME"].'</H1>
 <center>
 <IMG BORDER="0" SRC="?graph=hour" ALT="' . _("Hour Netusage Graph") . '" width="897" height="253"><br>
 <IMG BORDER="0" SRC="?graph=day" ALT="' . _("Day Netusage Graph") . '" width="897" height="253"><br>

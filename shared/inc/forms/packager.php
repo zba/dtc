@@ -215,7 +215,7 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 	$txt = "<h3>". _("Choose a package to install") .":</h3>";
 
 	$txt .= "<table cellspacing=\"0\" cellpadding=\"4\" border=\"1\">";
-	$txt .= "<tr><td>". _("Package name") ."</td><td>". _("Description") ."</td><td>". _("Package version") ."</td><td>". _("Need a database") ."</td><td>". _("Unpack size") ."</td><td>". _("Install") ."</td></tr>";
+	$txt .= "<tr><td>". _("Package name") ."</td><td>". _("Description") ."</td><td>". _("Package version") ."</td><td>". _("Requires a database") ."</td><td>". _("Unpack size") ."</td><td>". _("Install") ."</td></tr>";
 	
 	$packages=array();
 	if (is_dir($dir) && ($dh = opendir($dir))) {

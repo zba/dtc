@@ -29,7 +29,7 @@ function productManager(){
 				),
 			"period" => array(
 				"type" => "text",
-				"help" => _("Period for the product with format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, write 0001-02-03. "),
+				"help" => _("Period for the product in the format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, enter 0001-02-03. "),
 				"legend" => _("Period") ,
 				"size" => "10"
 				),
@@ -45,7 +45,7 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
-				"help" => _("This is the amount of money that you will give back to the affiliate account that made the sell possible."),
+				"help" => _("This is the amount of money that you will give back to the affiliate account responsible for the sale."),
 				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),
@@ -57,12 +57,12 @@ function productManager(){
 				),
 			"nbr_email" => array(
 				"type" => "text",
-				"legend" => _("Max email") ,
+				"legend" => _("Max mailboxes") ,
 				"size" => "2"
 				),
 			"nbr_database" => array(
 				"type" => "text",
-				"legend" => _("Max database") ,
+				"legend" => _("Max databases") ,
 				"size" => "2"
 				),
 			"bandwidth" => array(
@@ -73,14 +73,14 @@ function productManager(){
 			"allow_add_domain" => array(
 				"type" => "popup",
 				"legend" => _("Add domain") ,
-				"help" => _("If set to yes, the the admin can add a domain, if set to check, then it will go through moderation, set to no, no domain addition to account is possible by the admin."),
+				"help" => _("If set to yes, the the admin can add a domain, if set to check, then the request will go through admin moderation, set to no, no domain addition to account is possible."),
 				"values" => array("check","no","yes"),
 				"display_replace" => array(_("check"),_("no"),_("yes"))
 				),
 			"max_domain" => array(
 				"type" => "text",
-				"legend" => _("Max domain"),
-				"help" => _("Maximum number of domain a customer can add by himself on his shared account. Setting a value of zero will mean no limit."),
+				"legend" => _("Max domains"),
+				"help" => _("Maximum number of domains a customer can add to his shared account. Setting a value of zero will mean no limit."),
 				"size" => "3"
 				),
 			"allow_dns_and_mx_change" => array(
@@ -102,7 +102,7 @@ function productManager(){
 			"restricted_ftp_path" => array(
 				"type" => "checkbox",
 				"legend" => _("Restricted FTP"),
-				"help" => _("If set to no, users will only be able to create FTP accounts with a path in the html folder of each vhosts."),
+				"help" => _("If set to no, users will only be able to create FTP accounts under the html folder of each vhost."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no"
@@ -118,7 +118,7 @@ function productManager(){
 			"allow_subdomain_edit" => array(
 				"type" => "checkbox",
 				"legend" => _("Subdomains"),
-				"help" => _("If set to no, users wont be able to add/remove/edit subdomains."),
+				"help" => _("If set to no, users won't be able to add/remove/edit subdomains."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "yes"
@@ -126,7 +126,7 @@ function productManager(){
 			"pkg_install_flag" => array(
 				"type" => "checkbox",
 				"legend" => _("Installer"),
-				"help" => _("If set to no, users wont be able to use the package installer."),
+				"help" => _("If set to no, users won't be able to use the package installer."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "yes"
@@ -134,7 +134,7 @@ function productManager(){
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
-				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
+				"help" => _("If the private flag is set, then this product won't appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
@@ -186,7 +186,7 @@ function productManager(){
 				),
 			"period" => array(
 				"type" => "text",
-				"help" => _("Period for the product with format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, write 0001-02-03. "),
+				"help" => _("Period for the product in the format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, enter 0001-02-03. "),
 				"legend" => _("Period") ,
 				"size" => "10"
 				),
@@ -202,7 +202,7 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
-				"help" => _("This is the amount of money that you will give back to the affiliate account that made the sell possible."),
+				"help" => _("This is the amount of money that you will give back to the affiliate account responsible for the sale."),
 				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),
@@ -227,7 +227,7 @@ function productManager(){
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
-				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
+				"help" => _("If the private flag is set, then this product won't appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
@@ -279,7 +279,7 @@ function productManager(){
 				),
 			"period" => array(
 				"type" => "text",
-				"help" => _("Period for the product with format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, write 0001-02-03. "),
+				"help" => _("Period for the product in the format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, enter 0001-02-03. "),
 				"legend" => _("Period") ,
 				"size" => "10"
 				),
@@ -295,7 +295,7 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
-				"help" => _("This is the amount of money that you will give back to the affiliate account that made the sell possible."),
+				"help" => _("This is the amount of money that you will give back to the affiliate account responsible for the sale."),
 				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),
@@ -327,7 +327,7 @@ function productManager(){
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
-				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
+				"help" => _("If the private flag is set, then this product won't appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
@@ -361,7 +361,7 @@ function productManager(){
 				),
 			"period" => array(
 				"type" => "text",
-				"help" => _("Period for the product with format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, write 0001-02-03. "),
+				"help" => _("Period for the product in the format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, enter 0001-02-03. "),
 				"legend" => _("Period") ,
 				"size" => "10"
 				),
@@ -377,14 +377,14 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
-				"help" => _("This is the amount of money that you will give back to the affiliate account that made the sell possible."),
+				"help" => _("This is the amount of money that you will give back to the affiliate account responsible for the sale."),
 				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
-				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
+				"help" => _("If the private flag is set, then this product won't appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
@@ -425,7 +425,7 @@ function productManager(){
 				),
 			"period" => array(
 				"type" => "text",
-				"help" => _("Period for the product with format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, write 0001-02-03. "),
+				"help" => _("Period for the product in the format YYYY-MM-DD. For example, if you want a product that will last 1 year, 2 months, and 3 days, enter 0001-02-03. "),
 				"legend" => _("Period") ,
 				"size" => "10"
 				),
@@ -441,7 +441,7 @@ function productManager(){
 				),
 			"affiliate_kickback" => array(
 				"type" => "text",
-				"help" => _("This is the amount of money that you will give back to the affiliate account that made the sell possible."),
+				"help" => _("This is the amount of money that you will give back to the affiliate account responsible for the sale."),
 				"legend" => _("Commission"). " " . $secpayconf_currency_symbol,
 				"size" => "4"
 				),
@@ -466,7 +466,7 @@ function productManager(){
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,
-				"help" => _("If the private flag is set, then this product wont appear in the registration form."),
+				"help" => _("If the private flag is set, then this product won't appear in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")
@@ -490,7 +490,7 @@ function productManager(){
 			"reqdomain" => array(
 				"type" => "checkbox",
 				"legend" => _("Requires Domain Name") ,
-				"help" => _("If the reqdomain flag is set, then this product ill prompt for a domain name in the registration form."),
+				"help" => _("If the reqdomain flag is set, then this product will prompt for a domain name in the registration form."),
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "no")

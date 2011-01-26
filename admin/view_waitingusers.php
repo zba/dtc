@@ -165,12 +165,12 @@ if($n != 1){
 	$text .= dtcFormLineDraw( _("Login: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"reqadm_login\" value=\"".stripcslashes($b["reqadm_login"])."\">",0);
 	$text .= dtcFormLineDraw( _("Password: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"reqadm_pass\" value=\"".stripcslashes($b["reqadm_pass"])."\">");
 	$text .= dtcFormLineDraw( _("Domain Name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"domain_name\" value=\"".$b["domain_name"]."\">",0);
-	$text .= dtcFormLineDraw( _("Familly name: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"family_name\"value=\"".htmlspecialchars(stripcslashes($b["family_name"]))."\">");
-	$text .= dtcFormLineDraw( _("First name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"first_name\" value=\"".htmlspecialchars(stripcslashes($b["first_name"]))."\">",0);
-	$text .= dtcFormLineDraw( _("Is it a company: ") ,"<input type=\"radio\" name=\"iscomp\" value=\"yes\" $iscomp_yes > "._("Yes")."
+	$text .= dtcFormLineDraw( _("Last Name: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"family_name\"value=\"".htmlspecialchars(stripcslashes($b["family_name"]))."\">");
+	$text .= dtcFormLineDraw( _("First Name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"first_name\" value=\"".htmlspecialchars(stripcslashes($b["first_name"]))."\">",0);
+	$text .= dtcFormLineDraw( _("Company Account: ") ,"<input type=\"radio\" name=\"iscomp\" value=\"yes\" $iscomp_yes > "._("Yes")."
 <input type=\"radio\" name=\"iscomp\" value=\"no\" $iscomp_no > "._("No"));
-	$text .= dtcFormLineDraw( _("Company name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"comp_name\" value=\"".htmlspecialchars(stripcslashes($b["comp_name"]))."\">",0);
-	$text .= dtcFormLineDraw( _("VAT number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"vat_num\" value=\"".htmlspecialchars(stripcslashes($b["vat_num"]))."\">");
+	$text .= dtcFormLineDraw( _("Company Name: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"comp_name\" value=\"".htmlspecialchars(stripcslashes($b["comp_name"]))."\">",0);
+	$text .= dtcFormLineDraw( _("VAT Number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"vat_num\" value=\"".htmlspecialchars(stripcslashes($b["vat_num"]))."\">");
 	$text .= dtcFormLineDraw( _("Address (line1): ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"addr1\" value=\"".htmlspecialchars(stripcslashes($b["addr1"]))."\">",0);
 	$text .= dtcFormLineDraw( _("Address (line2): ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"addr2\" value=\"".htmlspecialchars(stripcslashes($b["addr2"]))."\">");
 	$text .= dtcFormLineDraw( _("Address (line3): ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"addr3\" value=\"".htmlspecialchars(stripcslashes($b["addr3"]))."\">",0);
@@ -179,24 +179,24 @@ if($n != 1){
 	$text .= dtcFormLineDraw( _("State: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"state\" value=\"".htmlspecialchars(stripcslashes($b["state"]))."\">");
 	$text .= dtcFormLineDraw( _("Country: ") ,"<select class=\"dtcDatagrid_input_alt_color\" name=\"country\">".
 cc_code_popup($b["country"])."</select>",0);
-	$text .= dtcFormLineDraw( _("Phone number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"phone\" value=\"".htmlspecialchars(stripcslashes($b["phone"]))."\">");
+	$text .= dtcFormLineDraw( _("Phone Number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"phone\" value=\"".htmlspecialchars(stripcslashes($b["phone"]))."\">");
 	$text .= dtcFormLineDraw( _("Fax: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"fax\" value=\"".htmlspecialchars(stripcslashes($b["fax"]))."\">",0);
 	$text .= dtcFormLineDraw( _("Email: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"email\" value=\"".$b["email"]."\">");
 	$text .= dtcFormLineDraw( _("Notes: ") ,"<textarea class=\"dtcDatagrid_input_alt_color\" cols=\"40\" rows=\"5\" name=\"custom_notes\">".htmlspecialchars(stripcslashes($b["custom_notes"]))."</textarea>",0);
-	$text .= dtcFormLineDraw( _("Custom fields: ") ,"<textarea class=\"dtcDatagrid_input_alt_color\" cols=\"40\" rows=\"5\" name=\"customfld\">".htmlspecialchars(stripcslashes($b["customfld"]))."</textarea>");
+	$text .= dtcFormLineDraw( _("Custom Fields: ") ,"<textarea class=\"dtcDatagrid_input_alt_color\" cols=\"40\" rows=\"5\" name=\"customfld\">".htmlspecialchars(stripcslashes($b["customfld"]))."</textarea>");
 	$text .= "<input type=\"hidden\" name=\"paiement_id\" value=\"".$b["paiement_id"]."\">";
 	if ($has_payement == 1) {
 		$text .= "<input type=\"hidden\" name=\"secpay_site\" value=\"".$p["secpay_site"]."\">";
-		$text .= dtcFormLineDraw( _("Payment type: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"paiement_type\" value=\"".$p["paiement_type"]."\">");
-		$text .= dtcFormLineDraw( _("Payment validated: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"valid\" value=\"".$p["valid"]."\">",0);
-		$text .= dtcFormLineDraw( _("Payment site: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"secpay_site\" value=\"".$p["secpay_site"]."\">");
-		$text .= dtcFormLineDraw( _("Refund amount: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"refund_amount\" value=\"".$p["refund_amount"]."\">",0);
-		$text .= dtcFormLineDraw( _("Payment cost: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"paiement_cost\" value=\"".$p["paiement_cost"]."\">");
-		$text .= dtcFormLineDraw( _("Payment total: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"paiement_total\" value=\"".$p["paiement_total"]."\">",0);
-		$text .= dtcFormLineDraw( _("Vat rate: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"vat_rate\" value=\"".$p["vat_rate"]."\">");
-		$text .= dtcFormLineDraw( _("Vat total: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"vat_total\" value=\"".$p["vat_total"]."\">",0);
+		$text .= dtcFormLineDraw( _("Payment Type: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"paiement_type\" value=\"".$p["paiement_type"]."\">");
+		$text .= dtcFormLineDraw( _("Payment Validated: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"valid\" value=\"".$p["valid"]."\">",0);
+		$text .= dtcFormLineDraw( _("Payment Site: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"secpay_site\" value=\"".$p["secpay_site"]."\">");
+		$text .= dtcFormLineDraw( _("Refund Amount: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"refund_amount\" value=\"".$p["refund_amount"]."\">",0);
+		$text .= dtcFormLineDraw( _("Payment Cost: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"paiement_cost\" value=\"".$p["paiement_cost"]."\">");
+		$text .= dtcFormLineDraw( _("Payment Total: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"paiement_total\" value=\"".$p["paiement_total"]."\">",0);
+		$text .= dtcFormLineDraw( _("Vat Rate: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"vat_rate\" value=\"".$p["vat_rate"]."\">");
+		$text .= dtcFormLineDraw( _("Vat Total: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"vat_total\" value=\"".$p["vat_total"]."\">",0);
 	}else{
-		$text .= dtcFormLineDraw( _("Payment site: ") ,_("Paiement not found!"));
+		$text .= dtcFormLineDraw( _("Payment Site: ") ,_("Payment not found!"));
 	}
 	$text .= dtcFormLineDraw( _("Shopper IP: ") ,$b["shopper_ip"]);
 	$text .= "<input type=\"hidden\" name=\"shopper_ip\" value=\"".$b["shopper_ip"]."\">";

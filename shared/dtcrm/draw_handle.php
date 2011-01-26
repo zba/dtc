@@ -43,7 +43,7 @@ function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admi
 
 	$out = "";
 	$pop = "";
-	$out .= "<b>"._("Domain owner / registrant:")."</b> "._("who will own the domain name and will be the registrant?") ."<br>
+	$out .= "<b>"._("Domain owner / registrant:")."</b> "._("Who is the domain name owner registrant?") ."<br>
 <select name=\"dtcrm_owner_hdl\">";
 	for($i=0;$i<$num_rows;$i++){
 		$id = $rows[$i]["id"];
@@ -59,11 +59,11 @@ function whoisHandleSelection($admin,$show_info="no",$owner=-1,$billing=-1,$admi
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
 		if(!isset($infoz)){
-			$out .= "<font color=\"red\">"._("Whois handle information not found! Please select a new nick handle.")."</font>";
+			$out .= "<font color=\"red\">"._("Whois handle information not found. Please select a new nick handle.")."</font>";
 		}else{
-			$out .= _("First name: ") . $infoz["firstname"] ."<br>".
-_("Familly name: ") . $infoz["lastname"] ."<br>".
-_("Company name: ") . $infoz["company"] ."<br>".
+			$out .= _("First Name: ") . $infoz["firstname"] ."<br>".
+_("Last Name: ") . $infoz["lastname"] ."<br>".
+_("Company Name: ") . $infoz["company"] ."<br>".
 _("Address (line1): ") . $infoz["addr1"] ."<br>".
 _("Address (line2): ") . $infoz["addr2"] ."<br>".
 _("Address (line3): ") . $infoz["addr3"] ."<br>".
@@ -72,7 +72,7 @@ _("City: ") . $infoz["city"] ."<br>".
 _("State: ") . $infoz["state"] ."<br>".
 _("Country: ") . $infoz["country"] ."<br>".
 _("Language: ") . $infoz["language"] ."<br>".
-_("Phone number: ") . $infoz["phone_num"] ."<br>".
+_("Phone Number: ") . $infoz["phone_num"] ."<br>".
 _("Fax: ") . $infoz["fax_num"] ."<br>".
 _("Email: ") . $infoz["email"] ."<br>";
 		}
@@ -81,7 +81,7 @@ _("Email: ") . $infoz["email"] ."<br>";
 <br>";
 	unset($infoz);
 
-	$out .= "<b>"._("Admin contact:")."</b> "._("who will have the rights for changing the whois information?") ."<br>
+	$out .= "<b>"._("Admin contact:")."</b> "._("Who will have the rights for changing the whois contact information?") ."<br>
 <select name=\"dtcrm_admin_hdl\">";
 	for($i=0;$i<$num_rows;$i++){
 		$id = $rows[$i]["id"];
@@ -97,11 +97,11 @@ _("Email: ") . $infoz["email"] ."<br>";
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
 		if(!isset($infoz)){
-			$out .= "<font color=\"red\">"._("Whois handle information not found! Please select a new nick handle.")."</font>";
+			$out .= "<font color=\"red\">"._("Whois handle information not found. Please select a new nick handle.")."</font>";
 		}else{
-			$out .= _("First name: ") . $infoz["firstname"] ."<br>".
-_("Familly name: ") . $infoz["lastname"] ."<br>".
-_("Company name: ") . $infoz["company"] ."<br>".
+			$out .= _("First Name: ") . $infoz["firstname"] ."<br>".
+_("Last Name: ") . $infoz["lastname"] ."<br>".
+_("Company Name: ") . $infoz["company"] ."<br>".
 _("Address (line1): ") . $infoz["addr1"] ."<br>".
 _("Address (line2): ") . $infoz["addr2"] ."<br>".
 _("Address (line3): ") . $infoz["addr3"] ."<br>".
@@ -110,7 +110,7 @@ _("City: ") . $infoz["city"] ."<br>".
 _("State: ") . $infoz["state"] ."<br>".
 _("Country: ") . $infoz["country"] ."<br>".
 _("Language: ") . $infoz["language"] ."<br>".
-_("Phone number: ") . $infoz["phone_num"] ."<br>".
+_("Phone Number: ") . $infoz["phone_num"] ."<br>".
 _("Fax: ") . $infoz["fax_num"] ."<br>".
 _("Email: ") . $infoz["email"] ."<br>";
 		}
@@ -119,7 +119,7 @@ _("Email: ") . $infoz["email"] ."<br>";
 <br>";
 	unset($infoz);
 
-	$out .= "<b>"._("Billing contact:")."</b> "._("who will be contacted for domain renewall?") ."<br>
+	$out .= "<b>"._("Billing contact:")."</b> "._("Who will be contacted for domain renewal?") ."<br>
 <select name=\"dtcrm_billing_hdl\">";
 	for($i=0;$i<$num_rows;$i++){
 		$id = $rows[$i]["id"];
@@ -135,11 +135,11 @@ _("Email: ") . $infoz["email"] ."<br>";
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
 		if(!isset($infoz)){
-			$out .= "<font color=\"red\">"._("Whois handle information not found! Please select a new nick handle.")."</font>";
+			$out .= "<font color=\"red\">"._("Whois handle information not found. Please select a new nick handle.")."</font>";
 		}else{
-			$out .= _("First name: ") . $infoz["firstname"] ."<br>".
-_("Familly name: ") . $infoz["lastname"] ."<br>".
-_("Company name: ") . $infoz["company"] ."<br>".
+			$out .= _("First Name: ") . $infoz["firstname"] ."<br>".
+_("Last Name: ") . $infoz["lastname"] ."<br>".
+_("Company Name: ") . $infoz["company"] ."<br>".
 _("Address (line1): ") . $infoz["addr1"] ."<br>".
 _("Address (line2): ") . $infoz["addr2"] ."<br>".
 _("Address (line3): ") . $infoz["addr3"] ."<br>".
@@ -148,7 +148,7 @@ _("City: ") . $infoz["city"] ."<br>".
 _("State: ") . $infoz["state"] ."<br>".
 _("Country: ") . $infoz["country"] ."<br>".
 _("Language: ") . $infoz["language"] ."<br>".
-_("Phone number: ") . $infoz["phone_num"] ."<br>".
+_("Phone Number: ") . $infoz["phone_num"] ."<br>".
 _("Fax: ") . $infoz["fax_num"] ."<br>".
 _("Email: ") . $infoz["email"] ."<br>";
 		}
@@ -157,7 +157,7 @@ _("Email: ") . $infoz["email"] ."<br>";
 <br>";
 	unset($infoz);
 
-	$out .= "<b>"._("Technical contact:")."</b> "._("who will be contacted for technical changes?") ."<br>
+	$out .= "<b>"._("Technical contact:")."</b> "._("Who will be contacted for technical changes?") ."<br>
 <select name=\"dtcrm_teck_hdl\">";
 	for($i=0;$i<$num_rows;$i++){
 		$id = $rows[$i]["id"];
@@ -173,11 +173,11 @@ _("Email: ") . $infoz["email"] ."<br>";
 	$out .= "</select>$link_create<br>";
 	if($show_info == "yes"){
 		if(!isset($infoz)){
-			$out .= "<font color=\"red\">"._("Whois handle information not found! Please select a new nick handle.")."</font>";
+			$out .= "<font color=\"red\">"._("Whois handle information not found. Please select a new nick handle.")."</font>";
 		}else{
-			$out .= _("First name: ") . $infoz["firstname"] ."<br>".
-_("Familly name: ") . $infoz["lastname"] ."<br>".
-_("Company name: ") . $infoz["company"] ."<br>".
+			$out .= _("First Name: ") . $infoz["firstname"] ."<br>".
+_("Last Name: ") . $infoz["lastname"] ."<br>".
+_("Company Name: ") . $infoz["company"] ."<br>".
 _("Address (line1): ") . $infoz["addr1"] ."<br>".
 _("Address (line2): ") . $infoz["addr2"] ."<br>".
 _("Address (line3): ") . $infoz["addr3"] ."<br>".
@@ -186,7 +186,7 @@ _("City: ") . $infoz["city"] ."<br>".
 _("State: ") . $infoz["state"] ."<br>".
 _("Country: ") . $infoz["country"] ."<br>".
 _("Language: ") . $infoz["language"] ."<br>".
-_("Phone number: ") . $infoz["phone_num"] ."<br>".
+_("Phone Number: ") . $infoz["phone_num"] ."<br>".
 _("Fax: ") . $infoz["fax_num"] ."<br>".
 _("Email: ") . $infoz["email"] ."<br>";
 		}
@@ -247,7 +247,7 @@ function drawAdminTools_NickHandles($admin){
 	$dsc = array(
 		"title" => _("List of your whois nick handles:"),
 		"new_item_title" => _("New nick handle"),
-		"new_item_link" => _("new nick handle"),
+		"new_item_link" => _("New nick handle"),
 		"edit_item_title" => _("Edit a nick handle:"),
 		"table_name" => $pro_mysql_handle_table,
 		"action" => "nick_handle_list_editor",
@@ -269,23 +269,23 @@ function drawAdminTools_NickHandles($admin){
 				"display" => "no",
 				"legend" => _("Login:") ),
 			"name" => array(
-				"legend" => _("Nick handle name: "),
-				"help" => _("This text is just a name for this contact used only in DTC, and will not really be used in your domain names."),
+				"legend" => _("Nick Handle Name: "),
+				"help" => _("This text is used only in the DTC control panel, and will not appear in the whois database."),
 				"type" => "text",
 				"size" => "20",
 				),
 			"company" => array(
-				"legend" => _("Company name: "),
+				"legend" => _("Company Name: "),
 				"type" => "text",
 				"size" => "20",
 				),
 			"firstname" => array(
-				"legend" => _("First name: "),
+				"legend" => _("First Name: "),
 				"type" => "text",
 				"size" => "20",
 				),
 			"lastname" => array(
-				"legend" => _("Familly name: "),
+				"legend" => _("Last Name: "),
 				"type" => "text",
 				"size" => "20",
 				),
@@ -331,7 +331,7 @@ function drawAdminTools_NickHandles($admin){
 				"size" => "20",
 				),
 			"phone_num" => array(
-				"legend" => _("Phone number: "),
+				"legend" => _("Phone Number: "),
 				"type" => "text",
 				"size" => "20",
 				),
@@ -431,13 +431,13 @@ function drawAdminTools_NickHandles($admin){
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Name for this handle: ") ."</td>
 	<td>$name_of_hdl</td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Company name: ") ."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Company Name: ") ."</td>
 	<td><input type=\"text\" name=\"company\" value=\"".$hdlcompany."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("First name: ") ."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("First Name: ") ."</td>
 	<td><input type=\"text\" name=\"firstname\" value=\"".$hdlfirstname."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Familly name: ") ."</td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Last Name: ") ."</td>
 	<td><input type=\"text\" name=\"lastname\" value=\"".$hdllastname."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Address (line1): ") ."</td>
@@ -464,7 +464,7 @@ function drawAdminTools_NickHandles($admin){
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Language: ") .":<br><i>". _("optional, but required for .eu f.ex.") ."</i></td>
 	<td><input type=\"text\" name=\"language\" value=\"".$hdllanguage."\"></td>
 </tr><tr>
-	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Phone number: ") ."<br><i>". _("+1.XXXXXXXXXX format") ."</i></td>
+	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>$rf". _("Phone Number: ") ."<br><i>". _("+1.XXXXXXXXXX format") ."</i></td>
 	<td><input type=\"text\" name=\"phone_num\" value=\"".$hdlphone."\"></td>
 </tr><tr>
 	<td align=\"right\" width=\"1\" style=\"white-space: nowrap\" nowrap>". _("Fax: ") .":<br><i>". _("optional") ."</i></td>

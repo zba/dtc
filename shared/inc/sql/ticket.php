@@ -40,7 +40,7 @@ $thehostname
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_ticket"){
 	checkLoginPass($adm_login,$adm_pass);
 	if( strlen($_REQUEST["subject"]) == 0){
-		echo _("Subject line empty: cannot send ticket!");
+		echo _("Subject line empty: cannot send ticket.");
 	}else{
 		$hash = createSupportHash();
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,subject,text,cat_id,initial_ticket,server_hostname,hash)
@@ -53,7 +53,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "new_ticket"){
 if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_ticket_reply"){
 	checkLoginPass($adm_login,$adm_pass);
 	if(!isRandomNum($_REQUEST["last_tik_id"]) || !isRandomNum($_REQUEST["tik_id"])){
-		echo _("last_tick_id or tik_id is not a number: hacking attempt!");
+		echo _("last_tick_id or tik_id is not a number: hacking attempt.");
 	}else{
 		// Insert the new ticket
 		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,subject,text,cat_id,initial_ticket,server_hostname,in_reply_of_id,request_close)

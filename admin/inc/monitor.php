@@ -15,7 +15,7 @@ function drawAdminMonitor (){
 	$nr = mysql_num_rows($r);
 	$out .= '<br><table border="1" width="100%" height="1" cellpadding="1" cellspacing="1">';
 	$out .=
-"<tr><td><b>". _("User") ."</b></td><td><b>". _("Transfer") ." / ". _("BW Quota") ."</b></td><td><b>". _("Transfer per month") ."</b></td><td><b>". _("Disk usage") ." / ". _("Quota") ."</b></td></tr>";
+"<tr><td><b>". _("User") ."</b></td><td><b>". _("Transfer") ." / ". _("BW Quota") ."</b></td><td><b>". _("Transfer per Month") ."</b></td><td><b>". _("Disk Usage") ." / ". _("Quota") ."</b></td></tr>";
 	$total_box_transfer = 0;
 	$total_box_hits = 0;
 	for($i=0;$i<$nr;$i++){
@@ -112,7 +112,7 @@ function drawAdminMonitor (){
 //fetchAdminStats($admin)
 	}
 	$out .= "</table>";
-	$out .= _("Server accounted transfers this month: ").smartByte($total_box_transfer)." ($total_box_hits hits)";
+	$out .= _("Total transfer this month: ").smartByte($total_box_transfer)." ($total_box_hits hits)";
 	return $out;
 }
 

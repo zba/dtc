@@ -20,7 +20,7 @@ function drawNameRenew($domain_name,$admin){
 		$domlookup = registry_check_renew($domain_name);
 		
 	if($domlookup["is_success"] != 1){
-		$out = "<font color=\"red\">". _("Could not connect to domain renew server: please try again later!") 
+		$out = "<font color=\"red\">". _("Could not connect to domain renewal server: please try again later.") 
 			."</font><br>".$domlookup['response_text'];
 	return $out;
 	}
@@ -56,7 +56,7 @@ if($admin["info"]["id_client"] != 0){
 		if($ze_refund == 0){
 			$out .= "<font color=\"red\">". _("The transaction failed, please try again!") ."</font>";
 		}else{
-			$out .= "<font color=\"green\">". _("Your account has been credited!") ."</font><br>";
+			$out .= "<font color=\"green\">". _("Your account has been credited.") ."</font><br>";
 			$q = "UPDATE $pro_mysql_client_table SET dollar = dollar+".$ze_refund." WHERE id='".$admin["info"]["id_client"]."';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$remaining += $ze_refund;
@@ -82,7 +82,7 @@ if($admin["info"]["id_client"] != 0){
 		$paybutton = paynowButton($payid,$fqdn_price,
 			"Domain name renew ".$_REQUEST["toreg_extention"],$return_url);
 
-		$out .= _("You currently don't have enough funds on your account. You will be redirected to our payment system. Please click on the button below to pay.") ."<br><br>
+		$out .= _("You currently don't have enough funds in your account. You will be redirected to our payment system. Please click on the button below to pay.") ."<br><br>
 $paybutton";
 		return $out;
 	}	
@@ -90,10 +90,10 @@ $paybutton";
 
 	// Check for confirmation
 	if(!isset($_REQUEST["toreg_confirm_renew"]) || $_REQUEST["toreg_confirm_renew"] != "yes"){
-		$out .= _("You have enough funds on your account to proceed with transfert. Press the confirm button to proceed.") ."<br><br>
+		$out .= _("You have enough funds in your account to proceed with transfer. Press the confirm button to continue.") ."<br><br>
 $form_start
 <input type=\"hidden\" name=\"toreg_confirm_renew\" value=\"yes\">
-<input type=\"submit\" value=\"". _("Proceed to name-renew") ."\">
+<input type=\"submit\" value=\"". _("Proceed to name renewal") ."\">
 </form><br><br>";		
 return $out;
 	}
@@ -112,7 +112,7 @@ return $out;
 	$regz = registry_renew_domain($domain_name);
 
 	if($regz["is_success"] != 1){
-		$out .= "<font color=\"red\"><b>". _("Renew failed") ."</b></font><br>
+		$out .= "<font color=\"red\"><b>". _("Renewal failed") ."</b></font><br>
 ". _("Server said: ") ."<i>" . $regz["response_text"] . "</i>";
 		return $out;
 	}
@@ -123,7 +123,7 @@ Server said: <i>" . $regz["response_text"] . "</i><br>";
 	$query = "UPDATE $pro_mysql_client_table SET dollar='$operation' WHERE id='".$admin["info"]["id_client"]."';";
 	mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 
-	$out .= "<font color=\"green\"><b>". _("Successfully renew your domain name") ."</b></font><br><br>";
+	$out .= "<font color=\"green\"><b>". _("Successfully renewed your domain name") ."</b></font><br><br>";
 
 
 // END OF DOMAIN NAME RENEW //

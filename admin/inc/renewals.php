@@ -102,27 +102,27 @@ function drawRenewalTables (){
 
 	$out = '<ul class="box_wnb_content_nb">';
 	if( $sousrub == "renewalreport"){
-		$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?rub=$rub\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_clientinterface.gif\" align=\"absmiddle\" border=\"0\"> ". _("Renewal report") ."</a></li>";
+		$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?rub=$rub\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_clientinterface.gif\" align=\"absmiddle\" border=\"0\"> ". _("Renewal Report") ."</a></li>";
 	}else{
-		$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?rub=$rub\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_clientinterface.gif\" align=\"absmiddle\" border=\"0\"> ". _("Renewal repport") ."</a></li>";
+		$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?rub=$rub\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_clientinterface.gif\" align=\"absmiddle\" border=\"0\"> ". _("Renewal Report") ."</a></li>";
 	}
 	$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
 	if($sousrub == "spent"){
-		$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?rub=$rub&sousrub=spent\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/config-icon/box_wnb_nb_picto-payementgateway.gif\" align=\"absmiddle\" border=\"0\">". _("Money spent") ."</a></li>";
+		$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?rub=$rub&sousrub=spent\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/config-icon/box_wnb_nb_picto-payementgateway.gif\" align=\"absmiddle\" border=\"0\">". _("Money Spent") ."</a></li>";
 	}else{
-		$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?rub=$rub&sousrub=spent\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/config-icon/box_wnb_nb_picto-payementgateway.gif\" align=\"absmiddle\" border=\"0\">". _("Money spent") ."</a></li>";
+		$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?rub=$rub&sousrub=spent\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/config-icon/box_wnb_nb_picto-payementgateway.gif\" align=\"absmiddle\" border=\"0\">". _("Money Spent") ."</a></li>";
 	}
 	$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
 	if($sousrub == "bank"){
-		$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?rub=$rub&sousrub=bank\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/config-icon/box_wnb_nb_picto-payementgateway.gif\" align=\"absmiddle\" border=\"0\">". _("Bank accounts & payments") ."</a></li>";
+		$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?rub=$rub&sousrub=bank\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/config-icon/box_wnb_nb_picto-payementgateway.gif\" align=\"absmiddle\" border=\"0\">". _("Bank Accounts and Payments") ."</a></li>";
 	}else{
-		$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?rub=$rub&sousrub=bank\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/config-icon/box_wnb_nb_picto-payementgateway.gif\" align=\"absmiddle\" border=\"0\">". _("Bank accounts & payments") ."</a></li>";
+		$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?rub=$rub&sousrub=bank\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/config-icon/box_wnb_nb_picto-payementgateway.gif\" align=\"absmiddle\" border=\"0\">". _("Bank Accounts and Payments") ."</a></li>";
 	}
 	$out .= '<li class="box_wnb_content_nb_item_vsep"></li>';
 	if($sousrub == "provideredit"){
-		$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?rub=$rub&sousrub=provideredit\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_admineditor.gif\" align=\"absmiddle\" border=\"0\">". _("Upstream provider editor") ."</a></li>";
+		$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?rub=$rub&sousrub=provideredit\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_admineditor.gif\" align=\"absmiddle\" border=\"0\">". _("Upstream Provider Editor") ."</a></li>";
 	}else{
-		$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?rub=$rub&sousrub=provideredit\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_admineditor.gif\" align=\"absmiddle\" border=\"0\">". _("Upstream provider editor") ."</a></li>";
+		$out .= "<li class=\"box_wnb_content_nb_item\"><a href=\"?rub=$rub&sousrub=provideredit\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_admineditor.gif\" align=\"absmiddle\" border=\"0\">". _("Upstream Provider Editor") ."</a></li>";
 	}
 	$out .= "</ul>";
 
@@ -177,7 +177,7 @@ function drawRenewalTables (){
 		}
 
 		$dsc = array(
-			"title" => _("List of payments done by your hosting company"),
+			"title" => _("List of your hosting company's outgoing payments"),
 			"table_name" => $pro_mysql_spent_moneyout_table,
 			"action" => "money_out_editor",
 			"forward" => array("rub","sousrub"),
@@ -193,38 +193,38 @@ function drawRenewalTables (){
 					"size" => "10",
 					"legend" => _("Label") ),
 				"id_company_spending" => array(
-					"legend" => _("Company paying"),
+					"legend" => _("Company Paying"),
 					"type" => "popup",
 					"values" => $company_paying_popup_id,
 					"display_replace" => $company_paying_names),
 				"id_provider" => array(
-					"legend" => _("Company paid"),
+					"legend" => _("Company Paid"),
 					"type" => "popup",
 					"values" => $prov_popup_id,
 					"display_replace" => $prov_popup_names),
 				"expenditure_type" => array(
-					"legend" => _("Expenditure type"),
+					"legend" => _("Expenditure Type"),
 					"type" => "popup",
 					"values" => $spent_type_popup_id,
 					"display_replace" => $spent_type_names),
 				"payment_type" => array(
-					"legend" => _("Means of payment"),
+					"legend" => _("Payment Method"),
 					"type" => "popup",
 					"values" => array("none", "credit_card", "wire_transfer", "paypal", "check", "cash"),
-					"display_replace" => array( _("Unknown"), _("Credit card"), _("Wire transfer"),
+					"display_replace" => array( _("Unknown"), _("Credit cCrd"), _("Wire Transfer"),
 									_("Paypal"), _("Check"), _("Cash") ) ),
 				"payment_total" => array(
 					"type" => "text",
 					"size" => 6,
-					"legend" => _("Total cost")),
+					"legend" => _("Total Cost")),
 				"vat_rate" => array(
 					"type" => "text",
 					"size" => 4,
-					"legend" => _("Tax rate")),
+					"legend" => _("Tax Rate")),
 				"vat_total" => array(
 					"type" => "text",
 					"size" => 4,
-					"legend" => _("Total tax")),
+					"legend" => _("Total Tax")),
 				"currency_type" => array(
 					"type" => "text",
 					"size" => 4,
@@ -233,20 +233,20 @@ function drawRenewalTables (){
 					"type" => "popup",
 					"values" => $bank_popup_id,
 					"display_replace" => $bank_names,
-					"legend" => _("Bank account")),
+					"legend" => _("Bank Account")),
 				"amount" => array(
 					"type" => "text",
 					"size" => 6,
-					"legend" => _("Bank amount")),
+					"legend" => _("Bank Amount")),
 				"invoice_date" => array(
 					"type" => "text",
 					"size" => 10,
-					"legend" => _("Invoice date")
+					"legend" => _("Invoice Date")
 					),
 				"paid_date" => array(
 					"type" => "text",
 					"size" => 10,
-					"legend" => _("Payment date")
+					"legend" => _("Payment Date")
 					)
 				)
 			);
@@ -268,7 +268,7 @@ function drawRenewalTables (){
 		}
 
 		$dsc = array(
-			"title" => _("Bank accounts edition"),
+			"title" => _("View/Add Bank Accounts"),
 			"table_name" => $pro_mysql_spent_bank_table,
 			"action" => "bank_account_editor",
 			"forward" => array("rub","sousrub"),
@@ -279,25 +279,25 @@ function drawRenewalTables (){
 					"legend" => "id"),
 				"acct_name" => array(
 					"type" => "text",
-					"legend" => _("Account name")),
+					"legend" => _("Account Name")),
 				"id_company" => array(
 					"legend" => _("Company"),
 					"type" => "popup",
 					"values" => $company_paying_popup_id,
 					"display_replace" => $company_paying_names),
 				"sort_code" => array(
-					"legend" => _("Sort code"),
+					"legend" => _("Sort Code"),
 					"type" => "text",
 					"size" => "8"),
 				"acct_number" => array(
-					"legend" => _("Account number"),
+					"legend" => _("Account Number"),
 					"type" => "text"),
 				"swift" => array(
-					"legend" => _("SWIFT"),
+					"legend" => _("SWIFT Code"),
 					"type" => "text",
 					"size" => "8"),
 				"bank_addr" => array(
-					"legend" => _("Bank address"),
+					"legend" => _("Bank Address"),
 					"type" => "text"),
 				"currency_type" => array(
 					"legend" => _("Currency"),
@@ -309,7 +309,7 @@ function drawRenewalTables (){
 
 		// Payment type
 		$dsc = array(
-			"title" => _("Payment type edition"),
+			"title" => _("View/Add Payment Types"),
 			"table_name" => $pro_mysql_spent_type_table,
 			"action" => "payment_type_editor",
 			"forward" => array("rub","sousrub"),
@@ -319,7 +319,7 @@ function drawRenewalTables (){
 					"display" => "no",
 					"legend" => "id"),
 				"label" => array(
-					"legend" => _("Type of payment"),
+					"legend" => _("Type of Payment"),
 					"type" => "text",
 					"size" => "32")
 				)
@@ -328,15 +328,15 @@ function drawRenewalTables (){
 		break;
 	case "provideredit":
 		$dsc = array(
-			"title" => _("Upstream provider list edition"),
+			"title" => _("View/Add Upstream Providers"),
 			"table_name" => $pro_mysql_spent_providers_table,
 			"action" => "provider_list_editor",
 			"forward" => array("rub","sousrub"),
 			"id_fld" => "id",
 			"list_fld_show" => "quick_name",
-			"new_item_title" => _("New upstream provider").":",
-			"new_item_link" => _("New upsream provider"),
-			"edit_item_title" => _("Edit upstream provider").":",
+			"new_item_title" => _("New Upstream Provider").":",
+			"new_item_link" => _("New upsream Provider"),
+			"edit_item_title" => _("Edit Upstream Provider").":",
 			"check_unique" => array( "quick_name" ),
 			"where_list" => array("always_yes" => "yes"),
 			"cols" => array(
@@ -348,20 +348,20 @@ function drawRenewalTables (){
 					"type" => "text",
 					"disable_edit" => "yes",
 					"check" => "dtc_login_or_email",
-					"legend" => _("Short name:") ),
+					"legend" => _("Short Name:") ),
 				"company_name" => array(
-					"legend" => _("Company name:"),
+					"legend" => _("Company Name:"),
 					"type" => "text"),
 				"is_company" => array(
 					"type" => "checkbox",
-					"values" => array( "yes","no"),
+					"values" => array( "Yes","No"),
 					"default" => "yes",
-					"legend" => _("Is it a company:") ),
+					"legend" => _("Company Account:") ),
 				"familyname" => array(
-					"legend" => _("First name:"),
+					"legend" => _("Contact First Name:"),
 					"type" => "text"),
 				"christname" => array(
-					"legend" => _("Familly name:"),
+					"legend" => _("Contact Last Name:"),
 					"type" => "text"),
 				"addr1" => array(
 					"legend" => _("Address:"),
@@ -443,10 +443,10 @@ function drawRenewalTables (){
 				$prod_names[] = $a ["name"];
 			}
 
-			$out .= "<h3>"._("Payements for the period: ").$_REQUEST["date"]."</h3>";
+			$out .= "<h3>"._("Payments for the Period: ").$_REQUEST["date"]."</h3>";
 
 			$dsc = array(
-				"title" => _("Payment history"),
+				"title" => _("Payment History"),
 				"table_name" => $pro_mysql_pay_table,
 				"action" => "payment_history_list_editor",
 				"forward" => array("rub","date"),
@@ -484,7 +484,7 @@ function drawRenewalTables (){
 						"display_flds_back" => "CONCAT(comp_name,': ',family_name,', ',first_name)",
 						"link_start" => "view_waitingusers.php?reqadm_id=",
 
-						"legend" => _("Customer name")),
+						"legend" => _("Customer Name")),
 					/*"id_client" => array(
 						"type" => "forkey",
 						"forkey_type" => "info",
@@ -508,23 +508,23 @@ function drawRenewalTables (){
 					"refund_amount" => array(
 						"type" => "text",
 						"size" => "8",
-						"legend" => _("Refund amount")),
+						"legend" => _("Refund Amount")),
 					"paiement_cost" => array(
 						"type" => "text",
 						"size" => "4",
-						"legend" => _("Gate cost")),
+						"legend" => _("Gateway Cost")),
 					"vat_rate" => array(
 						"type" => "text",
 						"size" => "4",
-						"legend" => _("VAT rate")),
+						"legend" => _("VAT Rate")),
 					"vat_total" => array(
 						"type" => "text",
 						"size" => "4",
-						"legend" => _("VAT total")),
+						"legend" => _("VAT Total")),
 					 "paiement_total" => array(
 						"type" => "text",
 						"size" => "6",
-						"legend" => _("Grand total")),
+						"legend" => _("Grand Total")),
 					"paiement_type" => array(
 						"type" => "text",
 						"size" => "6",
@@ -532,12 +532,12 @@ function drawRenewalTables (){
 					"secpay_site" => array(
 						"type" => "text",
 						"size" => "4",
-						"legend" => _("Gate type")),
+						"legend" => _("Gateway Type")),
 					"new_account" => array(
 						"type" => "popup",
 						"values" => array("no","yes"),
-						"display_replace" => array( _("New account"), _("Renewal") ),
-						"legend" => _("Is renewal")),
+						"display_replace" => array( _("New Account"), _("Renewal") ),
+						"legend" => _("Is Renewal")),
 					"valid" => array(
 						"type" => "popup",
 						"values" => array("no","pending","yes"),
@@ -546,7 +546,7 @@ function drawRenewalTables (){
 					"pending_reason" => array(
 						"type" => "text",
 						"size" => "6",
-						"legend" => _("Pending reason"))
+						"legend" => _("Pending Reason"))
 				));
 			$out .= dtcDatagrid($dsc);
 			return $out;
@@ -564,9 +564,9 @@ function drawRenewalTables (){
 				$out .= _("No past payments for this period") ."<br>";
 			}else{
 				$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-				<tr><td>"._("Product")."</td><td>". _("Client ID") ."</td><td>". _("Client")."</td><td>". _("Service country")."</td>
-				<td>"._("Client country")."</td>
-				<td>". _("VAT collected")."</td><td>". _("Period")."</td><td>". _("Payment date")."</td><td>"._("Total")."</td><td>". _("Payment method")."</td>
+				<tr><td>"._("Product")."</td><td>". _("Client ID") ."</td><td>". _("Client")."</td><td>". _("Service Country")."</td>
+				<td>"._("Client Country")."</td>
+				<td>". _("VAT Collected")."</td><td>". _("Period")."</td><td>". _("Payment Date")."</td><td>"._("Total")."</td><td>". _("Payment Method")."</td>
 				<td>". _("Action") ."</td></tr>";
 				for($i=0;$i<$n;$i++){
 					$a = mysql_fetch_array($r);
@@ -619,8 +619,8 @@ function drawRenewalTables (){
 					}else{
 						$last_expiry_date = $a["last_expiry_date"];
 					}
-					if($payment_type == 'wire') $pay=_("Wire"); else if ($payment_type == 'cheque') $pay=_("cheque");
-					else if ( $payment_type == 'online: none' ) $pay=_("online: none"); else $pay=$payment_type;
+					if($payment_type == 'wire') $pay=_("Wire"); else if ($payment_type == 'cheque') $pay=_("Cheque");
+					else if ( $payment_type == 'online: none' ) $pay=_("Online: none"); else $pay=$payment_type;
 					$new_expiry_date = calculateExpirationDate($last_expiry_date,$product_period_size);
 					$out .= "<tr><td>$product_txt</td><td>$client_id_txt</td><td>$client_name</td><td>".$a["country_code"]."</td>
 					<td>$client_country</td>
@@ -634,7 +634,7 @@ function drawRenewalTables (){
 		}
 
 		// Calculation of recuring totals
-		$out .= "<h3>". _("Total recurring incomes per month:") ."</h3>";
+		$out .= "<h3>". _("Total Recurring Income per Month:") ."</h3>";
 		// Monthly recurring for shared hosting:
 		$q = "SELECT $pro_mysql_product_table.price_dollar,$pro_mysql_product_table.period,$pro_mysql_product_table.id
 		FROM $pro_mysql_product_table,$pro_mysql_admin_table
@@ -729,10 +729,10 @@ function drawRenewalTables (){
 		}
 
 		$p_renewal = "";
-		$p_renewal .= _("Shared hosting: ") .round($total_shared,2)." $secpayconf_currency_letters<br>";
-		$p_renewal .= _("SSL IPs renewals: ") .round($total_ssl,2)." $secpayconf_currency_letters<br>";
+		$p_renewal .= _("Shared Hosting: ") .round($total_shared,2)." $secpayconf_currency_letters<br>";
+		$p_renewal .= _("SSL IPs Renewals: ") .round($total_ssl,2)." $secpayconf_currency_letters<br>";
 		$p_renewal .= _("VPS: ") .round($total_vps,2)." $secpayconf_currency_letters<br>";
-		$p_renewal .= _("Dedicated servers: ") .round($total_dedicated,2)." $secpayconf_currency_letters<br>";
+		$p_renewal .= _("Dedicated Servers: ") .round($total_dedicated,2)." $secpayconf_currency_letters<br>";
 		$big_total = $total_shared + $total_vps + $total_dedicated + $total_ssl;
 		$p_renewal .= "<b>". _("Total: ") .round($big_total,2)." $secpayconf_currency_letters</b>";
 
@@ -749,7 +749,7 @@ function drawRenewalTables (){
 		        $p_history .= ("Selected Country:") . $selected_country;	
 		}
 		$p_history .= "<table cellspacing=\"1\" cellpadding=\"1\" border=\"1\">
-		<tr><td>". _("Period") ."</td><td>". _("Amount") ."</td><td>"._("VAT collected")."</td><td>"._("Payment gateway cost")."</td><td>"._("Profit")."</td></tr>";
+		<tr><td>". _("Period") ."</td><td>". _("Amount") ."</td><td>"._("VAT Collected")."</td><td>"._("Payment Gateway Cost")."</td><td>"._("Profit")."</td></tr>";
 		for($i=0;$i<25;$i++){
 			$q2 = "SELECT $pro_mysql_pay_table.paiement_total,$pro_mysql_pay_table.vat_rate,$pro_mysql_pay_table.paiement_cost
 			FROM $pro_mysql_pay_table,$pro_mysql_completedorders_table
@@ -799,7 +799,7 @@ function drawRenewalTables (){
 			if($cur_month < 10)	$cur_month = "0".$cur_month;
 		}
 		$p_history .= "</table>";
-		$p_history .= _("Select country to report on:");
+		$p_history .= _("Select country to report on: ");
 		
 		$p_history .= "<a href=\"?rub=$rub\">ALL</a> ";	
 		$q2 = "SELECT distinct(country_code) from $pro_mysql_completedorders_table;";
@@ -821,22 +821,22 @@ function drawRenewalTables (){
 		<td valign=\"top\">$p_renewal</td>
 		<td valign=\"top\">$p_active_prods</td></tr></table>";
 
-		$out .= "<h3>". _("Shared hosting renewals:") ."</h3>";
+		$out .= "<h3>". _("Shared Hosting Renewals:") ."</h3>";
 		$q = "SELECT * FROM $pro_mysql_admin_table WHERE expire < '".date("Y-m-d")."' AND id_client!='0' AND expire !='0000-00-00' ORDER BY expire;";
 		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__);
 		$n = mysql_num_rows($r);
 		if($n < 1){
-			$out .= _("No shared account expired.") ."<br>";
+			$out .= _("No expired shared accounts.") ."<br>";
 		}else{
 			$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-			<tr><td>". _("Login") ."</td><td>". _("Client") ."</td><td>". _("Email") ."</td><td>". _("Expiration date") ."</td></tr>";
+			<tr><td>". _("Login") ."</td><td>". _("Client") ."</td><td>". _("Email") ."</td><td>". _("Expiration Date") ."</td></tr>";
 			for($i=0;$i<$n;$i++){
 				$a = mysql_fetch_array($r);
 				$q2 = "SELECT * FROM $pro_mysql_client_table WHERE id='".$a["id_client"]."';";
 				$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$n2 = mysql_num_rows($r2);
 				if($n2 != 1){
-					$client_name = _("Client name not found!");
+					$client_name = _("Client name not found.");
 				}else{
 					$a2 = mysql_fetch_array($r2);
 					$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
@@ -852,12 +852,12 @@ function drawRenewalTables (){
 		}
 
 		// List of expired expired SSL IPs
-		$out .= "<h3>". _("SSL IPs renewals") ."</h3>";
+		$out .= "<h3>". _("SSL IP Renewals:") ."</h3>";
 		$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE expire < '".date("Y-m-d")."' AND available='no' ORDER BY expire";
 		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n < 1){
-			$out .= _("No SSL IP expired") ."<br>";
+			$out .= _("No expired SSL IPs.") ."<br>";
 		}else{
 			$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
 			<tr><td>". _("Login") ."</td><td>". _("Client") ."</td><td>". _("Email") ."</td><td>". _("Expiration date") ."</td></tr>";
@@ -875,7 +875,7 @@ function drawRenewalTables (){
 				$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$n2 = mysql_num_rows($r2);
 				if($n2 != 1){
-					$client_name = _("Client name not found!");
+					$client_name = _("Client name not found.");
 				}else{
 					$a2 = mysql_fetch_array($r2);
 					$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
@@ -886,7 +886,7 @@ function drawRenewalTables (){
 		}
 
 		// List if expired VPS
-		$out .= "<h3>". _("VPS renewals:") ."</h3>";
+		$out .= "<h3>". _("VPS Renewals:") ."</h3>";
 		$q = "SELECT * FROM $pro_mysql_vps_table WHERE expire_date < '".date("Y-m-d")."' ORDER BY expire_date";
 		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
@@ -897,8 +897,8 @@ function drawRenewalTables (){
 			<tr><td>"._("Login")."</td><td>". _("VPS") ."</td>
 			<td>". _("Client") ."</td>
 			<td>". _("Email") ."</td>
-			<td>". _("Expiration date") ."</td>
-			<td>". _("Days of expiration") ."</td>
+			<td>". _("Expiration Date") ."</td>
+			<td>". _("Days Past Expiration") ."</td>
 			<td>". _("Action") ."</td>
 			</tr>";
 			for($i=0;$i<$n;$i++){
@@ -916,7 +916,7 @@ function drawRenewalTables (){
 				$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$n2 = mysql_num_rows($r2);
 				if($n2 != 1){
-					$client_name = _("Client name not found!");
+					$client_name = _("Client name not found.");
 				}else{
 					$a2 = mysql_fetch_array($r2);
 					$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
@@ -937,18 +937,18 @@ function drawRenewalTables (){
 							$r2 = mysql_query($q2)or die("Cannot querry ".$q2." line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 							$n2 = mysql_num_rows($r2);
 							if($n2 == 0){
-								$kill_owner_txt = "<a href=\"?action=kill_vps_and_owner&adm_login=".$admin["adm_login"]."&client_id=".$admin["id_client"]."&vps_name=".$a["vps_xen_name"]."&server_hostname=".$a["vps_server_hostname"]."&vps_id=".$a["id"]."\">"._("Kill VPS and owner")."</a>";
+								$kill_owner_txt = "<a href=\"?action=kill_vps_and_owner&adm_login=".$admin["adm_login"]."&client_id=".$admin["id_client"]."&vps_name=".$a["vps_xen_name"]."&server_hostname=".$a["vps_server_hostname"]."&vps_id=".$a["id"]."\">"._("Delete VPS and Owner")."</a>";
 							}else{
-								$kill_owner_txt = _("Has some domains");
+								$kill_owner_txt = _("Has active domains.");
 							}
 						}else{
-							$kill_owner_txt = _("Has a dedicated");
+							$kill_owner_txt = _("Has active dedicated servers.");
 						}
 					}else{
-						$kill_owner_txt = _("More than one VPS");
+						$kill_owner_txt = _("Has active VPS");
 					}
 				}else{
-					$kill_owner_txt = _("More than one login");
+					$kill_owner_txt = _("Has active login");
 				}
 				if( numOfDays($a["expire_date"]) >= $conf_vps_renewal_shutdown){
 					$bgcolor = " bgcolor=\"#FF8888\" ";
@@ -967,15 +967,15 @@ function drawRenewalTables (){
 		}
 
 		// List expired dedicated servers
-		$out .= "<h3>". _("Dedicated servers renewals") ."</h3>";
+		$out .= "<h3>". _("Dedicated Server Renewals:") ."</h3>";
 		$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE expire_date < '".date("Y-m-d")."' ORDER BY expire_date";
-		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n < 1){
-			$out .= _("No dedicated server expired") ."<br>";
+			$out .= _("No expired dedicated servers.") ."<br>";
 		}else{
 			$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-			<tr><td>". _("Login") ."</td><td>". _("Server") ."</td><td>". _("Client") ."</td><td>". _("Email") ."</td><td>". _("Expiration date") ."</td></tr>";
+			<tr><td>". _("Login") ."</td><td>". _("Server") ."</td><td>". _("Client") ."</td><td>". _("Email") ."</td><td>". _("Expiration Date") ."</td></tr>";
 			for($i=0;$i<$n;$i++){
 				$a = mysql_fetch_array($r);
 				$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$a["owner"]."';";
@@ -990,7 +990,7 @@ function drawRenewalTables (){
 				$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$n2 = mysql_num_rows($r2);
 				if($n2 != 1){
-					$client_name = _("Client name not found!");
+					$client_name = _("Client name not found.");
 				}else{
 					$a2 = mysql_fetch_array($r2);
 					$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];

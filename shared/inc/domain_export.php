@@ -396,7 +396,7 @@ function domainImport($path_from,$adm_login,$adm_pass){
 
 			if( isset($user["dbs"])){
 				$n_db = sizeof($user["dbs"]);
-				$console .= _("Number of database owned by user")." ".$username.": ".$n_db."<br>";
+				$console .= _("Number of databases owned by user")." ".$username.": ".$n_db."<br>";
 				$mdbs = array_keys($user["dbs"]);
 				for($j=0;$j<$n_db;$j++){
 					$db = $mdbs[$j];

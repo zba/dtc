@@ -79,7 +79,7 @@ function drawAdminTools_Ftp($domain,$adm_path){
 		"where_list" => array(
 			"hostname" => $domain["name"]),
 		"check_unique" => array( "login" ),
-		"check_unique_msg" => _("There is already a ftp login by that name") ,
+		"check_unique_msg" => _("There is already an ftp login by that name") ,
 		"check_unique_use_where_list" => "no",
 		"order_by" => "login",
 		"cols" => array(

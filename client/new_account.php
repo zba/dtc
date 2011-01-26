@@ -162,7 +162,7 @@ _("You have canceled the payment, your account wont be validated. To start again
 case "enets-failed":
 // The transaction have failed (currently only eNETS)
 	$form .= "<h3><font color=\"red\">". _("PAYMENT FAILED") ."<!-- PAYMENT FAILED --></font></h3>".
-_("The payment gateway have reported that your payment has failed. Contact us, we also accept checks and wire transfers.");
+_("Payment gateway reports that your payment failed. Contact us, we also accept checks and wire transfers.");
 	break;
 // The customer wants to add: a shared account if he doesn't have one, a new dedicated or vps
 case "add_new_service":
@@ -190,7 +190,7 @@ case "add_new_service":
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
-		$form = _("Cannot reselect product: registration failed!") ;
+		$form = _("Cannot reselect product: registration failed.") ;
 		break;
 	}
 	$product = mysql_fetch_array($r);
@@ -199,7 +199,7 @@ case "add_new_service":
 		$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".$_REQUEST["vps_location"]."'";
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		if($n != 1){
-			$form = _("Cannot reselect product: registration failed!") ;//"Cannot reselect product: registration failed!";
+			$form = _("Cannot reselect product: registration failed.") ;//"Cannot reselect product: registration failed.";
 			break;
 		}else{
 			$vps_server = mysql_fetch_array($r);
@@ -214,7 +214,7 @@ case "add_new_service":
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
-		$form .= _("Cannot reselect user: registration failed!");
+		$form .= _("Cannot reselect user: registration failed.");
 		break;
 	}
 	$admin = mysql_fetch_array($r);
@@ -224,7 +224,7 @@ case "add_new_service":
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
-		$form .= _("Cannot reselect client: registration failed!");
+		$form .= _("Cannot reselect client: registration failed.");
 		break;
 	}
 	$client = mysql_fetch_array($r);
@@ -255,7 +255,7 @@ case "add_new_service":
 		$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".$_REQUEST["vps_location"]."'";
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		if($n != 1){
-			$form = _("Cannot reselect product: registration failed!") ;//"Cannot reselect product: registration failed!";
+			$form = _("Cannot reselect product: registration failed.") ;//"Cannot reselect product: registration failed.";
 			break;
 		}else{
 			$vps_server = mysql_fetch_array($r);
@@ -298,7 +298,7 @@ case "add_new_service":
 	$paybutton =paynowButton($payid,$product["price_dollar"] + $product["setup_fee"],$product["name"]." (login: ".$_REQUEST["adm_login"].")",$return_url,$vat_rate,$secpayconf_use_paypal_recurring);
 
 	$master_total = $product["price_dollar"] + $product["setup_fee"];
-	$form = "<h4>". _("New service registered successfully!") ."<!--Registration successfull!--></h4>
+	$form = "<h4>". _("New service registered successfully.") ."<!--Registration succesfull.--></h4>
 <u>". _("Product name:") . "</u> " . $product["name"] ."<br>
 <u>". _("Product price:") . "</u> " . $product["price_dollar"] ." $secpayconf_currency_letters<br>
 <u>". _("Setup fees:") . "</u> " . $product["setup_fee"] ." $secpayconf_currency_letters<br>
@@ -325,7 +325,7 @@ case "reg_new_user":
 		$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		if($n != 1){
-			$form .= _("Cannot reselect user: registration failed!") ;//"Cannot reselect user: registration failed!";
+			$form .= _("Cannot reselect user: registration failed.") ;//"Cannot reselect user: registration failed.";
 		}else{
 			// Get the recorded new admin in the new_admin table, and process the display of payment buttons
 			$newadmin = mysql_fetch_array($r);
@@ -333,7 +333,7 @@ case "reg_new_user":
 			$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$n = mysql_num_rows($r);
 			if($n != 1){
-				$form = _("Cannot reselect product: registration failed!") ;//"Cannot reselect product: registration failed!";
+				$form = _("Cannot reselect product: registration failed.") ;//"Cannot reselect product: registration failed.";
 				$print_form = "no";
 				$service_location = $conf_this_server_country_code;
 			}else{
@@ -349,7 +349,7 @@ case "reg_new_user":
 				$q = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".$newadmin["vps_location"]."'";
 				$r = mysql_query($q)or die("Cannot query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 				if($n != 1){
-					$form = _("Cannot reselect product: registration failed!") ;//"Cannot reselect product: registration failed!";
+					$form = _("Cannot reselect product: registration failed.") ;//"Cannot reselect product: registration failed!";
 					$print_form = "no";
 					$service_location = $conf_this_server_country_code;
 				}else{
@@ -393,7 +393,7 @@ case "reg_new_user":
 				}
 				if($print_form == "yes"){
 					$master_total = $product["price_dollar"] + $product["setup_fee"];
-					$form = $reguser["mesg"]."<br><h4>". _("Registration successful!") ."<!--Registration successfull!--></h4>
+					$form = $reguser["mesg"]."<br><h4>". _("Registration successful.") ."<!--Registration successfull!--></h4>
 <u>". _("Product name:") . "</u> " . $product["name"] ."<br>
 <u>". _("Product price:") . "</u> " . $product["price_dollar"] ." $secpayconf_currency_letters<br>
 <u>". _("Setup fees:") . "</u> " . $product["setup_fee"] ." $secpayconf_currency_letters<br>

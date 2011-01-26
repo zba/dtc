@@ -394,44 +394,44 @@ function skin_Navbar (){
 	$out = '<div id="navbar"><div id="navbar_left"></div><ul id="navbar_items">';
 
 	if(!isset($rub) || $rub == "" || $rub == "user" || $rub == "domain_config" || $rub == "adminedit"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_user.gif" alt="'. _("Users administration") .'"><br />'. _("Users administration") .'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_user.gif" alt="'. _("User Administration") .'"><br />'. _("User Administration") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=user"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_user.gif" alt="'. _("Users administration") .'"><br />'. _("Users administration") .'</a></li>';
+		$out .= '<li><a href="?rub=user"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_user.gif" alt="'. _("User Administration") .'"><br />'. _("User Administration") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "crm"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_customer.gif" alt="'. _("Customer management") .'"><br />'. _("Customer management") .'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_customer.gif" alt="'. _("Customer Management") .'"><br />'. _("Customer Management") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=crm"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_customer.gif" alt="'. _("Customer management") .'"><br />'. _("Customer management") .'</a></li>';
+		$out .= '<li><a href="?rub=crm"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_customer.gif" alt="'. _("Customer Management") .'"><br />'. _("Customer Management") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "monitor"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_bandwith.gif" alt="'. _("Bandwidth monitor") .'"><br />'. _("Bandwidth monitor") .'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_bandwith.gif" alt="'. _("Bandwidth Monitor") .'"><br />'. _("Bandwidth Monitor") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=monitor"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_bandwith.gif" alt="'. _("Bandwidth monitor") .'"><br />'. _("Bandwidth monitor") .'</a></li>';
+		$out .= '<li><a href="?rub=monitor"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_bandwith.gif" alt="'. _("Bandwidth Monitor") .'"><br />'. _("Bandwidth Monitor") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "graph"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_server.gif" alt="'. _("Server monitor") .'"><br />'. _("Server monitor") .'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_server.gif" alt="'. _("Server Monitor") .'"><br />'. _("Server Monitor") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=graph"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_server.gif" alt="'. _("Server monitor") .'"><br />'. _("Server monitor") .'</a></li>';
+		$out .= '<li><a href="?rub=graph"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_server.gif" alt="'. _("Server Monitor") .'"><br />'. _("Server Monitor") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "renewal"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_renewal.gif" alt="'. _("Renewals management") .'"><br />'. _("Renewals management") .'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_renewal.gif" alt="'. _("Renewal Management") .'"><br />'. _("Renewal Management") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=renewal"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_renewal.gif" alt="'. _("Renewals management") .'"><br />'. _("Renewals management") .'</a></li>';
+		$out .= '<li><a href="?rub=renewal"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_renewal.gif" alt="'. _("Renewal Management") .'"><br />'. _("Renewal Management") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "product"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_product.gif" alt="'. _("Hosting product manager") .'"><br />'. _("Hosting product manager") .'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_product.gif" alt="'. _("Hosting Product manager") .'"><br />'. _("Hosting Product Manager") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=product"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_product.gif" alt="'. _("Hosting product manager") .'"><br />'. _("Hosting product manager") .'</a></li>';
+		$out .= '<li><a href="?rub=product"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_product.gif" alt="'. _("Hosting Product Manager") .'"><br />'. _("Hosting Product Manager") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "generate"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_daemon.gif" alt="'. _("Configuration generation") .'"><br />'. _("Configuration generation") .'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_daemon.gif" alt="'. _("Configuration Generation") .'"><br />'. _("Configuration Generation") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=generate"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_daemon.gif" alt="'. _("Configuration generation") .'"><br />'. _("Configuration generation") .'</a></li>';
+		$out .= '<li><a href="?rub=generate"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_daemon.gif" alt="'. _("Configuration Generation") .'"><br />'. _("Configuration Generation") .'</a></li>';
 	}
 	if(isset($rub) && $rub == "config"){
-		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_config.gif" alt="'. _("DTC general configuration") .'"><br />'. _("DTC general configuration") .'</div></li>';
+		$out .= '<li><div class="navbar_item-select"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_config.gif" alt="'. _("DTC General Configuration") .'"><br />'. _("DTC General Configuration") .'</div></li>';
 	}else{
-		$out .= '<li><a href="?rub=config"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_config.gif" alt="'. _("DTC general configuration") .'"><br />'. _("DTC general configuration") .'</a></li>';
+		$out .= '<li><a href="?rub=config"><img width="46" height="55" src="gfx/skin/bwoup/gfx/navbar/navbar_p_config.gif" alt="'. _("DTC General Configuration") .'"><br />'. _("DTC General Configuration") .'</a></li>';
 	}
 
 	$out .= '</ul><div id="navbar_right"></div></div>';
@@ -500,9 +500,9 @@ function skin_LayoutAdminPage (){
 		$zemain_content = skin($conf_skin,drawRrdtoolGraphs (), _("Server statistic graphs") );
 		break;
 	case "generate": // Gen Config Files
-		$mainFrameCells[] = skin($conf_skin,$top_commands, _("Launching the configuration files generation") );
-		$the_iframe = "<br><br>"._("Please note that you need to create at least one email and one FTP account in order to have the daemon status working!")."<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
-		$mainFrameCells[] = skin($conf_skin,$the_iframe, _("Deamons states") ); // fixed bug by seeb
+		$mainFrameCells[] = skin($conf_skin,$top_commands, _("Starting configuration file generation") );
+		$the_iframe = "<br><br>"._("Please note that you need to create at least one mailbox and one FTP account in order for the daemon status to work correctly.")."<br><IFRAME src=\"deamons_state.php\" width=\"100%\" height=\"135\"></iframe>";
+		$mainFrameCells[] = skin($conf_skin,$the_iframe, _("Daemon Status") ); // fixed bug by seeb
 		// The console
 		$mainFrameCells[] = skinConsole();
 		$zemain_content = makeVerticalFrame($mainFrameCells);
@@ -530,7 +530,7 @@ function skin_LayoutAdminPage (){
 		break;
 	case "product":
 		$bla = productManager();
-		$zemain_content = skin($conf_skin,$bla, _("Hosting product manager") );
+		$zemain_content = skin($conf_skin,$bla, _("Hosting Product Manager") );
 		break;
 	case "user": // User Config
 	case "domain_config":
@@ -561,7 +561,7 @@ function skin_LayoutAdminPage (){
 <table class="box_wnb" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="box_wnb_nb" valign="top">
-    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'. _("Admins list") .'</div></div></div></div>
+    	<div class="box_wnb_nb_title"><div class="box_wnb_nb_title_left"><div class="box_wnb_nb_title_right"><div class="box_wnb_nb_title_mid">'. _("Admin List") .'</div></div></div></div>
     	'.$adm_list.'
     </td>
     <td class="box_wnb_content" valign="top">

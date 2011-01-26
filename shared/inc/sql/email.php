@@ -20,7 +20,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "set_catchall_account"){
 				$test_result = mysql_query ($test_query)or die("Cannot execute query \"$test_query\"");
 				$testnum_rows = mysql_num_rows($test_result);
 				if($testnum_rows != 1){
-					$submit_err .= _("Mailbox does not exists in database!<br>\n") ;
+					$submit_err .= _("Mailbox does not exist in database.<br>\n") ;
 					$commit_flag = "no";
 				}else{
 					$catch = $_REQUEST["catchall_popup"];

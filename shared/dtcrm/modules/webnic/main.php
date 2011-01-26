@@ -403,7 +403,7 @@ function webnic_registry_transfert_domain($adm_login,$adm_pass,$domain,$contacts
 
 function webnic_registry_get_auth_code($domain){
 //	$post_params_hash = webnic_checksum();
-	$ret["response_text"] = _("Webnic doesn't support auth code retrivial, please ask support.");
+	$ret["response_text"] = _("Webnic doesn't support auth code retrieval, please contact support.");
 	$ret["attributes"]["status"] = 0;
 	$ret["is_success"] = 1;
 	return $ret;
@@ -469,7 +469,7 @@ function webnic_registry_change_password($adm_login,$adm_pass,$domain,$new_pass)
 }
 
 $configurator = array(
-	"title" => _("Wenic configuration"),
+	"title" => _("Webnic configuration"),
 	"action" => "configure_webnic_editor",
 	"forward" => array("rub","sousrub"),
 	"desc" => _("Use https://my.webnic.cc/jsp/ for the live server, https://ote.webnic.cc/jsp/ for the test one."),

@@ -79,19 +79,19 @@ dtcFormLineDraw( _("IP address of the primary DNS server:") ,"<input type=\"text
 		}
 		$zonefile_content .= "</pre>";
 	}else{
-		$zonefile_content .= _("Could not load zonefile: permission denied or file not existant?") ;
+		$zonefile_content .= _("Could not load zonefile: permission denied or file does not exist.") ;
 	}
 
 	return "<h3>". _("Configure your domain name:") ."</h3><br><br>"
-	. _("Take care ! Setting a wrong value
+	. _("NOTICE: Setting an incorrect value
 in the following fields can lead to
-your site services stopping (web or mail).<br>
-Putting something else than \"default\" in the DNS
-fields means that you want your site to be
+your web or email services not functioning properly.<br>
+Putting something other than \"default\" in the DNS
+fields means that you want your website and/or email to be
 hosted elsewhere.<br>
 The MX parameter determines the address of the mail server
 that receives all your mail when somebody sends
-your a message. The value \"default\" means that
+you a message. The value \"default\" means that
 you want to use the current server.")
 	
 	."<br>

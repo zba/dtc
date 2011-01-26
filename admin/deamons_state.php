@@ -134,8 +134,8 @@ function drawDeamonStates(){
 	$out = "<table cellpadding=\"0\" cellspacing=\"0\" border=\"1\" width=\"100%\" height=\"1\" id=\"skinSimpleGreen2Content\">
 <tr>
 	<td align=\"center\" height=\"1\" width=\"16%\"><font color=\"#FFFFFF\">". _("Mail restart") ."</font></td>
-	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">". _("Mail-newu") ."</font></td>
-	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">". _("Mail gen files") ."</font></td>
+	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">". _("Mail gen users") ."</font></td>
+	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">". _("Mail gen conf") ."</font></td>
 	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">". _("Apache restart") ."</font></td>
 	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">". _("Bind reload") ."</font></td>
 	<td align=\"center\" width=\"14%\"><font color=\"#FFFFFF\">". _("SSH gen pass") ."</font></td>
@@ -157,9 +157,9 @@ function checkSMTP(){
 	global $errTxt;
 
 	$server = "localhost";
-	// echo "Checking POP3<br>";
+	// echo "Checking SMTP<br>";
 	if(($server_ip = gethostbynameFalse($server)) == false){
-		$errTxt = _("Cannot resolv your") ." ".$server." ". _("SMTP server") .".";
+		$errTxt = _("Cannot resolve hostname:") ." ".$server." ". _("SMTP server") .".";
 		return false;
 	}
 
@@ -171,12 +171,12 @@ function checkSMTP(){
 	// echo "Checking ok after connect<br>";
 	$popline = fgets($soc,1024);
 	if(!strstr($popline,"220")){
-		$errTxt = _("Server did not send OK after connect, maybe wrong server or server is down: ") .$popline;
+		$errTxt = _("Server did not send OK after connect, wrong host or port?: ") .$popline;
 		return false;
 	}
 	// echo "Sending login<br>";
 	if(!fwrite($soc,"HELO gplhost.com\n")){
-		$errTxt = _("Could not write HELLO to server");
+		$errTxt = _("Could not send HELO command to server");
 		return false;
 	}
 	// echo "Checking ok after login<br>";
@@ -202,9 +202,9 @@ function checkFTP(){
 	$a = mysql_fetch_array($r);
 
 	$server = "localhost";
-	// echo "Checking POP3<br>";
+	// echo "Checking FTP<br>";
 	if(($server_ip = gethostbynameFalse($server)) == false){
-		$errTxt = _("Cannot resolv your FTP server: ") .$server;
+		$errTxt = _("Cannot resolve FTP server hostname: ") .$server;
 		return false;
 	}
 
@@ -216,32 +216,32 @@ function checkFTP(){
 	// echo "Checking ok after connect<br>";
 	$popline = fgets($soc,1024);
 	if(!strstr($popline,"220")){
-		$errTxt = ("Server did not send 220 after connect, maybe wrong server or server is down: ") .$popline;
+		$errTxt = ("Server did not send 220 after connect, wrong host or port?: ") .$popline;
 		return false;
 	}
 	// echo "Sending login<br>";
 	if(!fwrite($soc,"USER ".$a["login"]."\n")){
-		$errTxt = _("Could not write USER to server");
+		$errTxt = _("Could not send USER command to server");
 		return false;
 	}
 	// echo "Checking ok after login<br>";
 	$popline = fgets($soc,1024);
 	if(!strstr($popline,"331")){
 		if(!strstr($popline,"220")){
-			$errTxt = _("Server did not send 331 or 220 after USER: ") .$popline;
+			$errTxt = _("Server did not send 331 or 220 after USER command: ") .$popline;
 			return false;
 		}
 	}
 	// echo "Sending pass<br>";
 	if(!fwrite($soc,"PASS ".$a["password"]."\n")){
-		$errTxt = _("Could not write PASS to server");
+		$errTxt = _("Could not send PASS to server");
 		return false;
 	}
 	// echo "Checking ok after login<br>";
 	$popline = fgets($soc,1024);
 	if(!strstr($popline,"230")){
 		if(!strstr($popline,"220")){
-			$errTxt = _("Server did not send 230 after PASS: ") .$popline." ". _("If no FTP user was created, please make at least one!");
+			$errTxt = _("Server did not send 230 after PASS: ") .$popline." ". _("At least one ftp user must exist for this check to complete.");
 			return false;
 		}
 	}
@@ -261,14 +261,14 @@ function checkDNS(){
 	$a = mysql_fetch_array($r);
 
 	$server = $a["name"];
-	// echo "Checking POP3<br>";
+	// echo "Checking DNS<br>";
 	if(($server_ip = gethostbynameFalse($server)) == false){
-		$errTxt = "Cannot resolv ".$server;
+		$errTxt = "Cannot resolve host ".$server;
 		return false;
 	}
 	$server_ip_db = $a["ip_addr"];
 	if($server_ip_db != $server_ip){
-		$errTxt = "$server ". _("IP Resolved") ." [$server_ip] ". _("is not same as the one I have in the database"). " [$server_ip_db]!";
+		$errTxt = "$server ". _("IP Resolved") ." [$server_ip] ". _("does not match configured IP"). " [$server_ip_db]!";
 		return false;
 	}
 	return true;
@@ -293,25 +293,25 @@ function drawServerStatus(){
 	global $errTxt;
 
 	if(checkPOP3()){
-		$pop3_status = '<font color="#00FF00">'. _("Running ok") .'</font>';
+		$pop3_status = '<font color="#00FF00">'. _("Running Normally") .'</font>';
 	}else{
-		$pop3_status = '<font color="#FF0000">'. _("ERROR!") .$errTxt.'</font>';
+		$pop3_status = '<font color="#FF0000">'. _("ERROR") .$errTxt.'</font>';
 	}
 
 	if(checkSMTP()){
-		$smtp_status = '<font color="#00FF00">'. _("Running ok") .'</font>';
+		$smtp_status = '<font color="#00FF00">'. _("Running Normally") .'</font>';
 	}else{
 		$smtp_status = '<font color="#FF0000">'. _("ERROR!") .$errTxt.'</font>';
 	}
 
 	if(checkDNS()){
-		$dns_status = '<font color="#00FF00">'. _("Running ok") .'</font>';
+		$dns_status = '<font color="#00FF00">'. _("Running Normally") .'</font>';
 	}else{
 		$dns_status = '<font color="#FF0000">'. _("ERROR!") .$errTxt.'</font>';
 	}
 
 	if(checkFTP()){
-		$ftp_status = '<font color="#00FF00">'. _("Running ok") .'</font>';
+		$ftp_status = '<font color="#00FF00">'. _("Running Normally") .'</font>';
 	}else{
 		$ftp_status = '<font color="#FF0000">'. _("ERROR!") .$errTxt.'</font>';
 	}

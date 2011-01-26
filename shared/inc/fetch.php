@@ -36,7 +36,7 @@ function fetchMailboxInfos($adm_email_login,$adm_email_pass){
 		return $ret;
 	}
 	if(mysql_num_rows($r) != 1){
-		$ret["mesg"] = _("Wrong user or password, or timeout expired!") ;
+		$ret["mesg"] = _("Wrong user or password, or timeout expired") ;
 		$ret["err"] = -1;
 		return $ret;
 	}
@@ -92,7 +92,7 @@ function fetchAdminInfo($adm_login){
 		$ret["mesg"] = "More than one user with the name \"$adm_login\"";
 		return $ret;
 	}else if($num_rows < 1){
-		$ret["mesg"] = "User not found !";
+		$ret["mesg"] = "User not found.";
 		$ret["err"] = -1;
 		return $ret;
 	}
@@ -367,12 +367,12 @@ function randomizePassword($adm_login,$adm_input_pass){
 			$num_rows = mysql_num_rows($result);
 
 			if($num_rows != 1){
-				$ret["mesg"] = _("Wrong user or password, or timeout expired!") ;
+				$ret["mesg"] = _("Incorrect username or password, or timeout expired.") ;
 				$ret["err"] = -1;
 				return $ret;
 			}
 		}else{
-			$ret["mesg"] = _("Wrong user or password, or timeout expired!") ;
+			$ret["mesg"] = _("Incorrect username or password, or timeout expired.") ;
 			$ret["err"] = -1;
 			return $ret;
 		}
@@ -466,7 +466,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	$row = mysql_fetch_array($result);
 	if (!$row){
 		$ret["err"] = 2;
-		$ret["mesg"]= _("Cannot fetch user:")." "._("either your login and password pair is not valid, either your session expired (timed out).");
+		$ret["mesg"]= _("Cannot fetch user:")." "._("either your username or password is not valid, or your session has expired (timed out).");
 		return $ret;
 	}
 

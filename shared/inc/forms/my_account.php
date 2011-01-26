@@ -209,7 +209,7 @@ function drawAdminTools_MyAccount($admin){
 		}
 
 
-		$out .= "<h3>". _("Your address (please tell us if the following is not correct):") ."</h3>";
+		$out .= "<h3>". _("Your address (please alert us if the following is incorrect):") ."</h3>";
 
 		if($client["is_company"] == "yes"){
 			$out .= _("Company name:") .$client["company_name"]."<br>";
@@ -217,7 +217,7 @@ function drawAdminTools_MyAccount($admin){
 		}
 
 		$out .= _("First name:")	.$client["christname"]."<br>";
-		$out .= _("Family name:")	.$client["familyname"]."<br>";
+		$out .= _("Last name:")	.$client["familyname"]."<br>";
 		$out .= _("Address:")		.$client["addr1"]."<br>";
 		$out .= $client["addr2"]."<br>";
 		$out .= _("Zipcode:")		.$client["zipcode"]."<br>";

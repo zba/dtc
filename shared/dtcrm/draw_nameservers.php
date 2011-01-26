@@ -132,7 +132,7 @@ owner,domain_name,subdomain,ip)VALUES(
 		$query = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
 		$result = mysql_query($query)or die("Cannot query: \"$query\" !!!".mysql_error());
 		$num_rows = mysql_num_rows($result);
-		$out .= _("Select one of your domain-names for registering an additional name server to the registries:") ."<br>
+		$out .= _("Select one of your domain names to use as an additional name server with the domain registry:") ."<br>
 		<select name=\"domain_name\">";
 		for($i=0;$i<$num_rows;$i++){
 			$row = mysql_fetch_array($result);

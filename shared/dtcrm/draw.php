@@ -43,8 +43,8 @@ function draw_UpgradeAccount($admin){
 	$client = $admin["client"];
 	$out .= "<b><u>". _("Upgrade my account:") ."</u></b><br>";
 	if($admin["info"]["prod_id"] != 0){
-		$out .= "<i><u>". _("Past account refundal") ."</u></i><br>";
-		$out .= _("Your last command expire on the: ") .$admin["info"]["expire"].".<br>";
+		$out .= "<i><u>". _("Past account refunds") ."</u></i><br>";
+		$out .= _("Your last command expired on the: ") .$admin["info"]["expire"].".<br>";
 		$out .= _("Today is the: ") .date("Y-m-d")."<br>";
 		$today = mktime (0,0,0,date("m"),date("d"),date("Y"));
 		$ar = explode("-",$admin["info"]["expire"]);
@@ -112,7 +112,7 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 			}
 			$out .= '</table><center><input type="submit" value="' . _("Calculate price") . '"></center></form>';
 		} else {
-			$out .= '</table><center>' . _("There is no product with greater capacity available, please contact Support service.") . '</center></form>' ;
+			$out .= '</table><center>' . _("There is no product with greater capacity available, please contact Customer Support.") . '</center></form>' ;
 		}
 		return $out;
 	}
@@ -143,9 +143,9 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 	if(isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "return_from_paypal_upgrade_account"){
 		$ze_refund = isPayIDValidated(mysql_real_escape_string($_REQUEST["pay_id"]));
 		if($ze_refund == 0){
-			$out .= "<font color=\"red\">" . _("The transaction failed, please try again!") . "</font>";
+			$out .= "<font color=\"red\">" . _("The transaction failed, please try again.") . "</font>";
 		}else{
-			$out .= "<font color=\"green\">" . _("Funds added to your account!") . "</font><br>";
+			$out .= "<font color=\"green\">" . _("Funds added to your account.") . "</font><br>";
 			$q = "UPDATE $pro_mysql_client_table SET dollar = dollar+".$ze_refund." WHERE id='".$admin["info"]["id_client"]."';";
 			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$admin["client"]["dollar"] += $ze_refund;
@@ -218,7 +218,7 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 
 		$payButton = paynowButton($payid,$to_pay,"Account upgrade: ".$ro["name"],$return_url,$vat_rate);
 
-		$out .= "<br>". _("You currently don't have enough funds on your account. You will be redirected to our payment system. Please click on the button below to pay.") ."<br><br>".$payButton;
+		$out .= "<br>". _("You currently don't have enough funds in your account. You will be redirected to our payment system. Please click on the button below to pay.") ."<br><br>".$payButton;
 		return $out;
 	}
 	else
@@ -232,7 +232,7 @@ _("To what capacity would you like to upgrade to?") ."<br>";
 	$out .= _("After upgrade, you will have") . ": " . $after_upgrade_remaining . " " .$secpayconf_currency_letters . "<br><br>";
 
 	// Check for confirmation
-	$out .= _("You have enough funds on your account to proceed account upgrade. Press the confirm button and your order will be proceeded.") ."<br><br>
+	$out .= _("You have enough funds in your account to proceed with an account upgrade. Press the confirm button and your order will be processed.") ."<br><br>
 $frm_start
 <input type=\"hidden\" name=\"renew_id\" value=\"" . $renew_id . "\">
 <input type=\"hidden\" name=\"amount\" value=\"" . $after_upgrade_remaining . "\">

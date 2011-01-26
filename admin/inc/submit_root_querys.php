@@ -279,11 +279,11 @@ if(isset($_REQUEST["newadminuser"]) && $_REQUEST["newadminuser"]=="Ok"){
 	// Check for admin existance
 	// Create admin directorys
 	if(!isFtpLogin($_REQUEST["newadmin_login"])){
-		$submit_err .= _("Incorect admin login format: it should consist of only lowercase letters or numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n");
+		$submit_err .= _("Incorrect admin login format: it should consist of only lowercase letters or numbers or the \"-\" sign, and should be between 4 and 16 chars long.<br>\n");
 		$commit_flag = "no";
 	}
 	if(!isDTCPassword($_REQUEST["newadmin_pass"])){
-		$submit_err .= _("Password consist of only letters and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n") ;
+		$submit_err .= _("Password may only contain letters and numbers (a-zA-Z0-9) and should be between 6 and 16 chars long.<br>\n") ;
 		$commit_flag = "no";
 	}
 	$newadmin_path = $_REQUEST["newadmin_path"]."/".$_REQUEST["newadmin_login"];

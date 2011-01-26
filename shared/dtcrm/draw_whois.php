@@ -43,7 +43,7 @@ function drawAdminTools_Whois($admin,$eddomain){
 		}else{
 			$out .= _("Your domain name has been registred elsewhere (i.e. not on this site). To order its transfer, please click ") .
 "<a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&add_domain_type=domregandhosting&dtcrm_action=transfer_domain\">". _("here") ."</a>.<br><br>
-". _("If you want to keep your current registrar, you have to make the whois point to these DNS:") ."<br><br>
+". _("If you want to keep your current registrar, you need to configure your name server entries to point to these DNS servers:") ."<br><br>
 ". _("Primary DNS:") ."<b>$conf_addr_primary_dns</b><br>
 ". _("Secondary DNS:") ."<b>$conf_addr_secondary_dns</b>
 ";
@@ -85,7 +85,7 @@ function drawAdminTools_Whois($admin,$eddomain){
 				$out .= "<font color=\"red\"><b>". _("Update of whois contact informations failed"). "</b></font><br>
 ".("Server said:")." <i>" . $regz["response_text"] . "</i><br>";
 			}else{
-				$out .= "<font color=\"green\"><b>". _("Update of whois contact informations succesfull")."</b></font><br>
+				$out .= "<font color=\"green\"><b>". _("Update of whois contact informations succesful")."</b></font><br>
 "._("Server said:")." <i>" . $regz["response_text"] . "</i><br>
 ";
 				$query = "UPDATE $pro_mysql_domain_table SET owner_id='$owner_id',billing_id='$billing_id',admin_id='$admin_id',teck_id='$teck_id' WHERE name='$domain_name';";
@@ -110,7 +110,7 @@ function drawAdminTools_Whois($admin,$eddomain){
 		$out .= submitButtonStart(). _("Update whois") .submitButtonEnd()."</form><br>";
 	}
 
-	$out .= "<br><h3>" . _("The current whois for this domain is as follow:") . "</h3>";
+	$out .= "<br><h3>" . _("The current whois for this domain is as follows:") . "</h3>";
 	$ret = registry_get_whois($domain_name);
 //	print_r($ret);
 	$out .= nl2br($ret["response_text"]);
