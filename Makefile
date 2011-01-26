@@ -314,7 +314,7 @@ USER_ALSO=$(DTC_CRON_PHP_SCRIPT_FILES) $(DTC_CRON_SH_SCRIPT_FILES) $(DTC_WEB_SH_
 
 INSTALL_FOLDER_SCRIPTS=admin/install/mk_root_mailbox.php admin/install/bsd_config admin/install/gentoo_config admin/install/slack_config \
 admin/install/debian_config admin/install/install admin/install/osx_config admin/install/uninstall admin/install/functions \
-admin/install/interactive_installer admin/install/redhat_config 
+admin/install/interactive_installer admin/install/redhat_config  admin/install/minimal_chroot
 
 PATCH_FILES=admin/patches/phpmyadmin_cookie.auth.lib.php.patch admin/patches/spamassassin_default_start.patch admin/patches/phpmyadmin_htaccess.patch \
 admin/postfix_checks/body_checks admin/postfix_checks/relaying_stoplist admin/postfix_checks/header_checks admin/postfix_checks/mime_header_checks \

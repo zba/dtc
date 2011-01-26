@@ -1,0 +1,463 @@
+#!/bin/sh
+
+set -e
+
+createChrootTemplate () {
+	checkBsdKernel
+	if [ -z $conf_chroot_path"" ] ; then
+		CHROOT_DIR=/var/www/chroot
+	fi
+
+	echoIfVerbose "===> Creating chroot tree in "$conf_chroot_path" for unix type: "$UNIX_TYPE
+	# set our umask so things are created with the correct group perms
+	oldumask=`umask`
+	umask 022
+
+	# now onto the creation
+	mkdir -p $conf_chroot_path
+	cd $conf_chroot_path
+
+	# create directory structure
+	mkdir -p etc dev bin lib tmp var/tmp var/run sbin libexec
+	mkdir -p usr/bin usr/lib usr/libexec usr/share usr/lib/zoneinfo
+
+	# make devices - adjust MAJOR/MINOR as appropriate ( see ls -l /dev/* )
+	if ! [ ""$conf_omit_dev_mknod = "true" ] ; then
+		echoIfVerbose "-> Making devices"
+		if ! [ -e dev/null ] ; then
+			if [ "$UNIX_TYPE" = "freebsd" -o "$UNIX_TYPE" = "osx" ] ; then
+				mknod dev/null    c  2 2   # FreeBSD?
+			else
+				mknod dev/null    c  1 3   # Linux
+			fi
+		fi
+
+		if [ "$UNIX_TYPE" = "freebsd"  -o "$UNIX_TYPE" = "osx" ] ; then
+			if [ $kernel"" = "OpenBSD" ] ; then
+				if ! [ -e dev/urandom ] ; then
+					mknod dev/urandom c 45 2   # OpenBSD ?
+				fi
+			else
+				if ! [ -e dev/random ] ; then
+					mknod dev/random  c  2 3   # FreeBSD
+				fi
+				if ! [ -e dev/urandom ] ; then
+					mknod dev/urandom  c  2 3
+				fi
+			fi
+		else
+			if ! [ -e dev/random ] ; then
+				mknod dev/random  c  1 8   # Linux
+			fi
+			if ! [ -e dev/urandom ] ; then
+				mknod dev/urandom c  1 9   # Linux
+			fi
+		fi
+
+		# some external programs may need these:
+		if [ "$UNIX_TYPE" = "freebsd"  -o "$UNIX_TYPE" = "osx" ] ; then
+			if ! [ -e dev/stdin ] ; then
+				mknod dev/stdin   c 22 0   # FreeBSD, OpenBSD
+			fi
+			if ! [ -e dev/stdout ] ; then
+				mknod dev/stdout  c 22 1   # FreeBSD, OpenBSD
+			fi
+			if ! [ -e dev/stderr ] ; then
+				mknod dev/stderr  c 22 2   # FreeBSD, OpenBSD
+			fi
+		fi
+	fi
+
+	# copy required binaries to $conf_chroot_path/usr/bin and $conf_chroot_path/bin
+	echoIfVerbose "-> Copying utilities"
+	if [ -e /bin/bzip2 ] ; then
+		cp -pf /bin/bzip2 usr/bin/
+	fi
+	if [ -e /usr/bin/bzip2 ] ; then
+		cp -pf /usr/bin/bzip2 usr/bin/
+	fi
+	if [ -e /usr/bin/file ] ; then
+		cp -pf /usr/bin/file usr/bin/
+	fi
+	if [ -e /usr/bin/groups ] ; then
+		cp -pf /usr/bin/groups usr/bin
+	fi
+	if [ -e /usr/bin/id ] ; then
+		cp -pf /usr/bin/id usr/bin
+	fi
+	if [ -e /bin/mkdir ] ; then
+		cp -pf /bin/mkdir bin
+	fi
+
+	# copy zip and unzip if they are present
+	if [ -e /usr/bin/zip ] ; then
+		cp -pf /usr/bin/zip bin/
+	fi
+	if [ -e /usr/bin/unzip ] ; then
+		cp -pf /usr/bin/unzip bin/
+	fi
+
+	if [ -e ${PATH_BASH} ] ; then
+		cp -pf ${PATH_BASH} bin
+	fi
+	if [ -e /usr/bin/tar ] ; then
+		cp -pf /usr/bin/tar bin
+	fi
+	if [ -e /bin/tar ] ; then
+		cp -pf /bin/tar bin
+	fi
+	if [ -e /usr/bin/false ] ; then
+		cp -pf /usr/bin/false bin
+	fi
+	if [ -e /bin/false ] ; then
+		cp -pf /bin/false bin
+	fi
+
+	if [ -e /usr/bin/sftp ] ; then
+		cp -pf /usr/bin/sftp bin/
+	fi
+
+	# the sftp-server binary can be in /usr/lib or /lib, so check both places
+	if [ -e /usr/lib/sftp-server ] ; then
+		cp -pf /usr/lib/sftp-server usr/lib/
+	fi
+
+	if [ -e /usr/libexec/sftp-server ] ; then
+		cp -pf /usr/libexec/sftp-server usr/libexec/
+	fi
+
+	mkdir -p usr/lib/openssh
+	if [ -e /usr/lib/openssh/sftp ] ; then
+		cp -pf /usr/lib/openssh/sftp usr/lib/openssh
+	fi
+
+	if [ -e /lib/sftp-server ] ; then
+		cp -pf /lib/sftp-server lib/
+	fi
+
+	# Debian location for the sftp-server
+	if [ -e /usr/lib/openssh/sftp-server ] ; then
+		mkdir -p usr/lib/openssh
+		cp -pf /usr/lib/openssh/sftp-server usr/lib/openssh
+	fi
+
+	# CentOS location
+	if [ -e /usr/libexec/openssh/sftp-server ] ; then
+		mkdir -p usr/libexec/openssh
+		cp -pf /usr/libexec/openssh/sftp-server usr/libexec/openssh
+	fi
+
+	if [ -e /usr/bin/scp ] ; then
+		cp -pf /usr/bin/scp bin/
+	fi
+
+	# copy more required binaries to $conf_chroot_path/bin
+	cp -pf /bin/sh /bin/echo /bin/ls /bin/pwd /bin/cat bin/
+
+	if [ "$UNIX_TYPE" = "freebsd" ] ; then
+		cp -pf /usr/bin/cpio usr/bin
+	        cp -f /libexec/ld-elf.so.1 libexec
+		cp -pf /bin/rm /bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
+	elif [ "$UNIX_TYPE" = "osx" ] ; then
+		cp -pf /usr/bin/cpio usr/bin
+		cp -pf /usr/bin/rm /usr/bin/mv /usr/bin/gunzip /usr/bin/tar /usr/bin/false bin/
+	else
+		cp -pf /bin/rm /bin/mv /bin/gunzip bin/
+		cp -pf /bin/cpio usr/bin
+	fi
+
+	# copy ldconfig from sbin to $conf_chroot_path/sbin
+	if ! [ "$UNIX_TYPE" = "osx" ] ; then
+		cp -pf /sbin/ldconfig* sbin/
+	fi
+
+	echoIfVerbose "-> Creating /etc template"
+	# copy needed /etc files to $conf_chroot_path/etc
+	cp -pf /etc/protocols /etc/services /etc/hosts /etc/resolv.conf etc/
+
+	# generate /etc/passwd and /etc/group
+	# ignore errors
+	grep daemon /etc/passwd > etc/passwd || true
+	grep bin /etc/passwd >> etc/passwd || true
+	grep sys /etc/passwd >> etc/passwd || true
+	grep man /etc/passwd >> etc/passwd || true
+	grep lp /etc/passwd >> etc/passwd || true
+	grep mail /etc/passwd >> etc/passwd || true
+	grep news /etc/passwd >> etc/passwd || true
+	grep uucp /etc/passwd >> etc/passwd || true
+	grep www-data /etc/passwd >> etc/passwd || true
+	# generate this one manually: grep nobody /etc/passwd >> etc/passwd
+	grep daemon /etc/group > etc/group || true
+	grep bin /etc/group >> etc/group || true
+	grep sys /etc/group >> etc/group || true
+	grep man /etc/group >> etc/group || true
+	grep lp /etc/group >> etc/group || true
+	grep mail /etc/group >> etc/group || true
+	grep news /etc/group >> etc/group || true
+	grep uucp /etc/group >> etc/group || true
+	grep www-data /etc/group >> etc/group || true
+	grep ${CONF_DTC_SYSTEM_GROUPNAME} /etc/group >> etc/group || true
+	grep ${CONF_DTC_SYSTEM_USERNAME} /etc/group >> etc/group || true
+
+	# fix entry for the dtc system user in /etc/passwd
+	echo "${CONF_DTC_SYSTEM_USERNAME}:x:${CONF_DTC_SYSTEM_UID}:${CONF_DTC_SYSTEM_GID}:${CONF_DTC_SYSTEM_USERNAME}:/html:${PATH_BASH}" >> etc/passwd
+
+	# create shadow account line for nobody
+	echo "${CONF_DTC_SYSTEM_USERNAME}::12719:0:99999:7:::" > etc/shadow
+	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} etc/shadow
+
+	if [ -e /etc/host.conf ] ; then
+		cp -pf /etc/host.conf etc/
+	fi
+
+	if [ -e /etc/ld.conf ] ; then
+		cp -pf /etc/ld.conf etc/
+	fi
+
+	if [ -e /etc/nsswitch.conf ] ; then
+		cp -pf /etc/nsswitch.conf etc/
+	fi
+
+	if [ -e /etc/localtime ] ; then
+		cp -pf /etc/localtime etc/
+	fi
+
+	# copy shared libraries to $conf_chroot_path/lib
+	#   (check:  ldd /usr/bin/perl (or other binary) to see which ones are needed)
+	#
+	#FreeBSD: 
+	#for j in \
+	echoIfVerbose "-> Copying essential libraries"
+	if [ "$UNIX_TYPE" = "freebsd"  ] ; then
+		cp -f /lib/libc.so* /lib/libm.so* lib/
+		for i in /usr/local/lib/libintl.so.* /usr/local/lib/libiconv.so.* \
+			/usr/lib/libarchive.so.* /usr/lib/libasn1.so.* /usr/lib/libbsm.so.* \
+			/usr/lib/libbz2.so.* /usr/lib/libcom_err.so.* /usr/lib/libgssapi.so.* /usr/lib/libkrb5.so.* /usr/lib/libmagic.so.* \
+			/usr/lib/libroken.so.* /usr/lib/libssh.so.* ; do
+			cp -f ${i} usr/lib
+		done
+		LIBPERL=/usr/local/lib/perl5/` ldd /usr/local/bin/perl | grep libperl | cut -d/ -f 6`/mach/CORE/libperl.so
+		if [ ! -f $LIBPERL ]
+		then
+			echo "No PERL Library Found. $LIBPERL"
+			exit 1
+		else
+			cp -f $LIBPERL usr/lib
+		fi
+		cp -f /lib/libc.so* /lib/libm.so* /lib/libedit.so* /lib/libncurses.so* /lib/libcrypt.so.* /lib/libmd.so.* /lib/libutil.so.* \
+			/lib/libz.so.* lib/
+		cp -f /usr/lib/libc.so* usr/lib/
+		cp -pf /usr/lib/libm.so* usr/lib/
+		cp -pf /usr/lib/libstdc\+\+.so* usr/lib/
+		if [ -e /usr/compat/linux/usr/lib/libz.so.1 ] ; then
+			cp /usr/compat/linux/usr/lib/libz.so.1 usr/lib
+		fi
+	else
+		if [ "$UNIX_TYPE" = "osx"  ] ; then
+			mkdir -p usr/lib
+			echo "-> usr/lib"
+			cp -pf /usr/lib/dyld /usr/lib/libSystem.B.dylib \
+			  /usr/lib/libc.dylib /usr/lib/libdl.dylib \
+			  /usr/lib/libncurses.5.dylib /usr/lib/libpam.dylib \
+			  /usr/lib/libpthread.dylib usr/lib/
+			cp -pf /usr/lib/dylib1.o /usr/lib/libSystem.dylib \
+			  /usr/lib/libcrypto.dylib /usr/lib/libm.dylib \
+			  /usr/lib/libncurses.dylib /usr/lib/libpam_misc.dylib \
+			  /usr/lib/libz.dylib usr/lib
+			echo "-> usr/lib/system"
+			mkdir -p usr/lib/system
+			cp -pf /usr/lib/system/libmathCommon.A.dylib usr/lib/system
+		else
+			FOUNDED_ARCH=`uname -m`
+			if [ ""$FOUNDED_ARCH = "x86_64" ] ; then
+				if [ ! -e lib64 ] ; then
+					ln -s lib lib64
+				fi
+			fi
+			# Some libs for CentOS
+			if [ -e /lib/libdl.so.2 ] ; then
+				cp -pf /lib/libdl.so.2 lib
+			fi
+			if [ -e /lib64/libdl.so.2 ] ; then
+				cp -pf /lib64/libdl.so.2 lib
+			fi
+			if [ -e /lib/libc.so.6 ] ; then
+				cp -pf /lib/libc.so.6 lib
+			fi
+			if [ -e /lib64/libc.so.6 ] ; then
+				cp -pf /lib64/libc.so.6 lib
+			fi
+			if [ -e /lib/libtermcap.so.2 ] ; then
+				cp -pf /lib/libtermcap.so.2 lib
+			fi
+			if [ -e /lib64/libtermcap.so.2 ] ; then
+				cp -pf /lib64/libtermcap.so.2 lib
+			fi
+
+			if [ -e /lib/ld-linux.so.2 ] ; then
+				cp -pf /lib/ld-linux.so.2 lib/
+			fi
+			if [ -e /lib/ld-linux-x86-64.so.2 ] ; then
+				cp -pf /lib/ld-linux-x86-64.so.2 lib/
+			fi
+			if [ -e /lib/libdl.so.2 ] ; then
+				cp -pf /lib/libdl.so.2 lib/
+			fi
+			if [ -e /lib/libm.so.6 ] ; then
+				cp -pf /lib/libm.so.6 lib/
+			fi
+			if [ -e /lib/libpthread.so.0 ] ; then
+				cp -pf /lib/libpthread.so.0 lib/
+			fi
+			if [ -e /lib/libc.so.6 ] ; then
+				cp -pf /lib/libc.so.6 lib/
+			fi
+			if [ -e /lib/libcrypt.so.1 ] ; then
+				cp -pf /lib/libcrypt.so.1 lib/
+			fi
+			if [ -e /lib/librt.so.1 ] ; then
+				cp -pf /lib/librt.so.1 lib/
+			fi
+
+			CPY_LIBS="libnss_compat.so.2 libnsl.so.1 libnss_files.so.2 libpam.so.0 libpam_misc.so.0 libncurses.so.5 libacl.so.1 libattr.so.1 libcap.so.1 libbz2.so.1.0 libz.so.1"
+			for i in ${CPY_LIBS} ; do
+				if [ -f /lib/${i} ] ; then
+					cp -pf  /lib/${i} lib/
+				fi
+				if [ -f /lib64/${i} ] ; then
+					cp -pf  /lib64/${i} lib/
+				fi
+			done
+	
+			CPY_LIBS="libncurses.so.5 libbz2.so.1.0 libmagic.so.1 libz.so.1"
+			for i in ${CPY_LIBS} ; do
+				if [ -f /usr/lib/${i} ] ; then
+					cp -pf  /usr/lib/${i} lib/
+				fi
+				if [ -f /usr/lib64/${i} ] ; then
+					cp -pf  /usr/lib64/${i} lib/
+				fi
+			done
+
+			# libs for sftp and scp
+			if [ -e /lib/libresolv.so.2 ] ; then
+				cp -pf /lib/libresolv.so.2 lib/
+			fi
+
+			if [ -e /usr/lib/libcrypto.so.0.9.7 ] ; then
+				cp -pf /usr/lib/libcrypto.so.0.9.7 lib/
+			fi
+
+			if [ -e /usr/lib/libcrypto.so.0.9.8 ] ; then
+				cp -pf /usr/lib/libcrypto.so.0.9.8 lib/
+			fi
+
+			if [ -e /lib/libutil.so.1 ] ; then
+				cp -pf /lib/libutil.so.1 lib/
+			fi
+		fi
+	fi
+
+	# magic files needed by file(1). Different versions and installations
+	# expect magic files in different locations. Check the documentation.
+	# Some usual locations are:
+	if [ -e /usr/share/misc/file ] ; then
+		#cp -pf /usr/local/share/file/*  usr/local/share/file/
+		mkdir -p usr/share/misc/file
+		cp -pf /usr/share/misc/file/magic*   usr/share/misc/file
+		#cp -pf /usr/share/magic         usr/share/
+	fi
+
+	# No need anymore - fix up pam.d into jail
+	# if [ -e /etc/pam.d ] ; then
+	# 	mkdir -p ./etc/pam.d/
+	# 	cp /etc/pam.d/* ./etc/pam.d/
+	# fi
+	# No need anymore - copy PAM-Modules to jail
+	#if [ -e /lib/security ] ; then
+		#cp -r /lib/security ./lib/
+	#fi
+	#if [ -e /etc/security ] ; then 
+	#	cp -r /etc/security ./etc/
+	#fi
+	if [ -e /etc/login.defs ] ; then
+		cp /etc/login.defs ./etc/
+	fi
+
+	# now we have come this far, make sure our chroot includes enough libs for this environment
+	echoIfVerbose "-> Some ldd things"
+	LDD=`which ldd`
+	if [ -n "$LDD" -a ! "$UNIX_TYPE" = "freebsd" ] ; then
+
+		for i in bin/* ; do
+		        for j in `$LDD $i | cut -f 1 -d' '`;
+		        do
+				if [ -e $j ] ; then
+					cp -pf $j lib/
+				fi
+		                if [ -e /lib/$j ] ; then
+		                        cp -pf /lib/$j lib/
+		                fi
+		                if [ -e /usr/lib/$j ] ; then
+		                        cp -pf /usr/lib/$j lib/
+		                fi
+		                if [ -e /usr/local/lib/$j ] ; then
+		                        cp -pf /usr/local/lib/$j lib/
+		                fi
+		        done
+		done
+	fi
+
+	# if we have a sudo binary around, then use it to create our chroot shell
+	SUDO=`which sudo`
+	SHELL=${LOCALBASE}/bin/dtc-chroot-shell
+	chmod 755 $SHELL
+
+	# set protections
+	echoIfVerbose "-> Fixup rights"
+	chmod 1770 tmp
+	chmod 1770 var/tmp
+	if ! [ ""$conf_omit_dev_mknod = "true" ] ; then
+		chmod 666 dev/null
+		chmod 644 dev/*random
+	fi
+
+	#now need to copy over the perl binary and some modules
+	cp -pf /usr/bin/perl usr/bin/
+
+	echoIfVerbose "-> Managing ldconfig"
+	if [ "$UNIX_TYPE" = "freebsd" ] ; then
+	        # now create our ld.so cache
+	        cp /libexec/ld-elf.so.1 $conf_chroot_path/libexec
+		if [ -e /var/run/ld-elf.so.hints ] ; then
+			cp /var/run/ld-elf.so.hints var/run			# need this for fbsd jails: KC
+		fi
+	        chroot $conf_chroot_path ./sbin/ldconfig
+	        # just in case we have wiped our /etc/ld.so.cache (run locally)
+	        /sbin/ldconfig
+	else
+		if ! [ "$UNIX_TYPE" = "osx" -o "$UNIX_TYPE" = 'freebsd' ] ; then
+			# now create our ld.so cache
+			mkdir -p $conf_chroot_path/etc
+			touch $conf_chroot_path/etc/ld.so.cache
+			touch $conf_chroot_path/etc/ld.so.conf
+			chroot $conf_chroot_path ./sbin/ldconfig 
+			# just in case we have wiped our /etc/ld.so.cache (run locally)
+			/sbin/ldconfig
+		fi
+	fi
+
+	# Adds the possibility to customize the chroot and helps upgrading between versions
+	if [ -d $conf_chroot_path.custom ] ; then
+		cp -fpR $conf_chroot_path.custom/* $conf_chroot_path/ 2>/dev/null || true # Make it possible to fail if the directory is empty
+	else
+		# Create the directory to show to the user he can use it
+		if ! [ -e $conf_chroot_path.custom ] ; then
+			mkdir -p $conf_chroot_path.custom
+		fi
+	fi
+
+	chown ${CONF_DTC_SYSTEM_USERNAME}:${CONF_DTC_SYSTEM_GROUPNAME} etc dev bin lib tmp var sbin libexec usr
+	umask $oldumask
+	echoIfVerbose "-> Done chroot template!"
+}
