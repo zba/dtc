@@ -22,8 +22,15 @@ function DTCRMlistClients(){
 	$text = "<div style=\"white-space: nowrap\" nowrap>
 <a href=\"?rub=crm&id=0\">". _("New customer") ."</a>
 </a><br><br>";
+	if(!isset($_REQUEST["clientsearch_txt"])){
+		$_REQUEST["clientsearch_txt"] = '';
+	}
+	if($clientlist_type == "search" && preg_match("/^[a-zA-Z0-9\_\-\@\.\ ].*$/", $_REQUEST["clientsearch_txt"])){
+		$query = "SELECT * FROM $pro_mysql_client_table WHERE UCASE(company_name) LIKE UCASE('%".mysql_real_escape_string($_REQUEST["clientsearch_txt"])."%') OR UCASE(familyname) LIKE UCASE('%".mysql_real_escape_string($_REQUEST["clientsearch_txt"])."%') OR UCASE(christname) LIKE UCASE('%".mysql_real_escape_string($_REQUEST["clientsearch_txt"])."%') OR UCASE(email) LIKE UCASE('%".mysql_real_escape_string($_REQUEST["clientsearch_txt"])."%') OR UCASE(phone) LIKE UCASE('%".mysql_real_escape_string($_REQUEST["clientsearch_txt"])."%') OR UCASE(special_note) LIKE UCASE('%".mysql_real_escape_string($_REQUEST["clientsearch_txt"])."%') OR UCASE(customfld) LIKE UCASE('%".mysql_real_escape_string($_REQUEST["clientsearch_txt"])."%') ORDER BY familyname";
+	}else{
+		$query = "SELECT * FROM $pro_mysql_client_table ORDER BY familyname";
+	}
 
-	$query = "SELECT * FROM $pro_mysql_client_table ORDER BY familyname";
 	$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
 	$client_list = array();
@@ -89,9 +96,15 @@ function DTCRMlistClients(){
 	if($clientlist_type == "hide-no-admins"){
 		$selectedlist_hide_no_admin = " selected";
 		$selectedlist_show_all = "";
-	}else{
+		$selectedlist_search = "";
+	}elseif($clientlist_type == "show-all"){
+ 		$selectedlist_hide_no_admin = "";
+ 		$selectedlist_show_all = " selected";
+		$selectedlist_search = "";
+	}else{ // search
 		$selectedlist_hide_no_admin = "";
-		$selectedlist_show_all = " selected";
+		$selectedlist_show_all = "";
+		$selectedlist_search = " selected";
 	}
        $list_prefs = "<div class=\"box_wnb_nb_content\">
 <div style=\"white-space: nowrap\" nowrap><form action=\"?\"><font size=\"-2\">". _("Show:")  ."<br>
@@ -99,7 +112,9 @@ function DTCRMlistClients(){
 <select class=\"box_wnb_nb_input\" name=\"clientlist_type\">
 <option value=\"hide-no-admins\"$selectedlist_hide_no_admin>". _("Hide client without admin") ."
 <option value=\"show-all\"$selectedlist_show_all>"._("Show all")."
-</select>
+<option value=\"search\"$selectedlist_search>"._("Search")."</option>
+</select><br /><br />". _("Search string:") ."<br />
+<input class=\"box_wnb_nb_input\" type=\"text\" name=\"clientsearch_txt\">
 <div class=\"box_wnb_nb_input_btn_container\" onMouseOver=\"this.className='box_wnb_nb_input_btn_container-hover';\" onMouseOut=\"this.className='box_wnb_nb_input_btn_container';\">
  <div class=\"box_wnb_nb_input_btn_left\"></div>
  <div class=\"box_wnb_nb_input_btn_mid\"><input class=\"box_wnb_nb_input_btn\" type=\"submit\" value=\""._("Ok")."\"></div>
