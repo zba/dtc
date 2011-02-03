@@ -4720,8 +4720,8 @@ checkBsdKernel () {
 enableBsdBind () {
 	checkBsdKernel
 	if [ $kernel = "FreeBSD" ] || [ $kernel = "NetBSD" ] ; then
-		named=`grep  named_enable /etc/rc.conf`
-		nonamed=`cat /etc/rc.conf | grep named  | awk '{print $1}' | grep NO`
+		named=` grep named_enable /etc/rc.conf | grep -v "^#" | cut -d= -f2|cut -d" " -f1`
+		nonamed=`echo $named | grep -i no|cat`
 		if [ "$named" = "" ] || [ "$nonamed" != "" ] ; then
 			echo "===> FreeBSD or NetBSD: Backing up /etc/rc.conf and inserting named_enable=YES"
 			if [ -f /etc/rc.conf.DTC.Backup ]
