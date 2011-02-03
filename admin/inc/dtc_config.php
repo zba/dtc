@@ -29,7 +29,7 @@ function drawDTCConfigMenu(){
 			"text" => gettext("General"),
 			"icon" => "box_wnb_nb_picto-general.gif"),
 		"ticket" => array(
-			"text" => gettext("Support and Ticketing"),
+			"text" => gettext("Support and auth"),
 			"icon" => "box_wnb_nb_picto-supportickets.gif"),
 		"ip" => array(
 			"text" => gettext("IP Addresses and Network"),
@@ -693,7 +693,7 @@ function drawTicketConfig(){
 
 	$dsc = array(
 		"table_name" => $pro_mysql_tik_admins_table,
-		"title" => _("List of administrators permitted to manage support messages:"),
+		"title" => _("List of administrators allowed to login and receiving support messages:"),
 		"action" => "tik_admins",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
@@ -1621,7 +1621,7 @@ function drawDTCpayConfig(){
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
 			"affiliate_return_domain" => array(
-				"legend" => _("DNS name for affiliate return URL:"),
+				"legend" => _("Domain name for affiliation return URL:"),
 				"type" => "text"
 				)));
 	$out .= configEditorTemplate($dsc);

@@ -182,9 +182,9 @@ function drawEditAdmin($admin){
 	$user_data .= dtcFormLineDraw( _("Allow addition of SSH logins:") ,$sshlog_selector,0);
 	$user_data .= dtcFormLineDraw( _("Allow addition of FTP logins:") ,$ftplog_selector);
 	$user_data .= dtcFormLineDraw( _("Restrict FTP to the html folder:") ,$restricted_ftp_path_selector,0);
-	$user_data .= dtcFormLineDraw( _("Allow addition of mailing lists and mail groups:") ,$allow_mailing_list_edit_selector);
-	$user_data .= dtcFormLineDraw( _("Allow addition of DNS and MX:") ,$allow_dns_and_mx_change_selector,0);
-	$user_data .= dtcFormLineDraw( _("Allow addition of subdomains:") ,$allow_subdomain_edit_selector);
+	$user_data .= dtcFormLineDraw( _("Allow edition of mailing lists and mail groups:") ,$allow_mailing_list_edit_selector);
+	$user_data .= dtcFormLineDraw( _("Allow edition of DNS and MX:") ,$allow_dns_and_mx_change_selector,0);
+	$user_data .= dtcFormLineDraw( _("Allow edition of subdomains:") ,$allow_subdomain_edit_selector);
 	$user_data .= dtcFormLineDraw( _("Allow the use of the package installer:") ,$pkg_install_selector,0);
 	$user_data .= dtcFromOkDraw()."</table></form>";
 

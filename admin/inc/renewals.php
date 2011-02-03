@@ -309,7 +309,7 @@ function drawRenewalTables (){
 
 		// Payment type
 		$dsc = array(
-			"title" => _("View/Add Payment Types"),
+			"title" => _("Payment type edition"),
 			"table_name" => $pro_mysql_spent_type_table,
 			"action" => "payment_type_editor",
 			"forward" => array("rub","sousrub"),
@@ -945,10 +945,10 @@ function drawRenewalTables (){
 							$kill_owner_txt = _("Has active dedicated servers.");
 						}
 					}else{
-						$kill_owner_txt = _("Has active VPS");
+						$kill_owner_txt = _("More than one VPS");
 					}
 				}else{
-					$kill_owner_txt = _("Has active login");
+					$kill_owner_txt = _("More than one login");
 				}
 				if( numOfDays($a["expire_date"]) >= $conf_vps_renewal_shutdown){
 					$bgcolor = " bgcolor=\"#FF8888\" ";
