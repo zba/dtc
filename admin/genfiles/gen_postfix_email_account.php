@@ -193,6 +193,13 @@ function mail_account_generate_postfix(){
 						$mailbox_cleanup2 = preg_split("/\n/", $mailbox_cleanup1);
 						$deliver_mailbox = '';
 						if ( $k==0 ) $domains_postmasters_file.= "# Mail Alias Groups for : ".$domain_parent."\n";
+						// if we have a $id equal to abuse
+						if ($id == "abuse"){
+							$abuse_address++;
+						}
+						if ($id == "postmaster"){
+							$postmaster_address++;
+						}
 						for($x=0;$x<count($mailbox_cleanup2);$x++)
 						{
 							if ( $x<count($mailbox_cleanup2)-1 )
