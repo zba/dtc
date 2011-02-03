@@ -346,6 +346,8 @@ $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." 
 if($conf_unix_type == "bsd"){
 	$q = "ALTER TABLE ssh_access CHANGE shell shell varchar(64) NOT NULL default '/usr/local/bin/dtc-chroot-shell'";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$q = "ALTER TABLE ftp_access CHANGE shell shell varchar(64) NOT NULL default '/usr/local/bin/bash'";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 }
 
 // Get all the config values from db
