@@ -1,5 +1,4 @@
 <?php
-Please note that you need to create at least one mailbox and one FTP account in order for the daemon status to work correctly.
 ////////////////////////////////////
 // Create the top banner and menu //
 ////////////////////////////////////
