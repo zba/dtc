@@ -328,7 +328,8 @@ $dtc_database = array(
 		"vars" => array(
 			"id" => "int(11) NOT NULL auto_increment",
 			"name" => "varchar(32) NOT NULL default ''",
-			"reqdomain" => "enum('yes','no') NOT NULL default 'no'"
+			"reqdomain" => "enum('yes','no') NOT NULL default 'no'",
+			"welcome_message"  => "text NOT NULL"
 		),
 		"primary" => "(id)",
 		"keys" => array(

@@ -153,7 +153,7 @@ function drawEditAdmin($admin){
 	$user_data .= dtcFormLineDraw( _("Password:") ,$ctrl);
 
 	// The product popup
-	$q = "SELECT * FROM $pro_mysql_product_table WHERE (heb_type='shared' OR heb_type='ssl') AND renew_prod_id='0' ORDER BY id;";
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE (heb_type='shared' OR heb_type='custom' OR heb_type='ssl') AND renew_prod_id='0' ORDER BY id;";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	$prodsid = "";
