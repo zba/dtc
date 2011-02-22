@@ -27,7 +27,33 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 // HTTP/1.0
 header("Pragma: no-cache");
 
+if(isFtpLogin($_REQUEST["adm_login"])){
+	$adm_login = $_REQUEST["adm_login"];
+}else{
+	die("No login in query");
+}
 
+if(isDTCLogin($_REQUEST["adm_pass"])){
+	$adm_pass = $_REQUEST["adm_pass"];
+}else{
+        die("No pass in query");
+}
+
+checkLoginPass($adm_login,$adm_pass);
+
+$q = "SELECT id_client FROM admin WHERE adm_login='$adm_login'";
+$r = mysql_query($q);
+$n = mysql_num_rows($r);
+if($n != 1){
+	die("Admin not found");
+}else{
+	$a = mysql_fetch_array($r);
+	$cid = $a["id_client"];
+}
+
+if($cid == 0){
+	die("No valid cid");
+}
 
 $width = 120;
 $height = 48;
@@ -52,7 +78,7 @@ $c = mysql_fetch_array($r);
 $bpquota = $c["bw_quota_per_month_gb"];
 */
 
-$q = "SELECT * FROM $pro_mysql_client_table WHERE id='".$_REQUEST["cid"]."';";
+$q = "SELECT * FROM $pro_mysql_client_table WHERE id='$cid';";
 //echo $q;
 $r = mysql_query($q)or die("Cannot query $q !");
 $n = mysql_num_rows($r);
@@ -73,7 +99,7 @@ for($m=0;$m<12;$m++){
 
 	$q = "SELECT sum(bytes_sent) as sent
 FROM admin,domain,subdomain,http_accounting
-WHERE admin.id_client='".$_REQUEST["cid"]."'
+WHERE admin.adm_login='".$_REQUEST["adm_login"]."'
 AND domain.owner=admin.adm_login
 AND subdomain.domain_name=domain.name
 AND http_accounting.vhost=subdomain.subdomain_name
@@ -83,13 +109,11 @@ AND year='$year' AND month='$month'";
 	$n = mysql_num_rows($r);
 	if($n == 1){
 		$a = mysql_fetch_array($r);
-		if(isset($a["sent"])){
-			$tr_tbl[$m] += $a["sent"];
-		}
+		$tr_tbl[$m] += $a["sent"];
 	}
 
 	$q = "SELECT sum(transfer) as sent FROM admin,domain,$pro_mysql_acc_ftp_table
-WHERE admin.id_client='".$_REQUEST["cid"]."'
+WHERE admin.id_client='".$cid."'
 AND domain.owner=admin.adm_login
 AND $pro_mysql_acc_ftp_table.sub_domain=domain.name
 AND year='$year' AND month='$month';";
@@ -97,14 +121,12 @@ AND year='$year' AND month='$month';";
 	$n = mysql_num_rows($r);
 	if($n == 1){
 		$a = mysql_fetch_array($r);
-		if(isset($a["sent"])){
-			$tr_tbl[$m] += $a["sent"];
-		}
+		$tr_tbl[$m] += $a["sent"];
 	}
 
 	$q = "SELECT sum(smtp_trafic+pop_trafic+imap_trafic) as sent
 FROM admin,domain,$pro_mysql_acc_email_table
-WHERE admin.id_client='".$_REQUEST["cid"]."'
+WHERE admin.id_client='".$cid."'
 AND domain.owner=admin.adm_login
 AND $pro_mysql_acc_email_table.domain_name=domain.name
 AND $pro_mysql_acc_email_table.year='$year' AND $pro_mysql_acc_email_table.month='$month';";
@@ -112,12 +134,10 @@ AND $pro_mysql_acc_email_table.year='$year' AND $pro_mysql_acc_email_table.month
 	$n = mysql_num_rows($r);
 	if($n == 1){
 		$a = mysql_fetch_array($r);
-		if(isset($a["sent"])){
-			$tr_tbl[$m] += $a["sent"];
-//			$tr_tbl[$m] += $a["smtp_trafic"];
-//			$tr_tbl[$m] += $a["pop_trafic"];
-//			$tr_tbl[$m] += $a["imap_trafic"];
-		}
+		$tr_tbl[$m] += $a["sent"];
+//		$tr_tbl[$m] += $a["smtp_trafic"];
+//		$tr_tbl[$m] += $a["pop_trafic"];
+//		$tr_tbl[$m] += $a["imap_trafic"];
 	}
 
 }

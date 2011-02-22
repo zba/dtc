@@ -95,7 +95,7 @@ function drawAdminTools_MyAccount($admin){
 		}
 
 		if($id_client != 0){
-			$out .= '<table><td>'.$overall.'</td><td><img src="bw_per_month.php?cid='.$id_client.'&adm_login='.$adm_login.'"></td></tr></table>';
+			$out .= '<table><td>'.$overall.'</td><td><img src="bw_per_month.php?cid='.$id_client.'&adm_login='.$adm_login.'&adm_pass='.$adm_pass.'"></td></tr></table>';
 		}else{
 			$out .= $overall;
 		}

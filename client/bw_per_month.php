@@ -26,6 +26,28 @@ if(isFtpLogin($_REQUEST["adm_login"])){
 	die("No login in query");
 }
 
+if(isDTCLogin($_REQUEST["adm_pass"])){
+	$adm_pass = $_REQUEST["adm_pass"];
+}else{
+        die("No pass in query");
+}
+
+checkLoginPass($adm_login,$adm_pass);
+
+$q = "SELECT id_client FROM admin WHERE adm_login='$adm_login'";
+$r = mysql_query($q);
+$n = mysql_num_rows($r);
+if($n != 1){
+	die("Admin not found");
+}else{
+	$a = mysql_fetch_array($r);
+	$cid = $a["id_client"];
+}
+
+if($cid == 0){
+	die("No valid cid");
+}
+
 $width = 120;
 $height = 48;
 
@@ -49,7 +71,7 @@ $c = mysql_fetch_array($r);
 $bpquota = $c["bw_quota_per_month_gb"];
 */
 
-$q = "SELECT * FROM $pro_mysql_client_table WHERE id='".$_REQUEST["cid"]."';";
+$q = "SELECT * FROM $pro_mysql_client_table WHERE id='$cid';";
 //echo $q;
 $r = mysql_query($q)or die("Cannot query $q !");
 $n = mysql_num_rows($r);
@@ -84,7 +106,7 @@ AND year='$year' AND month='$month'";
 	}
 
 	$q = "SELECT sum(transfer) as sent FROM admin,domain,$pro_mysql_acc_ftp_table
-WHERE admin.id_client='".$_REQUEST["cid"]."'
+WHERE admin.id_client='".$cid."'
 AND domain.owner=admin.adm_login
 AND $pro_mysql_acc_ftp_table.sub_domain=domain.name
 AND year='$year' AND month='$month';";
@@ -97,7 +119,7 @@ AND year='$year' AND month='$month';";
 
 	$q = "SELECT sum(smtp_trafic+pop_trafic+imap_trafic) as sent
 FROM admin,domain,$pro_mysql_acc_email_table
-WHERE admin.id_client='".$_REQUEST["cid"]."'
+WHERE admin.id_client='".$cid."'
 AND domain.owner=admin.adm_login
 AND $pro_mysql_acc_email_table.domain_name=domain.name
 AND $pro_mysql_acc_email_table.year='$year' AND $pro_mysql_acc_email_table.month='$month';";
