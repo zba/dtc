@@ -12,6 +12,7 @@ function register_user($adding_service="no"){
 	global $pro_mysql_custom_fld_table;
 
 	global $conf_message_subject_header;
+	global $conf_send_passwords_in_emails;
 
 	global $secpayconf_currency_letters;
 
@@ -431,11 +432,17 @@ VALUES('".$_REQUEST["reqadm_login"]."',
 		$the_prod = $a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)";
 	}
 
+	if($conf_send_passwords_in_emails == "yes"){
+		$pass_for_email = $_REQUEST["reqadm_pass"];
+	}else{
+		$pass_for_email = _("- password removed for security reasons -");
+	}
+
 	$mail_content = "
 New account registered. Here are the details of the new user:
 
 login: ".$_REQUEST["reqadm_login"]."
-pass: ".$_REQUEST["reqadm_pass"]."
+pass: ".$pass_for_email."
 domain: ".$_REQUEST["domain_name"].$domain_tld."
 Company name: ".$_REQUEST["compname"]."
 First name: ".$_REQUEST["firstname"]."

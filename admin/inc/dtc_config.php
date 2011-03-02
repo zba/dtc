@@ -1099,6 +1099,11 @@ function drawGeneralConfig(){
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),
+                        "send_passwords_in_emails" => array(
+                                "legend" => _("Send passwords in registration emails: "),
+                                "type" => "radio",
+                                "values" => array("yes","no"),
+                                "display_replace" => array(_("Yes"),_("No"))),
 			"use_ssl" => array(
 				"legend" => _("Use SSL: "),
 				"type" => "radio",
