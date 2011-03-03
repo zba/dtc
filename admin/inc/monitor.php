@@ -84,7 +84,7 @@ function drawAdminMonitor (){
 			$out .= "<td$back>".drawPercentBar($transfer,$ar["bw_quota_per_month_gb"]*1024*1024*1024,"no")."<br>
 ".smartByte($transfer)." / ".smartByte($ar["bw_quota_per_month_gb"]*1024*1024*1024)." ($total_hits hits)</td>";
 			// Per month transfer graph
-			$out .= "<td$back><img width=\"120\" height=\"48\" src=\"bw_per_month.php?cid=".$ar["id"]."\"></td>";
+			$out .= "<td$back><img width=\"120\" height=\"48\" src=\"bw_per_month.php?adm_login=".$ar2["adm_login"]."&adm_pass=".$ar2["adm_pass"]."\"></td>";
 			// Share hosing hard disk space
 			$out .= "<td$back>".drawPercentBar($du,$ar["disk_quota_mb"]*1024*1024,"no")."<br>
 ".smartByte($du)." / ".smartByte($ar["disk_quota_mb"]*1024*1024)."</td></tr>";
