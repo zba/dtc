@@ -13,6 +13,7 @@ function drawAdminTools_VPSInstallation($admin,$vps){
 
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_ip_pool_table;
 
 	global $pro_mysql_vps_stats_table;
 	global $secpayconf_currency_letters;
@@ -140,10 +141,11 @@ function drawAdminTools_VPSInstallation($admin,$vps){
 	if($n > 1){
 		$ip_title = _("IP addresses: ") ;
 	}else{
-		$ip_title = _("IP address: ") ;
+		$ip_title = _("IP address: ");
 	}
 	$out .= "<br><h3>". $ip_title ."</h3>";
 	$out .= dtcFormTableAttrs();
+	$out .= '<tr><th>' . $ip_title . '</th><th>' . _("Netmask: ") . '</th><th>' . _("Gateway: ") . '</th><th>' . _("DNS: ") . '</th><th>' . _("RevDNS: ") . '</th></tr>';
 	for($i=0;$i<$n;$i++){
 		if($i % 2){
 			$alt_color = 0;
@@ -157,7 +159,12 @@ function drawAdminTools_VPSInstallation($admin,$vps){
 			$out .= _("Error line ".__LINE__." file ".__FILE__);
 		}else{
 			$a = mysql_fetch_array($r);
-			$out .= dtcFormLineDraw($vps_ips[$i],
+
+			$q = "SELECT * FROM $pro_mysql_ip_pool_table WHERE id = '".$a['ip_pool_id']."';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$ip_pool_row = mysql_fetch_array($r);
+
+			$out .= dtcFormLineDraw($vps_ips[$i] . '</th><th class="alternatecolorline">' . $ip_pool_row['netmask'] . '</th><th class="alternatecolorline">' . $ip_pool_row['gateway'] . '</th><th class="alternatecolorline">' . $ip_pool_row['dns'],
 	"$frm_start<input type=\"hidden\" name=\"action\" value=\"set_ip_reverse_dns\">
 	<input type=\"hidden\" name=\"ip_addr\" value=\"".$vps_ips[$i]."\">
 	<input type=\"text\" name=\"rdns\" value=\"".$a["rdns_addr"]."\">
