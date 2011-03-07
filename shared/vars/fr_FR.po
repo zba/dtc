@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: fr_FR\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-03 15:56+0800\n"
-"PO-Revision-Date: 2011-03-07 16:04+0800\n"
-"Last-Translator: Thomas Goirand <thomas@goirand.fr>\n"
+"PO-Revision-Date: 2011-03-07 10:20+0100\n"
+"Last-Translator: Gregory Fardel <gregory@fardel.net>\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -6442,11 +6442,11 @@ msgstr "Nom de la boite SPAM"
 
 #: shared/inc/forms/subdomain.php:225
 msgid "SRV protocol: "
-msgstr "Protocle SRV : "
+msgstr "Protocole SRV : "
 
 #: shared/inc/forms/ssh.php:48
 msgid "SSH account configuration:"
-msgstr "Édition d'un compte SSH :"
+msgstr "configuration d'un compte SSH :"
 
 #: shared/inc/draw.php:284
 msgid "SSH accounts"
@@ -9139,126 +9139,185 @@ msgstr "oui"
 
 #~ msgid " maybe there are no logs yet?"
 #~ msgstr "peut-être qu'il n'y a pas encore de logs?"
+
 #~ msgid "Active product statistics for"
 #~ msgstr "Statistiques des produits actifs pour"
+
 #~ msgid "Add a domain"
 #~ msgstr "Ajouter un domaine"
+
 #~ msgid "Add new NAS"
 #~ msgstr "Ajouter un NAS"
+
 #~ msgid "Add new NAS:"
 #~ msgstr "Ajouter un NAS :"
+
 #~ msgid "Address email"
 #~ msgstr "Adresse email"
+
 #~ msgid "Aff. kickback"
 #~ msgstr "Reversement aff."
+
 #~ msgid ""
 #~ "Allow those servers to list this server's domain names for doing backup:"
 #~ msgstr ""
 #~ "Autoriser les serveurs suivants à lister les domaines pour les "
 #~ "sauvegarder :"
+
 #~ msgid "Alternatively, you can add another domain name:"
 #~ msgstr "Vous pouvez aussi ajouter un autre nom de domaine :"
+
 #~ msgid "Bank accounts edition"
 #~ msgstr "Edition des comptes banquaires"
+
 #~ msgid "Byelorussian SSR"
 #~ msgstr "Biélorussie"
+
 #~ msgid "CPU Load average"
 #~ msgstr "Moyenne de la charge CPU"
+
 #~ msgid "CPU load average statistics for"
 #~ msgstr "Statistiques de la moyenne de la charge CPU pour"
+
 #~ msgid "CPU, IO and Network usage:"
 #~ msgstr "Utilisation CPU, E/S et Réseau :"
+
 #~ msgid "Cannot find product id!"
 #~ msgstr "Impossible de trouver l'ID produit !"
+
 #~ msgid "Configuration of the domains"
 #~ msgstr "Configuration des domaines"
+
 #~ msgid "Congo, The Democratic Republic Of"
 #~ msgstr "Congo, République démocratique du"
+
 #~ msgid "Could not find such login into our database!"
 #~ msgstr "Impossible de trouver votre utilisateur dans notre base de données!"
+
 #~ msgid "Could not get VPS install log. Error: "
 #~ msgstr "Impossible de récupérer de log de l'installation. Erreur : "
+
 #~ msgid "Deamons states"
 #~ msgstr "État des daemons"
+
 #~ msgid "Dedicated server IP addresses"
 #~ msgstr "Adresse IP du serveur dédié"
+
 #~ msgid "Description: "
 #~ msgstr "Description : "
+
 #~ msgid "Dom0 overall graphs"
 #~ msgstr "Graphiques généraux du Dom0"
+
 #~ msgid "Edit a NAS:"
 #~ msgstr "Éditer un NAS:"
+
 #~ msgid "Familly name:"
 #~ msgstr "Nom de famille : "
+
 #~ msgid "Familly name: "
 #~ msgstr "Nom de famille : "
+
 #~ msgid "Family name:"
 #~ msgstr "Nom de famille :"
+
 #~ msgid "France, Metropolitan"
 #~ msgstr "France, Métropolitaine"
+
 #~ msgid "Gate cost"
 #~ msgstr "Coût paiement"
+
 #~ msgid "Go to client panel"
 #~ msgstr "Aller vers l'interface client"
+
 #~ msgid "Go to email panel"
 #~ msgstr "Aller à l'interface email"
+
 #~ msgid "Guam"
 #~ msgstr "Guatemala"
+
 #~ msgid "Guinea"
 #~ msgstr "Guinée"
+
 #~ msgid "Has a dedicated"
 #~ msgstr "A un dédié"
+
 #~ msgid "Have another try:"
 #~ msgstr "Essayez encore:"
+
 #~ msgid "If no FTP user was created, please make at least one!"
 #~ msgstr ""
 #~ "Si aucun utilisateur FTP n'a été créé, veuillez en créer au moins un !"
+
 #~ msgid "Installation log:"
 #~ msgstr "Log de l'Installation :"
+
 #~ msgid "Is company radio button is wrong!"
 #~ msgstr "Le bouton radio de société n'est pas valide !"
+
 #~ msgid "Is it a company:"
 #~ msgstr "Est-ce une société : "
+
 #~ msgid "Is it a company: "
 #~ msgstr "Est-ce une société : "
+
 #~ msgid "List of payments done by your hosting company"
 #~ msgstr "Liste des paiements effectués par votre société d'hébergement"
+
 #~ msgid "Mail queue statistics"
 #~ msgstr "Statistiques de la file d'attente mail"
+
 #~ msgid "Mail queue statistics for"
 #~ msgstr "Statistiques de la file d'attente mail pour"
+
 #~ msgid "Mail-newu"
 #~ msgstr "Newu email"
+
 #~ msgid "Mailbox type"
 #~ msgstr "Type de boites aux lettres :"
+
 #~ msgid "Max email"
 #~ msgstr "Max email"
+
 #~ msgid "Maximum allowed size of POST"
 #~ msgstr "Taille maximum d'un POST"
+
 #~ msgid "Maximum allowed size of uploaded file"
 #~ msgstr "Taille maximum pour les fichiers uploader"
+
 #~ msgid "Maxmium"
 #~ msgstr "Maxmium"
+
 #~ msgid "Means of payment"
 #~ msgstr "Moyen de paiement"
+
 #~ msgid "Memory and swap usage statistics usage for"
 #~ msgstr "Statistiques mémoire et utilisation swap pour"
+
 #~ msgid "Nagios host"
 #~ msgstr "Hôte Nagios"
+
 #~ msgid "Network usage statistics for"
 #~ msgstr "Statistique du trafic réseau pour"
+
 #~ msgid "No SSL IP expired"
 #~ msgstr "Pas d'IP SSL expirée"
+
 #~ msgid "No dedicated server expired"
 #~ msgstr "Pas de serveur dédié expiré"
+
 #~ msgid "No shared account expired."
 #~ msgstr "Pas de compte mutualisé expiré."
+
 #~ msgid "Operating system type not supported"
 #~ msgstr "Système d'exploitation non supporté"
+
 #~ msgid "Paiement not found!"
 #~ msgstr "Paiement non trouvé!"
+
 #~ msgid "Password 1 does not match password 2!"
 #~ msgstr "Les mots de passe 1 et 2 ne correspondent pas !"
+
 #~ msgid ""
 #~ "Path where DTC will be restricted for generating it's configuration files "
 #~ "for daemons.<br>\n"
@@ -9269,75 +9328,106 @@ msgstr "oui"
 #~ "des démons.<br>\n"
 #~ "Tous les chemins qui suivent (qmail, apache et named) seront concaténés à "
 #~ "ceci:"
+
 #~ msgid "Payment method"
 #~ msgstr "Méthode de paiement"
+
 #~ msgid "Please now click on the following button to go for paiment:"
 #~ msgstr "Veuillez cliquez sur l'un des boutons suivants pour le paiements :"
+
 #~ msgid "Please select!"
 #~ msgstr "Veuillez sélectionner !"
+
 #~ msgid "Quantity"
 #~ msgstr "Quantité"
+
 #~ msgid "Recurring payment"
 #~ msgstr "Paiement récurent"
+
 #~ msgid "Renewal repport"
 #~ msgstr "Rapport de renouvellement"
+
 #~ msgid "Required field family name missing."
 #~ msgstr "Champ nom de famille manquant."
+
 #~ msgid "Restart command used to notify Nagios of new configuration: "
 #~ msgstr ""
 #~ "Commande de redémarrage pour notifier Nagios d'une nouvelle "
 #~ "configuration: "
+
 #~ msgid "SSL IPs renewals"
 #~ msgstr "Renouvellements des IPs SSL"
+
 #~ msgid "Server accounted transfers this month: "
 #~ msgstr "Total des données transférées ce mois-ci sur le serveur : "
+
 #~ msgid "Server hostname related: "
 #~ msgstr "Nom du serveur en question:"
+
 #~ msgid "Short name: "
 #~ msgstr "Nom court : "
+
 #~ msgid "Slovakia"
 #~ msgstr "Slovaquie"
+
 #~ msgid "Special notes for the setup"
 #~ msgstr "Note speciale pour l'installation"
+
 #~ msgid ""
 #~ "This text is just a name for this contact used only in DTC, and will not "
 #~ "really be used in your domain names."
 #~ msgstr ""
 #~ "Ce texte est juste un petit aide mémoire, et ne sera pas vraiment utilisé "
 #~ "dans votre nom de domaine."
+
 #~ msgid "USSR"
 #~ msgstr "URSS"
+
 #~ msgid "Upstream provider list edition"
 #~ msgstr "Edition de la liste des fournisseurs"
+
 #~ msgid "Use CNAME instead of A record for subdomains:"
 #~ msgstr ""
 #~ "Employez CNAME au lieu de l'enregistrement A pour des sous-domaines."
+
 #~ msgid "Use the LIVE server (and not the test one) :"
 #~ msgstr "Utiliser le serveur LIVE (et non le test) :"
+
 #~ msgid "Users administration"
 #~ msgstr "Gestion des utilisateurs"
+
 #~ msgid "View details"
 #~ msgstr "Voir les détails"
+
 #~ msgid "What"
 #~ msgstr "Libelle"
+
 #~ msgid "Your SRS username:"
 #~ msgstr "Votre nom d'utilisateur SRS :"
+
 #~ msgid "Your domain"
 #~ msgstr "Votre domaine"
+
 #~ msgid "Your domain:"
 #~ msgstr "Votre domaine :"
+
 #~ msgid "Your key to access the LIVE server:"
 #~ msgstr "Votre clef d'accès pour le serveur LIVE :"
+
 #~ msgid "Your key to access the test server:"
 #~ msgstr "Votre clef d'accès pour le serveur de test :"
+
 #~ msgid "click logo to choose payment method"
 #~ msgstr "cliquez un logo pour choisir la méthode de paiement"
+
 #~ msgid "file"
 #~ msgstr "fichier"
+
 #~ msgid "is not same as the one I have in the database"
 #~ msgstr "n'est pas la même chose que ce que j'ai en base de données"
+
 #~ msgid "new nick handle"
 #~ msgstr "nouveau responsables DNS"
+
 #~ msgid "show"
 #~ msgstr "montrer"
-
