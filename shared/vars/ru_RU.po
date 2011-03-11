@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: git_2010-08-29\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-03 15:56+0800\n"
+"POT-Creation-Date: 2011-03-11 18:22+0800\n"
 "PO-Revision-Date: 2010-09-01 21:29+0400\n"
 "Last-Translator: Yuri Kozlov <yuray@komyakino.ru>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
@@ -94,11 +94,11 @@ msgstr " пересылаемых данных каждый месяц."
 msgid " remaining to be paid"
 msgstr " осталось, чтобы заплатить"
 
-#: shared/inc/forms/vps_installation.php:286
+#: shared/inc/forms/vps_installation.php:293
 msgid " using the password of your physical console."
 msgstr " используя пароль от физической консоли"
 
-#: admin/inc/dtc_config.php:1108
+#: admin/inc/dtc_config.php:1113
 #, fuzzy
 msgid ""
 "(<a href=\"http://dtcsupport.gplhost.com/PmWiki/Name-based-shared-SSL-vhosts"
@@ -108,13 +108,17 @@ msgstr ""
 "\">Предупреждения о виртуальных SSL!</a>) Позволить использовать имя на "
 "основе виртуальных SSL vhosts: "
 
-#: admin/inc/dtc_config.php:1251
+#: admin/inc/dtc_config.php:1256
 msgid ") :"
 msgstr ") :"
 
 #: shared/dtcrm/draw_handle.php:467
 msgid "+1.XXXXXXXXXX format"
 msgstr "+1.XXXXXXXXXX формат"
+
+#: client/new_account_form.php:438
+msgid "- password removed for security reasons -"
+msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:67
 #: shared/inc/forms/vps_monitoring.php:68
@@ -391,15 +395,15 @@ msgstr "ВСЕ ФАЙЛЫ И СЦЕНАРИИ"
 msgid "APACHE VHOST"
 msgstr "APACHE VHOST"
 
-#: admin/inc/dtc_config.php:1178
+#: admin/inc/dtc_config.php:1183
 msgid "AWStats harmful"
 msgstr "AWStats опасен"
 
-#: admin/inc/dtc_config.php:1698
+#: admin/inc/dtc_config.php:1703
 msgid "Accept cheques: "
 msgstr "Принимать чеки: "
 
-#: admin/inc/dtc_config.php:1716
+#: admin/inc/dtc_config.php:1721
 msgid "Accept wire transfers to bank: "
 msgstr "Принимать безналичные платежи: "
 
@@ -425,11 +429,11 @@ msgstr "Название счёта"
 msgid "Account Number"
 msgstr "Номер счёта"
 
-#: admin/inc/dtc_config.php:1506
+#: admin/inc/dtc_config.php:1511
 msgid "Act as backup DNS server for the following servers:"
 msgstr "Работать в качестве резервного сервера DNS для следующих серверов:"
 
-#: admin/inc/dtc_config.php:1481
+#: admin/inc/dtc_config.php:1486
 msgid "Act as backup mail server for the following servers:"
 msgstr ""
 "Работать в качестве резервного почтового сервера для следующих серверов:"
@@ -523,11 +527,11 @@ msgstr "Добавить домен или услугу"
 msgid "Add a domain or service:"
 msgstr "Добавить домен или услугу:"
 
-#: admin/inc/dtc_config.php:2350
+#: admin/inc/dtc_config.php:2355
 msgid "Add a new company"
 msgstr "Добавить новую компанию"
 
-#: admin/inc/dtc_config.php:2349
+#: admin/inc/dtc_config.php:2354
 msgid "Add a new company:"
 msgstr "Добавить новую компанию:"
 
@@ -535,11 +539,11 @@ msgstr "Добавить новую компанию:"
 msgid "Add a new user"
 msgstr "Добавить нового пользователя"
 
-#: shared/gfx/skin/default_layout.php:426
+#: shared/gfx/skin/default_layout.php:425
 msgid "Add a virtual administrator"
 msgstr "Добавить виртуального администратора"
 
-#: admin/dtcrm/main.php:133
+#: admin/dtcrm/main.php:148
 msgid "Add an administrator to this customer:"
 msgstr "Добавить администратора этому заказчику:"
 
@@ -567,8 +571,8 @@ msgstr "Добавление сервера имён завершилось не
 msgid "Addition of name server was succesfull"
 msgstr "Добавление сервера имён прошло успешно"
 
-#: admin/view_waitingusers.php:174 admin/dtcrm/main.php:217
-#: client/new_account_form.php:721 shared/dtcrm/draw_handle.php:67
+#: admin/view_waitingusers.php:174 admin/dtcrm/main.php:232
+#: client/new_account_form.php:728 shared/dtcrm/draw_handle.php:67
 #: shared/dtcrm/draw_handle.php:105 shared/dtcrm/draw_handle.php:143
 #: shared/dtcrm/draw_handle.php:181 shared/dtcrm/draw_handle.php:293
 #: shared/dtcrm/draw_handle.php:443
@@ -579,8 +583,8 @@ msgstr "Адрес (строка1): "
 msgid "Address (line2):"
 msgstr "Адрес (строка2):"
 
-#: admin/view_waitingusers.php:175 admin/dtcrm/main.php:218
-#: client/new_account_form.php:724 shared/dtcrm/draw_handle.php:68
+#: admin/view_waitingusers.php:175 admin/dtcrm/main.php:233
+#: client/new_account_form.php:731 shared/dtcrm/draw_handle.php:68
 #: shared/dtcrm/draw_handle.php:106 shared/dtcrm/draw_handle.php:144
 #: shared/dtcrm/draw_handle.php:182 shared/dtcrm/draw_handle.php:298
 #: shared/dtcrm/draw_handle.php:446
@@ -591,8 +595,8 @@ msgstr "Адрес (строка2): "
 msgid "Address (line3):"
 msgstr "Адрес (строка3):"
 
-#: admin/view_waitingusers.php:176 admin/dtcrm/main.php:219
-#: client/new_account_form.php:727 shared/dtcrm/draw_handle.php:69
+#: admin/view_waitingusers.php:176 admin/dtcrm/main.php:234
+#: client/new_account_form.php:734 shared/dtcrm/draw_handle.php:69
 #: shared/dtcrm/draw_handle.php:107 shared/dtcrm/draw_handle.php:145
 #: shared/dtcrm/draw_handle.php:183 shared/dtcrm/draw_handle.php:303
 #: shared/dtcrm/draw_handle.php:449
@@ -604,11 +608,11 @@ msgstr "Адрес (строка3): "
 msgid "Address of the job on your site:"
 msgstr "Адрес вашего основного MX-сервера:"
 
-#: admin/inc/dtc_config.php:1322
+#: admin/inc/dtc_config.php:1327
 msgid "Address of your main MX server:"
 msgstr "Адрес вашего основного MX-сервера:"
 
-#: admin/inc/renewals.php:367 admin/inc/dtc_config.php:2370
+#: admin/inc/renewals.php:367 admin/inc/dtc_config.php:2375
 #: shared/inc/forms/my_account.php:221
 msgid "Address:"
 msgstr "Адреc:"
@@ -617,7 +621,7 @@ msgstr "Адреc:"
 msgid "Admin"
 msgstr "Администратор"
 
-#: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:564
+#: shared/gfx/skin/default_layout.php:180 shared/gfx/skin/bwoup/layout.php:564
 #, fuzzy
 msgid "Admin List"
 msgstr "Список администраторов"
@@ -631,12 +635,12 @@ msgstr "Логин администратора: "
 msgid "Admin contact:"
 msgstr "Связь с администратором:"
 
-#: shared/gfx/skin/default_layout.php:387 shared/gfx/skin/bwoup/layout.php:651
+#: shared/gfx/skin/default_layout.php:386 shared/gfx/skin/bwoup/layout.php:651
 #: shared/gfx/skin/bwoup/layout.php:653
 msgid "Admin editor"
 msgstr "Свойства администратора"
 
-#: admin/inc/dtc_config.php:1619 shared/inc/forms/my_account.php:249
+#: admin/inc/dtc_config.php:1624 shared/inc/forms/my_account.php:249
 msgid "Affiliation"
 msgstr "Партнёрство"
 
@@ -694,7 +698,7 @@ msgstr "Разрешить добавление списков рассылки 
 msgid "Allow edition of subdomains:"
 msgstr "Разрешить изменение поддоменов:"
 
-#: admin/inc/dtc_config.php:1612
+#: admin/inc/dtc_config.php:1617
 msgid "Allow registration of subdomain of the main domain: "
 msgstr "Разрешить регистрацию поддоменов основного домена: "
 
@@ -714,7 +718,7 @@ msgstr "Разрешённая полоса пропускания в месяц
 msgid "Allowed bandwidth per month (MB):"
 msgstr "Разрешённая полоса пропускания в месяц (МБ):"
 
-#: admin/dtcrm/main.php:231
+#: admin/dtcrm/main.php:246
 msgid "Allowed data transfer (GB): "
 msgstr "Разрешённый объём передачи данных (ГБ): "
 
@@ -763,7 +767,7 @@ msgstr "Ангола"
 msgid "Anguilla"
 msgstr "Ангилья"
 
-#: admin/inc/dtc_config.php:1195
+#: admin/inc/dtc_config.php:1200
 msgid "Another location"
 msgstr "другое место"
 
@@ -783,16 +787,16 @@ msgstr "Режим антиспама:"
 msgid "Antigua And Barbuda"
 msgstr "Антигуа и Барбуда"
 
-#: admin/inc/dtc_config.php:1216
+#: admin/inc/dtc_config.php:1221
 #, fuzzy
 msgid "Apache DirectoryIndex Config: "
 msgstr "Apache DirectoryIndex: "
 
-#: admin/inc/dtc_config.php:2296
+#: admin/inc/dtc_config.php:2301
 msgid "Apache file names"
 msgstr "Имена файлов Apache"
 
-#: admin/inc/dtc_config.php:2267
+#: admin/inc/dtc_config.php:2272
 msgid "Apache htpasswd path"
 msgstr "Путь к Apache htpasswd"
 
@@ -856,7 +860,7 @@ msgstr "Аруба"
 msgid "Ascension Island"
 msgstr "Остров Вознесения"
 
-#: admin/inc/dtc_config.php:2147
+#: admin/inc/dtc_config.php:2152
 msgid "Associated Dedicated Service"
 msgstr "Связанная выделенная услуга"
 
@@ -864,8 +868,8 @@ msgstr "Связанная выделенная услуга"
 msgid "At least one ftp user must exist for this check to complete."
 msgstr ""
 
-#: admin/inc/dtc_config.php:2050 admin/inc/dtc_config.php:2082
-#: admin/inc/dtc_config.php:2172 admin/inc/dtc_config.php:2203
+#: admin/inc/dtc_config.php:2055 admin/inc/dtc_config.php:2087
+#: admin/inc/dtc_config.php:2177 admin/inc/dtc_config.php:2208
 msgid "Attribute"
 msgstr "Атрибут"
 
@@ -886,13 +890,13 @@ msgstr "Не удалось получить код аутентификации
 msgid "Auto start of php sessions"
 msgstr "Автозапуск сеансов php"
 
-#: admin/inc/dtc_config.php:1353
+#: admin/inc/dtc_config.php:1358
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
 msgstr ""
 "Автоматически создавать основные поддомены (mail, pop, imap, smtp, ftp, "
 "list):"
 
-#: admin/inc/dtc_config.php:1358
+#: admin/inc/dtc_config.php:1363
 msgid "Auto-generate subdomain list (separated by |):"
 msgstr "Автоматически создавать поддомены (разделённые |):"
 
@@ -956,7 +960,7 @@ msgstr "Баланс после транзакции: "
 msgid "Bandwidth"
 msgstr "Полоса/месяц"
 
-#: shared/gfx/skin/default_layout.php:257 shared/gfx/skin/bwoup/layout.php:407
+#: shared/gfx/skin/default_layout.php:256 shared/gfx/skin/bwoup/layout.php:407
 #: shared/gfx/skin/bwoup/layout.php:409
 #, fuzzy
 msgid "Bandwidth Monitor"
@@ -1007,7 +1011,7 @@ msgstr "Сумма на счету"
 msgid "Bank Validated"
 msgstr "Банк подтверждён"
 
-#: admin/inc/dtc_config.php:1725
+#: admin/inc/dtc_config.php:1730
 msgid "Bank account details: "
 msgstr "Данные о банковском счёте: "
 
@@ -1015,11 +1019,11 @@ msgstr "Данные о банковском счёте: "
 msgid "Barbados"
 msgstr "Барбадос"
 
-#: admin/inc/dtc_config.php:1923
+#: admin/inc/dtc_config.php:1928
 msgid "Barcode"
 msgstr "Штрих-код"
 
-#: admin/inc/dtc_config.php:2263
+#: admin/inc/dtc_config.php:2268
 msgid ""
 "Base path to DTC-generated daemon configuration files.<br>\n"
 "All of the DTC daemon config files defined on this page will be saved here:"
@@ -1061,15 +1065,15 @@ msgstr "Перезагрузка Bind"
 msgid "Bolivia"
 msgstr "Боливия"
 
-#: shared/inc/forms/vps_installation.php:312
+#: shared/inc/forms/vps_installation.php:319
 msgid "Boot device: "
 msgstr "Загрузочное устройство: "
 
-#: shared/inc/forms/vps_installation.php:288
+#: shared/inc/forms/vps_installation.php:295
 msgid "Boot on hard drive"
 msgstr "Загрузка с жёсткого диска"
 
-#: shared/inc/forms/vps_installation.php:198
+#: shared/inc/forms/vps_installation.php:205
 msgid "Boot up (xm start)"
 msgstr "Начальный запуск (старт xm)"
 
@@ -1179,7 +1183,7 @@ msgstr "Не удалось получить данные о пользоват�
 msgid "Cannot find payment."
 msgstr "Оплата не найдена!"
 
-#: client/new_account_form.php:427
+#: client/new_account_form.php:428
 #, fuzzy
 msgid "Cannot find product ID."
 msgstr "Не найден продукт!"
@@ -1306,11 +1310,11 @@ msgstr "Центрально-Африканская Республика"
 msgid "Chad"
 msgstr "Чад"
 
-#: shared/inc/forms/vps_installation.php:281
+#: shared/inc/forms/vps_installation.php:288
 msgid "Change NetBSD kernel"
 msgstr "Смена ядра NetBSD"
 
-#: shared/inc/forms/vps_installation.php:167
+#: shared/inc/forms/vps_installation.php:174
 #: shared/inc/forms/dedicated.php:139
 msgid "Change RDNS"
 msgstr "Изменить RDNS"
@@ -1329,7 +1333,7 @@ msgid "Check to send a bounce (vacation) message: "
 msgstr "Отправлять ответное сообщение (об отсутствии): "
 
 #: shared/inc/forms/vps_monitoring.php:133
-#: shared/inc/forms/vps_installation.php:81
+#: shared/inc/forms/vps_installation.php:82
 msgid "Checking filesystem..."
 msgstr "Проверка файловой системы..."
 
@@ -1338,11 +1342,11 @@ msgstr "Проверка файловой системы..."
 msgid "Cheque"
 msgstr "чек"
 
-#: admin/inc/dtc_config.php:1707
+#: admin/inc/dtc_config.php:1712
 msgid "Cheques Payable To: "
 msgstr "Чеки погашаемы: "
 
-#: admin/inc/dtc_config.php:1693
+#: admin/inc/dtc_config.php:1698
 msgid "Cheques and wire transfers:"
 msgstr "Чеки и безналичные платежи:"
 
@@ -1374,8 +1378,8 @@ msgstr "Остров Рождества"
 msgid "City:"
 msgstr "Город:"
 
-#: admin/view_waitingusers.php:177 admin/dtcrm/main.php:220
-#: client/new_account_form.php:733 shared/dtcrm/draw_handle.php:71
+#: admin/view_waitingusers.php:177 admin/dtcrm/main.php:235
+#: client/new_account_form.php:740 shared/dtcrm/draw_handle.php:71
 #: shared/dtcrm/draw_handle.php:109 shared/dtcrm/draw_handle.php:147
 #: shared/dtcrm/draw_handle.php:185 shared/dtcrm/draw_handle.php:308
 #: shared/dtcrm/draw_handle.php:455
@@ -1414,11 +1418,11 @@ msgstr "ID клиента"
 msgid "Client ID:"
 msgstr "ID клиента:"
 
-#: client/new_account_form.php:905
+#: client/new_account_form.php:912
 msgid "Client info"
 msgstr "Информация о клиенте"
 
-#: shared/gfx/skin/default_layout.php:369 shared/gfx/skin/bwoup/layout.php:639
+#: shared/gfx/skin/default_layout.php:368 shared/gfx/skin/bwoup/layout.php:639
 #: shared/gfx/skin/bwoup/layout.php:641
 msgid "Client interface"
 msgstr "Клиентский интерфейс"
@@ -1433,8 +1437,8 @@ msgstr "Имя клиента не найдено!"
 msgid "Client panel"
 msgstr "Клиентская панель"
 
-#: client/recover_pass.php:65 shared/gfx/skin/default_layout.php:63
-#: shared/gfx/skin/default_layout.php:72 shared/gfx/skin/bwoup/layout.php:253
+#: client/recover_pass.php:65 shared/gfx/skin/default_layout.php:62
+#: shared/gfx/skin/default_layout.php:71 shared/gfx/skin/bwoup/layout.php:253
 #: shared/gfx/skin/bwoup/layout.php:262
 msgid "Client panel:"
 msgstr "Клиентская панель:"
@@ -1488,24 +1492,24 @@ msgstr "Компания"
 msgid "Company Account:"
 msgstr "Название компании:"
 
-#: admin/view_waitingusers.php:170 admin/dtcrm/main.php:213
-#: client/new_account_form.php:693
+#: admin/view_waitingusers.php:170 admin/dtcrm/main.php:228
+#: client/new_account_form.php:700
 #, fuzzy
 msgid "Company Account: "
 msgstr "Название компании: "
 
-#: admin/inc/dtc_config.php:2467
+#: admin/inc/dtc_config.php:2472
 #, fuzzy
 msgid "Company Name"
 msgstr "Название компании"
 
-#: admin/inc/renewals.php:353 admin/inc/dtc_config.php:2365
+#: admin/inc/renewals.php:353 admin/inc/dtc_config.php:2370
 #, fuzzy
 msgid "Company Name:"
 msgstr "Название компании:"
 
-#: admin/view_waitingusers.php:172 admin/dtcrm/main.php:215
-#: client/new_account_form.php:697 shared/dtcrm/draw_handle.php:66
+#: admin/view_waitingusers.php:172 admin/dtcrm/main.php:230
+#: client/new_account_form.php:704 shared/dtcrm/draw_handle.php:66
 #: shared/dtcrm/draw_handle.php:104 shared/dtcrm/draw_handle.php:142
 #: shared/dtcrm/draw_handle.php:180 shared/dtcrm/draw_handle.php:278
 #: shared/dtcrm/draw_handle.php:434
@@ -1527,18 +1531,18 @@ msgstr "Компания-плательщик"
 msgid "Company name:"
 msgstr "Название компании:"
 
-#: client/new_account_form.php:256 client/new_account_form.php:261
+#: client/new_account_form.php:257 client/new_account_form.php:262
 #, fuzzy
 msgid "Company option wrong."
 msgstr "Компания-плательщик"
 
-#: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:427
+#: shared/gfx/skin/default_layout.php:306 shared/gfx/skin/bwoup/layout.php:427
 #: shared/gfx/skin/bwoup/layout.php:429
 #, fuzzy
 msgid "Configuration Generation"
 msgstr "Генерация конфигурации"
 
-#: shared/gfx/skin/default_layout.php:406
+#: shared/gfx/skin/default_layout.php:405
 msgid "Configuration of domains for"
 msgstr "Конфигурация доменов для"
 
@@ -1554,7 +1558,7 @@ msgstr "Конфигурация выделенных серверов"
 msgid "Configuration of the subdomain"
 msgstr "Конфигурация поддомена"
 
-#: shared/gfx/skin/default_layout.php:402
+#: shared/gfx/skin/default_layout.php:401
 msgid "Configuration of the virtual administrator"
 msgstr "Конфигурация виртуального администратора"
 
@@ -1562,7 +1566,7 @@ msgstr "Конфигурация виртуального администрат
 msgid "Configure your domain name:"
 msgstr "Настройка вашего доменного имени:"
 
-#: client/new_account_form.php:672
+#: client/new_account_form.php:679
 msgid "Confirm pass: "
 msgstr "Повторите пароль: "
 
@@ -1599,7 +1603,7 @@ msgstr "Острова Кука"
 msgid "Copy to subdomains:"
 msgstr "Копировать в поддомены:"
 
-#: admin/inc/dtc_config.php:1676 admin/dtcrm/product_manager.php:533
+#: admin/inc/dtc_config.php:1681 admin/dtcrm/product_manager.php:533
 msgid "Corresponding display"
 msgstr "Соответствующий экран"
 
@@ -1635,7 +1639,7 @@ msgstr ""
 "раз!"
 
 #: shared/inc/forms/vps_monitoring.php:181
-#: shared/inc/forms/vps_installation.php:129
+#: shared/inc/forms/vps_installation.php:130
 msgid "Could not connect to the VPS SOAP Server."
 msgstr "Не удалось подключиться к VPS SOAP серверу."
 
@@ -1648,7 +1652,7 @@ msgstr "Не удалось найти данные о VPS."
 msgid "Could not find login."
 msgstr "Не удалось найти каталог"
 
-#: client/new_account_form.php:119
+#: client/new_account_form.php:120
 msgid "Could not find the VPS server in database"
 msgstr "Не удалось найти VPS сервер в базе данных"
 
@@ -1678,7 +1682,7 @@ msgid "Could not get installed ISO files."
 msgstr "Не удалось получить установленные iso-файлы!"
 
 #: shared/inc/forms/vps_monitoring.php:126
-#: shared/inc/forms/vps_installation.php:74
+#: shared/inc/forms/vps_installation.php:75
 msgid ""
 "Could not get remote status (Method getVPSState() failed). Maybe the VPS is "
 "not running?"
@@ -1687,12 +1691,12 @@ msgstr ""
 "завершился неудачно). Может быть VPS не работает?"
 
 #: shared/inc/forms/vps_monitoring.php:130
-#: shared/inc/forms/vps_installation.php:78
+#: shared/inc/forms/vps_installation.php:79
 msgid "Could not get remote status. Unkown error: "
 msgstr "Не удалось получить состояние удалённой стороны: неизвестная ошибка: "
 
 #: shared/inc/forms/vps_monitoring.php:128
-#: shared/inc/forms/vps_installation.php:76
+#: shared/inc/forms/vps_installation.php:77
 msgid ""
 "Could not get remote status: could not connect to the SOAP server (HTTP "
 "error)."
@@ -1733,17 +1737,17 @@ msgstr "Не удалось послать USER серверу"
 msgid "Country"
 msgstr "Страна"
 
-#: client/new_account_form.php:245
+#: client/new_account_form.php:246
 msgid "Country code seems incorrect."
 msgstr "Неправильный код страны."
 
-#: admin/inc/renewals.php:385 admin/inc/dtc_config.php:2373
+#: admin/inc/renewals.php:385 admin/inc/dtc_config.php:2378
 #: shared/inc/forms/my_account.php:226
 msgid "Country:"
 msgstr "Страна:"
 
-#: admin/view_waitingusers.php:180 admin/dtcrm/main.php:223
-#: client/new_account_form.php:739 shared/dtcrm/draw_handle.php:73
+#: admin/view_waitingusers.php:180 admin/dtcrm/main.php:238
+#: client/new_account_form.php:746 shared/dtcrm/draw_handle.php:73
 #: shared/dtcrm/draw_handle.php:111 shared/dtcrm/draw_handle.php:149
 #: shared/dtcrm/draw_handle.php:187 shared/dtcrm/draw_handle.php:318
 #: shared/dtcrm/draw_handle.php:461 shared/inc/forms/root_admin.php:335
@@ -1784,7 +1788,7 @@ msgid "Creation date: "
 msgstr "Дата создания: "
 
 #: shared/inc/forms/vps_monitoring.php:30 shared/inc/forms/vps_graphs.php:30
-#: shared/inc/forms/vps_installation.php:31 shared/inc/forms/vps.php:30
+#: shared/inc/forms/vps_installation.php:32 shared/inc/forms/vps.php:30
 #: shared/inc/forms/vps_dom0graphs.php:30
 msgid "Credential not correct: can't display in file "
 msgstr "Некорректное удостоверение: не удалось показать в файле "
@@ -1794,35 +1798,35 @@ msgstr "Некорректное удостоверение: не удалось
 msgid "Credit cCrd"
 msgstr "Пластиковая карта"
 
-#: admin/inc/dtc_config.php:1925
+#: admin/inc/dtc_config.php:1930
 msgid "Credit card in 12 installments"
 msgstr "Пластиковой картой за 12 взносов"
 
-#: admin/inc/dtc_config.php:1925
+#: admin/inc/dtc_config.php:1930
 msgid "Credit card in 18 installments"
 msgstr "Пластиковой картой за 18 взносов"
 
-#: admin/inc/dtc_config.php:1925
+#: admin/inc/dtc_config.php:1930
 msgid "Credit card in 24 installments"
 msgstr "Пластиковой картой за 24 взноса"
 
-#: admin/inc/dtc_config.php:1924
+#: admin/inc/dtc_config.php:1929
 msgid "Credit card in 3 installments"
 msgstr "Пластиковой картой за 3 взносов"
 
-#: admin/inc/dtc_config.php:1924
+#: admin/inc/dtc_config.php:1929
 msgid "Credit card in 6 installments"
 msgstr "Пластиковой картой за 6 взносов"
 
-#: admin/inc/dtc_config.php:1924
+#: admin/inc/dtc_config.php:1929
 msgid "Credit card in 9 installments"
 msgstr "Пластиковой картой за 9 взносов"
 
-#: admin/inc/dtc_config.php:1925
+#: admin/inc/dtc_config.php:1930
 msgid "Credit card in Z plan"
 msgstr "Пластиковой картой с планом Z"
 
-#: admin/inc/dtc_config.php:1923
+#: admin/inc/dtc_config.php:1928
 msgid "Credit card in one payment"
 msgstr "Пластиковой картой одним взносом"
 
@@ -1860,16 +1864,16 @@ msgstr "Куба"
 msgid "Currency"
 msgstr "Валюта"
 
-#: admin/inc/dtc_config.php:1639
+#: admin/inc/dtc_config.php:1644
 msgid "Currency letters: "
 msgstr "Символы валюты: "
 
-#: admin/inc/dtc_config.php:1635
+#: admin/inc/dtc_config.php:1640
 msgid "Currency symbol: "
 msgstr "Знак валюты: "
 
 #: shared/inc/forms/vps_monitoring.php:208
-#: shared/inc/forms/vps_installation.php:175
+#: shared/inc/forms/vps_installation.php:182
 msgid "Current VPS status:"
 msgstr "Текущее состояние VPS:"
 
@@ -1877,7 +1881,7 @@ msgstr "Текущее состояние VPS:"
 msgid "Current contract: "
 msgstr "Текущий контракт: "
 
-#: shared/inc/forms/vps_installation.php:207
+#: shared/inc/forms/vps_installation.php:214
 msgid "Currently installed operating system: "
 msgstr "Установленная операционная система: "
 
@@ -1924,16 +1928,16 @@ msgstr "Пользовательские заголовки:"
 msgid "Custom product type"
 msgstr "Страна заказчика"
 
-#: admin/inc/dtc_config.php:1645
+#: admin/inc/dtc_config.php:1650
 msgid "Custom registration fields"
 msgstr "Пользовательские поля регистрации"
 
-#: admin/inc/dtc_config.php:2462
+#: admin/inc/dtc_config.php:2467
 #, fuzzy
 msgid "Customer Country"
 msgstr "Страна заказчика"
 
-#: shared/gfx/skin/default_layout.php:246 shared/gfx/skin/bwoup/layout.php:402
+#: shared/gfx/skin/default_layout.php:245 shared/gfx/skin/bwoup/layout.php:402
 #: shared/gfx/skin/bwoup/layout.php:404
 #, fuzzy
 msgid "Customer Management"
@@ -1944,29 +1948,29 @@ msgstr "Работа с заказчиками"
 msgid "Customer Name"
 msgstr "Имя заказчика"
 
-#: admin/inc/dtc_config.php:2447
+#: admin/inc/dtc_config.php:2452
 #, fuzzy
 msgid "Customer and Service country vs. Company:"
 msgstr "Сопоставление страны сервиса и заказчика с компанией:"
 
-#: shared/gfx/skin/default_layout.php:131 shared/gfx/skin/bwoup/layout.php:493
+#: shared/gfx/skin/default_layout.php:130 shared/gfx/skin/bwoup/layout.php:493
 msgid "Customer renewals"
 msgstr "Продления заказчика"
 
-#: client/new_account_form.php:907 shared/gfx/skin/default_layout.php:120
+#: client/new_account_form.php:914 shared/gfx/skin/default_layout.php:119
 #: shared/gfx/skin/bwoup/layout.php:480
 msgid "Customer's address"
 msgstr "Адрес заказчика"
 
-#: shared/gfx/skin/default_layout.php:122
+#: shared/gfx/skin/default_layout.php:121
 msgid "Customer's administrators"
 msgstr "Администраторы заказчика"
 
-#: shared/gfx/skin/default_layout.php:135 shared/gfx/skin/bwoup/layout.php:497
+#: shared/gfx/skin/default_layout.php:134 shared/gfx/skin/bwoup/layout.php:497
 msgid "Customer's bandwidth consumption"
 msgstr "Потребление полосы заказчиком"
 
-#: shared/gfx/skin/default_layout.php:125 shared/gfx/skin/bwoup/layout.php:475
+#: shared/gfx/skin/default_layout.php:124 shared/gfx/skin/bwoup/layout.php:475
 msgid "Customers list"
 msgstr "Список заказчиков"
 
@@ -2008,7 +2012,11 @@ msgstr "DNS и MX"
 msgid "DNS config of:"
 msgstr "Настройка DNS для:"
 
-#: shared/gfx/skin/default_layout.php:152 shared/gfx/skin/bwoup/layout.php:520
+#: shared/inc/forms/vps_installation.php:148
+msgid "DNS: "
+msgstr ""
+
+#: shared/gfx/skin/default_layout.php:151 shared/gfx/skin/bwoup/layout.php:520
 msgid "DTC Configuration"
 msgstr "Настройка DTC"
 
@@ -2017,11 +2025,11 @@ msgstr "Настройка DTC"
 msgid "DTC General Configuration"
 msgstr "Общие настройки DTC"
 
-#: admin/inc/dtc_config.php:1237
+#: admin/inc/dtc_config.php:1242
 msgid "DTC Skin chooser"
 msgstr "Внешний вид DTC"
 
-#: shared/gfx/skin/default_layout.php:319
+#: shared/gfx/skin/default_layout.php:318
 msgid "DTC general configuration"
 msgstr "Общие настройки DTC"
 
@@ -2051,16 +2059,16 @@ msgstr ""
 "настройки, который должен быть доступен на запись для пользователя на "
 "сервере Nagios."
 
-#: admin/inc/dtc_config.php:2254
+#: admin/inc/dtc_config.php:2259
 #, fuzzy
 msgid "DTC shared directory path:"
 msgstr "Путь к вашему виртуальному каталогу DTC:"
 
-#: admin/inc/dtc_config.php:1147
+#: admin/inc/dtc_config.php:1152
 msgid "Daemon"
 msgstr "Сервис"
 
-#: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:505
+#: shared/gfx/skin/default_layout.php:142 shared/gfx/skin/bwoup/layout.php:505
 #, fuzzy
 msgid "Daemon Status"
 msgstr "Сервис"
@@ -2187,11 +2195,11 @@ msgstr "Контракт на выделенный сервер:"
 msgid "Dedicated server expiration dates:"
 msgstr "Сроки истечения работы с выделенным сервером:"
 
-#: admin/inc/dtc_config.php:2425 admin/inc/dtc_config.php:2430
+#: admin/inc/dtc_config.php:2430 admin/inc/dtc_config.php:2435
 msgid "Default company invoicing:"
 msgstr "Выписка счетов компании по умолчанию:"
 
-#: admin/inc/dtc_config.php:2257
+#: admin/inc/dtc_config.php:2262
 #, fuzzy
 msgid "Default new account directory:"
 msgstr "Каталог по умолчанию для новых аккаунтов:"
@@ -2200,7 +2208,7 @@ msgstr "Каталог по умолчанию для новых аккаунт�
 msgid "Default subdomain: "
 msgstr "Поддомен по умолчанию: "
 
-#: admin/inc/dtc_config.php:1368
+#: admin/inc/dtc_config.php:1373
 msgid "Defaut TTL for your zonefiles:"
 msgstr "TTL по умолчанию для ваших файлов зон:"
 
@@ -2241,7 +2249,7 @@ msgstr ""
 "Удаление всех сообщений веб-архива. ЗАМЕЧАНИЕ: это работает только, если ваш "
 "&quot;веб-архив&quot; не проверялся."
 
-#: admin/dtcrm/main.php:324
+#: admin/dtcrm/main.php:339
 msgid "Delete client"
 msgstr "Удалить клиента"
 
@@ -2297,12 +2305,12 @@ msgstr "Дания"
 msgid "Deny if no To: or Cc::"
 msgstr "Отказывать, если нет полей To: или Cc::"
 
-#: admin/inc/dtc_config.php:1992 admin/inc/dtc_config.php:2014
+#: admin/inc/dtc_config.php:1997 admin/inc/dtc_config.php:2019
 #: shared/inc/forms/packager.php:218
 msgid "Description"
 msgstr "Описание"
 
-#: client/new_account_form.php:650
+#: client/new_account_form.php:657
 msgid "Desired domain name"
 msgstr "Желаемое имя домена"
 
@@ -2326,15 +2334,15 @@ msgstr "Дайджест интервал:"
 msgid "Digest max mails:"
 msgstr "Макс. кол-во писем в дайджесте:"
 
-#: admin/inc/dtc_config.php:1923
+#: admin/inc/dtc_config.php:1928
 msgid "DineroMail account funds"
 msgstr "Средства в DineroMail"
 
-#: admin/inc/dtc_config.php:1916
+#: admin/inc/dtc_config.php:1921
 msgid "Dineromail Account: "
 msgstr "Учётная запись Dineromail: "
 
-#: admin/inc/dtc_config.php:1906
+#: admin/inc/dtc_config.php:1911
 msgid "Dineromail:"
 msgstr "Dineromail:"
 
@@ -2364,7 +2372,7 @@ msgstr "Использование диска"
 msgid "Display and sort by:"
 msgstr "Сортировать по:"
 
-#: admin/inc/dtc_config.php:1656 admin/dtcrm/product_manager.php:513
+#: admin/inc/dtc_config.php:1661 admin/dtcrm/product_manager.php:513
 msgid "Display order"
 msgstr "Порядок отображения"
 
@@ -2412,7 +2420,7 @@ msgstr "Имя домена: "
 msgid "Domain Technologie Control"
 msgstr "Domain Technologie Control"
 
-#: shared/gfx/skin/default_layout.php:194
+#: shared/gfx/skin/default_layout.php:193
 msgid "Domain Technologie Control : root admin console"
 msgstr "Domain Technologie Control : консоль управления"
 
@@ -2424,7 +2432,7 @@ msgstr "Инструменты работы с доменом"
 msgid "Domain auth code: "
 msgstr "Код аутентификации домена: "
 
-#: shared/gfx/skin/default_layout.php:378 shared/gfx/skin/bwoup/layout.php:645
+#: shared/gfx/skin/default_layout.php:377 shared/gfx/skin/bwoup/layout.php:645
 #: shared/gfx/skin/bwoup/layout.php:647
 msgid "Domain config"
 msgstr "Настройка домена"
@@ -2441,7 +2449,7 @@ msgstr "Имя домена"
 msgid "Domain name files:"
 msgstr "Файлы домена:"
 
-#: admin/inc/dtc_config.php:1624
+#: admin/inc/dtc_config.php:1629
 msgid "Domain name for affiliation return URL:"
 msgstr "Имя домена для URL, возвращаемого партнёру:"
 
@@ -2459,11 +2467,11 @@ msgstr "Доменное имя имеет неправильный формат
 msgid "Domain name protected"
 msgstr "Имя домена защищено"
 
-#: admin/inc/dtc_config.php:1549
+#: admin/inc/dtc_config.php:1554
 msgid "Domain name registry API configuration"
 msgstr "Настройка программного интерфейса для доменной регистрации"
 
-#: client/new_account_form.php:94 client/new_account_form.php:104
+#: client/new_account_form.php:95 client/new_account_form.php:105
 msgid "Domain name seems to be incorrect."
 msgstr "Вероятно, доменное имя неправильно."
 
@@ -2503,7 +2511,7 @@ msgstr "TXT запись для корня домена: "
 msgid "Domains"
 msgstr "Домены"
 
-#: shared/gfx/skin/default_layout.php:409
+#: shared/gfx/skin/default_layout.php:408
 msgid "Domains for"
 msgstr "Домены "
 
@@ -2630,7 +2638,7 @@ msgstr "Редактировать почтовую группу"
 msgid "Edit Upstream Provider"
 msgstr "Редактировать данные о вышестоящем провайдере"
 
-#: admin/inc/dtc_config.php:2351
+#: admin/inc/dtc_config.php:2356
 msgid "Edit a company:"
 msgstr "Редактировать данные о компании:"
 
@@ -2681,11 +2689,11 @@ msgstr "Адрес эл.почты"
 msgid "Email address is already in use."
 msgstr "Такой адрес эл.почты уже используется!"
 
-#: admin/inc/dtc_config.php:1331
+#: admin/inc/dtc_config.php:1336
 msgid "Email address of your webmaster:"
 msgstr "Адрес эл. почты вашего вебмастера:"
 
-#: client/new_account_form.php:125
+#: client/new_account_form.php:126
 msgid "Email address seems to be incorrect format."
 msgstr "Кажется адрес эл.почты указан в неправильном формате."
 
@@ -2697,7 +2705,7 @@ msgstr "Макс почты"
 msgid "Email panel"
 msgstr "Панель управления почтой"
 
-#: shared/gfx/skin/default_layout.php:24 shared/gfx/skin/default_layout.php:34
+#: shared/gfx/skin/default_layout.php:23 shared/gfx/skin/default_layout.php:33
 #: shared/gfx/skin/bwoup/layout.php:53 shared/gfx/skin/bwoup/layout.php:61
 msgid "Email panel: "
 msgstr "Панель управления почтой: "
@@ -2716,8 +2724,8 @@ msgstr "Сгенерированы файлы для эл.почты и доме
 msgid "Email:"
 msgstr "Эл.почта:"
 
-#: admin/view_waitingusers.php:184 admin/dtcrm/main.php:227
-#: client/new_account_form.php:703 email/login.php:14
+#: admin/view_waitingusers.php:184 admin/dtcrm/main.php:242
+#: client/new_account_form.php:710 email/login.php:14
 #: shared/dtcrm/draw_handle.php:77 shared/dtcrm/draw_handle.php:115
 #: shared/dtcrm/draw_handle.php:153 shared/dtcrm/draw_handle.php:191
 #: shared/dtcrm/draw_handle.php:344 shared/dtcrm/draw_handle.php:473
@@ -2756,7 +2764,7 @@ msgstr "Экваториальная Гвинея"
 msgid "Eritrea"
 msgstr "Эритрея"
 
-#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
+#: shared/gfx/skin/default_layout.php:60 shared/gfx/skin/bwoup/layout.php:251
 msgid "Error"
 msgstr "Ошибка"
 
@@ -2770,7 +2778,7 @@ msgstr ""
 msgid "Error fetching admin"
 msgstr "Ошибка получения admin"
 
-#: shared/inc/forms/vps_installation.php:157
+#: shared/inc/forms/vps_installation.php:159
 msgid "Error line "
 msgstr "Ошибка в строке "
 
@@ -2921,8 +2929,8 @@ msgstr "Фарерские острова"
 msgid "Fax:"
 msgstr "Факс:"
 
-#: admin/view_waitingusers.php:183 admin/dtcrm/main.php:226
-#: client/new_account_form.php:709 shared/dtcrm/draw_handle.php:76
+#: admin/view_waitingusers.php:183 admin/dtcrm/main.php:241
+#: client/new_account_form.php:716 shared/dtcrm/draw_handle.php:76
 #: shared/dtcrm/draw_handle.php:114 shared/dtcrm/draw_handle.php:152
 #: shared/dtcrm/draw_handle.php:190 shared/dtcrm/draw_handle.php:339
 #: shared/dtcrm/draw_handle.php:470
@@ -2942,7 +2950,7 @@ msgstr "Настройка Fetchmail:"
 msgid "Fetchmail script generated."
 msgstr "Сгенерирован сценарий для Fetchmail!"
 
-#: client/new_account_form.php:896
+#: client/new_account_form.php:903
 #, fuzzy
 msgid "Fields with a <font color=\"red\">*</font> are mandatory."
 msgstr "Поля со <font color=\"red\">*</font> обязательны для заполнения."
@@ -2959,11 +2967,11 @@ msgstr "Управление файлами"
 msgid "File manager:"
 msgstr "Управление файлами:"
 
-#: shared/inc/forms/vps_installation.php:203
+#: shared/inc/forms/vps_installation.php:210
 msgid "File system check (fsck)"
 msgstr "Проверка файловой системы (fsck)"
 
-#: shared/inc/forms/vps_installation.php:201
+#: shared/inc/forms/vps_installation.php:208
 msgid "File-system check:"
 msgstr "Проверка файловой системы:"
 
@@ -2980,8 +2988,8 @@ msgstr ""
 msgid "Finland"
 msgstr "Финляндия"
 
-#: admin/view_waitingusers.php:169 admin/dtcrm/main.php:212
-#: client/new_account_form.php:690 shared/dtcrm/draw_handle.php:64
+#: admin/view_waitingusers.php:169 admin/dtcrm/main.php:227
+#: client/new_account_form.php:697 shared/dtcrm/draw_handle.php:64
 #: shared/dtcrm/draw_handle.php:102 shared/dtcrm/draw_handle.php:140
 #: shared/dtcrm/draw_handle.php:178 shared/dtcrm/draw_handle.php:283
 #: shared/dtcrm/draw_handle.php:437
@@ -3002,15 +3010,15 @@ msgstr "Имя:"
 msgid "First query date"
 msgstr "Дата первого обращения"
 
-#: admin/inc/dtc_config.php:1927
+#: admin/inc/dtc_config.php:1932
 msgid "Fixed charge fee: "
 msgstr "Фиксированный платёж:"
 
-#: admin/inc/dtc_config.php:1703
+#: admin/inc/dtc_config.php:1708
 msgid "Flat fee for accepting cheques: "
 msgstr "Абонентская плата при оплате чеком: "
 
-#: admin/inc/dtc_config.php:1721
+#: admin/inc/dtc_config.php:1726
 msgid "Flat fee for accepting wire transfers: "
 msgstr "Абонентская плата при оплате банковским переводом: "
 
@@ -3026,7 +3034,7 @@ msgstr ""
 msgid "Forbidden database name"
 msgstr "Запрещённое имя базы данных"
 
-#: admin/inc/dtc_config.php:1113
+#: admin/inc/dtc_config.php:1118
 msgid "Force HTTPS use for contol panel: "
 msgstr ""
 
@@ -3075,11 +3083,11 @@ msgstr "Французские Южные Территории"
 msgid "Full description of the trouble:"
 msgstr "Полное описание неисправности:"
 
-#: admin/inc/dtc_config.php:1295
+#: admin/inc/dtc_config.php:1300
 msgid "Full hostname of DTC admin panel: "
 msgstr "Полное имя узла с административной панелью DTC: "
 
-#: admin/inc/dtc_config.php:1388
+#: admin/inc/dtc_config.php:1393
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr "Полный путь файла public.key для поддержки DomainKey:"
 
@@ -3118,6 +3126,11 @@ msgstr "Тип шлюза"
 msgid "Gateway cost"
 msgstr "Услуги пункта оплаты"
 
+#: shared/inc/forms/vps_installation.php:148
+#, fuzzy
+msgid "Gateway: "
+msgstr "Шлюз"
+
 #: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:1093
 msgid "General"
 msgstr "Общие"
@@ -3131,7 +3144,7 @@ msgstr "Общая информация "
 msgid "Generate a ServerAlias for the root of the domain:"
 msgstr "Генерировать ServerAlias для корня домена:"
 
-#: admin/inc/dtc_config.php:1206
+#: admin/inc/dtc_config.php:1211
 msgid "Generate a global /webmail alias: "
 msgstr "Генерировать глобальный/webmail псевдоним: "
 
@@ -3139,7 +3152,7 @@ msgstr "Генерировать глобальный/webmail псевдоним
 msgid "Generate a vhost entry for this subdomain:"
 msgstr "Генерировать запись vhost для этого поддомена:"
 
-#: admin/inc/dtc_config.php:1286
+#: admin/inc/dtc_config.php:1291
 msgid "Generate all apache vhosts on local network ip (NAT): "
 msgstr "Генерировать все apache vhost на локальный сетевой ip (NAT): "
 
@@ -3163,11 +3176,11 @@ msgstr "Гана"
 msgid "Gibraltar"
 msgstr "Гибралтар"
 
-#: client/new_account_form.php:818
+#: client/new_account_form.php:825
 msgid "Go to login"
 msgstr "Перейти к входу в систему"
 
-#: shared/inc/forms/vps_installation.php:187
+#: shared/inc/forms/vps_installation.php:194
 msgid "Gracefully shutdown (xm shutdown)"
 msgstr "Поэтапное выключение (выключение xm)"
 
@@ -3176,7 +3189,7 @@ msgstr "Поэтапное выключение (выключение xm)"
 msgid "Grand Total"
 msgstr "Итоговая сумма"
 
-#: admin/inc/dtc_config.php:1786 admin/inc/dtc_config.php:1838
+#: admin/inc/dtc_config.php:1791 admin/inc/dtc_config.php:1843
 msgid "Grand total"
 msgstr "Итоговая сумма"
 
@@ -3200,24 +3213,24 @@ msgstr "Гренландия"
 msgid "Grenada"
 msgstr "Гренада"
 
-#: admin/inc/dtc_config.php:1786 admin/inc/dtc_config.php:1838
+#: admin/inc/dtc_config.php:1791 admin/inc/dtc_config.php:1843
 msgid "Gross amount"
 msgstr "Общее количество"
 
-#: admin/inc/dtc_config.php:2045 admin/inc/dtc_config.php:2077
-#: admin/inc/dtc_config.php:2142
+#: admin/inc/dtc_config.php:2050 admin/inc/dtc_config.php:2082
+#: admin/inc/dtc_config.php:2147
 msgid "Group"
 msgstr "Группа"
 
-#: admin/inc/dtc_config.php:2031
+#: admin/inc/dtc_config.php:2036
 msgid "Group Attributes checking config"
 msgstr "Конфигурация проверки групповых атрибутов"
 
-#: admin/inc/dtc_config.php:2063
+#: admin/inc/dtc_config.php:2068
 msgid "Group Reply Attributes config"
 msgstr "Конфигурация атрибутов ответов группы"
 
-#: admin/inc/dtc_config.php:1997
+#: admin/inc/dtc_config.php:2002
 msgid "Group config"
 msgstr "Конфигурация группы"
 
@@ -3382,7 +3395,7 @@ msgstr ""
 msgid "Here will go quarantinized messages"
 msgstr "Здесь карантин для писем"
 
-#: admin/dtcrm/main.php:100
+#: admin/dtcrm/main.php:113
 msgid "Hide client without admin"
 msgstr "Скрыть клиента без админа"
 
@@ -3398,12 +3411,12 @@ msgstr "Гондурас"
 msgid "Hong Kong"
 msgstr "Гонконг"
 
-#: admin/inc/dtc_config.php:1277
+#: admin/inc/dtc_config.php:1282
 msgid "Host IP addresses (separated by \"|\"): "
 msgstr "IP-адреса узла (разделённые \"|\"): "
 
-#: shared/gfx/skin/default_layout.php:159
-#: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:422
+#: shared/gfx/skin/default_layout.php:158
+#: shared/gfx/skin/default_layout.php:293 shared/gfx/skin/bwoup/layout.php:422
 #: shared/gfx/skin/bwoup/layout.php:424 shared/gfx/skin/bwoup/layout.php:533
 #, fuzzy
 msgid "Hosting Product Manager"
@@ -3479,7 +3492,7 @@ msgstr ""
 msgid "Hungary"
 msgstr "Венгрия"
 
-#: client/new_account_form.php:746
+#: client/new_account_form.php:753
 msgid "I agree to the"
 msgstr "Я согласен"
 
@@ -3518,7 +3531,7 @@ msgstr "Список IP-адресов"
 msgid "IP Resolved"
 msgstr "IP определено"
 
-#: admin/inc/dtc_config.php:1414 admin/inc/ip_usage_report.php:286
+#: admin/inc/dtc_config.php:1419 admin/inc/ip_usage_report.php:286
 #: shared/inc/forms/my_account.php:143 shared/inc/forms/root_admin.php:444
 msgid "IP address"
 msgstr "IP-адрес"
@@ -3544,17 +3557,17 @@ msgid "IP address(es) of your VPS:"
 msgstr "IP-адреса вашего(ых) VPS:"
 
 #: shared/inc/forms/vps_monitoring.php:196
-#: shared/inc/forms/vps_installation.php:143
+#: shared/inc/forms/vps_installation.php:144
 msgid "IP address: "
 msgstr "IP-адрес: "
 
 #: shared/inc/forms/vps_monitoring.php:194
-#: shared/inc/forms/vps_installation.php:141
+#: shared/inc/forms/vps_installation.php:142
 #: shared/inc/forms/dedicated.php:113
 msgid "IP addresses: "
 msgstr "IP адреса: "
 
-#: admin/inc/dtc_config.php:1344
+#: admin/inc/dtc_config.php:1349
 msgid "IP of the master DNS to be written in the named.slavezones.conf:"
 msgstr "IP главного сервера DNS для записи в named.slavezones.conf:"
 
@@ -3774,7 +3787,7 @@ msgstr ""
 "Если вы хотите сохранить своего текущего регистратора, то вы должны сделать "
 "whois, указывающим на эти DNS:"
 
-#: shared/inc/forms/vps_installation.php:190
+#: shared/inc/forms/vps_installation.php:197
 msgid "Immediate kill (xm destroy)"
 msgstr "Немедленное прерывание (уничтожение xm)"
 
@@ -3844,27 +3857,6 @@ msgid ""
 msgstr ""
 "Неправильный формат пароля MySQL: введите другое имя и попробуйте ещё раз."
 
-#: shared/inc/sql/ssh.php:49
-msgid ""
-"Incorrect SSH login form: please enter another login and try again.<br>\n"
-msgstr ""
-"Неправильный формат учётной записи SSH: введите другое и попробуйте ещё раз."
-"<br>\n"
-
-#: shared/inc/sql/ssh.php:106
-#, fuzzy
-msgid "Incorrect SSH password: from 6 to 16 characters, a-z A-Z 0-9"
-msgstr ""
-"Неправильный пароль SSH: должен быть от 6 до 16 символов длиной и содержать "
-"только a-z A-Z 0-9"
-
-#: shared/inc/sql/ssh.php:53
-#, fuzzy
-msgid "Incorrect SSH password: from 6 to 16 characters, a-z A-Z 0-9<br>\n"
-msgstr ""
-"Неправильный пароль SSH: должен быть от 6 до 16 символов длиной и содержать "
-"только a-z A-Z 0-9<br>\n"
-
 #: admin/inc/submit_root_querys.php:282
 #, fuzzy
 msgid ""
@@ -3889,14 +3881,6 @@ msgstr ""
 #, fuzzy
 msgid "Incorrect login or password."
 msgstr "Неправильное имя пользователя или пароль."
-
-#: shared/inc/sql/ssh.php:101
-msgid ""
-"Incorrect ssh login : this is not a good string for a ssh login, please "
-"enter a new one."
-msgstr ""
-"Неправильный формат учётной записи ssh: это не очень хорошая строка для "
-"учётной записи ssh, введите другую."
 
 #: shared/inc/sql/subdomain.php:6
 msgid "Incorrect sub-domain format."
@@ -3944,7 +3928,7 @@ msgstr "Установить"
 msgid "Installation"
 msgstr "Установка"
 
-#: shared/inc/forms/vps_installation.php:363
+#: shared/inc/forms/vps_installation.php:370
 msgid "Installation log (last 20 lines):"
 msgstr "Журнал установки (последние 20 строк):"
 
@@ -3957,7 +3941,7 @@ msgstr "Установить"
 msgid "Instant account"
 msgstr "Мгновенный аккаунт"
 
-#: admin/inc/dtc_config.php:1711
+#: admin/inc/dtc_config.php:1716
 msgid "Instructions to send cheques: "
 msgstr "Инструкции для отправки чеков: "
 
@@ -3988,12 +3972,12 @@ msgstr "Счёт"
 msgid "Invoice Date"
 msgstr "Дата счёта"
 
-#: admin/inc/dtc_config.php:2401
+#: admin/inc/dtc_config.php:2406
 #, fuzzy
 msgid "Invoice Footer:"
 msgstr "Нижний колонтитул счёта:"
 
-#: admin/inc/dtc_config.php:2396
+#: admin/inc/dtc_config.php:2401
 msgid "Invoice free text:"
 msgstr "Произвольный текст в счёте:"
 
@@ -4074,7 +4058,7 @@ msgstr "Острова Джонатана Фрайкса"
 msgid "Kazakhstan"
 msgstr "Казахстан"
 
-#: admin/inc/dtc_config.php:1220
+#: admin/inc/dtc_config.php:1225
 #, fuzzy
 msgid "Keep spam email for n days"
 msgstr "Хранить спам n дней"
@@ -4108,7 +4092,7 @@ msgid "Label"
 msgstr "Метка"
 
 #: client/new_account.php:36 client/cheques_and_transfers.php:18
-#: shared/gfx/skin/default_layout.php:15 shared/gfx/skin/default_layout.php:54
+#: shared/gfx/skin/default_layout.php:14 shared/gfx/skin/default_layout.php:53
 #: shared/gfx/skin/bwoup/layout.php:244
 msgid "Language"
 msgstr "Язык"
@@ -4127,8 +4111,8 @@ msgstr "Язык: "
 msgid "Lao People's Democratic Republic"
 msgstr "Лаосская Народно-Демократическая Республика"
 
-#: admin/view_waitingusers.php:168 admin/dtcrm/main.php:211
-#: client/new_account_form.php:687 shared/dtcrm/draw_handle.php:65
+#: admin/view_waitingusers.php:168 admin/dtcrm/main.php:226
+#: client/new_account_form.php:694 shared/dtcrm/draw_handle.php:65
 #: shared/dtcrm/draw_handle.php:103 shared/dtcrm/draw_handle.php:141
 #: shared/dtcrm/draw_handle.php:179 shared/dtcrm/draw_handle.php:288
 #: shared/dtcrm/draw_handle.php:440
@@ -4137,7 +4121,7 @@ msgid "Last Name: "
 msgstr "Название списка:"
 
 #: shared/inc/forms/vps_monitoring.php:176
-#: shared/inc/forms/vps_installation.php:124
+#: shared/inc/forms/vps_installation.php:125
 msgid "Last boot date: "
 msgstr "Дата последней загрузки: "
 
@@ -4177,7 +4161,7 @@ msgstr "Последнее предупреждение VPS: "
 msgid "Latvia"
 msgstr "Латвия"
 
-#: client/new_account_form.php:914
+#: client/new_account_form.php:921
 msgid ""
 "Leave a message describing any specific requirements you might have for your "
 "account:"
@@ -4223,7 +4207,7 @@ msgstr "Название списка:"
 msgid "List of administrators allowed to login and receiving support messages:"
 msgstr "Список администраторов, получающих запросы:"
 
-#: admin/inc/dtc_config.php:1402
+#: admin/inc/dtc_config.php:1407
 msgid ""
 "List of servers that may fetch a secondary zone configuration from this "
 "server:"
@@ -4237,7 +4221,7 @@ msgstr "Список ваших учётных записей FTP: "
 msgid "List of your SSH accounts:"
 msgstr "Список ваших учётных записей SSH:"
 
-#: admin/inc/dtc_config.php:2348
+#: admin/inc/dtc_config.php:2353
 msgid "List of your companies:"
 msgstr "Список ваших компаний:"
 
@@ -4291,7 +4275,7 @@ msgstr "Владелец списка"
 msgid "List owner:"
 msgstr "Владелец списка:"
 
-#: admin/inc/dtc_config.php:1362
+#: admin/inc/dtc_config.php:1367
 #, fuzzy
 msgid ""
 "List the DNS server IPs allowed to perform zone<br>\n"
@@ -4302,7 +4286,7 @@ msgstr ""
 "пересылку зоны (указывать через символ &quot;|&quot;)<br>\n"
 "(оставьте пустым, если у вас нет резервного сервера DNS):"
 
-#: admin/inc/dtc_config.php:1326
+#: admin/inc/dtc_config.php:1331
 msgid ""
 "List your backup MX servers separated by &quot;|&quot; (pipe)<br>\n"
 "(leave blank if you don't have backup MX server):"
@@ -4330,7 +4314,7 @@ msgstr "Работает"
 msgid "Local host"
 msgstr "Локальный узел"
 
-#: admin/inc/dtc_config.php:1291
+#: admin/inc/dtc_config.php:1296
 msgid "Local network area ip address of the vhost using NAT: "
 msgstr "Локальная сеть IP-адресов для vhost, использующего NAT: "
 
@@ -4342,7 +4326,7 @@ msgstr "Расположение"
 msgid "Location is not a valid hostname."
 msgstr "Расположение не является допустимым именем машины."
 
-#: admin/inc/dtc_config.php:1192
+#: admin/inc/dtc_config.php:1197
 msgid "Location of user's database: "
 msgstr "Расположение БД пользователя: "
 
@@ -4355,12 +4339,12 @@ msgstr "Вход под:"
 #: admin/inc/renewals.php:897 admin/inc/renewals.php:978
 #: admin/inc/draw_user_admin.php:368 admin/inc/draw_user_admin.php:428
 #: admin/inc/draw_user_admin.php:447 admin/inc/draw_user_admin.php:539
-#: admin/inc/dtc_config.php:531 admin/inc/dtc_config.php:1417
-#: admin/inc/dtc_config.php:1444 admin/inc/dtc_config.php:1469
-#: admin/inc/dtc_config.php:1496 admin/inc/dtc_config.php:1521
-#: shared/inc/forms/reseller.php:24 shared/gfx/skin/default_layout.php:24
-#: shared/gfx/skin/default_layout.php:34 shared/gfx/skin/default_layout.php:63
-#: shared/gfx/skin/default_layout.php:72 shared/gfx/skin/bwoup/layout.php:53
+#: admin/inc/dtc_config.php:531 admin/inc/dtc_config.php:1422
+#: admin/inc/dtc_config.php:1449 admin/inc/dtc_config.php:1474
+#: admin/inc/dtc_config.php:1501 admin/inc/dtc_config.php:1526
+#: shared/inc/forms/reseller.php:24 shared/gfx/skin/default_layout.php:23
+#: shared/gfx/skin/default_layout.php:33 shared/gfx/skin/default_layout.php:62
+#: shared/gfx/skin/default_layout.php:71 shared/gfx/skin/bwoup/layout.php:53
 #: shared/gfx/skin/bwoup/layout.php:61 shared/gfx/skin/bwoup/layout.php:253
 #: shared/gfx/skin/bwoup/layout.php:262
 msgid "Login"
@@ -4372,7 +4356,7 @@ msgid ""
 "a length of 4 or more."
 msgstr ""
 
-#: client/new_account_form.php:903
+#: client/new_account_form.php:910
 msgid "Login info"
 msgstr "Данные для входа"
 
@@ -4390,7 +4374,7 @@ msgid "Login:"
 msgstr "Имя:"
 
 #: admin/view_waitingusers.php:165 client/login.php:13
-#: client/new_account_form.php:666 shared/inc/forms/ftp.php:93
+#: client/new_account_form.php:673 shared/inc/forms/ftp.php:93
 msgid "Login: "
 msgstr "Имя: "
 
@@ -4398,7 +4382,7 @@ msgstr "Имя: "
 msgid "Logins"
 msgstr "Входы"
 
-#: admin/inc/dtc_config.php:2391
+#: admin/inc/dtc_config.php:2396
 msgid "Logo path relative to"
 msgstr "Путь к логотипу, не считая"
 
@@ -4538,11 +4522,11 @@ msgstr "Списки рассылки"
 msgid "Mailing lists:"
 msgstr "Списки рассылки:"
 
-#: admin/inc/dtc_config.php:1273
+#: admin/inc/dtc_config.php:1278
 msgid "Main ip address of the server: "
 msgstr "Основной IP-адрес сервера: "
 
-#: admin/inc/dtc_config.php:1268
+#: admin/inc/dtc_config.php:1273
 msgid "Main software configuration of DTC"
 msgstr "Настройка основного программного обеспечения DTC"
 
@@ -4570,7 +4554,7 @@ msgstr "Мальта"
 msgid "Manage my name servers:"
 msgstr "Управление моими серверами имён:"
 
-#: admin/inc/dtc_config.php:1680 client/new_account_form.php:346
+#: admin/inc/dtc_config.php:1685 client/new_account_form.php:347
 msgid "Mandatory field"
 msgstr "Обязательное поле"
 
@@ -4630,7 +4614,7 @@ msgid "Max mailboxes"
 msgstr "Почтовые ящики"
 
 #: shared/inc/forms/vps_monitoring.php:150
-#: shared/inc/forms/vps_installation.php:98
+#: shared/inc/forms/vps_installation.php:99
 msgid "Max memory: "
 msgstr "Макс памяти: "
 
@@ -4689,23 +4673,23 @@ msgid "Maximum uploaded file size"
 msgstr "Макс размер закачиваемого файла"
 
 #: shared/inc/forms/vps_monitoring.php:152
-#: shared/inc/forms/vps_installation.php:100
+#: shared/inc/forms/vps_installation.php:101
 msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr "Maxmem: выборка не удалась (может быть идёт процесс загрузки?)"
 
-#: admin/inc/dtc_config.php:1880
+#: admin/inc/dtc_config.php:1885
 msgid "Maxmind API:"
 msgstr "Программный интерфейс Maxmind:"
 
-#: admin/inc/dtc_config.php:1898
+#: admin/inc/dtc_config.php:1903
 msgid "Maxmind fraud threshold: "
 msgstr "Порог фальшивок для Maxmind: "
 
-#: admin/inc/dtc_config.php:1894
+#: admin/inc/dtc_config.php:1899
 msgid "Maxmind license key: "
 msgstr "Лицензионный ключ Maxmind: "
 
-#: admin/inc/dtc_config.php:1890
+#: admin/inc/dtc_config.php:1895
 msgid "Maxmind login: "
 msgstr "Maxmind логин: "
 
@@ -4742,7 +4726,7 @@ msgid "Memory usage stats"
 msgstr "Статистика использования памяти"
 
 #: shared/inc/forms/vps_monitoring.php:147
-#: shared/inc/forms/vps_installation.php:95
+#: shared/inc/forms/vps_installation.php:96
 msgid "Memory: "
 msgstr "Память: "
 
@@ -4759,7 +4743,7 @@ msgstr ""
 "домена не удалось: "
 
 #: shared/inc/forms/vps_monitoring.php:125
-#: shared/inc/forms/vps_installation.php:73
+#: shared/inc/forms/vps_installation.php:74
 msgid "Method getVPSState failed"
 msgstr "Метод getVPSState завершился неудачно"
 
@@ -4816,31 +4800,31 @@ msgstr "Потрачено денег"
 msgid "Money in your account: "
 msgstr "Денег на вашем счёте: "
 
-#: admin/dtcrm/main.php:229 shared/inc/forms/my_account.php:203
+#: admin/dtcrm/main.php:244 shared/inc/forms/my_account.php:203
 msgid "Money remaining: "
 msgstr "Денежный остаток: "
 
-#: admin/inc/dtc_config.php:1804
+#: admin/inc/dtc_config.php:1809
 msgid "MoneyBookers (currently in development):"
 msgstr "MoneyBookers (в разработке):"
 
-#: admin/inc/dtc_config.php:1819
+#: admin/inc/dtc_config.php:1824
 msgid "MoneyBookers business account email: "
 msgstr "Эл.почта учётной записи (бизнес) для работы с MoneyBookers: "
 
-#: admin/inc/dtc_config.php:1827
+#: admin/inc/dtc_config.php:1832
 msgid "MoneyBookers fee rate: "
 msgstr "Ставка вознаграждения MoneyBookers: "
 
-#: admin/inc/dtc_config.php:1831
+#: admin/inc/dtc_config.php:1836
 msgid "MoneyBookers flat fee: "
 msgstr "Фиксированный сбор MoneyBookers: "
 
-#: admin/inc/dtc_config.php:1823
+#: admin/inc/dtc_config.php:1828
 msgid "MoneyBookers secret word: "
 msgstr "Секретный ключ к MoneyBookers: "
 
-#: admin/inc/dtc_config.php:1845
+#: admin/inc/dtc_config.php:1850
 msgid "MoneyBookers test account email (sandbox): "
 msgstr "Эл.почта тестового аккаунта MoneyBookers (для \"песочницы\"): "
 
@@ -4962,7 +4946,7 @@ msgstr "Н/Д"
 msgid "NAMED ZONES FILES"
 msgstr "ФАЙЛЫ ЗОН NAMED"
 
-#: admin/inc/dtc_config.php:1954
+#: admin/inc/dtc_config.php:1959
 msgid "NAS config"
 msgstr "Настройка системы сетевого администрирования (NAS)"
 
@@ -5013,8 +4997,8 @@ msgstr "Мониторинг Nagios"
 msgid "Nagios host name: "
 msgstr "Имя узла Nagios: "
 
-#: admin/inc/draw_user_admin.php:368 admin/inc/dtc_config.php:1968
-#: admin/inc/dtc_config.php:2011 admin/dtcrm/product_manager.php:184
+#: admin/inc/draw_user_admin.php:368 admin/inc/dtc_config.php:1973
+#: admin/inc/dtc_config.php:2016 admin/dtcrm/product_manager.php:184
 #: admin/dtcrm/product_manager.php:277 admin/dtcrm/product_manager.php:359
 #: admin/dtcrm/product_manager.php:423 admin/inc/ip_usage_report.php:286
 msgid "Name"
@@ -5050,7 +5034,7 @@ msgid "Name:"
 msgstr "Название:"
 
 #: shared/inc/forms/vps_monitoring.php:143
-#: shared/inc/forms/vps_installation.php:91
+#: shared/inc/forms/vps_installation.php:92
 msgid "Name: "
 msgstr "Название: "
 
@@ -5064,19 +5048,19 @@ msgstr "Файлы зон named"
 msgid "Named conf files generated."
 msgstr "Сгенерированы конфигурационные файлы named!"
 
-#: admin/inc/dtc_config.php:2317
+#: admin/inc/dtc_config.php:2322
 msgid "Named file names"
 msgstr "Имена файлов named"
 
-#: admin/inc/dtc_config.php:2322
+#: admin/inc/dtc_config.php:2327
 msgid "Named main file:"
 msgstr "Главный файл named:"
 
-#: admin/inc/dtc_config.php:2330
+#: admin/inc/dtc_config.php:2335
 msgid "Named main zonefiles folder:"
 msgstr "Каталог для главных файлов зон named:"
 
-#: admin/inc/dtc_config.php:2326
+#: admin/inc/dtc_config.php:2331
 msgid "Named slave file:"
 msgstr "Вспомогательный файл named:"
 
@@ -5084,7 +5068,7 @@ msgstr "Вспомогательный файл named:"
 msgid "Named zonefile:"
 msgstr "Файл зоны named:"
 
-#: admin/inc/dtc_config.php:1316
+#: admin/inc/dtc_config.php:1321
 msgid "Named zonefiles"
 msgstr "Файлы зон named"
 
@@ -5123,6 +5107,11 @@ msgstr "Нидерландские Антилы"
 
 #: admin/inc/dtc_config.php:442
 msgid "Netmask"
+msgstr "Сетевая маска"
+
+#: shared/inc/forms/vps_installation.php:148
+#, fuzzy
+msgid "Netmask: "
 msgstr "Сетевая маска"
 
 #: admin/inc/dtc_config.php:438 admin/inc/monitor.php:99
@@ -5170,11 +5159,11 @@ msgstr "Новая учётная запись FTP: "
 msgid "New SSH account:"
 msgstr "Новый аккаунт:"
 
-#: shared/inc/forms/vps_installation.php:329
+#: shared/inc/forms/vps_installation.php:336
 msgid "New SSH key: "
 msgstr "Новый ключ SSH: "
 
-#: shared/inc/forms/vps_installation.php:327
+#: shared/inc/forms/vps_installation.php:334
 msgid "New SSH password: "
 msgstr "Новый пароль SSH: "
 
@@ -5196,7 +5185,7 @@ msgstr "Стоимость нового аккаунта"
 msgid "New cron job"
 msgstr "Следующее задание cron"
 
-#: admin/dtcrm/main.php:23 admin/dtcrm/main.php:36
+#: admin/dtcrm/main.php:23 admin/dtcrm/main.php:43
 msgid "New customer"
 msgstr "Новый заказчик"
 
@@ -5292,41 +5281,42 @@ msgstr "Ниуэ"
 #: admin/inc/dtc_config.php:1015 admin/inc/dtc_config.php:1101
 #: admin/inc/dtc_config.php:1106 admin/inc/dtc_config.php:1111
 #: admin/inc/dtc_config.php:1116 admin/inc/dtc_config.php:1121
-#: admin/inc/dtc_config.php:1126 admin/inc/dtc_config.php:1160
+#: admin/inc/dtc_config.php:1126 admin/inc/dtc_config.php:1131
 #: admin/inc/dtc_config.php:1165 admin/inc/dtc_config.php:1170
 #: admin/inc/dtc_config.php:1175 admin/inc/dtc_config.php:1180
 #: admin/inc/dtc_config.php:1185 admin/inc/dtc_config.php:1190
-#: admin/inc/dtc_config.php:1209 admin/inc/dtc_config.php:1284
-#: admin/inc/dtc_config.php:1289 admin/inc/dtc_config.php:1356
-#: admin/inc/dtc_config.php:1557 admin/inc/dtc_config.php:1615
-#: admin/inc/dtc_config.php:1683 admin/inc/dtc_config.php:1701
-#: admin/inc/dtc_config.php:1719 admin/inc/dtc_config.php:1743
-#: admin/inc/dtc_config.php:1764 admin/inc/dtc_config.php:1769
-#: admin/inc/dtc_config.php:1791 admin/inc/dtc_config.php:1796
-#: admin/inc/dtc_config.php:1812 admin/inc/dtc_config.php:1817
-#: admin/inc/dtc_config.php:1843 admin/inc/dtc_config.php:1859
-#: admin/inc/dtc_config.php:1888 admin/inc/dtc_config.php:1914
-#: admin/dtcrm/main.php:214 admin/dtcrm/product_manager.php:91
-#: admin/dtcrm/product_manager.php:99 admin/dtcrm/product_manager.php:107
-#: admin/dtcrm/product_manager.php:115 admin/dtcrm/product_manager.php:123
-#: admin/dtcrm/product_manager.php:131 admin/dtcrm/product_manager.php:139
-#: admin/dtcrm/product_manager.php:232 admin/dtcrm/product_manager.php:325
-#: admin/dtcrm/product_manager.php:332 admin/dtcrm/product_manager.php:389
-#: admin/dtcrm/product_manager.php:471 admin/dtcrm/product_manager.php:495
-#: client/new_account_form.php:695 shared/inc/forms/domain_info.php:207
-#: shared/inc/forms/email.php:219 shared/inc/forms/email.php:227
-#: shared/inc/forms/email.php:255 shared/inc/forms/root_admin.php:53
-#: shared/inc/forms/root_admin.php:63 shared/inc/forms/root_admin.php:73
-#: shared/inc/forms/root_admin.php:83 shared/inc/forms/root_admin.php:91
-#: shared/inc/forms/root_admin.php:104 shared/inc/forms/root_admin.php:115
-#: shared/inc/forms/root_admin.php:126 shared/inc/forms/root_admin.php:137
-#: shared/inc/forms/root_admin.php:290 shared/inc/forms/root_admin.php:410
-#: shared/inc/forms/root_admin.php:416 shared/inc/forms/root_admin.php:538
-#: shared/inc/forms/root_admin.php:545 shared/inc/forms/root_admin.php:554
-#: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
-#: shared/inc/forms/subdomain.php:211 shared/inc/forms/subdomain.php:230
-#: shared/inc/forms/subdomain.php:246 shared/inc/forms/subdomain.php:253
-#: shared/inc/forms/ticket.php:144 shared/securepay/modules/cheque/main.php:56
+#: admin/inc/dtc_config.php:1195 admin/inc/dtc_config.php:1214
+#: admin/inc/dtc_config.php:1289 admin/inc/dtc_config.php:1294
+#: admin/inc/dtc_config.php:1361 admin/inc/dtc_config.php:1562
+#: admin/inc/dtc_config.php:1620 admin/inc/dtc_config.php:1688
+#: admin/inc/dtc_config.php:1706 admin/inc/dtc_config.php:1724
+#: admin/inc/dtc_config.php:1748 admin/inc/dtc_config.php:1769
+#: admin/inc/dtc_config.php:1774 admin/inc/dtc_config.php:1796
+#: admin/inc/dtc_config.php:1801 admin/inc/dtc_config.php:1817
+#: admin/inc/dtc_config.php:1822 admin/inc/dtc_config.php:1848
+#: admin/inc/dtc_config.php:1864 admin/inc/dtc_config.php:1893
+#: admin/inc/dtc_config.php:1919 admin/dtcrm/main.php:229
+#: admin/dtcrm/product_manager.php:91 admin/dtcrm/product_manager.php:99
+#: admin/dtcrm/product_manager.php:107 admin/dtcrm/product_manager.php:115
+#: admin/dtcrm/product_manager.php:123 admin/dtcrm/product_manager.php:131
+#: admin/dtcrm/product_manager.php:139 admin/dtcrm/product_manager.php:232
+#: admin/dtcrm/product_manager.php:325 admin/dtcrm/product_manager.php:332
+#: admin/dtcrm/product_manager.php:389 admin/dtcrm/product_manager.php:471
+#: admin/dtcrm/product_manager.php:495 client/new_account_form.php:702
+#: shared/inc/forms/domain_info.php:207 shared/inc/forms/email.php:219
+#: shared/inc/forms/email.php:227 shared/inc/forms/email.php:255
+#: shared/inc/forms/root_admin.php:53 shared/inc/forms/root_admin.php:63
+#: shared/inc/forms/root_admin.php:73 shared/inc/forms/root_admin.php:83
+#: shared/inc/forms/root_admin.php:91 shared/inc/forms/root_admin.php:104
+#: shared/inc/forms/root_admin.php:115 shared/inc/forms/root_admin.php:126
+#: shared/inc/forms/root_admin.php:137 shared/inc/forms/root_admin.php:290
+#: shared/inc/forms/root_admin.php:410 shared/inc/forms/root_admin.php:416
+#: shared/inc/forms/root_admin.php:538 shared/inc/forms/root_admin.php:545
+#: shared/inc/forms/root_admin.php:554 shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:211
+#: shared/inc/forms/subdomain.php:230 shared/inc/forms/subdomain.php:246
+#: shared/inc/forms/subdomain.php:253 shared/inc/forms/ticket.php:144
+#: shared/securepay/modules/cheque/main.php:56
 #: shared/securepay/modules/wiretransfer/main.php:56
 #: shared/securepay/modules/dineromail/main.php:71
 msgid "No"
@@ -5440,7 +5430,7 @@ msgstr ""
 msgid "No-renew"
 msgstr "Нет продлений"
 
-#: admin/inc/dtc_config.php:2112
+#: admin/inc/dtc_config.php:2117
 msgid "None"
 msgstr "Нет"
 
@@ -5466,7 +5456,7 @@ msgstr "Нет продления продукта"
 msgid "Not found!"
 msgstr "Не найдено!"
 
-#: client/new_account_form.php:39
+#: client/new_account_form.php:40
 msgid "Not registering"
 msgstr "Не зарегистрировано"
 
@@ -5486,7 +5476,7 @@ msgstr ""
 msgid "Note:"
 msgstr "Заметка:"
 
-#: admin/view_waitingusers.php:185 admin/dtcrm/main.php:228
+#: admin/view_waitingusers.php:185 admin/dtcrm/main.php:243
 msgid "Notes: "
 msgstr "Заметки: "
 
@@ -5498,12 +5488,12 @@ msgstr "Уведомления"
 msgid "Notify new subscribtions:"
 msgstr "Уведомлять новых подписчиков:"
 
-#: admin/inc/dtc_config.php:1429
+#: admin/inc/dtc_config.php:1434
 #, fuzzy
 msgid "Notify the following servers when a domain is added or removed :"
 msgstr "Сообщать этим серверам об удалении или добавлении домена:"
 
-#: admin/inc/dtc_config.php:1454
+#: admin/inc/dtc_config.php:1459
 #, fuzzy
 msgid "Notify the following servers when an email is added or removed :"
 msgstr "Сообщать этим серверам об удалении или добавлении адресов эл.почты:"
@@ -5517,12 +5507,12 @@ msgid "Notify when post and not subscribed:"
 msgstr "Уведомлять при помещении и отсутствии подписки:"
 
 #: shared/inc/forms/vps_monitoring.php:155
-#: shared/inc/forms/vps_installation.php:103
+#: shared/inc/forms/vps_installation.php:104
 msgid "Number of CPU: "
 msgstr "Количество процессоров: "
 
 #: shared/inc/forms/vps_monitoring.php:157
-#: shared/inc/forms/vps_installation.php:105
+#: shared/inc/forms/vps_installation.php:106
 msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
 msgstr ""
 "Количество процессоров: не удалось получить (может быть происходит запуск?)"
@@ -5597,13 +5587,13 @@ msgstr "Сервер OVH: "
 msgid "OVH configuration"
 msgstr "Настройка OVH"
 
-#: admin/deamons_state.php:98 admin/inc/nav.php:141 admin/dtcrm/main.php:105
+#: admin/deamons_state.php:98 admin/inc/nav.php:141 admin/dtcrm/main.php:120
 #: email/login.php:20 shared/dtcrm/draw_adddomain.php:99
 #: shared/dtcrm/draw_adddomain.php:151 shared/dtcrm/draw_adddomain.php:172
 #: shared/dtcrm/draw_adddomain.php:183 shared/dtcrm/draw_adddomain.php:195
 #: shared/dtcrm/draw_adddomain.php:286 shared/dtcrm/draw_register_forms.php:17
-#: shared/inc/forms/vps_installation.php:328
-#: shared/inc/forms/vps_installation.php:330
+#: shared/inc/forms/vps_installation.php:335
+#: shared/inc/forms/vps_installation.php:337
 #: shared/inc/forms/domain_info.php:208 shared/inc/forms/domain_info.php:251
 #: shared/inc/forms/domain_stats.php:91 shared/inc/forms/email.php:108
 #: shared/inc/forms/email.php:160 shared/inc/forms/email.php:204
@@ -5620,7 +5610,7 @@ msgstr "Старые тикеты:"
 msgid "Oman"
 msgstr "Оман"
 
-#: admin/inc/dtc_config.php:1688 admin/dtcrm/product_manager.php:545
+#: admin/inc/dtc_config.php:1693 admin/dtcrm/product_manager.php:545
 msgid ""
 "On the above tables, the possible values are what is is going to be the "
 "internal value in the popup or radio buttons,\n"
@@ -5675,12 +5665,12 @@ msgstr "С OVH можно продлить только на один год."
 msgid "Open"
 msgstr "Открыт"
 
-#: shared/inc/forms/vps_installation.php:234
+#: shared/inc/forms/vps_installation.php:241
 msgid "Operating system:"
 msgstr "Операционная система:"
 
-#: admin/inc/dtc_config.php:2053 admin/inc/dtc_config.php:2085
-#: admin/inc/dtc_config.php:2175 admin/inc/dtc_config.php:2206
+#: admin/inc/dtc_config.php:2058 admin/inc/dtc_config.php:2090
+#: admin/inc/dtc_config.php:2180 admin/inc/dtc_config.php:2211
 msgid "Operation"
 msgstr "Операция"
 
@@ -5720,7 +5710,7 @@ msgstr "ОПЛАТА ОТМЕНЕНА"
 msgid "PAYMENT FAILED"
 msgstr "ОПЛАТА ЗАВЕРШИЛАСЬ НЕУДАЧНО"
 
-#: admin/inc/dtc_config.php:2305
+#: admin/inc/dtc_config.php:2310
 msgid ""
 "PHP libraries open_basedir<br>\n"
 "(separated by \":\", reset on each dtc install):"
@@ -5732,7 +5722,7 @@ msgstr ""
 msgid "PHP memory limit"
 msgstr "Предел памяти для PHP"
 
-#: admin/inc/dtc_config.php:2310
+#: admin/inc/dtc_config.php:2315
 msgid ""
 "PHP open_basedir additional libraries path<br>\n"
 "(survives reinstallation):"
@@ -5784,20 +5774,20 @@ msgstr "Палестина"
 msgid "Panama"
 msgstr "Панама"
 
-#: admin/inc/dtc_config.php:1255
+#: admin/inc/dtc_config.php:1260
 #, fuzzy
 msgid "Panel logo link: "
 msgstr "Maxmind логин: "
 
-#: admin/inc/dtc_config.php:1251
+#: admin/inc/dtc_config.php:1256
 msgid "Panel logo path (relative to "
 msgstr "Путь к логотипу панели (относительно "
 
-#: admin/inc/dtc_config.php:1247
+#: admin/inc/dtc_config.php:1252
 msgid "Panel subtitle: "
 msgstr "Подзаголовок панели: "
 
-#: admin/inc/dtc_config.php:1243
+#: admin/inc/dtc_config.php:1248
 msgid "Panel title: "
 msgstr "Заголовок панели: "
 
@@ -5809,10 +5799,10 @@ msgstr "Папуа Новая Гвинея"
 msgid "Paraguay"
 msgstr "Парагвай"
 
-#: admin/inc/dtc_config.php:715 admin/inc/dtc_config.php:1420
-#: admin/inc/dtc_config.php:1447 admin/inc/dtc_config.php:1472
-#: admin/inc/dtc_config.php:1499 admin/inc/dtc_config.php:1524
-#: admin/inc/dtc_config.php:1982 admin/inc/dtc_config.php:2139
+#: admin/inc/dtc_config.php:715 admin/inc/dtc_config.php:1425
+#: admin/inc/dtc_config.php:1452 admin/inc/dtc_config.php:1477
+#: admin/inc/dtc_config.php:1504 admin/inc/dtc_config.php:1529
+#: admin/inc/dtc_config.php:1987 admin/inc/dtc_config.php:2144
 #: shared/inc/draw.php:375 shared/inc/draw.php:539
 #: shared/inc/forms/reseller.php:24
 msgid "Password"
@@ -5822,7 +5812,7 @@ msgstr "Пароль"
 msgid "Password : "
 msgstr "Пароль : "
 
-#: client/new_account_form.php:75
+#: client/new_account_form.php:76
 #, fuzzy
 msgid ""
 "Password format incorrect. Password must contain only letters and numbers "
@@ -5858,14 +5848,14 @@ msgstr ""
 msgid "Password:"
 msgstr "Пароль:"
 
-#: admin/view_waitingusers.php:166 client/new_account_form.php:669
+#: admin/view_waitingusers.php:166 client/new_account_form.php:676
 #: email/login.php:17 shared/inc/forms/email.php:198
 #: shared/inc/forms/ftp.php:97 shared/dtcrm/modules/webnic/main.php:486
 #: shared/dtcrm/modules/internetbs/main.php:486
 msgid "Password: "
 msgstr "Пароль: "
 
-#: client/new_account_form.php:80 shared/inc/draw.php:60
+#: client/new_account_form.php:81 shared/inc/draw.php:60
 #, fuzzy
 msgid "Passwords do not match."
 msgstr "Первый и второй пароли не совпадают!"
@@ -5883,7 +5873,7 @@ msgstr "Слияние с имеющимся аккаунтом"
 msgid "Past payments"
 msgstr "Предыдущие платежи"
 
-#: admin/inc/dtc_config.php:2260
+#: admin/inc/dtc_config.php:2265
 msgid "Path of the cgi-wrapper disk template (chroot for SBOX):"
 msgstr "Путь к cgi-обёртке дискового шаблона (chroot для SBOX):"
 
@@ -5900,7 +5890,7 @@ msgstr "Путь:"
 msgid "Path: "
 msgstr "Пути: "
 
-#: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:2249
+#: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:2254
 msgid "Paths"
 msgstr "Пути"
 
@@ -5916,19 +5906,19 @@ msgstr "Оплата чеком"
 msgid "Pay by wire transfer"
 msgstr "Оплата телеграфным переводом"
 
-#: admin/inc/dtc_config.php:1771
+#: admin/inc/dtc_config.php:1776
 msgid "PayPal business account email: "
 msgstr "Эл.почта учётной записи для работы с PayPal: "
 
-#: admin/inc/dtc_config.php:1775
+#: admin/inc/dtc_config.php:1780
 msgid "PayPal fee rate: "
 msgstr "Ставка вознаграждения PayPal: "
 
-#: admin/inc/dtc_config.php:1779
+#: admin/inc/dtc_config.php:1784
 msgid "PayPal flat fee: "
 msgstr "Фиксированный сбор PayPal: "
 
-#: admin/inc/dtc_config.php:1798
+#: admin/inc/dtc_config.php:1803
 msgid "PayPal test account email (sandbox): "
 msgstr "Эл.почта тестового аккаунта PayPal (для \"песочницы\"): "
 
@@ -6013,7 +6003,7 @@ msgstr "Платёж не найден"
 msgid "Payment type edition"
 msgstr "Изменение способа оплаты"
 
-#: admin/inc/dtc_config.php:1920
+#: admin/inc/dtc_config.php:1925
 msgid "Payments Accepted: "
 msgstr "Принятые платежи: "
 
@@ -6036,7 +6026,7 @@ msgstr "Ожидание"
 msgid "Pending Reason"
 msgstr "Причина ожидания"
 
-#: admin/inc/dtc_config.php:1931
+#: admin/inc/dtc_config.php:1936
 msgid "Percentage fee: "
 msgstr "Процент вознаграждения: "
 
@@ -6066,8 +6056,8 @@ msgstr "Перу"
 msgid "Philippines"
 msgstr "Филиппины"
 
-#: admin/view_waitingusers.php:182 admin/dtcrm/main.php:225
-#: client/new_account_form.php:706 shared/dtcrm/draw_handle.php:75
+#: admin/view_waitingusers.php:182 admin/dtcrm/main.php:240
+#: client/new_account_form.php:713 shared/dtcrm/draw_handle.php:75
 #: shared/dtcrm/draw_handle.php:113 shared/dtcrm/draw_handle.php:151
 #: shared/dtcrm/draw_handle.php:189 shared/dtcrm/draw_handle.php:334
 #: shared/dtcrm/draw_handle.php:467
@@ -6087,7 +6077,7 @@ msgstr "Телефон:"
 msgid "PhpMyAdmin"
 msgstr "PhpMyAdmin"
 
-#: shared/inc/forms/vps_installation.php:322
+#: shared/inc/forms/vps_installation.php:329
 msgid "Physical console last display and ssh access:"
 msgstr "Последний доступ к физической консоли и ssh:"
 
@@ -6130,7 +6120,7 @@ msgstr ""
 "Введите имя пользователя и пароль для доступа к интерфейсу администратора "
 "DTC."
 
-#: shared/gfx/skin/default_layout.php:142 shared/gfx/skin/bwoup/layout.php:504
+#: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:504
 #, fuzzy
 msgid ""
 "Please note that you need to create at least one mailbox and one FTP account "
@@ -6151,8 +6141,8 @@ msgstr "Обновите с одним из следующих параметр�
 msgid "Please renew with one of the following options: "
 msgstr "Обновите с одним из следующих параметров: "
 
-#: admin/inc/dtc_config.php:2021 admin/inc/dtc_config.php:2100
-#: admin/inc/dtc_config.php:2416 shared/drawlib/dtc_functions.php:228
+#: admin/inc/dtc_config.php:2026 admin/inc/dtc_config.php:2105
+#: admin/inc/dtc_config.php:2421 shared/drawlib/dtc_functions.php:228
 msgid "Please select"
 msgstr "Выберите"
 
@@ -6165,16 +6155,16 @@ msgstr ""
 "Выберите регистранта и 3 идентификатора контактов, которые вы хотите "
 "использовать при регистрации доменного имени."
 
-#: client/new_account_form.php:523
+#: client/new_account_form.php:530
 #, fuzzy
 msgid "Please select."
 msgstr "Выберите"
 
-#: shared/inc/forms/vps_installation.php:181
+#: shared/inc/forms/vps_installation.php:188
 msgid "Please wait until file system check is finished first."
 msgstr "Подождите, пока завершится проверка файловой системы."
 
-#: shared/inc/forms/vps_installation.php:183
+#: shared/inc/forms/vps_installation.php:190
 msgid "Please wait until operating system reinstallation has completed."
 msgstr "Подождите, пока завершится переустановка операционной системы."
 
@@ -6186,7 +6176,7 @@ msgstr "Польша"
 msgid "Polish"
 msgstr "Польский"
 
-#: admin/inc/dtc_config.php:1978
+#: admin/inc/dtc_config.php:1983
 msgid "Port number"
 msgstr "Номер порта"
 
@@ -6198,11 +6188,11 @@ msgstr "Португалия"
 msgid "Portuguese"
 msgstr "Португальский"
 
-#: admin/inc/dtc_config.php:1672 admin/dtcrm/product_manager.php:529
+#: admin/inc/dtc_config.php:1677 admin/dtcrm/product_manager.php:529
 msgid "Possible values"
 msgstr "Возможные значения"
 
-#: admin/inc/dtc_config.php:1188
+#: admin/inc/dtc_config.php:1193
 msgid "Prepend admin name to db names: "
 msgstr "Добавлять в начало имён БД имя администратора: "
 
@@ -6210,7 +6200,7 @@ msgstr "Добавлять в начало имён БД имя админист
 msgid "Preview URL:"
 msgstr "URL предварительного просмотра:"
 
-#: admin/inc/dtc_config.php:1581 admin/dtcrm/product_manager.php:38
+#: admin/inc/dtc_config.php:1586 admin/dtcrm/product_manager.php:38
 #: admin/dtcrm/product_manager.php:195 admin/dtcrm/product_manager.php:288
 #: admin/dtcrm/product_manager.php:370 admin/dtcrm/product_manager.php:434
 #: shared/dtcrm/draw.php:91 shared/inc/forms/invoices.php:42
@@ -6222,7 +6212,7 @@ msgstr "Цена"
 msgid "Price for the domain not found."
 msgstr "Цена домена не найдена!"
 
-#: admin/inc/dtc_config.php:1335
+#: admin/inc/dtc_config.php:1340
 msgid "Primary DNS server address:"
 msgstr "Адрес первичного сервера DNS:"
 
@@ -6238,7 +6228,7 @@ msgstr "Адрес первичного MX:"
 msgid "Prince Nizam Zambri Isle"
 msgstr "Остров принца Низам Замбри"
 
-#: admin/inc/dtc_config.php:2092
+#: admin/inc/dtc_config.php:2097
 msgid "Priority"
 msgstr "Приоритет"
 
@@ -6277,7 +6267,7 @@ msgstr "Продолжить перенос имени"
 
 #: admin/inc/renewals.php:507 admin/inc/renewals.php:567
 #: admin/inc/draw_user_admin.php:368 admin/inc/draw_user_admin.php:447
-#: client/new_account_form.php:648 shared/dtcrm/draw.php:90
+#: client/new_account_form.php:655 shared/dtcrm/draw.php:90
 #: shared/inc/forms/invoices.php:42 shared/inc/forms/root_admin.php:717
 msgid "Product"
 msgstr "Продукт"
@@ -6286,7 +6276,7 @@ msgstr "Продукт"
 msgid "Product ID"
 msgstr "ID продукта"
 
-#: client/new_account_form.php:49
+#: client/new_account_form.php:50
 #, fuzzy
 msgid "Product ID not valid."
 msgstr "Недопустимый ID продукта!"
@@ -6317,7 +6307,7 @@ msgstr "Окончательная цена продукта без НДС и п
 msgid "Product not found"
 msgstr "Продукт не найден"
 
-#: client/new_account_form.php:57
+#: client/new_account_form.php:58
 msgid "Product not found in database"
 msgstr "Продукт не найден в базе данных"
 
@@ -6329,7 +6319,7 @@ msgstr "Цена продукта:"
 msgid "Product to renew:"
 msgstr "Продление использования продукта:"
 
-#: client/new_account_form.php:901
+#: client/new_account_form.php:908
 msgid "Product:"
 msgstr "Продукт:"
 
@@ -6338,7 +6328,7 @@ msgstr "Продукт:"
 msgid "Product: "
 msgstr "Продукт: "
 
-#: admin/inc/dtc_config.php:1864
+#: admin/inc/dtc_config.php:1869
 msgid "Production server"
 msgstr "рабочий"
 
@@ -6366,11 +6356,11 @@ msgstr "Пуэрто-Рико"
 msgid "Qatar"
 msgstr "Катар"
 
-#: admin/inc/dtc_config.php:2273
+#: admin/inc/dtc_config.php:2278
 msgid "Qmail path"
 msgstr "Путь Qmail"
 
-#: admin/inc/dtc_config.php:1664 admin/dtcrm/product_manager.php:521
+#: admin/inc/dtc_config.php:1669 admin/dtcrm/product_manager.php:521
 msgid "Question to the user"
 msgstr "Вопрос пользователю"
 
@@ -6378,7 +6368,7 @@ msgstr "Вопрос пользователю"
 msgid "Quota"
 msgstr "Квота"
 
-#: admin/dtcrm/main.php:230
+#: admin/dtcrm/main.php:245
 msgid "Quota (MB): "
 msgstr "Квота (МБ): "
 
@@ -6411,7 +6401,7 @@ msgstr "ПРОВЕРКА ПРОДЛЕНИЯ ПРОШЛА УСПЕШНО"
 msgid "Radius User:"
 msgstr "Пользователь Radius:"
 
-#: admin/inc/dtc_config.php:2122
+#: admin/inc/dtc_config.php:2127
 msgid "Radius Users"
 msgstr "Пользователи Radius"
 
@@ -6499,11 +6489,11 @@ msgstr "Регистрация нового домена"
 msgid "Register a new name server:"
 msgstr "Регистрация нового сервера имён:"
 
-#: admin/inc/dtc_config.php:1585
+#: admin/inc/dtc_config.php:1590
 msgid "Registrar"
 msgstr "Регистратор"
 
-#: admin/inc/dtc_config.php:1564
+#: admin/inc/dtc_config.php:1569
 msgid "Registrar selection and final customer pricing"
 msgstr "Выбор регистратора и окончательная цена для покупателя"
 
@@ -6515,12 +6505,12 @@ msgstr "Регистратор: "
 msgid "Registration"
 msgstr "Регистрация"
 
-#: admin/inc/dtc_config.php:2379
+#: admin/inc/dtc_config.php:2384
 #, fuzzy
 msgid "Registration Number:"
 msgstr "Регистрационный номер:"
 
-#: admin/inc/dtc_config.php:1138
+#: admin/inc/dtc_config.php:1143
 msgid "Registration default TLD: "
 msgstr "Регистрация TLD по умолчанию: "
 
@@ -6549,16 +6539,16 @@ msgstr "Регистрация:"
 msgid "Registry selection"
 msgstr "Выбор регистрации"
 
-#: shared/inc/forms/vps_installation.php:264
+#: shared/inc/forms/vps_installation.php:271
 msgid "Reinstall operating system"
 msgstr "Переустановка операционной системы"
 
-#: shared/inc/forms/vps_installation.php:206
+#: shared/inc/forms/vps_installation.php:213
 msgid "Reinstall operating system:"
 msgstr "Переустановка операционной системы:"
 
 #: shared/inc/forms/vps_monitoring.php:135
-#: shared/inc/forms/vps_installation.php:83
+#: shared/inc/forms/vps_installation.php:84
 msgid "Reinstalling operating system..."
 msgstr "Выполняется переустановка операционной системы..."
 
@@ -6591,7 +6581,7 @@ msgstr "Остаток на вашем счёте: "
 msgid "Reminders and registration messages subject header:"
 msgstr "Префикс в теме для сообщений напоминания и регистрации:"
 
-#: admin/dtcrm/main.php:122
+#: admin/dtcrm/main.php:137
 msgid "Remove an administrator for this customer:"
 msgstr "Удалить администратора этого заказчика:"
 
@@ -6607,7 +6597,7 @@ msgstr "Продлить мой аккаунт"
 msgid "Renewal"
 msgstr "Продления"
 
-#: shared/gfx/skin/default_layout.php:280 shared/gfx/skin/bwoup/layout.php:417
+#: shared/gfx/skin/default_layout.php:279 shared/gfx/skin/bwoup/layout.php:417
 #: shared/gfx/skin/bwoup/layout.php:419
 #, fuzzy
 msgid "Renewal Management"
@@ -6657,28 +6647,28 @@ msgstr "Запросить закрытие проблемы:"
 msgid "Request to close the ticket: "
 msgstr "Запросить закрытие тикета: "
 
-#: client/new_account_form.php:185
+#: client/new_account_form.php:186
 msgid "Required field address (line 1) missing."
 msgstr "Не заполнено необходимое поле адреса (строка 1)."
 
-#: client/new_account_form.php:221
+#: client/new_account_form.php:222
 msgid "Required field city missing."
 msgstr "Не заполнено необходимое поле города."
 
-#: client/new_account_form.php:143
+#: client/new_account_form.php:144
 msgid "Required field first name missing."
 msgstr "Не заполнено необходимое поле имени."
 
-#: client/new_account_form.php:131
+#: client/new_account_form.php:132
 #, fuzzy
 msgid "Required field last name missing."
 msgstr "Не заполнено необходимое поле имени."
 
-#: client/new_account_form.php:155
+#: client/new_account_form.php:156
 msgid "Required field phone missing."
 msgstr "Не заполнено необходимое поле телефона."
 
-#: client/new_account_form.php:209
+#: client/new_account_form.php:210
 msgid "Required field zipcode missing."
 msgstr "Не заполнено необходимое поле почтового индекса."
 
@@ -6716,6 +6706,10 @@ msgstr "Новый пароль ещё раз:"
 #: shared/drawlib/cc_code_popup.php:289
 msgid "Reunion"
 msgstr "Реюньон"
+
+#: shared/inc/forms/vps_installation.php:148
+msgid "RevDNS: "
+msgstr ""
 
 #: shared/inc/forms/lists.php:396
 msgid "Rights"
@@ -6755,23 +6749,23 @@ msgstr "SMTP сервер"
 msgid "SMTP: "
 msgstr "SMTP: "
 
-#: admin/inc/dtc_config.php:1989
+#: admin/inc/dtc_config.php:1994
 msgid "SNMP community"
 msgstr "Строка сообщества SNMP"
 
-#: admin/inc/dtc_config.php:1384
+#: admin/inc/dtc_config.php:1389
 msgid "SOA default ttl value: "
 msgstr "Значение для ttl по умолчанию в SOA: "
 
-#: admin/inc/dtc_config.php:1380
+#: admin/inc/dtc_config.php:1385
 msgid "SOA expire value: "
 msgstr "Значение для истечения срока в SOA: "
 
-#: admin/inc/dtc_config.php:1372
+#: admin/inc/dtc_config.php:1377
 msgid "SOA refresh value: "
 msgstr "Значение для обновления в SOA: "
 
-#: admin/inc/dtc_config.php:1376
+#: admin/inc/dtc_config.php:1381
 msgid "SOA retry value: "
 msgstr "Значение для повтора в SOA: "
 
@@ -6839,7 +6833,7 @@ msgstr "Продления SSL IP: "
 msgid "SSL IPs Renewals: "
 msgstr "Продления SSL IP: "
 
-#: admin/inc/dtc_config.php:1299
+#: admin/inc/dtc_config.php:1304
 msgid "SSL Port: "
 msgstr "Номер порта SSL: "
 
@@ -6893,7 +6887,7 @@ msgstr "Сент-Винсент и Гренадины"
 msgid "Same DocumentRoot"
 msgstr "Тот же DocumentRoot"
 
-#: admin/inc/dtc_config.php:1195
+#: admin/inc/dtc_config.php:1200
 msgid "Same as for DTC"
 msgstr "Тоже, что и в DTC"
 
@@ -6925,7 +6919,16 @@ msgstr "Сохранить"
 msgid "Sbox cgi-bin protection: "
 msgstr "Защита Sbox cgi-bin: "
 
-#: admin/inc/dtc_config.php:1339
+#: admin/dtcrm/main.php:115
+msgid "Search"
+msgstr ""
+
+#: admin/dtcrm/main.php:116
+#, fuzzy
+msgid "Search string:"
+msgstr "Мониторинг сервера:"
+
+#: admin/inc/dtc_config.php:1344
 msgid ""
 "Secondary DNS servers address<br>\n"
 "(separated by &quot;|&quot; (pipe) if more than one):"
@@ -6937,11 +6940,11 @@ msgstr ""
 msgid "Secondary DNS:"
 msgstr "Вторичный DNS:"
 
-#: admin/inc/dtc_config.php:1630
+#: admin/inc/dtc_config.php:1635
 msgid "Secure payment configuration"
 msgstr "Настройка безопасной оплаты"
 
-#: admin/dtcrm/main.php:161
+#: admin/dtcrm/main.php:176
 msgid "Select a customer."
 msgstr "Выберите заказчика."
 
@@ -6964,7 +6967,7 @@ msgstr ""
 msgid "Select the registration period for this domain name:"
 msgstr "Выберите, на какой срок вы хотите зарегистрировать доменное имя:"
 
-#: admin/inc/dtc_config.php:1258
+#: admin/inc/dtc_config.php:1263
 msgid "Select the type of skin:"
 msgstr "Выберите раскраску интерфейса:"
 
@@ -6977,6 +6980,10 @@ msgstr "Послать ответ"
 #, fuzzy
 msgid "Send Reply and Close Ticket"
 msgstr "Послать ответ и закрыть тикет"
+
+#: admin/inc/dtc_config.php:1103
+msgid "Send passwords in registration emails: "
+msgstr ""
 
 #: shared/inc/forms/ticket.php:62
 msgid "Send trouble ticket"
@@ -6994,7 +7001,7 @@ msgstr "Сербия"
 msgid "Server"
 msgstr "Сервер"
 
-#: shared/gfx/skin/default_layout.php:269 shared/gfx/skin/bwoup/layout.php:412
+#: shared/gfx/skin/default_layout.php:268 shared/gfx/skin/bwoup/layout.php:412
 #: shared/gfx/skin/bwoup/layout.php:414
 #, fuzzy
 msgid "Server Monitor"
@@ -7059,7 +7066,7 @@ msgstr "Сервер отвечает:"
 msgid "Server said: "
 msgstr "Сервер отвечает: "
 
-#: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:500
+#: shared/gfx/skin/default_layout.php:137 shared/gfx/skin/bwoup/layout.php:500
 msgid "Server statistic graphs"
 msgstr "Графики статистики сервера"
 
@@ -7071,7 +7078,7 @@ msgstr "Сервер:"
 msgid "ServerAlias"
 msgstr "ServerAlias"
 
-#: admin/inc/renewals.php:567 admin/inc/dtc_config.php:2457
+#: admin/inc/renewals.php:567 admin/inc/dtc_config.php:2462
 #, fuzzy
 msgid "Service Country"
 msgstr "Страна сервиса"
@@ -7141,7 +7148,7 @@ msgstr "IP покупателя: "
 msgid "Short Name:"
 msgstr "Короткое название:"
 
-#: admin/inc/dtc_config.php:1971
+#: admin/inc/dtc_config.php:1976
 msgid "Short name"
 msgstr "Короткое название"
 
@@ -7149,15 +7156,15 @@ msgstr "Короткое название"
 msgid "Show"
 msgstr "Показ"
 
-#: admin/inc/dtc_config.php:1163
+#: admin/inc/dtc_config.php:1168
 msgid "Show advanced mailing list options: "
 msgstr "Показать дополнительные параметры списка рассылки: "
 
-#: admin/dtcrm/main.php:101
+#: admin/dtcrm/main.php:114
 msgid "Show all"
 msgstr "Показать всё"
 
-#: admin/dtcrm/main.php:97
+#: admin/dtcrm/main.php:110
 msgid "Show:"
 msgstr "Показ:"
 
@@ -7230,11 +7237,11 @@ msgstr ""
 msgid "Sri Lanka"
 msgstr "Шри-Ланка"
 
-#: shared/inc/forms/vps_installation.php:179
+#: shared/inc/forms/vps_installation.php:186
 msgid "Start and stop of your VPS:"
 msgstr "Запустить и остановить ваш VPS:"
 
-#: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:503
+#: shared/gfx/skin/default_layout.php:140 shared/gfx/skin/bwoup/layout.php:503
 #, fuzzy
 msgid "Starting configuration file generation"
 msgstr "Запуск генерации файлов настройки"
@@ -7248,8 +7255,8 @@ msgstr "Сгенерирован сценарий статистики!"
 msgid "State:"
 msgstr "Состояние:"
 
-#: admin/view_waitingusers.php:179 admin/dtcrm/main.php:222
-#: client/new_account_form.php:736 shared/dtcrm/draw_handle.php:72
+#: admin/view_waitingusers.php:179 admin/dtcrm/main.php:237
+#: client/new_account_form.php:743 shared/dtcrm/draw_handle.php:72
 #: shared/dtcrm/draw_handle.php:110 shared/dtcrm/draw_handle.php:148
 #: shared/dtcrm/draw_handle.php:186 shared/dtcrm/draw_handle.php:313
 #: shared/dtcrm/draw_handle.php:452
@@ -7257,7 +7264,7 @@ msgid "State: "
 msgstr "Состояние: "
 
 #: shared/inc/forms/vps_monitoring.php:162
-#: shared/inc/forms/vps_installation.php:110
+#: shared/inc/forms/vps_installation.php:111
 msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr "Состояние: не удалось получить (может идёт процесс загрузки?)"
 
@@ -7487,7 +7494,7 @@ msgstr "Швейцария"
 msgid "Syrian Arab Republic"
 msgstr "Сирийская Арабская Республика"
 
-#: admin/inc/dtc_config.php:1576
+#: admin/inc/dtc_config.php:1581
 msgid "TLD"
 msgstr "TLD"
 
@@ -7556,17 +7563,17 @@ msgstr "Налоги (НДС или налог на товары и услуги
 msgid "Technical contact:"
 msgstr "Контакт по тех.вопросам: "
 
-#: client/new_account_form.php:746
+#: client/new_account_form.php:753
 #, fuzzy
 msgid "Terms and Conditions"
 msgstr "условия продажи"
 
-#: admin/inc/dtc_config.php:1141
+#: admin/inc/dtc_config.php:1146
 #, fuzzy
 msgid "Terms and Conditions URL: "
 msgstr "URL условий продажи: "
 
-#: client/new_account_form.php:267
+#: client/new_account_form.php:268
 #, fuzzy
 msgid "Terms and Conditions not accepted."
 msgstr "Условия продажи неприемлемы!"
@@ -7575,7 +7582,7 @@ msgstr "Условия продажи неприемлемы!"
 msgid "Test"
 msgstr "Тест"
 
-#: admin/inc/dtc_config.php:1864
+#: admin/inc/dtc_config.php:1869
 msgid "Test server"
 msgstr "тестовый сервер"
 
@@ -7847,7 +7854,7 @@ msgstr "Это главный владелец рассылки."
 msgid "This month: "
 msgstr "Этот месяц: "
 
-#: admin/inc/dtc_config.php:1133
+#: admin/inc/dtc_config.php:1138
 msgid "This server location: "
 msgstr "Этот сервер расположен в: "
 
@@ -7924,7 +7931,7 @@ msgstr "Тикет не найден!"
 msgid "Time"
 msgstr "Время"
 
-#: shared/inc/forms/vps_installation.php:333
+#: shared/inc/forms/vps_installation.php:340
 msgid ""
 "To access to your console, first enter a ssh password or key above, and then "
 "ssh to:"
@@ -7941,7 +7948,7 @@ msgstr ""
 "Чтобы добавить VPS, вам нужно настроить несколько свободных IP VPS в общих "
 "настройках и создать несколько продуктов VPS."
 
-#: shared/inc/forms/vps_installation.php:192
+#: shared/inc/forms/vps_installation.php:199
 msgid ""
 "To do a file system check or an operating system reinstallation, you need to "
 "shutdown or destroy your server first."
@@ -7949,7 +7956,7 @@ msgstr ""
 "Для выполнения проверки файловой системы или переустановки операционной "
 "системы, сначала вам нужно выключить или удалить сервер."
 
-#: shared/inc/forms/vps_installation.php:286
+#: shared/inc/forms/vps_installation.php:293
 msgid ""
 "To upload .iso files so they appear below and you can boot on them, you can "
 "upload them using ftp, "
@@ -8120,7 +8127,7 @@ msgid "Tuvalu"
 msgstr "Тувалу"
 
 #: admin/inc/renewals.php:531 admin/inc/draw_user_admin.php:447
-#: admin/inc/draw_user_admin.php:539 admin/inc/dtc_config.php:1974
+#: admin/inc/draw_user_admin.php:539 admin/inc/dtc_config.php:1979
 #: admin/inc/ip_usage_report.php:286 shared/inc/forms/ticket.php:173
 msgid "Type"
 msgstr "Тип"
@@ -8143,7 +8150,7 @@ msgstr "Тип расширения: "
 msgid "Type of problem:"
 msgstr "Категория проблемы:"
 
-#: admin/inc/dtc_config.php:1211
+#: admin/inc/dtc_config.php:1216
 msgid "Type of webmail for the /webmail alias: "
 msgstr "Тип webmail для псевдонима /webmail: "
 
@@ -8160,8 +8167,8 @@ msgstr "Тип:"
 msgid "Type: type not found."
 msgstr "Тип: тип не найден!"
 
-#: admin/inc/dtc_config.php:1441 admin/inc/dtc_config.php:1466
-#: admin/inc/dtc_config.php:1493 admin/inc/dtc_config.php:1518
+#: admin/inc/dtc_config.php:1446 admin/inc/dtc_config.php:1471
+#: admin/inc/dtc_config.php:1498 admin/inc/dtc_config.php:1523
 msgid "URL"
 msgstr "URL"
 
@@ -8202,7 +8209,7 @@ msgid "Unsubscribe:"
 msgstr "Отписаться:"
 
 #: shared/inc/forms/vps_monitoring.php:175
-#: shared/inc/forms/vps_installation.php:123
+#: shared/inc/forms/vps_installation.php:124
 msgid "Up time: "
 msgstr "Работа без остановки: "
 
@@ -8244,11 +8251,11 @@ msgstr "Уругвай"
 msgid "Use"
 msgstr "Использовать"
 
-#: admin/inc/dtc_config.php:1118
+#: admin/inc/dtc_config.php:1123
 msgid "Use @domain.com ftp logins: "
 msgstr "Использовать уч. записи вида @domain.com для ftp: "
 
-#: admin/inc/dtc_config.php:1123
+#: admin/inc/dtc_config.php:1128
 msgid "Use @domain.com ssh logins: "
 msgstr "Использовать уч. записи вида @domain.com для ssh: "
 
@@ -8256,11 +8263,11 @@ msgstr "Использовать уч. записи вида @domain.com для 
 msgid "Use LVM backend"
 msgstr "Использовать LVM"
 
-#: admin/inc/dtc_config.php:1885
+#: admin/inc/dtc_config.php:1890
 msgid "Use Maxmind API: "
 msgstr "Использовать программный интерфейс Maxmind: "
 
-#: admin/inc/dtc_config.php:1809
+#: admin/inc/dtc_config.php:1814
 msgid "Use MoneyBookers: "
 msgstr "Использовать MoneyBookers: "
 
@@ -8268,11 +8275,11 @@ msgstr "Использовать MoneyBookers: "
 msgid "Use Radius"
 msgstr "Использовать Radius"
 
-#: admin/inc/dtc_config.php:1103
+#: admin/inc/dtc_config.php:1108
 msgid "Use SSL: "
 msgstr "Использовать SSL: "
 
-#: admin/inc/dtc_config.php:1740
+#: admin/inc/dtc_config.php:1745
 msgid "Use WebMoney: "
 msgstr "Использовать WebMoney: "
 
@@ -8289,19 +8296,19 @@ msgstr ""
 msgid "Use as wildcard for the domain:"
 msgstr "Использовать как шаблон для домена:"
 
-#: admin/inc/dtc_config.php:1178
+#: admin/inc/dtc_config.php:1183
 msgid "Use awstats: "
 msgstr "Использовать awstats: "
 
-#: admin/inc/dtc_config.php:1158
+#: admin/inc/dtc_config.php:1163
 msgid "Use cyrus: "
 msgstr "Использовать cyrus: "
 
-#: admin/inc/dtc_config.php:1911
+#: admin/inc/dtc_config.php:1916
 msgid "Use dineromail: "
 msgstr "Использовать dineromail: "
 
-#: admin/inc/dtc_config.php:1856
+#: admin/inc/dtc_config.php:1861
 msgid "Use eNETS: "
 msgstr "Использовать eNETS: "
 
@@ -8333,15 +8340,15 @@ msgstr "Использовать:"
 msgid "Use javascript: "
 msgstr "Использовать javascript: "
 
-#: admin/inc/dtc_config.php:1281
+#: admin/inc/dtc_config.php:1286
 msgid "Use multiple IPs: "
 msgstr "Использовать несколько IP: "
 
-#: admin/inc/dtc_config.php:1793
+#: admin/inc/dtc_config.php:1798
 msgid "Use paypal recuring: "
 msgstr "Использовать возврат с paypal: "
 
-#: admin/inc/dtc_config.php:1761
+#: admin/inc/dtc_config.php:1766
 msgid "Use paypal: "
 msgstr "Использовать paypal: "
 
@@ -8349,7 +8356,7 @@ msgstr "Использовать paypal: "
 msgid "Use register_globals=1: "
 msgstr "Использовать register_globals=1: "
 
-#: admin/inc/dtc_config.php:1554
+#: admin/inc/dtc_config.php:1559
 msgid "Use registrar API:"
 msgstr "Использовать программный интерфейс registrar:"
 
@@ -8361,15 +8368,15 @@ msgstr "Текстовое меню"
 msgid "Use text menu: "
 msgstr "Использовать текстовое меню: "
 
-#: admin/inc/dtc_config.php:1788 admin/inc/dtc_config.php:1840
+#: admin/inc/dtc_config.php:1793 admin/inc/dtc_config.php:1845
 msgid "Use the sandbox test server: "
 msgstr "Использовать тестовый сервер \"песочницу\": "
 
-#: admin/inc/dtc_config.php:1183
+#: admin/inc/dtc_config.php:1188
 msgid "Use visitors: "
 msgstr "Использовать visitors: "
 
-#: admin/inc/dtc_config.php:1168
+#: admin/inc/dtc_config.php:1173
 msgid "Use webalizer: "
 msgstr "Использовать webalizer: "
 
@@ -8386,33 +8393,33 @@ msgstr "Используемая квота: "
 msgid "User"
 msgstr "Пользователь"
 
-#: shared/gfx/skin/default_layout.php:226 shared/gfx/skin/bwoup/layout.php:397
+#: shared/gfx/skin/default_layout.php:225 shared/gfx/skin/bwoup/layout.php:397
 #: shared/gfx/skin/bwoup/layout.php:399
 #, fuzzy
 msgid "User Administration"
 msgstr "Управление пользователями"
 
-#: admin/inc/dtc_config.php:2154
+#: admin/inc/dtc_config.php:2159
 msgid "User Attributes checking config"
 msgstr "Конфигурация проверки пользовательских атрибутов"
 
-#: admin/inc/dtc_config.php:1197
+#: admin/inc/dtc_config.php:1202
 msgid "User MySQL host: "
 msgstr "Пользовательский узел для MySQL: "
 
-#: admin/inc/dtc_config.php:1200
+#: admin/inc/dtc_config.php:1205
 msgid "User MySQL root login: "
 msgstr "Имя суперпользователя MySQL: "
 
-#: admin/inc/dtc_config.php:1203
+#: admin/inc/dtc_config.php:1208
 msgid "User MySQL root password: "
 msgstr "Пароль суперпользователя MySQL: "
 
-#: admin/inc/dtc_config.php:2185
+#: admin/inc/dtc_config.php:2190
 msgid "User Reply Attributes config"
 msgstr "Конфигурация атрибутов пользовательских ответов"
 
-#: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:569
+#: shared/gfx/skin/default_layout.php:392 shared/gfx/skin/bwoup/layout.php:569
 msgid "User administration"
 msgstr "Управление пользователями"
 
@@ -8420,7 +8427,7 @@ msgstr "Управление пользователями"
 msgid "User and domain waiting for addition:"
 msgstr "Ожидающие добавления пользователи и домены:"
 
-#: client/new_account_form.php:65
+#: client/new_account_form.php:66
 #, fuzzy
 msgid ""
 "User login format incorrect. Username must contain only letters and numbers "
@@ -8433,12 +8440,12 @@ msgstr ""
 msgid "User name on the Nagios machine: "
 msgstr "Имя пользователя на машине с Nagios: "
 
-#: admin/inc/dtc_config.php:1128
+#: admin/inc/dtc_config.php:1133
 msgid "User session expire time (min): "
 msgstr "Период неактивности пользовательской сессии (минут): "
 
-#: admin/inc/dtc_config.php:2136 admin/inc/dtc_config.php:2168
-#: admin/inc/dtc_config.php:2199
+#: admin/inc/dtc_config.php:2141 admin/inc/dtc_config.php:2173
+#: admin/inc/dtc_config.php:2204
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -8446,12 +8453,12 @@ msgstr "Имя пользователя"
 msgid "Username : "
 msgstr "Имя пользователя: "
 
-#: client/new_account_form.php:276 client/new_account_form.php:284
+#: client/new_account_form.php:277 client/new_account_form.php:285
 #, fuzzy
 msgid "Username already taken. Try again."
 msgstr "Имя пользователя уже взято! Попробуйте ещё раз."
 
-#: client/new_account_form.php:70
+#: client/new_account_form.php:71
 #, fuzzy
 msgid ""
 "Username invalid: please choose a name other than root or debian-sys-maint"
@@ -8476,12 +8483,12 @@ msgstr "ИНН:"
 msgid "VAT Collected"
 msgstr "НДС собран"
 
-#: admin/inc/dtc_config.php:2383
+#: admin/inc/dtc_config.php:2388
 #, fuzzy
 msgid "VAT Number:"
 msgstr "ИНН:"
 
-#: admin/view_waitingusers.php:173 admin/dtcrm/main.php:216
+#: admin/view_waitingusers.php:173 admin/dtcrm/main.php:231
 #, fuzzy
 msgid "VAT Number: "
 msgstr "ИНН: "
@@ -8491,7 +8498,7 @@ msgstr "ИНН: "
 msgid "VAT Rate"
 msgstr "Ставка НДС"
 
-#: admin/inc/dtc_config.php:2387
+#: admin/inc/dtc_config.php:2392
 #, fuzzy
 msgid "VAT Rate:"
 msgstr "Ставка НДС:"
@@ -8505,7 +8512,7 @@ msgstr "Всего НДС"
 msgid "VAT not found"
 msgstr "НДС не найден"
 
-#: client/new_account_form.php:700
+#: client/new_account_form.php:707
 msgid "VAT/GST Number: "
 msgstr "ИНН: "
 
@@ -8514,15 +8521,15 @@ msgid "VERP:"
 msgstr "VERP:"
 
 #: shared/inc/forms/vps_monitoring.php:139
-#: shared/inc/forms/vps_installation.php:87
+#: shared/inc/forms/vps_installation.php:88
 msgid "VM id: "
 msgstr "VM id: "
 
-#: shared/inc/forms/vps_installation.php:314
+#: shared/inc/forms/vps_installation.php:321
 msgid "VNC console activation: "
 msgstr "Активация консоли VNC: "
 
-#: shared/inc/forms/vps_installation.php:313
+#: shared/inc/forms/vps_installation.php:320
 msgid "VNC console password: "
 msgstr "Пароль к консоли VNC: "
 
@@ -8570,16 +8577,16 @@ msgid "VPS Servers and IP addresses"
 msgstr "Редактирование списка VPS серверов и IP-адресов"
 
 #: shared/inc/forms/vps_monitoring.php:160
-#: shared/inc/forms/vps_installation.php:108
+#: shared/inc/forms/vps_installation.php:109
 msgid "VPS State: "
 msgstr "Состояние VPS: "
 
-#: client/new_account_form.php:111
+#: client/new_account_form.php:112
 #, fuzzy
 msgid "VPS location not selected."
 msgstr "Расположение VPS не выбрано!"
 
-#: admin/view_waitingusers.php:163 client/new_account_form.php:653
+#: admin/view_waitingusers.php:163 client/new_account_form.php:660
 #: shared/dtcrm/draw_adddomain.php:63
 msgid "VPS location: "
 msgstr "Расположение VPS: "
@@ -8626,11 +8633,11 @@ msgstr "Сообщение об отсутствии"
 msgid "Validate"
 msgstr "Подтвердить"
 
-#: admin/inc/dtc_config.php:1766 admin/inc/dtc_config.php:1814
+#: admin/inc/dtc_config.php:1771 admin/inc/dtc_config.php:1819
 msgid "Validate new account if paid: "
 msgstr "Подтверждать новый аккаунт после оплаты: "
 
-#: admin/inc/dtc_config.php:1783 admin/inc/dtc_config.php:1835
+#: admin/inc/dtc_config.php:1788 admin/inc/dtc_config.php:1840
 msgid "Validate payment if amount is greater or equal to: "
 msgstr "Подтверждать платёж, если количество больше или равно: "
 
@@ -8638,8 +8645,8 @@ msgstr "Подтверждать платёж, если количество б�
 msgid "Validated"
 msgstr "Подтверждён"
 
-#: admin/inc/dtc_config.php:2057 admin/inc/dtc_config.php:2089
-#: admin/inc/dtc_config.php:2179 admin/inc/dtc_config.php:2210
+#: admin/inc/dtc_config.php:2062 admin/inc/dtc_config.php:2094
+#: admin/inc/dtc_config.php:2184 admin/inc/dtc_config.php:2215
 msgid "Value"
 msgstr "Значение"
 
@@ -8647,7 +8654,7 @@ msgstr "Значение"
 msgid "Vanuatu"
 msgstr "Вануату"
 
-#: admin/inc/dtc_config.php:1660 admin/dtcrm/product_manager.php:517
+#: admin/inc/dtc_config.php:1665 admin/dtcrm/product_manager.php:517
 msgid "Variable name"
 msgstr "Имя переменной"
 
@@ -8699,15 +8706,15 @@ msgstr "Виргинские острова Соединённых Штатов"
 msgid "Virtual Private Server"
 msgstr "Собственный виртуальный сервер"
 
-#: admin/inc/dtc_config.php:1986
+#: admin/inc/dtc_config.php:1991
 msgid "Virtual Radius Server"
 msgstr "Виртуальный сервер Radius"
 
-#: admin/inc/dtc_config.php:2301
+#: admin/inc/dtc_config.php:2306
 msgid "Virtual host config-file:"
 msgstr "Файл настройки виртуальных узлов:"
 
-#: admin/inc/dtc_config.php:1749
+#: admin/inc/dtc_config.php:1754
 msgid "WMZ: "
 msgstr "WMZ: "
 
@@ -8758,15 +8765,15 @@ msgstr "Предупреждение: в базе данных нет списк
 msgid "Web archive"
 msgstr "Веб-архив"
 
-#: admin/inc/dtc_config.php:1607
+#: admin/inc/dtc_config.php:1612
 msgid "Web host subdomain registration"
 msgstr "Регистрация поддомена веб-хостинга"
 
-#: admin/inc/dtc_config.php:1745
+#: admin/inc/dtc_config.php:1750
 msgid "WebMoney secret key: "
 msgstr "Секретный ключ к WebMoney: "
 
-#: admin/inc/dtc_config.php:1172
+#: admin/inc/dtc_config.php:1177
 msgid "Webalizer country graph: "
 msgstr "График Webalizer по странам: "
 
@@ -8910,7 +8917,7 @@ msgstr "Whois для:"
 msgid "Whois:"
 msgstr "Whois:"
 
-#: admin/inc/dtc_config.php:1668 admin/dtcrm/product_manager.php:525
+#: admin/inc/dtc_config.php:1673 admin/dtcrm/product_manager.php:525
 msgid "Widget type"
 msgstr "Тип графического элемента управления"
 
@@ -8937,11 +8944,11 @@ msgstr "Телеграфный перевод"
 msgid "Wire transfers shall be made to: "
 msgstr "Телеграфный перевод должен быть сделан на: "
 
-#: admin/inc/dtc_config.php:1923
+#: admin/inc/dtc_config.php:1928
 msgid "Wiretransfer"
 msgstr "Телеграфный перевод"
 
-#: shared/inc/forms/vps_installation.php:315
+#: shared/inc/forms/vps_installation.php:322
 msgid "Write parameters"
 msgstr "Параметры записи"
 
@@ -8949,7 +8956,7 @@ msgstr "Параметры записи"
 msgid "Wrong email format for the monitoring email address"
 msgstr "Неправильный формат адреса эл.почты для адреса сообщений мониторинга"
 
-#: shared/gfx/skin/default_layout.php:22 shared/gfx/skin/bwoup/layout.php:51
+#: shared/gfx/skin/default_layout.php:21 shared/gfx/skin/bwoup/layout.php:51
 msgid "Wrong login or password"
 msgstr "Неправильное имя пользователя или пароль"
 
@@ -9003,41 +9010,42 @@ msgstr "Республика Йемен"
 #: admin/inc/dtc_config.php:1015 admin/inc/dtc_config.php:1101
 #: admin/inc/dtc_config.php:1106 admin/inc/dtc_config.php:1111
 #: admin/inc/dtc_config.php:1116 admin/inc/dtc_config.php:1121
-#: admin/inc/dtc_config.php:1126 admin/inc/dtc_config.php:1160
+#: admin/inc/dtc_config.php:1126 admin/inc/dtc_config.php:1131
 #: admin/inc/dtc_config.php:1165 admin/inc/dtc_config.php:1170
 #: admin/inc/dtc_config.php:1175 admin/inc/dtc_config.php:1180
 #: admin/inc/dtc_config.php:1185 admin/inc/dtc_config.php:1190
-#: admin/inc/dtc_config.php:1209 admin/inc/dtc_config.php:1284
-#: admin/inc/dtc_config.php:1289 admin/inc/dtc_config.php:1356
-#: admin/inc/dtc_config.php:1557 admin/inc/dtc_config.php:1615
-#: admin/inc/dtc_config.php:1683 admin/inc/dtc_config.php:1701
-#: admin/inc/dtc_config.php:1719 admin/inc/dtc_config.php:1743
-#: admin/inc/dtc_config.php:1764 admin/inc/dtc_config.php:1769
-#: admin/inc/dtc_config.php:1791 admin/inc/dtc_config.php:1796
-#: admin/inc/dtc_config.php:1812 admin/inc/dtc_config.php:1817
-#: admin/inc/dtc_config.php:1843 admin/inc/dtc_config.php:1859
-#: admin/inc/dtc_config.php:1888 admin/inc/dtc_config.php:1914
-#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:91
-#: admin/dtcrm/product_manager.php:99 admin/dtcrm/product_manager.php:107
-#: admin/dtcrm/product_manager.php:115 admin/dtcrm/product_manager.php:123
-#: admin/dtcrm/product_manager.php:131 admin/dtcrm/product_manager.php:139
-#: admin/dtcrm/product_manager.php:232 admin/dtcrm/product_manager.php:325
-#: admin/dtcrm/product_manager.php:332 admin/dtcrm/product_manager.php:389
-#: admin/dtcrm/product_manager.php:471 admin/dtcrm/product_manager.php:495
-#: client/new_account_form.php:694 shared/inc/forms/domain_info.php:206
-#: shared/inc/forms/email.php:219 shared/inc/forms/email.php:225
-#: shared/inc/forms/email.php:255 shared/inc/forms/root_admin.php:52
-#: shared/inc/forms/root_admin.php:62 shared/inc/forms/root_admin.php:72
-#: shared/inc/forms/root_admin.php:82 shared/inc/forms/root_admin.php:89
-#: shared/inc/forms/root_admin.php:103 shared/inc/forms/root_admin.php:114
-#: shared/inc/forms/root_admin.php:125 shared/inc/forms/root_admin.php:136
-#: shared/inc/forms/root_admin.php:289 shared/inc/forms/root_admin.php:410
-#: shared/inc/forms/root_admin.php:416 shared/inc/forms/root_admin.php:538
-#: shared/inc/forms/root_admin.php:545 shared/inc/forms/root_admin.php:554
-#: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
-#: shared/inc/forms/subdomain.php:211 shared/inc/forms/subdomain.php:230
-#: shared/inc/forms/subdomain.php:246 shared/inc/forms/subdomain.php:253
-#: shared/inc/forms/ticket.php:143 shared/securepay/modules/enets/main.php:46
+#: admin/inc/dtc_config.php:1195 admin/inc/dtc_config.php:1214
+#: admin/inc/dtc_config.php:1289 admin/inc/dtc_config.php:1294
+#: admin/inc/dtc_config.php:1361 admin/inc/dtc_config.php:1562
+#: admin/inc/dtc_config.php:1620 admin/inc/dtc_config.php:1688
+#: admin/inc/dtc_config.php:1706 admin/inc/dtc_config.php:1724
+#: admin/inc/dtc_config.php:1748 admin/inc/dtc_config.php:1769
+#: admin/inc/dtc_config.php:1774 admin/inc/dtc_config.php:1796
+#: admin/inc/dtc_config.php:1801 admin/inc/dtc_config.php:1817
+#: admin/inc/dtc_config.php:1822 admin/inc/dtc_config.php:1848
+#: admin/inc/dtc_config.php:1864 admin/inc/dtc_config.php:1893
+#: admin/inc/dtc_config.php:1919 admin/dtcrm/main.php:228
+#: admin/dtcrm/product_manager.php:91 admin/dtcrm/product_manager.php:99
+#: admin/dtcrm/product_manager.php:107 admin/dtcrm/product_manager.php:115
+#: admin/dtcrm/product_manager.php:123 admin/dtcrm/product_manager.php:131
+#: admin/dtcrm/product_manager.php:139 admin/dtcrm/product_manager.php:232
+#: admin/dtcrm/product_manager.php:325 admin/dtcrm/product_manager.php:332
+#: admin/dtcrm/product_manager.php:389 admin/dtcrm/product_manager.php:471
+#: admin/dtcrm/product_manager.php:495 client/new_account_form.php:701
+#: shared/inc/forms/domain_info.php:206 shared/inc/forms/email.php:219
+#: shared/inc/forms/email.php:225 shared/inc/forms/email.php:255
+#: shared/inc/forms/root_admin.php:52 shared/inc/forms/root_admin.php:62
+#: shared/inc/forms/root_admin.php:72 shared/inc/forms/root_admin.php:82
+#: shared/inc/forms/root_admin.php:89 shared/inc/forms/root_admin.php:103
+#: shared/inc/forms/root_admin.php:114 shared/inc/forms/root_admin.php:125
+#: shared/inc/forms/root_admin.php:136 shared/inc/forms/root_admin.php:289
+#: shared/inc/forms/root_admin.php:410 shared/inc/forms/root_admin.php:416
+#: shared/inc/forms/root_admin.php:538 shared/inc/forms/root_admin.php:545
+#: shared/inc/forms/root_admin.php:554 shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:211
+#: shared/inc/forms/subdomain.php:230 shared/inc/forms/subdomain.php:246
+#: shared/inc/forms/subdomain.php:253 shared/inc/forms/ticket.php:143
+#: shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:78
 #: shared/securepay/modules/worldpay/main.php:77
 #: shared/securepay/modules/webmoney/main.php:39
@@ -9110,7 +9118,7 @@ msgstr ""
 "После покупки, автоматически вам будут зачислены средства, в зависимости от "
 "купленного посетителем продукта."
 
-#: shared/inc/forms/vps_installation.php:195
+#: shared/inc/forms/vps_installation.php:202
 msgid ""
 "You cannot start your VPS if it has expired. Please renew it if you want the "
 "boot up (xm start) button to appear here."
@@ -9157,11 +9165,6 @@ msgstr ""
 #: shared/inc/forms/my_account.php:255
 msgid "You do not have a client account, so there is no money in your account."
 msgstr "У вас нет аккаунта клиента, поэтому нет денег на счету."
-
-#: shared/inc/sql/ssh.php:24
-#, fuzzy
-msgid "You don't have SSH login permissions."
-msgstr "Вы не имеете флага SSH логина!"
 
 #: shared/dtcrm/draw_adddomain.php:322
 #: shared/dtcrm/draw_transferdomain.php:109
@@ -9245,7 +9248,7 @@ msgstr "Вы можете добавить другое доменное имя:
 msgid "You may verify the configuration by clicking here:"
 msgstr "Теперь вы можете проверить свои настройки, нажав:"
 
-#: shared/inc/forms/vps_installation.php:334
+#: shared/inc/forms/vps_installation.php:341
 msgid ""
 "You should then install sshd in your VPS and use the physical console only "
 "for debugging purposes."
@@ -9349,7 +9352,7 @@ msgstr "Ваше доменное имя будет скоро подтверж�
 msgid "Your domain usage and quota:"
 msgstr "Использование домена и квота:"
 
-#: shared/gfx/skin/default_layout.php:84 shared/gfx/skin/bwoup/layout.php:360
+#: shared/gfx/skin/default_layout.php:83 shared/gfx/skin/bwoup/layout.php:360
 msgid "Your domains"
 msgstr "Ваши домены"
 
@@ -9373,10 +9376,6 @@ msgstr "Ваш пароль : "
 #: shared/dtcrm/draw.php:73
 msgid "Your past account was: "
 msgstr "Ваш прошлый аккаунт был: "
-
-#: shared/inc/sql/ssh.php:31 shared/inc/sql/ssh.php:94
-msgid "Your path is restricted to "
-msgstr "Путь ограничивается "
 
 #: client/new_account.php:323
 msgid "Your registration has been recorded in our database."
@@ -9419,8 +9418,8 @@ msgstr "Зимбабве"
 msgid "Zipcode:"
 msgstr "Индекс:"
 
-#: admin/view_waitingusers.php:178 admin/dtcrm/main.php:221
-#: client/new_account_form.php:730 shared/dtcrm/draw_handle.php:70
+#: admin/view_waitingusers.php:178 admin/dtcrm/main.php:236
+#: client/new_account_form.php:737 shared/dtcrm/draw_handle.php:70
 #: shared/dtcrm/draw_handle.php:108 shared/dtcrm/draw_handle.php:146
 #: shared/dtcrm/draw_handle.php:184 shared/dtcrm/draw_handle.php:329
 #: shared/dtcrm/draw_handle.php:458
@@ -9440,7 +9439,7 @@ msgstr "псевдоним"
 msgid "all"
 msgstr "всё"
 
-#: shared/inc/forms/vps_installation.php:260
+#: shared/inc/forms/vps_installation.php:267
 msgid "applicance builder"
 msgstr "сборщик приспособлений"
 
@@ -9448,7 +9447,7 @@ msgstr "сборщик приспособлений"
 msgid "are subscribed automatically to the following mailing list:"
 msgstr "автоматически подписаны на следующий список рассылки:"
 
-#: shared/inc/forms/vps_installation.php:239
+#: shared/inc/forms/vps_installation.php:246
 #, fuzzy
 msgid "boot your own .iso image"
 msgstr "загрузка с вашего образа .iso"
@@ -9462,7 +9461,7 @@ msgid "client"
 msgstr "клиент"
 
 #: shared/inc/forms/vps_monitoring.php:127
-#: shared/inc/forms/vps_installation.php:75
+#: shared/inc/forms/vps_installation.php:76
 msgid "couldn't connect to host"
 msgstr "не удалось подключиться к узлу"
 
@@ -9490,19 +9489,19 @@ msgstr "dom0"
 msgid "dom0 IP addresses"
 msgstr "IP адреса dom0"
 
-#: admin/inc/dtc_config.php:1866
+#: admin/inc/dtc_config.php:1871
 msgid "eNETS merchant ID: "
 msgstr "Коммерческий ID в eNETS: "
 
-#: admin/inc/dtc_config.php:1874
+#: admin/inc/dtc_config.php:1879
 msgid "eNETS rate: "
 msgstr "Тариф eNETS: "
 
-#: admin/inc/dtc_config.php:1861
+#: admin/inc/dtc_config.php:1866
 msgid "eNETS server: "
 msgstr "Сервер eNETS: "
 
-#: admin/inc/dtc_config.php:1870
+#: admin/inc/dtc_config.php:1875
 msgid "eNETS test merchant ID: "
 msgstr "тестовый коммерческий ID в eNETS: "
 
@@ -9523,7 +9522,7 @@ msgstr ""
 "или ваш логин и пароль недействительны, или истекло время сеанса (по "
 "простою)."
 
-#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
+#: shared/gfx/skin/default_layout.php:60 shared/gfx/skin/bwoup/layout.php:251
 msgid "fetching admin: "
 msgstr "получение admin: "
 
@@ -9570,7 +9569,7 @@ msgstr ""
 "уже используется этим сервером: вы не можете зарегистрировать это доменное "
 "имя."
 
-#: client/new_account_form.php:346
+#: client/new_account_form.php:347
 msgid "is empty or incorrect."
 msgstr "пустое или неправильное."
 
@@ -9591,17 +9590,17 @@ msgstr "требуются помеченные поля"
 msgid "month"
 msgstr "месяц"
 
-#: client/new_account_form.php:658 client/new_account_form.php:659
-#: shared/inc/forms/vps_installation.php:235
-#: shared/inc/forms/vps_installation.php:236
+#: client/new_account_form.php:665 client/new_account_form.php:666
+#: shared/inc/forms/vps_installation.php:242
+#: shared/inc/forms/vps_installation.php:243
 msgid "network install with debootstrap"
 msgstr "сетевая установка с помощью debootstrap"
 
-#: client/new_account_form.php:660 shared/inc/forms/vps_installation.php:237
+#: client/new_account_form.php:667 shared/inc/forms/vps_installation.php:244
 msgid "network install with yum"
 msgstr "сетевая установка с помощью yum"
 
-#: client/new_account_form.php:661 shared/inc/forms/vps_installation.php:238
+#: client/new_account_form.php:668 shared/inc/forms/vps_installation.php:245
 msgid "network setup with install kernel"
 msgstr "настройка сети с помощью установленного ядра"
 
@@ -9631,7 +9630,7 @@ msgid "new mailing list"
 msgstr "Новый список рассылки"
 
 #: admin/dtcrm/product_manager.php:78 admin/inc/ip_usage_report.php:303
-#: shared/inc/forms/vps_installation.php:314
+#: shared/inc/forms/vps_installation.php:321
 msgid "no"
 msgstr "нет"
 
@@ -9639,11 +9638,11 @@ msgstr "нет"
 msgid "no list selected"
 msgstr "список не выбран"
 
-#: admin/inc/dtc_config.php:2441
+#: admin/inc/dtc_config.php:2446
 msgid "none"
 msgstr "ни одного"
 
-#: shared/inc/forms/vps_installation.php:249
+#: shared/inc/forms/vps_installation.php:256
 msgid "operating system image"
 msgstr "образ операционной системы"
 
@@ -9699,7 +9698,7 @@ msgid "years"
 msgstr "лет"
 
 #: admin/dtcrm/product_manager.php:78
-#: shared/inc/forms/vps_installation.php:314
+#: shared/inc/forms/vps_installation.php:321
 msgid "yes"
 msgstr "да"
 
@@ -9786,6 +9785,31 @@ msgstr "да"
 
 #~ msgid "If no FTP user was created, please make at least one!"
 #~ msgstr "Если пользователей FTP пока нет, создайте хотя бы одного!"
+
+#~ msgid ""
+#~ "Incorrect SSH login form: please enter another login and try again.<br>\n"
+#~ msgstr ""
+#~ "Неправильный формат учётной записи SSH: введите другое и попробуйте ещё "
+#~ "раз.<br>\n"
+
+#, fuzzy
+#~ msgid "Incorrect SSH password: from 6 to 16 characters, a-z A-Z 0-9"
+#~ msgstr ""
+#~ "Неправильный пароль SSH: должен быть от 6 до 16 символов длиной и "
+#~ "содержать только a-z A-Z 0-9"
+
+#, fuzzy
+#~ msgid "Incorrect SSH password: from 6 to 16 characters, a-z A-Z 0-9<br>\n"
+#~ msgstr ""
+#~ "Неправильный пароль SSH: должен быть от 6 до 16 символов длиной и "
+#~ "содержать только a-z A-Z 0-9<br>\n"
+
+#~ msgid ""
+#~ "Incorrect ssh login : this is not a good string for a ssh login, please "
+#~ "enter a new one."
+#~ msgstr ""
+#~ "Неправильный формат учётной записи ssh: это не очень хорошая строка для "
+#~ "учётной записи ssh, введите другую."
 
 #~ msgid "Is company radio button is wrong!"
 #~ msgstr "Ошибочный выбор компании!"
@@ -9910,6 +9934,10 @@ msgstr "да"
 #~ msgid "View details"
 #~ msgstr "Подробности"
 
+#, fuzzy
+#~ msgid "You don't have SSH login permissions."
+#~ msgstr "Вы не имеете флага SSH логина!"
+
 #~ msgid "Your SRS username:"
 #~ msgstr "Имя пользователя в SRS:"
 
@@ -9924,6 +9952,9 @@ msgstr "да"
 
 #~ msgid "Your key to access the test server:"
 #~ msgstr "Ключ для доступа к тестовому серверу:"
+
+#~ msgid "Your path is restricted to "
+#~ msgstr "Путь ограничивается "
 
 #~ msgid "is not same as the one I have in the database"
 #~ msgstr "не тот же, что имеется в базе данных"

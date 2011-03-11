@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.27.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-03 15:56+0800\n"
+"POT-Creation-Date: 2011-03-11 18:22+0800\n"
 "PO-Revision-Date: 2011-01-20 11:54-0300\n"
 "Last-Translator: Rodrigo Moglia <rmoglia@gmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
@@ -88,11 +88,11 @@ msgstr "  de transferência de dados em cada mês."
 msgid " remaining to be paid"
 msgstr " lembrar de ser pago"
 
-#: shared/inc/forms/vps_installation.php:286
+#: shared/inc/forms/vps_installation.php:293
 msgid " using the password of your physical console."
 msgstr "  usando a senha de seu console físico."
 
-#: admin/inc/dtc_config.php:1108
+#: admin/inc/dtc_config.php:1113
 #, fuzzy
 msgid ""
 "(<a href=\"http://dtcsupport.gplhost.com/PmWiki/Name-based-shared-SSL-vhosts"
@@ -102,13 +102,17 @@ msgstr ""
 "\">Avisos de SSL compartilhado!</a>)Permitir o uso de vhosts com SSL "
 "compartilhado: "
 
-#: admin/inc/dtc_config.php:1251
+#: admin/inc/dtc_config.php:1256
 msgid ") :"
 msgstr ") :"
 
 #: shared/dtcrm/draw_handle.php:467
 msgid "+1.XXXXXXXXXX format"
 msgstr "no formato +351.XXXXXXXXX"
+
+#: client/new_account_form.php:438
+msgid "- password removed for security reasons -"
+msgstr ""
 
 #: shared/inc/forms/vps_monitoring.php:67
 #: shared/inc/forms/vps_monitoring.php:68
@@ -370,15 +374,15 @@ msgstr "TODOS OS ARQUIVOS E SCRIPTS"
 msgid "APACHE VHOST"
 msgstr "VHOST APACHE"
 
-#: admin/inc/dtc_config.php:1178
+#: admin/inc/dtc_config.php:1183
 msgid "AWStats harmful"
 msgstr "AWStats harmful"
 
-#: admin/inc/dtc_config.php:1698
+#: admin/inc/dtc_config.php:1703
 msgid "Accept cheques: "
 msgstr "Aceita cheques:"
 
-#: admin/inc/dtc_config.php:1716
+#: admin/inc/dtc_config.php:1721
 msgid "Accept wire transfers to bank: "
 msgstr "Aceitar as transferências electrônicas de banco:"
 
@@ -404,12 +408,12 @@ msgstr "Nome da conta"
 msgid "Account Number"
 msgstr "Número de conta"
 
-#: admin/inc/dtc_config.php:1506
+#: admin/inc/dtc_config.php:1511
 msgid "Act as backup DNS server for the following servers:"
 msgstr ""
 "Atuar como um servidor de backup de correio para os seguintes servidores:"
 
-#: admin/inc/dtc_config.php:1481
+#: admin/inc/dtc_config.php:1486
 msgid "Act as backup mail server for the following servers:"
 msgstr ""
 "Actuar como um servidor de backup de DNS para os seguintes servidores :"
@@ -503,11 +507,11 @@ msgstr "Adicionar um domínio ou de serviço"
 msgid "Add a domain or service:"
 msgstr "Adicionar um domínio ou serviço:"
 
-#: admin/inc/dtc_config.php:2350
+#: admin/inc/dtc_config.php:2355
 msgid "Add a new company"
 msgstr "Adicionar uma nova empresa"
 
-#: admin/inc/dtc_config.php:2349
+#: admin/inc/dtc_config.php:2354
 msgid "Add a new company:"
 msgstr "Adicionar uma nova empresa:"
 
@@ -515,11 +519,11 @@ msgstr "Adicionar uma nova empresa:"
 msgid "Add a new user"
 msgstr "Adicionar um novo usuário"
 
-#: shared/gfx/skin/default_layout.php:426
+#: shared/gfx/skin/default_layout.php:425
 msgid "Add a virtual administrator"
 msgstr "Adicionar um administrador virtual"
 
-#: admin/dtcrm/main.php:133
+#: admin/dtcrm/main.php:148
 msgid "Add an administrator to this customer:"
 msgstr "Adicionar um administrador para este cliente :"
 
@@ -547,8 +551,8 @@ msgstr "A alteração do servidor de nome falhou"
 msgid "Addition of name server was succesfull"
 msgstr "A alteração do servidor de nome foi efectuada correctamente"
 
-#: admin/view_waitingusers.php:174 admin/dtcrm/main.php:217
-#: client/new_account_form.php:721 shared/dtcrm/draw_handle.php:67
+#: admin/view_waitingusers.php:174 admin/dtcrm/main.php:232
+#: client/new_account_form.php:728 shared/dtcrm/draw_handle.php:67
 #: shared/dtcrm/draw_handle.php:105 shared/dtcrm/draw_handle.php:143
 #: shared/dtcrm/draw_handle.php:181 shared/dtcrm/draw_handle.php:293
 #: shared/dtcrm/draw_handle.php:443
@@ -559,8 +563,8 @@ msgstr "Endereço (linha1):"
 msgid "Address (line2):"
 msgstr "Endereço (linha2):"
 
-#: admin/view_waitingusers.php:175 admin/dtcrm/main.php:218
-#: client/new_account_form.php:724 shared/dtcrm/draw_handle.php:68
+#: admin/view_waitingusers.php:175 admin/dtcrm/main.php:233
+#: client/new_account_form.php:731 shared/dtcrm/draw_handle.php:68
 #: shared/dtcrm/draw_handle.php:106 shared/dtcrm/draw_handle.php:144
 #: shared/dtcrm/draw_handle.php:182 shared/dtcrm/draw_handle.php:298
 #: shared/dtcrm/draw_handle.php:446
@@ -571,8 +575,8 @@ msgstr "Endereço (linha2):"
 msgid "Address (line3):"
 msgstr "Endereço (Linha3):"
 
-#: admin/view_waitingusers.php:176 admin/dtcrm/main.php:219
-#: client/new_account_form.php:727 shared/dtcrm/draw_handle.php:69
+#: admin/view_waitingusers.php:176 admin/dtcrm/main.php:234
+#: client/new_account_form.php:734 shared/dtcrm/draw_handle.php:69
 #: shared/dtcrm/draw_handle.php:107 shared/dtcrm/draw_handle.php:145
 #: shared/dtcrm/draw_handle.php:183 shared/dtcrm/draw_handle.php:303
 #: shared/dtcrm/draw_handle.php:449
@@ -584,11 +588,11 @@ msgstr "Endereço (Linha3):"
 msgid "Address of the job on your site:"
 msgstr "Endereço do servidor de MX principal:"
 
-#: admin/inc/dtc_config.php:1322
+#: admin/inc/dtc_config.php:1327
 msgid "Address of your main MX server:"
 msgstr "Endereço do servidor de MX principal:"
 
-#: admin/inc/renewals.php:367 admin/inc/dtc_config.php:2370
+#: admin/inc/renewals.php:367 admin/inc/dtc_config.php:2375
 #: shared/inc/forms/my_account.php:221
 msgid "Address:"
 msgstr "Morada :"
@@ -597,7 +601,7 @@ msgstr "Morada :"
 msgid "Admin"
 msgstr "Admin"
 
-#: shared/gfx/skin/default_layout.php:181 shared/gfx/skin/bwoup/layout.php:564
+#: shared/gfx/skin/default_layout.php:180 shared/gfx/skin/bwoup/layout.php:564
 #, fuzzy
 msgid "Admin List"
 msgstr "Lista de administradores"
@@ -611,12 +615,12 @@ msgstr "Admin login:"
 msgid "Admin contact:"
 msgstr "Admin contato:"
 
-#: shared/gfx/skin/default_layout.php:387 shared/gfx/skin/bwoup/layout.php:651
+#: shared/gfx/skin/default_layout.php:386 shared/gfx/skin/bwoup/layout.php:651
 #: shared/gfx/skin/bwoup/layout.php:653
 msgid "Admin editor"
 msgstr "Admin editor"
 
-#: admin/inc/dtc_config.php:1619 shared/inc/forms/my_account.php:249
+#: admin/inc/dtc_config.php:1624 shared/inc/forms/my_account.php:249
 msgid "Affiliation"
 msgstr "Afiliação"
 
@@ -674,7 +678,7 @@ msgstr "Permitir adição de listas e grupos de correio:"
 msgid "Allow edition of subdomains:"
 msgstr "Permitir edição de sub-dominios :"
 
-#: admin/inc/dtc_config.php:1612
+#: admin/inc/dtc_config.php:1617
 msgid "Allow registration of subdomain of the main domain: "
 msgstr "Permitir o registo de subdomínio no domínio principal:"
 
@@ -694,7 +698,7 @@ msgstr "Tráfego permitido por mês"
 msgid "Allowed bandwidth per month (MB):"
 msgstr "Tráfego permitido por mês (MB):"
 
-#: admin/dtcrm/main.php:231
+#: admin/dtcrm/main.php:246
 msgid "Allowed data transfer (GB): "
 msgstr "Transferência de dados permitida (GB):"
 
@@ -741,7 +745,7 @@ msgstr "Angola"
 msgid "Anguilla"
 msgstr "Anguilla"
 
-#: admin/inc/dtc_config.php:1195
+#: admin/inc/dtc_config.php:1200
 msgid "Another location"
 msgstr "Outro local"
 
@@ -761,16 +765,16 @@ msgstr "Modo anti-spam:"
 msgid "Antigua And Barbuda"
 msgstr "Antígua e Barbuda"
 
-#: admin/inc/dtc_config.php:1216
+#: admin/inc/dtc_config.php:1221
 #, fuzzy
 msgid "Apache DirectoryIndex Config: "
 msgstr "DirectoryIndex Apache:"
 
-#: admin/inc/dtc_config.php:2296
+#: admin/inc/dtc_config.php:2301
 msgid "Apache file names"
 msgstr "Nome de arquivos Apache"
 
-#: admin/inc/dtc_config.php:2267
+#: admin/inc/dtc_config.php:2272
 msgid "Apache htpasswd path"
 msgstr "Caminho do htpasswd Apache"
 
@@ -834,7 +838,7 @@ msgstr "Aruba"
 msgid "Ascension Island"
 msgstr "Ascension Island"
 
-#: admin/inc/dtc_config.php:2147
+#: admin/inc/dtc_config.php:2152
 msgid "Associated Dedicated Service"
 msgstr "Associado a serviço dedicado:"
 
@@ -842,8 +846,8 @@ msgstr "Associado a serviço dedicado:"
 msgid "At least one ftp user must exist for this check to complete."
 msgstr ""
 
-#: admin/inc/dtc_config.php:2050 admin/inc/dtc_config.php:2082
-#: admin/inc/dtc_config.php:2172 admin/inc/dtc_config.php:2203
+#: admin/inc/dtc_config.php:2055 admin/inc/dtc_config.php:2087
+#: admin/inc/dtc_config.php:2177 admin/inc/dtc_config.php:2208
 msgid "Attribute"
 msgstr "Atributo"
 
@@ -864,11 +868,11 @@ msgstr "A recuperação do código de autenticação falhou."
 msgid "Auto start of php sessions"
 msgstr "Inicie automaticamente as sessões php"
 
-#: admin/inc/dtc_config.php:1353
+#: admin/inc/dtc_config.php:1358
 msgid "Auto-generate default subdomains (mail, pop, imap, smtp, ftp, list):"
 msgstr "Auto-gerar subdomínios padrão (correio, pop, imap, smtp, ftp, lista):"
 
-#: admin/inc/dtc_config.php:1358
+#: admin/inc/dtc_config.php:1363
 msgid "Auto-generate subdomain list (separated by |):"
 msgstr "Auto-gerar subdomínio lista (separada por |):"
 
@@ -932,7 +936,7 @@ msgstr "Balanço antes da transação:"
 msgid "Bandwidth"
 msgstr "Largura de Banda"
 
-#: shared/gfx/skin/default_layout.php:257 shared/gfx/skin/bwoup/layout.php:407
+#: shared/gfx/skin/default_layout.php:256 shared/gfx/skin/bwoup/layout.php:407
 #: shared/gfx/skin/bwoup/layout.php:409
 #, fuzzy
 msgid "Bandwidth Monitor"
@@ -983,7 +987,7 @@ msgstr "Banco montante"
 msgid "Bank Validated"
 msgstr "Banco validado"
 
-#: admin/inc/dtc_config.php:1725
+#: admin/inc/dtc_config.php:1730
 msgid "Bank account details: "
 msgstr "Conta bancária (detalhes):"
 
@@ -991,11 +995,11 @@ msgstr "Conta bancária (detalhes):"
 msgid "Barbados"
 msgstr "Barbados"
 
-#: admin/inc/dtc_config.php:1923
+#: admin/inc/dtc_config.php:1928
 msgid "Barcode"
 msgstr "código de barras"
 
-#: admin/inc/dtc_config.php:2263
+#: admin/inc/dtc_config.php:2268
 msgid ""
 "Base path to DTC-generated daemon configuration files.<br>\n"
 "All of the DTC daemon config files defined on this page will be saved here:"
@@ -1037,15 +1041,15 @@ msgstr "Bind reload"
 msgid "Bolivia"
 msgstr "Bolívia"
 
-#: shared/inc/forms/vps_installation.php:312
+#: shared/inc/forms/vps_installation.php:319
 msgid "Boot device: "
 msgstr "Dispositivo de boot:"
 
-#: shared/inc/forms/vps_installation.php:288
+#: shared/inc/forms/vps_installation.php:295
 msgid "Boot on hard drive"
 msgstr "Boot no disco rígido"
 
-#: shared/inc/forms/vps_installation.php:198
+#: shared/inc/forms/vps_installation.php:205
 msgid "Boot up (xm start)"
 msgstr "Boot up (xm start)"
 
@@ -1155,7 +1159,7 @@ msgstr "Não é possível buscar usuário:"
 msgid "Cannot find payment."
 msgstr "Não é possível encontrar pagamento!"
 
-#: client/new_account_form.php:427
+#: client/new_account_form.php:428
 #, fuzzy
 msgid "Cannot find product ID."
 msgstr "Não foi possível encontrar o produto!"
@@ -1276,11 +1280,11 @@ msgstr "República Central Africana"
 msgid "Chad"
 msgstr "Chade"
 
-#: shared/inc/forms/vps_installation.php:281
+#: shared/inc/forms/vps_installation.php:288
 msgid "Change NetBSD kernel"
 msgstr "Variação kernel NetBSD"
 
-#: shared/inc/forms/vps_installation.php:167
+#: shared/inc/forms/vps_installation.php:174
 #: shared/inc/forms/dedicated.php:139
 msgid "Change RDNS"
 msgstr "Modificar RDNS"
@@ -1299,7 +1303,7 @@ msgid "Check to send a bounce (vacation) message: "
 msgstr "Verifique para enviar uma mensagem RETORNO (férias):"
 
 #: shared/inc/forms/vps_monitoring.php:133
-#: shared/inc/forms/vps_installation.php:81
+#: shared/inc/forms/vps_installation.php:82
 msgid "Checking filesystem..."
 msgstr "Verificar sistema de arquivos ..."
 
@@ -1308,11 +1312,11 @@ msgstr "Verificar sistema de arquivos ..."
 msgid "Cheque"
 msgstr "cheque"
 
-#: admin/inc/dtc_config.php:1707
+#: admin/inc/dtc_config.php:1712
 msgid "Cheques Payable To: "
 msgstr "Cheques pagáveis para:"
 
-#: admin/inc/dtc_config.php:1693
+#: admin/inc/dtc_config.php:1698
 msgid "Cheques and wire transfers:"
 msgstr "Efetuar a tranferência"
 
@@ -1344,8 +1348,8 @@ msgstr "Christmas Island"
 msgid "City:"
 msgstr "Cidade:"
 
-#: admin/view_waitingusers.php:177 admin/dtcrm/main.php:220
-#: client/new_account_form.php:733 shared/dtcrm/draw_handle.php:71
+#: admin/view_waitingusers.php:177 admin/dtcrm/main.php:235
+#: client/new_account_form.php:740 shared/dtcrm/draw_handle.php:71
 #: shared/dtcrm/draw_handle.php:109 shared/dtcrm/draw_handle.php:147
 #: shared/dtcrm/draw_handle.php:185 shared/dtcrm/draw_handle.php:308
 #: shared/dtcrm/draw_handle.php:455
@@ -1387,11 +1391,11 @@ msgstr "ID do cliente"
 msgid "Client ID:"
 msgstr "ID de Cliente"
 
-#: client/new_account_form.php:905
+#: client/new_account_form.php:912
 msgid "Client info"
 msgstr "Informação do cliente"
 
-#: shared/gfx/skin/default_layout.php:369 shared/gfx/skin/bwoup/layout.php:639
+#: shared/gfx/skin/default_layout.php:368 shared/gfx/skin/bwoup/layout.php:639
 #: shared/gfx/skin/bwoup/layout.php:641
 msgid "Client interface"
 msgstr "Interface do cliente"
@@ -1406,8 +1410,8 @@ msgstr "Nome do cliente não foi encontrado!"
 msgid "Client panel"
 msgstr "Área de clientes:"
 
-#: client/recover_pass.php:65 shared/gfx/skin/default_layout.php:63
-#: shared/gfx/skin/default_layout.php:72 shared/gfx/skin/bwoup/layout.php:253
+#: client/recover_pass.php:65 shared/gfx/skin/default_layout.php:62
+#: shared/gfx/skin/default_layout.php:71 shared/gfx/skin/bwoup/layout.php:253
 #: shared/gfx/skin/bwoup/layout.php:262
 msgid "Client panel:"
 msgstr "Área de clientes :"
@@ -1463,24 +1467,24 @@ msgstr "Empresa"
 msgid "Company Account:"
 msgstr "Nome da empresa:"
 
-#: admin/view_waitingusers.php:170 admin/dtcrm/main.php:213
-#: client/new_account_form.php:693
+#: admin/view_waitingusers.php:170 admin/dtcrm/main.php:228
+#: client/new_account_form.php:700
 #, fuzzy
 msgid "Company Account: "
 msgstr "Nome da empresa:"
 
-#: admin/inc/dtc_config.php:2467
+#: admin/inc/dtc_config.php:2472
 #, fuzzy
 msgid "Company Name"
 msgstr "Nome da empresa"
 
-#: admin/inc/renewals.php:353 admin/inc/dtc_config.php:2365
+#: admin/inc/renewals.php:353 admin/inc/dtc_config.php:2370
 #, fuzzy
 msgid "Company Name:"
 msgstr "Nome da empresa:"
 
-#: admin/view_waitingusers.php:172 admin/dtcrm/main.php:215
-#: client/new_account_form.php:697 shared/dtcrm/draw_handle.php:66
+#: admin/view_waitingusers.php:172 admin/dtcrm/main.php:230
+#: client/new_account_form.php:704 shared/dtcrm/draw_handle.php:66
 #: shared/dtcrm/draw_handle.php:104 shared/dtcrm/draw_handle.php:142
 #: shared/dtcrm/draw_handle.php:180 shared/dtcrm/draw_handle.php:278
 #: shared/dtcrm/draw_handle.php:434
@@ -1502,18 +1506,18 @@ msgstr "Empresa paga"
 msgid "Company name:"
 msgstr "Nome da empresa:"
 
-#: client/new_account_form.php:256 client/new_account_form.php:261
+#: client/new_account_form.php:257 client/new_account_form.php:262
 #, fuzzy
 msgid "Company option wrong."
 msgstr "Empresa paga"
 
-#: shared/gfx/skin/default_layout.php:307 shared/gfx/skin/bwoup/layout.php:427
+#: shared/gfx/skin/default_layout.php:306 shared/gfx/skin/bwoup/layout.php:427
 #: shared/gfx/skin/bwoup/layout.php:429
 #, fuzzy
 msgid "Configuration Generation"
 msgstr "Gerador de Configuração"
 
-#: shared/gfx/skin/default_layout.php:406
+#: shared/gfx/skin/default_layout.php:405
 msgid "Configuration of domains for"
 msgstr "Configuraçaõ para cada dominio do"
 
@@ -1529,7 +1533,7 @@ msgstr "Configuração de servidores dedicados"
 msgid "Configuration of the subdomain"
 msgstr "Configuração dos sub-domínios"
 
-#: shared/gfx/skin/default_layout.php:402
+#: shared/gfx/skin/default_layout.php:401
 msgid "Configuration of the virtual administrator"
 msgstr "Configuração do administrador virtual"
 
@@ -1537,7 +1541,7 @@ msgstr "Configuração do administrador virtual"
 msgid "Configure your domain name:"
 msgstr "Configurar o seu dominio:"
 
-#: client/new_account_form.php:672
+#: client/new_account_form.php:679
 msgid "Confirm pass: "
 msgstr "Confirmação de senha: "
 
@@ -1574,7 +1578,7 @@ msgstr "Ilhas Cook"
 msgid "Copy to subdomains:"
 msgstr "Copiar para subdomínios:"
 
-#: admin/inc/dtc_config.php:1676 admin/dtcrm/product_manager.php:533
+#: admin/inc/dtc_config.php:1681 admin/dtcrm/product_manager.php:533
 msgid "Corresponding display"
 msgstr "Display correspondente"
 
@@ -1610,7 +1614,7 @@ msgstr ""
 "tarde!"
 
 #: shared/inc/forms/vps_monitoring.php:181
-#: shared/inc/forms/vps_installation.php:129
+#: shared/inc/forms/vps_installation.php:130
 msgid "Could not connect to the VPS SOAP Server."
 msgstr "Não foi possível conectar ao servidor SOAP VPS."
 
@@ -1623,7 +1627,7 @@ msgstr "Não foi possível buscar dados do VPS."
 msgid "Could not find login."
 msgstr "Não foi possível encontrar o diretório"
 
-#: client/new_account_form.php:119
+#: client/new_account_form.php:120
 msgid "Could not find the VPS server in database"
 msgstr "Não foi possível localizar o servidor VPS no banco de dados"
 
@@ -1655,7 +1659,7 @@ msgid "Could not get installed ISO files."
 msgstr "Não foi possível obter os arquivos ISO instalados!"
 
 #: shared/inc/forms/vps_monitoring.php:126
-#: shared/inc/forms/vps_installation.php:74
+#: shared/inc/forms/vps_installation.php:75
 msgid ""
 "Could not get remote status (Method getVPSState() failed). Maybe the VPS is "
 "not running?"
@@ -1664,12 +1668,12 @@ msgstr ""
 "a VPS não esteja sendo executado."
 
 #: shared/inc/forms/vps_monitoring.php:130
-#: shared/inc/forms/vps_installation.php:78
+#: shared/inc/forms/vps_installation.php:79
 msgid "Could not get remote status. Unkown error: "
 msgstr "Não foi possível obter o estado remoto. Erro desconhecido:"
 
 #: shared/inc/forms/vps_monitoring.php:128
-#: shared/inc/forms/vps_installation.php:76
+#: shared/inc/forms/vps_installation.php:77
 msgid ""
 "Could not get remote status: could not connect to the SOAP server (HTTP "
 "error)."
@@ -1711,17 +1715,17 @@ msgstr "Não foi possível gravar o usuário para o servidor"
 msgid "Country"
 msgstr "País"
 
-#: client/new_account_form.php:245
+#: client/new_account_form.php:246
 msgid "Country code seems incorrect."
 msgstr "Código do país parece incorreto."
 
-#: admin/inc/renewals.php:385 admin/inc/dtc_config.php:2373
+#: admin/inc/renewals.php:385 admin/inc/dtc_config.php:2378
 #: shared/inc/forms/my_account.php:226
 msgid "Country:"
 msgstr "País :"
 
-#: admin/view_waitingusers.php:180 admin/dtcrm/main.php:223
-#: client/new_account_form.php:739 shared/dtcrm/draw_handle.php:73
+#: admin/view_waitingusers.php:180 admin/dtcrm/main.php:238
+#: client/new_account_form.php:746 shared/dtcrm/draw_handle.php:73
 #: shared/dtcrm/draw_handle.php:111 shared/dtcrm/draw_handle.php:149
 #: shared/dtcrm/draw_handle.php:187 shared/dtcrm/draw_handle.php:318
 #: shared/dtcrm/draw_handle.php:461 shared/inc/forms/root_admin.php:335
@@ -1762,7 +1766,7 @@ msgid "Creation date: "
 msgstr "Data de criação"
 
 #: shared/inc/forms/vps_monitoring.php:30 shared/inc/forms/vps_graphs.php:30
-#: shared/inc/forms/vps_installation.php:31 shared/inc/forms/vps.php:30
+#: shared/inc/forms/vps_installation.php:32 shared/inc/forms/vps.php:30
 #: shared/inc/forms/vps_dom0graphs.php:30
 msgid "Credential not correct: can't display in file "
 msgstr "Credencial não está correta: não foi possível exibir no arquivo"
@@ -1772,35 +1776,35 @@ msgstr "Credencial não está correta: não foi possível exibir no arquivo"
 msgid "Credit cCrd"
 msgstr "Cartão de Crédito"
 
-#: admin/inc/dtc_config.php:1925
+#: admin/inc/dtc_config.php:1930
 msgid "Credit card in 12 installments"
 msgstr "No cartão de crédito em 12 parcelas"
 
-#: admin/inc/dtc_config.php:1925
+#: admin/inc/dtc_config.php:1930
 msgid "Credit card in 18 installments"
 msgstr "No cartão de crédito em 18 parcelas"
 
-#: admin/inc/dtc_config.php:1925
+#: admin/inc/dtc_config.php:1930
 msgid "Credit card in 24 installments"
 msgstr "No cartão de crédito em 24 parcelas"
 
-#: admin/inc/dtc_config.php:1924
+#: admin/inc/dtc_config.php:1929
 msgid "Credit card in 3 installments"
 msgstr "No cartão de crédito em 3 parcelas"
 
-#: admin/inc/dtc_config.php:1924
+#: admin/inc/dtc_config.php:1929
 msgid "Credit card in 6 installments"
 msgstr "No cartão de crédito em 6 parcelas"
 
-#: admin/inc/dtc_config.php:1924
+#: admin/inc/dtc_config.php:1929
 msgid "Credit card in 9 installments"
 msgstr "No cartão de crédito em 9 parcelas"
 
-#: admin/inc/dtc_config.php:1925
+#: admin/inc/dtc_config.php:1930
 msgid "Credit card in Z plan"
 msgstr "Cartão de Crédito no plano Z"
 
-#: admin/inc/dtc_config.php:1923
+#: admin/inc/dtc_config.php:1928
 msgid "Credit card in one payment"
 msgstr "Cartão de crédito em um pagamento."
 
@@ -1838,16 +1842,16 @@ msgstr "Cuba"
 msgid "Currency"
 msgstr "Moeda"
 
-#: admin/inc/dtc_config.php:1639
+#: admin/inc/dtc_config.php:1644
 msgid "Currency letters: "
 msgstr "Moeda letras:"
 
-#: admin/inc/dtc_config.php:1635
+#: admin/inc/dtc_config.php:1640
 msgid "Currency symbol: "
 msgstr "Moeda símbolo:"
 
 #: shared/inc/forms/vps_monitoring.php:208
-#: shared/inc/forms/vps_installation.php:175
+#: shared/inc/forms/vps_installation.php:182
 msgid "Current VPS status:"
 msgstr "Atual estado do VPS:"
 
@@ -1855,7 +1859,7 @@ msgstr "Atual estado do VPS:"
 msgid "Current contract: "
 msgstr "Contrato atual:"
 
-#: shared/inc/forms/vps_installation.php:207
+#: shared/inc/forms/vps_installation.php:214
 msgid "Currently installed operating system: "
 msgstr "Sistema operacional atualmente instalado:"
 
@@ -1902,16 +1906,16 @@ msgstr "Cabeçalhos personalizados:"
 msgid "Custom product type"
 msgstr "País do Cliente"
 
-#: admin/inc/dtc_config.php:1645
+#: admin/inc/dtc_config.php:1650
 msgid "Custom registration fields"
 msgstr "Campos de registro personalizados"
 
-#: admin/inc/dtc_config.php:2462
+#: admin/inc/dtc_config.php:2467
 #, fuzzy
 msgid "Customer Country"
 msgstr "País do Cliente"
 
-#: shared/gfx/skin/default_layout.php:246 shared/gfx/skin/bwoup/layout.php:402
+#: shared/gfx/skin/default_layout.php:245 shared/gfx/skin/bwoup/layout.php:402
 #: shared/gfx/skin/bwoup/layout.php:404
 #, fuzzy
 msgid "Customer Management"
@@ -1922,29 +1926,29 @@ msgstr "Gerenciamento de Clientes"
 msgid "Customer Name"
 msgstr "Nome do cliente"
 
-#: admin/inc/dtc_config.php:2447
+#: admin/inc/dtc_config.php:2452
 #, fuzzy
 msgid "Customer and Service country vs. Company:"
 msgstr "Pomoc techniczna zale¿na od regionu:"
 
-#: shared/gfx/skin/default_layout.php:131 shared/gfx/skin/bwoup/layout.php:493
+#: shared/gfx/skin/default_layout.php:130 shared/gfx/skin/bwoup/layout.php:493
 msgid "Customer renewals"
 msgstr "Cliente renovações"
 
-#: client/new_account_form.php:907 shared/gfx/skin/default_layout.php:120
+#: client/new_account_form.php:914 shared/gfx/skin/default_layout.php:119
 #: shared/gfx/skin/bwoup/layout.php:480
 msgid "Customer's address"
 msgstr "Contacto do cliente"
 
-#: shared/gfx/skin/default_layout.php:122
+#: shared/gfx/skin/default_layout.php:121
 msgid "Customer's administrators"
 msgstr "Administrador do cliente"
 
-#: shared/gfx/skin/default_layout.php:135 shared/gfx/skin/bwoup/layout.php:497
+#: shared/gfx/skin/default_layout.php:134 shared/gfx/skin/bwoup/layout.php:497
 msgid "Customer's bandwidth consumption"
 msgstr "Consumo de tráfego"
 
-#: shared/gfx/skin/default_layout.php:125 shared/gfx/skin/bwoup/layout.php:475
+#: shared/gfx/skin/default_layout.php:124 shared/gfx/skin/bwoup/layout.php:475
 msgid "Customers list"
 msgstr "Lista de clientes"
 
@@ -1986,7 +1990,11 @@ msgstr "DNS e MX"
 msgid "DNS config of:"
 msgstr "Configuração de DNS:"
 
-#: shared/gfx/skin/default_layout.php:152 shared/gfx/skin/bwoup/layout.php:520
+#: shared/inc/forms/vps_installation.php:148
+msgid "DNS: "
+msgstr ""
+
+#: shared/gfx/skin/default_layout.php:151 shared/gfx/skin/bwoup/layout.php:520
 msgid "DTC Configuration"
 msgstr "Configuração DTC"
 
@@ -1995,11 +2003,11 @@ msgstr "Configuração DTC"
 msgid "DTC General Configuration"
 msgstr "Configuração geral do DTC"
 
-#: admin/inc/dtc_config.php:1237
+#: admin/inc/dtc_config.php:1242
 msgid "DTC Skin chooser"
 msgstr "Escolher visual para o DTC"
 
-#: shared/gfx/skin/default_layout.php:319
+#: shared/gfx/skin/default_layout.php:318
 msgid "DTC general configuration"
 msgstr "Configuração geral do DTC"
 
@@ -2025,16 +2033,16 @@ msgstr ""
 "seja necessária interferência manual você precisa criar uma confiança ssh "
 "através de um par de chaves ssh entre ambas as máquinas."
 
-#: admin/inc/dtc_config.php:2254
+#: admin/inc/dtc_config.php:2259
 #, fuzzy
 msgid "DTC shared directory path:"
 msgstr "Localização do directório \"shared\" do DTC :"
 
-#: admin/inc/dtc_config.php:1147
+#: admin/inc/dtc_config.php:1152
 msgid "Daemon"
 msgstr "Daemon"
 
-#: shared/gfx/skin/default_layout.php:143 shared/gfx/skin/bwoup/layout.php:505
+#: shared/gfx/skin/default_layout.php:142 shared/gfx/skin/bwoup/layout.php:505
 #, fuzzy
 msgid "Daemon Status"
 msgstr "Daemon"
@@ -2161,11 +2169,11 @@ msgstr "Servidor Dedicado contrato:"
 msgid "Dedicated server expiration dates:"
 msgstr "Servidor Dedicado expiração:"
 
-#: admin/inc/dtc_config.php:2425 admin/inc/dtc_config.php:2430
+#: admin/inc/dtc_config.php:2430 admin/inc/dtc_config.php:2435
 msgid "Default company invoicing:"
 msgstr "Predefinição empresa faturação:"
 
-#: admin/inc/dtc_config.php:2257
+#: admin/inc/dtc_config.php:2262
 #, fuzzy
 msgid "Default new account directory:"
 msgstr "Seu novo diretório padrão de conta:"
@@ -2174,7 +2182,7 @@ msgstr "Seu novo diretório padrão de conta:"
 msgid "Default subdomain: "
 msgstr "Subdominio pre-definido :"
 
-#: admin/inc/dtc_config.php:1368
+#: admin/inc/dtc_config.php:1373
 msgid "Defaut TTL for your zonefiles:"
 msgstr "TTL padrão para seus arquivos de zona:"
 
@@ -2215,7 +2223,7 @@ msgstr ""
 "Remover todas as mensagens do webarchive. NOTA: isto só funciona se você "
 "tiver \"webarchive\" não marcados."
 
-#: admin/dtcrm/main.php:324
+#: admin/dtcrm/main.php:339
 msgid "Delete client"
 msgstr "Remover cliente"
 
@@ -2271,12 +2279,12 @@ msgstr "Dinamarca"
 msgid "Deny if no To: or Cc::"
 msgstr "Negar se não existir Para: ou Cc::"
 
-#: admin/inc/dtc_config.php:1992 admin/inc/dtc_config.php:2014
+#: admin/inc/dtc_config.php:1997 admin/inc/dtc_config.php:2019
 #: shared/inc/forms/packager.php:218
 msgid "Description"
 msgstr "Descrição"
 
-#: client/new_account_form.php:650
+#: client/new_account_form.php:657
 msgid "Desired domain name"
 msgstr "Nome do dominio pretendido"
 
@@ -2300,15 +2308,15 @@ msgstr "Intervalo Digest:"
 msgid "Digest max mails:"
 msgstr "Consolidação de mensagens (máximo):"
 
-#: admin/inc/dtc_config.php:1923
+#: admin/inc/dtc_config.php:1928
 msgid "DineroMail account funds"
 msgstr "Créditos de DineroMail "
 
-#: admin/inc/dtc_config.php:1916
+#: admin/inc/dtc_config.php:1921
 msgid "Dineromail Account: "
 msgstr "Conta de Dineromail"
 
-#: admin/inc/dtc_config.php:1906
+#: admin/inc/dtc_config.php:1911
 msgid "Dineromail:"
 msgstr "Dineromail:"
 
@@ -2338,7 +2346,7 @@ msgstr "Utilização de disco"
 msgid "Display and sort by:"
 msgstr "Listar ordenados por:"
 
-#: admin/inc/dtc_config.php:1656 admin/dtcrm/product_manager.php:513
+#: admin/inc/dtc_config.php:1661 admin/dtcrm/product_manager.php:513
 msgid "Display order"
 msgstr "Ordem do display"
 
@@ -2386,7 +2394,7 @@ msgstr "Nome do dominio:"
 msgid "Domain Technologie Control"
 msgstr "Domain Technologie Control"
 
-#: shared/gfx/skin/default_layout.php:194
+#: shared/gfx/skin/default_layout.php:193
 msgid "Domain Technologie Control : root admin console"
 msgstr "Domain Technologie Control : Consola de administração para root"
 
@@ -2398,7 +2406,7 @@ msgstr "Ferramentas de Domínio"
 msgid "Domain auth code: "
 msgstr "Domínio (código de autenticação):"
 
-#: shared/gfx/skin/default_layout.php:378 shared/gfx/skin/bwoup/layout.php:645
+#: shared/gfx/skin/default_layout.php:377 shared/gfx/skin/bwoup/layout.php:645
 #: shared/gfx/skin/bwoup/layout.php:647
 msgid "Domain config"
 msgstr "Domínio (configuração)"
@@ -2415,7 +2423,7 @@ msgstr "Nome do dominio"
 msgid "Domain name files:"
 msgstr "Arquivos de nomes de dominios :"
 
-#: admin/inc/dtc_config.php:1624
+#: admin/inc/dtc_config.php:1629
 msgid "Domain name for affiliation return URL:"
 msgstr "Nome de domínio para filiação retorno URL:"
 
@@ -2434,11 +2442,11 @@ msgstr "O nome do dominio é inválido, verifique sff."
 msgid "Domain name protected"
 msgstr "Nome de domínio protegido"
 
-#: admin/inc/dtc_config.php:1549
+#: admin/inc/dtc_config.php:1554
 msgid "Domain name registry API configuration"
 msgstr "Configuração de API de registro de domínio"
 
-#: client/new_account_form.php:94 client/new_account_form.php:104
+#: client/new_account_form.php:95 client/new_account_form.php:105
 msgid "Domain name seems to be incorrect."
 msgstr "Nome de domínio parece estar incorreto."
 
@@ -2478,7 +2486,7 @@ msgstr "Domínio raiz registo TXT:"
 msgid "Domains"
 msgstr "Domínios"
 
-#: shared/gfx/skin/default_layout.php:409
+#: shared/gfx/skin/default_layout.php:408
 msgid "Domains for"
 msgstr "Domínios para"
 
@@ -2605,7 +2613,7 @@ msgstr "Modificar Grupo de Correio"
 msgid "Edit Upstream Provider"
 msgstr "Editor de provedores"
 
-#: admin/inc/dtc_config.php:2351
+#: admin/inc/dtc_config.php:2356
 msgid "Edit a company:"
 msgstr "Editar uma empresa:"
 
@@ -2656,11 +2664,11 @@ msgstr "Endereço de correio"
 msgid "Email address is already in use."
 msgstr "Endereço de correio já·está·em·uso!"
 
-#: admin/inc/dtc_config.php:1331
+#: admin/inc/dtc_config.php:1336
 msgid "Email address of your webmaster:"
 msgstr "Endereço de correio do Webmaster :"
 
-#: client/new_account_form.php:125
+#: client/new_account_form.php:126
 msgid "Email address seems to be incorrect format."
 msgstr "Endereço de correio parece estar no formato incorreto."
 
@@ -2672,7 +2680,7 @@ msgstr "Max. E-mail"
 msgid "Email panel"
 msgstr "Painel de Correio"
 
-#: shared/gfx/skin/default_layout.php:24 shared/gfx/skin/default_layout.php:34
+#: shared/gfx/skin/default_layout.php:23 shared/gfx/skin/default_layout.php:33
 #: shared/gfx/skin/bwoup/layout.php:53 shared/gfx/skin/bwoup/layout.php:61
 msgid "Email panel: "
 msgstr "Painel de Correio:"
@@ -2691,8 +2699,8 @@ msgstr "Correio de usuário e arquivos de domínio gerados!"
 msgid "Email:"
 msgstr "Correio:"
 
-#: admin/view_waitingusers.php:184 admin/dtcrm/main.php:227
-#: client/new_account_form.php:703 email/login.php:14
+#: admin/view_waitingusers.php:184 admin/dtcrm/main.php:242
+#: client/new_account_form.php:710 email/login.php:14
 #: shared/dtcrm/draw_handle.php:77 shared/dtcrm/draw_handle.php:115
 #: shared/dtcrm/draw_handle.php:153 shared/dtcrm/draw_handle.php:191
 #: shared/dtcrm/draw_handle.php:344 shared/dtcrm/draw_handle.php:473
@@ -2731,7 +2739,7 @@ msgstr "Guiné Equatorial"
 msgid "Eritrea"
 msgstr "Eritréia"
 
-#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
+#: shared/gfx/skin/default_layout.php:60 shared/gfx/skin/bwoup/layout.php:251
 msgid "Error"
 msgstr "Erro"
 
@@ -2743,7 +2751,7 @@ msgstr "Erro ao pesquisar o usuário de radius. Contate o suporte."
 msgid "Error fetching admin"
 msgstr "Erro ao consultar administrador"
 
-#: shared/inc/forms/vps_installation.php:157
+#: shared/inc/forms/vps_installation.php:159
 msgid "Error line "
 msgstr "Erro linha"
 
@@ -2894,8 +2902,8 @@ msgstr "Ilhas Faroé"
 msgid "Fax:"
 msgstr "Fax:"
 
-#: admin/view_waitingusers.php:183 admin/dtcrm/main.php:226
-#: client/new_account_form.php:709 shared/dtcrm/draw_handle.php:76
+#: admin/view_waitingusers.php:183 admin/dtcrm/main.php:241
+#: client/new_account_form.php:716 shared/dtcrm/draw_handle.php:76
 #: shared/dtcrm/draw_handle.php:114 shared/dtcrm/draw_handle.php:152
 #: shared/dtcrm/draw_handle.php:190 shared/dtcrm/draw_handle.php:339
 #: shared/dtcrm/draw_handle.php:470
@@ -2915,7 +2923,7 @@ msgstr "Fetchmail (configuração):"
 msgid "Fetchmail script generated."
 msgstr "Fetchmail script gerado!"
 
-#: client/new_account_form.php:896
+#: client/new_account_form.php:903
 #, fuzzy
 msgid "Fields with a <font color=\"red\">*</font> are mandatory."
 msgstr "Campos marcado com <font color=\"red\">*</font> são obrigatórios."
@@ -2932,11 +2940,11 @@ msgstr "Gerenciador de Arquivos"
 msgid "File manager:"
 msgstr "Gerenciador de Arquivos:"
 
-#: shared/inc/forms/vps_installation.php:203
+#: shared/inc/forms/vps_installation.php:210
 msgid "File system check (fsck)"
 msgstr "Checagem de Sistema de Arquivos (fsck)"
 
-#: shared/inc/forms/vps_installation.php:201
+#: shared/inc/forms/vps_installation.php:208
 msgid "File-system check:"
 msgstr "Verificação do sistema de arquivos:"
 
@@ -2952,8 +2960,8 @@ msgstr ""
 msgid "Finland"
 msgstr "Finlândia"
 
-#: admin/view_waitingusers.php:169 admin/dtcrm/main.php:212
-#: client/new_account_form.php:690 shared/dtcrm/draw_handle.php:64
+#: admin/view_waitingusers.php:169 admin/dtcrm/main.php:227
+#: client/new_account_form.php:697 shared/dtcrm/draw_handle.php:64
 #: shared/dtcrm/draw_handle.php:102 shared/dtcrm/draw_handle.php:140
 #: shared/dtcrm/draw_handle.php:178 shared/dtcrm/draw_handle.php:283
 #: shared/dtcrm/draw_handle.php:437
@@ -2974,15 +2982,15 @@ msgstr "Nome:"
 msgid "First query date"
 msgstr "Primeira consulta data:"
 
-#: admin/inc/dtc_config.php:1927
+#: admin/inc/dtc_config.php:1932
 msgid "Fixed charge fee: "
 msgstr "Taxa Fixa:"
 
-#: admin/inc/dtc_config.php:1703
+#: admin/inc/dtc_config.php:1708
 msgid "Flat fee for accepting cheques: "
 msgstr "Taxa de aceitação dos cheques:"
 
-#: admin/inc/dtc_config.php:1721
+#: admin/inc/dtc_config.php:1726
 msgid "Flat fee for accepting wire transfers: "
 msgstr "Taxa fixa para aceitar wire·transfers:"
 
@@ -2998,7 +3006,7 @@ msgstr ""
 msgid "Forbidden database name"
 msgstr "Nome do banco de dados proibido"
 
-#: admin/inc/dtc_config.php:1113
+#: admin/inc/dtc_config.php:1118
 msgid "Force HTTPS use for contol panel: "
 msgstr ""
 
@@ -3047,11 +3055,11 @@ msgstr "Territórios Franceses do Sul"
 msgid "Full description of the trouble:"
 msgstr "Descrição completa dos problemas:"
 
-#: admin/inc/dtc_config.php:1295
+#: admin/inc/dtc_config.php:1300
 msgid "Full hostname of DTC admin panel: "
 msgstr "Nome da máquina (hostname) para administração do DTC :"
 
-#: admin/inc/dtc_config.php:1388
+#: admin/inc/dtc_config.php:1393
 msgid "Full path to location of the public.key file for DomainKey support:"
 msgstr ""
 "Caminho completo para a localização do arquivo public.key para suporte a "
@@ -3092,6 +3100,11 @@ msgstr "Gateway (tipo)"
 msgid "Gateway cost"
 msgstr "Gateway (custo)"
 
+#: shared/inc/forms/vps_installation.php:148
+#, fuzzy
+msgid "Gateway: "
+msgstr "Gateway (custo)"
+
 #: admin/inc/dtc_config.php:29 admin/inc/dtc_config.php:1093
 msgid "General"
 msgstr "Geral"
@@ -3105,7 +3118,7 @@ msgstr "Informação Geral de "
 msgid "Generate a ServerAlias for the root of the domain:"
 msgstr "Gerar um serveralias para o administrador do domínio:"
 
-#: admin/inc/dtc_config.php:1206
+#: admin/inc/dtc_config.php:1211
 msgid "Generate a global /webmail alias: "
 msgstr "Gerar um global / webmail alias:"
 
@@ -3113,7 +3126,7 @@ msgstr "Gerar um global / webmail alias:"
 msgid "Generate a vhost entry for this subdomain:"
 msgstr "Gerar uma entrada vhost para este subdomínio:"
 
-#: admin/inc/dtc_config.php:1286
+#: admin/inc/dtc_config.php:1291
 msgid "Generate all apache vhosts on local network ip (NAT): "
 msgstr "Gerar todos os vhosts no Apache usando um IP de rede local (NAT)"
 
@@ -3137,11 +3150,11 @@ msgstr "Gana"
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
-#: client/new_account_form.php:818
+#: client/new_account_form.php:825
 msgid "Go to login"
 msgstr "Ir para o login"
 
-#: shared/inc/forms/vps_installation.php:187
+#: shared/inc/forms/vps_installation.php:194
 msgid "Gracefully shutdown (xm shutdown)"
 msgstr "Desligamento Normal (xm·shutdown)"
 
@@ -3150,7 +3163,7 @@ msgstr "Desligamento Normal (xm·shutdown)"
 msgid "Grand Total"
 msgstr "Total geral"
 
-#: admin/inc/dtc_config.php:1786 admin/inc/dtc_config.php:1838
+#: admin/inc/dtc_config.php:1791 admin/inc/dtc_config.php:1843
 msgid "Grand total"
 msgstr "Total geral"
 
@@ -3174,24 +3187,24 @@ msgstr "Groenlândia"
 msgid "Grenada"
 msgstr "Granada"
 
-#: admin/inc/dtc_config.php:1786 admin/inc/dtc_config.php:1838
+#: admin/inc/dtc_config.php:1791 admin/inc/dtc_config.php:1843
 msgid "Gross amount"
 msgstr "Montante bruto"
 
-#: admin/inc/dtc_config.php:2045 admin/inc/dtc_config.php:2077
-#: admin/inc/dtc_config.php:2142
+#: admin/inc/dtc_config.php:2050 admin/inc/dtc_config.php:2082
+#: admin/inc/dtc_config.php:2147
 msgid "Group"
 msgstr "Grupo"
 
-#: admin/inc/dtc_config.php:2031
+#: admin/inc/dtc_config.php:2036
 msgid "Group Attributes checking config"
 msgstr "Grupo de Atributos checando configuração"
 
-#: admin/inc/dtc_config.php:2063
+#: admin/inc/dtc_config.php:2068
 msgid "Group Reply Attributes config"
 msgstr "Grupo de resposta de atribuições de configuração"
 
-#: admin/inc/dtc_config.php:1997
+#: admin/inc/dtc_config.php:2002
 msgid "Group config"
 msgstr "Grupo (configuração)"
 
@@ -3339,7 +3352,7 @@ msgstr ""
 msgid "Here will go quarantinized messages"
 msgstr "Aqui estão as mensagens quantizadas"
 
-#: admin/dtcrm/main.php:100
+#: admin/dtcrm/main.php:113
 msgid "Hide client without admin"
 msgstr "Ocultar cliente sem administrador"
 
@@ -3355,12 +3368,12 @@ msgstr "Honduras"
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
-#: admin/inc/dtc_config.php:1277
+#: admin/inc/dtc_config.php:1282
 msgid "Host IP addresses (separated by \"|\"): "
 msgstr "Lista de endereços IP do servidor (separados por \"|\") :"
 
-#: shared/gfx/skin/default_layout.php:159
-#: shared/gfx/skin/default_layout.php:294 shared/gfx/skin/bwoup/layout.php:422
+#: shared/gfx/skin/default_layout.php:158
+#: shared/gfx/skin/default_layout.php:293 shared/gfx/skin/bwoup/layout.php:422
 #: shared/gfx/skin/bwoup/layout.php:424 shared/gfx/skin/bwoup/layout.php:533
 #, fuzzy
 msgid "Hosting Product Manager"
@@ -3437,7 +3450,7 @@ msgstr ""
 msgid "Hungary"
 msgstr "Hungria"
 
-#: client/new_account_form.php:746
+#: client/new_account_form.php:753
 msgid "I agree to the"
 msgstr "Eu concordo com o"
 
@@ -3476,7 +3489,7 @@ msgstr "Grupo IP"
 msgid "IP Resolved"
 msgstr "IP Resolvido"
 
-#: admin/inc/dtc_config.php:1414 admin/inc/ip_usage_report.php:286
+#: admin/inc/dtc_config.php:1419 admin/inc/ip_usage_report.php:286
 #: shared/inc/forms/my_account.php:143 shared/inc/forms/root_admin.php:444
 msgid "IP address"
 msgstr "Endereço IP"
@@ -3502,17 +3515,17 @@ msgid "IP address(es) of your VPS:"
 msgstr "Endereços IP de sua VPS:"
 
 #: shared/inc/forms/vps_monitoring.php:196
-#: shared/inc/forms/vps_installation.php:143
+#: shared/inc/forms/vps_installation.php:144
 msgid "IP address: "
 msgstr "Endereço IP:"
 
 #: shared/inc/forms/vps_monitoring.php:194
-#: shared/inc/forms/vps_installation.php:141
+#: shared/inc/forms/vps_installation.php:142
 #: shared/inc/forms/dedicated.php:113
 msgid "IP addresses: "
 msgstr "Endereços IP:"
 
-#: admin/inc/dtc_config.php:1344
+#: admin/inc/dtc_config.php:1349
 msgid "IP of the master DNS to be written in the named.slavezones.conf:"
 msgstr "O IP mestre do DNS deve ser escrito no arquivo named.slavezones.conf:"
 
@@ -3732,7 +3745,7 @@ msgstr ""
 "Caso queira manter o seu actual Registar, queira fazer as seguintes "
 "alterações de DNS :"
 
-#: shared/inc/forms/vps_installation.php:190
+#: shared/inc/forms/vps_installation.php:197
 msgid "Immediate kill (xm destroy)"
 msgstr "Matar imediatamente (destruir xm)"
 
@@ -3802,23 +3815,6 @@ msgid ""
 msgstr ""
 "Formato de senha MySQL incorreto: digite um outro login e tente novamente."
 
-#: shared/inc/sql/ssh.php:49
-msgid ""
-"Incorrect SSH login form: please enter another login and try again.<br>\n"
-msgstr "Login SSH incorreto: digite outro login e tente novamente. <br> \n"
-
-#: shared/inc/sql/ssh.php:106
-#, fuzzy
-msgid "Incorrect SSH password: from 6 to 16 characters, a-z A-Z 0-9"
-msgstr "Senha SSH incorreta: De 6 a 16 caracteres, a-z·A-Z·0-9<br>"
-
-#: shared/inc/sql/ssh.php:53
-#, fuzzy
-msgid "Incorrect SSH password: from 6 to 16 characters, a-z A-Z 0-9<br>\n"
-msgstr ""
-"Senha SSH incorreta: De 6 a 16 caracteres, \n"
-"a-z·A-Z·0-9<br>\n"
-
 #: admin/inc/submit_root_querys.php:282
 #, fuzzy
 msgid ""
@@ -3842,14 +3838,6 @@ msgstr ""
 #, fuzzy
 msgid "Incorrect login or password."
 msgstr "Login ou senha incorretos."
-
-#: shared/inc/sql/ssh.php:101
-msgid ""
-"Incorrect ssh login : this is not a good string for a ssh login, please "
-"enter a new one."
-msgstr ""
-"Login ssh incorreto: esta não é uma boa seqüência para um login ssh, digite "
-"um nova."
 
 #: shared/inc/sql/subdomain.php:6
 msgid "Incorrect sub-domain format."
@@ -3899,7 +3887,7 @@ msgstr "Instalar"
 msgid "Installation"
 msgstr "Instalação"
 
-#: shared/inc/forms/vps_installation.php:363
+#: shared/inc/forms/vps_installation.php:370
 msgid "Installation log (last 20 lines):"
 msgstr "Log da Instalação (últimas 20 linhas):"
 
@@ -3912,7 +3900,7 @@ msgstr "Instalar"
 msgid "Instant account"
 msgstr "Conta instantânea"
 
-#: admin/inc/dtc_config.php:1711
+#: admin/inc/dtc_config.php:1716
 msgid "Instructions to send cheques: "
 msgstr "Instruções para envio de cheques:"
 
@@ -3943,12 +3931,12 @@ msgstr "Fatura"
 msgid "Invoice Date"
 msgstr "Data da fatura"
 
-#: admin/inc/dtc_config.php:2401
+#: admin/inc/dtc_config.php:2406
 #, fuzzy
 msgid "Invoice Footer:"
 msgstr "Rodapé da Fatura:"
 
-#: admin/inc/dtc_config.php:2396
+#: admin/inc/dtc_config.php:2401
 msgid "Invoice free text:"
 msgstr "Fatura de texto livre:"
 
@@ -4029,7 +4017,7 @@ msgstr "Ilhas Marianas do Norte"
 msgid "Kazakhstan"
 msgstr "Casaquistão"
 
-#: admin/inc/dtc_config.php:1220
+#: admin/inc/dtc_config.php:1225
 #, fuzzy
 msgid "Keep spam email for n days"
 msgstr "Mantenha os spams por X dias"
@@ -4063,7 +4051,7 @@ msgid "Label"
 msgstr "Label"
 
 #: client/new_account.php:36 client/cheques_and_transfers.php:18
-#: shared/gfx/skin/default_layout.php:15 shared/gfx/skin/default_layout.php:54
+#: shared/gfx/skin/default_layout.php:14 shared/gfx/skin/default_layout.php:53
 #: shared/gfx/skin/bwoup/layout.php:244
 msgid "Language"
 msgstr "Linguagem"
@@ -4082,8 +4070,8 @@ msgstr "Linguagem:"
 msgid "Lao People's Democratic Republic"
 msgstr "República Democrática Popular do Laos"
 
-#: admin/view_waitingusers.php:168 admin/dtcrm/main.php:211
-#: client/new_account_form.php:687 shared/dtcrm/draw_handle.php:65
+#: admin/view_waitingusers.php:168 admin/dtcrm/main.php:226
+#: client/new_account_form.php:694 shared/dtcrm/draw_handle.php:65
 #: shared/dtcrm/draw_handle.php:103 shared/dtcrm/draw_handle.php:141
 #: shared/dtcrm/draw_handle.php:179 shared/dtcrm/draw_handle.php:288
 #: shared/dtcrm/draw_handle.php:440
@@ -4092,7 +4080,7 @@ msgid "Last Name: "
 msgstr "Nome da Lista"
 
 #: shared/inc/forms/vps_monitoring.php:176
-#: shared/inc/forms/vps_installation.php:124
+#: shared/inc/forms/vps_installation.php:125
 msgid "Last boot date: "
 msgstr "Última data de boot:"
 
@@ -4132,7 +4120,7 @@ msgstr "Último aviso para VPS:"
 msgid "Latvia"
 msgstr "Letónia"
 
-#: client/new_account_form.php:914
+#: client/new_account_form.php:921
 msgid ""
 "Leave a message describing any specific requirements you might have for your "
 "account:"
@@ -4178,7 +4166,7 @@ msgstr "Nome da Lista"
 msgid "List of administrators allowed to login and receiving support messages:"
 msgstr "Lista dos administradores que podem receber mensagens de suporte:"
 
-#: admin/inc/dtc_config.php:1402
+#: admin/inc/dtc_config.php:1407
 msgid ""
 "List of servers that may fetch a secondary zone configuration from this "
 "server:"
@@ -4192,7 +4180,7 @@ msgstr "Lista de contas de ftp"
 msgid "List of your SSH accounts:"
 msgstr "Lista de contas de ssh :"
 
-#: admin/inc/dtc_config.php:2348
+#: admin/inc/dtc_config.php:2353
 msgid "List of your companies:"
 msgstr "Lista das suas empresas:"
 
@@ -4246,7 +4234,7 @@ msgstr "Propriatário da lista"
 msgid "List owner:"
 msgstr "Propriatário da lista"
 
-#: admin/inc/dtc_config.php:1362
+#: admin/inc/dtc_config.php:1367
 #, fuzzy
 msgid ""
 "List the DNS server IPs allowed to perform zone<br>\n"
@@ -4257,7 +4245,7 @@ msgstr ""
 "zonas, separados  por  &quot;|&quot; (pipe)<br>\n"
 "(deixe em branco se não tem nenhum servidor de DNS secundário) :"
 
-#: admin/inc/dtc_config.php:1326
+#: admin/inc/dtc_config.php:1331
 msgid ""
 "List your backup MX servers separated by &quot;|&quot; (pipe)<br>\n"
 "(leave blank if you don't have backup MX server):"
@@ -4285,7 +4273,7 @@ msgstr "Ao-vivo"
 msgid "Local host"
 msgstr "host local"
 
-#: admin/inc/dtc_config.php:1291
+#: admin/inc/dtc_config.php:1296
 msgid "Local network area ip address of the vhost using NAT: "
 msgstr "Endereço IP de rede local para vhost que usam NAT"
 
@@ -4297,7 +4285,7 @@ msgstr "Local"
 msgid "Location is not a valid hostname."
 msgstr "A localização não é um hostname válido"
 
-#: admin/inc/dtc_config.php:1192
+#: admin/inc/dtc_config.php:1197
 msgid "Location of user's database: "
 msgstr "Localização do banco de dados do usuário:"
 
@@ -4310,12 +4298,12 @@ msgstr "Logado como:"
 #: admin/inc/renewals.php:897 admin/inc/renewals.php:978
 #: admin/inc/draw_user_admin.php:368 admin/inc/draw_user_admin.php:428
 #: admin/inc/draw_user_admin.php:447 admin/inc/draw_user_admin.php:539
-#: admin/inc/dtc_config.php:531 admin/inc/dtc_config.php:1417
-#: admin/inc/dtc_config.php:1444 admin/inc/dtc_config.php:1469
-#: admin/inc/dtc_config.php:1496 admin/inc/dtc_config.php:1521
-#: shared/inc/forms/reseller.php:24 shared/gfx/skin/default_layout.php:24
-#: shared/gfx/skin/default_layout.php:34 shared/gfx/skin/default_layout.php:63
-#: shared/gfx/skin/default_layout.php:72 shared/gfx/skin/bwoup/layout.php:53
+#: admin/inc/dtc_config.php:531 admin/inc/dtc_config.php:1422
+#: admin/inc/dtc_config.php:1449 admin/inc/dtc_config.php:1474
+#: admin/inc/dtc_config.php:1501 admin/inc/dtc_config.php:1526
+#: shared/inc/forms/reseller.php:24 shared/gfx/skin/default_layout.php:23
+#: shared/gfx/skin/default_layout.php:33 shared/gfx/skin/default_layout.php:62
+#: shared/gfx/skin/default_layout.php:71 shared/gfx/skin/bwoup/layout.php:53
 #: shared/gfx/skin/bwoup/layout.php:61 shared/gfx/skin/bwoup/layout.php:253
 #: shared/gfx/skin/bwoup/layout.php:262
 msgid "Login"
@@ -4327,7 +4315,7 @@ msgid ""
 "a length of 4 or more."
 msgstr ""
 
-#: client/new_account_form.php:903
+#: client/new_account_form.php:910
 msgid "Login info"
 msgstr "Informação do utilizador para acesso"
 
@@ -4345,7 +4333,7 @@ msgid "Login:"
 msgstr "Login:"
 
 #: admin/view_waitingusers.php:165 client/login.php:13
-#: client/new_account_form.php:666 shared/inc/forms/ftp.php:93
+#: client/new_account_form.php:673 shared/inc/forms/ftp.php:93
 msgid "Login: "
 msgstr "Login:"
 
@@ -4353,7 +4341,7 @@ msgstr "Login:"
 msgid "Logins"
 msgstr "Logins"
 
-#: admin/inc/dtc_config.php:2391
+#: admin/inc/dtc_config.php:2396
 msgid "Logo path relative to"
 msgstr "Caminho relativo do logo"
 
@@ -4493,11 +4481,11 @@ msgstr "Listas de distribuição"
 msgid "Mailing lists:"
 msgstr "Listas de distribuição:"
 
-#: admin/inc/dtc_config.php:1273
+#: admin/inc/dtc_config.php:1278
 msgid "Main ip address of the server: "
 msgstr "IP principal do servidor:"
 
-#: admin/inc/dtc_config.php:1268
+#: admin/inc/dtc_config.php:1273
 msgid "Main software configuration of DTC"
 msgstr "Configuração principal"
 
@@ -4525,7 +4513,7 @@ msgstr "Malta"
 msgid "Manage my name servers:"
 msgstr "Administrar o meu servidor de nomes:"
 
-#: admin/inc/dtc_config.php:1680 client/new_account_form.php:346
+#: admin/inc/dtc_config.php:1685 client/new_account_form.php:347
 msgid "Mandatory field"
 msgstr "Campo Obrigatório"
 
@@ -4585,7 +4573,7 @@ msgid "Max mailboxes"
 msgstr "Caixas de correio"
 
 #: shared/inc/forms/vps_monitoring.php:150
-#: shared/inc/forms/vps_installation.php:98
+#: shared/inc/forms/vps_installation.php:99
 msgid "Max memory: "
 msgstr "Memória (Máximo)"
 
@@ -4645,24 +4633,24 @@ msgid "Maximum uploaded file size"
 msgstr "Tamanho máximo para upload de arquivo"
 
 #: shared/inc/forms/vps_monitoring.php:152
-#: shared/inc/forms/vps_installation.php:100
+#: shared/inc/forms/vps_installation.php:101
 msgid "Maxmem: cannot fetch (maybe boot in progress?)"
 msgstr ""
 "MAXMEM: não pode ser buscado (talvez o processo de boot esteja em curso.)"
 
-#: admin/inc/dtc_config.php:1880
+#: admin/inc/dtc_config.php:1885
 msgid "Maxmind API:"
 msgstr "MaxMind API:"
 
-#: admin/inc/dtc_config.php:1898
+#: admin/inc/dtc_config.php:1903
 msgid "Maxmind fraud threshold: "
 msgstr "Limiar de fraude (Maxmind):"
 
-#: admin/inc/dtc_config.php:1894
+#: admin/inc/dtc_config.php:1899
 msgid "Maxmind license key: "
 msgstr "Chave de licença MaxMind:"
 
-#: admin/inc/dtc_config.php:1890
+#: admin/inc/dtc_config.php:1895
 msgid "Maxmind login: "
 msgstr "Login MaxMind:"
 
@@ -4699,7 +4687,7 @@ msgid "Memory usage stats"
 msgstr "Estatísticas de uso de memória:"
 
 #: shared/inc/forms/vps_monitoring.php:147
-#: shared/inc/forms/vps_installation.php:95
+#: shared/inc/forms/vps_installation.php:96
 msgid "Memory: "
 msgstr "Memória:"
 
@@ -4716,7 +4704,7 @@ msgstr ""
 "configuração de domínio: "
 
 #: shared/inc/forms/vps_monitoring.php:125
-#: shared/inc/forms/vps_installation.php:73
+#: shared/inc/forms/vps_installation.php:74
 msgid "Method getVPSState failed"
 msgstr "O método getVPSState falhou"
 
@@ -4773,31 +4761,31 @@ msgstr "Dinheiro gasto"
 msgid "Money in your account: "
 msgstr "Crédito restante em sua conta: "
 
-#: admin/dtcrm/main.php:229 shared/inc/forms/my_account.php:203
+#: admin/dtcrm/main.php:244 shared/inc/forms/my_account.php:203
 msgid "Money remaining: "
 msgstr "Crédito restante : "
 
-#: admin/inc/dtc_config.php:1804
+#: admin/inc/dtc_config.php:1809
 msgid "MoneyBookers (currently in development):"
 msgstr "MoneyBookers (em desenvolvimento):"
 
-#: admin/inc/dtc_config.php:1819
+#: admin/inc/dtc_config.php:1824
 msgid "MoneyBookers business account email: "
 msgstr "Conta de e-mail MoneyBookers responsável pelos pagamentos :"
 
-#: admin/inc/dtc_config.php:1827
+#: admin/inc/dtc_config.php:1832
 msgid "MoneyBookers fee rate: "
 msgstr "Percentagem da comissão do MoneyBookers:"
 
-#: admin/inc/dtc_config.php:1831
+#: admin/inc/dtc_config.php:1836
 msgid "MoneyBookers flat fee: "
 msgstr "Taxa fixa do MoneyBookers:"
 
-#: admin/inc/dtc_config.php:1823
+#: admin/inc/dtc_config.php:1828
 msgid "MoneyBookers secret word: "
 msgstr "MoneyBookers chave secreta:"
 
-#: admin/inc/dtc_config.php:1845
+#: admin/inc/dtc_config.php:1850
 msgid "MoneyBookers test account email (sandbox): "
 msgstr "E-mail da conta de teste MoneyBookers (sandbox) :"
 
@@ -4920,7 +4908,7 @@ msgstr "N / A"
 msgid "NAMED ZONES FILES"
 msgstr "ARQUIVOS DAS ZONAS DE DNS"
 
-#: admin/inc/dtc_config.php:1954
+#: admin/inc/dtc_config.php:1959
 msgid "NAS config"
 msgstr "Configuração do NAS"
 
@@ -4966,8 +4954,8 @@ msgstr "Monitoramento Nagios"
 msgid "Nagios host name: "
 msgstr "Nome do servidor nagios \"hostname\":"
 
-#: admin/inc/draw_user_admin.php:368 admin/inc/dtc_config.php:1968
-#: admin/inc/dtc_config.php:2011 admin/dtcrm/product_manager.php:184
+#: admin/inc/draw_user_admin.php:368 admin/inc/dtc_config.php:1973
+#: admin/inc/dtc_config.php:2016 admin/dtcrm/product_manager.php:184
 #: admin/dtcrm/product_manager.php:277 admin/dtcrm/product_manager.php:359
 #: admin/dtcrm/product_manager.php:423 admin/inc/ip_usage_report.php:286
 msgid "Name"
@@ -5004,7 +4992,7 @@ msgid "Name:"
 msgstr "Nome:"
 
 #: shared/inc/forms/vps_monitoring.php:143
-#: shared/inc/forms/vps_installation.php:91
+#: shared/inc/forms/vps_installation.php:92
 msgid "Name: "
 msgstr "Nome:"
 
@@ -5018,19 +5006,19 @@ msgstr "Arquivos de zonas"
 msgid "Named conf files generated."
 msgstr "Arquivos do named conf gerados!"
 
-#: admin/inc/dtc_config.php:2317
+#: admin/inc/dtc_config.php:2322
 msgid "Named file names"
 msgstr "Nome dos arquivos named"
 
-#: admin/inc/dtc_config.php:2322
+#: admin/inc/dtc_config.php:2327
 msgid "Named main file:"
 msgstr "Named arquivo principal:"
 
-#: admin/inc/dtc_config.php:2330
+#: admin/inc/dtc_config.php:2335
 msgid "Named main zonefiles folder:"
 msgstr "Diretório principal de arquivos de zona:"
 
-#: admin/inc/dtc_config.php:2326
+#: admin/inc/dtc_config.php:2331
 msgid "Named slave file:"
 msgstr "Arquivo de zona slave:"
 
@@ -5038,7 +5026,7 @@ msgstr "Arquivo de zona slave:"
 msgid "Named zonefile:"
 msgstr "Arquivo de zona dns:"
 
-#: admin/inc/dtc_config.php:1316
+#: admin/inc/dtc_config.php:1321
 msgid "Named zonefiles"
 msgstr "Arquivos de zonas"
 
@@ -5076,6 +5064,11 @@ msgstr "Antilhas Holandesas"
 
 #: admin/inc/dtc_config.php:442
 msgid "Netmask"
+msgstr "Máscara de Rede"
+
+#: shared/inc/forms/vps_installation.php:148
+#, fuzzy
+msgid "Netmask: "
 msgstr "Máscara de Rede"
 
 #: admin/inc/dtc_config.php:438 admin/inc/monitor.php:99
@@ -5123,11 +5116,11 @@ msgstr "Nova conta de ftp : "
 msgid "New SSH account:"
 msgstr "Nova conta de ssh:"
 
-#: shared/inc/forms/vps_installation.php:329
+#: shared/inc/forms/vps_installation.php:336
 msgid "New SSH key: "
 msgstr "Nova chave SSH:"
 
-#: shared/inc/forms/vps_installation.php:327
+#: shared/inc/forms/vps_installation.php:334
 msgid "New SSH password: "
 msgstr "Nova senha SSH:"
 
@@ -5149,7 +5142,7 @@ msgstr "Novo preço de conta"
 msgid "New cron job"
 msgstr "Próximo cronjob"
 
-#: admin/dtcrm/main.php:23 admin/dtcrm/main.php:36
+#: admin/dtcrm/main.php:23 admin/dtcrm/main.php:43
 msgid "New customer"
 msgstr "Novos clientes"
 
@@ -5245,41 +5238,42 @@ msgstr "Niue"
 #: admin/inc/dtc_config.php:1015 admin/inc/dtc_config.php:1101
 #: admin/inc/dtc_config.php:1106 admin/inc/dtc_config.php:1111
 #: admin/inc/dtc_config.php:1116 admin/inc/dtc_config.php:1121
-#: admin/inc/dtc_config.php:1126 admin/inc/dtc_config.php:1160
+#: admin/inc/dtc_config.php:1126 admin/inc/dtc_config.php:1131
 #: admin/inc/dtc_config.php:1165 admin/inc/dtc_config.php:1170
 #: admin/inc/dtc_config.php:1175 admin/inc/dtc_config.php:1180
 #: admin/inc/dtc_config.php:1185 admin/inc/dtc_config.php:1190
-#: admin/inc/dtc_config.php:1209 admin/inc/dtc_config.php:1284
-#: admin/inc/dtc_config.php:1289 admin/inc/dtc_config.php:1356
-#: admin/inc/dtc_config.php:1557 admin/inc/dtc_config.php:1615
-#: admin/inc/dtc_config.php:1683 admin/inc/dtc_config.php:1701
-#: admin/inc/dtc_config.php:1719 admin/inc/dtc_config.php:1743
-#: admin/inc/dtc_config.php:1764 admin/inc/dtc_config.php:1769
-#: admin/inc/dtc_config.php:1791 admin/inc/dtc_config.php:1796
-#: admin/inc/dtc_config.php:1812 admin/inc/dtc_config.php:1817
-#: admin/inc/dtc_config.php:1843 admin/inc/dtc_config.php:1859
-#: admin/inc/dtc_config.php:1888 admin/inc/dtc_config.php:1914
-#: admin/dtcrm/main.php:214 admin/dtcrm/product_manager.php:91
-#: admin/dtcrm/product_manager.php:99 admin/dtcrm/product_manager.php:107
-#: admin/dtcrm/product_manager.php:115 admin/dtcrm/product_manager.php:123
-#: admin/dtcrm/product_manager.php:131 admin/dtcrm/product_manager.php:139
-#: admin/dtcrm/product_manager.php:232 admin/dtcrm/product_manager.php:325
-#: admin/dtcrm/product_manager.php:332 admin/dtcrm/product_manager.php:389
-#: admin/dtcrm/product_manager.php:471 admin/dtcrm/product_manager.php:495
-#: client/new_account_form.php:695 shared/inc/forms/domain_info.php:207
-#: shared/inc/forms/email.php:219 shared/inc/forms/email.php:227
-#: shared/inc/forms/email.php:255 shared/inc/forms/root_admin.php:53
-#: shared/inc/forms/root_admin.php:63 shared/inc/forms/root_admin.php:73
-#: shared/inc/forms/root_admin.php:83 shared/inc/forms/root_admin.php:91
-#: shared/inc/forms/root_admin.php:104 shared/inc/forms/root_admin.php:115
-#: shared/inc/forms/root_admin.php:126 shared/inc/forms/root_admin.php:137
-#: shared/inc/forms/root_admin.php:290 shared/inc/forms/root_admin.php:410
-#: shared/inc/forms/root_admin.php:416 shared/inc/forms/root_admin.php:538
-#: shared/inc/forms/root_admin.php:545 shared/inc/forms/root_admin.php:554
-#: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
-#: shared/inc/forms/subdomain.php:211 shared/inc/forms/subdomain.php:230
-#: shared/inc/forms/subdomain.php:246 shared/inc/forms/subdomain.php:253
-#: shared/inc/forms/ticket.php:144 shared/securepay/modules/cheque/main.php:56
+#: admin/inc/dtc_config.php:1195 admin/inc/dtc_config.php:1214
+#: admin/inc/dtc_config.php:1289 admin/inc/dtc_config.php:1294
+#: admin/inc/dtc_config.php:1361 admin/inc/dtc_config.php:1562
+#: admin/inc/dtc_config.php:1620 admin/inc/dtc_config.php:1688
+#: admin/inc/dtc_config.php:1706 admin/inc/dtc_config.php:1724
+#: admin/inc/dtc_config.php:1748 admin/inc/dtc_config.php:1769
+#: admin/inc/dtc_config.php:1774 admin/inc/dtc_config.php:1796
+#: admin/inc/dtc_config.php:1801 admin/inc/dtc_config.php:1817
+#: admin/inc/dtc_config.php:1822 admin/inc/dtc_config.php:1848
+#: admin/inc/dtc_config.php:1864 admin/inc/dtc_config.php:1893
+#: admin/inc/dtc_config.php:1919 admin/dtcrm/main.php:229
+#: admin/dtcrm/product_manager.php:91 admin/dtcrm/product_manager.php:99
+#: admin/dtcrm/product_manager.php:107 admin/dtcrm/product_manager.php:115
+#: admin/dtcrm/product_manager.php:123 admin/dtcrm/product_manager.php:131
+#: admin/dtcrm/product_manager.php:139 admin/dtcrm/product_manager.php:232
+#: admin/dtcrm/product_manager.php:325 admin/dtcrm/product_manager.php:332
+#: admin/dtcrm/product_manager.php:389 admin/dtcrm/product_manager.php:471
+#: admin/dtcrm/product_manager.php:495 client/new_account_form.php:702
+#: shared/inc/forms/domain_info.php:207 shared/inc/forms/email.php:219
+#: shared/inc/forms/email.php:227 shared/inc/forms/email.php:255
+#: shared/inc/forms/root_admin.php:53 shared/inc/forms/root_admin.php:63
+#: shared/inc/forms/root_admin.php:73 shared/inc/forms/root_admin.php:83
+#: shared/inc/forms/root_admin.php:91 shared/inc/forms/root_admin.php:104
+#: shared/inc/forms/root_admin.php:115 shared/inc/forms/root_admin.php:126
+#: shared/inc/forms/root_admin.php:137 shared/inc/forms/root_admin.php:290
+#: shared/inc/forms/root_admin.php:410 shared/inc/forms/root_admin.php:416
+#: shared/inc/forms/root_admin.php:538 shared/inc/forms/root_admin.php:545
+#: shared/inc/forms/root_admin.php:554 shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:211
+#: shared/inc/forms/subdomain.php:230 shared/inc/forms/subdomain.php:246
+#: shared/inc/forms/subdomain.php:253 shared/inc/forms/ticket.php:144
+#: shared/securepay/modules/cheque/main.php:56
 #: shared/securepay/modules/wiretransfer/main.php:56
 #: shared/securepay/modules/dineromail/main.php:71
 msgid "No"
@@ -5394,7 +5388,7 @@ msgstr ""
 msgid "No-renew"
 msgstr "Não-Renovar"
 
-#: admin/inc/dtc_config.php:2112
+#: admin/inc/dtc_config.php:2117
 msgid "None"
 msgstr "não"
 
@@ -5420,7 +5414,7 @@ msgstr "Sem produtos a renovas"
 msgid "Not found!"
 msgstr "Não encontrado!"
 
-#: client/new_account_form.php:39
+#: client/new_account_form.php:40
 msgid "Not registering"
 msgstr "Não registrado"
 
@@ -5440,7 +5434,7 @@ msgstr ""
 msgid "Note:"
 msgstr "Nota: "
 
-#: admin/view_waitingusers.php:185 admin/dtcrm/main.php:228
+#: admin/view_waitingusers.php:185 admin/dtcrm/main.php:243
 msgid "Notes: "
 msgstr "Notas : "
 
@@ -5452,13 +5446,13 @@ msgstr "Notificações"
 msgid "Notify new subscribtions:"
 msgstr "Notificar novas inscrições:"
 
-#: admin/inc/dtc_config.php:1429
+#: admin/inc/dtc_config.php:1434
 #, fuzzy
 msgid "Notify the following servers when a domain is added or removed :"
 msgstr ""
 "Emitir um aviso aos seguintes servidores quando um dominio é eliminado :"
 
-#: admin/inc/dtc_config.php:1454
+#: admin/inc/dtc_config.php:1459
 #, fuzzy
 msgid "Notify the following servers when an email is added or removed :"
 msgstr ""
@@ -5474,12 +5468,12 @@ msgid "Notify when post and not subscribed:"
 msgstr "Avise quando postar e não está inscrito:"
 
 #: shared/inc/forms/vps_monitoring.php:155
-#: shared/inc/forms/vps_installation.php:103
+#: shared/inc/forms/vps_installation.php:104
 msgid "Number of CPU: "
 msgstr "Número de CPUs:"
 
 #: shared/inc/forms/vps_monitoring.php:157
-#: shared/inc/forms/vps_installation.php:105
+#: shared/inc/forms/vps_installation.php:106
 msgid "Number of CPU: cannot fetch (maybe boot in progress?)"
 msgstr ""
 "Número de CPUs: não pode ser buscado (Um processo de boot esteja em "
@@ -5555,13 +5549,13 @@ msgstr "Servidor OVH:"
 msgid "OVH configuration"
 msgstr "Configuração do OVH"
 
-#: admin/deamons_state.php:98 admin/inc/nav.php:141 admin/dtcrm/main.php:105
+#: admin/deamons_state.php:98 admin/inc/nav.php:141 admin/dtcrm/main.php:120
 #: email/login.php:20 shared/dtcrm/draw_adddomain.php:99
 #: shared/dtcrm/draw_adddomain.php:151 shared/dtcrm/draw_adddomain.php:172
 #: shared/dtcrm/draw_adddomain.php:183 shared/dtcrm/draw_adddomain.php:195
 #: shared/dtcrm/draw_adddomain.php:286 shared/dtcrm/draw_register_forms.php:17
-#: shared/inc/forms/vps_installation.php:328
-#: shared/inc/forms/vps_installation.php:330
+#: shared/inc/forms/vps_installation.php:335
+#: shared/inc/forms/vps_installation.php:337
 #: shared/inc/forms/domain_info.php:208 shared/inc/forms/domain_info.php:251
 #: shared/inc/forms/domain_stats.php:91 shared/inc/forms/email.php:108
 #: shared/inc/forms/email.php:160 shared/inc/forms/email.php:204
@@ -5578,7 +5572,7 @@ msgstr "Tickets antigos:"
 msgid "Oman"
 msgstr "Omã"
 
-#: admin/inc/dtc_config.php:1688 admin/dtcrm/product_manager.php:545
+#: admin/inc/dtc_config.php:1693 admin/dtcrm/product_manager.php:545
 msgid ""
 "On the above tables, the possible values are what is is going to be the "
 "internal value in the popup or radio buttons,\n"
@@ -5628,12 +5622,12 @@ msgstr "Somente um ano de renovações com OVH."
 msgid "Open"
 msgstr "Abrir"
 
-#: shared/inc/forms/vps_installation.php:234
+#: shared/inc/forms/vps_installation.php:241
 msgid "Operating system:"
 msgstr "Sistema Operacional:"
 
-#: admin/inc/dtc_config.php:2053 admin/inc/dtc_config.php:2085
-#: admin/inc/dtc_config.php:2175 admin/inc/dtc_config.php:2206
+#: admin/inc/dtc_config.php:2058 admin/inc/dtc_config.php:2090
+#: admin/inc/dtc_config.php:2180 admin/inc/dtc_config.php:2211
 msgid "Operation"
 msgstr "Operação"
 
@@ -5673,7 +5667,7 @@ msgstr "PAGAMENTO CANCELADO"
 msgid "PAYMENT FAILED"
 msgstr "PAGAMENTO FALHOU"
 
-#: admin/inc/dtc_config.php:2305
+#: admin/inc/dtc_config.php:2310
 msgid ""
 "PHP libraries open_basedir<br>\n"
 "(separated by \":\", reset on each dtc install):"
@@ -5685,7 +5679,7 @@ msgstr ""
 msgid "PHP memory limit"
 msgstr "Limite de Memória do PHP"
 
-#: admin/inc/dtc_config.php:2310
+#: admin/inc/dtc_config.php:2315
 msgid ""
 "PHP open_basedir additional libraries path<br>\n"
 "(survives reinstallation):"
@@ -5737,20 +5731,20 @@ msgstr "Palestina"
 msgid "Panama"
 msgstr "Panamá"
 
-#: admin/inc/dtc_config.php:1255
+#: admin/inc/dtc_config.php:1260
 #, fuzzy
 msgid "Panel logo link: "
 msgstr "Login MaxMind:"
 
-#: admin/inc/dtc_config.php:1251
+#: admin/inc/dtc_config.php:1256
 msgid "Panel logo path (relative to "
 msgstr "Caminho relativo do logo"
 
-#: admin/inc/dtc_config.php:1247
+#: admin/inc/dtc_config.php:1252
 msgid "Panel subtitle: "
 msgstr "Subtítulo do Painel"
 
-#: admin/inc/dtc_config.php:1243
+#: admin/inc/dtc_config.php:1248
 msgid "Panel title: "
 msgstr "Título do Painel"
 
@@ -5762,10 +5756,10 @@ msgstr "Papua Nova Guiné"
 msgid "Paraguay"
 msgstr "Paraguai"
 
-#: admin/inc/dtc_config.php:715 admin/inc/dtc_config.php:1420
-#: admin/inc/dtc_config.php:1447 admin/inc/dtc_config.php:1472
-#: admin/inc/dtc_config.php:1499 admin/inc/dtc_config.php:1524
-#: admin/inc/dtc_config.php:1982 admin/inc/dtc_config.php:2139
+#: admin/inc/dtc_config.php:715 admin/inc/dtc_config.php:1425
+#: admin/inc/dtc_config.php:1452 admin/inc/dtc_config.php:1477
+#: admin/inc/dtc_config.php:1504 admin/inc/dtc_config.php:1529
+#: admin/inc/dtc_config.php:1987 admin/inc/dtc_config.php:2144
 #: shared/inc/draw.php:375 shared/inc/draw.php:539
 #: shared/inc/forms/reseller.php:24
 msgid "Password"
@@ -5775,7 +5769,7 @@ msgstr "Senha"
 msgid "Password : "
 msgstr "Senha:"
 
-#: client/new_account_form.php:75
+#: client/new_account_form.php:76
 #, fuzzy
 msgid ""
 "Password format incorrect. Password must contain only letters and numbers "
@@ -5811,14 +5805,14 @@ msgstr ""
 msgid "Password:"
 msgstr "Senha:"
 
-#: admin/view_waitingusers.php:166 client/new_account_form.php:669
+#: admin/view_waitingusers.php:166 client/new_account_form.php:676
 #: email/login.php:17 shared/inc/forms/email.php:198
 #: shared/inc/forms/ftp.php:97 shared/dtcrm/modules/webnic/main.php:486
 #: shared/dtcrm/modules/internetbs/main.php:486
 msgid "Password: "
 msgstr "Senha:"
 
-#: client/new_account_form.php:80 shared/inc/draw.php:60
+#: client/new_account_form.php:81 shared/inc/draw.php:60
 #, fuzzy
 msgid "Passwords do not match."
 msgstr "Senhas 1 e 2 não são iguais!"
@@ -5836,7 +5830,7 @@ msgstr "Estorno de pagamento"
 msgid "Past payments"
 msgstr "Últimos pagamentos"
 
-#: admin/inc/dtc_config.php:2260
+#: admin/inc/dtc_config.php:2265
 msgid "Path of the cgi-wrapper disk template (chroot for SBOX):"
 msgstr "Caminho do cgi-wrapper modelo de disco (chroot para SBOX):"
 
@@ -5853,7 +5847,7 @@ msgstr "Caminho:"
 msgid "Path: "
 msgstr "Caminho:"
 
-#: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:2249
+#: admin/inc/dtc_config.php:65 admin/inc/dtc_config.php:2254
 msgid "Paths"
 msgstr "Localizações"
 
@@ -5869,19 +5863,19 @@ msgstr "Pague com cheque"
 msgid "Pay by wire transfer"
 msgstr "Pagar com Wire transfer"
 
-#: admin/inc/dtc_config.php:1771
+#: admin/inc/dtc_config.php:1776
 msgid "PayPal business account email: "
 msgstr "Conta de e-mail Paypal responsável pelos pagamentos :"
 
-#: admin/inc/dtc_config.php:1775
+#: admin/inc/dtc_config.php:1780
 msgid "PayPal fee rate: "
 msgstr "Percentagem da comissão do Paypal :"
 
-#: admin/inc/dtc_config.php:1779
+#: admin/inc/dtc_config.php:1784
 msgid "PayPal flat fee: "
 msgstr "Taxa fixa do Paypal :"
 
-#: admin/inc/dtc_config.php:1798
+#: admin/inc/dtc_config.php:1803
 msgid "PayPal test account email (sandbox): "
 msgstr "E-mail da conta de teste Paypal (sandbox) :"
 
@@ -5966,7 +5960,7 @@ msgstr "O pagamento não foi encontrado"
 msgid "Payment type edition"
 msgstr "Edição do tipo de pagamento "
 
-#: admin/inc/dtc_config.php:1920
+#: admin/inc/dtc_config.php:1925
 msgid "Payments Accepted: "
 msgstr "Pagamentos aceitos:"
 
@@ -5989,7 +5983,7 @@ msgstr "Pendente"
 msgid "Pending Reason"
 msgstr "Razão de Pendencia"
 
-#: admin/inc/dtc_config.php:1931
+#: admin/inc/dtc_config.php:1936
 msgid "Percentage fee: "
 msgstr "Percentagem de Taxa:"
 
@@ -6019,8 +6013,8 @@ msgstr "Peru"
 msgid "Philippines"
 msgstr "Filipinas"
 
-#: admin/view_waitingusers.php:182 admin/dtcrm/main.php:225
-#: client/new_account_form.php:706 shared/dtcrm/draw_handle.php:75
+#: admin/view_waitingusers.php:182 admin/dtcrm/main.php:240
+#: client/new_account_form.php:713 shared/dtcrm/draw_handle.php:75
 #: shared/dtcrm/draw_handle.php:113 shared/dtcrm/draw_handle.php:151
 #: shared/dtcrm/draw_handle.php:189 shared/dtcrm/draw_handle.php:334
 #: shared/dtcrm/draw_handle.php:467
@@ -6040,7 +6034,7 @@ msgstr "Telefone:"
 msgid "PhpMyAdmin"
 msgstr "PhpMyAdmin"
 
-#: shared/inc/forms/vps_installation.php:322
+#: shared/inc/forms/vps_installation.php:329
 msgid "Physical console last display and ssh access:"
 msgstr "Ultima exibição do console físico e acesso ssh:"
 
@@ -6083,7 +6077,7 @@ msgstr ""
 "Por favor, faça o login e senha para acessar a interface de administração do "
 "DTC."
 
-#: shared/gfx/skin/default_layout.php:142 shared/gfx/skin/bwoup/layout.php:504
+#: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:504
 #, fuzzy
 msgid ""
 "Please note that you need to create at least one mailbox and one FTP account "
@@ -6105,8 +6099,8 @@ msgstr "Por favor, proceda para renová-lo com uma das seguintes opções"
 msgid "Please renew with one of the following options: "
 msgstr "Por favor, renovar com uma das seguintes opções:"
 
-#: admin/inc/dtc_config.php:2021 admin/inc/dtc_config.php:2100
-#: admin/inc/dtc_config.php:2416 shared/drawlib/dtc_functions.php:228
+#: admin/inc/dtc_config.php:2026 admin/inc/dtc_config.php:2105
+#: admin/inc/dtc_config.php:2421 shared/drawlib/dtc_functions.php:228
 msgid "Please select"
 msgstr "Por Favor Selecione"
 
@@ -6117,16 +6111,16 @@ msgid ""
 "you want to use for registering the domain name."
 msgstr "Por favor selecione 3 contactos para usar no registo desse dominio."
 
-#: client/new_account_form.php:523
+#: client/new_account_form.php:530
 #, fuzzy
 msgid "Please select."
 msgstr "Por Favor Selecione"
 
-#: shared/inc/forms/vps_installation.php:181
+#: shared/inc/forms/vps_installation.php:188
 msgid "Please wait until file system check is finished first."
 msgstr "Aguarde até que a verificação do sistema de arquivos seja terminada."
 
-#: shared/inc/forms/vps_installation.php:183
+#: shared/inc/forms/vps_installation.php:190
 msgid "Please wait until operating system reinstallation has completed."
 msgstr "Aguarde até que a reinstalação do sistema operacional seja concluída."
 
@@ -6138,7 +6132,7 @@ msgstr "Polónia"
 msgid "Polish"
 msgstr "Polonês"
 
-#: admin/inc/dtc_config.php:1978
+#: admin/inc/dtc_config.php:1983
 msgid "Port number"
 msgstr "Número da porta"
 
@@ -6150,11 +6144,11 @@ msgstr "Portugal"
 msgid "Portuguese"
 msgstr "Português"
 
-#: admin/inc/dtc_config.php:1672 admin/dtcrm/product_manager.php:529
+#: admin/inc/dtc_config.php:1677 admin/dtcrm/product_manager.php:529
 msgid "Possible values"
 msgstr "Possíveis valores"
 
-#: admin/inc/dtc_config.php:1188
+#: admin/inc/dtc_config.php:1193
 msgid "Prepend admin name to db names: "
 msgstr ""
 "Coloque o nome do administrador como prefixo do nome dos bancos de dados:"
@@ -6163,7 +6157,7 @@ msgstr ""
 msgid "Preview URL:"
 msgstr "Previsão da URL:"
 
-#: admin/inc/dtc_config.php:1581 admin/dtcrm/product_manager.php:38
+#: admin/inc/dtc_config.php:1586 admin/dtcrm/product_manager.php:38
 #: admin/dtcrm/product_manager.php:195 admin/dtcrm/product_manager.php:288
 #: admin/dtcrm/product_manager.php:370 admin/dtcrm/product_manager.php:434
 #: shared/dtcrm/draw.php:91 shared/inc/forms/invoices.php:42
@@ -6175,7 +6169,7 @@ msgstr "Preço"
 msgid "Price for the domain not found."
 msgstr "Preço para o domínio não encontrado!"
 
-#: admin/inc/dtc_config.php:1335
+#: admin/inc/dtc_config.php:1340
 msgid "Primary DNS server address:"
 msgstr "Endereço do Servidor de DNS primário :"
 
@@ -6191,7 +6185,7 @@ msgstr "Endereço de Servidor MX primário :"
 msgid "Prince Nizam Zambri Isle"
 msgstr " Ilha Principe Zambri Nizam"
 
-#: admin/inc/dtc_config.php:2092
+#: admin/inc/dtc_config.php:2097
 msgid "Priority"
 msgstr "Prioridade"
 
@@ -6230,7 +6224,7 @@ msgstr "Prossiga com a transferência"
 
 #: admin/inc/renewals.php:507 admin/inc/renewals.php:567
 #: admin/inc/draw_user_admin.php:368 admin/inc/draw_user_admin.php:447
-#: client/new_account_form.php:648 shared/dtcrm/draw.php:90
+#: client/new_account_form.php:655 shared/dtcrm/draw.php:90
 #: shared/inc/forms/invoices.php:42 shared/inc/forms/root_admin.php:717
 msgid "Product"
 msgstr "Produto"
@@ -6239,7 +6233,7 @@ msgstr "Produto"
 msgid "Product ID"
 msgstr "ID do produto"
 
-#: client/new_account_form.php:49
+#: client/new_account_form.php:50
 #, fuzzy
 msgid "Product ID not valid."
 msgstr "ID do Produto não é válido!"
@@ -6270,7 +6264,7 @@ msgstr "Preço líquido do produto sem impostos ou gateway de pagamento."
 msgid "Product not found"
 msgstr "Produto não encontrado"
 
-#: client/new_account_form.php:57
+#: client/new_account_form.php:58
 msgid "Product not found in database"
 msgstr "Produto não encontrado no banco de dados"
 
@@ -6282,7 +6276,7 @@ msgstr "Preço do produto:"
 msgid "Product to renew:"
 msgstr "Produto para a renovação:"
 
-#: client/new_account_form.php:901
+#: client/new_account_form.php:908
 msgid "Product:"
 msgstr "Produto:"
 
@@ -6291,7 +6285,7 @@ msgstr "Produto:"
 msgid "Product: "
 msgstr "Produto:"
 
-#: admin/inc/dtc_config.php:1864
+#: admin/inc/dtc_config.php:1869
 msgid "Production server"
 msgstr "Servidor de Produção"
 
@@ -6319,11 +6313,11 @@ msgstr "Porto Rico"
 msgid "Qatar"
 msgstr "Catar"
 
-#: admin/inc/dtc_config.php:2273
+#: admin/inc/dtc_config.php:2278
 msgid "Qmail path"
 msgstr "Caminho do Qmail"
 
-#: admin/inc/dtc_config.php:1664 admin/dtcrm/product_manager.php:521
+#: admin/inc/dtc_config.php:1669 admin/dtcrm/product_manager.php:521
 msgid "Question to the user"
 msgstr "Questão para o usuário"
 
@@ -6331,7 +6325,7 @@ msgstr "Questão para o usuário"
 msgid "Quota"
 msgstr "Quota"
 
-#: admin/dtcrm/main.php:230
+#: admin/dtcrm/main.php:245
 msgid "Quota (MB): "
 msgstr "Quota de disco (MB):"
 
@@ -6364,7 +6358,7 @@ msgstr "A validação de renovação foi validada CORRECTAMENTE"
 msgid "Radius User:"
 msgstr "Usuário Radius:"
 
-#: admin/inc/dtc_config.php:2122
+#: admin/inc/dtc_config.php:2127
 msgid "Radius Users"
 msgstr "Usuários Radius"
 
@@ -6452,11 +6446,11 @@ msgstr "Registar um novo dominio"
 msgid "Register a new name server:"
 msgstr "Registar novo servidor de nomes:"
 
-#: admin/inc/dtc_config.php:1585
+#: admin/inc/dtc_config.php:1590
 msgid "Registrar"
 msgstr "Registrar"
 
-#: admin/inc/dtc_config.php:1564
+#: admin/inc/dtc_config.php:1569
 msgid "Registrar selection and final customer pricing"
 msgstr "Seleção de registro e preço ao cliente final"
 
@@ -6468,12 +6462,12 @@ msgstr "Registrar"
 msgid "Registration"
 msgstr "Registo"
 
-#: admin/inc/dtc_config.php:2379
+#: admin/inc/dtc_config.php:2384
 #, fuzzy
 msgid "Registration Number:"
 msgstr "Número de matrícula:"
 
-#: admin/inc/dtc_config.php:1138
+#: admin/inc/dtc_config.php:1143
 msgid "Registration default TLD: "
 msgstr "TLD padrão de registro:"
 
@@ -6502,16 +6496,16 @@ msgstr "Registo:"
 msgid "Registry selection"
 msgstr "Seleção de registro"
 
-#: shared/inc/forms/vps_installation.php:264
+#: shared/inc/forms/vps_installation.php:271
 msgid "Reinstall operating system"
 msgstr "Reinstale o sistema operacional"
 
-#: shared/inc/forms/vps_installation.php:206
+#: shared/inc/forms/vps_installation.php:213
 msgid "Reinstall operating system:"
 msgstr "Reinstale o sistema operacional:"
 
 #: shared/inc/forms/vps_monitoring.php:135
-#: shared/inc/forms/vps_installation.php:83
+#: shared/inc/forms/vps_installation.php:84
 msgid "Reinstalling operating system..."
 msgstr "Reinstalando o sistema operacional ..."
 
@@ -6543,7 +6537,7 @@ msgstr "Restante na sua conta : "
 msgid "Reminders and registration messages subject header:"
 msgstr "Lembretes e registo mensagem assunto de cabeçalho:"
 
-#: admin/dtcrm/main.php:122
+#: admin/dtcrm/main.php:137
 msgid "Remove an administrator for this customer:"
 msgstr "Eliminar administrador para este cliente :"
 
@@ -6559,7 +6553,7 @@ msgstr "Renovar a minha conta"
 msgid "Renewal"
 msgstr "Renovações"
 
-#: shared/gfx/skin/default_layout.php:280 shared/gfx/skin/bwoup/layout.php:417
+#: shared/gfx/skin/default_layout.php:279 shared/gfx/skin/bwoup/layout.php:417
 #: shared/gfx/skin/bwoup/layout.php:419
 #, fuzzy
 msgid "Renewal Management"
@@ -6609,28 +6603,28 @@ msgstr "Pedir para fechar a questão:"
 msgid "Request to close the ticket: "
 msgstr "Pedir para fechar o ticket:"
 
-#: client/new_account_form.php:185
+#: client/new_account_form.php:186
 msgid "Required field address (line 1) missing."
 msgstr "O campo obrigatório endereço (linha 1) é obrigatório."
 
-#: client/new_account_form.php:221
+#: client/new_account_form.php:222
 msgid "Required field city missing."
 msgstr "Campo obrigatório cidade está faltando."
 
-#: client/new_account_form.php:143
+#: client/new_account_form.php:144
 msgid "Required field first name missing."
 msgstr "Campo obrigatório nome está faltando."
 
-#: client/new_account_form.php:131
+#: client/new_account_form.php:132
 #, fuzzy
 msgid "Required field last name missing."
 msgstr "Campo obrigatório nome está faltando."
 
-#: client/new_account_form.php:155
+#: client/new_account_form.php:156
 msgid "Required field phone missing."
 msgstr "Campo obrigatório telefone está faltando."
 
-#: client/new_account_form.php:209
+#: client/new_account_form.php:210
 msgid "Required field zipcode missing."
 msgstr "Campo obrigatório cep está faltando."
 
@@ -6668,6 +6662,10 @@ msgstr "Confirmar senha:"
 #: shared/drawlib/cc_code_popup.php:289
 msgid "Reunion"
 msgstr "Reunião"
+
+#: shared/inc/forms/vps_installation.php:148
+msgid "RevDNS: "
+msgstr ""
 
 #: shared/inc/forms/lists.php:396
 msgid "Rights"
@@ -6707,23 +6705,23 @@ msgstr "Servidor SMTP"
 msgid "SMTP: "
 msgstr "SMTP:"
 
-#: admin/inc/dtc_config.php:1989
+#: admin/inc/dtc_config.php:1994
 msgid "SNMP community"
 msgstr "Comunidade SNMP"
 
-#: admin/inc/dtc_config.php:1384
+#: admin/inc/dtc_config.php:1389
 msgid "SOA default ttl value: "
 msgstr "SOA ttl (valor padrão): "
 
-#: admin/inc/dtc_config.php:1380
+#: admin/inc/dtc_config.php:1385
 msgid "SOA expire value: "
 msgstr "SOA (valor de expiração): "
 
-#: admin/inc/dtc_config.php:1372
+#: admin/inc/dtc_config.php:1377
 msgid "SOA refresh value: "
 msgstr "SOA (valor de refresh): "
 
-#: admin/inc/dtc_config.php:1376
+#: admin/inc/dtc_config.php:1381
 msgid "SOA retry value: "
 msgstr "SOA (valor de retry): "
 
@@ -6791,7 +6789,7 @@ msgstr "Renovações IPs SSL:"
 msgid "SSL IPs Renewals: "
 msgstr "Renovações IPs SSL:"
 
-#: admin/inc/dtc_config.php:1299
+#: admin/inc/dtc_config.php:1304
 msgid "SSL Port: "
 msgstr "Porta SSL:"
 
@@ -6845,7 +6843,7 @@ msgstr "São Vicente e Granadinas"
 msgid "Same DocumentRoot"
 msgstr "O mesmo DocumentRoot"
 
-#: admin/inc/dtc_config.php:1195
+#: admin/inc/dtc_config.php:1200
 msgid "Same as for DTC"
 msgstr "Mesmo que para o DTC"
 
@@ -6877,7 +6875,16 @@ msgstr "Salvar"
 msgid "Sbox cgi-bin protection: "
 msgstr "Proteção Sbox cgi-bin:"
 
-#: admin/inc/dtc_config.php:1339
+#: admin/dtcrm/main.php:115
+msgid "Search"
+msgstr ""
+
+#: admin/dtcrm/main.php:116
+#, fuzzy
+msgid "Search string:"
+msgstr "Monitoramento de Serviço:"
+
+#: admin/inc/dtc_config.php:1344
 msgid ""
 "Secondary DNS servers address<br>\n"
 "(separated by &quot;|&quot; (pipe) if more than one):"
@@ -6889,11 +6896,11 @@ msgstr ""
 msgid "Secondary DNS:"
 msgstr "DNS secundário:"
 
-#: admin/inc/dtc_config.php:1630
+#: admin/inc/dtc_config.php:1635
 msgid "Secure payment configuration"
 msgstr "Configuração de pagamento seguro"
 
-#: admin/dtcrm/main.php:161
+#: admin/dtcrm/main.php:176
 msgid "Select a customer."
 msgstr "Selecionar cliente."
 
@@ -6915,7 +6922,7 @@ msgstr ""
 msgid "Select the registration period for this domain name:"
 msgstr "Selecione o tempo do registo :"
 
-#: admin/inc/dtc_config.php:1258
+#: admin/inc/dtc_config.php:1263
 msgid "Select the type of skin:"
 msgstr "Selecionar o tipo de estilo :"
 
@@ -6928,6 +6935,10 @@ msgstr "Enviar resposta"
 #, fuzzy
 msgid "Send Reply and Close Ticket"
 msgstr "Enviar resposta e fechar ticket"
+
+#: admin/inc/dtc_config.php:1103
+msgid "Send passwords in registration emails: "
+msgstr ""
 
 #: shared/inc/forms/ticket.php:62
 msgid "Send trouble ticket"
@@ -6945,7 +6956,7 @@ msgstr "Sérvia"
 msgid "Server"
 msgstr "Servidor"
 
-#: shared/gfx/skin/default_layout.php:269 shared/gfx/skin/bwoup/layout.php:412
+#: shared/gfx/skin/default_layout.php:268 shared/gfx/skin/bwoup/layout.php:412
 #: shared/gfx/skin/bwoup/layout.php:414
 #, fuzzy
 msgid "Server Monitor"
@@ -7010,7 +7021,7 @@ msgstr "O servidor retornou:"
 msgid "Server said: "
 msgstr "O servidor retornou: "
 
-#: shared/gfx/skin/default_layout.php:138 shared/gfx/skin/bwoup/layout.php:500
+#: shared/gfx/skin/default_layout.php:137 shared/gfx/skin/bwoup/layout.php:500
 msgid "Server statistic graphs"
 msgstr "Estatísticas de Servidor"
 
@@ -7022,7 +7033,7 @@ msgstr "Servidor:"
 msgid "ServerAlias"
 msgstr "Alias de Servidor"
 
-#: admin/inc/renewals.php:567 admin/inc/dtc_config.php:2457
+#: admin/inc/renewals.php:567 admin/inc/dtc_config.php:2462
 #, fuzzy
 msgid "Service Country"
 msgstr "Serviço país"
@@ -7092,7 +7103,7 @@ msgstr "IP do logista:"
 msgid "Short Name:"
 msgstr "Nome Curto:"
 
-#: admin/inc/dtc_config.php:1971
+#: admin/inc/dtc_config.php:1976
 msgid "Short name"
 msgstr "Nome Curto"
 
@@ -7100,15 +7111,15 @@ msgstr "Nome Curto"
 msgid "Show"
 msgstr "Exibir"
 
-#: admin/inc/dtc_config.php:1163
+#: admin/inc/dtc_config.php:1168
 msgid "Show advanced mailing list options: "
 msgstr "Visualizar opções avançadas de mailing list:"
 
-#: admin/dtcrm/main.php:101
+#: admin/dtcrm/main.php:114
 msgid "Show all"
 msgstr "Mostrar todos"
 
-#: admin/dtcrm/main.php:97
+#: admin/dtcrm/main.php:110
 msgid "Show:"
 msgstr "Exibir:"
 
@@ -7181,11 +7192,11 @@ msgstr ""
 msgid "Sri Lanka"
 msgstr "Sri Lanka"
 
-#: shared/inc/forms/vps_installation.php:179
+#: shared/inc/forms/vps_installation.php:186
 msgid "Start and stop of your VPS:"
 msgstr "Iniciar e parar seu VPS:"
 
-#: shared/gfx/skin/default_layout.php:141 shared/gfx/skin/bwoup/layout.php:503
+#: shared/gfx/skin/default_layout.php:140 shared/gfx/skin/bwoup/layout.php:503
 #, fuzzy
 msgid "Starting configuration file generation"
 msgstr "Executar a geração dos arquivos de configuração"
@@ -7199,8 +7210,8 @@ msgstr "Stat script gerado!"
 msgid "State:"
 msgstr "Estado:"
 
-#: admin/view_waitingusers.php:179 admin/dtcrm/main.php:222
-#: client/new_account_form.php:736 shared/dtcrm/draw_handle.php:72
+#: admin/view_waitingusers.php:179 admin/dtcrm/main.php:237
+#: client/new_account_form.php:743 shared/dtcrm/draw_handle.php:72
 #: shared/dtcrm/draw_handle.php:110 shared/dtcrm/draw_handle.php:148
 #: shared/dtcrm/draw_handle.php:186 shared/dtcrm/draw_handle.php:313
 #: shared/dtcrm/draw_handle.php:452
@@ -7208,7 +7219,7 @@ msgid "State: "
 msgstr "Estado:"
 
 #: shared/inc/forms/vps_monitoring.php:162
-#: shared/inc/forms/vps_installation.php:110
+#: shared/inc/forms/vps_installation.php:111
 msgid "State: cannot fetch (maybe boot in progress?)"
 msgstr ""
 "Estado: não pude obter as informações (um processo de boot está em curso?)"
@@ -7439,7 +7450,7 @@ msgstr "Suíça"
 msgid "Syrian Arab Republic"
 msgstr "República Árabe Síria"
 
-#: admin/inc/dtc_config.php:1576
+#: admin/inc/dtc_config.php:1581
 msgid "TLD"
 msgstr "TLD"
 
@@ -7508,17 +7519,17 @@ msgstr "Impostos (IVA ou GST)"
 msgid "Technical contact:"
 msgstr "Contrato técnico:"
 
-#: client/new_account_form.php:746
+#: client/new_account_form.php:753
 #, fuzzy
 msgid "Terms and Conditions"
 msgstr "condições de venda"
 
-#: admin/inc/dtc_config.php:1141
+#: admin/inc/dtc_config.php:1146
 #, fuzzy
 msgid "Terms and Conditions URL: "
 msgstr "Condições·de·venda URL:"
 
-#: client/new_account_form.php:267
+#: client/new_account_form.php:268
 #, fuzzy
 msgid "Terms and Conditions not accepted."
 msgstr "condições·de·venda não foram aceitas"
@@ -7527,7 +7538,7 @@ msgstr "condições·de·venda não foram aceitas"
 msgid "Test"
 msgstr "Teste"
 
-#: admin/inc/dtc_config.php:1864
+#: admin/inc/dtc_config.php:1869
 msgid "Test server"
 msgstr "Servidor de teste"
 
@@ -7802,7 +7813,7 @@ msgstr "Este é o proprietário principal da lista."
 msgid "This month: "
 msgstr "Este mês:"
 
-#: admin/inc/dtc_config.php:1133
+#: admin/inc/dtc_config.php:1138
 msgid "This server location: "
 msgstr "Localização do servidor:"
 
@@ -7884,7 +7895,7 @@ msgstr "Ticket não encontrado."
 msgid "Time"
 msgstr "Tempo"
 
-#: shared/inc/forms/vps_installation.php:333
+#: shared/inc/forms/vps_installation.php:340
 msgid ""
 "To access to your console, first enter a ssh password or key above, and then "
 "ssh to:"
@@ -7901,7 +7912,7 @@ msgstr ""
 "Para adicionar um VPS, você precisa configurar alguns endereços IPs livres. "
 "Em geral isso é feito atravéz da consiguração e instalação dos produtos VPS."
 
-#: shared/inc/forms/vps_installation.php:192
+#: shared/inc/forms/vps_installation.php:199
 msgid ""
 "To do a file system check or an operating system reinstallation, you need to "
 "shutdown or destroy your server first."
@@ -7910,7 +7921,7 @@ msgstr ""
 "reinstalação do sistema operacional, Em primeiro ligar você precisará "
 "desligar ou destruir-lo."
 
-#: shared/inc/forms/vps_installation.php:286
+#: shared/inc/forms/vps_installation.php:293
 msgid ""
 "To upload .iso files so they appear below and you can boot on them, you can "
 "upload them using ftp, "
@@ -8081,7 +8092,7 @@ msgid "Tuvalu"
 msgstr "Tuvalu"
 
 #: admin/inc/renewals.php:531 admin/inc/draw_user_admin.php:447
-#: admin/inc/draw_user_admin.php:539 admin/inc/dtc_config.php:1974
+#: admin/inc/draw_user_admin.php:539 admin/inc/dtc_config.php:1979
 #: admin/inc/ip_usage_report.php:286 shared/inc/forms/ticket.php:173
 msgid "Type"
 msgstr "Tipo"
@@ -8104,7 +8115,7 @@ msgstr "Tipo de extensão"
 msgid "Type of problem:"
 msgstr "Tipo de problema:"
 
-#: admin/inc/dtc_config.php:1211
+#: admin/inc/dtc_config.php:1216
 msgid "Type of webmail for the /webmail alias: "
 msgstr "Tipo de webmail para o alias /webmail:"
 
@@ -8121,8 +8132,8 @@ msgstr "Tipo:"
 msgid "Type: type not found."
 msgstr "Tipo: tipo não encontrado!"
 
-#: admin/inc/dtc_config.php:1441 admin/inc/dtc_config.php:1466
-#: admin/inc/dtc_config.php:1493 admin/inc/dtc_config.php:1518
+#: admin/inc/dtc_config.php:1446 admin/inc/dtc_config.php:1471
+#: admin/inc/dtc_config.php:1498 admin/inc/dtc_config.php:1523
 msgid "URL"
 msgstr "URL"
 
@@ -8163,7 +8174,7 @@ msgid "Unsubscribe:"
 msgstr "Descadastrar-se:"
 
 #: shared/inc/forms/vps_monitoring.php:175
-#: shared/inc/forms/vps_installation.php:123
+#: shared/inc/forms/vps_installation.php:124
 msgid "Up time: "
 msgstr "Up time: "
 
@@ -8205,11 +8216,11 @@ msgstr "Uruguai"
 msgid "Use"
 msgstr "Usar"
 
-#: admin/inc/dtc_config.php:1118
+#: admin/inc/dtc_config.php:1123
 msgid "Use @domain.com ftp logins: "
 msgstr "Usar @dominio.com para logins ftp:"
 
-#: admin/inc/dtc_config.php:1123
+#: admin/inc/dtc_config.php:1128
 msgid "Use @domain.com ssh logins: "
 msgstr "Usar @dominio.com para logins ssh:"
 
@@ -8217,11 +8228,11 @@ msgstr "Usar @dominio.com para logins ssh:"
 msgid "Use LVM backend"
 msgstr "Utilizar backend LVM"
 
-#: admin/inc/dtc_config.php:1885
+#: admin/inc/dtc_config.php:1890
 msgid "Use Maxmind API: "
 msgstr "Utilize MaxMind API:"
 
-#: admin/inc/dtc_config.php:1809
+#: admin/inc/dtc_config.php:1814
 msgid "Use MoneyBookers: "
 msgstr "Utilize WebMoney:"
 
@@ -8229,11 +8240,11 @@ msgstr "Utilize WebMoney:"
 msgid "Use Radius"
 msgstr "Usar Radius"
 
-#: admin/inc/dtc_config.php:1103
+#: admin/inc/dtc_config.php:1108
 msgid "Use SSL: "
 msgstr "Usar SSL:"
 
-#: admin/inc/dtc_config.php:1740
+#: admin/inc/dtc_config.php:1745
 msgid "Use WebMoney: "
 msgstr "Utilize WebMoney:"
 
@@ -8249,19 +8260,19 @@ msgstr "Usar conta de FTP ativa para servidor de backup:"
 msgid "Use as wildcard for the domain:"
 msgstr "Utilizar curinga (wildcard) para este domínio:"
 
-#: admin/inc/dtc_config.php:1178
+#: admin/inc/dtc_config.php:1183
 msgid "Use awstats: "
 msgstr "Utilize awstats:"
 
-#: admin/inc/dtc_config.php:1158
+#: admin/inc/dtc_config.php:1163
 msgid "Use cyrus: "
 msgstr "Utilize cyrus:"
 
-#: admin/inc/dtc_config.php:1911
+#: admin/inc/dtc_config.php:1916
 msgid "Use dineromail: "
 msgstr "Use dineromail: "
 
-#: admin/inc/dtc_config.php:1856
+#: admin/inc/dtc_config.php:1861
 msgid "Use eNETS: "
 msgstr "Utilize eNETS:"
 
@@ -8293,15 +8304,15 @@ msgstr "Usar isto:"
 msgid "Use javascript: "
 msgstr "Usar JavaScript :"
 
-#: admin/inc/dtc_config.php:1281
+#: admin/inc/dtc_config.php:1286
 msgid "Use multiple IPs: "
 msgstr "Utilizar vários IPs"
 
-#: admin/inc/dtc_config.php:1793
+#: admin/inc/dtc_config.php:1798
 msgid "Use paypal recuring: "
 msgstr "Utilize paypal:"
 
-#: admin/inc/dtc_config.php:1761
+#: admin/inc/dtc_config.php:1766
 msgid "Use paypal: "
 msgstr "Use PayPal:"
 
@@ -8309,7 +8320,7 @@ msgstr "Use PayPal:"
 msgid "Use register_globals=1: "
 msgstr "Usar register_globals=1 : "
 
-#: admin/inc/dtc_config.php:1554
+#: admin/inc/dtc_config.php:1559
 msgid "Use registrar API:"
 msgstr "Usar API registrar:"
 
@@ -8321,15 +8332,15 @@ msgstr "Utilizar menu de texto"
 msgid "Use text menu: "
 msgstr "Utilizar·menu·de·texto:"
 
-#: admin/inc/dtc_config.php:1788 admin/inc/dtc_config.php:1840
+#: admin/inc/dtc_config.php:1793 admin/inc/dtc_config.php:1845
 msgid "Use the sandbox test server: "
 msgstr "Utilizar o servidor de testes (sandbox):"
 
-#: admin/inc/dtc_config.php:1183
+#: admin/inc/dtc_config.php:1188
 msgid "Use visitors: "
 msgstr "Utilize visitantes:"
 
-#: admin/inc/dtc_config.php:1168
+#: admin/inc/dtc_config.php:1173
 msgid "Use webalizer: "
 msgstr "Utilize WebAlizer:"
 
@@ -8346,33 +8357,33 @@ msgstr "Quota usada:"
 msgid "User"
 msgstr "Usuário"
 
-#: shared/gfx/skin/default_layout.php:226 shared/gfx/skin/bwoup/layout.php:397
+#: shared/gfx/skin/default_layout.php:225 shared/gfx/skin/bwoup/layout.php:397
 #: shared/gfx/skin/bwoup/layout.php:399
 #, fuzzy
 msgid "User Administration"
 msgstr "Administração de usuários"
 
-#: admin/inc/dtc_config.php:2154
+#: admin/inc/dtc_config.php:2159
 msgid "User Attributes checking config"
 msgstr "Checar configurações de atributos de usuário"
 
-#: admin/inc/dtc_config.php:1197
+#: admin/inc/dtc_config.php:1202
 msgid "User MySQL host: "
 msgstr "Usuário do host MySQL:"
 
-#: admin/inc/dtc_config.php:1200
+#: admin/inc/dtc_config.php:1205
 msgid "User MySQL root login: "
 msgstr "Usuário root do MySQL:"
 
-#: admin/inc/dtc_config.php:1203
+#: admin/inc/dtc_config.php:1208
 msgid "User MySQL root password: "
 msgstr "Senha de root do MYSQL:"
 
-#: admin/inc/dtc_config.php:2185
+#: admin/inc/dtc_config.php:2190
 msgid "User Reply Attributes config"
 msgstr "Resposta de usuário a atributos de configuração"
 
-#: shared/gfx/skin/default_layout.php:393 shared/gfx/skin/bwoup/layout.php:569
+#: shared/gfx/skin/default_layout.php:392 shared/gfx/skin/bwoup/layout.php:569
 msgid "User administration"
 msgstr "Administração de usuários"
 
@@ -8380,7 +8391,7 @@ msgstr "Administração de usuários"
 msgid "User and domain waiting for addition:"
 msgstr "Usuário e dominio pendentes para serem adicionados:"
 
-#: client/new_account_form.php:65
+#: client/new_account_form.php:66
 #, fuzzy
 msgid ""
 "User login format incorrect. Username must contain only letters and numbers "
@@ -8393,12 +8404,12 @@ msgstr ""
 msgid "User name on the Nagios machine: "
 msgstr "Nome de usuário da máquina Nagios:"
 
-#: admin/inc/dtc_config.php:1128
+#: admin/inc/dtc_config.php:1133
 msgid "User session expire time (min): "
 msgstr "Duração para a expiração da sessão (min):"
 
-#: admin/inc/dtc_config.php:2136 admin/inc/dtc_config.php:2168
-#: admin/inc/dtc_config.php:2199
+#: admin/inc/dtc_config.php:2141 admin/inc/dtc_config.php:2173
+#: admin/inc/dtc_config.php:2204
 msgid "Username"
 msgstr "Nome do Usuário"
 
@@ -8406,12 +8417,12 @@ msgstr "Nome do Usuário"
 msgid "Username : "
 msgstr "Nome do Usuário : "
 
-#: client/new_account_form.php:276 client/new_account_form.php:284
+#: client/new_account_form.php:277 client/new_account_form.php:285
 #, fuzzy
 msgid "Username already taken. Try again."
 msgstr "Nome de usuário já está em uso! Escolha outro."
 
-#: client/new_account_form.php:70
+#: client/new_account_form.php:71
 #, fuzzy
 msgid ""
 "Username invalid: please choose a name other than root or debian-sys-maint"
@@ -8437,12 +8448,12 @@ msgstr "IVA / GST número:"
 msgid "VAT Collected"
 msgstr "Impostos coletados"
 
-#: admin/inc/dtc_config.php:2383
+#: admin/inc/dtc_config.php:2388
 #, fuzzy
 msgid "VAT Number:"
 msgstr "Número do imposto"
 
-#: admin/view_waitingusers.php:173 admin/dtcrm/main.php:216
+#: admin/view_waitingusers.php:173 admin/dtcrm/main.php:231
 #, fuzzy
 msgid "VAT Number: "
 msgstr "Número de IVA:"
@@ -8452,7 +8463,7 @@ msgstr "Número de IVA:"
 msgid "VAT Rate"
 msgstr "Taxa de imposto"
 
-#: admin/inc/dtc_config.php:2387
+#: admin/inc/dtc_config.php:2392
 #, fuzzy
 msgid "VAT Rate:"
 msgstr "Taxa de imposto"
@@ -8466,7 +8477,7 @@ msgstr "Total"
 msgid "VAT not found"
 msgstr "Imposto não encontrado"
 
-#: client/new_account_form.php:700
+#: client/new_account_form.php:707
 msgid "VAT/GST Number: "
 msgstr "IVA / GST Número:"
 
@@ -8475,15 +8486,15 @@ msgid "VERP:"
 msgstr "VERP:"
 
 #: shared/inc/forms/vps_monitoring.php:139
-#: shared/inc/forms/vps_installation.php:87
+#: shared/inc/forms/vps_installation.php:88
 msgid "VM id: "
 msgstr "VM id:"
 
-#: shared/inc/forms/vps_installation.php:314
+#: shared/inc/forms/vps_installation.php:321
 msgid "VNC console activation: "
 msgstr "Ativação de console VNC:"
 
-#: shared/inc/forms/vps_installation.php:313
+#: shared/inc/forms/vps_installation.php:320
 msgid "VNC console password: "
 msgstr "Senha do console VNC:"
 
@@ -8531,16 +8542,16 @@ msgid "VPS Servers and IP addresses"
 msgstr "VPS Server e edição de registro de endereços IP "
 
 #: shared/inc/forms/vps_monitoring.php:160
-#: shared/inc/forms/vps_installation.php:108
+#: shared/inc/forms/vps_installation.php:109
 msgid "VPS State: "
 msgstr "Estado do VPS:"
 
-#: client/new_account_form.php:111
+#: client/new_account_form.php:112
 #, fuzzy
 msgid "VPS location not selected."
 msgstr "Localização do VPS não selecionada!"
 
-#: admin/view_waitingusers.php:163 client/new_account_form.php:653
+#: admin/view_waitingusers.php:163 client/new_account_form.php:660
 #: shared/dtcrm/draw_adddomain.php:63
 msgid "VPS location: "
 msgstr "Localização do VPS:"
@@ -8587,11 +8598,11 @@ msgstr "Mensagem de ausencia."
 msgid "Validate"
 msgstr "validar"
 
-#: admin/inc/dtc_config.php:1766 admin/inc/dtc_config.php:1814
+#: admin/inc/dtc_config.php:1771 admin/inc/dtc_config.php:1819
 msgid "Validate new account if paid: "
 msgstr "Validar novas contas mesmo que não estejam pagas:"
 
-#: admin/inc/dtc_config.php:1783 admin/inc/dtc_config.php:1835
+#: admin/inc/dtc_config.php:1788 admin/inc/dtc_config.php:1840
 msgid "Validate payment if amount is greater or equal to: "
 msgstr "Validar pagamento se montante seja igual ou superior a:"
 
@@ -8599,8 +8610,8 @@ msgstr "Validar pagamento se montante seja igual ou superior a:"
 msgid "Validated"
 msgstr "validado"
 
-#: admin/inc/dtc_config.php:2057 admin/inc/dtc_config.php:2089
-#: admin/inc/dtc_config.php:2179 admin/inc/dtc_config.php:2210
+#: admin/inc/dtc_config.php:2062 admin/inc/dtc_config.php:2094
+#: admin/inc/dtc_config.php:2184 admin/inc/dtc_config.php:2215
 msgid "Value"
 msgstr "Valor"
 
@@ -8608,7 +8619,7 @@ msgstr "Valor"
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
-#: admin/inc/dtc_config.php:1660 admin/dtcrm/product_manager.php:517
+#: admin/inc/dtc_config.php:1665 admin/dtcrm/product_manager.php:517
 msgid "Variable name"
 msgstr "Nome da variável"
 
@@ -8660,15 +8671,15 @@ msgstr "Ilhas Virgens (E.U.A)"
 msgid "Virtual Private Server"
 msgstr "Servidor Privado Virtual"
 
-#: admin/inc/dtc_config.php:1986
+#: admin/inc/dtc_config.php:1991
 msgid "Virtual Radius Server"
 msgstr "Servidor Radius Virtual"
 
-#: admin/inc/dtc_config.php:2301
+#: admin/inc/dtc_config.php:2306
 msgid "Virtual host config-file:"
 msgstr "Virtual host arquivo-configuração:"
 
-#: admin/inc/dtc_config.php:1749
+#: admin/inc/dtc_config.php:1754
 msgid "WMZ: "
 msgstr "Wmz:"
 
@@ -8716,15 +8727,15 @@ msgstr "Aviso: o grupo ip não está no banco de dados!"
 msgid "Web archive"
 msgstr "Web archive"
 
-#: admin/inc/dtc_config.php:1607
+#: admin/inc/dtc_config.php:1612
 msgid "Web host subdomain registration"
 msgstr "Registro de subdomínio"
 
-#: admin/inc/dtc_config.php:1745
+#: admin/inc/dtc_config.php:1750
 msgid "WebMoney secret key: "
 msgstr "WebMoney chave secreta:"
 
-#: admin/inc/dtc_config.php:1172
+#: admin/inc/dtc_config.php:1177
 msgid "Webalizer country graph: "
 msgstr "Webalizer gráfico de país:"
 
@@ -8869,7 +8880,7 @@ msgstr "Whois de:"
 msgid "Whois:"
 msgstr "Whois:"
 
-#: admin/inc/dtc_config.php:1668 admin/dtcrm/product_manager.php:525
+#: admin/inc/dtc_config.php:1673 admin/dtcrm/product_manager.php:525
 msgid "Widget type"
 msgstr "Tipo de Mini-Aplicativo"
 
@@ -8895,11 +8906,11 @@ msgstr "Wire transfer"
 msgid "Wire transfers shall be made to: "
 msgstr "Wire transfers devem·ser·feitas·para:"
 
-#: admin/inc/dtc_config.php:1923
+#: admin/inc/dtc_config.php:1928
 msgid "Wiretransfer"
 msgstr "Wire transfer"
 
-#: shared/inc/forms/vps_installation.php:315
+#: shared/inc/forms/vps_installation.php:322
 msgid "Write parameters"
 msgstr "Escrever parâmetros"
 
@@ -8907,7 +8918,7 @@ msgstr "Escrever parâmetros"
 msgid "Wrong email format for the monitoring email address"
 msgstr "Formato inválido para o sistema de monitoramento"
 
-#: shared/gfx/skin/default_layout.php:22 shared/gfx/skin/bwoup/layout.php:51
+#: shared/gfx/skin/default_layout.php:21 shared/gfx/skin/bwoup/layout.php:51
 msgid "Wrong login or password"
 msgstr "Login ou senha incorretos."
 
@@ -8963,41 +8974,42 @@ msgstr "República do Iêmen"
 #: admin/inc/dtc_config.php:1015 admin/inc/dtc_config.php:1101
 #: admin/inc/dtc_config.php:1106 admin/inc/dtc_config.php:1111
 #: admin/inc/dtc_config.php:1116 admin/inc/dtc_config.php:1121
-#: admin/inc/dtc_config.php:1126 admin/inc/dtc_config.php:1160
+#: admin/inc/dtc_config.php:1126 admin/inc/dtc_config.php:1131
 #: admin/inc/dtc_config.php:1165 admin/inc/dtc_config.php:1170
 #: admin/inc/dtc_config.php:1175 admin/inc/dtc_config.php:1180
 #: admin/inc/dtc_config.php:1185 admin/inc/dtc_config.php:1190
-#: admin/inc/dtc_config.php:1209 admin/inc/dtc_config.php:1284
-#: admin/inc/dtc_config.php:1289 admin/inc/dtc_config.php:1356
-#: admin/inc/dtc_config.php:1557 admin/inc/dtc_config.php:1615
-#: admin/inc/dtc_config.php:1683 admin/inc/dtc_config.php:1701
-#: admin/inc/dtc_config.php:1719 admin/inc/dtc_config.php:1743
-#: admin/inc/dtc_config.php:1764 admin/inc/dtc_config.php:1769
-#: admin/inc/dtc_config.php:1791 admin/inc/dtc_config.php:1796
-#: admin/inc/dtc_config.php:1812 admin/inc/dtc_config.php:1817
-#: admin/inc/dtc_config.php:1843 admin/inc/dtc_config.php:1859
-#: admin/inc/dtc_config.php:1888 admin/inc/dtc_config.php:1914
-#: admin/dtcrm/main.php:213 admin/dtcrm/product_manager.php:91
-#: admin/dtcrm/product_manager.php:99 admin/dtcrm/product_manager.php:107
-#: admin/dtcrm/product_manager.php:115 admin/dtcrm/product_manager.php:123
-#: admin/dtcrm/product_manager.php:131 admin/dtcrm/product_manager.php:139
-#: admin/dtcrm/product_manager.php:232 admin/dtcrm/product_manager.php:325
-#: admin/dtcrm/product_manager.php:332 admin/dtcrm/product_manager.php:389
-#: admin/dtcrm/product_manager.php:471 admin/dtcrm/product_manager.php:495
-#: client/new_account_form.php:694 shared/inc/forms/domain_info.php:206
-#: shared/inc/forms/email.php:219 shared/inc/forms/email.php:225
-#: shared/inc/forms/email.php:255 shared/inc/forms/root_admin.php:52
-#: shared/inc/forms/root_admin.php:62 shared/inc/forms/root_admin.php:72
-#: shared/inc/forms/root_admin.php:82 shared/inc/forms/root_admin.php:89
-#: shared/inc/forms/root_admin.php:103 shared/inc/forms/root_admin.php:114
-#: shared/inc/forms/root_admin.php:125 shared/inc/forms/root_admin.php:136
-#: shared/inc/forms/root_admin.php:289 shared/inc/forms/root_admin.php:410
-#: shared/inc/forms/root_admin.php:416 shared/inc/forms/root_admin.php:538
-#: shared/inc/forms/root_admin.php:545 shared/inc/forms/root_admin.php:554
-#: shared/inc/forms/subdomain.php:140 shared/inc/forms/subdomain.php:150
-#: shared/inc/forms/subdomain.php:211 shared/inc/forms/subdomain.php:230
-#: shared/inc/forms/subdomain.php:246 shared/inc/forms/subdomain.php:253
-#: shared/inc/forms/ticket.php:143 shared/securepay/modules/enets/main.php:46
+#: admin/inc/dtc_config.php:1195 admin/inc/dtc_config.php:1214
+#: admin/inc/dtc_config.php:1289 admin/inc/dtc_config.php:1294
+#: admin/inc/dtc_config.php:1361 admin/inc/dtc_config.php:1562
+#: admin/inc/dtc_config.php:1620 admin/inc/dtc_config.php:1688
+#: admin/inc/dtc_config.php:1706 admin/inc/dtc_config.php:1724
+#: admin/inc/dtc_config.php:1748 admin/inc/dtc_config.php:1769
+#: admin/inc/dtc_config.php:1774 admin/inc/dtc_config.php:1796
+#: admin/inc/dtc_config.php:1801 admin/inc/dtc_config.php:1817
+#: admin/inc/dtc_config.php:1822 admin/inc/dtc_config.php:1848
+#: admin/inc/dtc_config.php:1864 admin/inc/dtc_config.php:1893
+#: admin/inc/dtc_config.php:1919 admin/dtcrm/main.php:228
+#: admin/dtcrm/product_manager.php:91 admin/dtcrm/product_manager.php:99
+#: admin/dtcrm/product_manager.php:107 admin/dtcrm/product_manager.php:115
+#: admin/dtcrm/product_manager.php:123 admin/dtcrm/product_manager.php:131
+#: admin/dtcrm/product_manager.php:139 admin/dtcrm/product_manager.php:232
+#: admin/dtcrm/product_manager.php:325 admin/dtcrm/product_manager.php:332
+#: admin/dtcrm/product_manager.php:389 admin/dtcrm/product_manager.php:471
+#: admin/dtcrm/product_manager.php:495 client/new_account_form.php:701
+#: shared/inc/forms/domain_info.php:206 shared/inc/forms/email.php:219
+#: shared/inc/forms/email.php:225 shared/inc/forms/email.php:255
+#: shared/inc/forms/root_admin.php:52 shared/inc/forms/root_admin.php:62
+#: shared/inc/forms/root_admin.php:72 shared/inc/forms/root_admin.php:82
+#: shared/inc/forms/root_admin.php:89 shared/inc/forms/root_admin.php:103
+#: shared/inc/forms/root_admin.php:114 shared/inc/forms/root_admin.php:125
+#: shared/inc/forms/root_admin.php:136 shared/inc/forms/root_admin.php:289
+#: shared/inc/forms/root_admin.php:410 shared/inc/forms/root_admin.php:416
+#: shared/inc/forms/root_admin.php:538 shared/inc/forms/root_admin.php:545
+#: shared/inc/forms/root_admin.php:554 shared/inc/forms/subdomain.php:140
+#: shared/inc/forms/subdomain.php:150 shared/inc/forms/subdomain.php:211
+#: shared/inc/forms/subdomain.php:230 shared/inc/forms/subdomain.php:246
+#: shared/inc/forms/subdomain.php:253 shared/inc/forms/ticket.php:143
+#: shared/securepay/modules/enets/main.php:46
 #: shared/securepay/modules/paypal/main.php:78
 #: shared/securepay/modules/worldpay/main.php:77
 #: shared/securepay/modules/webmoney/main.php:39
@@ -9063,7 +9075,7 @@ msgid ""
 "depending on the product that your visitor bought."
 msgstr ""
 
-#: shared/inc/forms/vps_installation.php:195
+#: shared/inc/forms/vps_installation.php:202
 msgid ""
 "You cannot start your VPS if it has expired. Please renew it if you want the "
 "boot up (xm start) button to appear here."
@@ -9111,11 +9123,6 @@ msgstr ""
 msgid "You do not have a client account, so there is no money in your account."
 msgstr ""
 "Você não tem uma conta de cliente, por isso não há dinheiro na sua conta."
-
-#: shared/inc/sql/ssh.php:24
-#, fuzzy
-msgid "You don't have SSH login permissions."
-msgstr "Você não tem o status para login SSH!"
 
 #: shared/dtcrm/draw_adddomain.php:322
 #: shared/dtcrm/draw_transferdomain.php:109
@@ -9199,7 +9206,7 @@ msgstr "Você poderá adicionar outro dominio:"
 msgid "You may verify the configuration by clicking here:"
 msgstr "Poderá agora verificar a sua configuração clicando aqui :"
 
-#: shared/inc/forms/vps_installation.php:334
+#: shared/inc/forms/vps_installation.php:341
 msgid ""
 "You should then install sshd in your VPS and use the physical console only "
 "for debugging purposes."
@@ -9302,7 +9309,7 @@ msgstr "O seu dominio será brevemente validado:"
 msgid "Your domain usage and quota:"
 msgstr "Seu uso de domínio e cota:"
 
-#: shared/gfx/skin/default_layout.php:84 shared/gfx/skin/bwoup/layout.php:360
+#: shared/gfx/skin/default_layout.php:83 shared/gfx/skin/bwoup/layout.php:360
 msgid "Your domains"
 msgstr "Os seus dominios"
 
@@ -9326,10 +9333,6 @@ msgstr "Sua senha:"
 #: shared/dtcrm/draw.php:73
 msgid "Your past account was: "
 msgstr "Sua ultima conta foi:"
-
-#: shared/inc/sql/ssh.php:31 shared/inc/sql/ssh.php:94
-msgid "Your path is restricted to "
-msgstr "Seu caminho é restrito a"
 
 #: client/new_account.php:323
 msgid "Your registration has been recorded in our database."
@@ -9371,8 +9374,8 @@ msgstr "Zimbábue"
 msgid "Zipcode:"
 msgstr "CEP:"
 
-#: admin/view_waitingusers.php:178 admin/dtcrm/main.php:221
-#: client/new_account_form.php:730 shared/dtcrm/draw_handle.php:70
+#: admin/view_waitingusers.php:178 admin/dtcrm/main.php:236
+#: client/new_account_form.php:737 shared/dtcrm/draw_handle.php:70
 #: shared/dtcrm/draw_handle.php:108 shared/dtcrm/draw_handle.php:146
 #: shared/dtcrm/draw_handle.php:184 shared/dtcrm/draw_handle.php:329
 #: shared/dtcrm/draw_handle.php:458
@@ -9392,7 +9395,7 @@ msgstr "Pseudónimos"
 msgid "all"
 msgstr "todos"
 
-#: shared/inc/forms/vps_installation.php:260
+#: shared/inc/forms/vps_installation.php:267
 msgid "applicance builder"
 msgstr "construtor de aplicações"
 
@@ -9400,7 +9403,7 @@ msgstr "construtor de aplicações"
 msgid "are subscribed automatically to the following mailing list:"
 msgstr "foi inscrito automaticamente para a seguinte lista:"
 
-#: shared/inc/forms/vps_installation.php:239
+#: shared/inc/forms/vps_installation.php:246
 #, fuzzy
 msgid "boot your own .iso image"
 msgstr "boot na sua própria imagem. iso"
@@ -9414,7 +9417,7 @@ msgid "client"
 msgstr "cliente"
 
 #: shared/inc/forms/vps_monitoring.php:127
-#: shared/inc/forms/vps_installation.php:75
+#: shared/inc/forms/vps_installation.php:76
 msgid "couldn't connect to host"
 msgstr "não pôde se conectar ao host"
 
@@ -9442,19 +9445,19 @@ msgstr "dom0"
 msgid "dom0 IP addresses"
 msgstr "dom0 endereços IP"
 
-#: admin/inc/dtc_config.php:1866
+#: admin/inc/dtc_config.php:1871
 msgid "eNETS merchant ID: "
 msgstr "eNETS merchant ID: "
 
-#: admin/inc/dtc_config.php:1874
+#: admin/inc/dtc_config.php:1879
 msgid "eNETS rate: "
 msgstr "Taxa eNETS:"
 
-#: admin/inc/dtc_config.php:1861
+#: admin/inc/dtc_config.php:1866
 msgid "eNETS server: "
 msgstr "eNETS servidor:"
 
-#: admin/inc/dtc_config.php:1870
+#: admin/inc/dtc_config.php:1875
 msgid "eNETS test merchant ID: "
 msgstr "eNETS merchant ID teste: "
 
@@ -9473,7 +9476,7 @@ msgid ""
 "(timed out)."
 msgstr "login ou senha não válidos, ou sua sessão expirou (time out)."
 
-#: shared/gfx/skin/default_layout.php:61 shared/gfx/skin/bwoup/layout.php:251
+#: shared/gfx/skin/default_layout.php:60 shared/gfx/skin/bwoup/layout.php:251
 msgid "fetching admin: "
 msgstr "Procurar administrador : "
 
@@ -9518,7 +9521,7 @@ msgstr "O servidor de registro retornou que este domínio não é renovável."
 msgid "is already in use in this server: you can't register that domain name."
 msgstr "já está em uso neste servidor: você não pode registrar este domínio."
 
-#: client/new_account_form.php:346
+#: client/new_account_form.php:347
 msgid "is empty or incorrect."
 msgstr "está vazio ou incorreto"
 
@@ -9539,17 +9542,17 @@ msgstr "os campos marcados, são obrigatórios"
 msgid "month"
 msgstr "mês"
 
-#: client/new_account_form.php:658 client/new_account_form.php:659
-#: shared/inc/forms/vps_installation.php:235
-#: shared/inc/forms/vps_installation.php:236
+#: client/new_account_form.php:665 client/new_account_form.php:666
+#: shared/inc/forms/vps_installation.php:242
+#: shared/inc/forms/vps_installation.php:243
 msgid "network install with debootstrap"
 msgstr "instalar rede com o debootstrap"
 
-#: client/new_account_form.php:660 shared/inc/forms/vps_installation.php:237
+#: client/new_account_form.php:667 shared/inc/forms/vps_installation.php:244
 msgid "network install with yum"
 msgstr "instalar rede com o yum"
 
-#: client/new_account_form.php:661 shared/inc/forms/vps_installation.php:238
+#: client/new_account_form.php:668 shared/inc/forms/vps_installation.php:245
 msgid "network setup with install kernel"
 msgstr "configuração da rede com instalação de kernel"
 
@@ -9579,7 +9582,7 @@ msgid "new mailing list"
 msgstr "nova mailing·list"
 
 #: admin/dtcrm/product_manager.php:78 admin/inc/ip_usage_report.php:303
-#: shared/inc/forms/vps_installation.php:314
+#: shared/inc/forms/vps_installation.php:321
 msgid "no"
 msgstr "não"
 
@@ -9587,11 +9590,11 @@ msgstr "não"
 msgid "no list selected"
 msgstr "nenhuma lista selecionada"
 
-#: admin/inc/dtc_config.php:2441
+#: admin/inc/dtc_config.php:2446
 msgid "none"
 msgstr "não"
 
-#: shared/inc/forms/vps_installation.php:249
+#: shared/inc/forms/vps_installation.php:256
 msgid "operating system image"
 msgstr "imagem de sistema operacional"
 
@@ -9647,7 +9650,7 @@ msgid "years"
 msgstr "anos"
 
 #: admin/dtcrm/product_manager.php:78
-#: shared/inc/forms/vps_installation.php:314
+#: shared/inc/forms/vps_installation.php:321
 msgid "yes"
 msgstr "sim"
 
@@ -9735,6 +9738,27 @@ msgstr "sim"
 
 #~ msgid "If no FTP user was created, please make at least one!"
 #~ msgstr "Se nenhum usuário FTP foi criado, faça pelo menos um!"
+
+#~ msgid ""
+#~ "Incorrect SSH login form: please enter another login and try again.<br>\n"
+#~ msgstr "Login SSH incorreto: digite outro login e tente novamente. <br> \n"
+
+#, fuzzy
+#~ msgid "Incorrect SSH password: from 6 to 16 characters, a-z A-Z 0-9"
+#~ msgstr "Senha SSH incorreta: De 6 a 16 caracteres, a-z·A-Z·0-9<br>"
+
+#, fuzzy
+#~ msgid "Incorrect SSH password: from 6 to 16 characters, a-z A-Z 0-9<br>\n"
+#~ msgstr ""
+#~ "Senha SSH incorreta: De 6 a 16 caracteres, \n"
+#~ "a-z·A-Z·0-9<br>\n"
+
+#~ msgid ""
+#~ "Incorrect ssh login : this is not a good string for a ssh login, please "
+#~ "enter a new one."
+#~ msgstr ""
+#~ "Login ssh incorreto: esta não é uma boa seqüência para um login ssh, "
+#~ "digite um nova."
 
 #~ msgid "Is company radio button is wrong!"
 #~ msgstr "O botão de radio da empresa está errado!"
@@ -9858,6 +9882,10 @@ msgstr "sim"
 #~ msgid "View details"
 #~ msgstr "Ver detalhes"
 
+#, fuzzy
+#~ msgid "You don't have SSH login permissions."
+#~ msgstr "Você não tem o status para login SSH!"
+
 #~ msgid "Your SRS username:"
 #~ msgstr "O seu usuário SRS :"
 
@@ -9872,6 +9900,9 @@ msgstr "sim"
 
 #~ msgid "Your key to access the test server:"
 #~ msgstr "Senha para acessar o servidor de testes :"
+
+#~ msgid "Your path is restricted to "
+#~ msgstr "Seu caminho é restrito a"
 
 #~ msgid "is not same as the one I have in the database"
 #~ msgstr "não é a mesma que tenho no banco de dados"
