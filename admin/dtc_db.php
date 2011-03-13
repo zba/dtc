@@ -221,6 +221,10 @@ $dtc_database = array(
 			"shared_renewal_after" => "varchar(64) NOT NULL default '15|7'",
 			"shared_renewal_lastwarning" => "varchar(64) NOT NULL default '25'",
 			"shared_renewal_shutdown" => "varchar(64) NOT NULL default '28'",
+			"custom_renewal_before" => "varchar(64) NOT NULL default '5|10'",
+			"custom_renewal_after" => "varchar(64) NOT NULL default '3|7'",
+			"custom_renewal_lastwarning" => "varchar(64) NOT NULL default '12'",
+			"custom_renewal_shutdown" => "varchar(64) NOT NULL default '15'",
 			"webalizer_country_graph" => "enum('yes','no') NOT NULL default 'no'",
 			"apache_version" => "varchar(16) NOT NULL default '1'",
 			"dtc_system_uid" => "varchar(16) NOT NULL default 'CONF_DTC_SYSTEM_UID'",
@@ -329,8 +333,7 @@ $dtc_database = array(
 		"vars" => array(
 			"id" => "int(11) NOT NULL auto_increment",
 			"name" => "varchar(32) NOT NULL default ''",
-			"reqdomain" => "enum('yes','no') NOT NULL default 'no'",
-			"welcome_message"  => "text NOT NULL"
+			"reqdomain" => "enum('yes','no') NOT NULL default 'no'"
 		),
 		"primary" => "(id)",
 		"keys" => array(
@@ -347,6 +350,20 @@ $dtc_database = array(
 			"widgetdisplay" => "varchar(255) NOT NULL default ''",
 			"widgetorder" => "int(9) NOT NULL default '0'",
 			"custom_heb_type_id" => "int(11) NOT NULL default '0'"
+		),
+		"primary" => "(id)"
+	),
+	"custom_product" => array(
+		"vars" => array(
+			"id" => "int(11) NOT NULL auto_increment",
+			"owner" => "varchar(64) NOT NULL default ''",
+			"domain" => "varchar(255) NOT NULL default ''",
+			"start_date" => "date NOT NULL default '0000-00-00'",
+			"expire_date" => "date NOT NULL default '0000-00-00'",
+			"product_id" => "int(9) NOT NULL default '0'",
+			"custom_heb_type" => "int(11) NOT NULL default '0'",
+			"custom_heb_type_fld" => "text",
+			"country_code" => "varchar(4) NOT NULL default 'US'"
 		),
 		"primary" => "(id)"
 	),

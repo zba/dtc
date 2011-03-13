@@ -257,7 +257,9 @@ function drawRenewalsConfig(){
 		"desc" => _("These numbers represent the days before and after expiration.
 Warnings before and after expiration can be listed separated by |,
 while single warnings accept one value. The message templates
-are stored in /etc/dtc, and if not present in: ").$conf_dtcadmin_path."/reminders_msg/",
+are stored in /etc/dtc, and if not present in: ").$conf_dtcadmin_path."/reminders_msg/
+<br />For custom product types the file format is for example custom_1_expired_already.txt 
+for custom product type with id 1 for the expired reminder",
 		"cols" => array(
 			"vps_renewal_before" => array(
 				"legend" => _("Warning before expiration for VPS: "),
@@ -289,6 +291,22 @@ are stored in /etc/dtc, and if not present in: ").$conf_dtcadmin_path."/reminder
                                 "size" => "16"),
 			"shared_renewal_shutdown" => array(
 				"legend" => _("Shutdown warning for Shared Hosting: "),
+                                "type" => "text",
+                                "size" => "16"),
+            "custom_renewal_before" => array(
+				"legend" => _("Warning before expiration for Custom Products: "),
+				"type" => "text",
+				"size" => "16"),
+			"custom_renewal_after" => array(
+				"legend" => _("Warning after expiration for Custom Products: "),
+                                "type" => "text",
+                                "size" => "16"),
+			"custom_renewal_lastwarning" => array(
+				"legend" => _("Last warning for Custom Products: "),
+                                "type" => "text",
+                                "size" => "16"),
+			"custom_renewal_shutdown" => array(
+				"legend" => _("Shutdown warning for Custom Products: "),
                                 "type" => "text",
                                 "size" => "16"),
 			"message_subject_header" => array(

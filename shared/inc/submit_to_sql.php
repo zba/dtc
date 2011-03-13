@@ -357,7 +357,7 @@ function validateWaitingUser($waiting_login_id){
 	}
 
 	// Get the informations from the product table
-	$q2 = "SELECT $pro_mysql_product_table.*, $pro_mysql_custom_heb_types_table.reqdomain, $pro_mysql_custom_heb_types_table.welcome_message FROM $pro_mysql_product_table LEFT JOIN $pro_mysql_custom_heb_types_table ON $pro_mysql_product_table.custom_heb_type = $pro_mysql_custom_heb_types_table.id WHERE $pro_mysql_product_table.id='".$a["product_id"]."'";
+	$q2 = "SELECT * FROM $pro_mysql_product_table WHERE id='".$a["product_id"]."'";
 	$r2 = mysql_query($q2)or die("Cannot execute query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n2 = mysql_num_rows($r2);
 	if($n2 != 1)die("I can't find the product in the table line: ".__LINE__." file: ".__FILE__."!");
@@ -473,13 +473,8 @@ last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,
 	}else{ // custom heb type
 		$country = $conf_this_server_country_code;
 		// Read the (customizable) registration message to send
-		$txt_welcome_message = $a2["welcome_message"];
-		if ($a["domain_name"] != ""){
-			addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);
-
-			$q = "UPDATE $pro_mysql_domain_table SET max_email='".$a2["nbr_email"]."',quota='".$a2["quota_disk"]."' WHERE name='".$a["domain_name"]."';";
-			$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-		}
+		$txt_welcome_message = readCustomizedMessage("registration_msg/custom_".$a2["custom_heb_type"]."_open",$waiting_login);
+		addCustomProductToUser($waiting_login,$a["domain_name"],$a2["id"]);
 	}
 
 	// Send a mail to user with how to login and use interface.

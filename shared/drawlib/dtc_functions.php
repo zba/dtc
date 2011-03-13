@@ -970,6 +970,27 @@ function drawSubmitButton($text){
 </div>";
 }
 
+/////////////////////////////////
+// Add custom product to table //
+/////////////////////////////////
+function addCustomProductToUser($adm_login,$server_hostname,$product_id){
+	global $pro_mysql_product_table;
+	global $pro_mysql_custom_product_table;
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='$product_id';";
+	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Cannot find product line ".__LINE__." file ".__FILE__);
+	}
+	$product = mysql_fetch_array($r);
+	
+	$exp_date = calculateExpirationDate(date("Y-m-d"),$product["period"]);
+	$q = "INSERT INTO $pro_mysql_custom_product_table (id,owner,domain,start_date,expire_date,product_id,custom_heb_type,custom_heb_type_fld )
+	VALUES('','$adm_login','$server_hostname','".date("Y-m-d")."','$exp_date','$product_id','".$product["custom_heb_type"]."','".$product["custom_heb_type_fld"]."');";
+	$r = mysql_query($q)or die("Cannot query : \"$q\" line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+	return ;
+}
+
 function drawPercentBar($value,$max,$double="yes"){
 	$alts = "";
 	$altn = "";
