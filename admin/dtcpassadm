@@ -4,10 +4,10 @@ set -e
 
 usages () {
 	echo "Usages: dtcpassadm -{l,p,a} [param]"
-	echo "With -l = list users and pass"
-	echo "     -p user pass = set pass as password for user"
-	echo "     -a user pass = adds user with password pass"
-	echo "     -d user = removes user"
+	echo "With -l = list users and passwords"
+	echo "     -p MyUser MyPass = set password to be MyPass for MyUser"
+	echo "     -a MyUser MyPass = adds MyUser with password MyPass"
+	echo "     -d MyUser = removes MyUser"
 	exit 1
 }
 
