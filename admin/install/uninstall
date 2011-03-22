@@ -19,7 +19,11 @@ if [ -f /etc/debian_version ] ; then
 	uninstallHttpdConfig
 fi
 
+RPM=""
+set +e
 RPM=`which rpm`
+set -e
+
 if [ -x "$RPM" ] ; then
 	if rpm -q coreutils >/dev/null ; then
 		# Prepare this

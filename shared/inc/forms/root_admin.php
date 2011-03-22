@@ -191,7 +191,7 @@ function drawEditAdmin($admin){
 	// Generate the admin tool configuration module
 	// Deletion of domains :
 	$url = "?delete_admin_user=$adm_login&rub=$rub";
-	$confirmed_url = dtcJavascriptConfirmLink( _("Are your sure you want to delete this user? This will DELETE all the user's hosted domain names, files, and databases.") ,$url);
+	$confirmed_url = dtcJavascriptConfirmLink( _("Are your sure you want to delete this user? This will DELETE all the user hosted domain names, files, and databases.") ,$url);
 	$domain_conf = "<a href=\"$confirmed_url\"><b>". _("Delete the user") ."</b></a><br><br>";
 	if(isset($data)){
 		$domain_conf .= "<h3>". _("Delete a user domain:") ."</h3><br>";
