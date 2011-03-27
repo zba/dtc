@@ -332,7 +332,7 @@ function sendCustomProductsReminderEmail($remaining_days,$file,$cust_heb_type_id
 
 	$now_timestamp = mktime();
 	$one_day = 3600 * 24;
-	$q = "SELECT * FROM $pro_mysql_custom_product_table WHERE expire_date='".date("Y-m-d",$now_timestamp + $one_day*$remaining_days)."';";
+	$q = "SELECT * FROM $pro_mysql_custom_product_table WHERE expire_date='".date("Y-m-d",$now_timestamp + $one_day*$remaining_days)."' and custom_heb_type='".$cust_heb_type_id."';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
@@ -387,28 +387,28 @@ function sendCustomProductsReminderEmail($remaining_days,$file,$cust_heb_type_id
 // Send reminders before expiration
 global $pro_mysql_custom_heb_types_table;
 
-$q = "SELECT id FROM $pro_mysql_custom_heb_types_table;";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-$n = mysql_num_rows($r);
-for($i=0;$i<$n;$i++){
-	$cust_pr_id = mysql_fetch_array($r);
+$qsq = "SELECT id FROM $pro_mysql_custom_heb_types_table;";
+$rsq = mysql_query($qsq)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+$nsq = mysql_num_rows($rsq);
+for($nid=0;$nid<$n;$nid++){
+	$cust_pr_id = mysql_fetch_array($rsq);
 	$before = explode("|",$conf_custom_renewal_before);
 	$n = sizeof($before);
 	for($i=0;$i<$n;$i++){
-		sendCustomProductsReminderEmail($before[$i],"reminders_msg/server_will_expire",$cust_pr_id[$id]);
+		sendCustomProductsReminderEmail($before[$i],"reminders_msg/custom_".$cust_pr_id['id']."_will_expire",$cust_pr_id['id']);
 	}
 	// Send reminders the day of the expiration
-	sendCustomProductsReminderEmail(0,"reminders_msg/server_expired_today",$cust_pr_id[$id],"no");
+	sendCustomProductsReminderEmail(0,"reminders_msg/custom_".$cust_pr_id['id']."_expired_today",$cust_pr_id['id'],"no");
 	// Send reminders after expiration
 	$after = explode("|",$conf_custom_renewal_after);
 	$n = sizeof($after);
 	for($i=0;$i<$n;$i++){
 		$days = 0 - $after[$i];
-		sendCustomProductsReminderEmail($days,"reminders_msg/server_expired_already",$cust_pr_id[$id]);
+		sendCustomProductsReminderEmail($days,"reminders_msg/custom_".$cust_pr_id['id']."_expired_already",$cust_pr_id['id']);
 	}
 	// Send reminders for last warning
-	sendCustomProductsReminderEmail(-$conf_custom_renewal_lastwarning,"reminders_msg/server_expired_last_warning",$cust_pr_id[$id],"yes");
+	sendCustomProductsReminderEmail(-$conf_custom_renewal_lastwarning,"reminders_msg/custom_".$cust_pr_id['id']."_expired_last_warning",$cust_pr_id['id'],"yes");
 	// Send the shutdown message
-	sendCustomProductsReminderEmail(-$conf_custom_renewal_shutdown,"reminders_msg/server_expired_shutdown",$cust_pr_id[$id],"yes");
+	sendCustomProductsReminderEmail(-$conf_custom_renewal_shutdown,"reminders_msg/custom_".$cust_pr_id['id']."_expired_shutdown",$cust_pr_id['id'],"yes");
 }
 ?>

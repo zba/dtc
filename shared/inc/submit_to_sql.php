@@ -388,6 +388,9 @@ special_note) VALUES ('','".$a["iscomp"]."',
 	}else if($a2["heb_type"] == "server"){
 		$admtbl_added1 = ",expire,prod_id";
 		$admtbl_added2 = ",'0000-00-00','0'";
+	}else if($a2["heb_type"] == "custom"){
+		$admtbl_added1 = ",expire,prod_id";
+		$admtbl_added2 = ",'0000-00-00','0'";
         }else{
         	$admtbl_added1 = ",expire,prod_id";
         	$admtbl_added2 = ",'$expires','".$a2["id"]."'";
