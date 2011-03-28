@@ -33,7 +33,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "recover_lost_pass"){
 			$recover_txt .= "<br><br>" . _("An email with your password has been sent to your address.") . "<br><br>";
 		}
 	}else if( isset($_REQUEST["adm_lost_email"]) && isValidEmail($_REQUEST["adm_lost_email"])){
-		$q = "SELECT * FROM $pro_mysql_admin_table,$pro_mysql_client_table WHERE $pro_mysql_client_table.email='".$_REQUEST["adm_lost_email"]."';";
+		$q = "SELECT * FROM $pro_mysql_admin_table,$pro_mysql_client_table WHERE $pro_mysql_client_table.email='".$_REQUEST["adm_lost_email"]."' AND $pro_mysql_admin_table.id_client=$pro_mysql_client_table.id;";
 		$r = mysql_query($q) or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n = mysql_num_rows($r);
 		$recover_txt .= "<br><br>" . _("The following logins have been found to be related to this email address. Click on any of them to send your password to the email address:")."<br><br>";
