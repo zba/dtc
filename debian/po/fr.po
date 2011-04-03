@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
-"POT-Creation-Date: 2010-12-27 13:27+0000\n"
+"POT-Creation-Date: 2011-04-03 20:16+0800\n"
 "PO-Revision-Date: 2008-03-12 09:03+0100\n"
 "Last-Translator: Christian Perrier <bubulle@debian.org>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -599,6 +599,42 @@ msgstr ""
 "exécuté. Pour cette raison, il est possible d'omettre la création des "
 "fichiers de périphériques « null », « random » et « urandom » pendant la "
 "création du canevas de l'environnement fermé d'exécution (« chroot »)."
+
+#. Type: boolean
+#. Description
+#: ../dtc-common.templates:33001
+msgid "Enforce DTC admins password encryption?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc-common.templates:33001
+msgid ""
+"To enhance security in case of a breach, DTC can encrypt all admin "
+"passwords. If passwords are encrypted, you cannot see them by clicking on "
+"the looking glass (you will only see the encrypted version of the password), "
+"but you can always use the dtcpasswdm shell script to create or change a new "
+"password. If this is the first time you are encrypting your password and you "
+"are upgrading from a previous version of DTC that didn't support password "
+"encryption, may issue  the following shell script command to encrypt all "
+"existing passwords:"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc-common.templates:33001
+msgid ""
+"mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute=\"UPDATE admin "
+"SET adm_pass=PASSWORD(adm_pass)\""
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc-common.templates:33001
+msgid ""
+"mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute=\"UPDATE "
+"tik_admins SET tikadm_pass=PASSWORD(tikadm_pass)\""
+msgstr ""
 
 #~ msgid ""
 #~ "Cyrus is a replacement for the Maildir delivery and storage. You must "

@@ -47,6 +47,7 @@ function drawPasswordChange(){
 	global $adm_pass;
 	global $addrlink;
 	global $pro_mysql_admin_table;
+	global $conf_enforce_adm_encryption;
 
 	$pass_submit_err = "";
 
@@ -61,7 +62,12 @@ function drawPasswordChange(){
 			$commit_flag = "no";
 		}
 		if($commit_flag == "yes"){
-			$q = "UPDATE $pro_mysql_admin_table SET adm_pass='".$_REQUEST["new_pass1"]."' WHERE adm_login='$adm_login';";
+			if($conf_enforce_adm_encryption == "yes"){
+				$new_password_encrypted = "PASSWORD('".$_REQUEST["new_pass1"]."')";
+			}else{
+				$new_password_encrypted = "'".$_REQUEST["new_pass1"]."'";
+			}
+			$q = "UPDATE $pro_mysql_admin_table SET adm_pass=$new_password_encrypted WHERE adm_login='$adm_login';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 			$pass_submit_err .= _("Your administrator password has been changed.")."<br>\n";
 		}

@@ -464,7 +464,7 @@ function checkLoginPassAndDomain($adm_login,$adm_pass,$domain_name){
 	if(strlen($adm_pass) > 16){
 	}
 
-	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND ((adm_pass='$adm_pass' OR adm_pass=PASSWORD('$adm_pass')) OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
 	if($num_rows != 1){
@@ -493,7 +493,7 @@ function checkLoginPass($adm_login,$adm_pass){
 	global $pro_mysql_config_table;
 	global $pro_mysql_tik_admins_table;
 
-	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND ((adm_pass='$adm_pass' OR adm_pass=PASSWORD('$adm_pass')) OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query($query)or die("Cannot execute query \"$query\" !!!".mysql_error());
 	$num_rows = mysql_num_rows($result);
 	if($num_rows != 1){

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
 "Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
-"POT-Creation-Date: 2010-12-27 13:27+0000\n"
+"POT-Creation-Date: 2011-04-03 20:16+0800\n"
 "PO-Revision-Date: 2007-03-27 22:26+0100\n"
 "Last-Translator: Bart Cornelis <cobaco@skolelinux.no>\n"
 "Language-Team: debian-l10n-dutch <debian-l10n-dutch@lists.debian.org>\n"
@@ -560,6 +560,42 @@ msgstr ""
 "In sommige omgevingen, zoals een Linux vServer, kan mknod niet uitgevoerd "
 "worden. Deze optie laat toe om het aanmaken van de null, random, en urandom "
 "apparaatbestanden over te slaan tijdens het aanmaken van de chroot sjabloon."
+
+#. Type: boolean
+#. Description
+#: ../dtc-common.templates:33001
+msgid "Enforce DTC admins password encryption?"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc-common.templates:33001
+msgid ""
+"To enhance security in case of a breach, DTC can encrypt all admin "
+"passwords. If passwords are encrypted, you cannot see them by clicking on "
+"the looking glass (you will only see the encrypted version of the password), "
+"but you can always use the dtcpasswdm shell script to create or change a new "
+"password. If this is the first time you are encrypting your password and you "
+"are upgrading from a previous version of DTC that didn't support password "
+"encryption, may issue  the following shell script command to encrypt all "
+"existing passwords:"
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc-common.templates:33001
+msgid ""
+"mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute=\"UPDATE admin "
+"SET adm_pass=PASSWORD(adm_pass)\""
+msgstr ""
+
+#. Type: boolean
+#. Description
+#: ../dtc-common.templates:33001
+msgid ""
+"mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute=\"UPDATE "
+"tik_admins SET tikadm_pass=PASSWORD(tikadm_pass)\""
+msgstr ""
 
 #~ msgid "Update PEAR installation?"
 #~ msgstr "Wilt u de PEAR-installatie opwaarderen?"

@@ -49,6 +49,8 @@ debianGetDebconfValues () {
 	conf_hosting_path=$RET
 	db_get dtc/conf_chroot_path
 	conf_chroot_path=$RET
+	db_get dtc/conf_enforce_adm_encryption
+	conf_enforce_adm_encryption=$RET
 	db_get dtc/conf_admlogin
 	conf_adm_login=$RET
 	db_get dtc/conf_admpass

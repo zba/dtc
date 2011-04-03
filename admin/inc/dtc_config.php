@@ -571,6 +571,7 @@ function drawTicketConfig(){
 	global $sousrub;
 	global $conf_all_customers_list_domain;
 	global $conf_all_customers_list_email;
+	global $conf_enforce_adm_encryption;
 	global $pro_mysql_list_table;
 	global $pro_mysql_domain_table;
 	global $pro_mysql_client_table;
@@ -730,6 +731,7 @@ function drawTicketConfig(){
 				"legend" => _("Email Address")),
 			"tikadm_pass" => array(
 				"type" => "password",
+				"encrypt" => "$conf_enforce_adm_encryption",
 				"legend" => _("Password")),
 			"available" => array(
 				"type" => "radio",
@@ -1124,6 +1126,11 @@ function drawGeneralConfig(){
                                 "display_replace" => array(_("Yes"),_("No"))),
 			"use_ssl" => array(
 				"legend" => _("Use SSL: "),
+				"type" => "radio",
+				"values" => array("yes","no"),
+				"display_replace" => array(_("Yes"),_("No"))),
+			"enforce_adm_encryption" => array(
+				"legend" => _("Enforce admin passwords encryption: "),
 				"type" => "radio",
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No"))),

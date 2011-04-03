@@ -231,7 +231,11 @@ function dtcDatagrid($dsc){
 					}else{
 						$happen = "";
 					}
-					$vals .= "'".$_REQUEST[ $keys[$i] ].$happen."'";
+					if( $dsc["cols"][ $keys[$i] ]["type"] == "password" && $dsc["cols"][ $keys[$i] ]["encrypt"] == "yes"){
+						$vals .= "PASSWORD('".$_REQUEST[ $keys[$i] ].$happen."')";
+					}else{
+						$vals .= "'".$_REQUEST[ $keys[$i] ].$happen."'";
+					}
 					$added_one = "yes";
 					break;
 				case "checkbox":
@@ -298,7 +302,11 @@ function dtcDatagrid($dsc){
 					if($added_one == "yes"){
                                                 $vals .= ", ";
                                         }
-                                        $vals .= " ".$keys[$i]."='".$_REQUEST[ $keys[$i] ]."' ";
+					if( $dsc["cols"][ $keys[$i] ]["encrypt"] == "yes"){
+	                                        $vals .= " ".$keys[$i]."=PASSWORD('".$_REQUEST[ $keys[$i] ]."') ";
+					}else{
+	                                        $vals .= " ".$keys[$i]."='".$_REQUEST[ $keys[$i] ]."' ";
+					}
                                         $added_one = "yes";
 					// if the crypt field is set, then we use this as the SQL field to populate the crypted password into
 					if(isset($dsc["cols"][ $keys[$i] ]["cryptfield"])){

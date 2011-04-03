@@ -334,7 +334,7 @@ function randomizePassword($adm_login,$adm_input_pass){
 		return $ret;
 	}
 
-	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_input_pass' OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND ((adm_pass='$adm_input_pass' OR adm_pass=PASSWORD('$adm_input_pass')) OR (pass_next_req='$adm_pass' AND pass_expire > '".mktime()."'));";
 	$result = mysql_query ($query);
 	if (!$result)
 	{
@@ -456,7 +456,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 		randomizePassword($adm_login,$adm_input_pass);
 		$pass = $adm_realpass;
 	}
-	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='$pass';";
+	$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$pass' OR adm_pass=PASSWORD('$pass'));";
 	$result = mysql_query ($query);
 	if (!$result){
 		$ret["err"] = 1;

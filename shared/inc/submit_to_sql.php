@@ -305,6 +305,7 @@ function validateWaitingUser($waiting_login_id){
 	global $conf_webmaster_email_addr;
 	global $conf_this_server_country_code;
 	global $conf_message_subject_header;
+	global $conf_enforce_adm_encryption;
 	global $console;
 
 	//get affiliate cookie
@@ -397,10 +398,15 @@ special_note) VALUES ('','".$a["iscomp"]."',
         	$admtbl_added3 = ", expire='$expires', prod_id='".$a2["id"]."' ";
         }
         if($a["add_service"] != "yes"){
+		if($conf_enforce_adm_encryption == "yes"){
+			$new_encrypted_adm_password = "PASSWORD('".$a["reqadm_pass"]."')";
+		}else{
+			$new_encrypted_adm_password = "'".$a["reqadm_pass"]."'";
+		}
 		$adm_query = "INSERT INTO $pro_mysql_admin_table
 (adm_login        ,adm_pass              ,
 last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,allow_add_domain,max_domain,restricted_ftp_path,allow_dns_and_mx_change,ftp_login_flag,allow_mailing_list_edit,allow_subdomain_edit,max_email$admtbl_added1) VALUES
-('$waiting_login','".$a["reqadm_pass"]."',
+('$waiting_login',$new_encrypted_adm_password,
 '$last_used_lang','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','".$a2["nbr_database"]."','".$a2["allow_add_domain"]."','".$a2["max_domain"]."',
 '".$a2["restricted_ftp_path"]."','".$a2["allow_dns_and_mx_change"]."','".$a2["ftp_login_flag"]."','".$a2["allow_mailing_list_edit"]."','".$a2["allow_subdomain_edit"]."','".$a2["nbr_email"]."'$admtbl_added2);";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());

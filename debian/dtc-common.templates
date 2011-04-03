@@ -252,3 +252,20 @@ _Description: Skip mknod calls when building the chroot template?
  executed. This option allows skipping the creation of the null,
  random and urandom devices during the chroot template creation.
 
+Template: dtc/conf_enforce_adm_encryption
+Type: boolean
+Default: true
+_Description: Enforce DTC admins password encryption?
+ To enhance security in case of a breach, DTC can encrypt all
+ admin passwords. If passwords are encrypted, you cannot see them
+ by clicking on the looking glass (you will only see the encrypted
+ version of the password), but you can always use the dtcpasswdm
+ shell script to create or change a new password. If this is the
+ first time you are encrypting your password and you are upgrading
+ from a previous version of DTC that didn't support password
+ encryption, may issue  the following shell script command to
+ encrypt all existing passwords:
+ .
+ mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="UPDATE admin SET adm_pass=PASSWORD(adm_pass)"
+ .
+ mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="UPDATE tik_admins SET tikadm_pass=PASSWORD(tikadm_pass)"

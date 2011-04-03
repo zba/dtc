@@ -253,6 +253,11 @@ if(isset($_REQUEST["deluserdomain"]) && $_REQUEST["deluserdomain"] != ""){
 // Management of new users (eg virtual admins //
 ////////////////////////////////////////////////
 if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
+	if($conf_enforce_adm_encryption == "yes"){
+		$new_encrypt_dtcadm_pass = "PASSWORD('".$_REQUEST["changed_pass"]."')";
+	}else{
+		$new_encrypt_dtcadm_pass = "PASSWORD('".$_REQUEST["changed_pass"]."')";
+	}
 	$adm_query = "UPDATE $pro_mysql_admin_table SET id_client='".$_REQUEST["changed_id_client"]."',
 		adm_pass='".$_REQUEST["changed_pass"]."',path='".$_REQUEST["changed_path"]."',
 		quota='".$_REQUEST["adm_quota"]."', bandwidth_per_month_mb='".$_REQUEST["bandwidth_per_month"]."',

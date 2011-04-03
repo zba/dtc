@@ -370,6 +370,39 @@ installerQuestions () {
 		conf_chroot_path=$answer
 	fi
 
+	# conf_enforce_adm_encryption
+	echo ""
+	echo "Do you want to enfonce DTC admin passwords encryption?"
+	if [ -z ""$conf_enforce_adm_encryption ] ; then
+		conf_mysql_change_root="true"
+	fi
+	if [ $conf_enforce_adm_encryption"" = "true" ] ; then
+		echo -n 'Password encryption [nY]: '
+		read answer
+		if [ -z $answer"" ] ; then
+			answer="true"
+		fi
+	else
+		echo -n 'Password encryption [Ny]: '
+		read answer
+		if [ -z $answer"" ] ; then
+			answer="false"
+		fi
+	fi
+	if [ ""$answer = "y" -o ""$answer = "Y" ]; then
+		answer="true"
+	fi
+	if [ ""$answer = "n" -o ""$answer = "N" ]; then
+		answer="false"
+	fi
+	if [ ""$answer = "false" ] ; then
+		echo "===> Will *NOT* use password encryption"
+		conf_enforce_adm_encryption="false"
+	else
+		echo "===> Will use password encryption"
+		conf_enforce_adm_encryption="true"
+	fi
+
 	# conf_adm_login
 	if [ -z ""$conf_adm_login ] ; then
 		conf_adm_login=dtc
