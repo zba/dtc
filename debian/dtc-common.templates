@@ -255,17 +255,13 @@ _Description: Skip mknod calls when building the chroot template?
 Template: dtc/conf_enforce_adm_encryption
 Type: boolean
 Default: true
-_Description: Enforce DTC admins password encryption?
+_Description: Enforce DTC admin password encryption?
  To enhance security in case of a breach, DTC can encrypt all
  admin passwords. If passwords are encrypted, you cannot see them
- by clicking on the looking glass (you will only see the encrypted
- version of the password), but you can always use the dtcpasswdm
- shell script to create or change a new password. If this is the
- first time you are encrypting your password and you are upgrading
- from a previous version of DTC that didn't support password
- encryption, may issue  the following shell script command to
- encrypt all existing passwords:
+ by clicking on the magnifying glass icon (you will only see the
+ encrypted version of the password), but you can always use the
+ /usr/share/dtc/admin/dtcpasswdm shell script to (re)set a password.
  .
- mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="UPDATE admin SET adm_pass=PASSWORD(adm_pass)"
- .
- mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="UPDATE tik_admins SET tikadm_pass=PASSWORD(tikadm_pass)"
+ The encryption will be applied to passwords created from now on. If
+ you have existing unencrypted admin passwords that should be
+ converted, see /usr/share/doc/dtc-common/README.Debian.

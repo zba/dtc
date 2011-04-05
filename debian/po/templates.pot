@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
-"POT-Creation-Date: 2011-04-03 20:16+0800\n"
+"POT-Creation-Date: 2011-04-05 17:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -494,7 +494,7 @@ msgstr ""
 #. Type: boolean
 #. Description
 #: ../dtc-common.templates:33001
-msgid "Enforce DTC admins password encryption?"
+msgid "Enforce DTC admin password encryption?"
 msgstr ""
 
 #. Type: boolean
@@ -503,26 +503,16 @@ msgstr ""
 msgid ""
 "To enhance security in case of a breach, DTC can encrypt all admin "
 "passwords. If passwords are encrypted, you cannot see them by clicking on "
-"the looking glass (you will only see the encrypted version of the password), "
-"but you can always use the dtcpasswdm shell script to create or change a new "
-"password. If this is the first time you are encrypting your password and you "
-"are upgrading from a previous version of DTC that didn't support password "
-"encryption, may issue  the following shell script command to encrypt all "
-"existing passwords:"
+"the magnifying glass icon (you will only see the encrypted version of the "
+"password), but you can always use the /usr/share/dtc/admin/dtcpasswdm shell "
+"script to (re)set a password."
 msgstr ""
 
 #. Type: boolean
 #. Description
 #: ../dtc-common.templates:33001
 msgid ""
-"mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute=\"UPDATE admin "
-"SET adm_pass=PASSWORD(adm_pass)\""
-msgstr ""
-
-#. Type: boolean
-#. Description
-#: ../dtc-common.templates:33001
-msgid ""
-"mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute=\"UPDATE "
-"tik_admins SET tikadm_pass=PASSWORD(tikadm_pass)\""
+"The encryption will be applied to passwords created from now on. If you have "
+"existing unencrypted admin passwords that should be converted, see /usr/"
+"share/doc/dtc-common/README.Debian."
 msgstr ""

@@ -15,4 +15,27 @@ You can uninstall the same way:
 
   # /usr/share/dtc/admin/install/uninstall
 
- -- Thomas Goirand <thomas@goirand.fr>  Sat, 16 Dec 2006 03:11:17 +0800
+Encrypting old passwords, after upgrading from a previous version of DTC
+------------------------------------------------------------------------
+
+If you used a version of DTC older than 0.34.0, then stored passwords for both
+your root administrators (the one accessing /dtcadmin) and your virtual admins
+(the one accessing /dtc) were not encrypted. If you wish to encrypt them, then
+you should perform the following shell script command:
+
+mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc \
+   --execute="UPDATE admin SET adm_pass=PASSWORD(adm_pass)"
+
+mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc \
+ --execute="UPDATE tik_admins SET tikadm_pass=PASSWORD(tikadm_pass)"
+
+As a consequence, this will encrypt all passwords, including the one that you
+have entered during the installation of DTC, which may have already been
+encrypted. If that is the case and you can't access /dtcadmin anymore, then
+we suggest it is suggested to do:
+
+cd /usr/share/dtc/admin
+
+Then use ./dtcpassadm to update your /dtcadmin password.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 04 Apr 2011 03:41:25 +0800
