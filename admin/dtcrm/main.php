@@ -240,7 +240,7 @@ cc_code_popup($row["country"])."</select>",0);
 	$text .= dtcFormLineDraw( _("Phone Number: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_phone\" value=\"".htmlspecialchars(stripcslashes($row["phone"]))."\">");
 	$text .= dtcFormLineDraw( _("Fax: ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_fax\" value=\"".htmlspecialchars(stripcslashes($row["fax"]))."\">",0);
 	$text .= dtcFormLineDraw( _("Email: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_email\" value=\"".$row["email"]."\">");
-	$text .= dtcFormLineDraw( _("Notes: ") ,"<textarea class=\"dtcDatagrid_input_alt_color\" cols=\"40\" rows=\"5\" name=\"ed_special_note\">".htmlspecialchars(stripcslashes($specnot))."</textarea>",0);
+	$text .= dtcFormLineDraw( _("Notes: ") ,"<textarea cols=\"60\" rows=\"7\" class=\"dtcDatagrid_input_alt_color\" cols=\"40\" rows=\"5\" name=\"ed_special_note\">".htmlspecialchars(stripcslashes($specnot))."</textarea>",0);
 	$text .= dtcFormLineDraw( _("Money remaining: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_dollar\" value=\"".$row["dollar"]."\">");
 	$text .= dtcFormLineDraw( _("Quota (MB): ") ,"<input class=\"dtcDatagrid_input_alt_color\" size=\"40\" type=\"text\" name=\"ed_disk_quota_mb\" value=\"".$row["disk_quota_mb"]."\">",0);
 	$text .= dtcFormLineDraw( _("Allowed data transfer (GB): ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"ed_bw_quota_per_month_gb\" value=\"".$row["bw_quota_per_month_gb"]."\">");
@@ -314,11 +314,11 @@ cc_code_popup($row["country"])."</select>",0);
 			$widget .= "</select>";
 			break;
 		case "textarea":
-			$widget = "<textarea class=\"$css_class\" name=\"".$a["varname"]."\">".htmlspecialchars($val)."</textarea>";
+			$widget = "<textarea cols=\"60\" rows=\"7\" class=\"$css_class\" name=\"".$a["varname"]."\">".htmlspecialchars($val)."</textarea>";
 			break;
 		case "text":
 		default:
-			$widget = "<input class=\"$css_class\" size=\"40\" type=\"text\" name=\"".htmlspecialchars($a["varname"])."\" value=\"".$val."\">";
+			$widget = "<input size=\"60\" class=\"$css_class\" size=\"40\" type=\"text\" name=\"".htmlspecialchars($a["varname"])."\" value=\"".$val."\">";
 			break;
 		}
 		$text .= dtcFormLineDraw($a["question"],$widget,$init_alt);
