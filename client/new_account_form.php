@@ -805,7 +805,7 @@ function registration_form(){
 				}else{
 					$val = "";
 				}
-				$cust_out .= "<textarea name=\"".$a["varname"]."\">".$val."</textarea>";
+				$cust_out .= "<textarea cols=\"60\" rows=\"7\" name=\"".$a["varname"]."\">".$val."</textarea>";
 				break;
 			case "text":
 			default:
@@ -814,7 +814,7 @@ function registration_form(){
 				}else{
 					$val = "";
 				}
-				$cust_out .= "<input type=\"text\" name=\"".$a["varname"]."\" value=\"$val\">";
+				$cust_out .= "<input size=\"60\" type=\"text\" name=\"".$a["varname"]."\" value=\"$val\">";
 				break;
 			}
 			$cust_out .= "</td></tr>";
