@@ -231,7 +231,7 @@ function skin_Navbar_Default() {
 
 	// CRM Button
 	if(!isset($rub) || $rub != "crm"){
-		$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR adm_pass=PASSWORD('$adm_pass'));";
+		$query = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND (adm_pass='$adm_pass' OR adm_pass=SHA1('$adm_pass'));";
 		$result = mysql_query($query)or die("Cannot query \"$query\" !!!".mysql_error());
 		if(mysql_num_rows($result) == 1){
 			$row = mysql_fetch_array($result);

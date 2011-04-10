@@ -254,9 +254,9 @@ if(isset($_REQUEST["deluserdomain"]) && $_REQUEST["deluserdomain"] != ""){
 ////////////////////////////////////////////////
 if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 	if($conf_enforce_adm_encryption == "yes"){
-		$new_encrypt_dtcadm_pass = "PASSWORD('".$_REQUEST["changed_pass"]."')";
+		$new_encrypt_dtcadm_pass = "SHA1('".$_REQUEST["changed_pass"]."')";
 	}else{
-		$new_encrypt_dtcadm_pass = "PASSWORD('".$_REQUEST["changed_pass"]."')";
+		$new_encrypt_dtcadm_pass = "'".$_REQUEST["changed_pass"]."'";
 	}
 	$adm_query = "UPDATE $pro_mysql_admin_table SET id_client='".$_REQUEST["changed_id_client"]."',
 		adm_pass='".$_REQUEST["changed_pass"]."',path='".$_REQUEST["changed_path"]."',

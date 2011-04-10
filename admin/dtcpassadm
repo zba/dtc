@@ -29,7 +29,7 @@ case ${1} in
 	if [ $# != 3 ] ; then usages ; fi
 	# Change a password
 	if [ "${conf_enforce_adm_encryption}" = "true" ] ; then
-		mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="UPDATE tik_admins SET tikadm_pass=PASSWORD('${3}') WHERE pseudo='${2}'"
+		mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="UPDATE tik_admins SET tikadm_pass=SHA1('${3}') WHERE pseudo='${2}'"
 	else
 		mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="UPDATE tik_admins SET tikadm_pass='${3}' WHERE pseudo='${2}'"
 	fi
@@ -38,7 +38,7 @@ case ${1} in
 	if [ $# != 3 ] ; then usages ; fi
 	# Adds a user
 	if [ "${conf_enforce_adm_encryption}" = "true" ] ; then
-		mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="INSERT INTO tik_admins (pseudo,tikadm_pass) VALUES ('${2}',PASSWORD('${3}'))"
+		mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="INSERT INTO tik_admins (pseudo,tikadm_pass) VALUES ('${2}',SHA1('${3}'))"
 	else
 		mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="INSERT INTO tik_admins (pseudo,tikadm_pass) VALUES ('${2}','${3}')"
 	fi

@@ -399,7 +399,7 @@ special_note) VALUES ('','".$a["iscomp"]."',
         }
         if($a["add_service"] != "yes"){
 		if($conf_enforce_adm_encryption == "yes"){
-			$new_encrypted_adm_password = "PASSWORD('".$a["reqadm_pass"]."')";
+			$new_encrypted_adm_password = "SHA1('".$a["reqadm_pass"]."')";
 		}else{
 			$new_encrypted_adm_password = "'".$a["reqadm_pass"]."'";
 		}

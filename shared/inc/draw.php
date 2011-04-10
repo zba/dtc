@@ -63,7 +63,7 @@ function drawPasswordChange(){
 		}
 		if($commit_flag == "yes"){
 			if($conf_enforce_adm_encryption == "yes"){
-				$new_password_encrypted = "PASSWORD('".$_REQUEST["new_pass1"]."')";
+				$new_password_encrypted = "SHA1('".$_REQUEST["new_pass1"]."')";
 			}else{
 				$new_password_encrypted = "'".$_REQUEST["new_pass1"]."'";
 			}

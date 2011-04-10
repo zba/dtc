@@ -232,7 +232,7 @@ function dtcDatagrid($dsc){
 						$happen = "";
 					}
 					if( $dsc["cols"][ $keys[$i] ]["type"] == "password" && $dsc["cols"][ $keys[$i] ]["encrypt"] == "yes"){
-						$vals .= "PASSWORD('".$_REQUEST[ $keys[$i] ].$happen."')";
+						$vals .= "SHA1('".$_REQUEST[ $keys[$i] ].$happen."')";
 					}else{
 						$vals .= "'".$_REQUEST[ $keys[$i] ].$happen."'";
 					}
@@ -303,7 +303,7 @@ function dtcDatagrid($dsc){
                                                 $vals .= ", ";
                                         }
 					if( $dsc["cols"][ $keys[$i] ]["encrypt"] == "yes"){
-	                                        $vals .= " ".$keys[$i]."=PASSWORD('".$_REQUEST[ $keys[$i] ]."') ";
+	                                        $vals .= " ".$keys[$i]."=SHA1('".$_REQUEST[ $keys[$i] ]."') ";
 					}else{
 	                                        $vals .= " ".$keys[$i]."='".$_REQUEST[ $keys[$i] ]."' ";
 					}
