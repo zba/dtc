@@ -45,7 +45,9 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 		}
 		// Check if user has enough rights
 		checkLoginPassAndDomain($adm_login,$adm_pass,$edit_domain);
-		checkSubdomainFormat($_REQUEST["subdomain"]);
+		if( !checkSubdomainFormat($_REQUEST["subdomain"])){
+			die( _("Target subdomain is wrong."));
+		}
 		$admin_path = getAdminPath($adm_login);
 		$target = "$admin_path/$edit_domain/subdomains/".$_REQUEST["subdomain"]."/html";
 		if(!is_dir($target)){
@@ -80,6 +82,9 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 				exec($cmd,$exec_out,$return_val);
 				$realtarget = "$target";
 			}else{
+				if( checkSubdomainFormat($_REQUEST["dtcpkg_directory"]) == false && $_REQUEST["dtcpkg_directory"] != ""){
+					die(_("Target directory is wrong."));
+				}
 				$cmd = "mv $target/".$pkg_info["renamedir_to"]." $target/".$_REQUEST["dtcpkg_directory"];
 				$x .= "=> Moving ".$pkg_info["renamedir_to"]." to ".$_REQUEST["dtcpkg_directory"]."<br>";
 				exec($cmd,$exec_out,$return_val);
@@ -87,20 +92,22 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 			}
 		}
 
-		if($conf_user_mysql_type=="distant"){
-			$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user host");
-		}
-		// Get the database infos beffore calling the custom package installer
-		$q = "SELECT DISTINCT db.Db,db.User FROM mysql.user,mysql.db WHERE user.dtcowner='$adm_login' AND db.User=user.User AND db.Db='".$_REQUEST["database_name"]."';";
-		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-		$n = mysql_num_rows($r);
-		if($n != 1)die("Cannot find database line ".__LINE__." file ".__FILE__);
-		$a = mysql_fetch_array($r);
-		$dtcpkg_db_login = $a["User"];
+		if($pkg_info["need_database"] == "yes"){
+			if($conf_user_mysql_type=="distant"){
+				$newid=mysql_connect($conf_user_mysql_host,$conf_user_mysql_root_login,$conf_user_mysql_root_pass) or die("Cannot connect to user host");
+			}
+			// Get the database infos beffore calling the custom package installer
+			$q = "SELECT DISTINCT db.Db,db.User FROM mysql.user,mysql.db WHERE user.dtcowner='$adm_login' AND db.User=user.User AND db.Db='".mysql_real_escape_string($_REQUEST["database_name"])."';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			if($n != 1)die("Cannot find database line ".__LINE__." file ".__FILE__);
+			$a = mysql_fetch_array($r);
+			$dtcpkg_db_login = $a["User"];
 
-		if($conf_user_mysql_type=="distant"){
-			mysql_close($newid) or die("Cannot disconnect to user database");
-			connect2base();
+			if($conf_user_mysql_type=="distant"){
+				mysql_close($newid) or die("Cannot disconnect to user database");
+				connect2base();
+			}
 		}
 
 		// Call the package specific installer php script
