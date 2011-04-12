@@ -109,7 +109,7 @@ function drawAdminTools_DomainInfo($admin,$eddomain){
 				}
 				$ret = registry_set_domain_protection($webname,$sel);
 				if($ret != FALSE && $ret["is_success"] == 1){
-					$q = "UPDATE $pro_mysql_whois_table SET protection='$sel' WHERE domain_name='$webname';";
+					$q = "UPDATE $pro_mysql_domain_table SET protection='$sel' WHERE name='$webname';";
 					$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__."sql said: ".mysql_error());
 					$a["protection"] = $sel;
 				}
