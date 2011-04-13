@@ -26,6 +26,13 @@ function drawTickets($admin){
 				$popup_hostname .= "<option value=\"$vps_name\">$vps_name</option>";
 			}
 		}
+		if(isset($admin["dedicated"])){
+			$nbr_dedicated = sizeof($admin["dedicated"]);
+			for($i=0;$i<$nbr_dedicated;$i++){
+				$dedi_name = $admin["dedicated"][$i]["server_hostname"];
+				$popup_hostname .= "<option value=\"$dedi_name\">$dedi_name</option>";
+			}
+		}
 
 		$q = "SELECT * FROM $pro_mysql_tik_cats_table WHERE 1 ORDER BY id";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
