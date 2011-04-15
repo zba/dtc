@@ -286,7 +286,8 @@ $dtc_database = array(
 			"panel_subtitle" => "varchar(255) NOT NULL default 'default'",
 			"panel_logo" => "varchar(255) NOT NULL default 'default'",
 			"this_server_default_tld" => "varchar(10) NOT NULL default '.com'",
-			"panel_logolink" => "varchar(255) NOT NULL default 'default'"
+			"panel_logolink" => "varchar(255) NOT NULL default 'default'",
+			"invoice_scp_addr" => "varchar(255) NOT NULL default ''"
 		),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

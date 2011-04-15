@@ -1672,6 +1672,17 @@ function drawDTCpayConfig(){
 	$out .= configEditorTemplate ($dsc,"secpay");
 
 	$dsc = array(
+		"title" => _("Every months, scp all invoices address"),
+		"action" => "invoice_scp_addr_edit",
+		"forward" => array("rub","sousrub"),
+		"cols" => array(
+			"invoice_scp_addr" => array(
+			"legend" => _("scp address: "),
+			"type" => "text",
+			"size" => "40")));  
+	$out .= configEditorTemplate($dsc);
+
+	$dsc = array(
 		"title" => _("Custom registration fields"),
 		"table_name" => $pro_mysql_custom_fld_table,
 		"action" => "custom_registration_field_editor",
