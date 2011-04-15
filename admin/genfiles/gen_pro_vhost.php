@@ -857,15 +857,18 @@ $vhost_file .= "
 							$vhost_file .= "	SSLEngine on\n";
 							$vhost_file .= "	SSLCertificateFile $ssl_cert_folder_path/".$web_subname.".".$domain_to_get.".cert.cert\n";
 							$vhost_file .= "	SSLCertificateKeyFile $ssl_cert_folder_path/".$web_subname.".".$domain_to_get.".cert.key\n";
-		                                        if (file_exists("$ssl_cert_folder_path/".$web_subname.".".$domain_to_get.".cert.ca")) {
-                		                                $vhost_file .= "        SSLCertificateChainFile $ssl_cert_folder_path/".$web_subname.".".$domain_to_get.".cert.ca\n";
-                                		        }
+							if (file_exists("$ssl_cert_folder_path/".$web_subname.".".$domain_to_get.".cert.ca")) {
+								$vhost_file .= "	SSLCertificateChainFile $ssl_cert_folder_path/".$web_subname.".".$domain_to_get.".cert.ca\n";
+							}
 							break;
 						case "shared_ssl":
 							$vhost_file .= "<VirtualHost ".$ip_to_write.":443>\n";
 							$vhost_file .= "	SSLEngine on\n";
 							$vhost_file .= "	SSLCertificateFile ".$conf_generated_file_path."/ssl/new.cert.cert\n";
 							$vhost_file .= "	SSLCertificateKeyFile ".$conf_generated_file_path."/ssl/new.cert.key\n";
+							if (file_exists($conf_generated_file_path."/ssl/new.cert.ca")) {
+								$vhost_file .= "	SSLCertificateChainFile ".$conf_generated_file_path."/ssl/new.cert.ca\n";
+							}
 							break;
 						}
 						$vhost_file .= "	ServerName $web_subname.$web_name
