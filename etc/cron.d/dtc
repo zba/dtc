@@ -12,4 +12,4 @@
 0    3 * * * root /usr/bin/find /var/lib/amavis/virusmails/ -mtime +30 -type f -exec rm -f {} \;
 
 # SCP all invoices every 1st of the months at 2:35
-35   2 0 0 * dtc [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php /usr/share/dtc/admin/get_invoices.php 2>&1 >> /var/log/dtc.log
+35   2 * * * dtc [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php /usr/share/dtc/admin/get_invoices.php 2>&1 >> /var/log/dtc.log

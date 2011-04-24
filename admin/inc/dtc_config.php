@@ -1672,14 +1672,19 @@ function drawDTCpayConfig(){
 	$out .= configEditorTemplate ($dsc,"secpay");
 
 	$dsc = array(
-		"title" => _("Every months, scp all invoices address"),
+		"title" => _("Every days or months, scp all invoices"),
 		"action" => "invoice_scp_addr_edit",
 		"forward" => array("rub","sousrub"),
 		"cols" => array(
+			"invoice_scp_when" => array(
+				"legend" => _("How often should scp occure: "),
+				"type" => "radio",
+				"values" => array( "day", "month"),
+				"display_replace" => array(_("Every day"),_("Every month"))),
 			"invoice_scp_addr" => array(
-			"legend" => _("scp address: "),
-			"type" => "text",
-			"size" => "40")));  
+				"legend" => _("scp address: "),
+				"type" => "text",
+				"size" => "40")));  
 	$out .= configEditorTemplate($dsc);
 
 	$dsc = array(

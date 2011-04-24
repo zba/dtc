@@ -25,25 +25,53 @@ if($conf_invoice_scp_addr == ""){
 }else{
 	echo "Preparing invoices to scp to $conf_invoice_scp_addr\n";
 }
+// Calculate start and end date (inclusive of this date)
 $YEAR = date("Y");
 $MONTH = date("m");
-$MONTH = $MONTH - 1;
-if($MONTH == 0){
-	$MONTH = 12;
-	$YEAR = $YEAR -1;
+$DAY = date("d");
+if($conf_invoice_scp_when == "day"){
+	$DAY = $DAY - 1;
+	if($DAY == 0){
+		$MONTH = $MONTH - 1;
+		if($MONTH == 0){
+			$MONTH = 12;
+			$YEAR = $YEAR -1;
+			$DAY_IN_MONTH = cal_days_in_month(CAL_GREGORIAN,$MONTH,$YEAR);
+			$DAY = $DAY_IN_MONTH;
+		}
+	}
+	$START_INVOICE = $YEAR."-".$MONTH."-".$DAY;
+	$END_INVOICE = $START_INVOICE;
+}else{
+	if($DAY != 1){
+		// If we do monthly scp of invoices, then we exit if we aren't the 1st of the month
+		exit(0);
+	}
+	$MONTH = $MONTH - 1;
+	if($MONTH == 0){
+		$MONTH = 12;
+		$YEAR = $YEAR -1;
+	}
+	$DAY_IN_MONTH = cal_days_in_month(CAL_GREGORIAN,$MONTH,$YEAR);
+	$START_INVOICE = "$YEAR-$MONTH-01";
+	$END_INVOICE = "$YEAR-$MONTH-$DAY_IN_MONTH";
 }
-$DAY_IN_MONTH = cal_days_in_month(CAL_GREGORIAN,$MONTH,$YEAR);
-$START_INVOICE = "$YEAR-$MONTH-01";
-$END_INVOICE = "$YEAR-$MONTH-$DAY_IN_MONTH";
 echo "Period: $START_INVOICE to $END_INVOICE\n";
 
-$temp_dir = "/tmp/invoices_".getRandomValue();
-mkdir($temp_dir);
 
 $q = "SELECT * FROM $pro_mysql_completedorders_table WHERE date >= '".$START_INVOICE."' AND DATE <= '".$END_INVOICE."' ORDER BY date;";
 echo $q."\n";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 $n = mysql_num_rows($r);
+
+if($n == 0){
+	echo "Found no invoices to save for this period: exiting\n";
+	exit(0);
+}
+
+$temp_dir = "/tmp/invoices_".getRandomValue();
+mkdir($temp_dir);
+
 echo "Found $n invoices\n";
 for($i=0;$i<$n;$i++){
 	$comp = mysql_fetch_array($r);

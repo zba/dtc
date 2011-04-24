@@ -287,7 +287,8 @@ $dtc_database = array(
 			"panel_logo" => "varchar(255) NOT NULL default 'default'",
 			"this_server_default_tld" => "varchar(10) NOT NULL default '.com'",
 			"panel_logolink" => "varchar(255) NOT NULL default 'default'",
-			"invoice_scp_addr" => "varchar(255) NOT NULL default ''"
+			"invoice_scp_addr" => "varchar(255) NOT NULL default ''",
+			"invoice_scp_when" => "enum('day','month') NOT NULL default 'day'"
 		),
 		"keys" => array(
 			"unicrow" => "(unicrow)"
