@@ -755,7 +755,8 @@ function drawRenewalTables (){
 			FROM $pro_mysql_pay_table,$pro_mysql_completedorders_table
 			WHERE $pro_mysql_pay_table.vat_rate!='0.00'
 			AND $pro_mysql_completedorders_table.payment_id = $pro_mysql_pay_table.id
-			AND $pro_mysql_completedorders_table.date LIKE '".$cur_year."-".$cur_month."-%'";
+			AND $pro_mysql_completedorders_table.date LIKE '".$cur_year."-".$cur_month."-%'
+			AND $pro_mysql_pay_table.valid='yes'";
 			if ($selected_country != "") $q2 .= " AND $pro_mysql_completedorders_table.country_code='$selected_country'";
 			$q2 .= ";";
 			$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -775,7 +776,8 @@ function drawRenewalTables (){
 			$q2 = "SELECT sum(paiement_total) as paiement_total, sum(paiement_cost) as paiement_cost FROM $pro_mysql_completedorders_table,$pro_mysql_pay_table
 			WHERE $pro_mysql_completedorders_table.date LIKE '".$cur_year."-".$cur_month."%'
 			AND $pro_mysql_completedorders_table.payment_id = $pro_mysql_pay_table.id
-			AND $pro_mysql_pay_table.vat_rate = '0.00'";
+			AND $pro_mysql_pay_table.vat_rate = '0.00'
+			AND $pro_mysql_pay_table.valid='yes'";
 			if ($selected_country != "") $q2 .= " AND $pro_mysql_completedorders_table.country_code='$selected_country'";
 			$q2 .= ";";
 			$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
