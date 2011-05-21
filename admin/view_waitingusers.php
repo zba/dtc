@@ -136,18 +136,18 @@ if($n != 1){
 	FROM $pro_mysql_vps_ip_table,$pro_mysql_vps_server_table
 	WHERE $pro_mysql_vps_ip_table.vps_server_hostname=$pro_mysql_vps_server_table.hostname
 	AND $pro_mysql_vps_ip_table.available='yes'
-	GROUP BY $pro_mysql_vps_server_table.location;";
+	GROUP BY $pro_mysql_vps_ip_table.vps_server_hostname;";
 	$rv = mysql_query($qv)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$nv = mysql_num_rows($rv);
 	for($iv=0;$iv<$nv;$iv++){
 		$av = mysql_fetch_array($rv);
-		if(isset($_REQUEST["vps_server_hostname"]) && $_REQUEST["vps_server_hostname"] == $av["hostname"]){
+		if($b["vps_location"] == $av["hostname"]){
 			$selected = " selected ";
 		}else{
 			$selected = "";
 		}
-		$vps_location_popup .= "<option value=\"".$av["hostname"]."\" $selected>".$av["location"]."</optioon>";
-		$vps_ids[] = $apr["id"];
+		$vps_location_popup .= "<option value=\"".$av["hostname"]."\" $selected>".$av["hostname"]." (".$av["location"].")"."</optioon>";
+		$vps_ids[] = $av["hostname"];
 	}
 	// when there is no vps, for example in a web hosting plan
 	if (!in_array($a["vps_location"], $vps_ids)) {
