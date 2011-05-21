@@ -417,13 +417,27 @@ dtcFromOkDraw()."
 			}
 			if($secpayconf_use_maxmind == "yes"){
 				$maxmind = unserialize($a["maxmind_output"]);
-				$waiting_new_users .= "<$td>"._("Risk score: ").$maxmind["riskScore"]."<br>";
+				if($maxmind["riskScore"] >= 20){
+					$fnt = "<font color=\"red\">";
+					$fnt2 = "</font>";
+				}else{
+					$fnt = "";
+					$fnt2 = "";
+				}
+				$waiting_new_users .= "<$td>"._("Risk score: ").$fnt.$maxmind["riskScore"].$fnt2."<br>";
 				if($maxmind["ip_isp"] == $maxmind["ip_org"]){
 					$waiting_new_users .= _("ISP: ").$maxmind["ip_isp"].", "."<br>";
 				}else{
 					$waiting_new_users .= _("ISP: ").$maxmind["ip_isp"].", ".$maxmind["ip_org"]."<br>";
 				}
-				$waiting_new_users .= _("Country match: ").$maxmind["countryMatch"];
+				if($maxmind["countryMatch"] != "Yes"){
+					$fnt = "<font color=\"red\">";
+					$fnt2 = "</font>";
+				}else{
+					$fnt = "";
+					$fnt2 = "";
+				}
+				$waiting_new_users .= _("Country match: ").$fnt.$maxmind["countryMatch"]." (".$maxmind["countryCode"].")".$fnt2;
 				$waiting_new_users .= "</td>";
 			}
 			$waiting_new_users .= "<$td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_id=".$a["id"]."\">". _("Edit") ."</a><br/>
