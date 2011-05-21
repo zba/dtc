@@ -352,7 +352,7 @@ dtcFromOkDraw()."
 ";
 
 	if($secpayconf_use_maxmind == "yes"){
-		$maxmindsays_th = "<td>" . _("MaxMind says") . "</td>";
+		$maxmindsays_th = "<td class=\"dtcDatagrid_table_titles\">" . _("MaxMind says") . "</td>";
 	}else{
 		$maxmindsays_th = "";
 	}
@@ -364,13 +364,23 @@ dtcFromOkDraw()."
 	if($n < 1){
 		$waiting_new_users .= "<b>". _("No new user requests waiting.") ."</b>";
 	}else{
-		$waiting_new_users .= "<table width=\"100%\"border=\"1\">
-<tr><td>". _("Name") ."</td><td>". _("Login") ."</td><td>". _("Domain Name / VPS Server Hostname") ."</td><td>". _("Product") ."</td><td>". _("Date") . "</td><td>". _("Bank Validated") ."</td>$maxmindsays_th<td>". _("Action") ."</td></tr>";
+		$waiting_new_users .= "<table width=\"100%\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\">
+<tr><td class=\"dtcDatagrid_table_titles\">". _("Name") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Login") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Domain Name / VPS Server Hostname") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Product") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Date") . "</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Bank Validated") ."</td>$maxmindsays_th<td class=\"dtcDatagrid_table_titles\">". _("Action") ."</td></tr>";
 		for($i=0;$i<$n;$i++){
+			if($i % 2){
+				$td = "td  class=\"dtcDatagrid_table_flds\"";
+			}else{
+				$td = "td  class=\"dtcDatagrid_table_flds_alt\"";
+			}
 			$a = mysql_fetch_array($r);
-			$waiting_new_users .= "<tr><td style=\"white-space:nowrap\"><u>".htmlspecialchars($a["comp_name"]).":</u><br>";
+			$waiting_new_users .= "<tr><$td style=\"white-space:nowrap\"><u>".htmlspecialchars($a["comp_name"]).":</u><br>";
 			$waiting_new_users .= htmlspecialchars($a["family_name"]).", ".htmlspecialchars($a["first_name"])."</td>";
-			$waiting_new_users .= "<td>".$a["reqadm_login"]."</td>";
+			$waiting_new_users .= "<$td>".$a["reqadm_login"]."</td>";
 			$prod_id = $a["product_id"];
 			$q2 = "SELECT * FROM $pro_mysql_product_table WHERE id='$prod_id';";
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
@@ -387,10 +397,10 @@ dtcFromOkDraw()."
 					$dom_name = $a["domain_name"];
 				}
 			}
-			$waiting_new_users .= "<td>$dom_name</td><td>$prod_name</td>";
-			$waiting_new_users .= "<td>".$a["date"]." ".$a["time"]."<br>".calculateAge($a["date"],$a["time"])."</td>";
+			$waiting_new_users .= "<$td>$dom_name</td><$td>$prod_name</td>";
+			$waiting_new_users .= "<$td>".$a["date"]." ".$a["time"]."<br>".calculateAge($a["date"],$a["time"])."</td>";
 			if($a["paiement_id"] == 0){
-				$waiting_new_users .= "<td>". _("No payment ID.") ."</td>";
+				$waiting_new_users .= "<$td>". _("No payment ID.") ."</td>";
 			}else{
 				$q = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$a["paiement_id"]."';";
 				$r2 = mysql_query($q)or die("Cannot select $q line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
@@ -398,16 +408,16 @@ dtcFromOkDraw()."
 				if($n2 != 1)	echo "Numrows!=1 in $q line: ".__LINE__." file: ".__FILE__." : problems with sql tables !";
 				$a2 = mysql_fetch_array($r2);
 				if($a2["valid"] == "yes"){
-					$waiting_new_users .= "<td><font color=\"green\">"._("Yes")."</font></td>";
+					$waiting_new_users .= "<$td><font color=\"green\">"._("Yes")."</font></td>";
 				}elseif($a2["valid"] == "pending"){
-					$waiting_new_users .= "<td><font color=\"#FF8800\">". _("Pending") .": ". $a2["pending_reason"] ."</font></td>";
+					$waiting_new_users .= "<$td><font color=\"#FF8800\">". _("Pending") .": ". $a2["pending_reason"] ."</font></td>";
 				}else{
-					$waiting_new_users .= "<td><font color=\"red\">"._("No")."</font></td>";
+					$waiting_new_users .= "<$td><font color=\"red\">"._("No")."</font></td>";
 				}
 			}
 			if($secpayconf_use_maxmind == "yes"){
 				$maxmind = unserialize($a["maxmind_output"]);
-				$waiting_new_users .= "<td>"._("Risk score: ").$maxmind["riskScore"]."<br>";
+				$waiting_new_users .= "<$td>"._("Risk score: ").$maxmind["riskScore"]."<br>";
 				if($maxmind["ip_isp"] == $maxmind["ip_org"]){
 					$waiting_new_users .= _("ISP: ").$maxmind["ip_isp"].", "."<br>";
 				}else{
@@ -416,7 +426,7 @@ dtcFromOkDraw()."
 				$waiting_new_users .= _("Country match: ").$maxmind["countryMatch"];
 				$waiting_new_users .= "</td>";
 			}
-			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_id=".$a["id"]."\">". _("Edit") ."</a><br/>
+			$waiting_new_users .= "<$td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_id=".$a["id"]."\">". _("Edit") ."</a><br/>
 			<a href=\"?action=valid_waiting_user&reqadm_id=".$a["id"]."\">". _("Add") ."</a><br/>
 			<a href=\"?action=delete_waiting_user&reqadm_id=".$a["id"]."\">". _("Delete") ."</a></td>";
 			$waiting_new_users .= "</tr>";
@@ -431,13 +441,20 @@ dtcFromOkDraw()."
 	if($n < 1){
 		$waiting_new_users .= "<br><b>". _("No Domains Waiting.") ."</b><br>";
 	}else{
-		$waiting_new_users .= "<table border=\"1\">
-	<tr><td>". _("Login") ."</td><td>". _("Domain Name") ."</td><td>". _("Action") ."</td></tr>";
+		$waiting_new_users .= "<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">
+	<tr><td class=\"dtcDatagrid_table_titles\">". _("Login") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Domain Name") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Action") ."</td></tr>";
 		for($i=0;$i<$n;$i++){
+			if($i % 2){
+				$td = "td  class=\"dtcDatagrid_table_flds\"";
+			}else{
+				$td = "td  class=\"dtcDatagrid_table_flds_alt\"";
+			}
 			$a = mysql_fetch_array($r);
-			$waiting_new_users .= "<td>".$a["adm_login"]."</td>";
-			$waiting_new_users .= "<td>".$a["domain_name"]."</td>";
-			$waiting_new_users .= "<td><a href=\"?action=valid_waiting_domain_to_user&reqid=".$a["id"]."\">". _("Add") ."</a>
+			$waiting_new_users .= "<$td>".$a["adm_login"]."</td>";
+			$waiting_new_users .= "<$td>".$a["domain_name"]."</td>";
+			$waiting_new_users .= "<$td><a href=\"?action=valid_waiting_domain_to_user&reqid=".$a["id"]."\">". _("Add") ."</a>
 - <a href=\"?action=delete_waiting_domain_to_user&reqid=".$a["id"]."\">". _("Delete") ."</a></td></tr>";
 		}
 		$waiting_new_users .= "</table>";
@@ -450,11 +467,21 @@ dtcFromOkDraw()."
 	if($n < 1){
 		$waiting_new_users .= "<b>". _("No pending renewals.") ."</b><br>";
 	}else{
-		$waiting_new_users .= "<table border=\"1\">
-<tr><td>". _("Login")."</td><td>". _("Product") ."</td><td>". _("Payment Date") ."</td><td>". _("Bank Validated") ."</td><td>". _("Type") ."</td><td>". _("Action") ."</td></tr>";
+		$waiting_new_users .= "<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">
+<tr><td class=\"dtcDatagrid_table_titles\">". _("Login")."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Product") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Payment Date") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Bank Validated") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Type") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Action") ."</td></tr>";
 		for($i=0;$i<$n;$i++){
+			if($i % 2){
+				$td = "td  class=\"dtcDatagrid_table_flds\"";
+			}else{
+				$td = "td  class=\"dtcDatagrid_table_flds_alt\"";
+			}
 			$a = mysql_fetch_array($r);
-			$waiting_new_users .= "<tr><td>".$a["adm_login"]."</td>";
+			$waiting_new_users .= "<tr><$td>".$a["adm_login"]."</td>";
 			$q2 = "SELECT name,price_dollar,period FROM $pro_mysql_product_table WHERE id='".$a["product_id"]."';";
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
@@ -464,8 +491,8 @@ dtcFromOkDraw()."
 				$a2 = mysql_fetch_array($r2);
 				$prod_name = $a2["name"]." (".$a2["price_dollar"]." $secpayconf_currency_letters: ".$a2["period"].")";
 			}
-			$waiting_new_users .= "<td>$prod_name</td>";
-			$waiting_new_users .= "<td>".$a["renew_date"]." ".$a["renew_time"]."</td>";
+			$waiting_new_users .= "<$td>$prod_name</td>";
+			$waiting_new_users .= "<$td>".$a["renew_date"]." ".$a["renew_time"]."</td>";
 			$q2 = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$a["pay_id"]."';";
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
@@ -486,7 +513,7 @@ dtcFromOkDraw()."
 					break;
 				}
 			}
-			$waiting_new_users .= "<td>$bank</td>";
+			$waiting_new_users .= "<$td>$bank</td>";
 			switch($a["heb_type"]){
 			case "vps":
 				$q2 = "SELECT * FROM $pro_mysql_vps_table WHERE id='".$a["renew_id"]."'";
@@ -529,8 +556,8 @@ dtcFromOkDraw()."
 				echo "Renew type ".$a["heb_type"]." not implemented line ".__LINE__." file ".__FILE__;
 				break;
 			}
-			$waiting_new_users .= "<td>$heb_type</td>";
-			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a href=\"?action=validate_renewal&id=".$a["id"]."\">". _("Validate") ."</a> <a href=\"?action=delete_renewal&id=".$a["id"]."\">". _("Del") ."</a></td>";
+			$waiting_new_users .= "<$td>$heb_type</td>";
+			$waiting_new_users .= "<$td style=\"white-space:nowrap\"><a href=\"?action=validate_renewal&id=".$a["id"]."\">". _("Validate") ."</a> <a href=\"?action=delete_renewal&id=".$a["id"]."\">". _("Del") ."</a></td>";
 			$waiting_new_users .= "</tr>";
 		}
 		$waiting_new_users .= "</table>";
@@ -542,9 +569,19 @@ dtcFromOkDraw()."
 	if($n < 1){
 		$waiting_new_users .= "<b>". _("No pending support tickets.") ."</b><br>";
 	}else{
-		$waiting_new_users .= "<table border=\"1\">
-<tr><td>". _("Login") ."</td><td>". _("Age") ."</td><td>". _("Type") ."</td><td>". _("Subject") ."</td><td>". _("Last message from"). "</td><td>" ._("Last message age"). "</td></tr>";
+		$waiting_new_users .= "<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">
+<tr><td class=\"dtcDatagrid_table_titles\">". _("Login") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Age") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Type") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Subject") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Last message from"). "</td>
+<td class=\"dtcDatagrid_table_titles\">" ._("Last message age"). "</td></tr>";
 		for($i=0;$i<$n;$i++){
+			if($i % 2){
+				$td = "td  class=\"dtcDatagrid_table_flds\"";
+			}else{
+				$td = "td  class=\"dtcDatagrid_table_flds_alt\"";
+			}
 			$a = mysql_fetch_array($r);
 			if( strlen($a["customer_email"]) != 0){
 				$who = $a["customer_email"];
@@ -554,7 +591,7 @@ dtcFromOkDraw()."
 			}else{
 				$who = $a["adm_login"];
 			}
-			$waiting_new_users .= "<tr><td>$who</td>";
+			$waiting_new_users .= "<tr><$td>$who</td>";
 			$q2 = "SELECT * FROM $pro_mysql_tik_cats_table WHERE id='".$a["cat_id"]."'";
 			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 			$n2 = mysql_num_rows($r2);
@@ -565,7 +602,7 @@ dtcFromOkDraw()."
 				$cat = $a2["catname"];
 			}
 			$age = calculateAge($a["date"],$a["time"]);
-			$waiting_new_users .= "<td style=\"white-space:nowrap;\">$age</td><td>$cat</td><td style=\"white-space:nowrap;\"><a href=\"?subaction=resolv_ticket&tik_id=".$a["id"]."\">".htmlspecialchars(stripslashes($a["subject"]))."</a></td>";
+			$waiting_new_users .= "<$td style=\"white-space:nowrap;\">$age</td><$td>$cat</td><$td style=\"white-space:nowrap;\"><a href=\"?subaction=resolv_ticket&tik_id=".$a["id"]."\">".htmlspecialchars(stripslashes($a["subject"]))."</a></td>";
 			$next_reply_id = $a["reply_id"];
 			$last_reply_text = "<font color=\"green\">". _("Admin"). "</font>";
 			$last_message_date = $a["date"];
@@ -597,9 +634,9 @@ dtcFromOkDraw()."
 			if($last_guy_replied == "user"){
 				$last_reply_text = "<font color=\"red\">". _("User") ."</font>";
 			}
-			$waiting_new_users .= "<td>$last_reply_text</td>";
+			$waiting_new_users .= "<$td>$last_reply_text</td>";
 			$age2 = calculateAge($last_message_date,$last_message_time);
-			$waiting_new_users .= "<td>".$age2."</td>";
+			$waiting_new_users .= "<$td>".$age2."</td>";
 			$waiting_new_users .= "</tr>";
 		}
 		$waiting_new_users .= "</table>";
