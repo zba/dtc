@@ -364,7 +364,7 @@ dtcFromOkDraw()."
 	if($n < 1){
 		$waiting_new_users .= "<b>". _("No new user requests waiting.") ."</b>";
 	}else{
-		$waiting_new_users .= "<table width=\"100%\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\">
+		$waiting_new_users .= "<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"1\">
 <tr><td class=\"dtcDatagrid_table_titles\">". _("Name") ."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Login") ."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Domain Name / VPS Server Hostname") ."</td>
@@ -441,7 +441,7 @@ dtcFromOkDraw()."
 	if($n < 1){
 		$waiting_new_users .= "<br><b>". _("No Domains Waiting.") ."</b><br>";
 	}else{
-		$waiting_new_users .= "<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">
+		$waiting_new_users .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"1\">
 	<tr><td class=\"dtcDatagrid_table_titles\">". _("Login") ."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Domain Name") ."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Action") ."</td></tr>";
@@ -467,7 +467,7 @@ dtcFromOkDraw()."
 	if($n < 1){
 		$waiting_new_users .= "<b>". _("No pending renewals.") ."</b><br>";
 	}else{
-		$waiting_new_users .= "<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">
+		$waiting_new_users .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"1\">
 <tr><td class=\"dtcDatagrid_table_titles\">". _("Login")."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Product") ."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Payment Date") ."</td>
@@ -569,7 +569,7 @@ dtcFromOkDraw()."
 	if($n < 1){
 		$waiting_new_users .= "<b>". _("No pending support tickets.") ."</b><br>";
 	}else{
-		$waiting_new_users .= "<table border=\"1\" cellpadding=\"0\" cellspacing=\"0\">
+		$waiting_new_users .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"1\">
 <tr><td class=\"dtcDatagrid_table_titles\">". _("Login") ."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Age") ."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Type") ."</td>
