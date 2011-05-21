@@ -185,6 +185,22 @@ cc_code_popup($b["country"])."</select>",0);
 	$text .= dtcFormLineDraw( _("Notes: ") ,"<textarea class=\"dtcDatagrid_input_alt_color\" cols=\"40\" rows=\"5\" name=\"custom_notes\">".htmlspecialchars(stripcslashes($b["custom_notes"]))."</textarea>",0);
 	$text .= dtcFormLineDraw( _("Custom Fields: ") ,"<textarea class=\"dtcDatagrid_input_alt_color\" cols=\"40\" rows=\"5\" name=\"customfld\">".htmlspecialchars(stripcslashes($b["customfld"]))."</textarea>");
 	$text .= "<input type=\"hidden\" name=\"paiement_id\" value=\"".$b["paiement_id"]."\">";
+
+	// Display maxmind output
+	if($secpayconf_use_maxmind == "yes"){
+		$maxmind = unserialize($b["maxmind_output"]);
+		$nmind = sizeof($maxmind);
+		$mmkeys = array_keys($maxmind);
+		for($mm=0;$mm<$nmind;$mm++){
+			if($mm %2) $style = 1; else $style = 0;
+			if($mmkeys[$mm] == "explanation"){
+				$text .= dtcFormLineDraw( $mmkeys[$mm], "<textarea class=\"dtcDatagrid_input_alt_color\" cols=\"60\" rows=\"7\">".$maxmind[ $mmkeys[$mm] ]."</textarea>",$style);
+			}else{
+				$text .= dtcFormLineDraw( $mmkeys[$mm], $maxmind[ $mmkeys[$mm] ],$style);
+			}
+		}
+	}
+
 	if ($has_payement == 1) {
 		$text .= "<input type=\"hidden\" name=\"secpay_site\" value=\"".$p["secpay_site"]."\">";
 		$text .= dtcFormLineDraw( _("Payment Type: ") ,"<input class=\"dtcDatagrid_input_color\" size=\"40\" type=\"text\" name=\"paiement_type\" value=\"".$p["paiement_type"]."\">");

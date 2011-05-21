@@ -406,8 +406,15 @@ dtcFromOkDraw()."
 				}
 			}
 			if($secpayconf_use_maxmind == "yes"){
-				$waiting_new_users .= "<td><pre style='width: 200px; height: 100px; overflow: scroll;'>".htmlspecialchars(
-					print_r(unserialize($a["maxmind_output"]),true))."</pre></td>";
+				$maxmind = unserialize($a["maxmind_output"]);
+				$waiting_new_users .= "<td>"._("Risk score: ").$maxmind["riskScore"]."<br>";
+				if($maxmind["ip_isp"] == $maxmind["ip_org"]){
+					$waiting_new_users .= _("ISP: ").$maxmind["ip_isp"].", "."<br>";
+				}else{
+					$waiting_new_users .= _("ISP: ").$maxmind["ip_isp"].", ".$maxmind["ip_org"]."<br>";
+				}
+				$waiting_new_users .= _("Country match: ").$maxmind["countryMatch"];
+				$waiting_new_users .= "</td>";
 			}
 			$waiting_new_users .= "<td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_id=".$a["id"]."\">". _("Edit") ."</a><br/>
 			<a href=\"?action=valid_waiting_user&reqadm_id=".$a["id"]."\">". _("Add") ."</a><br/>
