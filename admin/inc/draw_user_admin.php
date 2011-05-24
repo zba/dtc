@@ -147,8 +147,37 @@ The administrator decided that the issue is:
 	}
 }
 
+function getCustomerInfoFromLogin($login){
+	global $pro_mysql_admin_table;
+	global $pro_mysql_client_table;
+	$q = "SELECT id_client FROM $pro_mysql_admin_table WHERE adm_login='$login'";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error()); 
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		return _("No login by that name in the database.");
+	}
+	$a = mysql_fetch_array($r);
+	$cid = $a["id_client"];
+	$q = "SELECT is_company,company_name,familyname,christname FROM $pro_mysql_client_table WHERE id='$cid';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		return _("No client by that id in the database.");
+	}
+	$a = mysql_fetch_array($r);
+	if($a["is_company"] == "yes"){
+		$out = $a["company_name"].", ";
+	}else{
+		$out = "";
+	}
+	$out .= $a["familyname"].", ";
+	$out .= $a["christname"];
+	return $out;
+}
+
 function drawNewAdminForm(){
 	global $conf_site_root_host_path;
+	global $conf_session_expir_minute;
 	global $lang;
 
 	global $pro_mysql_admin_table;
@@ -164,8 +193,16 @@ function drawNewAdminForm(){
 	global $pro_mysql_tik_cats_table;
 	global $pro_mysql_dedicated_table;
 
+	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_dedicated_ips_table;
+	global $pro_mysql_dedicated_table;
+	global $pro_mysql_ssl_ips_table;
+	global $pro_mysql_subdomain_table;
+
 	global $secpayconf_currency_letters;
 	global $secpayconf_use_maxmind;
+
+	global $adm_random_pass;
 
 	get_secpay_conf();
 
@@ -655,12 +692,126 @@ dtcFromOkDraw()."
 		}
 		$waiting_new_users .= "</table>";
 	}
-	return "<table>
+	if(isset($_REQUEST["search_subject"])){
+		$ss = $_REQUEST["search_subject"];
+	}else{
+		$ss = "";
+	}
+	$search = "<h3>". _("Search engine") ."</h3>
+<form name=\"search_me\" action=\"?\" method=\"get\">
+<input type=\"hidden\" name=\"search_query\" value=\"do\">
+".dtcFormTableAttrs().
+dtcFormLineDraw("","
+
+<table border=\"0\"><tr>
+<td><input class=\"dtcDatagrid_input_color\" size=\"60\" type=\"text\" name=\"search_subject\" value=\"$ss\"></td>
+<td>".submitButtonStart()._("Search").submitButtonEnd(),0)."</td></tr></table>
+
+
+</form>
+</table>
+";
+
+	if( isset($_REQUEST["search_query"])){
+		if(isset($adm_random_pass)){
+			$rand = $adm_random_pass;
+		}else{
+			$rand = getRandomValue();
+			$adm_random_pass = $rand;
+			$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
+			$q = "UPDATE $pro_mysql_tik_admins_table SET pass_next_req='$rand', pass_expire='$expirationTIME' WHERE pseudo='".$_SERVER["PHP_AUTH_USER"]."';";
+			$r = mysql_query($q)or die("Cannot execute query \"$q\" !");
+		}
+
+		$sr = "<h3>"._("Search result")."</h3><br>";
+		// Search IPs
+		if( isIP($_REQUEST["search_subject"]) ){
+			// Search VPS IPs
+			$q = "SELECT * FROM $pro_mysql_vps_ip_table WHERE ip_addr='".$_REQUEST["search_subject"]."';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			for($i=0;$i<$n;$i++){
+				$a = mysql_fetch_array($r);
+				$q2 = "SELECT * FROM $pro_mysql_vps_table WHERE vps_server_hostname='".$a["vps_server_hostname"]."' AND vps_xen_name='".$a["vps_xen_name"]."';";
+				$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				$n2 = mysql_num_rows($r2);
+				if($n2 == 1){
+					$a2 = mysql_fetch_array($r2);
+					$owner = $a2["owner"];
+					$sr .= _("Login:")." ".$owner."<br>";
+					$sr .= _("Customer:")." ".getCustomerInfoFromLogin($owner)."<br>";
+					$sr .= "<a href=\"?adm_login=$owner&adm_pass=$adm_random_pass&addrlink=vps:".$a["vps_server_hostname"].":".$a["vps_xen_name"]."\">".$a["vps_xen_name"].":".$a["vps_server_hostname"]."</a><br><br>";
+				}
+			}
+			// Search Dedicated IPs
+			$q = "SELECT * FROM $pro_mysql_dedicated_ips_table WHERE ip_addr='".$_REQUEST["search_subject"]."';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			for($i=0;$i<$n;$i++){
+				$a = mysql_fetch_array($r);
+				$q2 = "SELECT * FROM $pro_mysql_dedicated_table WHERE server_hostname='".$a["dedicated_server_hostname"]."';";
+				$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				$n2 = mysql_num_rows($r2);
+				if($n2 == 1){
+					$a2 = mysql_fetch_array($r2);
+					$owner = $a2["owner"];
+					$sr .= _("Login:")." ".$owner."<br>";
+					$sr .= _("Customer:")." ".getCustomerInfoFromLogin($owner)."<br>";
+					$sr .= "<a href=\"?adm_login=$owner&adm_pass=$adm_random_pass&addrlink=server:".$a["dedicated_server_hostname"]."\">".$a["dedicated_server_hostname"]."</a><br><br>";
+				}
+			}
+			// Search SSL IPs
+			$q = "SELECT * FROM $pro_mysql_ssl_ips_table WHERE ip_addr='".$_REQUEST["search_subject"]."';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			for($i=0;$i<$n;$i++){
+				$a = mysql_fetch_array($r);
+				$q2 = "SELECT * FROM $pro_mysql_subdomain_table WHERE ssl_ip='".$_REQUEST["search_subject"]."';";
+				$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				$n2 = mysql_num_rows($r2);
+				if($n2 == 1){
+					$a2 = mysql_fetch_array($r2);
+					$owner = $a["adm_login"];
+					$sr .= _("Login:")." ".$owner."<br>";
+					$sr .= _("Customer:")." ".getCustomerInfoFromLogin($owner)."<br>";
+					$sr .= "<a href=\"?adm_login=$owner&adm_pass=$adm_random_pass&addrlink=".$a2["domain_name"]."/subdomains&subaction=subdomain_editor_edit_item&item=".$a2["id"]."\">".$a2["subdomain_name"].".".$a2["domain_name"]."</a><br><br>";
+				}
+			}
+		// Search on emails
+		}elseif( isValidEmail($_REQUEST["search_subject"]) ){
+			$q = "SELECT * FROM $pro_mysql_client_table WHERE email='".$_REQUEST["search_subject"]."';";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			for($i=0;$i<$n;$i++){
+				$a = mysql_fetch_array($r);
+				$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='".$a["id"]."';";
+				$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				$n2 = mysql_num_rows($r2);
+				if($n2 == 1){
+					$a2 = mysql_fetch_array($r2);
+					$owner = $a2["adm_login"];
+					$sr .= _("Login:")." ".$owner."<br>";
+					$sr .= _("Customer:")." ".getCustomerInfoFromLogin($owner)."<br>";
+					$sr .= "<a href=\"?adm_login=$owner&adm_pass=$adm_random_pass\">".$owner."</a><br><br>";
+				}
+			}
+		}
+		return "<table>
 <tr>
+	<td valign=\"top\">".$search."</td>
+	</tr><tr>
+	<td valign=\"top\">".$sr."</td></tr></table>";
+	}else{
+		return "<table>
+<tr>
+	<td valign=\"top\">".$search."</td>
+	</tr><tr>
 	<td valign=\"top\">".$waiting_new_users."</td>
 	</tr><tr>
 	<td valign=\"top\">".$add_a_user."</td>
 </tr></table>";
+	}
+
 }
 
 function skinConsole(){
