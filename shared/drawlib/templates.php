@@ -1017,6 +1017,12 @@ function dtcListItemsEdit($dsc){
 						}
 					}
 					break;
+				case "page_url":
+					if( !isPageURL($_REQUEST[ $keys[$i] ]) ){
+						$commit_flag = "no";
+						$commit_err .= $keys[$i]._(": not a page URL")."<br>";
+					}
+					break;
 				case "ip_addr":
 					if( !isIP($_REQUEST[ $keys[$i] ]) ){
 						if( !isset($dsc["cols"][ $keys[$i] ]["can_be_empty"])
@@ -1245,7 +1251,7 @@ function dtcListItemsEdit($dsc){
 				$out .= "<font color=\"red\">Cannot query $q in ".__FILE__." line ".__LINE__." sql said: ".mysql_error()."</font>";
 			}
 		}else{
-			$out .= "<font color=\"red\">Could not commit the changes because of an error in field format: <br>$commit_err</font><br>";
+			$out .= "<font color=\"red\">"._("Could not commit the changes because of an error in field format: ")."<br>$commit_err</font><br>";
 		}
 	}else if( isset($_REQUEST["action"]) && $_REQUEST["action"] == $dsc["action"]."_save_item" ){
 		// Todo: do the fields checkings
@@ -1267,7 +1273,7 @@ function dtcListItemsEdit($dsc){
 				}
 				if($is_one_of_them == "no"){
 					$commit_flag = "no";
-					$commit_err = "the variable ".$keys[$i]." is not one of the allowed values<br>";
+					$commit_err = "the variable ".$keys[$i]._(" is not one of the allowed values")."<br>";
 				}
 				break;
 			default:
@@ -1281,7 +1287,7 @@ function dtcListItemsEdit($dsc){
 									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
-							$commit_err .= $keys[$i].": not a subdomain<br>";
+							$commit_err .= $keys[$i]._(": not a subdomain")."<br>";
 						}
 					}
 					break;
@@ -1296,7 +1302,7 @@ function dtcListItemsEdit($dsc){
 					for($g=0;$g<$number_of_ip;$g++){
 						if( !isIP($mylist_of_ip[$g]) ){
 							$commit_flag = "no";
-							$commit_err .= $keys[$i].": invalid IP list<br>";
+							$commit_err .= $keys[$i]._(": invalid IP list")."<br>";
 						}
 					}
 					break;
@@ -1306,7 +1312,7 @@ function dtcListItemsEdit($dsc){
 									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
-							$commit_err .= $keys[$i].": not a subdomain or IP addresse<br>";
+							$commit_err .= $keys[$i]._(": not a subdomain or IP addresse")."<br>";
 						}
 					}
 					break;
@@ -1319,9 +1325,15 @@ function dtcListItemsEdit($dsc){
 										|| $dsc["cols"][ $keys[$i] ]["empty_makes_default"] != "yes"
 										|| $_REQUEST[ $keys[$i] ] != "default"){
 								$commit_flag = "no";
-								$commit_err .= $keys[$i].": not an IPv6 address<br>";
+								$commit_err .= $keys[$i]._(": not an IPv6 address")."<br>";
 							}
 						}
+					}
+					break;
+				case "page_url":
+					if( !isPageURL($_REQUEST[ $keys[$i] ]) ){
+						$commit_flag = "no";
+						$commit_err .= $keys[$i]._(": not a page URL")."<br>";
 					}
 					break;
 				case "ip_addr":
@@ -1330,7 +1342,7 @@ function dtcListItemsEdit($dsc){
 									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
-							$commit_err .= $keys[$i].": not an IP address<br>";
+							$commit_err .= $keys[$i]._(": not an IP address")."<br>";
 						}
 					}
 					break;
@@ -1340,7 +1352,7 @@ function dtcListItemsEdit($dsc){
 									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
-							$commit_err .= $keys[$i].": not a domain or IP addresse<br>";
+							$commit_err .= $keys[$i]._(": not a domain or IP addresse")."<br>";
 						}
 					}
 					break;
@@ -1350,7 +1362,7 @@ function dtcListItemsEdit($dsc){
 									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
-							$commit_err .= $keys[$i].": not a correct login format.<br>";
+							$commit_err .= $keys[$i]._(": not a correct login format")."<br>";
 						}
 					}
 					break;
@@ -1360,7 +1372,7 @@ function dtcListItemsEdit($dsc){
 									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
-							$commit_err .= $keys[$i].": not a correct login format.<br>";
+							$commit_err .= $keys[$i]._(": not a correct login format")."<br>";
 						}
 					}
 					break;
@@ -1373,7 +1385,7 @@ function dtcListItemsEdit($dsc){
 						if ( ! isValidEmail($mail_alias_array[$x]) )
 						{
 							$commit_flag = "no";
-							$commit_err .= $mail_alias_array[$x].": not a valid email format.<br>";
+							$commit_err .= $mail_alias_array[$x]._(": not a valid email format")."<br>";
 						}
 					}
 					break;
@@ -1383,7 +1395,7 @@ function dtcListItemsEdit($dsc){
 									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
-							$commit_err .= $keys[$i].": not a correct password format<br>";
+							$commit_err .= $keys[$i]._(": not a correct password format")."<br>";
 						}
 					}
 					break;
@@ -1393,7 +1405,7 @@ function dtcListItemsEdit($dsc){
 									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
-							$commit_err .= $keys[$i].": not a correct email format<br>";
+							$commit_err .= $keys[$i]._(": not a correct email format")."<br>";
 						}
 					}
 					break;
@@ -1403,7 +1415,7 @@ function dtcListItemsEdit($dsc){
 									|| $dsc["cols"][ $keys[$i] ]["can_be_empty"] != "yes"
 									|| $_REQUEST[ $keys[$i] ] != ""){
 							$commit_flag = "no";
-							$commit_err .= $keys[$i].": not a correct number format<br>";
+							$commit_err .= $keys[$i]._(": not a correct number format")."<br>";
 						}
 					}
 					break;
@@ -1413,17 +1425,17 @@ function dtcListItemsEdit($dsc){
 								|| $_REQUEST[ $keys[$i] ] != ""){
 						if( !isRandomNum($_REQUEST[ $keys[$i] ]) ){
 							$commit_flag = "no";
-							$commit_err .= $keys[$i].": not a correct number format<br>";
+							$commit_err .= $keys[$i]._(": not a correct number format")."<br>";
 						}
 						if($_REQUEST[ $keys[$i] ] >= 2096){
 							$commit_flag = "no";
-							$commit_err .= $keys[$i].": is greater or equal than the max value 2096<br>";
+							$commit_err .= $keys[$i]._(": is greater or equal than the max value 2096")."<br>";
 						}
 					}
 					break;
 				default:
 					$commit_flag = "no";
-					$commit_err .= $keys[$i].": unknown field checking type (".$dsc["cols"][ $keys[$i] ]["check"].").<br>";
+					$commit_err .= $keys[$i]._(": unknown field checking type")." (".$dsc["cols"][ $keys[$i] ]["check"].").<br>";
 					break;
 				}
 			}

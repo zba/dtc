@@ -216,7 +216,7 @@ admin/genfiles/gen_postfix_email_account.php admin/genfiles/gen_backup_script.ph
 admin/genfiles/gen_qmail_email_account.php admin/genfiles/gen_email_account.php admin/genfiles/genfiles.php \
 admin/genfiles/gen_ssh_account.php admin/genfiles/gen_maildrop_userdb.php admin/genfiles/gen_webalizer_stat.php \
 admin/genfiles/remote_mail_list.php admin/genfiles/gen_named_files.php admin/genfiles/gen_fetchmail.php \
-admin/genfiles/mailfilter_vacation_template admin/genfiles/gen_nagios.php
+admin/genfiles/mailfilter_vacation_template admin/genfiles/gen_nagios.php admin/genfiles/gen_user_cron.php
 
 ADMIN_INC_PHP_SCRIPT_FILES=admin/inc/renewals.php \
 admin/inc/draw_user_admin.php admin/inc/dtc_config.php \

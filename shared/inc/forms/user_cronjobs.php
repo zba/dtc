@@ -1,5 +1,18 @@
 <?php
 
+function userCronCreateCallback($id){
+	updateUsingCron("gen_user_cron='yes'");
+	return;
+}
+function userCronDeleteCallback(){
+	updateUsingCron("gen_user_cron='yes'");
+	return;
+}
+function userCronEditCallback() {
+	updateUsingCron("gen_user_cron='yes'");
+	return;
+}
+
 function drawAdminTools_User_CronJob($admin,$domain){
 	global $adm_login;
 	global $adm_pass;
@@ -23,6 +36,7 @@ function drawAdminTools_User_CronJob($admin,$domain){
 
 	$minute_popup = array();
 	$minute_display = array();
+/* I found that enabling every 10 minutes would be too agressive, so I disabled it
 	$minute_popup[] = "*";
 	$minute_display[] = _("Every minutes");
 	$minute_popup[] = "0/2";
@@ -33,7 +47,7 @@ function drawAdminTools_User_CronJob($admin,$domain){
 	$minute_display[] = _("Each 4 minutes");
 	$minute_popup[] = "0/5";
 	$minute_display[] = _("Each 5 minutes");
-	$minute_popup[] = "0/10";
+	$minute_popup[] = "0/10"; */
 	$minute_display[] = _("Each 10 minutes");
 	$minute_popup[] = "0/15";
 	$minute_display[] = _("Each 15 minutes");
@@ -42,7 +56,7 @@ function drawAdminTools_User_CronJob($admin,$domain){
 	$minute_popup[] = "0/30";
 	$minute_display[] = _("Each 30 minutes");
 	for($i=0;$i<60;$i++){
-		$minute_popup[] = $i;
+		$minute_popup[] = "is".$i;
 		$minute_display[] = _("When the minute is: ").$i;
 	}
 
@@ -67,9 +81,38 @@ function drawAdminTools_User_CronJob($admin,$domain){
 	$hour_popup[] = "0/30";
 	$hour_display[] = _("Each 30 hours");
 	for($i=0;$i<24;$i++){
-		$hour_popup[] = $i;
+		$hour_popup[] = "is".$i;
 		$hour_display[] = _("When the hour is: ").$i;
 	}
+
+	$dayofmonth_popup = array();
+	$dayofmonth_display = array();
+	$dayofmonth_popup[] = "*";
+	$dayofmonth_display[] = _("Every day");
+	for($i=1;$i<29;$i++){
+		$dayofmonth_popup[] = "is".$i;
+		$dayofmonth_display[] = _("Every month on the: ").$i;
+	}
+
+	$dayofweek_popup = array();
+	$dayofweek_display = array();
+	$dayofweek_popup[] = "*";
+	$dayofweek_display[] = _("Every day");
+	$dayofweek_popup[] = "1";
+	$dayofweek_display[] = _("Monday");
+	$dayofweek_popup[] = "2";
+	$dayofweek_display[] = _("Tuesday");
+	$dayofweek_popup[] = "3";
+	$dayofweek_display[] = _("Wednesday");
+	$dayofweek_popup[] = "4";
+	$dayofweek_display[] = _("Thursday");
+	$dayofweek_popup[] = "5";
+	$dayofweek_display[] = _("Friday");
+	$dayofweek_popup[] = "6";
+	$dayofweek_display[] = _("Saturday");
+	$dayofweek_popup[] = "7";
+	$dayofweek_display[] = _("Sunday");
+
 
 	$dsc = array(
 		"title" => _("List of your cron jobs:"),
@@ -81,6 +124,9 @@ function drawAdminTools_User_CronJob($admin,$domain){
 		"forward" => array("adm_login","adm_pass","addrlink"),
 		"id_fld" => "id",
 		"list_fld_show" => "cron_name",
+		"create_item_callback" => "userCronCreateCallback",
+		"delete_item_callback" => "userCronDeleteCallback",
+		"edit_item_callback" => "userCronEditCallback",
 		"where_list" => array(
 			"domain_name" => $domain["name"]),
 		"order_by" => "cron_name",
@@ -111,8 +157,21 @@ function drawAdminTools_User_CronJob($admin,$domain){
 				"display_replace" => $hour_display,
 				"values" => $hour_popup
 				),
+			"day_of_month" => array (
+				"type" => "popup",
+				"legend" => _("Day of the month:"),
+				"values" => $dayofmonth_popup,
+				"display_replace" => $dayofmonth_display
+				),
+			"dow" => array (
+				"type" => "popup",
+				"legend" => _("Day of the week:"),
+				"values" => $dayofweek_popup,
+				"display_replace" => $dayofweek_display
+				),
 			"uri" => array (
 				"type" => "text",
+				"check" => "page_url",
 				"legend" => _("Address of the job on your site:")
 				)
 		)

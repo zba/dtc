@@ -667,6 +667,14 @@ function checkWebalizerCronService () {
 	}
 }
 
+function checkUserCronJob () {
+	$cronjob_table_content = getCronFlags();
+	if($cronjob_table_content["gen_user_cron"] == "yes"){
+		echo "Generating user cron jobs\n";
+		user_cron_generate();
+	}
+}
+
 function printEndTime () {
 	global $script_start_time;
 	$exec_time = time() - $script_start_time;
@@ -709,6 +717,7 @@ if(($start_stamps%(60*60))< 60*10){	updateAllListWebArchive();	}
 // Re-read cronjob values as long as they could have change
 // during this long job calculation !
 checkWebalizerCronService();
+checkUserCronJob();
 $cronjob_table_content = getCronFlags();
 checkTimeAndLaunchNetBackupScript();
 resetLockFlag();

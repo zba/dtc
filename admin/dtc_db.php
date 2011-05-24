@@ -312,6 +312,7 @@ $dtc_database = array(
 			"gen_backup" => "enum('yes','no') NOT NULL default 'no'",
 			"gen_ssh" => "enum('yes','no') NOT NULL default 'no'",
 			"gen_nagios" => "enum('yes','no') NOT NULL default 'no'",
+			"gen_user_cron" => "enum('yes','no') NOT NULL default 'no'",
 			"lock_flag" => "enum('inprogress','finished') NOT NULL default 'finished'"
 		),
 		"keys" => array(
@@ -1362,9 +1363,9 @@ $dtc_database = array(
 			"subdomain_name" => "varchar(255) NOT NULL default ''",
 			"minute" => "varchar(4) NOT NULL default '0'",
 			"hour" => "varchar(4) NOT NULL default '0'",
-			"day_of_month" => "varchar(2) NOT NULL default '0'",
-			"mon" => "varchar(2) NOT NULL default '0'",
-			"dow" => "varchar(2) NOT NULL default '0'",
+			"day_of_month" => "varchar(4) NOT NULL default '0'",
+			"mon" => "varchar(4) NOT NULL default '0'",
+			"dow" => "varchar(4) NOT NULL default '0'",
 			"uri" => "varchar(128) NOT NULL default 'my_cron.php?param=value'"
 		),
 		"primary" => "(id)"
