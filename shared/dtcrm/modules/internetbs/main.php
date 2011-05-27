@@ -329,7 +329,7 @@ function internetbs_registry_update_whois_dns($adm_login,$adm_pass,$domain_name,
         $post_params_hash["domain"] = $domain_name;
         $post_params_hash["ns_list"] = "$dns1,$dns2";
         $internetbs_ret = json_decode(internetbs_submit("/Domain/Update", $post_params_hash));
-        if($internetbs_ret->product[0]->{'status'} == "SUCCESS"){
+        if($internetbs_ret->{'status'} == "SUCCESS"){
                 $ret["is_success"] = 1;
         }else{
                 $ret["is_success"] = 0;

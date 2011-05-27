@@ -63,9 +63,9 @@ require("$dtcshared_path/inc/domain_export.php");
 require_once "$dtcshared_path/dtcrm/registry_calls.php";
 // SQL FORM SUBMITION
 require("$dtcshared_path/inc/delete_user.php");
-require("$dtcshared_path/inc/submit_to_sql.php");		// Submit all user actions, could be used by user's scripts...
 // Registrar APIs
 require("$dtcshared_path/dtcrm/registry_modulator.php");
+require("$dtcshared_path/inc/submit_to_sql.php");		// Submit all user actions, could be used by user's scripts...
 include("$dtcshared_path/dtcrm/submit_to_sql.php");	// Some domain name registrations sql submition (most are included in draw module...)
 include("$dtcshared_path/dtcrm/draw.php");	// Functions Draws the forms for domain-name registration and paiement
 require("$dtcshared_path/drawlib/templates.php");
