@@ -294,7 +294,7 @@ function internetbs_registry_update_whois_info($adm_login,$adm_pass,$domain_name
 
 	$post_params_hash = internetbs_prepar_whois_params($contacts);
 	$post_params_hash["domain"] = $domain_name;
-	if( strpos($domain_name,".eu")){
+	if (find_domain_extension($domain_name) == ".eu"){
 		unset($post_params_hash['registrant_organization']);
 	}
 
