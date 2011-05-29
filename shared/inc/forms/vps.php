@@ -89,13 +89,13 @@ function drawAdminTools_VPS($admin,$vps){
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
 		$a = mysql_fetch_array($r);
-		$out .= "<form action=\"/dtc/new_account.php\">
+		$out .= "<br><br><form action=\"/dtc/new_account.php\">
 <input type=\"hidden\" name=\"action\" value=\"contract_renewal\">
 <input type=\"hidden\" name=\"renew_type\" value=\"vps\">
 <input type=\"hidden\" name=\"product_id\" value=\"".$a["id"]."\">
 <input type=\"hidden\" name=\"vps_id\" value=\"".$vps["id"]."\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-<input type=\"submit\" value=\"".$a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)"."\">
+".submitButtonStart().$a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)".submitButtonEnd()."
 </form>";
 	}
 
