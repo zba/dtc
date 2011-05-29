@@ -176,7 +176,7 @@ Service country: $country
 	}
 
 
-	if ($_REQUEST["inner_action"] == "toreg_confirm_renew" ) {
+	if (isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "toreg_confirm_renew" ) {
 		// Adjust money remaining on account after confirmation.
 		$form .= "<br>Cliente: ".$client["id"];
 		$form .= "<br>Quedan: ".$client["dollar"];
