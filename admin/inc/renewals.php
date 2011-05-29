@@ -100,6 +100,10 @@ function drawRenewalTables (){
 		$sousrub = $_REQUEST["sousrub"];
 	}
 
+	if( isset($_REQUEST["action"]) && $_REQUEST["action"] == "export"){
+		include("inc/transaction_export.php");
+	}
+
 	$out = '<ul class="box_wnb_content_nb">';
 	if( $sousrub == "renewalreport"){
 		$out .= "<li class=\"box_wnb_content_nb_item_select\"><a href=\"?rub=$rub\"><img width=\"16\" height=\"16\" src=\"gfx/skin/bwoup/gfx/tabs/p_clientinterface.gif\" align=\"absmiddle\" border=\"0\"> ". _("Renewal Report") ."</a></li>";
@@ -427,8 +431,8 @@ function drawRenewalTables (){
 		}
 
 		// Display of each month payment list
-		if(isset($_REQUEST["date"])){
-			$ret = dateSelector($pro_mysql_pay_table,"date","date");
+		if(isset($_REQUEST["display_date"])){
+			$ret = dateSelector($pro_mysql_pay_table,"date","display_date");
 			$out .= $ret["text"];
 			$where_condition = $ret["where_condition"];
 
@@ -443,13 +447,25 @@ function drawRenewalTables (){
 				$prod_names[] = $a ["name"];
 			}
 
-			$out .= "<h3>"._("Payments for the Period: ").$_REQUEST["date"]."</h3>";
+			$out .= "<h3>"._("Payments for the Period: ").$_REQUEST["display_date"]."</h3>";
+			$out .= _("Display not validated transactions:")." ";
+			if( !isset($_REQUEST["display_notvalid"]) ){
+				$out .= "<a href=\"?rub=renewal&display_date=".$_REQUEST["display_date"]."&display_notvalid=yes\">"._("Yes")."</a> ";
+				$out .= _("No");
+				$where_condition .= " AND valid='yes'";
+				$forward = array("rub","display_date");
+			}else{
+				$out .= _("Yes")." ";
+				$out .= "<a href=\"?rub=renewal&display_date=".$_REQUEST["display_date"]."\">"._("No")."</a>";
+				$forward = array("rub","display_date","display_notvalid");
+			}
+			$out .= "<br><br>";
 
 			$dsc = array(
 				"title" => _("Payment History"),
 				"table_name" => $pro_mysql_pay_table,
 				"action" => "payment_history_list_editor",
-				"forward" => array("rub","date"),
+				"forward" => $forward,
 				"order_by" => "date",
 				"skip_deletion" => "yes",
 				"skip_creation" => "yes",
@@ -728,13 +744,19 @@ function drawRenewalTables (){
 			}
 		}
 
-		$p_renewal = "";
-		$p_renewal .= _("Shared Hosting: ") .round($total_shared,2)." $secpayconf_currency_letters<br>";
-		$p_renewal .= _("SSL IPs Renewals: ") .round($total_ssl,2)." $secpayconf_currency_letters<br>";
-		$p_renewal .= _("VPS: ") .round($total_vps,2)." $secpayconf_currency_letters<br>";
-		$p_renewal .= _("Dedicated Servers: ") .round($total_dedicated,2)." $secpayconf_currency_letters<br>";
+		$p_renewal = "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+		$p_renewal .= "<tr><td colspan=\"2\" style=\"white-space:nowrap; text-align:center;\" nowrap class=\"dtcDatagrid_table_titles\">"._("Total installed products")."</td></tr>";
+		$p_renewal .= "<tr><td class=\"dtcDatagrid_table_flds_alt\" style=\"white-space:nowrap; text-align:right;\" nowrap>"._("Shared Hosting:")."</td>";
+			$p_renewal .= "<td class=\"dtcDatagrid_table_flds_alt\" style=\"white-space:nowrap;\" nowrap>".round($total_shared,2)." $secpayconf_currency_letters</td></tr>";
+		$p_renewal .= "<tr><td class=\"dtcDatagrid_table_flds\" style=\"white-space:nowrap; text-align:right;\" nowrap>"._("SSL IPs Renewals:")."</td>";
+			$p_renewal .= "<td class=\"dtcDatagrid_table_flds\" style=\"white-space:nowrap;\" nowrap>".round($total_ssl,2)." $secpayconf_currency_letters</td></tr>";
+		$p_renewal .= "<tr><td class=\"dtcDatagrid_table_flds_alt\" style=\"white-space:nowrap; text-align:right;\" nowrap>"._("VPS: ")."</td>";
+			$p_renewal .= "<td class=\"dtcDatagrid_table_flds_alt\" style=\"white-space:nowrap;\" nowrap>".round($total_vps,2)." $secpayconf_currency_letters</td</tr>";
+		$p_renewal .= "<tr><td class=\"dtcDatagrid_table_flds\" style=\"white-space:nowrap; text-align:right;\" nowrap>"._("Dedicated Servers: ")."</td>";
+			$p_renewal .= "<td class=\"dtcDatagrid_table_flds\" style=\"white-space:nowrap;\" nowrap>".round($total_dedicated,2)." $secpayconf_currency_letters</td></tr>";
 		$big_total = $total_shared + $total_vps + $total_dedicated + $total_ssl;
-		$p_renewal .= "<b>". _("Total: ") .round($big_total,2)." $secpayconf_currency_letters</b>";
+		$p_renewal .= "<tr><td class=\"dtcDatagrid_table_flds_alt\" style=\"white-space:nowrap; text-align:right;\" nowrap><b>". _("Total: ")."</b></td>";
+			$p_renewal .= "<td class=\"dtcDatagrid_table_flds_alt\" style=\"white-space:nowrap;\" nowrap><b>".round($big_total,2)." $secpayconf_currency_letters</b></td></tr></table>";
 
 		// Show a quick history of payments
 		$year = date("Y");
@@ -746,10 +768,15 @@ function drawRenewalTables (){
 		$country_array = array();
 		if(isset($_REQUEST["country"])){
 			$selected_country=$_REQUEST["country"];
-		        $p_history .= ("Selected Country:") . $selected_country;	
 		}
-		$p_history .= "<table cellspacing=\"1\" cellpadding=\"1\" border=\"1\">
-		<tr><td>". _("Period") ."</td><td>". _("Amount") ."</td><td>"._("VAT Collected")."</td><td>"._("Payment Gateway Cost")."</td><td>"._("Profit")."</td></tr>";
+		$p_history .= "<table cellspacing=\"1\" cellpadding=\"0\" border=\"0\">
+		<tr><td class=\"dtcDatagrid_table_titles\">". _("Period") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Amount") ."</td>
+<td class=\"dtcDatagrid_table_titles\">"._("VAT Collected")."</td>
+<td class=\"dtcDatagrid_table_titles\">"._("Payment Gateway Cost")."</td>
+<td class=\"dtcDatagrid_table_titles\">"._("Profit")."</td>
+<td class=\"dtcDatagrid_table_titles\">"._("Export")."</td>
+</tr>";
 		for($i=0;$i<25;$i++){
 			$q2 = "SELECT $pro_mysql_pay_table.paiement_total,$pro_mysql_pay_table.vat_rate,$pro_mysql_pay_table.paiement_cost
 			FROM $pro_mysql_pay_table,$pro_mysql_completedorders_table
@@ -787,11 +814,18 @@ function drawRenewalTables (){
 				$cost_total += $a2["paiement_cost"];
 				$month_total += $a2["paiement_total"];
 				$profit = $month_total - $cost_total - $vat_collected;
-				$p_history .= "<tr><td style=\"text-align:right;\"><a href=\"?rub=$rub&date=".$cur_year."-".$cur_month."\">".$cur_year."-".$cur_month."</a></td>
-				<td style=\"text-align:right;\">".$month_total." $secpayconf_currency_letters</td>
-				<td style=\"text-align:right;\">".round($vat_collected,2)." $secpayconf_currency_letters</td>
-				<td style=\"text-align:right;\">".round($cost_total,2)." $secpayconf_currency_letters</td>
-				<td style=\"text-align:right;\">".round($profit,2)." $secpayconf_currency_letters</td></tr>";
+				if($i % 2){
+					$td = "td  class=\"dtcDatagrid_table_flds\"";
+				}else{
+					$td = "td  class=\"dtcDatagrid_table_flds_alt\"";
+				}
+				$p_history .= "<tr><$td style=\"text-align:right;\"><a href=\"?rub=$rub&display_date=".$cur_year."-".$cur_month."\">".$cur_year."-".$cur_month."</a></td>
+				<$td style=\"text-align:right;\">".$month_total." $secpayconf_currency_letters</td>
+				<$td style=\"text-align:right;\">".round($vat_collected,2)." $secpayconf_currency_letters</td>
+				<$td style=\"text-align:right;\">".round($cost_total,2)." $secpayconf_currency_letters</td>
+				<$td style=\"text-align:right;\">".round($profit,2)." $secpayconf_currency_letters</td>
+				<$td style=\"text-align:right;\"><a href=\"?rub=renewal&action=export&format=ofx&date=".$cur_year."-".$cur_month."\">OFX</a></td>
+				</tr>";
 			}
 			$cur_month++;
 			if($cur_month > 12){
@@ -802,15 +836,23 @@ function drawRenewalTables (){
 		}
 		$p_history .= "</table>";
 		$p_history .= _("Select country to report on: ");
-		
-		$p_history .= "<a href=\"?rub=$rub\">ALL</a> ";	
+
+		if( !isset($_REQUEST["country"])){
+			$p_history .= _("ALL")." ";	
+		}else{
+			$p_history .= "<a href=\"?rub=$rub\">"._("ALL")."</a> ";	
+		}
 		$q2 = "SELECT distinct(country_code) from $pro_mysql_completedorders_table;";
 		$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		$n2 = mysql_num_rows($r2);
 		for($j=0;$j<$n2;$j++){
 			$a2 = mysql_fetch_array($r2);
 			$country = $a2["country_code"];
-			$p_history .= "<a href=\"?rub=$rub&country=$country\">$country</a> ";	
+			if(isset($_REQUEST["country"]) && $country == $_REQUEST["country"]){
+				$p_history .= "$country ";
+			}else{
+				$p_history .= "<a href=\"?rub=$rub&country=$country\">$country</a> ";
+			}
 		}
 		
 
@@ -830,9 +872,17 @@ function drawRenewalTables (){
 		if($n < 1){
 			$out .= _("No expired shared accounts.") ."<br>";
 		}else{
-			$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-			<tr><td>". _("Login") ."</td><td>". _("Client") ."</td><td>". _("Email") ."</td><td>". _("Expiration Date") ."</td></tr>";
+			$out .= "<table cellspacing=\"0\" cellpadding=\"1\" border=\"0\">
+<tr><td class=\"dtcDatagrid_table_titles\">". _("Login") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Client") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Email") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Expiration Date") ."</td></tr>";
 			for($i=0;$i<$n;$i++){
+				if($i % 2){
+					$td = "td  class=\"dtcDatagrid_table_flds\"";
+				}else{
+					$td = "td  class=\"dtcDatagrid_table_flds_alt\"";
+				}
 				$a = mysql_fetch_array($r);
 				$q2 = "SELECT * FROM $pro_mysql_client_table WHERE id='".$a["id_client"]."';";
 				$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -847,7 +897,7 @@ function drawRenewalTables (){
 				$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__);
 				$n2 = mysql_num_rows($r2);
 				if($n2 > 0){
-					$out .= "<tr><td>".$a["adm_login"]."</td><td>$client_name</td><td>".$a2["email"]."</td><td>".$a["expire"]."</td></tr>";
+					$out .= "<tr><$td>".$a["adm_login"]."</td><$td>$client_name</td><$td>".$a2["email"]."</td><$td>".$a["expire"]."</td></tr>";
 				}
 			}
 			$out .= "</table>";
@@ -861,9 +911,17 @@ function drawRenewalTables (){
 		if($n < 1){
 			$out .= _("No expired SSL IPs.") ."<br>";
 		}else{
-			$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-			<tr><td>". _("Login") ."</td><td>". _("Client") ."</td><td>". _("Email") ."</td><td>". _("Expiration date") ."</td></tr>";
+			$out .= "<table cellspacing=\"0\" cellpadding=\"1\" border=\"0\">
+<tr><td class=\"dtcDatagrid_table_titles\">". _("Login") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Client") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Email") ."</td>
+<td class=\"dtcDatagrid_table_titles\">". _("Expiration date") ."</td></tr>";
 			for($i=0;$i<$n;$i++){
+				if($i % 2){
+					$td = "td  class=\"dtcDatagrid_table_flds\"";
+				}else{
+					$td = "td  class=\"dtcDatagrid_table_flds_alt\"";
+				}
 				$a = mysql_fetch_array($r);
 				$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$a["adm_login"]."';";
 				$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -882,7 +940,7 @@ function drawRenewalTables (){
 					$a2 = mysql_fetch_array($r2);
 					$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
 				}
-				$out .= "<tr><td>".$a["adm_login"]."</td><td>$client_name</td><td>".$a2["email"]."</td><td>".$a["expire"]."</td></tr>";
+				$out .= "<tr><$td>".$a["adm_login"]."</td><$td>$client_name</td><$td>".$a2["email"]."</td><$td>".$a["expire"]."</td></tr>";
 			}
 			$out .= "</table>";
 		}
@@ -895,15 +953,21 @@ function drawRenewalTables (){
 		if($n < 1){
 			$out .= _("No VPS expired") ."<br>";
 		}else{
-			$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-			<tr><td>"._("Login")."</td><td>". _("VPS") ."</td>
-			<td>". _("Client") ."</td>
-			<td>". _("Email") ."</td>
-			<td>". _("Expiration Date") ."</td>
-			<td>". _("Days Past Expiration") ."</td>
-			<td>". _("Action") ."</td>
+			$out .= "<table cellspacing=\"0\" cellpadding=\"1\" border=\"0\">
+			<tr><td class=\"dtcDatagrid_table_titles\">"._("Login")."</td>
+			<td class=\"dtcDatagrid_table_titles\">". _("VPS") ."</td>
+			<td class=\"dtcDatagrid_table_titles\">". _("Client") ."</td>
+			<td class=\"dtcDatagrid_table_titles\">". _("Email") ."</td>
+			<td class=\"dtcDatagrid_table_titles\">". _("Expiration Date") ."</td>
+			<td class=\"dtcDatagrid_table_titles\">". _("Days Past Expiration") ."</td>
+			<td class=\"dtcDatagrid_table_titles\">". _("Action") ."</td>
 			</tr>";
 			for($i=0;$i<$n;$i++){
+				if($i % 2){
+					$td = "td  class=\"dtcDatagrid_table_flds\"";
+				}else{
+					$td = "td  class=\"dtcDatagrid_table_flds_alt\"";
+				}
 				$a = mysql_fetch_array($r);
 
 				$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$a["owner"]."';";
@@ -953,17 +1017,17 @@ function drawRenewalTables (){
 					$kill_owner_txt = _("More than one login");
 				}
 				if( numOfDays($a["expire_date"]) >= $conf_vps_renewal_shutdown){
-					$bgcolor = " bgcolor=\"#FF8888\" ";
+					$bgcolor = " style=\"color:red;\" ";
 				}else{
 					$bgcolor = " ";
 				}
-				$out .= "<tr><td>".$a["owner"]."</td>
-				<td>".$a["vps_xen_name"].":".$a["vps_server_hostname"]."</td>
-				<td>$client_name</td>
-				<td>".$a2["email"]."</td>
-				<td $bgcolor>".$a["expire_date"]."</td>
-				<td $bgcolor>". calculateAge($a["expire_date"],"00:00:00") ."</td>
-				<td><a href=\"?rub=$rub&action=shutdown_expired_vps&server_hostname=".$a["vps_server_hostname"]."&vps_name=".$a["vps_xen_name"]."\">"._("Shutdown")."</a> - $kill_owner_txt</td></tr>";
+				$out .= "<tr><$td>".$a["owner"]."</td>
+				<$td>".$a["vps_xen_name"].":".$a["vps_server_hostname"]."</td>
+				<$td>$client_name</td>
+				<$td>".$a2["email"]."</td>
+				<$td $bgcolor>".$a["expire_date"]."</td>
+				<$td $bgcolor>". calculateAge($a["expire_date"],"00:00:00") ."</td>
+				<$td><a href=\"?rub=$rub&action=shutdown_expired_vps&server_hostname=".$a["vps_server_hostname"]."&vps_name=".$a["vps_xen_name"]."\">"._("Shutdown")."</a> - $kill_owner_txt</td></tr>";
 			}
 			$out .= "</table>";
 		}
@@ -976,9 +1040,18 @@ function drawRenewalTables (){
 		if($n < 1){
 			$out .= _("No expired dedicated servers.") ."<br>";
 		}else{
-			$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
-			<tr><td>". _("Login") ."</td><td>". _("Server") ."</td><td>". _("Client") ."</td><td>". _("Email") ."</td><td>". _("Expiration Date") ."</td></tr>";
+			$out .= "<table cellspacing=\"0\" cellpadding=\"1\" border=\"0\">
+			<tr><td class=\"dtcDatagrid_table_titles\">". _("Login") ."</td>
+			<td class=\"dtcDatagrid_table_titles\">". _("Server") ."</td>
+			<td class=\"dtcDatagrid_table_titles\">". _("Client") ."</td>
+			<td class=\"dtcDatagrid_table_titles\">". _("Email") ."</td>
+			<td class=\"dtcDatagrid_table_titles\">". _("Expiration Date") ."</td></tr>";
 			for($i=0;$i<$n;$i++){
+				if($i % 2){
+					$td = "td  class=\"dtcDatagrid_table_flds\"";
+				}else{
+					$td = "td  class=\"dtcDatagrid_table_flds_alt\"";
+				}
 				$a = mysql_fetch_array($r);
 				$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$a["owner"]."';";
 				$r2 = mysql_query($q2)or die("Cannot querry $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -997,7 +1070,7 @@ function drawRenewalTables (){
 					$a2 = mysql_fetch_array($r2);
 					$client_name = $a2["company_name"].":".$a2["christname"].", ".$a2["familyname"];
 				}
-				$out .= "<tr><td>".$a["owner"]."</td><td>".$a["server_hostname"]."</td><td>$client_name</td><td>".$a2["email"]."</td><td>".$a["expire_date"]."</td></tr>";
+				$out .= "<tr><$td>".$a["owner"]."</td><$td>".$a["server_hostname"]."</td><$td>$client_name</td><$td>".$a2["email"]."</td><$td>".$a["expire_date"]."</td></tr>";
 			}
 			$out .= "</table>";
 		}
