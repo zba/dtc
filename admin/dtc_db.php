@@ -113,7 +113,8 @@ $dtc_database = array(
 			"product_id" => "int(12) NOT NULL default '0'",
 			"payment_id" => "int(12) NOT NULL default '0'",
 			"download_pass" => "varchar(64) NOT NULL default 'none'",
-			"country_code" => "varchar(4) NOT NULL default 'US'",
+			"country_code" => "varchar(255) NOT NULL default 'US'",
+			"services" => "text",
 			"last_expiry_date" => "date NOT NULL default '0000-00-00'"
 		),
 		"primary" => "(id)"
@@ -772,6 +773,7 @@ $dtc_database = array(
 			"product_id" => "int(11) NOT NULL default '0'",
 			"vat_rate" => "decimal(9,2) NOT NULL default '0.00'",
 			"vat_total" => "decimal(9,2) NOT NULL default '0.00'",
+			"services" => "text",
 			"hash_check_key" => "varchar(255) NOT NULL default ''",
 		),
 		"primary" => "(id)",
@@ -796,9 +798,10 @@ $dtc_database = array(
 			"renew_time" => "time NOT NULL default '00:00:00'",
 			"product_id" => "int(11) NOT NULL default '0'",
 			"renew_id" => "int(11) NOT NULL default '0'",
-			"heb_type" => "enum('shared','ssl','vps','server','ssl_renew','shared-upgrade','add-money') NOT NULL default 'shared'",
+			"heb_type" => "enum('shared','ssl','vps','server','ssl_renew','shared-upgrade','add-money','multiple-services') NOT NULL default 'shared'",
+			"services" => "text",
 			"pay_id" => "int(11) NOT NULL default '0'",
-			"country_code" => "varchar(4) NOT NULL default 'US'"
+			"country_code" => "varchar(255) NOT NULL default 'US'"
 		),
 		"primary" => "(id)"
 	),

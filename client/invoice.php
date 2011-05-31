@@ -37,6 +37,8 @@ if(!isRandomNum($_REQUEST["id"])){
   die("Invoice ID don't seem correct!");
 }
 
+global $invoice_dtctext_number;
+$invoice_dtctext_number = "1";
 // Get the completed order from table
 $q = "SELECT * FROM $pro_mysql_completedorders_table WHERE id='".$_REQUEST["id"]."' AND download_pass='".$_REQUEST["download_pass"]."';";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -67,14 +69,49 @@ if($n != 1){
 }
 $company = mysql_fetch_array($r);
 
-$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$completedorder["product_id"]."';";
-$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-$n = mysql_num_rows($r);
-if($n != 1){
-	die("Could not found the product");
+if($completedorder["product_id"] != 0){
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$completedorder["product_id"]."';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Could not find the product");
+	}
+	$product = mysql_fetch_array($r);
+	$price_dollar = $product["price_dollar"];
+}else{
+	$servs = explode("|",$completedorder["services"]);
+	$lasts = explode("|",$completedorder["last_expiry_date"]);
+	$n_servs = sizeof($servs);
+	if($n_servs < 1){
+		die("Could not find the product");
+	}
+	$product = array();
+	$price_dollar = 0;
+	for($j=0;$j<$n_servs;$j++){
+		$attrs = explode(":",$servs[$j]);
+		switch($attrs[0]){
+		case "vps":
+			$ind = 3;
+			break;
+		case "server":
+			$ind = 2;
+			break;
+		default:
+			die("Could not find the product");
+			break;
+		}
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$attrs[$ind]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			die("Could not find the product");
+		}
+		$one_prod = mysql_fetch_array($r);
+		$one_prod["last_expiry_date"] = $lasts[$j];
+		$price_dollar += $one_prod["price_dollar"];
+		$product[] = $one_prod;
+	}
 }
-$product = mysql_fetch_array($r);
-
 $q = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$completedorder["payment_id"]."';";
 $r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 $n = mysql_num_rows($r);
@@ -82,6 +119,13 @@ if($n != 1){
 	die("Could not find payment in table");
 }
 $pay = mysql_fetch_array($r);
+
+$ze_date = explode("-",$completedorder["date"]);
+$pt_date = $ze_date[0].$ze_date[1].$ze_date[2];
+$pt_date_plus = 100000000 + $completedorder["id"];
+$text_number = $pt_date . $pt_date_plus;
+$invoice_dtctext_number = $text_number;
+
 //$cc_europe
 // Check if the customer is a company, is in EU, and has VAT number, in which case there will be no VAT
 $eu_vat_warning = "no";
@@ -112,6 +156,8 @@ class zPDF extends FPDF{
 		global $eu_vat_warning;
 		global $use_vat;
 		global $secpayconf_currency_letters;
+		global $price_dollar;
+		global $invoice_dtctext_number;
 
 		// First line
 		$first_line = $company["name"];
@@ -132,16 +178,14 @@ class zPDF extends FPDF{
 		$this->SetFont('Arial','I',12);
 		$ze_date = explode("-",$completedorder["date"]);
 		$pt_date = $ze_date[0].$ze_date[1].$ze_date[2];
-//		$pt_date = $pt_date * 10000;
-//		$pt_date += $completedorder["id"];
 		$pt_date_plus = 100000000 + $completedorder["id"];
 		$text_number = $pt_date . $pt_date_plus;
+		$invoice_dtctext_number = $text_number;
 		$this->Cell(40,22,"Number: $text_number");
 		$this->SetXY(130,34);
 		$this->Cell(40,22,"Payid: ".$pay["id"]);
 		$this->SetXY(130,40);
 		$this->Cell(40,22,"Payment date: ".$pt_date);
-		//header("Content-Disposition: attachment; filename=\"".$pt_date_plus."_gplhost.pdf\"");
 		// From:
 		$this->SetXY(10,50);
 		$this->SetFont('Arial','BU',12);
@@ -219,55 +263,71 @@ class zPDF extends FPDF{
 			$without_vat = $pay["paiement_total"];
 			$vat = $pay["paiement_total"] - $without_vat;
 		}
-		$gateway_cost = $without_vat - $product["price_dollar"];
+		$gateway_cost = $without_vat - $price_dollar;
 		
 		// The table
 		$this->SetFont('Arial','B',11);
-		$this->Cell(80,7,"Product","1",0,"L");
+		$this->Cell(110,7,"Product","1",0,"L");
 		$this->Cell(20,7,"Start date","1",0,"L");
 		$this->Cell(20,7,"End date","1",0,"L");
-		$this->Cell(15,7,"Price","1",0,"L");
-		$this->Cell(25,7,"Pay Gateway","1",0,"L");
-		if($use_vat == "yes"){
-			$this->Cell(30,7,"Total with VAT","1",0,"L");
+		$this->Cell(35,7,"Price","1",0,"L");
+		$this->SetFont('Arial','',9);
+		// Single item invoice?
+		if($completedorder["product_id"] != 0){
+			$this->Ln();
+			$this->SetFont('Arial','',9);
+			$this->Cell(110,7,$product["name"],"1",0,"L");
+			$this->Cell(20,7,$completedorder["last_expiry_date"],"1",0,"L");
+			$date_expire = calculateExpirationDate($completedorder["last_expiry_date"],$product["period"]);
+			$this->Cell(20,7,$date_expire,"1",0,"L");
+			$this->Cell(35,7,$price_dollar." ".$secpayconf_currency_letters,"1",0,"L");
+			$this->Ln();
 		}else{
-			$this->Cell(30,7,"Total","1",0,"L");
+			$num_products = sizeof($product);
+			for($i=0;$i<$num_products;$i++){
+				$this->Ln();
+				$this->Cell(110,7,$product[$i]["name"],"1",0,"L");
+				$this->Cell(20,7,$product[$i]["last_expiry_date"],"1",0,"L");
+				$date_expire = calculateExpirationDate($product[$i]["last_expiry_date"],$product[$i]["period"]);
+				$this->Cell(20,7,$date_expire,"1",0,"L");
+				$this->Cell(35,7,$product[$i]["price_dollar"]." ".$secpayconf_currency_letters,"1",0,"L");
+			}
+			$this->Ln();
 		}
-		$this->Ln();
-		$this->SetFont('Arial','',10);
-		$this->Cell(80,7,$product["name"],"1",0,"L");
-		$this->Cell(20,7,$completedorder["last_expiry_date"],"1",0,"L");
-		$date_expire = calculateExpirationDate($completedorder["last_expiry_date"],$product["period"]);
-		$this->Cell(20,7,$date_expire,"1",0,"L");
-		$this->Cell(15,7,$product["price_dollar"]." ".$secpayconf_currency_letters,"1",0,"L");
-		// $this->Cell(25,7,$pay["paiement_cost"]." ".$secpayconf_currency_letters,"1",0,"L");
-		$this->Cell(25,7,$gateway_cost." ".$secpayconf_currency_letters,"1",0,"L");
-		$this->Cell(30,7,$pay["paiement_total"]." ".$secpayconf_currency_letters,"1",0,"L");
+		$this->Cell(150,7,"Payment Gateway (".$pay["secpay_site"].")","1",0,"L");
+		$this->Cell(35,7,$gateway_cost." ".$secpayconf_currency_letters,"1",0,"L");
 		$this->Ln();
 
 		// Print the VAT total, etc.
 		if($use_vat == "yes"){
-			$this->SetX(120);
+			$this->SetX(90);
 			$this->SetFont('Arial','B',12);
-			$this->Cell(50,7,"Total VAT (".$pay["vat_rate"]."%):","1",0,"L");
+			$this->Cell(70,7,"Total excluding VAT/GST:","1",0,"L");
 			$this->SetFont('Arial','',12);
-			$this->Cell(30,7,$vat." ".$secpayconf_currency_letters,"1",0,"L");
+			$this->Cell(35,7,$without_vat." ".$secpayconf_currency_letters,"1",0,"L");
 			$this->Ln();
-			
-			$this->SetX(120);
+
+			$this->SetX(90);
 			$this->SetFont('Arial','B',12);
-			$this->Cell(50,7,"Total excluding VAT:","1",0,"L");
+			$this->Cell(70,7,"Total VAT/GST (".$pay["vat_rate"]."%):","1",0,"L");
 			$this->SetFont('Arial','',12);
-			$this->Cell(30,7,$without_vat." ".$secpayconf_currency_letters,"1",0,"L");
+			$this->Cell(35,7,$vat." ".$secpayconf_currency_letters,"1",0,"L");
 			$this->Ln();
-			
-			$this->SetX(120);
+
+			$this->SetX(90);
 			$this->SetFont('Arial','B',12);
-			$this->Cell(50,7,"Total paid:","1",0,"L");
-			$this->SetFont('Arial','',12);
-			$this->Cell(30,7,$pay["paiement_total"]." ".$secpayconf_currency_letters,"1",0,"L");
+			$this->Cell(70,7,"Total paid with VAT/GST:","1",0,"L");
+			$this->Cell(35,7,$pay["paiement_total"]." ".$secpayconf_currency_letters,"1",0,"L");
+			$this->Ln();
+		}else{
+			$this->SetX(90);
+			$this->SetFont('Arial','B',12);
+			$this->Cell(70,7,"Total paid:","1",0,"L");
+			$this->Cell(35,7,$pay["paiement_total"]." ".$secpayconf_currency_letters,"1",0,"L");
 			$this->Ln();
 		}
+		$this->Ln();
+
 
 		if($eu_vat_warning == "yes"){
 			$this->Cell(190,7,"Export in the EU: invoice without VAT, and customer shall pay VAT in it's own country.","1",0,"L");
@@ -287,7 +347,13 @@ class zPDF extends FPDF{
 	}
 }
 $pdf=new zPDF('P','mm','A4');
-//$pdf->Cell(40,10,"Product");
-$pdf->Output();
+$comp = str_replace(" ","_",$company["name"]);
+if(strlen($client["company_name"]) > 0){
+	$cl = $client["company_name"] . "_";
+}else{
+	$cl = "";
+}
+$cl = $cl . str_replace(" ","_",$client["familyname"]) . "_" . str_replace(" ","_",$client["christname"]);
+$pdf->Output($completedorder["date"].'_'.$invoice_dtctext_number.'_'.$comp.'_'.$cl.'_'.$pay["paiement_total"]."_".$secpayconf_currency_letters.'.pdf','I');
 
 ?>

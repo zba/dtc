@@ -24,7 +24,7 @@ function renew_form(){
 	// Do field format checking and escaping for all fields
 	if(!isFtpLogin($_REQUEST["adm_login"])){
 		$ret["err"] = 2;
-		$ret["mesg"] = "User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.";
+		$ret["mesg"] = _("User login format incorrect. Please use letters and numbers only and from 4 to 16 chars.");
 		return $ret;
 	}
 
@@ -37,29 +37,156 @@ function renew_form(){
 		return $ret;
 	}else{
 		$admin = mysql_fetch_array($r);
+		$adm_login = $admin["adm_login"];
 	}
 
-	if(isset($_REQUEST["renew_type"]) && ($_REQUEST["renew_type"] == "ssl" || $_REQUEST["renew_type"] == "ssl_renew")){
-		$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type ='ssl';";
+	// This is the case of multiple services renewed at once
+	if(isset($_REQUEST["renew_type"]) && $_REQUEST["renew_type"] == "multiple-services"){
+		if( !is_array($_REQUEST["service_host"]) ){
+			$ret["err"] = 3;
+			$ret["mesg"] = "<font color=\"red\">"._("Error: wrong service_host format.")."</font>";
+			return $ret;
+		}
+		$the_prod = "";
+		$country = "";
+		$price = 0;
+		$services = "";
+		$n = sizeof($_REQUEST["service_host"]);
+		for($i=0;$i<$n;$i++){
+			$onehost = $_REQUEST["service_host"][$i];
+			$onehost_ar = explode(":",$onehost);
+			$n_parms = sizeof($onehost_ar);
+			if(sizeof($onehost_ar) < 2){
+				$ret["err"] = 3;
+				$ret["mesg"] = "<font color=\"red\">"._("Error: wrong service_host format.")."</font>";
+				return $ret;
+			}
+			switch($onehost_ar[0]){
+			case "vps":
+				$node = $onehost_ar[1];
+				$vps_num = $onehost_ar[2];
+				if(!isHostname($node) || !isRandomNum($vps_num)){
+					$ret["err"] = 3;
+					$ret["mesg"] = "<font color=\"red\">"._("Error: wrong service_host format.")."</font>";
+					return $ret;
+				}
+				// Check if the VPS is really owned by $adm_login
+				$q = "SELECT $pro_mysql_vps_table.product_id AS product_id,$pro_mysql_vps_server_table.country_code AS country_code
+				FROM $pro_mysql_vps_table,$pro_mysql_vps_server_table
+				WHERE owner='$adm_login' AND vps_server_hostname='$node' AND vps_xen_name='$vps_num'
+				AND $pro_mysql_vps_server_table.hostname = $pro_mysql_vps_table.vps_server_hostname;";
+				$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
+				$num = mysql_num_rows($r);
+				if($num != 1){
+					$ret["err"] = 3;
+					$ret["mesg"] = "<font color=\"red\">"._("Error: you do not own this VPS.")."</font>";
+					return $ret;
+				}
+				$vps = mysql_fetch_array($r);
+				if($i > 0){
+					$country .= "|";
+				}
+				$country .= $vps["country_code"];
+				if(!isRandomNum($_REQUEST["vps:".str_replace(".","_",$node).":".$vps_num])){
+					$ret["err"] = 3;
+					$ret["mesg"] = "<font color=\"red\">"._("Error: VPS renewal product format is wrong.")."</font>";
+					return $ret;
+				}
+				$pid = $_REQUEST["vps:".str_replace(".","_",$node).":".$vps_num];
+				$q = "SELECT * FROM $pro_mysql_product_table WHERE renew_prod_id='".$vps["product_id"]."' AND id='$pid';";
+				$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
+				$num = mysql_num_rows($r);
+				if($num != 1){
+					$ret["err"] = 3;
+					$ret["mesg"] = "<font color=\"red\">"._("Error: VPS renewal product ID not found.")."</font>";
+					return $ret;
+				}
+				$p = mysql_fetch_array($r);
+				if($i > 0){
+					$services .= "|";
+				}
+				$services .= "vps:".$node.":".$vps_num.":".$pid;
+				break;
+			case "server":
+				$host = $onehost_ar[1];
+				if(!isHostname($host)){
+					$ret["err"] = 3;
+					$ret["mesg"] = "<font color=\"red\">"._("Error: wrong service_host format.")."</font>";
+					return $ret;
+				}
+				// Check if the dedicated is really owned by $adm_login
+				$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE owner='$adm_login' AND server_hostname='$host';";
+				$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
+				$num = mysql_num_rows($r);
+				if($num != 1){
+					$ret["err"] = 3;
+					$ret["mesg"] = "<font color=\"red\">"._("Error: you do not own this dedicated server.")."</font>";
+					return $ret;
+				}
+				$dedi = mysql_fetch_array($r);
+				if($i > 0){
+					$country .= "|";
+				}
+				$country .= $dedi["country_code"];
+				if(!isRandomNum($_REQUEST["server:".str_replace(".","_",$host)])){
+					$ret["err"] = 3;
+					$ret["mesg"] = "<font color=\"red\">"._("Error: dedicated server renewal product format is wrong.")."</font>";
+					return $ret;
+				}
+				$pid = $_REQUEST["server:".str_replace(".","_",$host)];
+				$q = "SELECT * FROM $pro_mysql_product_table WHERE renew_prod_id='".$dedi["product_id"]."' AND id='$pid';";
+				$r = mysql_query($q)or die("Cannot query  \"$q\" !!! Line: ".__LINE__." File: ".__FILE__." MySQL said: ".mysql_error());
+				$num = mysql_num_rows($r);
+				if($num != 1){
+					$ret["err"] = 3;
+					$ret["mesg"] = "<font color=\"red\">"._("Error: dedicated server renewal product ID not found.")."</font>";
+					return $ret;
+				}
+				$p = mysql_fetch_array($r);
+				if($i > 0){
+					$services .= "|";
+				}
+				$services .= "server:".$host.":".$pid;
+				break;
+			default:
+				$ret["err"] = 3;
+				$ret["mesg"] = "<font color=\"red\">"._("Error: only the renewal of multiple VPS and dedicated servers is supported.")."</font>";
+				return $ret;
+			}
+			if($i > 0){
+				$the_prod .= ", ";
+			}
+			$the_prod .= $p["name"]." (".number_format($p["price_dollar"], 2)." $secpayconf_currency_letters)";
+			$price += $p["price_dollar"];
+		}
+	// General case, only one service is renewed
 	}else{
-		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".mysql_real_escape_string($_REQUEST["product_id"])."';";
+		if(isset($_REQUEST["renew_type"]) && ($_REQUEST["renew_type"] == "ssl" || $_REQUEST["renew_type"] == "ssl_renew")){
+			$q = "SELECT * FROM $pro_mysql_product_table WHERE heb_type ='ssl';";
+		}else{
+			$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".mysql_real_escape_string($_REQUEST["product_id"])."';";
+		}
+		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$ret["err"] = 3;
+			$ret["mesg"] = "<font color=\"red\">Cannot find product id!</font>";
+			return $ret;
+		}
+		$a = mysql_fetch_array($r);
+		$product = $a;
+		$the_prod = $a["name"]." (".number_format($a["price_dollar"], 2)." $secpayconf_currency_letters)";
+		$prod_id = $a["id"];
+		$price = $a["price_dollar"];
 	}
-	$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
-	$n = mysql_num_rows($r);
-	if($n != 1){
-		$ret["err"] = 3;
-		$ret["mesg"] = "<font color=\"red\">Cannot find product id!</font>";
-		return $ret;
-	}
-	$a = mysql_fetch_array($r);
-	$product = $a;
-	$the_prod = $a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)";
-	$prod_id = $a["id"];
 
 	$form = "<b><u>". _("Renewal for login:") ."</u></b> ".$_REQUEST["adm_login"]."<br>";
-	$form .= "<b><u>". _("Product to renew:") ."</u></b> ".$a["name"]." (".number_format($a["price_dollar"], 2)." $secpayconf_currency_letters)<br><br>";
+	$form .= "<b><u>". _("Product to renew:") ."</u></b> ".$the_prod."<br><br>";
 
 	switch($_REQUEST["renew_type"]){
+	case "multiple-services":
+		$client_id = $admin["id_client"];
+		break;
 	case "vps":
 		if(!isRandomNum($_REQUEST["vps_id"])){
 			$ret["err"] = 3;
@@ -129,7 +256,7 @@ Service country: $country
 ";
 	if($admin["id_client"] == 0){
 		$ret["err"] = 3;
-		$ret["mesg"] = "Admin does not link to a client.";
+		$ret["mesg"] = _("Error: admin does not link to a client ID.");
 		return $ret;
 	}
 
@@ -139,7 +266,7 @@ Service country: $country
 	$n = mysql_num_rows($r);
 	if($n != 1){
 		$ret["err"] = 3;
-		$ret["mesg"] = "Client not found in database! Try again.";
+		$ret["mesg"] = _("Error: client ID not found in database.");
 		return $ret;
 	}else{
 		$client = mysql_fetch_array($r);
@@ -176,11 +303,29 @@ Service country: $country
 	}
 
 
-	if (isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "toreg_confirm_renew" ) {
+	if ( isset($_REQUEST["inner_action"]) && $_REQUEST["inner_action"] == "toreg_confirm_renew" ) {
+		if(!isDTCPassword($_REQUEST["validate_password"])){
+			$ret["err"] = 3;
+			$ret["mesg"] = _("Error: wrong password format.");
+			return $ret;
+		}
+		$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$adm_login' AND adm_pass='".$_REQUEST["validate_password"]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$ret["err"] = 3;
+			$ret["mesg"] = _("Error: wrong login or password.");
+			return $ret;
+		}
+		if($client["dollar"] < $price){
+			$ret["err"] = 3;
+			$ret["mesg"] = _("Error: not enough money on your account.");
+			return $ret;
+		}
 		// Adjust money remaining on account after confirmation.
-		$form .= "<br>Cliente: ".$client["id"];
-		$form .= "<br>Quedan: ".$client["dollar"];
-		$form .= "<br>Precio: ".$product["price_dollar"];
+		$form .= "<br>"._("Client: ").$client["id"];
+		$form .= "<br>"._("Remaining on your account before payment: ").$client["dollar"];
+		$form .= "<br>"._("Price: ").$price;
 		$q = "UPDATE $pro_mysql_client_table SET dollar=dollar-" . $product["price_dollar"] . " WHERE id='".$client["id"]."';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
 
@@ -189,45 +334,53 @@ Service country: $country
 		}
 		validateRenewal($_REQUEST["renew_id"]);
 
-		$form .= "<br><br><br><a href=\"/\">" . _("Continue") . "</a>";
+		$form .= "<br><br><br><a href=\"/dtc/\">" . _("Continue") . "</a>";
 
 		$ret["err"] = 0;
 		$ret["mesg"] = $form;
 		return $ret;
 	}else{
-
 		$headers = "From: DTC Robot <$conf_webmaster_email_addr>";
-		$subject = $admin["adm_login"] . " tried to renew $the_prod";
+		if($_REQUEST["renew_type"] == "multiple-services"){
+			$prodsub = "multiple services";
+		}else{
+			$prodsub = $the_prod;
+		}
+		$subject = $admin["adm_login"] . " tried to renew ".$prodsub;
 		mail($conf_webmaster_email_addr, "$conf_message_subject_header $subject", $mail_content, $headers);
 
+		if($_REQUEST["renew_type"] == "multiple-services"){
+			$prod_id = 0;
+		}else{
+			$services = "";
+		}
+
 		// Save the values in SQL and process the paynow buttons
-		$q = "INSERT INTO $pro_mysql_pending_renewal_table (id,adm_login,renew_date,renew_time,product_id,renew_id,heb_type,country_code)
-		VALUES ('','".$_REQUEST["adm_login"]."',now(),now(),'".$prod_id."','".$client_id."','".$_REQUEST["renew_type"]."','$country');";
+		$q = "INSERT INTO $pro_mysql_pending_renewal_table (id,adm_login,renew_date,renew_time,product_id,renew_id,heb_type,country_code,services)
+		VALUES ('','".$_REQUEST["adm_login"]."',now(),now(),'".$prod_id."','".$client_id."','".$_REQUEST["renew_type"]."','$country','$services');";
 		$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 		$renew_id = mysql_insert_id();
 
-		if($a["price_dollar"] > $client["dollar"]){
-			$payid = createCreditCardPaiementID($a["price_dollar"],$renew_id,$a["name"]." (login: ".$_REQUEST["adm_login"].")","no",$prod_id,$vat_rate);
+		if($price > $client["dollar"]){
+			$payid = createCreditCardPaiementID($price,$renew_id,$prodsub." (login: ".$_REQUEST["adm_login"].")","no",$prod_id,$vat_rate,$services);
 	
 			$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
 			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 	
 			$return_url = htmlentities($_SERVER["PHP_SELF"])."?action=return_from_pay&regid=$payid";
-			$paybutton = paynowButton($payid,$a["price_dollar"],$a["name"]." (login: ".$_REQUEST["adm_login"].")",$return_url,$vat_rate);
+			$paybutton = paynowButton($payid,$price,$prodsub." (login: ".$_REQUEST["adm_login"].")",$return_url,$vat_rate);
 			$form .= _("Please click on the button below to renew your account:") ."<br><br>". $paybutton;
 
 			$ret["err"] = 0;
 			$ret["mesg"] = $form;
 			return $ret;
-		}
-		else
-		{
-			$payid = createCreditCardPaiementID($a["price_dollar"],$renew_id,$a["name"]." (login: ".$_REQUEST["adm_login"].")","no",$prod_id,$vat_rate);
+		}else{
+			$payid = createCreditCardPaiementID($price,$renew_id,$prodsub." (login: ".$_REQUEST["adm_login"].")","no",$prod_id,$vat_rate,$services);
 
 			$q = "UPDATE $pro_mysql_pending_renewal_table SET pay_id='$payid' WHERE id='$renew_id';";
 			$r = mysql_query($q)or die("Cannot querry $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 
-			$after_upgrade_remaining = $client["dollar"] - $a["price_dollar"];
+			$after_upgrade_remaining = $client["dollar"] - $price;
 			$out = _("After renewal, you will have") . ": " . $after_upgrade_remaining . " " .$secpayconf_currency_letters . "<br><br>";
 
 			// Check for confirmation
@@ -237,11 +390,12 @@ Service country: $country
 			$out .= _("You have sufficient funds in your account. Press the confirm button and your order will be processed.") ."<br><br>
 $frm_start
 <input type=\"hidden\" name=\"renew_type\" value=\"" . $_REQUEST["renew_type"]. "\">
-<input type=\"hidden\" name=\"adm_login\" value=\"" . $_REQUEST["adm_login"]. "\">
-<input type=\"hidden\" name=\"product_id\" value=\"" . $_REQUEST["product_id"]. "\">
-<input type=\"hidden\" name=\"client_id\" value=\"" . $_REQUEST["client_id"]. "\">
+<input type=\"hidden\" name=\"adm_login\" value=\"" . $adm_login. "\">
+<input type=\"hidden\" name=\"product_id\" value=\"" . $prod_id. "\">
+<input type=\"hidden\" name=\"client_id\" value=\"" . $client_id. "\">
 <input type=\"hidden\" name=\"renew_id\" value=\"" . $renew_id . "\">
 <input type=\"hidden\" name=\"inner_action\" value=\"toreg_confirm_renew\">
+"._("Enter your password to accept the payment:")." <input type=\"password\" name=\"validate_password\" value=\"\">
 <input type=\"submit\" value=\"". _("Proceed to account renewal") ."\">
 </form>";
 			$ret["err"] = 0;

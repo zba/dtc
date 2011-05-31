@@ -30,6 +30,7 @@ function validateRenewal($renew_id){
 	global $pro_mysql_client_table;
 	global $pro_mysql_ssl_ips_table;
 	global $pro_mysql_pay_table;
+	global $secpayconf_currency_letters;
 
 	global $commit_flag;
 	global $submit_err;
@@ -49,15 +50,19 @@ function validateRenewal($renew_id){
 	}
 	$renew_entry = mysql_fetch_array($r);
 
-	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$renew_entry["product_id"]."';";
-	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	$n = mysql_num_rows($r);
-	if($n != 1 && $renew_entry["heb_type"] != 'add-money'){
-		$submit_err = "Could not find product in table line ".__LINE__." file ".__FILE__;
-		$commit_flag = "no";
-		return false;
+	if($renew_entry["heb_type"] != "multiple-services"){
+		$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$renew_entry["product_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1 && $renew_entry["heb_type"] != 'add-money'){
+			$submit_err = "Could not find product in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$product = mysql_fetch_array($r);
+		$prod_name = $product["name"]." (".$product["price_dollar"]." ".$secpayconf_currency_letters.")";
+		$prod_id = $product["id"];
 	}
-	$product = mysql_fetch_array($r);
 
 	switch($renew_entry["heb_type"]){
 	case "vps":
@@ -236,31 +241,91 @@ A renewal have been paid! Here is the details of the renewal:
 
 login: ";
 		break;
+	case "multiple-services":
+		$txt_renewal_approved = "
+
+A multi-service renewal have been paid! Here is the details of the renewal:
+
+login: ";
+		$serv_ar = explode("|",$renew_entry["services"]);
+		$num_serv = sizeof($serv_ar);
+		$prod_id = 0;
+		$prod_name = "";
+		$old_expire = "";
+		for($i=0;$i<$num_serv;$i++){
+			$serv = $serv_ar[$i];
+			$atrs = explode(":",$serv);
+			switch($atrs[0]){
+			case "vps":
+				$q = "SELECT * FROM $pro_mysql_vps_table WHERE vps_server_hostname='".$atrs[1]."' AND vps_xen_name='".$atrs[2]."';";
+				$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				$n = mysql_num_rows($r);
+				if($n != 1){
+					$submit_err = "Could not find VPS id in table line ".__LINE__." file ".__FILE__;
+					$commit_flag = "no";
+					return false;
+				}
+				$vps_entry = mysql_fetch_array($r);
+				$vps_expire = $vps_entry["expire_date"];
+				if($i>0){
+					$old_expire .= "|";
+				}
+				$old_expire .= $vps_entry["expire_date"];
+				$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$atrs[3]."';";
+				$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				$n = mysql_num_rows($r);
+				if($n != 1){
+					$submit_err = "Could not find product in table line ".__LINE__." file ".__FILE__;
+					$commit_flag = "no";
+					return false;
+				}
+				$product = mysql_fetch_array($r);
+				$date_expire = calculateExpirationDate($vps_expire,$product["period"]);
+				$q = "UPDATE $pro_mysql_vps_table SET expire_date='$date_expire' WHERE vps_server_hostname='".$atrs[1]."' AND vps_xen_name='".$atrs[2]."';";
+				$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				break;
+			case "server":
+				$q = "SELECT * FROM $pro_mysql_dedicated_table WHERE server_hostname='".$atrs[1]."';";
+				$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				$n = mysql_num_rows($r);
+				if($n != 1){
+					$submit_err = "Could not find VPS id in table line ".__LINE__." file ".__FILE__;
+					$commit_flag = "no";
+					return false;
+				}
+				$dedicated_entry = mysql_fetch_array($r);
+				if($i>0){
+					$old_expire .= "|";
+				}
+				$old_expire = $dedicated_entry["expire_date"];
+				$dedi_expire = $dedicated_entry["expire_date"];
+				$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$atrs[2]."';";
+				$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				$n = mysql_num_rows($r);
+				if($n != 1){
+					$submit_err = "Could not find product in table line ".__LINE__." file ".__FILE__;
+					$commit_flag = "no";
+					return false;
+				}
+				$product = mysql_fetch_array($r);
+				$date_expire = calculateExpirationDate($dedi_expire,$product["period"]);
+				$q = "UPDATE $pro_mysql_dedicated_table SET expire_date='$date_expire' WHERE server_hostname='".$atrs[1]."';";
+				$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+				break;
+			default:
+				die("Unknown heb type line ".__LINE__." file ".__FILE__);
+				break;
+			}
+			if($i > 0){
+				$prod_name .= ", ";
+			}
+			$prod_name .= $product["name"]." (".$product["price_dollar"]." ".$secpayconf_currency_letters.")";
+		}
+		break;
 	default:
 		die("Unknown heb type line ".__LINE__." file ".__FILE__);
 		break;
 	}
-
-	global $secpayconf_currency_letters;
-	$txt_renewal_approved .= $renew_entry["adm_login"];
-	if($renew_entry["heb_type"] == 'add-money') {
-	$txt_renewal_approved .= "
-Amount added: " . $payment["refund_amount"]."
-
-";
-	}
-	else
-	{
-	$txt_renewal_approved .= "
-Product: ".$product["name"]."(".$product["price_dollar"]." ".$secpayconf_currency_letters.")
-Date: ".$renew_entry["renew_date"]." ".$renew_entry["renew_time"]."
-
-";
-	}
-
-	$headers = $send_email_header;
-	$headers .= "From: ".$conf_webmaster_email_addr;
-	mail($conf_webmaster_email_addr,"$conf_message_subject_header Renewal approved!",$txt_renewal_approved,$headers);
 
 	$q = "SELECT id_client FROM $pro_mysql_admin_table WHERE adm_login='".$renew_entry["adm_login"]."'";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -271,9 +336,28 @@ Date: ".$renew_entry["renew_date"]." ".$renew_entry["renew_time"]."
 	$admin = mysql_fetch_array($r);
 	$cid = $admin["id_client"];
 
+	$txt_renewal_approved .= $renew_entry["adm_login"];
+	if($renew_entry["heb_type"] == 'add-money') {
+		$txt_renewal_approved .= "
+Amount added: " . $payment["refund_amount"]."
+
+";
+	}else{
+		$txt_renewal_approved .= "
+Product: ".$prod_name."
+Date: ".$renew_entry["renew_date"]." ".$renew_entry["renew_time"]."
+
+";
+	}
+
+	$headers = $send_email_header;
+	$headers .= "From: ".$conf_webmaster_email_addr;
+	mail($conf_webmaster_email_addr,"$conf_message_subject_header Renewal approved!",$txt_renewal_approved,$headers);
+
+
 	// Now add a command to the user so we keep tracks of payments
-	$q = "INSERT INTO $pro_mysql_completedorders_table (id,id_client,domain_name,quantity,date,product_id,payment_id,country_code,last_expiry_date)
-	VALUES ('','$cid','','1','".date("Y-m-d")."','".$product["id"]."','".$renew_entry["pay_id"]."','".$renew_entry["country_code"]."','$old_expire');";
+	$q = "INSERT INTO $pro_mysql_completedorders_table (id,id_client,domain_name,quantity,date,product_id,payment_id,country_code,last_expiry_date,services)
+	VALUES ('','$cid','','1','".date("Y-m-d")."','$prod_id','".$renew_entry["pay_id"]."','".$renew_entry["country_code"]."','$old_expire','".$renew_entry["services"]."');";
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
 	$q = "DELETE FROM $pro_mysql_pending_renewal_table WHERE id='$renew_id';";

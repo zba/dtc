@@ -28,6 +28,7 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/vps_dom0graphs.php");
 	require("$dtcshared_path/inc/forms/vps_installation.php");
 	require("$dtcshared_path/inc/forms/dedicated.php");
+	require("$dtcshared_path/inc/forms/multiple_renew.php");
 }
 require("$dtcshared_path/inc/forms/email.php");
 require("$dtcshared_path/inc/forms/aliases.php");
@@ -166,6 +167,11 @@ function drawAdminTools($admin){
 		"icon" => "box_wnb_nb_picto-addadomainname.gif",
 		"type" => "link",
 		"link" => "adddomain");
+	$user_ZEmenu[] = array(
+		"text" => _("Multiple renew") ,
+		"icon" => "box_wnb_nb_picto-addadomainname.gif",
+		"type" => "link",
+		"link" => "multiple-renew");
 	if($conf_use_registrar_api == "yes" && $nbr_domain > 0){
 		$user_ZEmenu[] = array(
 			"text" => _("DNS NIC handles") ,
@@ -516,6 +522,10 @@ function drawAdminTools($admin){
                         $web_editor .= "<img src=\"gfx/toolstitles/adddomain.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Add a domain or service:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_AddDomain($admin);
 			$title = _("Add a domain name to my account") ;
+		}else if(@$add_array[1] == "multiple-renew"){
+                        $web_editor .= "<img src=\"gfx/toolstitles/adddomain.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Renewals:") ."</u></b><br></font>";
+			$web_editor .= drawAdminTools_MultipleRenew($admin);
+			$title = _("Renew multiple services at once") ;
 		}else if(@$add_array[1] == "nameservers"){
                         $web_editor .= "<img src=\"gfx/toolstitles/nameservers.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Name servers:") ."</u></b><br></font>";
 			$web_editor .= drawAdminTools_NameServers($admin);

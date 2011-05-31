@@ -533,14 +533,43 @@ dtcFromOkDraw()."
 			}
 			$a = mysql_fetch_array($r);
 			$waiting_new_users .= "<tr><$td>".$a["adm_login"]."</td>";
-			$q2 = "SELECT name,price_dollar,period FROM $pro_mysql_product_table WHERE id='".$a["product_id"]."';";
-			$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
-			$n2 = mysql_num_rows($r2);
-			if($n2 != 1){
-				$prod_name = _("Cannot find product.");
+			if($a["heb_type"] == "multiple-services"){
+				$servs = explode("|",$a["services"]);
+				$n_servs = sizeof($servs);
+				$prod_name = "";
+				for($j=0;$j<$n_servs;$j++){
+					if($j>0){
+						$prod_name .= "<br>";
+					}
+					$attrs = explode(":",$servs[$j]);
+					switch($attrs[0]){
+					case "vps":
+						$ind = 3;
+						break;
+					case "server":
+						$ind = 2;
+						break;
+					}
+					$q2 = "SELECT name,price_dollar,period FROM $pro_mysql_product_table WHERE id='".$attrs[$ind]."';";
+					$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+					$n2 = mysql_num_rows($r2);
+					if($n2 != 1){
+						$prod_name .= _("Cannot find product.");
+					}else{
+						$a2 = mysql_fetch_array($r2);
+						$prod_name .= $a2["name"]." (".$a2["price_dollar"]." $secpayconf_currency_letters: ".$a2["period"].")";
+					}
+				}
 			}else{
-				$a2 = mysql_fetch_array($r2);
-				$prod_name = $a2["name"]." (".$a2["price_dollar"]." $secpayconf_currency_letters: ".$a2["period"].")";
+				$q2 = "SELECT name,price_dollar,period FROM $pro_mysql_product_table WHERE id='".$a["product_id"]."';";
+				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+				$n2 = mysql_num_rows($r2);
+				if($n2 != 1){
+					$prod_name = _("Cannot find product.");
+				}else{
+					$a2 = mysql_fetch_array($r2);
+					$prod_name = $a2["name"]." (".$a2["price_dollar"]." $secpayconf_currency_letters: ".$a2["period"].")";
+				}
 			}
 			$waiting_new_users .= "<$td>$prod_name</td>";
 			$waiting_new_users .= "<$td>".$a["renew_date"]." ".$a["renew_time"]."</td>";
@@ -601,7 +630,26 @@ dtcFromOkDraw()."
 					$a2 = mysql_fetch_array($r2);
 					$tmp = $a2["server_hostname"];
 				}
-				$heb_type = _("Server:") .$tmp;
+				$heb_type = _("Server:") ." ".$tmp;
+				break;
+			case "multiple-services":
+				$servs = explode("|",$a["services"]);
+				$n_servs = sizeof($servs);
+				$heb_type = "";
+				for($j=0;$j<$n_servs;$j++){
+					if($j>0){
+						$heb_type .= "<br>";
+					}
+					$attrs = explode(":",$servs[$j]);
+					switch($attrs[0]){
+					case "vps":
+						$heb_type .= _("VPS: ").$attrs[2]."@".$attrs[1];
+						break;
+					case "server":
+						$heb_type .= _("Server:")." ".$attrs[1];
+						break;
+					}
+				}
 				break;
 			default:
 				echo "Renew type ".$a["heb_type"]." not implemented line ".__LINE__." file ".__FILE__;

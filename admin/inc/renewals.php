@@ -441,6 +441,8 @@ function drawRenewalTables (){
 			$n = mysql_num_rows($r);
 			$prod_ids = array();
 			$prod_names = array();
+			$prod_ids[] = 0;
+			$prod_names[] = _("Multiple renewals");
 			for($i=0;$i<$n;$i++){
 				$a = mysql_fetch_array($r);
 				$prod_ids[] = $a["id"];
