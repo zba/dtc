@@ -1397,11 +1397,7 @@ $more_mx_server
 				// if we have a srv_record here (ie a port, then we don't write the normal subdomain entry, just the SRV record
 			 	if (isset($subdomain["srv_record"]) && $subdomain["srv_record"] != ""){
 					$this_site_file .= "_$web_subname._".$subdomain["srv_record_protocol"]."	$sub_ttl	IN	SRV	0	10	".$subdomain["srv_record"]."	".$subdomain["ip"]."\n";
-				}elseif(isset($subdomain["nameserver_for"]) && $subdomain["nameserver_for"] != ""){
-					// add support for creating NS records
-					$nameserver_for = $subdomain["nameserver_for"];
-					$this_site_file .= "$web_subname	IN	NS	$nameserver_for.\n";
-				} else {	
+				} else {
 					// write TTL values into subdomain
 					if ($conf_use_cname_for_subdomains == "yes"){
 						$this_site_file .= "$web_subname	$sub_ttl	IN	CNAME	@\n";
@@ -1424,6 +1420,11 @@ $more_mx_server
                                 }
 				if($subdomain["associated_txt_record"] != "" && (isIP($subdomain["ip"]) || $subdomain["ip"] == "default")){
 					$this_site_file .= "$web_subname	IN	TXT	\"".$subdomain["associated_txt_record"]."\"\n";
+				}
+				if(isset($subdomain["nameserver_for"]) && $subdomain["nameserver_for"] != ""){
+					// add support for creating NS records
+					$nameserver_for = $subdomain["nameserver_for"];
+					$this_site_file .= "$web_subname	IN	NS	$nameserver_for.\n";
 				}
 			}
 			if( $conf_autogen_default_subdomains == "yes" ){
