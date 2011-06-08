@@ -726,8 +726,8 @@ dtcFromOkDraw()."
 					$last_guy_replied = "admin";
 				}
 				$next_reply_id = $a3["reply_id"];
-				if($loop_num >= 49){
-					echo "Warning: loop_num exeeded 50while reading ticket for $who and ID $next_reply_id, not displaying last ticket while reading ticket for $who: not displaying last ticket reply from line".__LINE__." file ".__FILE__;
+				if($loop_num >= 199){
+					echo "Warning: loop_num exeeded 200 while reading ticket for $who and ID $next_reply_id, not displaying last ticket while reading ticket for $who: not displaying last ticket reply from line".__LINE__." file ".__FILE__;
 				}
 			}
 			if($last_guy_replied == "user"){
