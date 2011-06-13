@@ -1,75 +1,253 @@
 <?php
 
-require_once 'XML/Serializer.php';
-require_once "XML/Unserializer.php";
-
 function exportTransactions(){
 	global $secpayconf_currency_letters;
+	global $pro_mysql_pay_table;
+	global $pro_mysql_completedorders_table;
+	global $pro_mysql_client_table;
+	global $conf_administrative_site;
+	global $conf_default_company_invoicing;
+	global $pro_mysql_companies_table;
+	global $cc_europe;
 	get_secpay_conf();
 	//$secpayconf_currency_letters = "EUR";
+
+	// Calculate start and end date depending on the request
 	$request_date = $_REQUEST["date"];
+	$rda = explode("-",$request_date);
+	$days_in_month = date("t",mktime(1,1,1,$rda[1],2,$rda[0]));
+	$start_date = $request_date . "-01";
+	$end_date = $request_date . "-" . $days_in_month;
 
-	$ar = array(
-		"SIGNONMSGSRSV1" => array(
-			"SONRQ" => array(
-				"SATUS" => array(
-					"CODE" => "0",
-					"SEVERITY" => "INFO"
-					),
-				"DTSERVER" => date("YmdHis").".000[UTC]",
-				"USERPASS" => "1234",
-				"LANGUAGE" => "ENG"
-				)
-			),
-		"BANKMSGSRSV1" => array(
-			"STMTTRNRS" => array(
-				"TRNUID" => "12345",
-				"STATUS" => array(
-					"CODE" => "0",
-					"SEVERITY" => "INFO"
-					)
-				),
-				"STMTR" => array(
-					"CURDEF" => $secpayconf_currency_letters,
-				),
-				"BANKTRANLIST" => array(
-					"DTSTART" => "",
-					"DTEND" => "",
-					"STMTTRN" => array(
-						"TRNTYPE" => "CREDIT",
-						"DTPOSTED" => "",
-						"DTUSER" => "",
-						"TRNAMT" => "200.12",
-						"NAME" => "John Doe",
-						"MEMO" => "Titi"
-					)
-				)
-			)
-		);
+	$out = "";
 
-	// Serialize into a XML document
-	$options = array(
-		"indent"		=> "\t",
-		"linebreak"		=> "\n",
-		"addDecl"		=> true,   
-		"encoding"		=> "UTF-8",
-		"rootName"		=> "OFX",
-		"defaultTagName"	=> "item",
-		"attributesArray"	> "_attributes"
-	);
-	$serializer = new XML_Serializer($options);
-	$serializer->serialize($ar);
-	$xml = $serializer->getSerializedData();
-	return $xml;
+	// TODO: replace this by something which checks what country has been used for the transaction
+	$q = "SELECT country FROM $pro_mysql_companies_table WHERE id='$conf_default_company_invoicing';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Cannot find invoicing company ID $conf_default_company_invoicing: please check that you have selected a default invoicing company!");
+	}
+	$a = mysql_fetch_array($r);
+	$selling_country = $a["country"];
+
+	// TODO: Make it take values from the config table
+	$acct_paypal_charges = "Expenses:Bank Servivce Charges:Paypal Charges";
+	$acct_with_vat_in_eec = "Income:Sales:Services with VAT in EEC";
+	$acct_without_vat_in_eec = "Income:Sales:Services without VAT in EEC";
+	$acct_in_own_country = "Income:Sales:Services in $selling_country";
+	$acct_outside_eec = "Income:Sales:Sales outside EEC";
+	$acct_vat_on_sales = "VAT:Output:VAT on Sales";
+
+	// TODO: Make it take values from variables above
+	$end_acct_paypal_charges = "Paypal Charges";
+	$end_acct_with_vat_in_eec = "Services with VAT in EEC";
+	$end_acct_without_vat_in_eec = "Services without VAT in EEC";
+	$end_acct_in_own_country = "Services in $selling_country";
+	$end_acct_outside_eec = "Sales outside EEC";
+	$end_acct_vat_on_sales = "VAT on Sales";
+
+	$out .= "!Type:Cat
+N$acct_paypal_charges
+DPaypal Charges
+E
+^
+N$acct_with_vat_in_eec
+DServices with VAT in EEC
+I
+^
+N$acct_without_vat_in_eec
+DServices without VAT in EEC
+I
+^
+N$acct_in_own_country
+DServices in own country
+I
+^
+N$acct_outside_eec
+DSales in rest of world
+I
+^
+N$acct_vat_on_sales
+DVAT on Sales
+^
+";
+
+	$out .= "!Account
+TBank
+N$end_acct_paypal_charges
+DPaypal Charges
+E
+^
+N$end_acct_with_vat_in_eec
+DServices with VAT in EEC
+I
+^
+N$end_acct_without_vat_in_eec
+DServices without VAT in EEC
+I
+^
+N$end_acct_in_own_country
+DServices in own country
+I
+^
+N$end_acct_outside_eec
+DSales in rest of world
+I
+^
+N$end_acct_vat_on_sales
+DVAT on Sales
+^
+!Account
+TBank
+NPaypal
+DPaypal
+^
+";
+
+	// Fetch all completed orders for the period
+	$q = "SELECT * FROM $pro_mysql_completedorders_table WHERE date >= '$start_date' AND date <= '$end_date' ORDER BY date;";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n < 1){
+		die("No transactions for this period: $start_date to $end_date: $q");
+	}
+	for($i=0;$i<$n;$i++){
+		// Fetch the corresponding payment
+		$completed_order = mysql_fetch_array($r);
+		$q2 = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$completed_order["payment_id"]."'";
+		$r2 = mysql_query($q2)or die("Cannot execute query \"$q2\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		if($n2 =! 1){
+			die("Completed order ".$completed_order["id"]." has no corresponding payment ID");
+		}
+		$pay = mysql_fetch_array($r2);
+
+		$q2 = "SELECT * FROM $pro_mysql_client_table WHERE id='".$completed_order["id_client"]."';";
+		$r2 = mysql_query($q2)or die("Cannot execute query \"$q2\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		if($n2 =! 1){
+			$client_name = "Client name could not be fetched";
+			$client_country = "";
+		}else{
+			$client = mysql_fetch_array($r2);
+			$client_name = "";
+			if($client["is_company"] == "yes"){
+				$client_name .= $client["company_name"].": ";
+			}
+			$client_name .= $client["familyname"].", ".$client["christname"];
+			$client_country = $client["country"];
+		}
+		$date = $completed_order["date"];
+		$date_a = explode("-",$date);
+
+		$pt_date = $date_a[0].$date_a[1].$date_a[2];
+		$pt_date_plus = 100000000 + $completed_order["id"];
+		$text_number = $pt_date . $pt_date_plus;
+
+		$memo = $conf_administrative_site." - ".$text_number." - ".$client_name;
+
+		// If the invoicing company is within EU, then check what region is the client in
+		if (isset($cc_europe[ $selling_country ])){
+			// Client is in the same country as seller: charge VAT
+			if( $client_country == $selling_country ){
+				$sales_account = $acct_in_own_country;
+				$case = "own-country";
+			// Client is in Europe, but not in the same country
+			}elseif( isset($cc_europe[ $client_country ])){
+				if( $client["is_company"] == "yes" && isset($client["vat_num"]) && $client["vat_num"] != ""){
+					$sales_account = $acct_with_vat_in_eec;
+					$case = "vat-in-eec";
+				}else{
+					$sales_account = $acct_without_vat_in_eec;
+					$case = "no-vat-eec";
+				}
+			}else{
+				$sales_account = $acct_outside_eec;
+				$case = "vat-not-eec";
+			}
+		}else{
+			$sales_account = "Sales";
+			$case = "company-no-in-eec";
+		}
+
+		$wrote_cat = "no";
+
+		$gate_charges = $pay["paiement_cost"];
+		$pay_total = $pay["paiement_total"];
+		$income = $pay_total - $gate_charges;
+
+		// Start of transaction
+		$out .= "!Type:Bank\n";
+		// Date
+		$out .= "D".$date_a[1]."/".$date_a[2]."/".$date_a[0]."\n";
+		// Total payment from customer
+		$out .= "T".$pay_total."\n";
+		// Comment
+		$out .= "P".$memo."\n";
+		// Cleared
+		$out .= "C*\n";
+		// VAT
+		switch($case){
+		case "own-country":
+		case "vat-in-eec":
+		case "vat-not-eec":
+			$without_vat = round(($pay["paiement_total"] / (1 + ($pay["vat_rate"] / 100))),2);
+			$vat = $pay["paiement_total"] - $without_vat;
+			$out .= "L".$acct_vat_on_sales."\n";
+			$out .= "S".$acct_vat_on_sales."\n";
+			$out .= '$'.$vat."\n";
+			$wrote_cat = "yes";
+			break;
+		// TODO: write code for VAT when invoicing country isn't in EEC!
+		default:
+			break;
+		}
+
+		// Paypal charges
+		if($wrote_cat == "no"){
+			$wrote_cat = "yes";
+			$out .= "L".$acct_paypal_charges."\n";
+		}
+		$out .= "S".$acct_paypal_charges."\n";
+		$out .= '$'.$pay["paiement_cost"]."\n";
+
+		// Sales account
+		if($wrote_cat == "no"){
+			$wrote_cat = "yes";
+			$out .= "L".$sales_account."\n";
+		}
+		$out .= "S".$sales_account."\n";
+		$out .= '$'.$income."\n";
+
+/*		// Memo
+		$out .= "M".$memo."\n";
+		// Category
+		$out .= "L[$sales_account]\n";
+		// First account in split
+		$out .= "S[Paypal]\n";
+		// First account amount
+		$out .= '$'.$pay["refund_amount"]."\n";
+		// Second account in split
+		$out .= "S[Paypal Charges]\n";
+		// Second account amount
+		$out .= '$'.$pay["paiement_cost"]."\n";*/
+		// End of transaction
+		$out .= "^\n";
+	}
+	return $out;
 }
 
-header ("Content-type: xml/OFX");
+$transactions = exportTransactions();
+
+header ("Content-type: application/x-qexqif");
+header('Content-disposition: attachment; filename="dtc_sales_'.$_REQUEST["date"].'.qif"');
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");	// Date in the past
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");	// always modified
 header("Cache-Control: no-store, no-cache, must-revalidate");	// HTTP/1.1
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");	// HTTP/1.0
 
-die( exportTransactions()."\n" );
+die( $transactions."\n" );
 
 ?>

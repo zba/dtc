@@ -826,7 +826,7 @@ function drawRenewalTables (){
 				<$td style=\"text-align:right;\">".round($vat_collected,2)." $secpayconf_currency_letters</td>
 				<$td style=\"text-align:right;\">".round($cost_total,2)." $secpayconf_currency_letters</td>
 				<$td style=\"text-align:right;\">".round($profit,2)." $secpayconf_currency_letters</td>
-				<$td style=\"text-align:right;\"><a href=\"?rub=renewal&action=export&format=ofx&date=".$cur_year."-".$cur_month."\">OFX</a></td>
+				<$td style=\"text-align:right;\"><a href=\"?rub=renewal&action=export&format=ofx&date=".$cur_year."-".$cur_month."\">QIF</a></td>
 				</tr>";
 			}
 			$cur_month++;

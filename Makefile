@@ -219,7 +219,7 @@ admin/genfiles/remote_mail_list.php admin/genfiles/gen_named_files.php admin/gen
 admin/genfiles/mailfilter_vacation_template admin/genfiles/gen_nagios.php admin/genfiles/gen_user_cron.php
 
 ADMIN_INC_PHP_SCRIPT_FILES=admin/inc/renewals.php \
-admin/inc/draw_user_admin.php admin/inc/dtc_config.php \
+admin/inc/draw_user_admin.php admin/inc/dtc_config.php admin/inc/transaction_export.php \
 admin/inc/monitor.php admin/inc/submit_root_querys.php admin/inc/graphs.php admin/inc/nav.php \
 admin/dtcrm/main.php admin/dtcrm/product_manager.php admin/dtcrm/submit_to_sql.php admin/inc/ip_usage_report.php
 
