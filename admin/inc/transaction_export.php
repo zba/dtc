@@ -238,16 +238,124 @@ DPaypal
 	return $out;
 }
 
-$transactions = exportTransactions();
+function exportTransactions_vat_report($fmonth,$lmonth){
+	global $secpayconf_currency_letters;
+	global $pro_mysql_pay_table;
+	global $pro_mysql_completedorders_table;
+	global $pro_mysql_client_table;
+	global $conf_administrative_site;
+	get_secpay_conf();
 
-header ("Content-type: application/x-qexqif");
-header('Content-disposition: attachment; filename="dtc_sales_'.$_REQUEST["date"].'.qif"');
-header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");	// Date in the past
-header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");	// always modified
-header("Cache-Control: no-store, no-cache, must-revalidate");	// HTTP/1.1
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");	// HTTP/1.0
+	// Calculate start and end date depending on the request
+	$rda = explode("-",$lmonth);
+	$days_in_month = date("t",mktime(1,1,1,$rda[1],2,$rda[0]));
+	$end_date = $month . "-" . $days_in_month;
+	$start_date = $fmonth . "-01";
 
-die( $transactions."\n" );
+	// TODO: replace this by something which checks what country has been used for the transaction
+	$q = "SELECT country FROM $pro_mysql_companies_table WHERE id='$conf_default_company_invoicing';";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		die("Cannot find invoicing company ID $conf_default_company_invoicing: please check that you have selected a default invoicing company!");
+	}
+	$a = mysql_fetch_array($r);
+	$selling_country = $a["country"];
+
+	// Fetch all completed orders for the period
+	$q = "SELECT * FROM $pro_mysql_completedorders_table WHERE date >= '$start_date' AND date <= '$end_date' ORDER BY date;";
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n < 1){
+		die("No transactions for this period: $start_date to $end_date: $q");
+	}
+	for($i=0;$i<$n;$i++){
+		// Fetch the corresponding payment
+		$completed_order = mysql_fetch_array($r);
+		$q2 = "SELECT * FROM $pro_mysql_pay_table WHERE id='".$completed_order["payment_id"]."'";
+		$r2 = mysql_query($q2)or die("Cannot execute query \"$q2\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		if($n2 =! 1){
+			die("Completed order ".$completed_order["id"]." has no corresponding payment ID");
+		}
+		$pay = mysql_fetch_array($r2);
+
+		$q2 = "SELECT * FROM $pro_mysql_client_table WHERE id='".$completed_order["id_client"]."';";
+		$r2 = mysql_query($q2)or die("Cannot execute query \"$q2\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$n2 = mysql_num_rows($r2);
+		if($n2 =! 1){
+			continue;
+		}else{
+			$client = mysql_fetch_array($r2);
+			$client_country = $client["country"];
+		}
+
+		// If the invoicing company is within EU, then check what region is the client in
+		if (isset($cc_europe[ $selling_country ])){
+			// Client is in the same country as seller: charge VAT
+			if( $client_country == $selling_country ){
+				$sales_account = $acct_in_own_country;
+				$case = "own-country";
+			// Client is in Europe, but not in the same country
+			}elseif( isset($cc_europe[ $client_country ])){
+				if( $client["is_company"] == "yes" && isset($client["vat_num"]) && $client["vat_num"] != ""){
+					$sales_account = $acct_with_vat_in_eec;
+					$case = "vat-in-eec";
+				}else{
+					$sales_account = $acct_without_vat_in_eec;
+					$case = "no-vat-eec";
+				}
+			}else{
+				$sales_account = $acct_outside_eec;
+				$case = "vat-not-eec";
+			}
+		}else{
+			$sales_account = "Sales";
+			$case = "company-no-in-eec";
+		}
+		if($case == "no-vat-eec"){
+			// First 2 chars are the country code of customer
+			$out .= strtoupper(substr($client["vat_num"],0,2));
+			$out .= ",";
+			// Rest of should be the actual number
+			$out .= str_replace(" ","",substr($client["vat_num"],2));
+			$out .= ",";
+			// Total value of suply
+			$out .= $pay["paiement_total"];
+			$out .= ",";
+			// This is a B2B service, so code is 3
+			$out .= "3\n";
+		}
+	}
+
+	$out = "";
+	return $out;
+}
+
+if($_REQUEST["format"] == "qif"){
+	$transactions = exportTransactions();
+
+	header ("Content-type: application/x-qexqif");
+	header('Content-disposition: attachment; filename="dtc_sales_'.$_REQUEST["date"].'.qif"');
+	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");	// Date in the past
+	header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");	// always modified
+	header("Cache-Control: no-store, no-cache, must-revalidate");	// HTTP/1.1
+	header("Cache-Control: post-check=0, pre-check=0", false);
+	header("Pragma: no-cache");	// HTTP/1.0
+
+	die( $transactions."\n" );
+}
+
+if($_REQUEST["format"] == "csv_vat"){
+	$transactions = exportTransactions_vat_report($_REQUEST["first_month"],$_REQUEST["last_month"]);
+	header ("Content-type: application/csv");
+	header('Content-disposition: attachment; filename="dtc_no_vat_report_'.$_REQUEST["first_month"]."_".$_REQUEST["last_month"].'.csv"');
+	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+	header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+	header("Cache-Control: no-store, no-cache, must-revalidate");
+	header("Cache-Control: post-check=0, pre-check=0", false);
+	header("Pragma: no-cache");
+	die( $transactions."\n" );
+}
 
 ?>

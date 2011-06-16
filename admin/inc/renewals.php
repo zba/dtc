@@ -778,6 +778,7 @@ function drawRenewalTables (){
 <td class=\"dtcDatagrid_table_titles\">"._("Payment Gateway Cost")."</td>
 <td class=\"dtcDatagrid_table_titles\">"._("Profit")."</td>
 <td class=\"dtcDatagrid_table_titles\">"._("Export")."</td>
+<td class=\"dtcDatagrid_table_titles\">"._("No VAT repport")."</td>
 </tr>";
 		for($i=0;$i<25;$i++){
 			$q2 = "SELECT $pro_mysql_pay_table.paiement_total,$pro_mysql_pay_table.vat_rate,$pro_mysql_pay_table.paiement_cost
@@ -826,8 +827,98 @@ function drawRenewalTables (){
 				<$td style=\"text-align:right;\">".round($vat_collected,2)." $secpayconf_currency_letters</td>
 				<$td style=\"text-align:right;\">".round($cost_total,2)." $secpayconf_currency_letters</td>
 				<$td style=\"text-align:right;\">".round($profit,2)." $secpayconf_currency_letters</td>
-				<$td style=\"text-align:right;\"><a href=\"?rub=renewal&action=export&format=ofx&date=".$cur_year."-".$cur_month."\">QIF</a></td>
-				</tr>";
+				<$td style=\"text-align:right;\"><a href=\"?rub=renewal&action=export&format=qif&date=".$cur_year."-".$cur_month."\">QIF</a></td>";
+				// Calculate the number of rows for the current CSV link display
+				// 0 means no display at all
+				switch($i){
+				case 0:
+					switch($cur_month){
+					case "01":
+					case "04":
+					case "07":
+					case "10":
+						$num_month = 3;
+						break;
+					case "02":
+					case "05":
+					case "08":
+					case "11":
+						$num_month = 2;
+						break;
+					case "03":
+					case "06":
+					case "07":
+					case "12":
+						$num_month = 1;
+						break;
+					}
+					break;
+				case 23:
+					switch($cur_month){
+					case "01":
+					case "04":
+					case "07":
+					case "010":
+						$num_month = 2;
+						break;
+					default:
+						$num_month = 0;
+					}
+				case 24:
+					switch($cur_month){
+					case "01":
+					case "04":
+					case "07":
+					case "010":
+						$num_month = 1;
+						break;
+					default:
+						$num_month = 0;
+					}
+				default:
+					switch($cur_month){
+					case "01":
+					case "04":
+					case "07":
+					case "010":
+						$num_month = 3;
+						break;
+					default:
+						$num_month = 0;
+					}
+				}
+				// Calculate the last and first month of the period
+				switch($cur_month){
+				case "01":
+				case "02":
+				case "03":
+					$csv_first_month = "01";
+					$csv_last_month = "03";
+					break;
+				case "04":
+				case "05":
+				case "06":
+					$csv_first_month = "04";
+					$csv_last_month = "06";
+					break;
+				case "07":
+				case "08":
+				case "09":
+					$csv_first_month = "07";
+					$csv_last_month = "09";
+					break;
+				case "10":
+				case "11":
+				case "12":
+					$csv_first_month = "10";
+					$csv_last_month = "12";
+					break;
+				}
+				$csv_link = "<a href=\"?rub=renewal&action=export&format=csv_vat&first_month=".$cur_year."-".$csv_first_month."&last_month=".$cur_year."-".$csv_last_month."\">CSV</a>";
+				if($num_month != 0){
+					$p_history .= "<$td rowspan=\"$num_month\" style=\"text-align:right;\">$csv_link</td>";
+				}
+				$p_history .= "</tr>";
 			}
 			$cur_month++;
 			if($cur_month > 12){
