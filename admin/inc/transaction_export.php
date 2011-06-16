@@ -244,12 +244,17 @@ function exportTransactions_vat_report($fmonth,$lmonth){
 	global $pro_mysql_completedorders_table;
 	global $pro_mysql_client_table;
 	global $conf_administrative_site;
+	global $conf_default_company_invoicing;
+	global $pro_mysql_companies_table;
+	global $cc_europe;
 	get_secpay_conf();
+
+	$out = "";
 
 	// Calculate start and end date depending on the request
 	$rda = explode("-",$lmonth);
 	$days_in_month = date("t",mktime(1,1,1,$rda[1],2,$rda[0]));
-	$end_date = $month . "-" . $days_in_month;
+	$end_date = $lmonth . "-" . $days_in_month;
 	$start_date = $fmonth . "-01";
 
 	// TODO: replace this by something which checks what country has been used for the transaction
@@ -269,6 +274,7 @@ function exportTransactions_vat_report($fmonth,$lmonth){
 	if($n < 1){
 		die("No transactions for this period: $start_date to $end_date: $q");
 	}
+	$ar = array();
 	for($i=0;$i<$n;$i++){
 		// Fetch the corresponding payment
 		$completed_order = mysql_fetch_array($r);
@@ -294,41 +300,51 @@ function exportTransactions_vat_report($fmonth,$lmonth){
 		if (isset($cc_europe[ $selling_country ])){
 			// Client is in the same country as seller: charge VAT
 			if( $client_country == $selling_country ){
-				$sales_account = $acct_in_own_country;
 				$case = "own-country";
 			// Client is in Europe, but not in the same country
 			}elseif( isset($cc_europe[ $client_country ])){
 				if( $client["is_company"] == "yes" && isset($client["vat_num"]) && $client["vat_num"] != ""){
-					$sales_account = $acct_with_vat_in_eec;
 					$case = "vat-in-eec";
 				}else{
-					$sales_account = $acct_without_vat_in_eec;
 					$case = "no-vat-eec";
 				}
 			}else{
-				$sales_account = $acct_outside_eec;
 				$case = "vat-not-eec";
 			}
 		}else{
 			$sales_account = "Sales";
 			$case = "company-no-in-eec";
 		}
-		if($case == "no-vat-eec"){
-			// First 2 chars are the country code of customer
-			$out .= strtoupper(substr($client["vat_num"],0,2));
-			$out .= ",";
-			// Rest of should be the actual number
-			$out .= str_replace(" ","",substr($client["vat_num"],2));
-			$out .= ",";
-			// Total value of suply
-			$out .= $pay["paiement_total"];
-			$out .= ",";
-			// This is a B2B service, so code is 3
-			$out .= "3\n";
+		if($case == "vat-in-eec"){
+			if($pay["paiement_total"] != 0){
+				$vat_num = str_replace(" ","",$client["vat_num"]);
+				if( !isset($ar[$vat_num]) ){
+					$ar[$vat_num] = 0;
+				}
+				$ar[$vat_num] += $pay["paiement_total"];
+			}
 		}
 	}
-
+	ksort(&$ar);
+	$n = sizeof($ar);
+	$keys = array_keys($ar);
 	$out = "";
+	//echo "<pre>"; print_r($ar); print_r($keys); echo "</pre>";
+	for($i=0;$i<$n;$i++){
+		$vatnum = $keys[$i];
+		$amount = $ar[ $vatnum ];
+		// First 2 chars are the country code of customer
+		$out .= strtoupper(substr($vatnum,0,2));
+		$out .= ",";
+		// Rest of should be the actual number
+		$out .= str_replace(" ","",substr($vatnum,2));
+		$out .= ",";
+		// Total value of suply
+		$out .= $amount;
+		$out .= ",";
+		// This is a B2B service, so code is 3
+		$out .= "3\n";
+	}
 	return $out;
 }
 
