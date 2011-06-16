@@ -581,7 +581,7 @@ function drawRenewalTables (){
 			if($n < 1){
 				$out .= _("No past payments for this period") ."<br>";
 			}else{
-				$out .= "<table cellspacing=\"0\" cellpadding=\"2\" border=\"1\">
+				$out .= dtcFormTableAttrs()."
 				<tr><td>"._("Product")."</td><td>". _("Client ID") ."</td><td>". _("Client")."</td><td>". _("Service Country")."</td>
 				<td>"._("Client Country")."</td>
 				<td>". _("VAT Collected")."</td><td>". _("Period")."</td><td>". _("Payment Date")."</td><td>"._("Total")."</td><td>". _("Payment Method")."</td>
@@ -746,7 +746,7 @@ function drawRenewalTables (){
 			}
 		}
 
-		$p_renewal = "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
+		$p_renewal = dtcFormTableAttrs();
 		$p_renewal .= "<tr><td colspan=\"2\" style=\"white-space:nowrap; text-align:center;\" nowrap class=\"dtcDatagrid_table_titles\">"._("Total installed products")."</td></tr>";
 		$p_renewal .= "<tr><td class=\"dtcDatagrid_table_flds_alt\" style=\"white-space:nowrap; text-align:right;\" nowrap>"._("Shared Hosting:")."</td>";
 			$p_renewal .= "<td class=\"dtcDatagrid_table_flds_alt\" style=\"white-space:nowrap;\" nowrap>".round($total_shared,2)." $secpayconf_currency_letters</td></tr>";
@@ -771,8 +771,8 @@ function drawRenewalTables (){
 		if(isset($_REQUEST["country"])){
 			$selected_country=$_REQUEST["country"];
 		}
-		$p_history .= "<table cellspacing=\"1\" cellpadding=\"0\" border=\"0\">
-		<tr><td class=\"dtcDatagrid_table_titles\">". _("Period") ."</td>
+		$p_history .= dtcFormTableAttrs()."
+<tr><td class=\"dtcDatagrid_table_titles\">". _("Period") ."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Amount") ."</td>
 <td class=\"dtcDatagrid_table_titles\">"._("VAT Collected")."</td>
 <td class=\"dtcDatagrid_table_titles\">"._("Payment Gateway Cost")."</td>
@@ -953,10 +953,10 @@ function drawRenewalTables (){
 <img src=\"active_prods_graph.php?graph=month\">";
 
 		// Layout the recuring stat and the effective payment statistics
+		// 		<td valign=\"top\">$p_renewal</td>
 		$out .= "<table cellspacing=\"1\" cellpadding=\"4\" border=\"0\" width=\"100%\">
-		<tr valign=\"top\"><td valign=\"top\" width=\"50%\">$p_history</td>
-		<td valign=\"top\">$p_renewal</td>
-		<td valign=\"top\">$p_active_prods</td></tr></table>";
+		<tr valign=\"top\"><td valign=\"top\">$p_history<br><br>$p_renewal</td>
+		<td valign=\"top\" style=\"text-align:right\">$p_active_prods</td></tr></table>";
 
 		$out .= "<h3>". _("Shared Hosting Renewals:") ."</h3>";
 		$q = "SELECT * FROM $pro_mysql_admin_table WHERE expire < '".date("Y-m-d")."' AND id_client!='0' AND expire !='0000-00-00' ORDER BY expire;";
@@ -965,7 +965,7 @@ function drawRenewalTables (){
 		if($n < 1){
 			$out .= _("No expired shared accounts.") ."<br>";
 		}else{
-			$out .= "<table cellspacing=\"0\" cellpadding=\"1\" border=\"0\">
+			$out .= dtcFormTableAttrs()."
 <tr><td class=\"dtcDatagrid_table_titles\">". _("Login") ."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Client") ."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Email") ."</td>
@@ -1004,7 +1004,7 @@ function drawRenewalTables (){
 		if($n < 1){
 			$out .= _("No expired SSL IPs.") ."<br>";
 		}else{
-			$out .= "<table cellspacing=\"0\" cellpadding=\"1\" border=\"0\">
+			$out .= dtcFormTableAttrs()."
 <tr><td class=\"dtcDatagrid_table_titles\">". _("Login") ."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Client") ."</td>
 <td class=\"dtcDatagrid_table_titles\">". _("Email") ."</td>
@@ -1046,7 +1046,7 @@ function drawRenewalTables (){
 		if($n < 1){
 			$out .= _("No VPS expired") ."<br>";
 		}else{
-			$out .= "<table cellspacing=\"0\" cellpadding=\"1\" border=\"0\">
+			$out .= dtcFormTableAttrs()."
 			<tr><td class=\"dtcDatagrid_table_titles\">"._("Login")."</td>
 			<td class=\"dtcDatagrid_table_titles\">". _("VPS") ."</td>
 			<td class=\"dtcDatagrid_table_titles\">". _("Client") ."</td>
@@ -1133,7 +1133,7 @@ function drawRenewalTables (){
 		if($n < 1){
 			$out .= _("No expired dedicated servers.") ."<br>";
 		}else{
-			$out .= "<table cellspacing=\"0\" cellpadding=\"1\" border=\"0\">
+			$out .= dtcFormTableAttrs()."
 			<tr><td class=\"dtcDatagrid_table_titles\">". _("Login") ."</td>
 			<td class=\"dtcDatagrid_table_titles\">". _("Server") ."</td>
 			<td class=\"dtcDatagrid_table_titles\">". _("Client") ."</td>
