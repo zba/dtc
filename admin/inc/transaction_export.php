@@ -33,6 +33,7 @@ function exportTransactions(){
 
 	// TODO: Make it take values from the config table
 	$acct_paypal_charges = "Expenses:Bank Servivce Charges:Paypal Charges";
+	$acct_enets_charges = "Expenses:Bank Servivce Charges:eNETS Charges";
 	$acct_with_vat_in_eec = "Income:Sales:Services with VAT in EEC";
 	$acct_without_vat_in_eec = "Income:Sales:Services without VAT in EEC";
 	$acct_in_own_country = "Income:Sales:Services in $selling_country";
@@ -41,6 +42,7 @@ function exportTransactions(){
 
 	// TODO: Make it take values from variables above
 	$end_acct_paypal_charges = "Paypal Charges";
+	$end_acct_enets_charges = "eNETS Charges";
 	$end_acct_with_vat_in_eec = "Services with VAT in EEC";
 	$end_acct_without_vat_in_eec = "Services without VAT in EEC";
 	$end_acct_in_own_country = "Services in $selling_country";
@@ -50,6 +52,10 @@ function exportTransactions(){
 	$out .= "!Type:Cat
 N$acct_paypal_charges
 DPaypal Charges
+E
+^
+N$acct_enets_charges
+DeNETS Charges
 E
 ^
 N$acct_with_vat_in_eec
@@ -79,6 +85,11 @@ N$end_acct_paypal_charges
 DPaypal Charges
 E
 ^
+TBank
+N$end_acct_enets_charges
+DeNETS Charges
+E
+^
 N$end_acct_with_vat_in_eec
 DServices with VAT in EEC
 I
@@ -98,15 +109,18 @@ I
 N$end_acct_vat_on_sales
 DVAT on Sales
 ^
-!Account
-TBank
-NPaypal
-DPaypal
-^
 ";
 
 	// Fetch all completed orders for the period
-	$q = "SELECT * FROM $pro_mysql_completedorders_table WHERE date >= '$start_date' AND date <= '$end_date' ORDER BY date;";
+	$q = "SELECT $pro_mysql_completedorders_table.id AS id,
+		$pro_mysql_completedorders_table.id_client AS id_client,
+		$pro_mysql_completedorders_table.date AS date,
+		$pro_mysql_completedorders_table.product_id AS product_id,
+		$pro_mysql_completedorders_table.payment_id AS payment_id,
+		$pro_mysql_completedorders_table.country_code AS country_code FROM $pro_mysql_completedorders_table,$pro_mysql_pay_table
+		WHERE $pro_mysql_completedorders_table.payment_id = $pro_mysql_pay_table.id
+		AND $pro_mysql_completedorders_table.date >= '$start_date' AND $pro_mysql_completedorders_table.date <= '$end_date'
+		ORDER BY $pro_mysql_pay_table.valid_date,$pro_mysql_pay_table.valid_time;";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
@@ -177,6 +191,37 @@ DPaypal
 		$pay_total = $pay["paiement_total"];
 		$income = $pay_total - $gate_charges;
 
+		// Paypal / eNETS charges
+		switch($pay["secpay_site"]){
+		case "paypal":
+			$out .= "!Account
+TBank
+NPaypal
+DPaypal
+^
+";
+			$gate_acct = $acct_paypal_charges;
+			break;
+		case "enets":
+			$out .= "!Account
+TBank
+NeNETS
+DeNETS
+^
+";
+			$gate_acct = $acct_enets_charges;
+			break;
+		default:
+			$out .= "!Account
+TBank
+NUnkown processor
+DUnkown processor
+^
+";
+			$gate_acct = "Unknown processor";
+			break;
+		}
+
 		// Start of transaction
 		$out .= "!Type:Bank\n";
 		// Date
@@ -204,13 +249,12 @@ DPaypal
 			break;
 		}
 
-		// Paypal charges
 		if($wrote_cat == "no"){
 			$wrote_cat = "yes";
-			$out .= "L".$acct_paypal_charges."\n";
+			$out .= "L".$gate_acct."\n";
 		}
-		$out .= "S".$acct_paypal_charges."\n";
-		$out .= '$'.$pay["paiement_cost"]."\n";
+		$out .= "S".$gate_acct."\n";
+		$out .= '$-'.$pay["paiement_cost"]."\n";
 
 		// Sales account
 		if($wrote_cat == "no"){
@@ -218,7 +262,7 @@ DPaypal
 			$out .= "L".$sales_account."\n";
 		}
 		$out .= "S".$sales_account."\n";
-		$out .= '$'.$income."\n";
+		$out .= '$'.$pay["paiement_total"]."\n";
 
 /*		// Memo
 		$out .= "M".$memo."\n";
