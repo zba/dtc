@@ -230,6 +230,8 @@ DUnkown processor
 		$out .= "T".$pay_total."\n";
 		// Comment
 		$out .= "P".$memo."\n";
+		// Item number (used to order transctions...)
+		$out .= "N".$pay["id"]."\n";
 		// Cleared
 		$out .= "C*\n";
 		// VAT
