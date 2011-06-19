@@ -667,16 +667,23 @@ function drawRenewalTables (){
 			$period = $a["period"];
 			$price = $a["price_dollar"];
 			$id = $a["id"];
-			if($period == '0001-00-00'){
-				$total_shared += $price / 12;
+			// Calculate the total number of months for a product
+			$date_array_calc = explode("-",$period);
+			$my_total_month = 0;
+			if($date_array_calc[0] != "0"){
+				$my_total_month += $date_array_calc[0] * 12;
+			}
+			if($date_array_calc[1] != 0){
+				$my_total_month += $date_array_calc[1];
+			}
+			if($date_array_calc[2] != 0){
+				$my_total_month += ($date_array_calc[2] / 30);
+			}
+			// Then the price per month
+			if($my_total_month == 0){
+				echo "Product $id has zero month.<br>";
 			}else{
-				$papoum = explode('-',$period);
-				$months = $papoum[1];
-				if($months == 0){
-					echo "Product $id has zero month.<br>";
-				}else{
-					$total_shared += $price / $months;
-				}
+				$total_shared += $price / $my_total_month;
 			}
 		}
 
@@ -708,16 +715,24 @@ function drawRenewalTables (){
 			$period = $a["period"];
 			$price = $a["price_dollar"];
 			$id = $a["id"];
-			if($period == '0001-00-00'){
-				$total_shared += $price / 12;
+
+			// Calculate the total number of months for a product
+			$date_array_calc = explode("-",$period);
+			$my_total_month = 0;
+			if($date_array_calc[0] != "0"){
+				$my_total_month += $date_array_calc[0] * 12;
+			}
+			if($date_array_calc[1] != 0){
+				$my_total_month += $date_array_calc[1];
+			}
+			if($date_array_calc[2] != 0){
+				$my_total_month += ($date_array_calc[2] / 30);
+			}
+			// Then the price per month
+			if($my_total_month == 0){
+				echo "Product $id has zero month.<br>";
 			}else{
-				$papoum = explode('-',$period);
-				$months = $papoum[1];
-				if($months != 0){
-					$total_vps += $price / $months;
-				}else{
-					echo "Product $id has zero month.<br>";
-				}
+				$total_vps += $price / $my_total_month;
 			}
 		}
 
@@ -733,16 +748,24 @@ function drawRenewalTables (){
 			$period = $a["period"];
 			$price = $a["price_dollar"];
 			$id = $a["id"];
-			if($period == '0001-00-00'){
-				$total_shared += $price / 12;
+
+			// Calculate the total number of months for a product
+			$date_array_calc = explode("-",$period);
+			$my_total_month = 0;
+			if($date_array_calc[0] != "0"){
+				$my_total_month += $date_array_calc[0] * 12;
+			}
+			if($date_array_calc[1] != 0){
+				$my_total_month += $date_array_calc[1];
+			}
+			if($date_array_calc[2] != 0){
+				$my_total_month += ($date_array_calc[2] / 30);
+			}
+			// Then the price per month
+			if($my_total_month == 0){
+				echo "Product $id has zero month.<br>";
 			}else{
-				$papoum = explode('-',$period);
-				$months = $papoum[1];
-				if($months == 0){
-					echo _("Dedicated server product ID $id has zero for the number of month to renew")."<br>";
-				}else{
-					$total_dedicated += $price / $months;
-				}
+				$total_dedicated += $price / $my_total_month;
 			}
 		}
 
