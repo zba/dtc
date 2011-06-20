@@ -239,6 +239,7 @@ SHARED_PHP_SCRIPT_FILES=shared/autoSQLconfig.php shared/cyradm.php shared/defaul
 shared/dtc_stats_index.php shared/404_template/404.php shared/404_template/406.php shared/404_template/expired.php \
 shared/404_template/index.php shared/drawlib/anotherDtc.php shared/drawlib/cc_code_popup.php shared/drawlib/dtc_functions.php \
 shared/drawlib/skinLib.php shared/drawlib/skin.php shared/drawlib/templates.php shared/drawlib/tree_menu.php \
+shared/drawlib/top_bad_passwords.txt \
 shared/dtcrm/draw_adddomain.php shared/dtcrm/draw_handle.php shared/dtcrm/draw_nameservers.php shared/dtcrm/draw.php shared/dtcrm/draw_register_forms.php \
 shared/dtcrm/draw_transferdomain.php shared/dtcrm/draw_whois.php shared/dtcrm/registry_calls.php \
 shared/dtcrm/submit_to_sql.php shared/dtcrm/draw_renewdomain.php \

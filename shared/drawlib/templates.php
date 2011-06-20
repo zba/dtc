@@ -1085,6 +1085,10 @@ function dtcListItemsEdit($dsc){
 							$commit_err .= $keys[$i].": not a correct password format<br>";
 						}
 					}
+					if( FALSE != check_password($_REQUEST[ $keys[$i] ])){
+						$commit_flag = "no";
+						$commit_err .= $keys[$i].": "._("This password is one of the 500 most used passwords on the internet. Please choose a stronger one.");
+					}
 					break;
 				case "email":
 					if( !isValidEmail($_REQUEST[ $keys[$i] ]) ){
@@ -1397,6 +1401,10 @@ function dtcListItemsEdit($dsc){
 							$commit_flag = "no";
 							$commit_err .= $keys[$i]._(": not a correct password format")."<br>";
 						}
+					}
+					if( FALSE != check_password($_REQUEST[ $keys[$i] ]) ){
+						$commit_flag = "no";
+						$commit_err .= $keys[$i].": "._("This password is one of the 500 most used passwords on the internet. Please choose a stronger one.");
 					}
 					break;
 				case "email":
