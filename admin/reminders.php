@@ -375,7 +375,7 @@ function sendCustomProductsReminderEmail($remaining_days,$file,$cust_heb_type_id
 		if($send_webmaster_copy == "yes"){
 			$subject = readCustomizedMessage("reminders_msg/custom_".$cust_heb_type_id."_subject_adm",$admin["adm_login"]);
 			$subject = getCustomizedReminderNoHeader($subject,$client["christname"],$remaining_days,$admin["expire"],$admin["adm_login"]);
-			$subject = str_replace("%%%SERVER_NAME%%%",$cust_pr["server_hostname"],$subject);
+			$subject = str_replace("%%%DOMAIN%%%",$cust_pr["domain"],$subject);
 			mail($conf_webmaster_email_addr,"$conf_message_subject_header $subject",$msg_2_send,$headers);
 		}
 	}
