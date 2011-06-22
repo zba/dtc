@@ -30,7 +30,7 @@ function drawAdminTools_Invoices($admin){
 		return $out;
 	}
 
-	$q = "SELECT * FROM $pro_mysql_completedorders_table WHERE id_client='".$admin["client"]["id"]."';";
+	$q = "SELECT * FROM $pro_mysql_completedorders_table WHERE id_client='".$admin["client"]["id"]."' ORDER BY date;";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n > 0){
