@@ -425,16 +425,18 @@ dtcFromOkDraw()."
 			if($n2 != 1){
 				$dom_name = _("Cannot find product in database.");
 				$prod_name = _("Cannot find product in database.");
+				$prod_price = _("Cannot find product in database.");
 			}else{
 				$a2 = mysql_fetch_array($r2);
 				$prod_name = $a2["name"];
+				$prod_price = $a2["price_dollar"];
 				if($a2["heb_type"] == "vps"){
 					$dom_name = $a["vps_location"];
 				}else{
 					$dom_name = $a["domain_name"];
 				}
 			}
-			$waiting_new_users .= "<$td>$dom_name</td><$td>$prod_name</td>";
+			$waiting_new_users .= "<$td>$dom_name</td><$td>$prod_name<br>$prod_price $secpayconf_currency_letters</td>";
 			$waiting_new_users .= "<$td>".$a["date"]." ".$a["time"]."<br>".calculateAge($a["date"],$a["time"])."</td>";
 			if($a["paiement_id"] == 0){
 				$waiting_new_users .= "<$td>". _("No payment ID.") ."</td>";
@@ -444,13 +446,16 @@ dtcFromOkDraw()."
 				$n2 = mysql_num_rows($r2);
 				if($n2 != 1)	echo "Numrows!=1 in $q line: ".__LINE__." file: ".__FILE__." : problems with sql tables !";
 				$a2 = mysql_fetch_array($r2);
+				$tt = $a2["paiement_total"];
+				$secpay_site = $a2["secpay_site"];
 				if($a2["valid"] == "yes"){
-					$waiting_new_users .= "<$td><font color=\"green\">"._("Yes")."</font></td>";
+					$waiting_new_users .= "<$td><font color=\"green\">"._("Yes")."</font>";
 				}elseif($a2["valid"] == "pending"){
-					$waiting_new_users .= "<$td><font color=\"#FF8800\">". _("Pending") .": ". $a2["pending_reason"] ."</font></td>";
+					$waiting_new_users .= "<$td><font color=\"#FF8800\">". _("Pending") .": ". $a2["pending_reason"] ."</font>";
 				}else{
-					$waiting_new_users .= "<$td><font color=\"red\">"._("No")."</font></td>";
+					$waiting_new_users .= "<$td><font color=\"red\">"._("No")."</font>";
 				}
+				$waiting_new_users .= "<br>$secpay_site: $tt $secpayconf_currency_letters</td>";
 			}
 			if($secpayconf_use_maxmind == "yes"){
 				$maxmind = unserialize($a["maxmind_output"]);
