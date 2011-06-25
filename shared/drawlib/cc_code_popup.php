@@ -27,7 +27,7 @@ $cc_europe = array(
   "SI" => 1,
   "ES" => 1,
   "SE" => 1,
-  "NO" => 1,
+  "RO" => 1,
   "UK" => 1
 );
 
