@@ -411,29 +411,29 @@ function validateWaitingUser($waiting_login_id){
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1)die("I can't find username with id $waiting_login_id in the userwaiting table line: ".__LINE__." file: ".__FILE__."!");
-	$a = mysql_fetch_array($r);
-	$waiting_login = $a["reqadm_login"];
-	$last_used_lang = $a["last_used_lang"];
+	$new_admin = mysql_fetch_array($r);
+	$waiting_login = $new_admin["reqadm_login"];
+	$last_used_lang = $new_admin["last_used_lang"];
 
 	// Check if there is a user by that name
 	$q = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='$waiting_login';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
-	if($a["add_service"] == "yes"){
+	if($new_admin["add_service"] == "yes"){
 		if($n != 1)die("There is no user with name $waiting_login in database: I can't add a service to it line: ".__LINE__." file: ".__FILE__."!");
 		$existing_admin = mysql_fetch_array($r);
 		$cid = $existing_admin["id_client"];
 		$vps_root_pass = $existing_admin["adm_pass"];
 	}else{
 		if($n != 0)die("There is already a user with name $waiting_login in database: I can't add another one line: ".__LINE__." file: ".__FILE__."!");
-		$vps_root_pass = $a["reqadm_pass"];
+		$vps_root_pass = $new_admin["reqadm_pass"];
 	}
 
 	// Calculate user's path with default path
 	$newadmin_path = $conf_site_root_host_path."/".$waiting_login;
 
 	// Create admin's directory
-	if($conf_demo_version == "no" && $a["add_service"] != "yes"){
+	if($conf_demo_version == "no" && $new_admin["add_service"] != "yes"){
 		$oldumask = umask(0);
 		if(!file_exists($newadmin_path)){
 			mkdir("$newadmin_path", 0750);
@@ -442,83 +442,83 @@ function validateWaitingUser($waiting_login_id){
 	}
 
 	// Get the informations from the product table
-	$q2 = "SELECT * FROM $pro_mysql_product_table WHERE id='".$a["product_id"]."'";
+	$q2 = "SELECT * FROM $pro_mysql_product_table WHERE id='".$new_admin["product_id"]."'";
 	$r2 = mysql_query($q2)or die("Cannot execute query \"$q2\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n2 = mysql_num_rows($r2);
 	if($n2 != 1)die("I can't find the product in the table line: ".__LINE__." file: ".__FILE__."!");
-	$a2 = mysql_fetch_array($r2);
+	$product = mysql_fetch_array($r2);
 
 	// Add customer's info to production table
-	if($a["add_service"] != "yes"){
+	if($new_admin["add_service"] != "yes"){
 		$adm_query = "INSERT INTO $pro_mysql_client_table
 (id,is_company,company_name,vat_num,familyname,christname,addr1,addr2,addr3,
 customfld,
 city,zipcode,state,country,phone,fax,email,
 disk_quota_mb,bw_quota_per_month_gb,
-special_note) VALUES ('','".$a["iscomp"]."',
-'".mysql_real_escape_string($a["comp_name"])."','".mysql_real_escape_string($a["vat_num"])."','".mysql_real_escape_string($a["family_name"])."','".mysql_real_escape_string($a["first_name"])."',
-'".mysql_real_escape_string($a["addr1"])."','".mysql_real_escape_string($a["addr2"])."','".mysql_real_escape_string($a["addr3"])."',
-'".mysql_real_escape_string($a["customfld"])."',
-'".mysql_real_escape_string($a["city"])."','".mysql_real_escape_string($a["zipcode"])."','".mysql_real_escape_string($a["state"])."','".mysql_real_escape_string($a["country"])."','".mysql_real_escape_string($a["phone"])."',
-'".mysql_real_escape_string($a["fax"])."','".mysql_real_escape_string($a["email"])."','".$a2["quota_disk"]."','". $a2["bandwidth"]/1024 ."',
-'".mysql_real_escape_string($a["custom_notes"])."');";
+special_note) VALUES ('','".$new_admin["iscomp"]."',
+'".mysql_real_escape_string($new_admin["comp_name"])."','".mysql_real_escape_string($new_admin["vat_num"])."','".mysql_real_escape_string($new_admin["family_name"])."','".mysql_real_escape_string($new_admin["first_name"])."',
+'".mysql_real_escape_string($new_admin["addr1"])."','".mysql_real_escape_string($new_admin["addr2"])."','".mysql_real_escape_string($new_admin["addr3"])."',
+'".mysql_real_escape_string($new_admin["customfld"])."',
+'".mysql_real_escape_string($new_admin["city"])."','".mysql_real_escape_string($new_admin["zipcode"])."','".mysql_real_escape_string($new_admin["state"])."','".mysql_real_escape_string($new_admin["country"])."','".mysql_real_escape_string($new_admin["phone"])."',
+'".mysql_real_escape_string($new_admin["fax"])."','".mysql_real_escape_string($new_admin["email"])."','".$product["quota_disk"]."','". $product["bandwidth"]/1024 ."',
+'".mysql_real_escape_string($new_admin["custom_notes"])."');";
 		$r = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$cid = mysql_insert_id();
 	}
 	// Add user in database
-        $expires = calculateExpirationDate(date("Y-m-d"),$a2["period"]);
-        if($a2["heb_type"] == "vps"){
+        $expires = calculateExpirationDate(date("Y-m-d"),$product["period"]);
+        if($product["heb_type"] == "vps"){
         	$admtbl_added1 = ",expire,prod_id";
         	$admtbl_added2 = ",'0000-00-00','0'";
-	}else if($a2["heb_type"] == "server"){
+	}else if($product["heb_type"] == "server"){
 		$admtbl_added1 = ",expire,prod_id";
 		$admtbl_added2 = ",'0000-00-00','0'";
-	}else if($a2["heb_type"] == "custom"){
+	}else if($product["heb_type"] == "custom"){
 		$admtbl_added1 = ",expire,prod_id";
 		$admtbl_added2 = ",'0000-00-00','0'";
         }else{
         	$admtbl_added1 = ",expire,prod_id";
-        	$admtbl_added2 = ",'$expires','".$a2["id"]."'";
-        	$admtbl_added3 = ", expire='$expires', prod_id='".$a2["id"]."' ";
+        	$admtbl_added2 = ",'$expires','".$product["id"]."'";
+        	$admtbl_added3 = ", expire='$expires', prod_id='".$product["id"]."' ";
         }
-        if($a["add_service"] != "yes"){
+        if($new_admin["add_service"] != "yes"){
 		if($conf_enforce_adm_encryption == "yes"){
-			$new_encrypted_adm_password = "SHA1('".$a["reqadm_pass"]."')";
+			$new_encrypted_adm_password = "SHA1('".$new_admin["reqadm_pass"]."')";
 		}else{
-			$new_encrypted_adm_password = "'".$a["reqadm_pass"]."'";
+			$new_encrypted_adm_password = "'".$new_admin["reqadm_pass"]."'";
 		}
 		$adm_query = "INSERT INTO $pro_mysql_admin_table
 (adm_login        ,adm_pass              ,
 last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,allow_add_domain,max_domain,restricted_ftp_path,allow_dns_and_mx_change,ftp_login_flag,allow_mailing_list_edit,allow_subdomain_edit,max_email$admtbl_added1) VALUES
 ('$waiting_login',$new_encrypted_adm_password,
-'$last_used_lang','$newadmin_path','$cid','".$a2["bandwidth"]."','".$a2["quota_disk"]."','".$a2["nbr_database"]."','".$a2["allow_add_domain"]."','".$a2["max_domain"]."',
-'".$a2["restricted_ftp_path"]."','".$a2["allow_dns_and_mx_change"]."','".$a2["ftp_login_flag"]."','".$a2["allow_mailing_list_edit"]."','".$a2["allow_subdomain_edit"]."','".$a2["nbr_email"]."'$admtbl_added2);";
+'$last_used_lang','$newadmin_path','$cid','".$product["bandwidth"]."','".$product["quota_disk"]."','".$product["nbr_database"]."','".$product["allow_add_domain"]."','".$product["max_domain"]."',
+'".$product["restricted_ftp_path"]."','".$product["allow_dns_and_mx_change"]."','".$product["ftp_login_flag"]."','".$product["allow_mailing_list_edit"]."','".$product["allow_subdomain_edit"]."','".$product["nbr_email"]."'$admtbl_added2);";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	}else{
-		if($a2["heb_type"] == "shared"){
+		if($product["heb_type"] == "shared"){
 			$adm_query = "UPDATE $pro_mysql_admin_table
-			SET bandwidth_per_month_mb='".$a2["bandwidth"]."', quota='".$a2["quota_disk"]."', nbrdb='".$a2["nbr_database"]."',
-			allow_add_domain='".$a2["allow_add_domain"]."', max_domain='".$a2["max_domain"]."', restricted_ftp_path='".$a2["restricted_ftp_path"]."',
-			allow_dns_and_mx_change='".$a2["allow_dns_and_mx_change"]."', ftp_login_flag='".$a2["ftp_login_flag"]."', allow_mailing_list_edit='".$a2["allow_mailing_list_edit"]."',
-			allow_subdomain_edit='".$a2["allow_subdomain_edit"]."', max_email='".$a2["nbr_email"]."' $admtbl_added3
+			SET bandwidth_per_month_mb='".$product["bandwidth"]."', quota='".$product["quota_disk"]."', nbrdb='".$product["nbr_database"]."',
+			allow_add_domain='".$product["allow_add_domain"]."', max_domain='".$product["max_domain"]."', restricted_ftp_path='".$product["restricted_ftp_path"]."',
+			allow_dns_and_mx_change='".$product["allow_dns_and_mx_change"]."', ftp_login_flag='".$product["ftp_login_flag"]."', allow_mailing_list_edit='".$product["allow_mailing_list_edit"]."',
+			allow_subdomain_edit='".$product["allow_subdomain_edit"]."', max_email='".$product["nbr_email"]."' $admtbl_added3
 			WHERE adm_login='$waiting_login';";
 			mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		}
 	}
 
-        if($a2["heb_type"] == "vps"){
-		$vps_xen_name = addVPSToUser($waiting_login,$a["vps_location"],$a2["id"],$a["vps_os"]);
-		$soap_client = connectToVPSServer($a["vps_location"]);
+        if($product["heb_type"] == "vps"){
+		$vps_xen_name = addVPSToUser($waiting_login,$new_admin["vps_location"],$product["id"],$new_admin["vps_os"]);
+		$soap_client = connectToVPSServer($new_admin["vps_location"]);
 		if($soap_client == false){
 			echo "Could not connect to the VPS server for doing the setup: please contact the administrator!";
 		}else{
 			$image_type = "lvm";
-			if (isVPSNodeLVMEnabled($a["vps_location"]) == "no"){
+			if (isVPSNodeLVMEnabled($new_admin["vps_location"]) == "no"){
                                 $image_type = "vbd";
                         }
 
-			$r = $soap_client->call("setupLVMDisks",array("vpsname" => $vps_xen_name, "hddsize" => $a2["quota_disk"], "swapsize" => $a2["memory_size"], "imagetype" => $image_type),"","","");
-			$qvps = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$a["vps_location"]."' AND vps_xen_name='$vps_xen_name' LIMIT 1;";
+			$r = $soap_client->call("setupLVMDisks",array("vpsname" => $vps_xen_name, "hddsize" => $product["quota_disk"], "swapsize" => $product["memory_size"], "imagetype" => $image_type),"","","");
+			$qvps = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$new_admin["vps_location"]."' AND vps_xen_name='$vps_xen_name' LIMIT 1;";
 			$rvps = mysql_query($qvps)or die("Cannot execute query \"$qvps\" line ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 			$nvps = mysql_num_rows($rvps);
 			if($nvps != 1){
@@ -527,12 +527,12 @@ last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,
 				$avps = mysql_fetch_array($rvps);
 				$r = $soap_client->call("reinstallVPSos",array(
 					"vpsname" => $vps_xen_name,
-					"ostype" => $a["vps_os"],
-					"hddsize" => $a2["quota_disk"],
-					"ramsize" => $a2["memory_size"],
+					"ostype" => $new_admin["vps_os"],
+					"hddsize" => $product["quota_disk"],
+					"ramsize" => $product["memory_size"],
 					"ipaddr" => $avps["ip_addr"],
 					"password" => $vps_root_pass),"","","");
-				$qcountry = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".$a["vps_location"]."';";
+				$qcountry = "SELECT * FROM $pro_mysql_vps_server_table WHERE hostname='".$new_admin["vps_location"]."';";
 				$rcountry = mysql_query($qcountry)or die("Cannot execute query \"$qcountry\" line ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 				$ncountry = mysql_num_rows($rcountry);
 				if($ncountry != 1){
@@ -547,27 +547,27 @@ last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,
 
 		// Read the (customizable) registration message to send
 		$txt_welcome_message = readCustomizedMessage("registration_msg/vps_open",$waiting_login);
-	}else if($a2["heb_type"] == "server"){
+	}else if($product["heb_type"] == "server"){
 		// As there is currently no dedicated server provision system, we just do this:
 		$country = $conf_this_server_country_code;
-		addDedicatedToUser($waiting_login,$a["domain_name"],$a2["id"]);
+		addDedicatedToUser($waiting_login,$new_admin["domain_name"],$product["id"]);
 
 		// Read the (customizable) registration message to send
 		$txt_welcome_message = readCustomizedMessage("registration_msg/dedicated_open",$waiting_login);
-    }else if($a2["heb_type"] == "shared"){ // shared or custom with domain name
+    }else if($product["heb_type"] == "shared"){ // shared or custom with domain name
         $country = $conf_this_server_country_code;
-		addDomainToUser($waiting_login,$a["reqadm_pass"],$a["domain_name"]);
+		addDomainToUser($waiting_login,$new_admin["reqadm_pass"],$new_admin["domain_name"]);
 
 		// Read the (customizable) registration message to send
 		$txt_welcome_message = readCustomizedMessage("registration_msg/shared_open",$waiting_login);
 
-		$q = "UPDATE $pro_mysql_domain_table SET max_email='".$a2["nbr_email"]."',quota='".$a2["quota_disk"]."' WHERE name='".$a["domain_name"]."';";
+		$q = "UPDATE $pro_mysql_domain_table SET max_email='".$product["nbr_email"]."',quota='".$product["quota_disk"]."' WHERE name='".$new_admin["domain_name"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	}else{ // custom heb type
 		$country = $conf_this_server_country_code;
 		// Read the (customizable) registration message to send
-		$txt_welcome_message = readCustomizedMessage("registration_msg/custom_".$a2["custom_heb_type"]."_open",$waiting_login);
-		addCustomProductToUser($waiting_login,$a["domain_name"],$a2["id"]);
+		$txt_welcome_message = readCustomizedMessage("registration_msg/custom_".$product["custom_heb_type"]."_open",$waiting_login);
+		addCustomProductToUser($waiting_login,$new_admin["domain_name"],$product["id"]);
 	}
 
 	// Send a mail to user with how to login and use interface.
@@ -585,7 +585,7 @@ last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,
 	}
 	$dtc_login_info = "URL: http$surl://$conf_administrative_site/dtc/
 Login: $waiting_login
-Password: ".$a["reqadm_pass"];
+Password: ".$new_admin["reqadm_pass"];
 	$msg_2_send = str_replace("%%%DTC_LOGIN_INFO%%%",$dtc_login_info,$msg_2_send);
 
 	// Manage the header of the messages
@@ -594,16 +594,16 @@ Password: ".$a["reqadm_pass"];
 ".$msg_2_send;
 
 	$headers = "From: ".$conf_webmaster_email_addr;
-	mail($a["email"],$txt_userwaiting_account_activated_subject,$msg_2_send,$headers);
+	mail($new_admin["email"],$txt_userwaiting_account_activated_subject,$msg_2_send,$headers);
 
 	// Now add a command to the user so we keep tracks of payments
 	$q = "INSERT INTO $pro_mysql_completedorders_table (id,id_client,domain_name,quantity,date,product_id,payment_id,country_code,last_expiry_date)
-	VALUES ('','$cid','".$a["domain_name"]."','1','".date("Y-m-d")."','".$a["product_id"]."','".$a["paiement_id"]."','$country','".date("Y-d-m")."');";
+	VALUES ('','$cid','".$new_admin["domain_name"]."','1','".date("Y-m-d")."','".$new_admin["product_id"]."','".$new_admin["paiement_id"]."','$country','".date("Y-d-m")."');";
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 
 	if (isset($affiliatename)) {
 		// Step 2) retrieve the kickback from the products table
-		$kickback = $a2["affiliate_kickback"];
+		$kickback = $product["affiliate_kickback"];
 		$orderid = mysql_insert_id();
 		if ($kickback) {
 			// Step 3) if a kickback exists, store it in the affiliate transaction table
