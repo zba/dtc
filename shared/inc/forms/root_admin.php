@@ -41,6 +41,7 @@ function drawEditAdmin($admin){
 	$ssh_login_flag = $info["ssh_login_flag"];
 	$ftp_login_flag = $info["ftp_login_flag"];
 	$pkg_install_flag = $info["pkg_install_flag"];
+	$shared_hosting_security = $info["shared_hosting_security"];
 
 	if($resseller_flag == "yes"){
 		$resflag_yes = " checked='checked' ";
@@ -136,6 +137,32 @@ function drawEditAdmin($admin){
 	$allow_subdomain_edit_selector = "<input type=\"radio\" name=\"allow_subdomain_edit\" value=\"yes\"$allow_subdomain_edit_yes> "._("Yes")."
 <input type=\"radio\" name=\"allow_subdomain_edit\" value=\"no\"$allow_subdomain_edit_no> "._("No");
 
+	// The shared hosting security popup
+	switch($shared_hosting_security){
+	case "mod_php":
+		$shared_hosting_security_mod_php_sel = " selected ";
+		$shared_hosting_security_sbox_copy_sel = "";
+		$shared_hosting_security_sbox_aufs_sel = "";
+		break;
+	case "sbox_copy":
+		$shared_hosting_security_mod_php_sel = "";
+		$shared_hosting_security_sbox_copy_sel = " selected ";
+		$shared_hosting_security_sbox_aufs_sel = "";
+		break;
+	case "sbox_aufs":
+		$shared_hosting_security_mod_php_sel = "";
+		$shared_hosting_security_sbox_copy_sel = "";
+		$shared_hosting_security_sbox_aufs_sel = "selected";
+		break;
+	default:
+		break;
+	}
+	$shared_hosting_security_popup = "<select name=\"shared_hosting_security\">
+	<option value=\"mod_php\"$shared_hosting_security_mod_php_sel>mod_php</option>
+	<option value=\"sbox_copy\"$shared_hosting_security_sbox_copy_sel>sbox_copy</option>
+	<option value=\"sbox_aufs\"$shared_hosting_security_sbox_aufs_sel>sbox_aufs</option>
+	</select>";
+
 	// Generate the user configuration form
 	$user_data = "
 <form name=\"admattrbfrm\" action=\"?\" methode=\"post\">
@@ -169,6 +196,7 @@ function drawEditAdmin($admin){
 	}
 	$prodsid .= "</select>";
 
+
 	$user_data .= dtcFormLineDraw( _("Path:") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"changed_path\" value=\"$adm_path\">",0);
 	$user_data .= dtcFormLineDraw( _("Client ID:") ,"<input class=\"dtcDatagrid_input_color\" type=\"text\" name=\"changed_id_client\" value=\"$adm_id_client\"><a href=\"?rub=crm&id=$adm_id_client\">"._("client")."</a>");
 	$user_data .= dtcFormLineDraw( _("Disk quota (MB):") ,"<input class=\"dtcDatagrid_input_alt_color\" type=\"text\" name=\"adm_quota\" value=\"$adm_quota\">",0);
@@ -186,6 +214,7 @@ function drawEditAdmin($admin){
 	$user_data .= dtcFormLineDraw( _("Allow edition of DNS and MX:") ,$allow_dns_and_mx_change_selector,0);
 	$user_data .= dtcFormLineDraw( _("Allow edition of subdomains:") ,$allow_subdomain_edit_selector);
 	$user_data .= dtcFormLineDraw( _("Allow the use of the package installer:") ,$pkg_install_selector,0);
+	$user_data .= dtcFormLineDraw( _("Shared hosting security:"),$shared_hosting_security_popup);
 	$user_data .= dtcFromOkDraw()."</table></form>";
 
 	// Generate the admin tool configuration module

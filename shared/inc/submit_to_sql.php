@@ -448,8 +448,32 @@ function validateWaitingUser($waiting_login_id){
 	if($n2 != 1)die("I can't find the product in the table line: ".__LINE__." file: ".__FILE__."!");
 	$product = mysql_fetch_array($r2);
 
+
+	// Calculate expiration (of shared hosting?)
+        $expires = calculateExpirationDate(date("Y-m-d"),$product["period"]);
+        switch($product["heb_type"]){
+        case "vps":
+        case "server":
+        case "custom":
+        	$admtbl_added1 = ",expire,prod_id";
+        	$admtbl_added2 = ",'0000-00-00','0'";
+        	break;
+	default:
+		$admtbl_added1 = ",expire,prod_id";
+		$admtbl_added2 = ",'$expires','".$product["id"]."'";
+		$admtbl_added3 = ", expire='$expires', prod_id='".$product["id"]."' ";
+		break;
+	}
+
 	// Add customer's info to production table
+	$shared_hosting_security = $product["shared_hosting_security"];
 	if($new_admin["add_service"] != "yes"){
+		// If the user isn't ordering a domain name yet, then we shall tight to higher security level
+		if($product["heb_type"] != "shared"){
+			$shared_hosting_security = "sbox_copy";
+		}
+
+		// Insert the client file
 		$adm_query = "INSERT INTO $pro_mysql_client_table
 (id,is_company,company_name,vat_num,familyname,christname,addr1,addr2,addr3,
 customfld,
@@ -464,49 +488,35 @@ special_note) VALUES ('','".$new_admin["iscomp"]."',
 '".mysql_real_escape_string($new_admin["custom_notes"])."');";
 		$r = mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$cid = mysql_insert_id();
-	}
-	// Add user in database
-        $expires = calculateExpirationDate(date("Y-m-d"),$product["period"]);
-        if($product["heb_type"] == "vps"){
-        	$admtbl_added1 = ",expire,prod_id";
-        	$admtbl_added2 = ",'0000-00-00','0'";
-	}else if($product["heb_type"] == "server"){
-		$admtbl_added1 = ",expire,prod_id";
-		$admtbl_added2 = ",'0000-00-00','0'";
-	}else if($product["heb_type"] == "custom"){
-		$admtbl_added1 = ",expire,prod_id";
-		$admtbl_added2 = ",'0000-00-00','0'";
-        }else{
-        	$admtbl_added1 = ",expire,prod_id";
-        	$admtbl_added2 = ",'$expires','".$product["id"]."'";
-        	$admtbl_added3 = ", expire='$expires', prod_id='".$product["id"]."' ";
-        }
-        if($new_admin["add_service"] != "yes"){
+
+		// Insert the admin file
 		if($conf_enforce_adm_encryption == "yes"){
 			$new_encrypted_adm_password = "SHA1('".$new_admin["reqadm_pass"]."')";
 		}else{
 			$new_encrypted_adm_password = "'".$new_admin["reqadm_pass"]."'";
 		}
 		$adm_query = "INSERT INTO $pro_mysql_admin_table
-(adm_login        ,adm_pass              ,
+(adm_login        ,adm_pass              ,shared_hosting_security,
 last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,allow_add_domain,max_domain,restricted_ftp_path,allow_dns_and_mx_change,ftp_login_flag,allow_mailing_list_edit,allow_subdomain_edit,max_email$admtbl_added1) VALUES
-('$waiting_login',$new_encrypted_adm_password,
+('$waiting_login',$new_encrypted_adm_password,'$shared_hosting_security',
 '$last_used_lang','$newadmin_path','$cid','".$product["bandwidth"]."','".$product["quota_disk"]."','".$product["nbr_database"]."','".$product["allow_add_domain"]."','".$product["max_domain"]."',
 '".$product["restricted_ftp_path"]."','".$product["allow_dns_and_mx_change"]."','".$product["ftp_login_flag"]."','".$product["allow_mailing_list_edit"]."','".$product["allow_subdomain_edit"]."','".$product["nbr_email"]."'$admtbl_added2);";
 		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	}else{
+		// Update the admin file
 		if($product["heb_type"] == "shared"){
 			$adm_query = "UPDATE $pro_mysql_admin_table
 			SET bandwidth_per_month_mb='".$product["bandwidth"]."', quota='".$product["quota_disk"]."', nbrdb='".$product["nbr_database"]."',
 			allow_add_domain='".$product["allow_add_domain"]."', max_domain='".$product["max_domain"]."', restricted_ftp_path='".$product["restricted_ftp_path"]."',
 			allow_dns_and_mx_change='".$product["allow_dns_and_mx_change"]."', ftp_login_flag='".$product["ftp_login_flag"]."', allow_mailing_list_edit='".$product["allow_mailing_list_edit"]."',
 			allow_subdomain_edit='".$product["allow_subdomain_edit"]."', max_email='".$product["nbr_email"]."' $admtbl_added3
-			WHERE adm_login='$waiting_login';";
+			WHERE adm_login='$waiting_login',shared_hosting_security='$shared_hosting_security';";
 			mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		}
 	}
 
-        if($product["heb_type"] == "vps"){
+	switch($product["heb_type"]){
+	case "vps":
 		$vps_xen_name = addVPSToUser($waiting_login,$new_admin["vps_location"],$product["id"],$new_admin["vps_os"]);
 		$soap_client = connectToVPSServer($new_admin["vps_location"]);
 		if($soap_client == false){
@@ -547,15 +557,17 @@ last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,
 
 		// Read the (customizable) registration message to send
 		$txt_welcome_message = readCustomizedMessage("registration_msg/vps_open",$waiting_login);
-	}else if($product["heb_type"] == "server"){
+		break;
+	case "server":
 		// As there is currently no dedicated server provision system, we just do this:
 		$country = $conf_this_server_country_code;
 		addDedicatedToUser($waiting_login,$new_admin["domain_name"],$product["id"]);
 
 		// Read the (customizable) registration message to send
 		$txt_welcome_message = readCustomizedMessage("registration_msg/dedicated_open",$waiting_login);
-    }else if($product["heb_type"] == "shared"){ // shared or custom with domain name
-        $country = $conf_this_server_country_code;
+		break;
+	case "shared":
+		$country = $conf_this_server_country_code;
 		addDomainToUser($waiting_login,$new_admin["reqadm_pass"],$new_admin["domain_name"]);
 
 		// Read the (customizable) registration message to send
@@ -563,11 +575,15 @@ last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,
 
 		$q = "UPDATE $pro_mysql_domain_table SET max_email='".$product["nbr_email"]."',quota='".$product["quota_disk"]."' WHERE name='".$new_admin["domain_name"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	}else{ // custom heb type
+		break;
+	case "custom":
 		$country = $conf_this_server_country_code;
 		// Read the (customizable) registration message to send
 		$txt_welcome_message = readCustomizedMessage("registration_msg/custom_".$product["custom_heb_type"]."_open",$waiting_login);
 		addCustomProductToUser($waiting_login,$new_admin["domain_name"],$product["id"]);
+		break;
+	default:
+		break;
 	}
 
 	// Send a mail to user with how to login and use interface.

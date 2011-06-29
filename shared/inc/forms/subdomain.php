@@ -192,6 +192,11 @@ function drawAdminTools_Subdomain($admin,$domain){
 				"check" => "list_of_ip",
 				"can_be_empty" => "yes",
 				"legend" => _("Supplementary IP list for round robin: ") ),
+			"shared_hosting_varwww_docroot" => array(
+				"type" => "radio",
+				"legend" => _("Path of the DocumentRoot in the SBOX chroot: "),
+				"values" => array("no","yes"),
+				"display_replace" => array("/html","/var/www") ),
 			"ttl" => array(
 				"type" => "text",
 				"check" => "number",
@@ -252,6 +257,12 @@ function drawAdminTools_Subdomain($admin,$domain){
 				"values" => array("yes","no"),
 				"display_replace" => array(_("Yes"),_("No")),
 				"legend" => _("Sbox cgi-bin protection: ") );
+	}
+	if($admin["info"]["shared_hosting_security"] == "mod_php"){
+		$dsc["cols"]["shared_hosting_security"] = array(
+				"type" => "radio",
+				"legend" => _("Subdomain security model: "),
+				"values" => array("mod_php","sbox_copy") );
 	}
 
 	// Get all SSL IPs asigned to this customer

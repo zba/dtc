@@ -529,15 +529,11 @@ AND $pro_mysql_admin_table.id_client != '0'";
 			$num_rows2++;
 		}
 
-// This is a bad idea to die in this case
-// because it actualy happen if you redirect www ip to something else.
-//		if($num_rows2 < 1){
-//			die("No subdomain for domain $web_name !");
-//		}
 		for($j=0;$j<$num_rows2;$j++){
 			$subdomain = $temp_array_subs[$j];
 //			$subdomain = mysql_fetch_array($result2) or die ("Cannot fetch user");
 			$web_subname = $subdomain["subdomain_name"];
+			$shared_hosting_subdomain_security = $subdomain["shared_hosting_security"];
 			if( $subdomain["customize_vhost"] == ""){
 				$custom_directives = "";
 			}else{
@@ -883,18 +879,37 @@ $vhost_file .= "
 	</Directory>\n";
 						}else{
 							$document_root = "$web_path/$domain_to_get/subdomains/$web_subname/html";
+
 							$vhost_file .= "	DocumentRoot $document_root
 	<Directory $document_root>
 		Allow from all
-	</Directory>
-$vhost_more_conf	php_admin_value safe_mode $safe_mode_value
+	</Directory>\n";
+							if($webadmin["shared_hosting_security"] == 'mod_php' && $shared_hosting_subdomain_security == 'mod_php'){
+								$vhost_file .= "$vhost_more_conf	php_admin_value safe_mode $safe_mode_value
 	php_admin_value sendmail_from phpmailfunction$web_subname@$web_name
 	php_admin_value sendmail_path \"/usr/sbin/sendmail -t -i -f phpmailfunction$web_subname@$domain_to_get\"
 	php_value session.save_path $web_path/$domain_to_get/subdomains/$web_subname/tmp
 	<Location />
 		php_admin_value open_basedir \"$web_path:$conf_php_library_path:$conf_php_additional_library_path:\"
 	</Location>
-	$cgi_directive\n".get_defaultCharsetDirective($subdomain["add_default_charset"]);
+	$cgi_directive\n";
+							}else{
+								$vhost_file .= "	ScriptAlias /cgi-bin /usr/lib/cgi-bin
+	php_admin_flag engine off
+	AddHandler php-cgi-wrapper .php
+	Action php-cgi-wrapper /cgi-bin/sbox
+	AddHandler python-cgi-wrapper .py
+	Action python-cgi-wrapper /cgi-bin/sbox
+	AddHandler ruby-cgi-wrapper .rb
+	Action ruby-cgi-wrapper /cgi-bin/sbox
+	AddHandler ruby-cgi-wrapper .pl
+	Action ruby-cgi-wrapper /cgi-bin/sbox
+	Options +ExecCGI
+	RewriteEngine on
+	RewriteCond %{REQUEST_URI} ^!/cgi-bin.*
+	RewriteRule ^(.*) /cgi-bin/sbox/\$1 [PT]\n";
+							}
+							$vhost_file .= get_defaultCharsetDirective($subdomain["add_default_charset"]);
 						}
 						$vhost_file .= "	ErrorLog $web_path/$web_name/subdomains/$web_subname/logs/error.log
 	LogSQLTransferLogTable $log_tablename\$xfer

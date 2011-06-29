@@ -1326,6 +1326,18 @@ enableApache2Modules () {
 				fi
 			fi
 		fi
+		# Activate mod_actions
+		if [ -f /etc/apache2/mods-available/actions.load ] ; then
+			if [ -d /etc/apache2/mods-enabled ] ; then
+				if ! [ -e /etc/apache2/mods-enabled/actions.load ] ; then
+					if [ -x /usr/sbin/a2enmod ] ; then
+						a2enmod actions || true
+					else
+						ln -s /etc/apache2/mods-available/actions.load /etc/apache2/mods-enabled/actions.load
+					fi
+				fi
+			fi
+		fi
 		# Activate mod_ssl
 		if [ -f /etc/apache2/mods-available/ssl.load ] ; then
 			if [ -d /etc/apache2/mods-enabled ] ; then

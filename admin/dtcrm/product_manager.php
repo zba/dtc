@@ -131,6 +131,15 @@ function productManager(){
 				"display_replace" => array(_("Yes"),_("No")),
 				"default" => "yes"
 				),
+			"shared_hosting_security" => array(
+				"type" => "popup",
+				"legend" => _("Security"),
+				"help" => _("mod_php: considered unsafe as a customer has access to all files hosted as dtc:dtcgrp in /var/www/sites.")."<br>".
+					_("sbox_copy: make a copy of /var/lib/dtc/full_chroot.")."<br>".
+					_("sbox_aufs: uses aufs and autofs so that customer uses a unionfs in his chrooted disk"),
+				"values" => array('mod_php','sbox_copy','sbox_aufs'),
+				"default" => "sbox_copy"
+				),
 			"private" => array(
 				"type" => "checkbox",
 				"legend" => _("Private") ,

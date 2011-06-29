@@ -270,7 +270,8 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 		allow_dns_and_mx_change='".$_REQUEST["allow_dns_and_mx_change"]."',
 		allow_mailing_list_edit='".$_REQUEST["allow_mailing_list_edit"]."',
 		allow_subdomain_edit='".$_REQUEST["allow_subdomain_edit"]."',
-		pkg_install_flag='".$_REQUEST["pkg_install_flag"]."'
+		pkg_install_flag='".$_REQUEST["pkg_install_flag"]."',
+		shared_hosting_security='".$_REQUEST["shared_hosting_security"]."'
 		WHERE adm_login='$adm_login';";
 	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." ".mysql_error());
 
