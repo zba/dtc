@@ -29,6 +29,24 @@ function subdomainCreateDirsCallBack($id){
 	$domain = $doms[0];
 	$newsubdomain_dirpath = $adm_path."/".$domain."/subdomains/".$_REQUEST["subdomain_name"];
 
+	$q = "SELECT * FROM $pro_mysql_subdomain_table WHERE id='$id';";
+	$r = mysql_query($q)or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	$shared_hosting_security = "sbox_copy";
+	if($n != 1){
+		echo "<font color=\"red\">". _("Could not found subdomain in table for folder deletion") ."</font>";
+	}else{
+		$a = mysql_fetch_array($r);
+		if($a["shared_hosting_security"] == "mod_php" && $a["shared_hosting_security"] == "mod_php"){
+			$shared_hosting_security = "mod_php";
+		}
+	}
+
+	if ($conf_unix_type == "bsd") {
+		$CP = "cp -flpRv";
+	}else{
+		$CP = "cp -fulpRv";
+	}
 	if($conf_demo_version == "no"){
 		if(!file_exists("$newsubdomain_dirpath"))
 			mkdir("$newsubdomain_dirpath", 0750);
@@ -38,12 +56,20 @@ function subdomainCreateDirsCallBack($id){
 			mkdir("$newsubdomain_dirpath/cgi-bin", 0750);
 		if(!file_exists("$newsubdomain_dirpath/logs"))
 			mkdir("$newsubdomain_dirpath/logs", 0750);
-		if ($conf_unix_type == "bsd") {
-			exec("cp -flpRv $conf_chroot_path/* $newsubdomain_dirpath");
-		}else{
-			exec("cp -fulpRv $conf_chroot_path/* $newsubdomain_dirpath");
+		switch($shared_hosting_security){
+		case "mod_php":
+			exec("$CP $conf_chroot_path/* $newsubdomain_dirpath");
+			system ("if [ ! -e $newsubdomain_dirpath/html/index.* ]; then cp -rf $conf_generated_file_path/template/* $newsubdomain_dirpath/html; fi");
+			break;
+		case "sbox_copy":
+			exec("$CP /var/lib/dtc/sbox_copy/* $newsubdomain_dirpath");
+			system ("if [ ! -e $newsubdomain_dirpath/html/index.* ]; then cp -rf $conf_generated_file_path/template/* $newsubdomain_dirpath/html; fi");
+			break;
+		// Todo: implement sbox_aufs
+		default:
+			echo "<font color=\"red\">". _("sbox_aufs not implemented yet!") ."</font>";
+			break;
 		}
-		system ("if [ ! -e $newsubdomain_dirpath/html/index.* ]; then cp -rf $conf_generated_file_path/template/* $newsubdomain_dirpath/html; fi");
 		updateUsingCron("gen_vhosts='yes',restart_apache='yes',gen_named='yes',reload_named ='yes',gen_backup='yes',gen_webalizer='yes'");
 	}
 	return;
