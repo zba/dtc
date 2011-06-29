@@ -763,26 +763,27 @@ $vhost_file .= "
 
 					$log_tablename = str_replace("-","A",str_replace(".","_",$web_name)).'$'.str_replace("-","A",str_replace(".","_",$web_subname));
 					$vhost_more_conf = "";
+					$php_more_conf = "";
 					if($subdomain["register_globals"] == "yes"){
-						$vhost_more_conf .= "	php_admin_value register_globals 1\n";
+						$php_more_conf .= "	php_admin_value register_globals 1\n";
 					}
 					if($subdomain["php_memory_limit"] != ""){
-						$vhost_more_conf .= "	php_admin_value memory_limit ".$subdomain["php_memory_limit"]."M\n";
+						$php_more_conf .= "	php_admin_value memory_limit ".$subdomain["php_memory_limit"]."M\n";
 					}
 					if($subdomain["php_max_execution_time"] != ""){
-						$vhost_more_conf .= "	php_admin_value max_execution_time ".$subdomain["php_max_execution_time"]."\n";
+						$php_more_conf .= "	php_admin_value max_execution_time ".$subdomain["php_max_execution_time"]."\n";
 					}
 					if($subdomain["php_session_auto_start"] == "yes"){
-						$vhost_more_conf .= "	php_admin_flag session_autostart ".$subdomain["php_session_auto_start"]."\n";
+						$php_more_conf .= "	php_admin_flag session_autostart ".$subdomain["php_session_auto_start"]."\n";
 					}
 					if($subdomain["php_allow_url_fopen"] == "yes"){
-						$vhost_more_conf .= "	php_admin_flag allow_url_fopen on\n";
+						$php_more_conf .= "	php_admin_flag allow_url_fopen on\n";
 					}
 					if($subdomain["php_post_max_size"] != ""){
-						$vhost_more_conf .= "	php_admin_value post_max_size ".$subdomain["php_post_max_size"]."M\n";
+						$php_more_conf .= "	php_admin_value post_max_size ".$subdomain["php_post_max_size"]."M\n";
 					}
 					if($subdomain["php_upload_max_filesize"] != ""){
-						$vhost_more_conf .= "	php_admin_value upload_max_filesize ".$subdomain["php_upload_max_filesize"]."M\n";
+						$php_more_conf .= "	php_admin_value upload_max_filesize ".$subdomain["php_upload_max_filesize"]."M\n";
 					}
 					
 					if($subdomain["use_shared_ssl"] == "yes" && $conf_use_shared_ssl == "yes"){
@@ -885,7 +886,7 @@ $vhost_file .= "
 		Allow from all
 	</Directory>\n";
 							if($webadmin["shared_hosting_security"] == 'mod_php' && $shared_hosting_subdomain_security == 'mod_php'){
-								$vhost_file .= "$vhost_more_conf	php_admin_value safe_mode $safe_mode_value
+								$vhost_file .= $vhost_more_conf.$php_more_conf."	php_admin_value safe_mode $safe_mode_value
 	php_admin_value sendmail_from phpmailfunction$web_subname@$web_name
 	php_admin_value sendmail_path \"/usr/sbin/sendmail -t -i -f phpmailfunction$web_subname@$domain_to_get\"
 	php_value session.save_path $web_path/$domain_to_get/subdomains/$web_subname/tmp
@@ -894,7 +895,7 @@ $vhost_file .= "
 	</Location>
 	$cgi_directive\n";
 							}else{
-								$vhost_file .= "	ScriptAlias /cgi-bin /usr/lib/cgi-bin
+								$vhost_file .= "$vhost_more_conf	ScriptAlias /cgi-bin /usr/lib/cgi-bin
 	php_admin_flag engine off
 	AddHandler php-cgi-wrapper .php
 	Action php-cgi-wrapper /cgi-bin/sbox
