@@ -1350,6 +1350,19 @@ enableApache2Modules () {
 				fi
 			fi
 		fi
+		# Desactivate mod_php5
+		if [ -f /etc/apache2/mods-available/php5.load ] ; then
+			if [ -d /etc/apache2/mods-enabled ] ; then
+				if [ -e /etc/apache2/mods-enabled/php5.load ] ; then
+					if [ -x /usr/sbin/a2enmod ] ; then
+						a2dismod php5 || true
+					else
+						rm -f /etc/apache2/mods-enabled/php5.load
+						rm -f /etc/apache2/mods-enabled/php5.conf
+					fi
+				fi
+			fi
+		fi
 	fi
 }
 

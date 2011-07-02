@@ -21,6 +21,7 @@ done
 PHP_PKGS="php5-cgi php5-mysql php5-curl php5-gd php5-imap php5-mcrypt php5-odbc php5-pgsql php5-sqlite php5-xmlrpc php5-xsl php-compat php-html-common php-apc php-config php-date php-fpdf php-http-request php5-imagick php-mail-mimedecode php-mail php-net-ftp php-net-ipv4 php-net-socket php-net-url php-openid php-xml-serializer php-xml-parser php-xml-util"
 PERL_PKGS="perl"
 PYTHON_PKGS="python"
+RUBY_PKGS="ruby libsinatra-ruby"
 UTILS="vim joe screen bash openssh-client"
 
 ############# get arch #############

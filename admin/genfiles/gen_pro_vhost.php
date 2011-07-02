@@ -209,7 +209,7 @@ function pro_vhost_generate(){
 # edit /etc/dtc/logrotate.template instead!
 ";
 
-$vhost_file .= "# WARNING ! This file is automatically edited by the dtc cron
+$vhost_file_start = "# WARNING ! This file is automatically edited by the dtc cron
 # daemon: do not edit. All manual changes to hosts that are configured within
 # the dtc panel will be removed with the next cron job. It's the same for all
 # files in this folder exept the ssl, the 404 and the template folder.
@@ -222,6 +222,11 @@ $vhost_file .= "# WARNING ! This file is automatically edited by the dtc cron
 # in your httpd.conf or apache.conf See your distribution manual to know where
 # to find this file (somewhere in /etc/httpd or /etc/apache2 or even in
 # /usr/local/etc/apache/httpd.conf ...).
+
+# Loading the php5 module, as we had to disable the default config file which
+# has in /etc/apache2/mods-enabled/php5.conf a SetHandler directive that is
+# conflicting with the one we're using with SBOX
+LoadModule php5_module /usr/lib/apache2/modules/libphp5.so
 
 # Disabling TRACE (for security reasons)
 RewriteEngine on
@@ -939,6 +944,7 @@ $vhost_file .= "
 	if( $filep == NULL){
 		die("Cannot open $conf_generated_file_path/$conf_apache_vhost_path file for writting");
 	}
+	fwrite($filep,$vhost_file_start);
 	fwrite($filep,$vhost_file_listen);
 	fwrite($filep,$vhost_file);
 	fclose($filep);
