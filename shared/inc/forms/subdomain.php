@@ -22,6 +22,7 @@ function subdomainCreateDirsCallBack($id){
 	global $conf_demo_version;
 	global $conf_generated_file_path;
 	global $conf_unix_type;
+	global $pro_mysql_subdomain_table;
 
 	setZoneToGenerate($id);
 	$adm_path = getAdminPath($adm_login);
