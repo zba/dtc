@@ -1,0 +1,36 @@
+#!/bin/sh
+
+set -e
+
+echo "Unmounting..."
+# List all currently mounted aufs mounts
+CNT=0
+LINES=""
+for i in `cat /etc/mtab | cut -d" " -f3` ; do
+	CNT=$(( ${CNT} + 1 ))
+	if [ "${i}" = "aufs" ] ; then
+		LINES=${LINES}"${CNT} "
+	fi
+	# echo "$CNT: $i"
+done
+
+# Umount them all
+for i in ${LINES} ; do
+	LINE=`cat /etc/mtab | head -n ${i} | tail -n 1`
+	TARGET=`echo ${LINE} | cut -d" " -f2`
+	echo "umount ${TARGET}"
+	umount ${TARGET}
+done
+
+echo "Remounting..."
+# Mount all what's used by DTC
+CNT=0
+for i in `cat /var/lib/dtc/etc/aufs_list` ; do
+	CNT=$(( ${CNT} + 1 ))
+	#echo "${CNT}:\"${i}\""
+	SUBDOMAIN=`basename ${i}`
+	TMP=`dirname ${i}`
+	TARGET=`dirname ${TMP}`/subdomains.aufs/${SUBDOMAIN}
+	echo "mount -t aufs -o br:${i}=rw:/var/lib/dtc/sbox_copy=ro none ${TARGET}"
+	mount -t aufs -o br:${i}=rw:/var/lib/dtc/sbox_copy=ro none ${TARGET}
+done
