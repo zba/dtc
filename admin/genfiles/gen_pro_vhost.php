@@ -838,8 +838,9 @@ $vhost_file .= "
 					if($domain_sbox_protect == "no" && $subdomain["sbox_protect"] == "no"){
 						$cgi_directive = "ScriptAlias /cgi-bin $web_path/$domain_to_get/subdomains/$web_subname/cgi-bin";
 					}else{
-						$cgi_directive = "RewriteEngine on
-	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]";
+						$cgi_directive = "";
+//						$cgi_directive = "RewriteEngine on
+//	RewriteRule ^/cgi-bin/(.*) /cgi-bin/sbox/$1 [PT]";
 					}
 					$gen_iterations = sizeof($iteration_table);
 					for ($k = 0; $k < $gen_iterations; $k++){

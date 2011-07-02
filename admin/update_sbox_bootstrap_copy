@@ -65,18 +65,19 @@ if [ -f /etc/debian_version ] ; then
 	chroot /var/lib/dtc/sbox_copy apt-get install -y locales-all ${PHP_PKGS}
 
 	# Some stuff on the target php.ini:
-	if [ -f ${sbox_copy_disk_path}/etc/php5/cgi-bin/php.ini ] ; then
+	PHP_INI_PATH=${sbox_copy_disk_path}/etc/php5/cgi/php.ini
+	if [ -f ${PHP_INI_PATH} ] ; then
 		# doc_root=/var/www
-		if grep "^doc_root =$" ${sbox_copy_disk_path}/etc/php5/cgi/php.ini ; then
-			sed -i "s/doc_root =/doc_root = \/var\/www/" ${sbox_copy_disk_path}/etc/php5/cgi-bin/php.ini
+		if grep "^doc_root =$" ${PHP_INI_PATH} ; then
+			sed -i "s/doc_root =/doc_root = \/var\/www/" ${PHP_INI_PATH}
 		fi
 		# cgi.force_redirect=0
-		if grep "^; cgi.force_redirect = 1$" ${sbox_copy_disk_path}/etc/php5/cgi/php.ini ; then
-			sed -i "s/; cgi.force_redirect = 1/cgi.force_redirect = 0" ${sbox_copy_disk_path}/etc/php5/cgi-bin/php.ini
+		if grep "^; cgi.force_redirect = 1$" ${PHP_INI_PATH} ; then
+			sed -i "s/; cgi.force_redirect = 1/cgi.force_redirect = 0" ${PHP_INI_PATH}
 		fi
 		# cgi.fix_pathinfo=1
-		if grep "^; cgi.fix_pathinfo=0$" ${sbox_copy_disk_path}/etc/php5/cgi/php.ini ; then
-			sed -i "s/; cgi.fix_pathinfo=0/cgi.fix_pathinfo=1/" ${sbox_copy_disk_path}/etc/php5/cgi-bin/php.ini
+		if grep "^; cgi.fix_pathinfo=0$" ${PHP_INI_PATH} ; then
+			sed -i "s/; cgi.fix_pathinfo=0/cgi.fix_pathinfo=1/" ${PHP_INI_PATH}
 		fi
 	fi
 	chown -R dtc:dtcgrp ${sbox_copy_disk_path}
