@@ -57,7 +57,7 @@ esac
 # If we are on a Debian system, let's bootstrap the current stable
 if [ -f /etc/debian_version ] ; then
 	if [ $SU = "no" ] ; then
-		cp /etc/apt/sources.list ${sbox_copy_disk_path}
+		cp /etc/apt/sources.list ${sbox_copy_disk_path}/etc/apt
 		chroot ${sbox_copy_disk_path} apt-get update
 		chroot ${sbox_copy_disk_path} apt-get dist-upgrade -y
 	fi
@@ -69,7 +69,7 @@ if [ -f /etc/debian_version ] ; then
 	if [ -f ${PHP_INI_PATH} ] ; then
 		# doc_root=/var/www
 		if grep "^doc_root =$" ${PHP_INI_PATH} ; then
-			sed -i "s/doc_root =/doc_root = \/var\/www/" ${PHP_INI_PATH}
+			sed -i "s/doc_root =/doc_root = \/html/" ${PHP_INI_PATH}
 		fi
 		# cgi.force_redirect=0
 		if grep "^; cgi.force_redirect = 1$" ${PHP_INI_PATH} ; then

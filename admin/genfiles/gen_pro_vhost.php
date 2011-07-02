@@ -730,6 +730,10 @@ $vhost_file .= "
 						vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/html");
 						vhost_chk_dir_sh("$web_path/$web_name/subdomains/$web_subname/cgi-bin");
 					}
+					if($webadmin["shared_hosting_security"] == 'sbox_aufs'){
+						vhost_chk_dir_sh("$web_path/$web_name/subdomains.aufs");
+						vhost_chk_dir_sh("$web_path/$web_name/subdomains.aufs/".$web_subname);
+					}
 					$iteration_table = array();
 					$iteration_table[] = "normal";
 					$ssl_cert_folder_path = "$web_path/$domain_to_get/subdomains/$web_subname/ssl";
