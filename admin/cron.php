@@ -296,8 +296,8 @@ function restartApache () {
 	// Now this echo is in the script itself!
 	system("chmod +x \"$conf_generated_file_path/vhost_check_dir\"");
 	system("chown $conf_dtc_system_username \"$conf_generated_file_path/vhost_check_dir\"");
-	system("$dtcshared_path/../admin/remount_aufs");
 	system("$conf_generated_file_path/vhost_check_dir");
+	system("$dtcshared_path/../admin/remount_aufs");
 	echo "Checking SSL certificates...";
 	system("chown $conf_dtc_system_username \"$conf_generated_file_path/vhost_check_ssl_cert\"");
 	$return_string = exec("$conf_generated_file_path/vhost_check_ssl_cert",$output,$return_val);
