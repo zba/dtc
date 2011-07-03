@@ -289,7 +289,7 @@ function drawAdminTools_Subdomain($admin,$domain){
 		$dsc["cols"]["shared_hosting_security"] = array(
 				"type" => "radio",
 				"legend" => _("Subdomain security model: "),
-				"values" => array("mod_php","sbox_copy") );
+				"values" => array("mod_php","sbox_copy","sbox_aufs") );
 	}
 
 	// Get all SSL IPs asigned to this customer
