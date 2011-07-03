@@ -922,9 +922,7 @@ $vhost_file .= "
 	Action ruby-cgi-wrapper /cgi-bin/sbox
 	AddHandler ruby-cgi-wrapper .pl
 	Action ruby-cgi-wrapper /cgi-bin/sbox
-	Options +ExecCGI
-	RewriteEngine on
-	RewriteRule ^(.*) /cgi-bin/sbox/\$1 [PT]\n";
+	Options +ExecCGI\n";
 							}
 							$vhost_file .= get_defaultCharsetDirective($subdomain["add_default_charset"]);
 						}
