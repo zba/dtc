@@ -1363,6 +1363,18 @@ enableApache2Modules () {
 				fi
 			fi
 		fi
+		# Remove the default vhost shipped by default in Apache
+		if [ -e /etc/apache2/sites-available/default ] ; then
+			if [ -d /etc/apache2/sites-enabled ] ; then
+				if [ -e /etc/apache2/sites-enabled/000-default ] ; then
+					if [ -x /usr/sbin/a2dissite ] ; then
+						a2dissite default || true
+					else
+						rm -f /etc/apache2/sites-enabled/000-default
+					fi
+				fi
+			fi
+		fi
 	fi
 }
 
