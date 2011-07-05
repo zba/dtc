@@ -38,6 +38,24 @@ $form_start = "
 <input type=\"hidden\" name=\"action\" value=\"dtcrm_add_domain\">
 ";
 
+	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_one_domain" && !isset($_REQUEST["confirm_delete"])){
+		if(!isHostnameOrIP($_REQUEST["to_delete_domain_name"])){
+			return "<br><br><font color=\"red\">"._("Not a valid domain name")."</font>";
+		}
+		checkLoginPassAndDomain($adm_login,$adm_pass,$_REQUEST["to_delete_domain_name"]);
+		$out .= "<br><h3>"._("Delete a domain name:") ."</h3>";
+		if( !isset($_REQUEST["confirm_delete"]) || $_REQUEST["confirm_delete"] != "yes"){
+			$out .= _("You are about to delete the following domain name: ")."<b>".$_REQUEST["to_delete_domain_name"]."</b><br>";
+			$out .= _("This action will delete all files, mailboxes, ftp account, etc. of this domain.")."<br>".
+			_("Please confirm.")."<br><br>";
+			$out .= $form_start."<input type=\"hidden\" name=\"to_delete_domain_name\" value=\"".$_REQUEST["to_delete_domain_name"]."\">
+			<input type=\"hidden\" name=\"confirm_delete\" value=\"yes\">
+			<input type=\"hidden\" name=\"action\" value=\"delete_one_domain\">"
+			.submitButtonStart(). _("Confirm deletion") .submitButtonEnd()."</form>";
+			return $out;
+		}
+	}
+
 	// User is trying to add a new service, let's complete the form!
 	if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_new_service"){
 		if(!isRandomNum($_REQUEST["product_id"])){
@@ -87,6 +105,22 @@ $form_start = "
 	if(!isset($_REQUEST["add_domain_type"]) || ($_REQUEST["add_domain_type"] != "domregandhosting" &&
 		$_REQUEST["add_domain_type"] != "domreg" &&
 		$_REQUEST["add_domain_type"] != "hosting")){
+
+		$q = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
+		$r = mysql_query($q);
+		$n = mysql_num_rows($r);
+		if($n > 0){
+			$out .= "<br><h3>". _("Delete a domain name:") ."</h3>
+			$form_start<table border=\"0\"><tr><td><input type=\"hidden\" name=\"action\" value=\"delete_one_domain\"><select name=\"to_delete_domain_name\">";
+			for($i=0;$i<$n;$i++){
+				$a = mysql_fetch_array($r);
+				$name = $a["name"];
+				$out .= "<option value=\"$name\">$name</option>";
+			}
+			$out .= "</select></td><td>".submitButtonStart(). _("Ok") .submitButtonEnd();
+			$out .= "</td></tr></table></form>";
+		}
+
 		$out .= "<br><h3>". _("What do you want to add:") ."</h3>
 $form_start";
 		if($conf_use_registrar_api == "yes"){

@@ -81,4 +81,15 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "registry_renew_domain")
 	}
 }
 
+if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "delete_one_domain" && isset($_REQUEST["confirm_delete"]) && $_REQUEST["confirm_delete"] == "yes"){
+	if(!isHostnameOrIP($_REQUEST["to_delete_domain_name"])){
+		die("Not a domain name");
+	}
+	checkLoginPassAndDomain($adm_login,$adm_pass,$_REQUEST["to_delete_domain_name"]);
+	deleteUserDomain($adm_login,$adm_pass,$_REQUEST["to_delete_domain_name"],true);
+	$adm_query = "UPDATE $pro_mysql_cronjob_table SET qmail_newu='yes',restart_qmail='yes',reload_named='yes',restart_apache='yes',gen_vhosts='yes',gen_named='yes',gen_qmail='yes',gen_webalizer='yes',gen_backup='yes',gen_ssh='yes' WHERE 1;";
+	mysql_query($adm_query);
+	triggerDomainListUpdate();
+}
+
 ?>
