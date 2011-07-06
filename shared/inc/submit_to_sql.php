@@ -509,8 +509,8 @@ last_used_lang   ,path            ,id_client,bandwidth_per_month_mb,quota,nbrdb,
 			SET bandwidth_per_month_mb='".$product["bandwidth"]."', quota='".$product["quota_disk"]."', nbrdb='".$product["nbr_database"]."',
 			allow_add_domain='".$product["allow_add_domain"]."', max_domain='".$product["max_domain"]."', restricted_ftp_path='".$product["restricted_ftp_path"]."',
 			allow_dns_and_mx_change='".$product["allow_dns_and_mx_change"]."', ftp_login_flag='".$product["ftp_login_flag"]."', allow_mailing_list_edit='".$product["allow_mailing_list_edit"]."',
-			allow_subdomain_edit='".$product["allow_subdomain_edit"]."', max_email='".$product["nbr_email"]."' $admtbl_added3
-			WHERE adm_login='$waiting_login',shared_hosting_security='$shared_hosting_security';";
+			allow_subdomain_edit='".$product["allow_subdomain_edit"]."', max_email='".$product["nbr_email"]."',shared_hosting_security='$shared_hosting_security' $admtbl_added3
+			WHERE adm_login='$waiting_login';";
 			mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		}
 	}
