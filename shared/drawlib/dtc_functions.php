@@ -627,6 +627,7 @@ function isDTCPassword($pass){
 // Take care, check with FALSE === check_password($pass) as this function can return zero
 // if it matches the first pass of the top_bad_passwords.txt database.
 function check_password($pass){
+	global $dtcshared_path;
 	$bad_pass = file("$dtcshared_path/top_bad_passwords.txt");
 	$n = sizeof($bad_pass);
 	for($i=0;$i<$n;$i++){  
