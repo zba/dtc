@@ -243,7 +243,7 @@ DUnkown processor
 			$vat = $pay["paiement_total"] - $without_vat;
 			$out .= "L".$acct_vat_on_sales."\n";
 			$out .= "S".$acct_vat_on_sales."\n";
-			$out .= '$-'.$vat."\n";
+			$out .= '$'.$vat."\n";
 			$wrote_cat = "yes";
 			break;
 		// TODO: write code for VAT when invoicing country isn't in EEC!
