@@ -171,10 +171,10 @@ DVAT on Sales
 			}elseif( isset($cc_europe[ $client_country ])){
 				if( $client["is_company"] == "yes" && isset($client["vat_num"]) && $client["vat_num"] != ""){
 					$sales_account = $acct_with_vat_in_eec;
-					$case = "vat-in-eec";
+					$case = "no-vat-eec";
 				}else{
 					$sales_account = $acct_without_vat_in_eec;
-					$case = "no-vat-eec";
+					$case = "vat-in-eec";
 				}
 			}else{
 				$sales_account = $acct_outside_eec;
@@ -243,11 +243,12 @@ DUnkown processor
 			$vat = $pay["paiement_total"] - $without_vat;
 			$out .= "L".$acct_vat_on_sales."\n";
 			$out .= "S".$acct_vat_on_sales."\n";
-			$out .= '$'.$vat."\n";
+			$out .= '$-'.$vat."\n";
 			$wrote_cat = "yes";
 			break;
 		// TODO: write code for VAT when invoicing country isn't in EEC!
 		default:
+			$without_vat = $pay["paiement_total"];
 			break;
 		}
 
@@ -264,7 +265,7 @@ DUnkown processor
 			$out .= "L".$sales_account."\n";
 		}
 		$out .= "S".$sales_account."\n";
-		$out .= '$'.$pay["paiement_total"]."\n";
+		$out .= '$'.$without_vat."\n";
 
 /*		// Memo
 		$out .= "M".$memo."\n";
