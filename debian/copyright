@@ -1,54 +1,7 @@
-This package was debianized by Thomas Goirand <thomas@goirand.fr> on
-Sat,  9 Apr 2005 21:54:10 +0200.
-
-Original source may be found at:
-git clone http://git.gplhost.com/dtc.git
-
-Upstream Authors:
-
-	Thomas Goirand <thomas@goirand.fr>
-	Damien Mascord <tusker@tusker.org>
-
-	Plus minor contributions and translators from arround the world
-	as follow (hoping nobody has been forgotten):
-
-	  * Cristian Livadaru <cristian@livadaru.net>: Cyrus support
-	  * Luca Franceschini <lupin3rd@gmx.it>: MLMMJ support
-	  * Brian Freemans <admin@udns.us>: Protected apache directories.
-	  * Dwayne Meertins <Meertins@indivision.nl> Many HTML corrections
-            and Duch translation
-	  * George Vieira <projects@djtremors.com>: mailgroup alias
-
-	Graphics in shared/gfx/skin/bwoup by Thomas Morgan, job sponsored by
-	GPLHost and it's branche companies for a quite confortable price, and
-	then released in GPL. See http://www.bwoup.com to get in touch with
-	Thomas Morgan.
-
-	Many thanks to all the translators :
-	- Erwan Lerale <erwan@thiscow.fr> (corrected my *bad* French typos)
-	- Jelle Kalf (Dutch) <JKalf@uno.nl> and
-	  cobaco (aka Bart Cornelis) <cobaco@skolelinux.no> (Duch)
-	- Yuri Kozlov <kozlov.y@gmail.com> (Russian / Русский)
-	- Feher Sandor <sfeher@bluesystem.hu> (Hungarian / Magyar)
-	- Jose Toscano <josetg81wireless@yahoo.es> and
-	  Jorge Mendez <solutions@todoimporta.com> and
-	  Patricio Lopez <lankaster.lopez@gmail.com> and
-	  Fernando M. Kiernan <fkiernan@id.net.ar> (Spanish: Español)
-	- Sebastian Pachla <seeb@seeb.net.pl> (Polish / Polnisch)
-	- Andrea Polte <andreapolte@gmx.de> and
-	  Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net> (German / Deutsch)
-	- Esko Arajärvi <edu@iki.fi> (Finish / Viimeistely)
-	- Luca Franceschini <info@atw.it> and
-          Francesco Rana <francesco.rana@sentia.it> (Italian / Italiano)
-	- My lovely wife Cao Wei <caowei@gplhost.com> (Simplified chinese / 中文简体).
-	- Bogdan Ignjatovic <iboki@yahoo.com> (Serbian / Српски)
-	- Rodrigo Moglia <rmoglia@gmail.com> (Brasilian Portuguese / Português do Brasil)
-	- Frederic Boije <frederic.boije@gmail.com> (Swedish / Svenska)
-
-	A big up to all my sponsors so far in Debian: Roberto C. Sanchez,
-	Daniel Baumann, and many others. Thanks to Myon, Enrico, Steffen and
-	Mez, for taking the time to review and process my Debian application.
-	Without all the above persons, DTC wouldn't be in Debian and Ubuntu.
+Format: DEP5
+Upstream-Name: dtc
+Upstream-Contact: dtcdev@gplhost.sg
+Source: git clone http://git.gplhost.com/dtc.git
 
 Files: admin/sa-learn
 Copyright: (C) 2004, Alexandre Jousset
@@ -80,19 +33,6 @@ License: LGPL-2
 Files: shared/cyradm.php
 Copyright: (C) 2000 Gernot Stocker <muecketb@sbox.tu-graz.ac.at>
 License: LGPL-2
-
-Files: bin/sources/osx/Crypt/*
-Copyright: (C) 2001 The PHP Group Manon Goo <manon@passionet.de>
-	(C) 2001 Chuck Hagenbuch <chuck@horde.org>
-License: PHP 2.02
-
-	This source file is subject to version 2.02 of the PHP license,
-	that is bundled with this package in the file LICENSE, and is
-	available at through the world-wide-web at
-	http://www.php.net/license/2_02.txt.
-	If you did not receive a copy of the PHP license and are unable to
-	obtain it through the world-wide-web, please send a note to
-	license@php.net so we can mail you a copy immediately.
 
 Files: shared/gfx/skin/bwoup/*
 Copyright: (C) 2003-2008, GPLHost LLC <info@gplhost.com>
@@ -132,6 +72,32 @@ Files: *
 Copyright: (C) 2001-2008, Thomas Goirand <thomas@goirand.fr>
 	(C) 2001-2008, Damien Mascord <tusker@tusker.org>
 	(C) 2003-2008, GPLHost LLC <info@gplhost.com>
+	Plus minor contribution from around the world as follow:
+	  * Cristian Livadaru <cristian@livadaru.net>: Cyrus support
+	  * Luca Franceschini <lupin3rd@gmx.it>: MLMMJ support
+	  * Brian Freemans <admin@udns.us>: Protected apache directories.
+	  * Dwayne Meertins <Meertins@indivision.nl> Many HTML corrections
+	  * George Vieira <projects@djtremors.com>: mailgroup alias
+	With translations by:
+	- Erwan Lerale <erwan@thiscow.fr> (corrected my *bad* French typos)
+	- Jelle Kalf (Dutch) <JKalf@uno.nl> and
+	  cobaco (aka Bart Cornelis) <cobaco@skolelinux.no> (Duch)
+	- Yuri Kozlov <kozlov.y@gmail.com> (Russian / Русский)
+	- Feher Sandor <sfeher@bluesystem.hu> (Hungarian / Magyar)
+	- Jose Toscano <josetg81wireless@yahoo.es> and
+	  Jorge Mendez <solutions@todoimporta.com> and
+	  Patricio Lopez <lankaster.lopez@gmail.com> and
+	  Fernando M. Kiernan <fkiernan@id.net.ar> (Spanish: Español)
+	- Sebastian Pachla <seeb@seeb.net.pl> (Polish / Polnisch)
+	- Andrea Polte <andreapolte@gmx.de> and
+	  Jan-Claas Dirks (jcdIT.net) <Dirks@jcdIT.net> (German / Deutsch)
+	- Esko Arajärvi <edu@iki.fi> (Finish / Viimeistely)
+	- Luca Franceschini <info@atw.it> and
+          Francesco Rana <francesco.rana@sentia.it> (Italian / Italiano)
+	- My lovely wife Cao Wei <caowei@gplhost.com> (Simplified chinese / 中文简体).
+	- Bogdan Ignjatovic <iboki@yahoo.com> (Serbian / Српски)
+	- Rodrigo Moglia <rmoglia@gmail.com> (Brasilian Portuguese / Português do Brasil)
+	- Frederic Boije <frederic.boije@gmail.com> (Swedish / Svenska)
 License: LGPL-2
 
 License: MIT
