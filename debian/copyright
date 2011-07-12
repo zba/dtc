@@ -15,7 +15,7 @@ License: GPL-2
 
 Files: client/xanjaxXHR.js admin/xanjaxXHR.js shared/gfx/xanjaxXHR.js
 Copyright: (c) 2007,2008, David Chapman, openPC Labs.
-License: AGPL-3
+License: AGPL-3, LGPL-2
 
 Files: shared/gfx/skin/grayboard/css/slide.css
 Copyright: (c) 2009, Jeremie Tisseau http://web-kreation.com/
