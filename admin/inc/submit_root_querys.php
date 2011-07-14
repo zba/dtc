@@ -253,31 +253,41 @@ if(isset($_REQUEST["deluserdomain"]) && $_REQUEST["deluserdomain"] != ""){
 // Management of new users (eg virtual admins //
 ////////////////////////////////////////////////
 if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
-	if($conf_enforce_adm_encryption == "yes"){
-		$new_encrypt_dtcadm_pass = "SHA1('".$_REQUEST["changed_pass"]."')";
+	$q = "SELECT adm_pass FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
+	$r = mysql_query($q))or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		echo "Cannot find adm_login";
 	}else{
-		$new_encrypt_dtcadm_pass = "'".$_REQUEST["changed_pass"]."'";
-	}
-	$adm_query = "UPDATE $pro_mysql_admin_table SET id_client='".$_REQUEST["changed_id_client"]."',
-		adm_pass='".$_REQUEST["changed_pass"]."',path='".$_REQUEST["changed_path"]."',
-		quota='".$_REQUEST["adm_quota"]."', bandwidth_per_month_mb='".$_REQUEST["bandwidth_per_month"]."',
-		expire='".$_REQUEST["expire"]."',allow_add_domain='".$_REQUEST["allow_add_domain"]."',max_domain='".$_REQUEST["max_domain"]."',
-		nbrdb='".$_REQUEST["nbrdb"]."',prod_id='".$_REQUEST["heb_prod_id"]."',
-		resseller_flag='".$_REQUEST["resseller_flag"]."',
-		ssh_login_flag='".$_REQUEST["ssh_login_flag"]."',
-		ftp_login_flag='".$_REQUEST["ftp_login_flag"]."',
-		restricted_ftp_path='".$_REQUEST["restricted_ftp_path"]."',
-		allow_dns_and_mx_change='".$_REQUEST["allow_dns_and_mx_change"]."',
-		allow_mailing_list_edit='".$_REQUEST["allow_mailing_list_edit"]."',
-		allow_subdomain_edit='".$_REQUEST["allow_subdomain_edit"]."',
-		pkg_install_flag='".$_REQUEST["pkg_install_flag"]."',
-		shared_hosting_security='".$_REQUEST["shared_hosting_security"]."'
-		WHERE adm_login='$adm_login';";
-	mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." ".mysql_error());
+		$ad = mysql_fetch_array($r);
+		$old_pass = $ad["adm_pass"];
+		if($conf_enforce_adm_encryption == "yes" && $old_pass != $_REQUEST["changed_pass"]){
+			$new_encrypt_dtcadm_pass = "SHA1('".$_REQUEST["changed_pass"]."')";
+		}else{
+			$new_encrypt_dtcadm_pass = "'".$_REQUEST["changed_pass"]."'";
+		}
+		$adm_query = "UPDATE $pro_mysql_admin_table SET id_client='".$_REQUEST["changed_id_client"]."',
+			adm_pass='".$_REQUEST["changed_pass"]."',path='".$_REQUEST["changed_path"]."',
+			quota='".$_REQUEST["adm_quota"]."', bandwidth_per_month_mb='".$_REQUEST["bandwidth_per_month"]."',
+			expire='".$_REQUEST["expire"]."',allow_add_domain='".$_REQUEST["allow_add_domain"]."',max_domain='".$_REQUEST["max_domain"]."',
+			nbrdb='".$_REQUEST["nbrdb"]."',prod_id='".$_REQUEST["heb_prod_id"]."',
+			resseller_flag='".$_REQUEST["resseller_flag"]."',
+			ssh_login_flag='".$_REQUEST["ssh_login_flag"]."',
+			ftp_login_flag='".$_REQUEST["ftp_login_flag"]."',
+			restricted_ftp_path='".$_REQUEST["restricted_ftp_path"]."',
+			allow_dns_and_mx_change='".$_REQUEST["allow_dns_and_mx_change"]."',
+			allow_mailing_list_edit='".$_REQUEST["allow_mailing_list_edit"]."',
+			allow_subdomain_edit='".$_REQUEST["allow_subdomain_edit"]."',
+			pkg_install_flag='".$_REQUEST["pkg_install_flag"]."',
+			shared_hosting_security='".$_REQUEST["shared_hosting_security"]."'
+			WHERE adm_login='$adm_login';";
+		mysql_query($adm_query)or die("Cannot execute query \"$adm_query\" line ".__LINE__." file ".__FILE__." ".mysql_error());
 
-	// Tell the cron job to activate the changes (because the account might now be (not) expiring)
-	$adm_query = "UPDATE $pro_mysql_cronjob_table SET gen_vhosts='yes',restart_apache='yes' WHERE 1;";
-	mysql_query($adm_query);
+		// Tell the cron job to activate the changes (because the account might now be (not) expiring)
+		$adm_query = "UPDATE $pro_mysql_cronjob_table SET gen_vhosts='yes',restart_apache='yes' WHERE 1;";
+		mysql_query($adm_query);
+	}
+
 }
 
 // $newadmin_login $newadmin_pass $newadmin_path $newadmin_maxemail $newadmin_maxftp $newadmin_quota
