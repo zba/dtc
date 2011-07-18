@@ -46,7 +46,7 @@ function select_login_out_of_email(){
 		if($i != 0){
 			$recover_txt .= " - ";
 		}
-		$recover_txt .= "<a href=\"?subaction=do_recovery_type_pass&adm_lost_login=$login\">$login</a>";
+		$recover_txt .= "<a href=\"?subaction=do_send_recovery_token&adm_lost_login=$login\">$login</a>";
 	}
 	return $recover_txt;
 }
