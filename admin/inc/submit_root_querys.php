@@ -254,7 +254,7 @@ if(isset($_REQUEST["deluserdomain"]) && $_REQUEST["deluserdomain"] != ""){
 ////////////////////////////////////////////////
 if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 	$q = "SELECT adm_pass FROM $pro_mysql_admin_table WHERE adm_login='$adm_login';";
-	$r = mysql_query($q))or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." ".mysql_error());
+	$r = mysql_query($q)or die("Cannot execute query \"$q\" line ".__LINE__." file ".__FILE__." ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n != 1){
 		echo "Cannot find adm_login";
