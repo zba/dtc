@@ -13,6 +13,7 @@ function drawAdminTools_VPS($admin,$vps){
 
 	global $pro_mysql_product_table;
 	global $pro_mysql_vps_ip_table;
+	global $pro_mysql_vps_server_table;
 
 	global $pro_mysql_vps_stats_table;
 	global $secpayconf_currency_letters;
@@ -68,7 +69,17 @@ function drawAdminTools_VPS($admin,$vps){
 	}else{
 		$contract = "not found!";
 	}
-	$out .= "<br><h3>". _("Current contract: ") ."</h3><br>$contract<br><br>";
+	$out .= "<br><h3>". _("Description: ") ."</h3><br>". _("Current contract: ") ."$contract<br>";
+	$q = "SELECT location FROM $pro_mysql_vps_server_table WHERE hostname='$vps_node';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n != 1){
+		$location = "Cannot find VPS server $vps_node<br>";
+	}else{
+		$vps_server = mysql_fetch_array($r);
+		$location = $vps_server["location"];
+	}
+	$out .= _("Server location:")." ".$location."<br><br>";
 
 	// Expiration management !
 	$ar = explode("-",$vps["expire_date"]);
