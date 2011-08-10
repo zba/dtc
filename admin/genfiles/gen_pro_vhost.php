@@ -702,7 +702,7 @@ $vhost_file .= "
 </VirtualHost>
 
 ";
-			$logrotate_file_chk = "$web_path/$web_name/subdomains/$web_subname/logs/error.log";
+			$logrotate_file_chk[] = "$web_path/$web_name/subdomains/$web_subname/logs/error.log";
 			//$logrotate_file .= "$web_path/$web_name/subdomains/$web_subname/logs/error.log ";
 } // - end of for loop
 
