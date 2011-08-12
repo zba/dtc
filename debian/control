@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Thomas Goirand <zigo@debian.org>
 Build-Depends: debhelper (>= 5), po-debconf
 Build-Depends-Indep: gettext
-Standards-Version: 3.9.1
+Standards-Version: 3.9.2
 Vcs-Browser: http://git.gplhost.com/gitweb/?p=dtc.git
 Vcs-Git: http://git.gplhost.com/dtc.git
 Homepage: http://www.gplhost.com/software-dtc.html
@@ -34,7 +34,7 @@ Description: web control panel for admin and accounting hosting services (common
 Package: dtc-dos-firewall
 Architecture: all
 Depends: ${misc:Depends}, iptables, lsb-base
-Description: a small anti-DoS firewall script for your web, ftp and mail servers
+Description: small anti-DoS firewall script for your web, ftp and mail servers
  If running in a production environment, you might want to have a basic
  firewall running on your server to avoid having DoS attack. This is not the
  state-of-the-art, but just another attempt to make things a bit more smooth.
@@ -42,7 +42,7 @@ Description: a small anti-DoS firewall script for your web, ftp and mail servers
 Package: dtc-postfix-dovecot
 Architecture: all
 Depends: ${misc:Depends}, amavisd-new, clamav, clamav-daemon, clamav-freshclam, courier-maildrop | maildrop, dtc-core (=${binary:Version}), dovecot-imapd, dovecot-pop3d, courier-authlib-mysql, courier-authlib-userdb, courier-authdaemon, mysql-server, spamassassin, spamc
-Description: A meta package to setup a minimal DTC server with Dovecot
+Description: meta package to setup a minimal DTC server with Dovecot
  Domain Technologie Control (DTC) is a control panel aiming at commercial
  hosting. Using a web GUI for the administration and accounting all hosting
  services, DTC can delegate the task of creating subdomains, email, ssh,

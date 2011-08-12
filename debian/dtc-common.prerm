@@ -18,6 +18,6 @@ PATH_HTTPD_CONF=/etc/apache2/apache2.conf
 
 DTCuninstallPackage
 
-
+#DEBHELPER#
 
 exit 0
