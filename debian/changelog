@@ -1,8 +1,52 @@
-dtc (0.33.1-2) unstable; urgency=low
+dtc (0.34.1-1) unstable; urgency=high
 
-  * New upstream version.
+  * New upstream version:
+    - Passwords are now hashed (Closes: #566654).
+    - The addrlink is now checked properly, thanks to Ansgar Burchardt
+    <ansgar@debian.org> for reporting it (Closes: #637487).
+    - Mailing lists tunables options are now correcly escaped before the files
+    are being written with an echo, thanks to Ansgar Burchardt
+    <ansgar@debian.org> for reporting it (Closes: #637477).
+    - Removed sourceless built of OSX mod_log_sql, removed unwanted iglobalwall
+    useless files, thanks to Ansgar Burchardt <ansgar@debian.org> for reporting
+    it (Closes: #637469).
+  * Added ja.po debconf translation thanks to Hideki Yamane
+    <henrich@debian.org> (Closes: #599087).
+  * Changed reference to mysql-server-5.0 to mysql-server-5.1, thanks to
+    Mike O'Connor <stew@vireo.org> for reporting it (Closes: #633617).
 
- -- Thomas Goirand <zigo@debian.org>  Thu, 30 Dec 2010 17:18:45 +0800
+ -- Thomas Goirand <zigo@debian.org>  Fri, 12 Aug 2011 09:04:11 +0800
+
+dtc (0.32.10-2) unstable; urgency=low
+
+  * Removed dependency postfix-tls which is removed from SID (Closes: #618379).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 15 Mar 2011 06:23:35 +0000
+
+dtc (0.32.10-1) unstable; urgency=low
+
+  * Re-releasing, because version 0.32.9 had a buggy bw_per_month.php (it was
+    never displayed).
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 03 Mar 2011 00:56:27 +0800
+
+dtc (0.32.9-1) unstable; urgency=low
+
+  * Fixes: CVE-2011-0434: SQL injection in bw_per_month.php graph
+  * Fixes: CVE-2011-0435: Bandwidth information disclosure in bw_per_month.php
+    graph.
+  * Fixes: CVE-2011-0436: Passwords being emailed to the admin in clear text
+    (Closes: #614302).
+  * Fixes: CVE-2011-0437: Removed dangerous SQL old unused code for ssh
+    accounts management.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 03 Mar 2011 00:55:24 +0800
+
+dtc (0.32.8-1) unstable; urgency=low
+
+  * Removed the user_cronjob that shouldn't have been there at all.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 23 Nov 2010 17:02:22 +0800
 
 dtc (0.32.7-1) unstable; urgency=low
 
