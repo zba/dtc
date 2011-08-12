@@ -1,0 +1,586 @@
+# Japanese translation of dtc debconf templates.
+# Copyright (C) 2009-2010 Hideki Yamane <henrich@debian.or.jp>
+# This file is distributed under the same license as dtc package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dtc 0.32.2-1\n"
+"Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
+"POT-Creation-Date: 2009-05-29 19:47+0800\n"
+"PO-Revision-Date: 2010-09-21 06:52+0900\n"
+"Last-Translator: Hideki Yamane (Debian-JP) <henrich@debian.or.jp>\n"
+"Language-Team: Japanese <debian-japanese@lists.debian.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
+msgid "Automatically configure MySQL user?"
+msgstr "MySQL ユーザを自動的に設定しますか?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
+msgid ""
+"DTC can use /etc/mysql/debian.cnf to automatically create a root mysql user "
+"for DTC to access and manage MySQL and DTC's database. This way, no question "
+"will be asked to you about what MySQL root password is used, all will be "
+"automated, but the drawback is that the MySQL server that will be used will "
+"always be located in the local machine (you won't be able to configure DTC "
+"to use a remote database server)."
+msgstr ""
+"MySQL および DTC データベースへのアクセス／管理用の MySQL root ユーザを自動的"
+"に作成するため、DTC は /etc/mysql/debian.cnf を利用できます。このため、MySQL "
+"の root パスワードに何が使われているのかを聞かれることはなく、全てが自動的に"
+"作成されますが、利用する MySQL サーバが必ずローカルマシンになければいけないと"
+"いう欠点があります (DTC をリモートのデータベースサーバを使うように設定は"
+"できません)。"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:1001 ../dtc-postfix-courier.templates:1001
+msgid ""
+"In any case, please make sure that your MySQL root password is set. As per "
+"default, Debian installs it with a blank password. To set your MySQL root "
+"password, issue the following command: dpkg-reconfigure mysql-server-5.0. "
+"You've been warned!"
+msgstr ""
+"何にしても、MySQL の root パスワードが設定されていることを確認してください。"
+"デフォルトでは、Debian はパスワードを空白でインストールしています。MySQL の "
+"root パスワードを設定するには、以下のコマンド「dpkg-reconfigure mysql-"
+"server-5.0」を実行してください。警告しました!"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:2001 ../dtc-postfix-courier.templates:2001
+msgid "MySQL hostname:"
+msgstr "MySQL ホスト名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:2001 ../dtc-postfix-courier.templates:2001
+msgid "Please enter the hostname or IP address of the MySQL server."
+msgstr "MySQL サーバのホスト名あるいは IP アドレスを入力してください。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:3001 ../dtc-postfix-courier.templates:3001
+msgid "MySQL administrator:"
+msgstr "MySQL 管理者:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:3001 ../dtc-postfix-courier.templates:3001
+msgid ""
+"Please enter the login name of a MySQL user with administrative privileges. "
+"DTC will use it to grant privileges for the tables to its users."
+msgstr ""
+"管理者権限を持つ MySQL ユーザのログイン名を入力してください。DTC はユーザに"
+"テーブル操作の権限を許可する際、このログイン名を使います。"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:4001 ../dtc-postfix-courier.templates:4001
+msgid "MySQL administrator password:"
+msgstr "MySQL 管理者のパスワード:"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:4001 ../dtc-postfix-courier.templates:4001
+msgid "Please enter the password of the MySQL administrator."
+msgstr "MySQL 管理者のパスワードを入力してください。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:5001 ../dtc-postfix-courier.templates:5001
+msgid "DTC database name:"
+msgstr "DTC データベース名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:5001 ../dtc-postfix-courier.templates:5001
+msgid ""
+"Please enter the name of the database to use for storing all DTC hosting "
+"information."
+msgstr ""
+"すべての DTC ホスト情報を保存するのに使うデータベース名を入力してください。"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:6001 ../dtc-postfix-courier.templates:6001
+msgid "Change MySQL root password?"
+msgstr "MySQL の root パスワードを変更しますか?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:6001 ../dtc-postfix-courier.templates:6001
+msgid ""
+"By default, the mysql-server package does not require a password for the "
+"MySQL root user. This can be changed during the configuration of the DTC "
+"package."
+msgstr ""
+"デフォルトでは、mysql-server パッケージは MySQL root ユーザにパスワードを必要"
+"としません。これは DTC パッケージの設定中に変更できます。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:7001 ../dtc-postfix-courier.templates:7001
+msgid "Domain name:"
+msgstr "ドメイン名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:7001 ../dtc-postfix-courier.templates:7001
+msgid ""
+"Please enter the first domain which you want DTC to manage. This domain name "
+"will be used to install the root admin and customer web control panel of DTC "
+"(under one of this domain's subdomains)."
+msgstr ""
+"DTC に管理させたい最初のドメインを入力してください。このドメイン名は、 (この"
+"ドメインのサブドメインの一つの配下の) DTC の root 管理者および顧客ウェブコン"
+"トロールパネルの導入に使わることになります。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:8001 ../dtc-postfix-courier.templates:8001
+msgid "DTC root panel subdomain:"
+msgstr "DTC root パネルサブドメイン:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:8001 ../dtc-postfix-courier.templates:8001
+msgid "Please enter the subdomain to be used by the DTC control panel."
+msgstr "DTC コントロールパネルが使うサブドメインを入力してください。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:9001 ../dtc-postfix-courier.templates:9001
+msgid "Primary IP address:"
+msgstr "プライマリ IP アドレス:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:9001 ../dtc-postfix-courier.templates:9001
+msgid ""
+"Please enter this host's primary IP address. This address will be used for "
+"the domain name you just provided, and will be used as the default for most "
+"DTC variables.  If you are using Network Address Translation (NAT), please "
+"enter your external IP address."
+msgstr ""
+"このホストのプライマリ IP アドレスを入力してください。このアドレスはあなたが"
+"入力したドメイン名に使われます。そして、DTC のほとんどの設定値のデフォルト値"
+"として使われます。ネットワークアドレス変換 (NAT) を使っている場合は、外部 IP "
+"アドレスを入力してください。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:10001 ../dtc-postfix-courier.templates:10001
+msgid "Path for hosted domains:"
+msgstr "ホストしているドメインへのパス (path):"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:10001 ../dtc-postfix-courier.templates:10001
+msgid ""
+"Please enter the directory to be used by DTC to store files for all hosted "
+"domains."
+msgstr ""
+"DTC がホストしている全てのドメインについてファイルを保存するディレクトリを入"
+"力してください。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:10001 ../dtc-postfix-courier.templates:10001
+msgid ""
+"If you choose /var/www, which is Apache's default document root, all files "
+"hosted in that directory may become publicly accessible. It is therefore "
+"recommended to change the DocumentRoot setting in Apache configuration if "
+"you choose /var/www as path for hosted domains."
+msgstr ""
+"Apache のデフォルト document root である /var/www を指定した場合、このディレ"
+"クトリに保存されている全てのファイルは外部からアクセス可能になります。このた"
+"め、/var/www をホストしているドメインのパスとして使う場合は、Apache の設定で "
+"DocumentRoot 設定を変更するのをお勧めします。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:11001 ../dtc-postfix-courier.templates:11001
+msgid "Path for the chroot environment template:"
+msgstr "chroot 環境テンプレートのパス (path):"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:11001 ../dtc-postfix-courier.templates:11001
+msgid ""
+"Please enter the directory to be used by DTC to build the cgi-bin chroot "
+"environment template."
+msgstr ""
+"DTC が cgi-bin chroot 環境のテンプレートを構築するのに使うディレクトリを入力"
+"してください。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:12001 ../dtc-postfix-courier.templates:12001
+msgid "Main domain admin name:"
+msgstr "メインドメイン管理者名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:12001 ../dtc-postfix-courier.templates:12001
+msgid ""
+"Each DTC domain must have an administrator. Please enter the login name of "
+"the administrator for the domain name containing the control panel "
+"installation."
+msgstr ""
+"各 DTC ドメインは管理者を持つ必要があります。コントロールパネル導入を含むドメ"
+"イン名の管理者ログイン名を入力してください。"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:13001 ../dtc-postfix-courier.templates:13001
+msgid "Main domain admin password:"
+msgstr "メインドメイン管理者パスワード:"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:13001 ../dtc-postfix-courier.templates:13001
+msgid ""
+"Please choose the main domain administrator's password. Access to the "
+"control panel must be managed manually through a .htpasswd file in the root "
+"path."
+msgstr ""
+"メインのドメイン管理者のパスワードを入力してください。コントロールパネルへの"
+"アクセスは、ルートパスにある .htpasswd ファイルを介して手動で設定する必要があ"
+"ります。"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:14001 ../dtc-postfix-courier.templates:14001
+msgid "Mail Transfer Agent (MTA) type:"
+msgstr "メール転送エージェント (MTA) の種類"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:14001 ../dtc-postfix-courier.templates:14001
+msgid ""
+"Please select the MTA that will be used with DTC. It should be installed on "
+"the system already. If no such MTA is currently installed, please complete "
+"the setup of DTC, install a MTA package, then run \"dpkg-reconfigure dtc\"."
+msgstr ""
+"DTC で使う MTA を選んでください。既にシステムに導入されているものである必要が"
+"あります。現状そのような MTA が導入されていない場合は、DTC の設定を完了し、"
+"MTA パッケージを導入してから「dpkg-reconfigure dtc」を実行してください。"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:15001 ../dtc-postfix-courier.templates:15001
+msgid "Use Cyrus mail system?"
+msgstr "Cyrus メールシステムを使いますか?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:15001 ../dtc-postfix-courier.templates:15001
+msgid ""
+"Please choose this option if you are using Cyrus for mail delivery, IMAP and "
+"MTA. This option is only compatible with Postfix."
+msgstr ""
+"Cyrus をメール配送/IMAP/MTA に使っている場合はこのオプションを選んでくださ"
+"い。このオプションは Postfix のみと互換性があります。"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:16001 ../dtc-postfix-courier.templates:16001
+msgid "Apache version to configure:"
+msgstr "設定する Apache のバージョン:"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:16001 ../dtc-postfix-courier.templates:16001
+msgid ""
+"DTC supports both Apache and Apache2. Please enter the version which DTC "
+"should use."
+msgstr ""
+"DTC は Apache と Apache2 の両方をサポートしています。DTC が使うバージョンを入"
+"力してください。"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
+msgid "Use \"NATed\" vhosts?"
+msgstr "「NAT された」 vhost を使いますか?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
+msgid ""
+"DTC can configure Apache to use one of your IP addresses. If the server is "
+"firewalled with NAT and port redirections of public IP(s) address(es), a "
+"\"NATed\" vhost configuration can be generated."
+msgstr ""
+"DTC は IP アドレスのうちの一つを使うように Apache を設定できます。サーバが公"
+"開 IP アドレスを NAT とポートリダイレクションしているファイアウォールの配下に"
+"ある場合、「NAT された」vhost 設定を生成できます。"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:17001 ../dtc-postfix-courier.templates:17001
+msgid ""
+"This option should be chosen only if the server is not connected to the "
+"Internet directly, but through a firewall doing network address translation "
+"(NAT). If the server uses a dynamic public IP address, NAT and port "
+"forwarding are mandatory for DTC."
+msgstr ""
+"このオプションはサーバがインターネットに直接ではないが、ネットワークアドレス"
+"変換 (NAT) をしているファイアウォール経由で接続されている場合にのみ選択すべき"
+"です。サーバがダイナミックな公開 IP アドレスを使っている場合は、DTC 用には "
+"NAT とポートフォワーディングが必須になります。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:18001 ../dtc-postfix-courier.templates:18001
+msgid "NATed LAN IP address:"
+msgstr "NAT された LAN の IP アドレス:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:18001 ../dtc-postfix-courier.templates:18001
+msgid ""
+"Please enter the IP address of the server for DTC to generate all vhosts "
+"that will be used by Apache."
+msgstr ""
+"Apache が利用する全てのバーチャルホスト (vhost) を DTC が生成するのに使うサー"
+"バの IP アドレスを入力してください。"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
+msgid "Generate an SSL certificate for DTC?"
+msgstr "DTC 用に SSL 証明書を生成しますか?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
+msgid ""
+"If you choose this option, DTC will generate a self-signed SSL certificate "
+"and will use SSL to browse the panel. SSL will also be activated and the "
+"generated Apache configuration will activate HTTPS URLs for the control "
+"panel."
+msgstr ""
+"このオプションを選ぶと、DTC は自己署名 SSL 証明書を生成し、パネルの閲覧に "
+"SSL を使うようになります。SSL が有効にされ、生成された Apache の設定はコント"
+"ロールパネルに対して HTTPS での URL を有効になります。"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
+msgid "This certificate can be changed for a root CA certificate later."
+msgstr "この証明書は、後ほどルート CA 証明書に合わせて変更できます。"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:19001 ../dtc-postfix-courier.templates:19001
+msgid ""
+"Previously-generated certificates will never be overwritten. To regenerate "
+"the certificate, you need to remove all the files in /usr/share/dtc/etc/ssl."
+msgstr ""
+"先ほど生成した証明書は、上書きされることはありません。証明書を再生成するに"
+"は、/usr/share/dtc/etc/ssl にある全てのファイルを削除する必要があります。"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:20001 ../dtc-postfix-courier.templates:20001
+msgid "DTC certificate passphrase:"
+msgstr "DTC の証明書パスフレーズ:"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:20001 ../dtc-postfix-courier.templates:20001
+msgid "Please choose a passphrase to protect the generated SSL certificate."
+msgstr "生成した SSL 証明書を保護するパスフレーズを入力してください。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:21001 ../dtc-postfix-courier.templates:21001
+msgid "Country code for the DTC SSL certificate:"
+msgstr "DTC 用 SSL 証明書の国コード:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:21001 ../dtc-postfix-courier.templates:21001
+msgid ""
+"Please enter the 2-letter country code for the generated certificate. This "
+"should usually be the code for the country the server is located in."
+msgstr ""
+"証明書の生成に使う 2 文字の国別コードを入力してください。これは、通常サーバが"
+"存在している国のコードです。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:22001 ../dtc-postfix-courier.templates:22001
+msgid "City name for the DTC SSL certificate:"
+msgstr "DTC 用 SSL 証明書の都市名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:23001 ../dtc-postfix-courier.templates:23001
+msgid "Organization name for the DTC SSL certificate:"
+msgstr "DTC 用 SSL 証明書の組織名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:24001 ../dtc-postfix-courier.templates:24001
+msgid "Organizational unit for the DTC SSL certificate:"
+msgstr "DTC 用 SSL 証明書の組織名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:25001 ../dtc-postfix-courier.templates:25001
+msgid "Email address for the DTC SSL certificate:"
+msgstr "DTC 用 SSL 証明書のメールアドレス:"
+
+#. Type: password
+#. Description
+#: ../dtc-core.templates:26001 ../dtc-postfix-courier.templates:26001
+msgid "DTC SSL certificate challenge password:"
+msgstr "SSL 証明書のチャレンジパスワード:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
+msgid "DNSBL (DNS BlackList) list:"
+msgstr "DNSBL (DNS ブラックリスト) のリスト:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:27001 ../dtc-postfix-courier.templates:27001
+msgid ""
+"Please enter the list of preferred DNSBL servers to add to your Postfix mail "
+"server configuration."
+msgstr ""
+"Postfix メールサーバ設定に追加する優先 DNSBL サーバ一覧を入力してください。"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+msgid "Local address extension character:"
+msgstr "ローカルアドレスの拡張文字:"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+msgid ""
+"Please choose the character that will be used to define a local address "
+"extension. This MUST match what you have set in your postfix or qmail setup."
+msgstr ""
+"ローカルアドレスの拡張を定義するのに利用する文字を選んでください。これは、"
+"postfix あるいは qmail での設定に一致している必要があります。"
+
+#. Type: select
+#. Description
+#: ../dtc-core.templates:28001 ../dtc-postfix-courier.templates:28001
+msgid ""
+"The recipient delimiter will be used for your mailing lists. Let's say you "
+"use the + char as delimiter, then your users will have to send a mail to list"
+"+subscribe@example.com. The drawback when choosing + is that some MTA don't "
+"allow to send mail with this char in the recipient (namely some bad qmail "
+"patches are incompatibles), but when using - as delimiter, you will not be "
+"able to use an email of the form john-doe@example.com as - is the delimiter."
+msgstr ""
+"受信アドレスの区切り文字は、メーリングリストに利用されます。+ という文字を区"
+"切り文字に使った場合を例にすると、ユーザは list+subscribe@example.com にメー"
+"ルを送信する必要があります。+ を選んだ場合の欠点は、幾つかの MTA ではこの文字"
+"を受信者アドレスに含んだメールを送るのを許可していないことです (すなわちいく"
+"つかの行儀の悪い qmail パッチとは互換性がありません)。しかし、- を区切り文字"
+"に使った場合は、john-doe@example.com というメールアドレスの形式は - を区切り"
+"文字とするため、利用できなくなります。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+msgid "Subdomain name for the MX server:"
+msgstr "MX サーバのサブドメイン名:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:29001 ../dtc-postfix-courier.templates:29001
+msgid ""
+"Your mail server will need to use a subdomain name to accept mail. This "
+"subdomain will be configured in your mail server and your domain name server "
+"by DTC. Any name is ok here."
+msgstr ""
+"メールサーバは、メールを受けとるためにサブドメイン名を使う必要があります。こ"
+"のサブドメインは、DTC によってメールサーバと DNS サーバに反映されます。ここの"
+"名前は何でも構いません。"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
+msgid "Network devices to monitor:"
+msgstr "監視するネットワークデバイス:"
+
+#. Type: string
+#. Description
+#: ../dtc-core.templates:30001 ../dtc-postfix-courier.templates:30001
+msgid ""
+"Please enter all the network devices you wish to be monitored by the RRDTool "
+"graphing utility."
+msgstr ""
+"RRDTool グラフユーティリティで監視したい、全てのネットワークデバイスを入力し"
+"てください。"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
+msgid "Allow to report anonymous statistics to GPLHost?"
+msgstr "GPLHost への匿名での統計レポートを許可しますか?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:31001 ../dtc-postfix-courier.templates:31001
+msgid ""
+"DTC installations can be reported to the GPLHost web site. The only "
+"collected data are the operating system name (Debian) and the IP address "
+"(used as a unique identifier only). An Internet connection and the wget "
+"binary are required to report the statistics."
+msgstr ""
+"DTC のインストールを GPLHost ウェブサイトにレポートできます。収集されるデータ"
+"はオペレーティングシステム名 (Debian) と IP アドレス (一意性の判別にのみ使わ"
+"れる) だけです。統計のレポートにはインターネット接続と wget プログラムが必要"
+"です。"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
+msgid "Skip mknod calls when building the chroot template?"
+msgstr "chroot テンプレートの構築時に mknod の呼び出しをスキップしますか?"
+
+#. Type: boolean
+#. Description
+#: ../dtc-core.templates:32001 ../dtc-postfix-courier.templates:32001
+msgid ""
+"In some environments, such as Linux vServer, mknod cannot be executed. This "
+"option allows skipping the creation of the null, random and urandom devices "
+"during the chroot template creation."
+msgstr ""
+"Linux vServer などの幾つかの環境下では、mknod は実行できません。このオプショ"
+"ンは、chroot テンプレートの作成時に null/random/urandom デバイスの作成を飛ば"
+"すことを許可します。"
+
+#. Type: boolean
+#. Description
+#: ../dtc-postfix-courier.templates:15001
+msgid ""
+"Cyrus is a replacement for the Maildir delivery and storage. You must know "
+"what you are doing if you want to activate the use of Cyrus. If you are "
+"using dtc-toaster or dtc-postfix-courier, you have to answer not to use "
+"Cyrus here. Cyrus is only usable with the dtc package and NOT if you are "
+"using dtc-postfix-courier instead."
+msgstr ""
+"Cyrus は Maildir 配送／ストレージ用の代替品です。Cyrus の利用を有効にしたい場"
+"合は、あなたは自分が何をしているかを知っている必要があります。dtc-toaster か "
+"dtc-postfix-courier を使っている場合は、ここでは Cyrus を使わないよう答える必"
+"要があります。Cyrus は dtc パッケージを使っていて dtc-postfix-courier を代わ"
+"りに「使っていない」場合にのみ役立ちます。"
