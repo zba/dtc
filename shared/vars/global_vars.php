@@ -56,6 +56,12 @@ if(isset($adm_email_pass) && !preg_match("/^([a-zA-Z0-9]+)([._a-zA-Z0-9-]+)([a-z
 }
 
 if(isset($addrlink) && $addrlink != ""){
+        $check = str_replace(":","",$addrlink);
+        $check = str_replace("/","",$check);
+        if(!preg_match("/^([a-z0-9]+)([.a-z0-9-]+)([a-z0-9])\$/",$check)){
+                die("Parameter incorect in addrlink.");
+        }
+
 	$vps_exploded = explode(":",$addrlink);
 	if(sizeof($vps_exploded) > 1){
 		$server_subscreen = $vps_exploded[0];

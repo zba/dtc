@@ -254,10 +254,10 @@ function tunablesBooleanRequestCheck($ctrl_path,$tunable_name){
 }
 
 function tunablesValueRequestCheck($ctrl_path,$tunable_name){
-$option_file = $ctrl_path."/".$tunable_name;
+	$option_file = $ctrl_path."/".$tunable_name;
 	if ($_REQUEST[$tunable_name]!=""){
 		//i write in the file
-		$write_line = "echo ".$_REQUEST[$tunable_name]." > ".$option_file;
+		$write_line = "echo ".escapeshellarg($_REQUEST[$tunable_name])." > ".$option_file;
 		exec($write_line);
 	}else{ //i remove the file
 		if (file_exists($option_file)){
@@ -275,7 +275,7 @@ function tunablesListRequestCheck($ctrl_path,$tunable_name){
 	} 		
 	for($i=0;$i<sizeof($_REQUEST[$tunable_name]);$i++){
 		if ($_REQUEST[$tunable_name][$i]!=""){
-			$write_line = "echo ".$_REQUEST[$tunable_name][$i]." >> ".$option_file;
+			$write_line = "echo ".escapeshellarg($_REQUEST[$tunable_name][$i])." >> ".$option_file;
 			exec($write_line);
 		}
 	}
