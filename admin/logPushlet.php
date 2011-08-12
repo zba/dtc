@@ -39,6 +39,14 @@ $_SESSION['callSID']='';
 $errorset=true;
 }
 
+$reg = '/^((([a-z0-9]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))\.)*(([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))$/';
+if(!preg_match($reg,$_SESSION['vps_node'])){
+	die("Invalid vps_node");
+}
+if(!preg_match("/^([_a-z0-9]+)([_.a-z0-9-]*)([_.a-z0-9]+)\$/",$_SESSION["vps_name"])){
+	die("Invalid vps_name");
+}
+
 $soap_client = connectToVPSServer($_SESSION['vps_node']);
 
 if($soap_client != false){
