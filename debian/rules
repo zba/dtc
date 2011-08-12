@@ -12,7 +12,7 @@ clean:
 	$(MAKE) clean
 
 	# As per advice from Christian Perrier
-	debconf-updatepo
+	# debconf-updatepo
 	# For new strings, run:
 	# debconf-gettextize debian/dtc-common.templates --merge
 
