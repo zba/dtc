@@ -10,6 +10,10 @@ dtc (0.34.1-1) unstable; urgency=high
     - Removed sourceless built of OSX mod_log_sql, removed unwanted iglobalwall
     useless files, thanks to Ansgar Burchardt <ansgar@debian.org> for reporting
     it (Closes: #637469).
+    - Fixes logPushlet input checking, thanks to Mike O'Connor <stew@vireo.org>
+    for reporting it (Closes: #637498).
+    - Removes grayboard skin as it is missing some js scripts, thanks to Mike
+    O'Connor <stew@vireo.org> for reporting it (Closes: #637505).
   * Added ja.po debconf translation thanks to Hideki Yamane
     <henrich@debian.org> (Closes: #599087).
   * Changed reference to mysql-server-5.0 to mysql-server-5.1, thanks to
