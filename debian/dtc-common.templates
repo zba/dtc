@@ -11,7 +11,7 @@ _Description: Automatically configure MySQL user?
  .
  In any case, please make sure that your MySQL root password is set. As per
  default, Debian installs it with a blank password. To set your MySQL root
- password, issue the following command: dpkg-reconfigure mysql-server-5.0.
+ password, issue the following command: dpkg-reconfigure mysql-server-5.1.
  You've been warned!
 
 Template: dtc/conf_mysqlhost
