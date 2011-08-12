@@ -1491,6 +1491,8 @@ Include $PATH_DTC_ETC/vhosts.conf
 Listen 127.0.0.1:443" >>$PATH_HTTPD_CONF
 		fi
 
+		# Since it will contain the password to MySQL, we don't want the file to be world readable.
+		chmod 640 ${PATH_HTTPD_CONF}
 		if [ -z ${MYSQL_DTCDAEMONS_PASS} ] ; then
 			echo "LogSQLLoginInfo mysql://dtcdaemons@${conf_mysql_host}/apachelogs " >>$PATH_HTTPD_CONF
 		else
