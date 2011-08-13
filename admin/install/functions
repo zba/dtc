@@ -3740,8 +3740,8 @@ createRRDFiles () {
 	fi
 	echoIfVerbose "===> Creating dtc.log with 666 permissions."
 	touch /var/log/dtc.log
-	chmod 666 /var/log/dtc.log
-
+	chmod 640 /var/log/dtc.log
+	chown root:adm /var/log/dtc.log
 }
 
 modifySSHDConfig () {
