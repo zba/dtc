@@ -16,6 +16,7 @@ dtc (0.34.1-1) unstable; urgency=high
     O'Connor <stew@vireo.org> for reporting it (Closes: #637505).
     - Sets apache2.conf not to be world readable because it contains the
     password for accessing the dtcdaemon database (Closes: #637485).
+    - Adds output escaping in the DNS & MX form (Closes: #637584).
   * Added ja.po debconf translation thanks to Hideki Yamane
     <henrich@debian.org> (Closes: #599087).
   * Changed reference to mysql-server-5.0 to mysql-server-5.1, thanks to
