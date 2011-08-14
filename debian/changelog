@@ -1,6 +1,6 @@
 dtc (0.34.1-1) unstable; urgency=high
 
-  * New upstream version:
+  * New upstream version with lots of security fixes:
     - Passwords are now hashed (Closes: #566654).
     - The addrlink is now checked properly, thanks to Ansgar Burchardt
     <ansgar@debian.org> for reporting it (Closes: #637487).
@@ -17,6 +17,10 @@ dtc (0.34.1-1) unstable; urgency=high
     - Sets apache2.conf not to be world readable because it contains the
     password for accessing the dtcdaemon database (Closes: #637485).
     - Adds output escaping in the DNS & MX form (Closes: #637584).
+    - Install now does chmod 640 /var/log/dtc.log chown root:adm
+    /var/log/dtc.log (Closes: #637617).
+    - Checks for validity of package name in the package installer before
+    installing a package (Closes: #637629).
   * Added ja.po debconf translation thanks to Hideki Yamane
     <henrich@debian.org> (Closes: #599087).
   * Changed reference to mysql-server-5.0 to mysql-server-5.1, thanks to
