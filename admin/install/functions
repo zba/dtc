@@ -1160,8 +1160,8 @@ modifySUODERS_DOT_CONF () {
 			fi
 			TMP_FILE=`${MKTEMP} DTC_install.sudoers.XXXXXX` || exit 1
 			echo "# Configured by DTC 0.21 : please do not touch this line !" >> $TMP_FILE
-			echo "Defaults:${CONF_DTC_SYSTEM_USERNAME} !set_logname" >> $TMP_FILE
-			echo "${CONF_DTC_SYSTEM_USERNAME}      ALL= NOPASSWD: $PATH_CHROOT *" >> $TMP_FILE
+			echo "#Defaults:${CONF_DTC_SYSTEM_USERNAME} !set_logname" >> $TMP_FILE
+			echo "#${CONF_DTC_SYSTEM_USERNAME}      ALL= NOPASSWD: $PATH_CHROOT *" >> $TMP_FILE
 			echo "# End of DTC configuration : please don't touch this line !" >> $TMP_FILE
 			cat <$TMP_FILE >>$PATH_SUDOERS_CONF
 			rm -r $TMP_FILE
