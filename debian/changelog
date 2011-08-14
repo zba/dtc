@@ -21,6 +21,9 @@ dtc (0.34.1-1) unstable; urgency=high
     /var/log/dtc.log (Closes: #637617).
     - Checks for validity of package name in the package installer before
     installing a package (Closes: #637629).
+    - Removes insertion in /etc/sudoers since it's giving root access to
+    anything running as the DTC user. Note that this renders ssh to vhosts
+    not working anymore until a better solution is found (Closes: #637618).
   * Added ja.po debconf translation thanks to Hideki Yamane
     <henrich@debian.org> (Closes: #599087).
   * Changed reference to mysql-server-5.0 to mysql-server-5.1, thanks to
