@@ -27,6 +27,9 @@ function drawAdminTools_PackageInstaller($domain,$adm_path){
 	$txt = "";
 	$dir = $dtcshared_path."/package-installer";
 
+	if(isset($_REQUEST["pkg"]) && !preg_match("/^([_a-z0-9]+)([_.a-z0-9-]*)([_.a-z0-9]+)\$/",$_REQUEST["pkg"])){
+		die("Requested package name is invalid");
+	}
 
 	if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "do_install" || $_REQUEST["action"] == "prepareinstall")){
 		$pkg_path = $dir."/".$_REQUEST["pkg"];
