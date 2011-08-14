@@ -82,7 +82,7 @@ $popup_cats
 			$out .= _("Ticket not found.") ;
 		}else{
 			$a_t = mysql_fetch_array($r);
-			$out .= _("Subject:") ." ".stripslashes($a_t["subject"])."<br>";
+			$out .= _("Subject:") ." ".htmlspecialchars(stripslashes($a_t["subject"]))."<br>";
 
 			$q2 = "SELECT * FROM $pro_mysql_tik_cats_table WHERE id='".$a_t["cat_id"]."';";
 			$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
@@ -132,7 +132,7 @@ $popup_cats
 				}else{
 					$replied_by = "";
 				}
-				$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i>".$replied_by."</td><td$bg>".nl2br(stripslashes($a["text"]))."</td></tr>";
+				$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i>".$replied_by."</td><td$bg>".nl2br(htmlspecialchars(stripslashes($a["text"])))."</td></tr>";
 			}
 			$out .= "</table>";
 			$out .= "<form action=\"?\" method=\"post\">

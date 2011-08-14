@@ -16,7 +16,7 @@ function drawAdminTools_DomainDNS($admin,$eddomain){
 <input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"new_dns_and_mx_config\" value=\"Ok\">".
 dtcFormTableAttrs().
-dtcFormLineDraw( _("IP address of the primary DNS server:") ,"<input type=\"text\" name=\"new_dns_1\" value=\"".html_specialchars($eddomain["primary_dns"])."\">");
+dtcFormLineDraw( _("IP address of the primary DNS server:") ,"<input type=\"text\" name=\"new_dns_1\" value=\"".htmlspecialchars($eddomain["primary_dns"])."\">");
 	if($eddomain["other_dns"] != "default"){
 		$other_dns = explode("|",$eddomain["other_dns"]);
 		$dns2 = $other_dns[0];
@@ -39,7 +39,7 @@ dtcFormLineDraw( _("IP address of the primary DNS server:") ,"<input type=\"text
 //	$domain_dns_mx_conf_form .= "<tr><td></td><td><input type=\"text\" name=\"new_dns_$new_dns_num\" value=\"\"><br><br></td></tr>";
 
 	// The domain MX configuration
-	$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Primary MX address:"),"<input type=\"text\" name=\"new_mx_1\" value=\"".html_specialchars($eddomain["primary_mx"])."\">");
+	$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Primary MX address:"),"<input type=\"text\" name=\"new_mx_1\" value=\"".htmlspecialchars($eddomain["primary_mx"])."\">");
 	if($eddomain["other_mx"] == "default" && $eddomain["primary_dns"] == "default"){
 		$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Other MX (backup) servers:") ,"<input type=\"text\" name=\"new_mx_2\" value=\"\">");
 	}else{
@@ -48,17 +48,17 @@ dtcFormLineDraw( _("IP address of the primary DNS server:") ,"<input type=\"text
 		$nbr_other_mx = sizeof($other_mx);
 		for($z=0;$z<$nbr_other_mx;$z++){
 			if($z != 0){
-				$domain_dns_mx_conf_form .= dtcFormLineDraw("","<input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"".html_specialchars($other_mx[$z])."\">");
+				$domain_dns_mx_conf_form .= dtcFormLineDraw("","<input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"".htmlspecialchars($other_mx[$z])."\">");
 			}else{
-				$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Other MX (backup) servers:"),"<input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"".html_specialchars($other_mx[$z])."\">");
+				$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Other MX (backup) servers:"),"<input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"".htmlspecialchars($other_mx[$z])."\">");
 			}
 			$new_mx_num += 1;
 		}
 		$domain_dns_mx_conf_form .= dtcFormLineDraw("","<input type=\"text\" name=\"new_mx_$new_mx_num\" value=\"\">");
 	}
 
-	$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Domain root TXT record: ") ,"<input type=\"text\" name=\"txt_root_entry\" value=\"".html_specialchars($eddomain["txt_root_entry"])."\">");
-	$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Domain root TXT record2: ") ,"<input type=\"text\" name=\"txt_root_entry2\" value=\"".html_specialchars($eddomain["txt_root_entry2"])."\">");
+	$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Domain root TXT record: ") ,"<input type=\"text\" name=\"txt_root_entry\" value=\"".htmlspecialchars($eddomain["txt_root_entry"])."\">");
+	$domain_dns_mx_conf_form .= dtcFormLineDraw( _("Domain root TXT record2: ") ,"<input type=\"text\" name=\"txt_root_entry2\" value=\"".htmlspecialchars($eddomain["txt_root_entry2"])."\">");
 	$domain_dns_mx_conf_form .= dtcFromOkDraw();
 	$domain_dns_mx_conf_form .= "</form></table>";
 
