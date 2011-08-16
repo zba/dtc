@@ -361,7 +361,7 @@ $config_vals = mysql_fetch_array($r);
 
 // Get rid of old skins names if they were set previously in the db...
 $zeskin = $config_vals["skin"];
-if( $zeskin == "green2" || $zeskin == "iglobal" || $zeskin == "green_gpl" || $zeskin == "darkblue" || $zeskin == "frame" || $zeskin == "green" || $zeskin == "ruffdogs_mozilla" || $zeskin == "tex" || $zeskin == "muedgrey"){
+if( $zeskin == "green2" || $zeskin == "iglobal" || $zeskin == "green_gpl" || $zeskin == "darkblue" || $zeskin == "frame" || $zeskin == "green" || $zeskin == "ruffdogs_mozilla" || $zeskin == "tex" || $zeskin == "muedgrey" || $zeskin == "grayboard"){
 	$q = "UPDATE config SET skin='bwoup';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 }
