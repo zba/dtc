@@ -27,7 +27,14 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"] == "add_stats_login"){
 
 		$q = "UPDATE $pro_mysql_domain_table SET stats_login='".$_REQUEST["stats_login"]."',stats_pass='".$_REQUEST["stats_pass"]."',stats_subdomain='$stats_subdomain_flag'  WHERE name='$edit_domain';";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-		exec("$conf_htpasswd_path -cb $admin_path/$edit_domain/.htpasswd ".$_REQUEST["stats_login"]." ".$_REQUEST["stats_pass"]."");
+		// What's commented below is wrong because it shows the password in a "ps" call, so it's now replaced by crypt() and fwrite().
+		// exec("$conf_htpasswd_path -cb $admin_path/$edit_domain/.htpasswd ".$_REQUEST["stats_login"]." ".$_REQUEST["stats_pass"]."");
+		$encrypted = crypt($_REQUEST["stats_pass"]);
+		$fp = fopen("$admin_path/$edit_domain/.htpasswd","wb");
+		if($fp != NULL){
+			fwrite($fp,$_REQUEST["stats_login"].":".$encrypted);
+			fclose($fp);
+		}
 		if($stats_subdomain_flag == "yes"){	
 			$q="SELECT subdomain_name,generate_vhost FROM subdomain where domain_name='".$edit_domain."' and generate_vhost='yes';";
 			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
