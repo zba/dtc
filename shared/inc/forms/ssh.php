@@ -30,10 +30,10 @@ function drawAdminTools_SSH($domain,$adm_path){
         // Build the popup values and display values arrays
 	$path_popup_vals = array();
 	$path_popup_disp = array();
-	$path_popup_vals[] = "$adm_path";
-	$path_popup_disp[] = "/ [ uses www ]";
-	$path_popup_vals[] = "$adm_path/$edit_domain";
-	$path_popup_disp[] = "/$edit_domain [ uses www ]";
+	//$path_popup_vals[] = "$adm_path";
+	//$path_popup_disp[] = "/ [ uses www ]";
+	//$path_popup_vals[] = "$adm_path/$edit_domain";
+	//$path_popup_disp[] = "/$edit_domain [ uses www ]";
 	$nbr_subdomains = sizeof($domain["subdomains"]);
 	for($i=0;$i<$nbr_subdomains;$i++){
 		$sub_name = $domain["subdomains"][$i]["name"];
