@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# stop users changing to users other than dtc
+if [ "$USER" != "dtc" ]; then
+	echo "Trying to execute script as a non-dtc user, not allowed."
+	exit 1
+fi
+
+# stop users changing to other roots other than in /var/www/sites
+. /etc/dtc/chroot_allowed_path
+if [ -z "${CHROOT_ALLOWED_PATH}" ] ; then
+	echo "No chroot_allowed_path configured: exiting"
+	exit 1
+fi
+
+USERHOME=`readlink -f ${PWD}`
+MATCHES="no"
+for i in ${CHROOT_ALLOWED_PATH} ; do
+	len=`echo $i | awk '{print length($1)}'`
+	substr=`echo ${USERHOME} | awk '{print substr($1,0,'${len}')}'`
+	if [ ${substr} = ${i} ] ; then
+		MATCHES="yes"
+	fi
+done
+
+if [ ${MATCHES} = "no" ] ; then
+	echo "Trying to chroot USERHOME outside of shared hosting root ${CHROOT_ALLOWED_PATH} now allowed"
+	exit 1
+fi
+
+# Do the chroot in the user home directory
+/usr/bin/chrootuid ${USERHOME} dtc /bin/bash "$@"

@@ -366,6 +366,10 @@ if( $zeskin == "green2" || $zeskin == "iglobal" || $zeskin == "green_gpl" || $ze
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
 }
 
+# Sets old install of ssh shell path to be /usr/bin/dtc-chroot-shell and not /bin/dtc-chroot-shell
+$q = "UPDATE ssh_access SET shell='/usr/bin/dtc-chroot-shell' WHERE shell='/bin/dtc-chroot-shell';";
+$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+
 // Iterate on all mailing lists to set the correct recipient delimiter
 echo "-> Changing all recipient delimiter for mailing lists: ";
 $q = "SELECT * FROM mailinglist";

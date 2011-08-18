@@ -1,4 +1,4 @@
-#!/usr/bin
+#!/usr/bin/make
 
 # Makefile for dtc-common
 
@@ -309,7 +309,8 @@ ROOT_CRON_SH_SCRIPT_FILES=admin/rrdtool.sh admin/updateChroot.sh admin/queuegrap
 admin/queuegraph/createrrd.sh admin/cpugraph/createrrd.sh admin/cpugraph/get_cpu_load.sh admin/memgraph/createrrd.sh \
 admin/memgraph/get_meminfo.sh admin/netusegraph/createrrd.sh admin/netusegraph/get_net_usage.sh admin/create_stat_total_active_prods_rrd.sh
 
-OTHER_SCRIPT_FILES=admin/sa-wrapper admin/dtc-chroot-shell
+OTHER_SCRIPT_FILES=admin/sa-wrapper
+BIN_DIR_SCRIPTS=dtc-chroot-shell dtc-chroot-wrapper
 
 ROOT_ONLY=$(ROOT_CRON_SH_SCRIPT_FILES) $(ROOT_CRON_PHP_SCRIPT_FILES)
 USER_ALSO=$(DTC_CRON_PHP_SCRIPT_FILES) $(DTC_CRON_SH_SCRIPT_FILES) $(DTC_WEB_SH_SCRIPT) $(OTHER_SCRIPT_FILES)
@@ -377,7 +378,7 @@ install-dtc-dos-firewall:
 install-dtc-common:
 	# PHP scripts files served by web server
 	@echo "-> Creating destination folders for version "${VERS}
-	for i in $(CREATE_DIRS) ; do $(INSTALL_DIR) -m $(NORMAL_FOLDER) $(APP_INST_DIR)/$$i ; done
+	@for i in $(CREATE_DIRS) ; do $(INSTALL_DIR) -m $(NORMAL_FOLDER) $(APP_INST_DIR)/$$i ; done
 	$(INSTALL_DIR) -m $(NORMAL_FOLDER) $(MAN_DIR)/man8
 
 	@ echo "-> Installing scripts"
@@ -388,6 +389,7 @@ install-dtc-common:
 	# Management scripts that are executed
 	@for i in $(ROOT_ONLY) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 	@for i in $(USER_ALSO) ; do $(INSTALL) -m $(DTC_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
+	@for i in ${BIN_DIR_SCRIPTS} ; do $(INSTALL) -m $(DTC_SCRIPTS_RIGHTS) admin/$$i $(BINARY_DIR)/$$i ; done
 	@for i in $(INSTALL_FOLDER_SCRIPTS) ; do $(INSTALL) -m $(ROOT_SCRIPTS_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done
 
 	@for i in $(ADMIN_AND_CLIENT_FILES) ; do $(INSTALL) -m $(PHP_RIGHTS) admin/$$i $(APP_INST_DIR)/admin/$$i ; done
@@ -395,6 +397,7 @@ install-dtc-common:
 
 	# The man pages
 	$(INSTALL) -m $(MANPAGE_RIGHTS) doc/dtc-chroot-shell.8		$(MAN_DIR)/man8/dtc-chroot-shell.8
+	$(INSTALL) -m $(MANPAGE_RIGHTS) doc/dtc-chroot-wrapper.8	$(MAN_DIR)/man8/dtc-chroot-wrapper.8
 
 	# Client and email inc png files
 	@for i in $(ALL_PICS) ; do $(INSTALL) -m $(PHP_RIGHTS) $$i $(APP_INST_DIR)/$$i ; done

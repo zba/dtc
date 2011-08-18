@@ -1,3 +1,4 @@
 #!/bin/sh
-# This shell script is used by DTC, please do not remove
-/usr/bin/sudo -H /usr/bin/chrootuid $HOME $USER /bin/bash "$@"
+
+# chroot in user's home directory
+/usr/bin/sudo /bin/dtc-chroot-wrapper "$@"
