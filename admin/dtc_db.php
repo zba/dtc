@@ -1092,7 +1092,8 @@ $dtc_database = array(
 			"dineromail_nrocuenta" => "varchar(20) NOT NULL default ''",
 			"dineromail_tipospago" => "varchar(30) NOT NULL default '2,7,13,4,5,6,14,15,16,17,18'",
 			"dineromail_cargocomision" => "decimal(9,2) NOT NULL default '0.00'",
-			"dineromail_porcentajecomision" => "decimal(9,2) NOT NULL default '0.00'"
+			"dineromail_porcentajecomision" => "decimal(9,2) NOT NULL default '0.00'",
+			"dineromail_logo_url" => "varchar(255) NOT NULL default ''"
 		),
 		"keys" => array(
 			"unicrow" => "(unicrow)"

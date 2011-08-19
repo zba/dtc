@@ -1976,7 +1976,12 @@ be displayed to your users instead of the popup value.")."<br>";
 			"dineromail_porcentajecomision" => array(
 				"legend" => _("Percentage fee: "),
 				"type" => "text",
-				"size" => "6"), ));
+				"size" => "6"),
+			"dineromail_logo_url" => array(
+				"legend" => _("Display payment image url (leave blank for default): "),
+				"type" => "text",
+				"size" => "6")
+				));
 	$out .= configEditorTemplate ($dsc,"secpay");
 
 	return $out;

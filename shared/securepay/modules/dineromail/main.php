@@ -31,6 +31,7 @@ The committees agreed to the payment may be transferred wholly or partly to the 
 function dineromail_display_icon($product_id,$amount,$item_name,$return_url,$use_recurring = "no"){
 	global $secpayconf_dineromail_nrocuenta;
 	global $secpayconf_dineromail_tipospago;
+	global $secpayconf_dineromail_logo_url;
 	
 	$ncta = preg_split('/\//',$secpayconf_dineromail_nrocuenta);
 	
@@ -57,7 +58,16 @@ function dineromail_display_icon($product_id,$amount,$item_name,$return_url,$use
 	$out .= '<input type="hidden" name="usr_apellido" value="">'."\n"; // customer's surname
 	$out .= '<input type="hidden" name="usr_tel_numero" value="">'."\n"; // customer's phone number
 	$out .= '<input type="hidden" name="usr_email" value="">'."\n"; // customer's email
-	$out .= '<input type="image" src="https://argentina.dineromail.com/imagenes/post-login/boton-comprar-01.gif" border="0" name="submit" alt="';
+	$out .= '<input type="image" src="';
+	if (empty($secpayconf_dineromail_logo_url))
+		{
+		$out .= 'https://argentina.dineromail.com/imagenes/post-login/boton-comprar-01.gif';
+		}
+	else
+		{
+		$out .= $secpayconf_dineromail_logo_url;
+		}
+	$out .= '" border="0" name="submit" alt="';
 	$out .= _("Pay by DineroMail") . '">';
 	$out .= '</form>'."\n";
 
