@@ -1129,18 +1129,6 @@ createDTCRootShellScript () {
 			echo "# This shell script is used by DTC, please do not remove" >> $CHROOT_SHELL
 		        echo "$PATH_SUDO -H $PATH_CHROOT \$HOME \$USER" ${PATH_BASH} \"\$@\" >> $CHROOT_SHELL
 		        chmod 755 $CHROOT_SHELL
-		else
-			echoIfVerbose "Skiping under Debian (just checking if /bin/dtc-chroot-shell is there)..."
-			# Note to debian developers reviewing this script:
-			# under NORMAL situation, /bin/dtc-chroot-shell is shipped in dtc-common, but because of errors in the past,
-			# dtc-postfix-courier or dtc has a rm /bin/dtc-chroot-shell in it's postrm. This should fix it, without having
-			# to reinstall TWICE dtc-common and (dtc-postfix-courier or dtc) as this second one will be setup AFTER dtc-common
-			# and the previous postrm of the previous version will erase the file from the new dtc-common...
-			# As in normal behavior this will NEVER be executed (as the file will exist), please allow us to leave this
-			# (bad) code that do repair the problem.
-			if ! [ -e /bin/dtc-chroot-shell ] ; then
-				cp /usr/share/dtc/admin/dtc-chroot-shell /bin
-			fi
 		fi
 	fi
 }
@@ -4704,7 +4692,7 @@ createChrootTemplate () {
 	# if we have a sudo binary around, then use it to create our chroot shell
 	SUDO=`which sudo`
 	SHELL=${LOCALBASE}/bin/dtc-chroot-shell
-	chmod 755 $SHELL
+	#chmod 755 $SHELL
 
 	# set protections
 	echoIfVerbose "-> Fixup rights"
