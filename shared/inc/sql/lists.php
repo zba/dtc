@@ -479,7 +479,7 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesValueRequestCheck($ctrl_dir,"digestmaxmails","/^([0-9]+)\$/");
 	tunablesListRequestCheck($ctrl_dir,"owner","/(^([a-zA-Z0-9])|^([a-zA-Z0-9]+)([._a-zA-Z0-9-]*))@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$/");
 	tunablesTextareaRequestCheck($ctrl_dir,"customheaders");
-	tunablesListRequestCheck($ctrl_dir,"delheaders","/(^([a-zA-Z0-9])|^([a-zA-Z0-9]+)([._a-zA-Z0-9-]*))@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+):\$/");
+	tunablesListRequestCheck($ctrl_dir,"delheaders");
 	tunablesTextareaRequestCheck($ctrl_dir,"footer");
 	tunablesWABooleanRequestCheck($list_dir,"webarchive");
 	tunablesTextareaRequestCheck($list_dir,"rcfile");
