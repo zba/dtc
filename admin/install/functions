@@ -4037,7 +4037,7 @@ password ${MYSQL_DTCDAEMONS_PASS}
 				sed -i "s/pam_unix2.so/pam_unix.so/" /etc/pam.d/common-auth
 			fi
 			COMMON_AUTH_NULL_SELECTION=`cat /etc/pam.d/common-auth | grep 'pam_unix' | awk '{print $4}'`
-			if [ "${COMMON_AUTH_NULL_SELECTION}" = "nullok" ; then
+			if [ "${COMMON_AUTH_NULL_SELECTION}" = "nullok" ] ; then
 				sed -i "s/nullok/nullok_secure/" /etc/pam.d/common-auth
 			fi
 		fi

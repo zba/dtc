@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # chroot in user's home directory
-/usr/bin/sudo /bin/dtc-chroot-wrapper "$@"
+/usr/bin/sudo /usr/bin/dtc-chroot-wrapper "$@"
