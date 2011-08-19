@@ -21,9 +21,8 @@ dtc (0.34.1-1) unstable; urgency=high
     /var/log/dtc.log (Closes: #637617).
     - Checks for validity of package name in the package installer before
     installing a package (Closes: #637629).
-    - Removes insertion in /etc/sudoers since it's giving root access to
-    anything running as the DTC user. Note that this renders ssh to vhosts
-    not working anymore until a better solution is found (Closes: #637618).
+    - Now using a dtc-chroot-wrapper to avoid giving a too permissive access
+    to chrootuid, which was giving root access to apache (Closes: #637618).
     - Don't use htpasswd -b, since it's showing the password on a ps. Using
     crypt() and fwrite() now. (Closes: #637537).
   * Added ja.po debconf translation thanks to Hideki Yamane
