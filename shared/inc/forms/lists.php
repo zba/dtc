@@ -435,12 +435,6 @@ function list_options(){
 		$output .= getListOptionsTextarea($list_path,"access", _("Access list:") );
 	}
 
-	$output .= "<tr><td colspan=\"2\"><b>". _("Subscribe/Unsubscribe an email address") ."</b></td></tr>";
-	$output .= "<tr><td onmouseover=\"Tip('". _("Insert here an email address to subscribe it.") ."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">". _("Subscribe:") ."</td>
-    <td><input size=\"40\" type=\"text\" value=\"\" name=\"sub\"></td></tr>";
-	$output .= "<tr><td onmouseover=\"Tip('". _("Insert here an email address to unsubscribe it.") ."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">". _("Unsubscribe:") ."</td>
-    <td><input size=\"40\" type=\"text\" value=\"\" name=\"unsub\"></td></tr>";
-
 	$output .= "<tr><td colspan=\"2\"><b>". _("Web archive") ."</b></td></tr>";
 	$output .= getListOptionsWABoolean("webarchive", _("Enable webarchive:") );
 	$output .= getListOptionsWATextarea($list_path,"rcfile", _("Own template:") );

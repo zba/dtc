@@ -253,12 +253,21 @@ function tunablesBooleanRequestCheck($ctrl_path,$tunable_name){
 	}
 }
 
-function tunablesValueRequestCheck($ctrl_path,$tunable_name){
+function tunablesValueRequestCheck($ctrl_path,$tunable_name,$regexp=""){
 	$option_file = $ctrl_path."/".$tunable_name;
 	if ($_REQUEST[$tunable_name]!=""){
 		//i write in the file
-		$write_line = "echo ".escapeshellarg($_REQUEST[$tunable_name])." > ".$option_file;
-		exec($write_line);
+		$fp = fopen($option_file,"w+");
+		if($fp != NULL){
+			if($regexp!=""){
+				if( preg_match($regexp,$_REQUEST[$tunable_name]) ){
+					fwrite($fp,$_REQUEST[$tunable_name]."\n");
+				}
+			}else{
+				fwrite($fp,$_REQUEST[$tunable_name]."\n");
+			}
+			fclose($fp);
+		}
 	}else{ //i remove the file
 		if (file_exists($option_file)){
 		$rem = "rm ".$option_file;
@@ -267,19 +276,27 @@ function tunablesValueRequestCheck($ctrl_path,$tunable_name){
 	}
 }
 
-function tunablesListRequestCheck($ctrl_path,$tunable_name){
+function tunablesListRequestCheck($ctrl_path,$tunable_name,$regexp=""){
 	$option_file = $ctrl_path."/".$tunable_name;
 	if (file_exists($option_file) && ($tunable_name!="owner")){
 		$rem = "rm ".$option_file;
 		exec($rem);
 	} 		
-	for($i=0;$i<sizeof($_REQUEST[$tunable_name]);$i++){
-		if ($_REQUEST[$tunable_name][$i]!=""){
-			$write_line = "echo ".escapeshellarg($_REQUEST[$tunable_name][$i])." >> ".$option_file;
-			exec($write_line);
+	$fp = fopen($option_file,"w+");
+	if($fp != NULL){
+		for($i=0;$i<sizeof($_REQUEST[$tunable_name]);$i++){
+			if ($_REQUEST[$tunable_name][$i]!=""){
+				if($regexp!=""){
+					if( preg_match($regexp,$_REQUEST[$tunable_name][$i]) ){
+						fwrite($fp,$_REQUEST[$tunable_name][$i]."\n");
+					}
+				}else{
+					fwrite($fp,$_REQUEST[$tunable_name][$i]."\n");
+				}
+			}
 		}
+		fclose($fp);
 	}
-	
 }
 
 function tunablesTextareaRequestCheck($ctrl_path,$tunable_name){
@@ -297,20 +314,6 @@ function tunablesTextareaRequestCheck($ctrl_path,$tunable_name){
 		$rem = "rm ".$option_file;
 		exec($rem);
 	}
-}
-
-function tunablesSUBTextareaRequestCheck($list_dir,$tunable_name){
-$email = $_REQUEST[$tunable_name];
-//must add $email validation!!!
-$command = "/usr/bin/mlmmj-sub -L ".$list_dir."/ -a ".$email;
-exec($command);
-}
-
-function tunablesUNSUBTextareaRequestCheck($list_dir,$tunable_name){
-$email = $_REQUEST[$tunable_name];
-//must add $email validation!!!
-$command = "/usr/bin/mlmmj-unsub -L ".$list_dir."/ -a ".$email;
-exec($command);
 }
 
 function tunablesWABooleanRequestCheck($list_dir,$tunable_name){
@@ -450,7 +453,7 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	// 1 closedlist
 	tunablesBooleanRequestCheck($ctrl_dir,"closedlist");
 	tunablesBooleanRequestCheck($ctrl_dir,"moderated");
-	tunablesListRequestCheck($ctrl_dir,"moderators");
+	tunablesListRequestCheck($ctrl_dir,"moderators","/(^([a-zA-Z0-9])|^([a-zA-Z0-9]+)([._a-zA-Z0-9-]*))@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$/");
 	tunablesBooleanRequestCheck($ctrl_dir,"subonlypost");
 	tunablesBooleanRequestCheck($ctrl_dir,"notifysub");
 	tunablesBooleanRequestCheck($ctrl_dir,"nosubconfirm");
@@ -463,23 +466,21 @@ if(isset($_REQUEST["modifylistdata"]) && $_REQUEST["modifylistdata"] == "Ok"){
 	tunablesBooleanRequestCheck($ctrl_dir,"noaccessdenymails");
 	tunablesBooleanRequestCheck($ctrl_dir,"nosubonlydenymails");
 	tunablesValueRequestCheck($ctrl_dir,"prefix");
-	tunablesValueRequestCheck($ctrl_dir,"memorymailsize");
+	tunablesValueRequestCheck($ctrl_dir,"memorymailsize","/^([0-9]+)\$/");
 	if($conf_use_advanced_lists_tunables == "yes"){
-		tunablesValueRequestCheck($ctrl_dir,"relayhost");
+		tunablesValueRequestCheck($ctrl_dir,"relayhost",'/^((([a-z0-9]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))\.)*(([a-z]([-a-z0-9]*[a-z0-9])?)|(#[0-9]+)|(\[((([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\.){3}(([01]?[0-9]{0,2})|(2(([0-4][0-9])|(5[0-5]))))\]))$/');
 		tunablesValueRequestCheck($ctrl_dir,"verp");
-		tunablesValueRequestCheck($ctrl_dir,"maxverprecips");
-		tunablesValueRequestCheck($ctrl_dir,"delimiter");
-		tunablesValueRequestCheck($ctrl_dir,"bouncelife");
+		tunablesValueRequestCheck($ctrl_dir,"maxverprecips","/^([0-9]+)\$/");
+		tunablesValueRequestCheck($ctrl_dir,"delimiter","/^([+-])\$/");
+		tunablesValueRequestCheck($ctrl_dir,"bouncelife","/^([0-9]+)\$/");
 		tunablesTextareaRequestCheck($ctrl_dir,"access");
 	}
-	tunablesValueRequestCheck($ctrl_dir,"digestinterval");
-	tunablesValueRequestCheck($ctrl_dir,"digestmaxmails");
-	tunablesListRequestCheck($ctrl_dir,"owner");
+	tunablesValueRequestCheck($ctrl_dir,"digestinterval","/^([0-9]+)\$/");
+	tunablesValueRequestCheck($ctrl_dir,"digestmaxmails","/^([0-9]+)\$/");
+	tunablesListRequestCheck($ctrl_dir,"owner","/(^([a-zA-Z0-9])|^([a-zA-Z0-9]+)([._a-zA-Z0-9-]*))@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+)\$/");
 	tunablesTextareaRequestCheck($ctrl_dir,"customheaders");
-	tunablesListRequestCheck($ctrl_dir,"delheaders");
+	tunablesListRequestCheck($ctrl_dir,"delheaders","/(^([a-zA-Z0-9])|^([a-zA-Z0-9]+)([._a-zA-Z0-9-]*))@([a-z0-9]+)([-a-z0-9.]*)\.([a-z0-9-]*)([a-z0-9]+):\$/");
 	tunablesTextareaRequestCheck($ctrl_dir,"footer");
-	tunablesSUBTextareaRequestCheck($list_dir, "sub");
-	tunablesUNSUBTextareaRequestCheck($list_dir, "unsub");
 	tunablesWABooleanRequestCheck($list_dir,"webarchive");
 	tunablesTextareaRequestCheck($list_dir,"rcfile");
 	tunablesWABooleanRequestCheck($ctrl_dir,"spammode");
