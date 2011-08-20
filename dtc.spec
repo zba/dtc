@@ -104,6 +104,7 @@ fi
 %{_datadir}/dtc/client/*
 %{_datadir}/dtc/email/*
 %{_datadir}/dtc/shared/*
+%{_bindir}/dtc-chroot*
 %{_datadir}/dtc/doc
 %doc %{_defaultdocdir}/dtc/*
 %{_mandir}/man?/*
@@ -117,6 +118,7 @@ fi
 %config(noreplace) %{_sysconfdir}/dtc/registration_msg
 %config(noreplace) %{_sysconfdir}/dtc/tickets
 %config(noreplace) %{_sysconfdir}/dtc/*.txt
+%config(noreplace) %{_sysconfdir}/dtc/chroot_allowed_path
 
 %files -n dtc-postfix-courier
 %files -n dtc-stats-daemon
