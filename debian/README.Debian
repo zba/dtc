@@ -24,10 +24,10 @@ your root administrators (the one accessing /dtcadmin) and your virtual admins
 you should perform the following shell script command:
 
 mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc \
-   --execute="UPDATE admin SET adm_pass=PASSWORD(adm_pass)"
+   --execute="UPDATE admin SET adm_pass=SHA1(adm_pass)"
 
 mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc \
- --execute="UPDATE tik_admins SET tikadm_pass=PASSWORD(tikadm_pass)"
+ --execute="UPDATE tik_admins SET tikadm_pass=SHA1(tikadm_pass)"
 
 As a consequence, this will encrypt all passwords, including the one that you
 have entered during the installation of DTC, which may have already been
