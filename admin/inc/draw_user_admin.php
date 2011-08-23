@@ -848,6 +848,24 @@ dtcFormLineDraw("","
 					$sr .= "<a href=\"?adm_login=$owner&adm_pass=$adm_random_pass\">".$owner."</a><br><br>";
 				}
 			}
+		// Search on clients
+		}else{
+			$q = "SELECT * FROM $pro_mysql_client_table WHERE (familyname LIKE '%".$_REQUEST["search_subject"]."%') OR (christname LIKE '%".$_REQUEST["search_subject"]."%') OR (company_name LIKE '%".$_REQUEST["search_subject"]."%')";
+			$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+			$n = mysql_num_rows($r);
+			for($i=0;$i<$n;$i++){
+				$a = mysql_fetch_array($r);
+				$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE id_client='".$a["id"]."';";
+				$r2 = mysql_query($q2)or die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				$n2 = mysql_num_rows($r2);
+				if($n2 == 1){
+					$a2 = mysql_fetch_array($r2);
+					$owner = $a2["adm_login"];
+					$sr .= _("Login:")." ".$owner."<br>";
+					$sr .= _("Customer:")." ".getCustomerInfoFromLogin($owner)."<br>";
+					$sr .= "<a href=\"?adm_login=$owner&adm_pass=$adm_random_pass\">".$owner."</a><br><br>";
+				}
+			}
 		}
 		return "<table>
 <tr>
