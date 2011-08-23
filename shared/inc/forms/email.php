@@ -283,7 +283,7 @@ function drawAdminTools_emailPanel($mailbox){
 		"text" => _("My e-mail") ,
 		"icon" => "box_wnb_nb_picto-mailboxes.gif",
 		"type" => "link",
-		"link" => "My Email");
+		"link" => "my-email");
 	$user_menu[] = array(
 		"text" => _("Fetchmail") ,
 		"icon" => "box_wnb_nb_picto-mailinglists.gif",
@@ -294,7 +294,7 @@ function drawAdminTools_emailPanel($mailbox){
 	$mymenu = makeTreeMenu($user_menu,$addrlink,"?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass","addrlink");
 
 	switch($addrlink){
-	case "My Email":
+	case "my-email":
 		$title = _("Mailbox configuration: ") ;
 		$panel = drawAdminTools_emailAccount($mailbox);
 		break;
