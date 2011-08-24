@@ -267,7 +267,7 @@ if(isset($_REQUEST["updateuserinfo"]) && $_REQUEST["updateuserinfo"] == "Ok"){
 			$new_encrypt_dtcadm_pass = "'".$_REQUEST["changed_pass"]."'";
 		}
 		$adm_query = "UPDATE $pro_mysql_admin_table SET id_client='".$_REQUEST["changed_id_client"]."',
-			adm_pass='".$_REQUEST["changed_pass"]."',path='".$_REQUEST["changed_path"]."',
+			adm_pass=$new_encrypt_dtcadm_pass,path='".$_REQUEST["changed_path"]."',
 			quota='".$_REQUEST["adm_quota"]."', bandwidth_per_month_mb='".$_REQUEST["bandwidth_per_month"]."',
 			expire='".$_REQUEST["expire"]."',allow_add_domain='".$_REQUEST["allow_add_domain"]."',max_domain='".$_REQUEST["max_domain"]."',
 			nbrdb='".$_REQUEST["nbrdb"]."',prod_id='".$_REQUEST["heb_prod_id"]."',
