@@ -1,3 +1,15 @@
+dtc (0.34.2-1) unstable; urgency=low
+
+  * New upstream version correcting:
+    - README.Debian now advertize for the correct shell command to has existing
+    admin passwords.
+    - Fixed a syntax error in the sed command of update_sbox_bootstrap_copy,
+    also now using --force-yes when updating / adding packages.
+    - Fixed the path of top_bad_password.txt in the check_password() function.
+    - Now also hash passwords when changed in the "Admin Editor".
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 24 Aug 2011 16:52:02 +0800
+
 dtc (0.34.1-1) unstable; urgency=high
 
   * New upstream version with lots of security fixes:
