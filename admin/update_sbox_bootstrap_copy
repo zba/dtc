@@ -59,10 +59,10 @@ if [ -f /etc/debian_version ] ; then
 	if [ $SU = "no" ] ; then
 		cp /etc/apt/sources.list ${sbox_copy_disk_path}/etc/apt
 		chroot ${sbox_copy_disk_path} apt-get update
-		chroot ${sbox_copy_disk_path} apt-get dist-upgrade -y
+		chroot ${sbox_copy_disk_path} apt-get dist-upgrade -y --force-yes
 	fi
 	############# Install of PHP #############
-	chroot /var/lib/dtc/sbox_copy apt-get install -y locales-all ${PHP_PKGS}
+	chroot /var/lib/dtc/sbox_copy apt-get install -y --force-yes locales-all ${PHP_PKGS}
 
 	# Some stuff on the target php.ini:
 	PHP_INI_PATH=${sbox_copy_disk_path}/etc/php5/cgi/php.ini
