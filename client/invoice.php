@@ -78,6 +78,7 @@ if($completedorder["product_id"] != 0){
 	}
 	$product = mysql_fetch_array($r);
 	$price_dollar = $product["price_dollar"];
+	$price_dollar += $product["setup_fee"];
 }else{
 	$servs = explode("|",$completedorder["services"]);
 	$lasts = explode("|",$completedorder["last_expiry_date"]);
@@ -109,6 +110,7 @@ if($completedorder["product_id"] != 0){
 		$one_prod = mysql_fetch_array($r);
 		$one_prod["last_expiry_date"] = $lasts[$j];
 		$price_dollar += $one_prod["price_dollar"];
+		$price_dollar += $one_prod["setup_fee"];
 		$product[] = $one_prod;
 	}
 }
@@ -274,23 +276,36 @@ class zPDF extends FPDF{
 		$this->SetFont('Arial','',9);
 		// Single item invoice?
 		if($completedorder["product_id"] != 0){
+			$pname = $product["name"];
+			$pprice = $product["price_dollar"];
+			if($product["setup_fee"] != 0){
+				$pname = $product["name"]." ("._("Product: ").$product["price_dollar"]." ".$secpayconf_currency_letters.", "._("Setup fee: ").$product["setup_fee"]." ".$secpayconf_currency_letters.")";
+				$pprice += $product["setup_fee"];
+			}else{
+				$pname = $product["name"];
+			}
 			$this->Ln();
 			$this->SetFont('Arial','',9);
-			$this->Cell(110,7,$product["name"],"1",0,"L");
+			$this->Cell(110,7,$pname,"1",0,"L");
 			$this->Cell(20,7,$completedorder["last_expiry_date"],"1",0,"L");
 			$date_expire = calculateExpirationDate($completedorder["last_expiry_date"],$product["period"]);
 			$this->Cell(20,7,$date_expire,"1",0,"L");
-			$this->Cell(35,7,$price_dollar." ".$secpayconf_currency_letters,"1",0,"L");
+			$this->Cell(35,7,$pprice." ".$secpayconf_currency_letters,"1",0,"L");
 			$this->Ln();
 		}else{
 			$num_products = sizeof($product);
 			for($i=0;$i<$num_products;$i++){
+				$pname = $product[$i]["name"];
+				$pprice = $product[$i]["price_dollar"];
+				if($product[$i]["setup_fee"] != 0){
+					$pname .= "("._("Setup fee: ").$product[$i]["setup_fee"]." ".$secpayconf_currency_letters.")";
+				}
 				$this->Ln();
-				$this->Cell(110,7,$product[$i]["name"],"1",0,"L");
+				$this->Cell(110,7,$pname,"1",0,"L");
 				$this->Cell(20,7,$product[$i]["last_expiry_date"],"1",0,"L");
 				$date_expire = calculateExpirationDate($product[$i]["last_expiry_date"],$product[$i]["period"]);
 				$this->Cell(20,7,$date_expire,"1",0,"L");
-				$this->Cell(35,7,$product[$i]["price_dollar"]." ".$secpayconf_currency_letters,"1",0,"L");
+				$this->Cell(35,7,$pprice." ".$secpayconf_currency_letters,"1",0,"L");
 			}
 			$this->Ln();
 		}
