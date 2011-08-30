@@ -167,7 +167,7 @@ function drawAdminTools_VPSInstallation($admin,$vps){
 			$out .= dtcFormLineDraw($vps_ips[$i] . '</th><th class="alternatecolorline">' . $ip_pool_row['netmask'] . '</th><th class="alternatecolorline">' . $ip_pool_row['gateway'] . '</th><th class="alternatecolorline">' . $ip_pool_row['dns'],
 	"$frm_start<input type=\"hidden\" name=\"action\" value=\"set_ip_reverse_dns\">
 	<input type=\"hidden\" name=\"ip_addr\" value=\"".$vps_ips[$i]."\">
-	<input type=\"text\" name=\"rdns\" value=\"".$a["rdns_addr"]."\">
+	<input size=\"40\" type=\"text\" name=\"rdns\" value=\"".$a["rdns_addr"]."\">
 </td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\"
 onMouseOut=\"this.className='input_btn_container';\">
  <div class=\"input_btn_left\"></div>

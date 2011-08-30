@@ -133,7 +133,7 @@ function drawAdminTools_Dedicated($admin,$dedicated_server_hostname){
 
 		$out .= dtcFormLineDraw($a["ip_addr"],"$frm_start<input type=\"hidden\" name=\"action\" value=\"set_dedicated_ip_rdns\">
 <input type=\"hidden\" name=\"ip_addr\" value=\"".$a["ip_addr"]."\">
-<input type=\"text\" name=\"rdns\" value=\"".$a["rdns_addr"]."\">
+<input size=\"40\" type=\"text\" name=\"rdns\" value=\"".$a["rdns_addr"]."\">
 </td><td><div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
 <div class=\"input_btn_left\"></div>
 <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\""._("Change RDNS")."\"></div>
