@@ -259,11 +259,11 @@ class zPDF extends FPDF{
 
 		// VAT calculation
 		if($use_vat == "yes"){
-			$without_vat = round(($pay["paiement_total"] / (1 + ($pay["vat_rate"] / 100))),2);
-			$vat = $pay["paiement_total"] - $without_vat;
+			$vat = round(($pay["paiement_total"] * ($pay["vat_rate"] / 100)),2);
+			$without_vat = $pay["paiement_total"] - $vat;
 		}else{
 			$without_vat = $pay["paiement_total"];
-			$vat = $pay["paiement_total"] - $without_vat;
+			$vat = 0;
 		}
 		$gateway_cost = $without_vat - $price_dollar;
 		
