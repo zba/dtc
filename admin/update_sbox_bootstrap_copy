@@ -22,7 +22,7 @@ PHP_PKGS="php5-cgi php5-mysql php5-curl php5-gd php5-imap php5-mcrypt php5-odbc 
 PERL_PKGS="perl"
 PYTHON_PKGS="python"
 RUBY_PKGS="ruby"
-UTILS="vim joe screen bash openssh-client"
+UTILS="vim joe screen bash openssh-client ssmtp"
 DO_ALL_PKGS="${PHP_PKGS} ${PERL_PKGS} ${PYTHON_PKGS} ${RUBY_PKGS} ${UTILS}"
 
 ############# get arch #############
@@ -65,6 +65,9 @@ if [ -f /etc/debian_version ] ; then
 	fi
 	############# Install of PHP #############
 	chroot /var/lib/dtc/sbox_copy apt-get install -y --force-yes locales-all ${DO_ALL_PKGS}
+
+	# Configure ssmtp to be able to send mail from the chroot
+	sed -i "s/mailhub=mail/mailhub=127.0.0.1/" ${sbox_copy_disk_path}/etc/ssmtp/ssmtp.conf
 
 	# Some stuff on the target php.ini:
 	PHP_INI_PATH=${sbox_copy_disk_path}/etc/php5/cgi/php.ini
