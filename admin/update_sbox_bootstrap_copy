@@ -21,8 +21,9 @@ done
 PHP_PKGS="php5-cgi php5-mysql php5-curl php5-gd php5-imap php5-mcrypt php5-odbc php5-pgsql php5-sqlite php5-xmlrpc php5-xsl php-compat php-html-common php-apc php-config php-date php-fpdf php-http-request php5-imagick php-mail-mimedecode php-mail php-net-ftp php-net-ipv4 php-net-socket php-net-url php-openid php-xml-serializer php-xml-parser php-xml-util"
 PERL_PKGS="perl"
 PYTHON_PKGS="python"
-RUBY_PKGS="ruby libsinatra-ruby"
+RUBY_PKGS="ruby"
 UTILS="vim joe screen bash openssh-client"
+DO_ALL_PKGS="${PHP_PKGS} ${PERL_PKGS} ${PYTHON_PKGS} ${RUBY_PKGS} ${UTILS}"
 
 ############# get arch #############
 FOUNDED_ARCH=`uname -m`
@@ -58,11 +59,12 @@ esac
 if [ -f /etc/debian_version ] ; then
 	if [ $SU = "no" ] ; then
 		cp /etc/apt/sources.list ${sbox_copy_disk_path}/etc/apt
+		cp /etc/hosts ${sbox_copy_disk_path}/etc
 		chroot ${sbox_copy_disk_path} apt-get update
 		chroot ${sbox_copy_disk_path} apt-get dist-upgrade -y --force-yes
 	fi
 	############# Install of PHP #############
-	chroot /var/lib/dtc/sbox_copy apt-get install -y --force-yes locales-all ${PHP_PKGS}
+	chroot /var/lib/dtc/sbox_copy apt-get install -y --force-yes locales-all ${DO_ALL_PKGS}
 
 	# Some stuff on the target php.ini:
 	PHP_INI_PATH=${sbox_copy_disk_path}/etc/php5/cgi/php.ini
