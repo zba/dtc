@@ -870,7 +870,7 @@ function drawRenewalTables (){
 						break;
 					case "03":
 					case "06":
-					case "07":
+					case "09":
 					case "12":
 						$num_month = 1;
 						break;
