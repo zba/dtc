@@ -157,7 +157,7 @@ function subscribers_list($list_path){
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 	<input type=\"hidden\" name=\"edit_domain\" value=\"$edit_domain\">
 	<input type=\"hidden\" name=\"whatdoiedit\" value=\"mails\">
-	<input type=\"hidden\" name=\"edit_mailbox\" value=\"".$_REQUEST["edit_mailbox"]."\">
+	<input type=\"hidden\" name=\"edit_mailbox\" value=\"".htmlspecialchars($_REQUEST["edit_mailbox"])."\">
 	<input type=\"hidden\" name=\"action\" value=\"subscribe_new_user\">
 	<input type=\"text\" size=\"40\" name=\"subscriber_email\" value=\"\">
 	<input type=\"submit\" value=\"Ok\">
@@ -295,7 +295,7 @@ function getListOptionsValue($ctrl_path,$tunable_name,$tunable_title){
 	}
 	return "<tr>
 			<td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" align=\"right\">".$tunable_title."</td>
-			<td><input size=\"40\" type=\"text\" value=\"".$value."\" name=\"".$tunable_name."\"></td></tr>";
+			<td><input size=\"40\" type=\"text\" value=\"".htmlspecialchars($value)."\" name=\"".$tunable_name."\"></td></tr>";
 }
 
 function getListOptionsTextarea($ctrl_path,$tunable_name,$tunable_title){
@@ -309,7 +309,7 @@ function getListOptionsTextarea($ctrl_path,$tunable_name,$tunable_title){
 	}
 	return "<tr>
 	<td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">".$tunable_title."</td>
-	<td><textarea rows=\"5\" cols=\"60\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
+	<td><textarea rows=\"5\" cols=\"60\" name=\"".$tunable_name."\">".htmlspecialchars($value)."</textarea></td></tr>";
 }
 
 
@@ -321,22 +321,22 @@ function getListOptionsList($ctrl_path,$tunable_name,$tunable_title){
 		$values = file($option_file);
 	}
         //if owner i don't control the first line
-	if($tunable_name=="owner"){
-          $start=1;
-        }else{
-          $start=0;
-        }
+//	if($tunable_name=="owner"){
+//		$start=1;
+//	}else{
+		$start=0;
+//	}
 
         $mouseover = "onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\"";
 	$out = "<tr>";
 	
 	for($i=$start;$i<sizeof($values);$i++){
 		if ($i==$start){
-		  $out .= "<td $mouseover align=\"right\" valign=\"top\" rowspan=\"".(sizeof($values) - $start + 1)."\">".$tunable_title."</td>";
-		  }else{
-		  $out .= "<tr>";
-		  }
-	$out .= "<td><input size=\"40\" type=\"text\" value=\"".$values[$i]."\" name=\"".$tunable_name."[]\"></td></tr>";
+			$out .= "<td $mouseover align=\"right\" valign=\"top\" rowspan=\"".(sizeof($values) - $start + 1)."\">".$tunable_title."</td>";
+		}else{
+			$out .= "<tr>";
+		}
+		$out .= "<td><input size=\"40\" type=\"text\" value=\"".htmlspecialchars($values[$i])."\" name=\"".$tunable_name."[]\"></td></tr>";
 	}
 	if($start >= sizeof($values)){
 		$out .= "<td $mouseover align=\"right\">".$tunable_title."</td>";
@@ -374,7 +374,7 @@ function getListOptionsWATextarea($ctrl_path,$tunable_name,$tunable_title){
 	}
 	return "<tr>
     <td onmouseover=\"Tip('".getTunableHelp($tunable_name)."',STICKY,true,CLICKCLOSE,true,FADEIN,600)\" valign=\"top\" align=\"right\">".$tunable_title."</td>
-    <td><textarea rows=\"5\" cols=\"40\" name=\"".$tunable_name."\">".$value."</textarea></td></tr>";
+    <td><textarea rows=\"5\" cols=\"40\" name=\"".$tunable_name."\">".htmlspecialchars($value)."</textarea></td></tr>";
 }
 
 function getListOptionsWABooleanActions($tunable_name,$tunable_title){
