@@ -171,6 +171,7 @@ function dtcDatagrid($dsc){
 	global $action_error_txt;
 
 	global $gfx_form_entry_label_background;
+	global $conf_enforce_adm_encryption;
 
 	$nbr_forwards = sizeof($dsc["forward"]);
 	$keys_fw = array_keys($dsc["forward"]);
@@ -231,7 +232,7 @@ function dtcDatagrid($dsc){
 					}else{
 						$happen = "";
 					}
-					if( $dsc["cols"][ $keys[$i] ]["type"] == "password" && $dsc["cols"][ $keys[$i] ]["encrypt"] == "yes"){
+					if( $dsc["cols"][ $keys[$i] ]["type"] == "password" && isset($dsc["cols"][ $keys[$i] ]["encrypt"]) && $dsc["cols"][ $keys[$i] ]["encrypt"] == "yes" && $conf_enforce_adm_encryption == "yes"){
 						$vals .= "SHA1('".$_REQUEST[ $keys[$i] ].$happen."')";
 					}else{
 						$vals .= "'".$_REQUEST[ $keys[$i] ].$happen."'";
@@ -302,7 +303,7 @@ function dtcDatagrid($dsc){
 					if($added_one == "yes"){
                                                 $vals .= ", ";
                                         }
-					if( $dsc["cols"][ $keys[$i] ]["encrypt"] == "yes"){
+					if( isset($dsc["cols"][ $keys[$i] ]["encrypt"]) && $dsc["cols"][ $keys[$i] ]["encrypt"] == "yes" && $conf_enforce_adm_encryption){
 	                                        $vals .= " ".$keys[$i]."=SHA1('".$_REQUEST[ $keys[$i] ]."') ";
 					}else{
 	                                        $vals .= " ".$keys[$i]."='".$_REQUEST[ $keys[$i] ]."' ";
