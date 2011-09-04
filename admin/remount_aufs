@@ -2,8 +2,8 @@
 
 set -e
 
-echo "Unmounting..."
-# List all currently mounted aufs mounts
+echo "Computing lists of mounts and unmounts..."
+# List all line numbers of /etc/mtab holding an aufs filesystem
 CNT=0
 LINES=""
 for i in `cat /etc/mtab | cut -d" " -f3` ; do
@@ -11,26 +11,54 @@ for i in `cat /etc/mtab | cut -d" " -f3` ; do
 	if [ "${i}" = "aufs" ] ; then
 		LINES=${LINES}"${CNT} "
 	fi
-	# echo "$CNT: $i"
 done
 
-# Umount them all
-for i in ${LINES} ; do
-	LINE=`cat /etc/mtab | head -n ${i} | tail -n 1`
+# Compute list of already mounted subdomains.aufs/XXX
+MOUNTED_LIST_FILE=`mktemp -t DTC_MOUNTED_LIST_FILE.XXXXXX`
+for line_num in ${LINES} ; do
+	LINE=`cat /etc/mtab | head -n ${line_num} | tail -n 1`
 	TARGET=`echo ${LINE} | cut -d" " -f2`
-	echo "umount ${TARGET}" || true
-	umount ${TARGET}
+	echo ${TARGET} >>${MOUNTED_LIST_FILE}
 done
 
-echo "Remounting..."
-# Mount all what's used by DTC
+# Sort the result list of already mounted subdomains.aufs/XXX
+SORTED_MOUNTED_LIST_FILE=`mktemp -t DTC_MOUNTED_LIST_FILE.XXXXXX`
+cat ${MOUNTED_LIST_FILE} | sort >${SORTED_MOUNTED_LIST_FILE}
+rm ${MOUNTED_LIST_FILE}
+
+# Compute list of subdomains.aufs/XXX that we would like to see mounted
+TOMOUNT_LIST_FILE=`mktemp -t DTC_TOMOUNT_LIST_FILE.XXXXXX`
 CNT=0
 for i in `cat /var/lib/dtc/etc/aufs_list` ; do
-	CNT=$(( ${CNT} + 1 ))
-	#echo "${CNT}:\"${i}\""
+	SUBDOMAIN=`basename ${i}`
+	TMP=`dirname ${i}`
+	TARGET=`dirname ${TMP}`/subdomains.aufs/${SUBDOMAIN}
+	echo ${TARGET} >>${TOMOUNT_LIST_FILE}
+done
+
+# Sort the result of subdomains.aufs/XXX that we would like to see mounted
+SORTED_TOMOUNT_LIST_FILE=`mktemp -t DTC_SORTED_TOMOUNT_LIST_FILE.XXXXXX`
+cat ${TOMOUNT_LIST_FILE} | sort >${SORTED_TOMOUNT_LIST_FILE}
+rm ${TOMOUNT_LIST_FILE}
+
+# Compute differences beetween lists
+UMOUNT_LIST=`comm -23 ${SORTED_MOUNTED_LIST_FILE} ${SORTED_TOMOUNT_LIST_FILE}`
+MOUNT_LIST=`comm -13 ${SORTED_MOUNTED_LIST_FILE} ${SORTED_TOMOUNT_LIST_FILE}`
+
+# Umount what's needed
+echo "umount list:"
+for i in ${UMOUNT_LIST} ; do
+	echo umount ${i}
+	umount ${i} || true
+done
+
+# Mount what's not mounted yet
+echo "mount list:"
+for i in ${MOUNT_LIST} ; do
 	SUBDOMAIN=`basename ${i}`
 	TMP=`dirname ${i}`
 	TARGET=`dirname ${TMP}`/subdomains.aufs/${SUBDOMAIN}
 	echo "mount -t aufs -o br:${i}=rw:/var/lib/dtc/sbox_copy=ro none ${TARGET}"
 	mount -t aufs -o br:${i}=rw:/var/lib/dtc/sbox_copy=ro none ${TARGET} || true
 done
+#echo ${MOUNT_LIST}
