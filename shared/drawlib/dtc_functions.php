@@ -938,8 +938,9 @@ function addDomainToUser($adm_login,$adm_pass,$domain_name,$domain_password=""){
 		}
 		make_new_adm_domain_dir("$admin_path/$domain_name");
 		if($admin["shared_hosting_security"] != "mod_php"){
-			exec("cp -flpRv /var/lib/dtc/sbox_copy/* $admin_path/$domain_name/subdomains/www");
-			mkdir("$admin_path/$domain_name/subdomains/www/var/www");
+			if($admin["shared_hosting_security"] != "sbox_copy"){
+				exec("cp -flpRv /var/lib/dtc/sbox_copy/* $admin_path/$domain_name/subdomains/www");
+			}
 		}else{
 			if ($conf_unix_type == "bsd") {			// no -u in freebsd, blows away custom changes, NEEDFIX: KC
 				exec("cp -flpRv $conf_chroot_path/* $admin_path/$domain_name/subdomains/www");
