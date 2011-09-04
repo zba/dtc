@@ -18,7 +18,7 @@ done
 for i in ${LINES} ; do
 	LINE=`cat /etc/mtab | head -n ${i} | tail -n 1`
 	TARGET=`echo ${LINE} | cut -d" " -f2`
-	echo "umount ${TARGET}"
+	echo "umount ${TARGET}" || true
 	umount ${TARGET}
 done
 
@@ -32,5 +32,5 @@ for i in `cat /var/lib/dtc/etc/aufs_list` ; do
 	TMP=`dirname ${i}`
 	TARGET=`dirname ${TMP}`/subdomains.aufs/${SUBDOMAIN}
 	echo "mount -t aufs -o br:${i}=rw:/var/lib/dtc/sbox_copy=ro none ${TARGET}"
-	mount -t aufs -o br:${i}=rw:/var/lib/dtc/sbox_copy=ro none ${TARGET}
+	mount -t aufs -o br:${i}=rw:/var/lib/dtc/sbox_copy=ro none ${TARGET} || true
 done
