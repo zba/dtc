@@ -106,7 +106,7 @@ $form_start = "
 		$_REQUEST["add_domain_type"] != "domreg" &&
 		$_REQUEST["add_domain_type"] != "hosting")){
 
-		$q = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login';";
+		$q = "SELECT * FROM $pro_mysql_domain_table WHERE owner='$adm_login' ORDER BY name;";
 		$r = mysql_query($q);
 		$n = mysql_num_rows($r);
 		if($n > 0){
