@@ -110,7 +110,7 @@ for($i=0;$i<$n;$i++){
 	$client_name = escapeshellarg($client_name);
 	$file = "$temp_dir/".$comp["date"]."_".$comp["id"]."_".$client_name."_".$payment["paiement_total"]."_".$secpayconf_currency_letters.".pdf";
 	echo $file."\n";
-	system("wget -q 'https://dtc.gplhost.co.uk/dtc/invoice.php?download_pass=$random_val&id=".$comp["id"]."' -O $file");
+	system("wget -q 'https://$conf_administrative_site/dtc/invoice.php?download_pass=$random_val&id=".$comp["id"]."' -O $file");
 }
 echo "Doing scp of all invoices\n";
 system("scp $temp_dir/* $conf_invoice_scp_addr 2>&1");
