@@ -101,7 +101,7 @@ for($i=0;$i<$n;$i++){
 		$client_name = $client["familyname"]."_".$client["christname"];
 	}
 	$client_name = str_replace(" ","_",$client_name);
-	$client_name = str_replace("'","_",$client_name);
+	$client_name = str_replace("'","_",stripslashes($client_name));
 	$client_name = str_replace(":","_",$client_name);
 	$client_name = str_replace(",","_",$client_name);
 	$client_name = str_replace(".","_",$client_name);
