@@ -84,7 +84,7 @@ You recently requested that your login information be reset. If you didn't do
 such a password recovery request, simply ignore this message. Otherwise, to
 recover your password, please visit the following web address:");
 		$message .= "
-https://$conf_administrative_site/dtc/recover_pass.php?adm_lost_login=".$_REQUEST["adm_lost_login"]."&subaction=do_recovery_type_pass&token=".$my_token."
+https://$conf_administrative_site/dtc/recover_pass.php?adm_lost_login=3D".$_REQUEST["adm_lost_login"]."&subaction=3Ddo_recovery_type_pass&token=3D".$my_token."
 ";
 		$msg = headAndTailEmailMessage($message);
 
