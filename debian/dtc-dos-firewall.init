@@ -21,6 +21,10 @@ if [ -f /etc/dtc/dtc-dos-firewall.conf ] ; then
 	. /etc/dtc/dtc-dos-firewall.conf
 fi
 
+if [ -z "${INTERFACE}" ] ; then
+	INTERFACE="eth0"
+fi
+
 flush-input-chain () {
 	${IPTABLES} -F dtc-dos-in
 }
@@ -46,10 +50,9 @@ limit-ssh-login-rate () {
 	fi
 	# Anti DoS SSH : deny ssh for 300 seconds after 10 attempts
 	# This can't be too high because of the use of scp
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --update --seconds ${SSH_LOGIN_TIME} --hitcount ${SSH_LOGIN_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 22 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 22 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${SSH_LOGIN_TIME} --hitcount ${SSH_LOGIN_RATE} -j REJECT
 }
-
 limit-smtp-connection-rate () {
 	if [ -z "${SMTP_RATE}" ] ; then
 		SMTP_RATE=8
@@ -58,10 +61,10 @@ limit-smtp-connection-rate () {
 		SMTP_TIME=1
 	fi
 	# max-rate to 15 connections per seconds
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 25 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 25 -i eth0 -m state --state NEW -m recent --update --seconds ${SMTP_TIME} --hitcount ${SMTP_RATE} -j REJECT
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 587 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 587 -i eth0 -m state --state NEW -m recent --update --seconds ${SMTP_TIME} --hitcount ${SMTP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 25 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 25 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${SMTP_TIME} --hitcount ${SMTP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 587 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 587 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${SMTP_TIME} --hitcount ${SMTP_RATE} -j REJECT
 }
 
 limit-http-connection-rate () {
@@ -72,8 +75,8 @@ limit-http-connection-rate () {
 		HTTP_TIME=1
 	fi
 	# max-rate to 20 connections per seconds
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 80 -i eth0 -m state --state NEW -m recent --update --seconds ${HTTP_TIME} --hitcount ${HTTP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 80 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 80 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${HTTP_TIME} --hitcount ${HTTP_RATE} -j REJECT
 }
 
 limit-pop-and-imap-connection-rate () {
@@ -84,14 +87,14 @@ limit-pop-and-imap-connection-rate () {
 		POP_TIME=1
 	fi
 	# max-rate to 10 connections per seconds
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 110 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 110 -i eth0 -m state --state NEW -m recent --update --seconds ${POP_TIME} --hitcount ${POP_RATE} -j REJECT
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 995 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 995 -i eth0 -m state --state NEW -m recent --update --seconds ${POP_TIME} --hitcount ${POP_RATE} -j REJECT
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 143 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 143 -i eth0 -m state --state NEW -m recent --update --seconds ${POP_TIME} --hitcount ${POP_RATE} -j REJECT
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 993 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 993 -i eth0 -m state --state NEW -m recent --update --seconds ${POP_TIME} --hitcount ${POP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 110 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 110 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${POP_TIME} --hitcount ${POP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 995 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 995 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${POP_TIME} --hitcount ${POP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 143 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 143 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${POP_TIME} --hitcount ${POP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 993 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 993 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${POP_TIME} --hitcount ${POP_RATE} -j REJECT
 }
 
 limit-ftp-connection-rate () {
@@ -102,10 +105,10 @@ limit-ftp-connection-rate () {
 		FTP_TIME=1
 	fi
 	# max-rate to 5 connections per seconds for both ftp and ftp-data
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 20 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 20 -i eth0 -m state --state NEW -m recent --update --seconds ${FTP_TIME} --hitcount ${FTP_RATE} -j REJECT
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 21 -i eth0 -m state --state NEW -m recent --set
-	${IPTABLES} -A dtc-dos-in -p tcp --dport 21 -i eth0 -m state --state NEW -m recent --update --seconds ${FTP_TIME} --hitcount ${FTP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 20 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 20 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${FTP_TIME} --hitcount ${FTP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 21 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 21 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${FTP_TIME} --hitcount ${FTP_RATE} -j REJECT
 }
 
 case "${1}" in
