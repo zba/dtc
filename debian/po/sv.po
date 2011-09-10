@@ -1,15 +1,15 @@
-# translation of dtc.po to swedish
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# translation of dtc debconf template to swedish
+# Copyright (C) 2011 Martin Bagge <brother@bsnet.se>
 # This file is distributed under the same license as the dtc package.
 #
-# Martin Bagge <brother@bsnet.se>, 2009.
+# Martin Bagge <brother@bsnet.se>, 2009, 2011
 msgid ""
 msgstr ""
 "Project-Id-Version: dtc\n"
 "Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
 "POT-Creation-Date: 2011-08-12 08:49+0800\n"
-"PO-Revision-Date: 2009-02-01 00:47+0100\n"
-"Last-Translator: Martin Bagge <brother@bsnet.se>\n"
+"PO-Revision-Date: 2011-09-01 20:37+0100\n"
+"Last-Translator: Martin Bagge / brother <brother@bsnet.se>\n"
 "Language-Team: swedish <debian-l10n-swedish@lists.debian.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "X-Poedit-Language: Swedish\n"
+"X-Poedit-Country: Sweden\n"
 
 #. Type: boolean
 #. Description
@@ -585,7 +586,7 @@ msgstr ""
 #. Description
 #: ../dtc-common.templates:33001
 msgid "Enforce DTC admin password encryption?"
-msgstr ""
+msgstr "Ska kryptering av lösenord för DTC-adminstratörer användas?"
 
 #. Type: boolean
 #. Description
@@ -597,6 +598,11 @@ msgid ""
 "password), but you can always use the /usr/share/dtc/admin/dtcpasswdm shell "
 "script to (re)set a password."
 msgstr ""
+"För att öka säkerheten och försvåra vid intrång kan DTC kryptera alla "
+"lösenord för administratörer. Om lösenorden är krypterade kan du inte se dem "
+"genom att klicka på förstoringsglasikonen (endast den krypterade versionen "
+"av lösenordet syns) men du kan alltid använda skriptet /usr/share/dtc/admin/"
+"dtcpasswdm för att ange ett (nytt) lösenord."
 
 #. Type: boolean
 #. Description
@@ -606,6 +612,9 @@ msgid ""
 "existing unencrypted admin passwords that should be converted, see /usr/"
 "share/doc/dtc-common/README.Debian."
 msgstr ""
+"Krypteringen kommer att användas på lösenord som skapas från och med nu. "
+"Existerande okrypterade administratörslösenord ska konverteras, läs mer i /"
+"usr/share/doc/dtc-common/README.Debian."
 
 #~ msgid ""
 #~ "Cyrus is a replacement for the Maildir delivery and storage. You must "

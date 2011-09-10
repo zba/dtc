@@ -1,3 +1,26 @@
+dtc (0.34.3-1) unstable; urgency=low
+
+  * New upstream version:
+    - Adds a --force-yes in the update_sbox_bootstrap
+    - Invoice setup fees are now correctly calculated
+    - Accurate VAT calculation in invoices
+    - Copies /etc/hosts in the sbox_copy chroot template
+    - Adds and configure ssmtp in the sbox_copy chroot template
+    - Display correction in the CSV export table
+    - Removes a warning in the templates.php for passwords
+    - Repairs the display of lists ownership
+    - Optimize the aufs remount process (only mount and umount what's needed)
+    - Displays the domain name in alphabetical order in the remove domain popup
+    - Do not copy the sbox_copy chroot when adding a new domain
+    - Corrects the get_invoice.php (scp of invoices)
+    - Adds a variable for the interface name of the dtc-dos-firewall
+    - Correctly sends the recovery password email (uses =3D instaed of just =)
+  * Updated fr debconf template thanks to Christian Perrier (Closes: #640472)
+  * Updated de debconf template thanks to Helge Krutzmann (Closes: #640237)
+  * Updated se debconf template thanks to Martin Bagge (Closes: #640044)
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 10 Sep 2011 23:34:35 +0800
+
 dtc (0.34.2-1) unstable; urgency=low
 
   * New upstream version correcting:

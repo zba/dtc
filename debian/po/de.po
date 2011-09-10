@@ -1,17 +1,17 @@
 # Translation of dtc debconf templates to German
 # Copyright (C) Cristian Livadaru <cristian@livadaru.net>, 2007.
-# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2008.
+# Copyright (C) Helge Kreutzmann <debian@helgefjell.de>, 2008, 2011.
 # This file is distributed under the same license as the dtc package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: dtc 0.28.10-1\n"
+"Project-Id-Version: dtc 0.34.1-1\n"
 "Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
 "POT-Creation-Date: 2011-08-12 08:49+0800\n"
-"PO-Revision-Date: 2008-04-30 18:43+0200\n"
+"PO-Revision-Date: 2011-08-28 08:13+0200\n"
 "Last-Translator: Helge Kreutzmann <debian@helgefjell.de>\n"
 "Language-Team: de <debian-l10n-german@lists.debian.org>\n"
-"Language: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -34,7 +34,7 @@ msgid ""
 "to use a remote database server)."
 msgstr ""
 "DTC kann /etc/mysql/debian.cnf verwenden, um automatisch einen MySQL-root-"
-"Benuzter zu erstellen, damit DTC auf MySQL und DTCs-Datenbank zugreifen und "
+"Benuzter zu erstellen, damit DTC auf MySQL und DTCs Datenbank zugreifen und "
 "diese verwalten kann. Auf diese Weise werden Ihnen keine Fragen über das "
 "verwendete root-Passwort von MySQL gestellt, alles wird automatisiert. Der "
 "Nachteil ist aber, dass immer der MySQL-Server auf der lokalen Maschine "
@@ -52,7 +52,7 @@ msgid ""
 msgstr ""
 "Auf jeden Fall sollten Sie sicherstellen, dass das root-Passwort von MySQL "
 "gesetzt ist. Standardmäßig installiert Debian es mit einem leeren Passwort. "
-"Um ein root-MySQL-Passwort zu setzten, geben Sie den folgenden Befehl ein: "
+"Um ein root-MySQL-Passwort zu setzen, geben Sie den folgenden Befehl ein: "
 "dpkg-reconfigure mysql-server-5.1. Sie wurden gewarnt!"
 
 #. Type: string
@@ -82,7 +82,8 @@ msgid ""
 "DTC will use it to grant privileges for the tables to its users."
 msgstr ""
 "Bitte geben Sie einen MySQL-Benutzernamen mit administrativen Privilegien "
-"ein. DTC wird ihn zur Vergabe von Privilegien für Ihre Tabellen verwenden."
+"ein. DTC wird ihn verwenden, um Privilegien für die Tabellen an seine "
+"Benutzer zu vergeben."
 
 #. Type: password
 #. Description
@@ -178,7 +179,7 @@ msgstr ""
 "Geben Sie die primäre IP-Adresse des Hosts ein. Diese IP-Adresse wird für "
 "die Domain benutzt, die Sie zuvor eingegeben haben und als Vorgabe für DTC-"
 "Variablen. Falls Sie Network Address Translation (NAT) benutzen, geben Sie "
-"hier bitte Ihre externe IP Adresse ein."
+"hier bitte Ihre externe IP-Adresse ein."
 
 #. Type: string
 #. Description
@@ -242,7 +243,7 @@ msgid ""
 "installation."
 msgstr ""
 "Jede DTC-Domain muss einen Administrator haben. Bitte geben Sie einen "
-"Benutzernamen für den Administrator der Domain ein, die die Control-Panel-"
+"Benutzernamen für den Administrator der Domain ein, die die Steuer-Panel-"
 "Installation enthält."
 
 #. Type: password
@@ -260,7 +261,7 @@ msgid ""
 "path."
 msgstr ""
 "Bitte geben Sie das Passwort für den Administrator der Hauptdomain ein. Der "
-"Zugriff auf das Control Panel muss manuell durch eine .htpasswd-Datei im "
+"Zugriff auf das Steuer-Panel muss manuell durch eine .htpasswd-Datei im "
 "Wurzelverzeichnis verwaltet werden."
 
 #. Type: select
@@ -286,7 +287,7 @@ msgstr ""
 #. Description
 #: ../dtc-common.templates:15001
 msgid "Use Cyrus mail system?"
-msgstr "Cyrus-E-Mailsystem verwenden?"
+msgstr "Cyrus-E-Mail-System verwenden?"
 
 #. Type: boolean
 #. Description
@@ -296,7 +297,7 @@ msgid ""
 "MTA. This option is only compatible with Postfix."
 msgstr ""
 "Bitte wählen sie diese Option, falls Sie Cyrus (IMAP und MTA) für die E-"
-"Mailzustellung verwenden wollen. Diese Option ist nur mit Postfix kompatibel."
+"Mail-Zustellung verwenden wollen. Diese Option ist nur mit Postfix kompatibel."
 
 #. Type: select
 #. Description
@@ -318,7 +319,7 @@ msgstr ""
 #. Description
 #: ../dtc-common.templates:17001
 msgid "Use \"NATed\" vhosts?"
-msgstr "NAT vhosts verwenden?"
+msgstr "Vhosts über NAT verwenden?"
 
 #. Type: boolean
 #. Description
@@ -381,14 +382,15 @@ msgstr ""
 "Falls Sie diese Option wählen, wird DTC ein selbst-signiertes SSL-Zertifikat "
 "generieren und SSL für das Navigieren im Control Panel verwenden. SSL wird "
 "auch aktiviert und die generierte Apachekonfiguration wird HTTPS-URLs für "
-"das Control Panel verwenden."
+"das Steuer-Panel verwenden."
 
 #. Type: boolean
 #. Description
 #: ../dtc-common.templates:19001
 msgid "This certificate can be changed for a root CA certificate later."
 msgstr ""
-"Dieses Zertifikat kann gegen ein root CA-Zertifikat ausgetauscht werden."
+"Dieses Zertifikat kann später gegen ein root CA-Zertifikat ausgetauscht "
+"werden."
 
 #. Type: boolean
 #. Description
@@ -447,13 +449,13 @@ msgstr "Organisationsnamen für das DTC-SSL-Zertifikat:"
 #. Description
 #: ../dtc-common.templates:24001
 msgid "Organizational unit for the DTC SSL certificate:"
-msgstr "Organisationseinheit für das DTC SSL-Zertifikat:"
+msgstr "Organisationseinheit für das DTC-SSL-Zertifikat:"
 
 #. Type: string
 #. Description
 #: ../dtc-common.templates:25001
 msgid "Email address for the DTC SSL certificate:"
-msgstr "E-Mailadresse für das DTC-SSL-Zertifikat:"
+msgstr "E-Mail-Adresse für das DTC-SSL-Zertifikat:"
 
 #. Type: password
 #. Description
@@ -465,7 +467,7 @@ msgstr "»Challenge«-Passwort für das DTC-SSL-Zertifikat:"
 #. Description
 #: ../dtc-common.templates:27001
 msgid "DNSBL (DNS BlackList) list:"
-msgstr "DNSBL (DNS BlackList) Liste:"
+msgstr "DNSBL-Liste (DNS BlackList):"
 
 #. Type: string
 #. Description
@@ -584,14 +586,14 @@ msgid ""
 "during the chroot template creation."
 msgstr ""
 "In manchen Umgebungen, z.B. Linux vServer, darf mknod nicht ausgeführt "
-"werden. Diese Option erlaubt das überspringen der Erstellung der null-, "
-"random- und urandom-Geräte während der Erstellung des chroot-Vorlage."
+"werden. Diese Option erlaubt das Überspringen der Erstellung der null-, "
+"random- und urandom-Geräte während der Erstellung der chroot-Vorlage."
 
 #. Type: boolean
 #. Description
 #: ../dtc-common.templates:33001
 msgid "Enforce DTC admin password encryption?"
-msgstr ""
+msgstr "DTC-Passwortverschlüsselung erzwingen?"
 
 #. Type: boolean
 #. Description
@@ -603,6 +605,12 @@ msgid ""
 "password), but you can always use the /usr/share/dtc/admin/dtcpasswdm shell "
 "script to (re)set a password."
 msgstr ""
+"Um im Falle eines Vorfalls die Sicherheit zu erhöhen, kann DTC alle "
+"Administratorpasswörter verschlüsseln. Falls die Passwörter verschlüsselt "
+"sind, können Sie sie nicht durch Anklicken des Vergrößerungsglases sehen "
+"(Sie werden nur eine verschlüsselte Version davon sehen). Sie können aber "
+"immer das Shell-Skript /usr/share/dtc/admin/dtcpasswdm verwenden, um ein "
+"Passwort (zurückzu-)setzen."
 
 #. Type: boolean
 #. Description
@@ -612,6 +620,9 @@ msgid ""
 "existing unencrypted admin passwords that should be converted, see /usr/"
 "share/doc/dtc-common/README.Debian."
 msgstr ""
+"Die Verschlüsselung greift für Passwörter, die ab jetzt erstellt werden. "
+"Falls bei Ihnen unverschlüsselte Passwörter vorliegen, die umgewandelt werden "
+"sollen, lesen Sie /usr/share/doc/dtc-common/README.Debian."
 
 #~ msgid ""
 #~ "Cyrus is a replacement for the Maildir delivery and storage. You must "
