@@ -118,7 +118,7 @@ $dtc_database = array(
 			"download_pass" => "varchar(64) NOT NULL default 'none'",
 			"country_code" => "varchar(255) NOT NULL default 'US'",
 			"services" => "text",
-			"last_expiry_date" => "date NOT NULL default '0000-00-00'"
+			"last_expiry_date" => "text"
 		),
 		"primary" => "(id)"
 	),

@@ -17,6 +17,8 @@ dtc (0.34.3-1) unstable; urgency=low
     - Correctly sends the recovery password email (uses =3D instaed of just =)
     - Cosmetic display improvements in VPS IP addresses under the VPS
     installation tab (alternatecolor is now correct, using td instead of th).
+    - last_expiry_date in the completedorders table is now of type "text" as
+    it should be to handle multple renew.
   * Updated fr debconf template thanks to Christian Perrier (Closes: #640472)
   * Updated de debconf template thanks to Helge Krutzmann (Closes: #640237)
   * Updated se debconf template thanks to Martin Bagge (Closes: #640044)
