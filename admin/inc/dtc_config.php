@@ -1003,7 +1003,7 @@ function drawVPSServerConfig(){
 			"table_name" => $pro_mysql_vps_ip_table,
 			"title" => _("VPS IPs for ").$a["hostname"].":",
 			"where_condition" => "vps_server_hostname='".$a["hostname"]."'",
-			"order_by" => "vps_xen_name",
+			"order_by" => "vps_xen_name,ip_addr",
 			"update_check_callback" => "checkIPAssigned",
 			"insert_check_callback" => "checkIPAssigned",
 			"action" => "vps_server_ip_list",
