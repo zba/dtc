@@ -489,7 +489,7 @@ function fetchAdminData($adm_login,$adm_input_pass){
 	$user_vps = array();
 	for($i=0;$i<$n;$i++){
 		$one_vps = mysql_fetch_array($r);
-		$q2 = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$one_vps["vps_server_hostname"]."' AND vps_xen_name='".$one_vps["vps_xen_name"]."' AND available='no';";
+		$q2 = "SELECT * FROM $pro_mysql_vps_ip_table WHERE vps_server_hostname='".$one_vps["vps_server_hostname"]."' AND vps_xen_name='".$one_vps["vps_xen_name"]."' AND available='no' ORDER BY ip_addr;";
 		$r2 = mysql_query ($q2);
 		if (!$r2)
 		{
