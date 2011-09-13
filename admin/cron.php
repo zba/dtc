@@ -221,7 +221,7 @@ function updateAllDomainsStats(){
 				$du_state = explode("\t",$du_string);
 				$domain_du = $du_state[0] * 1024;
 			}else{
-				$du_string = exec("du -sb $adm_path/$domain_name --exclude=access.log",$retval);
+				$du_string = exec("du -sb $adm_path/$domain_name --exclude=access.log --exclude=subdomains.aufs",$retval);
 				$du_state = explode("\t",$du_string);
 				$domain_du = $du_state[0];
 			}
