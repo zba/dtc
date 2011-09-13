@@ -58,7 +58,8 @@ for i in ${MOUNT_LIST} ; do
 	SUBDOMAIN=`basename ${i}`
 	TMP=`dirname ${i}`
 	TARGET=`dirname ${TMP}`/subdomains.aufs/${SUBDOMAIN}
-	echo "mount -t aufs -o br:${i}=rw:/var/lib/dtc/sbox_copy=ro none ${TARGET}"
-	mount -t aufs -o br:${i}=rw:/var/lib/dtc/sbox_copy=ro none ${TARGET} || true
+	SOURCE=`dirname ${TMP}`/subdomains/${SUBDOMAIN}
+	echo "mount -t aufs -o br:${SOURCE}=rw:/var/lib/dtc/sbox_copy=ro none ${TARGET}"
+	mount -t aufs -o br:${SOURCE}=rw:/var/lib/dtc/sbox_copy=ro none ${TARGET} || true
 done
 #echo ${MOUNT_LIST}
