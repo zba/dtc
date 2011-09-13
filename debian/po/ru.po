@@ -1,23 +1,24 @@
 # translation of ru.po to Russian
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the dtc package.
 #
 # Yuri Kozlov <kozlov.y@gmail.com>, 2008.
+# Yuri Kozlov <yuray@komyakino.ru>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: dtc 0.28.6-1\n"
+"Project-Id-Version: dtc 0.34.1-1\n"
 "Report-Msgid-Bugs-To: dtc@packages.debian.org\n"
 "POT-Creation-Date: 2011-08-12 08:49+0800\n"
-"PO-Revision-Date: 2008-03-21 21:37+0300\n"
-"Last-Translator: Yuri Kozlov <kozlov.y@gmail.com>\n"
+"PO-Revision-Date: 2011-08-27 09:02+0400\n"
+"Last-Translator: Yuri Kozlov <yuray@komyakino.ru>\n"
 "Language-Team: Russian <debian-l10n-russian@lists.debian.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. Type: boolean
 #. Description
@@ -60,13 +61,13 @@ msgstr ""
 #. Description
 #: ../dtc-common.templates:2001
 msgid "MySQL hostname:"
-msgstr "Имя хоста MySQL:"
+msgstr "Имя узла MySQL:"
 
 #. Type: string
 #. Description
 #: ../dtc-common.templates:2001
 msgid "Please enter the hostname or IP address of the MySQL server."
-msgstr "Введите имя машины или IP адрес сервера MySQL."
+msgstr "Введите имя машины или IP-адрес сервера MySQL."
 
 #. Type: string
 #. Description
@@ -165,7 +166,7 @@ msgstr ""
 #. Description
 #: ../dtc-common.templates:9001
 msgid "Primary IP address:"
-msgstr "Первичный IP адрес:"
+msgstr "Первичный IP-адрес:"
 
 #. Type: string
 #. Description
@@ -176,10 +177,10 @@ msgid ""
 "DTC variables.  If you are using Network Address Translation (NAT), please "
 "enter your external IP address."
 msgstr ""
-"Введите первичный IP адрес этого хоста. Данный адрес будет использован для "
+"Введите первичный IP-адрес этого узла. Данный адрес будет использован для "
 "доменного имени, которое было указано ранее, и будет использован в качестве "
 "значения по умолчанию для большинства переменных DTC. Если вы используете "
-"трансляцию сетевых адресов (NAT), вводите внешний IP адрес."
+"трансляцию сетевых адресов (NAT), вводите внешний IP-адрес."
 
 #. Type: string
 #. Description
@@ -215,7 +216,7 @@ msgstr ""
 #. Description
 #: ../dtc-common.templates:11001
 msgid "Path for the chroot environment template:"
-msgstr "Каталог шаблона chroot окружения:"
+msgstr "Каталог шаблона окружения chroot:"
 
 #. Type: string
 #. Description
@@ -277,8 +278,8 @@ msgid ""
 msgstr ""
 "Выберите MTA, который будет использоваться с DTC. Он уже должен быть "
 "установлен в системе. Если такой MTA сейчас не установлен, то завершите "
-"настройку DTC, установите пакет с MTA, а затем выполните \"dpkg-reconfigure "
-"dtc\"."
+"настройку DTC, установите пакет с MTA, а затем выполните «dpkg-reconfigure "
+"dtc»."
 
 #. Type: boolean
 #. Description
@@ -316,7 +317,7 @@ msgstr ""
 #. Description
 #: ../dtc-common.templates:17001
 msgid "Use \"NATed\" vhosts?"
-msgstr "Использовать \"NAT-теные\" vhosts?"
+msgstr "Использовать «NAT-теные» vhosts?"
 
 #. Type: boolean
 #. Description
@@ -326,9 +327,9 @@ msgid ""
 "firewalled with NAT and port redirections of public IP(s) address(es), a "
 "\"NATed\" vhost configuration can be generated."
 msgstr ""
-"DTC может настроить Apache на использование одного из ваших IP адресов. Если "
+"DTC может настроить Apache на использование одного из ваших IP-адресов. Если "
 "сервер находится за межсетевым экраном с NAT и перенаправлением портов "
-"публичного(ых) IP адреса(ов), то может быть создана \"NAT-теная\" vhost "
+"публичного(ых) IP-адреса(ов), то может быть создана «NAT-теная» vhost "
 "конфигурация."
 
 #. Type: boolean
@@ -342,14 +343,14 @@ msgid ""
 msgstr ""
 "Отвечать утвердительно нужно только, если сервер подключён к Интернет не "
 "напрямую, а через межсетевой экран, выполняющий трансляцию сетевых адресов "
-"(NAT). Если сервер использует динамический публичный IP адрес, то NAT и "
+"(NAT). Если сервер использует динамический публичный IP-адрес, то NAT и "
 "перенаправление портов обязательно для DTC."
 
 #. Type: string
 #. Description
 #: ../dtc-common.templates:18001
 msgid "NATed LAN IP address:"
-msgstr "NAT-теный LAN IP адрес:"
+msgstr "NAT-теный LAN IP-адрес:"
 
 #. Type: string
 #. Description
@@ -358,14 +359,14 @@ msgid ""
 "Please enter the IP address of the server for DTC to generate all vhosts "
 "that will be used by Apache."
 msgstr ""
-"Введите IP адрес сервера DTC для генерации всех vhosts, которые будут "
+"Введите IP-адрес сервера DTC для генерации всех vhosts, которые будут "
 "использованы Apache."
 
 #. Type: boolean
 #. Description
 #: ../dtc-common.templates:19001
 msgid "Generate an SSL certificate for DTC?"
-msgstr "Генерировать SSL сертификат для DTC?"
+msgstr "Генерировать сертификат SSL для DTC?"
 
 #. Type: boolean
 #. Description
@@ -376,8 +377,9 @@ msgid ""
 "generated Apache configuration will activate HTTPS URLs for the control "
 "panel."
 msgstr ""
-"Если вы ответите утвердительно, то DTC сгенерирует самоподписанный SSL "
-"сертификат и будет использовать SSL для доступа к панели. SSL будет всегда "
+"Если вы ответите утвердительно, то DTC сгенерирует самоподписанный "
+"сертификат SSL и будет использовать SSL для доступа к панели. SSL будет "
+"всегда "
 "включён и созданная конфигурация Apache будет включать HTTPS URL-ы для "
 "панели управления."
 
@@ -423,43 +425,43 @@ msgid ""
 "should usually be the code for the country the server is located in."
 msgstr ""
 "Введите двухбуквенный код страны для генерируемого сертификата. Обычно это "
-"код страны, где расположен сервер (Россия -- RU)."
+"код страны, где расположен сервер (Россия — RU)."
 
 #. Type: string
 #. Description
 #: ../dtc-common.templates:22001
 msgid "City name for the DTC SSL certificate:"
-msgstr "Название города для SSL сертификата DTC:"
+msgstr "Название города для сертификата SSL DTC:"
 
 #. Type: string
 #. Description
 #: ../dtc-common.templates:23001
 msgid "Organization name for the DTC SSL certificate:"
-msgstr "Название организации для SSL сертификата DTC:"
+msgstr "Название организации для сертификата SSL DTC:"
 
 #. Type: string
 #. Description
 #: ../dtc-common.templates:24001
 msgid "Organizational unit for the DTC SSL certificate:"
-msgstr "Название подразделения организации для SSL сертификата DTC:"
+msgstr "Название подразделения организации для сертификата SSL DTC:"
 
 #. Type: string
 #. Description
 #: ../dtc-common.templates:25001
 msgid "Email address for the DTC SSL certificate:"
-msgstr "Адрес электронной почты для SSL сертификата DTC:"
+msgstr "Адрес электронной почты для сертификата SSL DTC:"
 
 #. Type: password
 #. Description
 #: ../dtc-common.templates:26001
 msgid "DTC SSL certificate challenge password:"
-msgstr "Пароль вызова для SSL сертификата DTC:"
+msgstr "Пароль вызова для сертификата SSL DTC:"
 
 #. Type: string
 #. Description
 #: ../dtc-common.templates:27001
 msgid "DNSBL (DNS BlackList) list:"
-msgstr "Список DNSBL (\"чёрный список\" DNS):"
+msgstr "Список DNSBL («чёрный список» DNS):"
 
 #. Type: string
 #. Description
@@ -503,8 +505,8 @@ msgstr ""
 "пользователям нужно писать на адрес +subscribe@example.com. Недостатком "
 "выбора + является то, что некоторые MTA не позволяют посылать почту с таким "
 "символом в получателе (а именно, некоторые плохие заплатки к qmail так "
-"поступают), но при выборе в качестве разделителя символа \"-\" вы не сможете "
-"использовать адреса вида john-doe@example.com, так как \"-\" является "
+"поступают), но при выборе в качестве разделителя символа «-» вы не сможете "
+"использовать адреса вида john-doe@example.com, так как «-» является "
 "разделителем."
 
 #. Type: string
@@ -583,7 +585,7 @@ msgstr ""
 #. Description
 #: ../dtc-common.templates:33001
 msgid "Enforce DTC admin password encryption?"
-msgstr ""
+msgstr "Шифровать административные пароли?"
 
 #. Type: boolean
 #. Description
@@ -595,6 +597,12 @@ msgid ""
 "password), but you can always use the /usr/share/dtc/admin/dtcpasswdm shell "
 "script to (re)set a password."
 msgstr ""
+"В с целью усиления безопасности в случае компроментации, DTC "
+"может хранить все административные пароли зашифрованными. "
+"Если пароли зашифрованы, то вы не сможете увидеть их при нажатии на "
+"значок с лупой (вы увидите зашифрованный текст), но всегда можете "
+"использовать сценарий оболочки /usr/share/dtc/admin/dtcpasswdm "
+"для их сброса(установки)."
 
 #. Type: boolean
 #. Description
@@ -604,6 +612,9 @@ msgid ""
 "existing unencrypted admin passwords that should be converted, see /usr/"
 "share/doc/dtc-common/README.Debian."
 msgstr ""
+"Зашифрованными будут только вновь создаваемые пароли. О том, как "
+"преобразовать имеющиеся нешифрованные административные пароли, "
+"смотрите в /usr/share/doc/dtc-common/README.Debian."
 
 #~ msgid ""
 #~ "Cyrus is a replacement for the Maildir delivery and storage. You must "
