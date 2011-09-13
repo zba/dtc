@@ -20,6 +20,7 @@ dtc (0.34.3-1) unstable; urgency=low
     - last_expiry_date in the completedorders table is now of type "text" as
     it should be to handle multple renew.
     - Added --exclude=subdomains.aufs when calculating disk usage stats.
+    - Repairs the default 404 document under the sbox_aufs mode.
   * Updated fr debconf template thanks to Christian Perrier (Closes: #640472)
   * Updated de debconf template thanks to Helge Krutzmann (Closes: #640237)
   * Updated se debconf template thanks to Martin Bagge (Closes: #640044)
