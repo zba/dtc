@@ -926,6 +926,11 @@ $vhost_file .= "
 	Action ruby-cgi-wrapper /cgi-bin/sbox
 	AddHandler ruby-cgi-wrapper .pl
 	Action ruby-cgi-wrapper /cgi-bin/sbox
+	ErrorDocument 404 /sbox404/404.php
+	ErrorDocument 400 /sbox404/406.php
+	ErrorDocument 406 /sbox404/406.php
+	ErrorDocument 500 /sbox404/406.php
+	ErrorDocument 501 /sbox404/406.php
 	Options +ExecCGI\n";
 							}
 							$vhost_file .= get_defaultCharsetDirective($subdomain["add_default_charset"]);

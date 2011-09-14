@@ -69,6 +69,7 @@ if [ -f /etc/debian_version ] ; then
 	# Configure ssmtp to be able to send mail from the chroot
 	sed -i "s/mailhub=mail/mailhub=127.0.0.1/" ${sbox_copy_disk_path}/etc/ssmtp/ssmtp.conf
 	sed -i "s/#FromLineOverride=YES/FromLineOverride=YES/" ${sbox_copy_disk_path}/etc/ssmtp/ssmtp.conf
+
 	# Some stuff on the target php.ini:
 	PHP_INI_PATH=${sbox_copy_disk_path}/etc/php5/cgi/php.ini
 	if [ -f ${PHP_INI_PATH} ] ; then
@@ -85,6 +86,9 @@ if [ -f /etc/debian_version ] ; then
 			sed -i "s/; cgi.fix_pathinfo=0/cgi.fix_pathinfo=1/" ${PHP_INI_PATH}
 		fi
 	fi
+	mkdir -p ${sbox_copy_disk_path}/html/sbox404
+	cp -auxf ${sbox_copy_disk_path}/../etc/dtc404/* ${sbox_copy_disk_path}/html/sbox404
+	chmod +x ${sbox_copy_disk_path}/html/sbox404/*.php
 	chown -R dtc:dtcgrp ${sbox_copy_disk_path}
 else
 	echo "Currently only supported in Debian: sorry..."
