@@ -74,7 +74,7 @@ createDTCuserAndGroup () {
 			echoIfVerbose "-> Group ${CONF_DTC_SYSTEM_GROUPNAME} already exists: skipping creation!"
 		else
 			if [ -x /usr/sbin/groupadd ] ; then
-				/usr/sbin/groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
+				/usr/sbin/groupadd -r ${CONF_DTC_SYSTEM_GROUPNAME}
 			else
 				# This is for freebsd
 				pw groupadd ${CONF_DTC_SYSTEM_GROUPNAME}
@@ -87,7 +87,7 @@ createDTCuserAndGroup () {
 		else
 			if [ -x /usr/sbin/useradd ] ; then
 				if [ -x ${PATH_BASH} ] ; then
-					/usr/sbin/useradd -m -s ${PATH_BASH} -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
+					/usr/sbin/useradd -r -s ${PATH_BASH} -g ${CONF_DTC_SYSTEM_GROUPNAME} ${CONF_DTC_SYSTEM_USERNAME}
 				else
 					echo "Could not find a shell, please fix me here!!!"
 				fi

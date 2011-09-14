@@ -22,6 +22,7 @@ dtc (0.34.3-1) unstable; urgency=low
     - Added --exclude=subdomains.aufs when calculating disk usage stats.
     - VPS monitoring has now values of 6 months of history.
     - Repairs the default 404 document under the sbox_aufs mode.
+    - Uses the -r flag when using groupadd / useradd (Closes: #633666).
   * Updated fr debconf template thanks to Christian Perrier (Closes: #640472)
   * Updated de debconf template thanks to Helge Krutzmann (Closes: #640237)
   * Updated se debconf template thanks to Martin Bagge (Closes: #640044)
