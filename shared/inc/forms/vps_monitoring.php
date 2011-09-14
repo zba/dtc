@@ -57,6 +57,92 @@ function drawAdminTools_VPSMonitor($admin,$vps){
 	}else{
 		$tow_month_ago_year = $last_month_year;
 	}
+
+	// 3 months ago
+	$month_ago_3 = $tow_month_ago - 1;
+	if($month_ago_3 == 0){
+		$month_ago_3 = 12;
+		$month_ago_3_year = $tow_month_ago_year - 1;
+	}else{
+		$month_ago_3_year = $tow_month_ago_year;
+	}
+	// 4 months ago
+	$month_ago_4 = $month_ago_3 - 1;
+	if($month_ago_4 == 0){
+		$month_ago_4 = 12;
+		$month_ago_4_year = $month_ago_3_year - 1;
+	}else{
+		$month_ago_4_year = $month_ago_3_year;
+	}
+	// 5 months ago
+	$month_ago_5 = $month_ago_4 - 1;
+	if($month_ago_5 == 0){
+		$month_ago_5 = 12;
+		$month_ago_5_year = $month_ago_4_year - 1;
+	}else{
+		$month_ago_5_year = $month_ago_4_year;
+	}
+	// 6 months ago
+	$month_ago_6 = $month_ago_5 - 1;
+	if($month_ago_6 == 0){
+		$month_ago_6 = 12;
+		$month_ago_6_year = $month_ago_5_year - 1;
+	}else{
+		$month_ago_6_year = $month_ago_5_year;
+	}
+
+	$q = "SELECT * FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='$vps_node' AND vps_xen_name='xen$vps_name'
+	AND year='".$month_ago_6_year."' AND month='".$month_ago_6."';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n == 1){
+		$a = mysql_fetch_array($r);
+		$net_total = $a["network_in_count"] + $a["network_out_count"];
+		$vps_out_net_stats .= _("6 months ago: "). smartByte($net_total)."<br>";
+		$vps_out_cpu_stats .= _("6 months ago: ").$a["cpu_usage"]._(" CPU seconds")."<br>";
+		$vps_out_swap_stats .= _("6 months ago: "). smartByte( $a["swapio_count"] )."<br>";
+		$vps_out_hdd_stats .= _("6 months ago: "). smartByte( $a["diskio_count"] )."<br>";
+	}
+
+	$q = "SELECT * FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='$vps_node' AND vps_xen_name='xen$vps_name'
+	AND year='".$month_ago_5_year."' AND month='".$month_ago_5."';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n == 1){
+		$a = mysql_fetch_array($r);
+		$net_total = $a["network_in_count"] + $a["network_out_count"];
+		$vps_out_net_stats .= _("5 months ago: "). smartByte($net_total)."<br>";
+		$vps_out_cpu_stats .= _("5 months ago: ").$a["cpu_usage"]._(" CPU seconds")."<br>";
+		$vps_out_swap_stats .= _("5 months ago: "). smartByte( $a["swapio_count"] )."<br>";
+		$vps_out_hdd_stats .= _("5 months ago: "). smartByte( $a["diskio_count"] )."<br>";
+	}
+
+	$q = "SELECT * FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='$vps_node' AND vps_xen_name='xen$vps_name'
+	AND year='".$month_ago_4_year."' AND month='".$month_ago_4."';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n == 1){
+		$a = mysql_fetch_array($r);
+		$net_total = $a["network_in_count"] + $a["network_out_count"];
+		$vps_out_net_stats .= _("4 months ago: "). smartByte($net_total)."<br>";
+		$vps_out_cpu_stats .= _("4 months ago: ").$a["cpu_usage"]._(" CPU seconds")."<br>";
+		$vps_out_swap_stats .= _("4 months ago: "). smartByte( $a["swapio_count"] )."<br>";
+		$vps_out_hdd_stats .= _("4 months ago: "). smartByte( $a["diskio_count"] )."<br>";
+	}
+
+	$q = "SELECT * FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='$vps_node' AND vps_xen_name='xen$vps_name'
+	AND year='".$month_ago_3_year."' AND month='".$month_ago_3."';";
+	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n == 1){
+		$a = mysql_fetch_array($r);
+		$net_total = $a["network_in_count"] + $a["network_out_count"];
+		$vps_out_net_stats .= _("3 months ago: "). smartByte($net_total)."<br>";
+		$vps_out_cpu_stats .= _("3 months ago: ").$a["cpu_usage"]._(" CPU seconds")."<br>";
+		$vps_out_swap_stats .= _("3 months ago: "). smartByte( $a["swapio_count"] )."<br>";
+		$vps_out_hdd_stats .= _("3 months ago: "). smartByte( $a["diskio_count"] )."<br>";
+	}
+
 	$q = "SELECT * FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='$vps_node' AND vps_xen_name='xen$vps_name'
 	AND year='$tow_month_ago_year' AND month='$tow_month_ago';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
