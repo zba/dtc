@@ -30,7 +30,7 @@ done
 # Compute list of already mounted subdomains.aufs/XXX
 MOUNTED_LIST_FILE=`mktemp -t DTC_MOUNTED_LIST_FILE.XXXXXX`
 for line_num in ${LINES} ; do
-	LINE=`cat /etc/mounts | head -n ${line_num} | tail -n 1`
+	LINE=`cat /proc/mounts | head -n ${line_num} | tail -n 1`
 	TARGET=`echo ${LINE} | cut -d" " -f2`
 	echo ${TARGET} >>${MOUNTED_LIST_FILE}
 done
