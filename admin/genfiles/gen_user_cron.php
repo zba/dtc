@@ -26,7 +26,7 @@ function user_cron_generate() {
 			$hour = $a["hour"];
 		}
 		$f .= $minute." ".$hour." ".$a["day_of_month"]." * ".$a["dow"].
-			" dtc wget 'http://".$a["subdomain_name"].".".$a["domain_name"].$a["uri"]."' 2>&1 >/dev/null\n";
+			" dtc wget -O - '".escapeshellarg("http://".$a["subdomain_name"].".".$a["domain_name"].$a["uri"])."' 2>&1 >/dev/null\n";
 	}
 	if (touch($filename)) {
 		$console.="Done!\n";
