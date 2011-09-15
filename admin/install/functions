@@ -4744,14 +4744,9 @@ createChrootTemplate () {
 }
 
 fixesExtplorer () {
-	if [ -d "/etc/extplorer" -a -f "/usr/share/doc/dtc/contrib/extplorer.htusers.php" ] ; then
-		if ! [ -f "/etc/extplorer/.htusers.php" ] ; then
-			cp /usr/share/doc/dtc/contrib/extplorer.htusers.php /etc/extplorer/.htusers.php
-		else
-			if [ `cat /etc/extplorer/.htusers.php | wc -l` = 0 ] ; then
-				cp /usr/share/doc/dtc/contrib/extplorer.htusers.php /etc/extplorer/.htusers.php
-			fi
-		fi
+	if [ -f "/etc/extplorer/conf.php" ] ; then
+		sed -i "s/ = 'extplorer';/ = 'dtc';/" /etc/extplorer/conf.php
+		sed -i "s/'extplorer', 'ssh2'/'dtc', 'ssh2'/" /etc/extplorer/conf.php
 	fi
 }
 

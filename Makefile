@@ -448,6 +448,9 @@ install-dtc-common:
 	fi
 	cp -rf doc/* $(DOC_DIR)
 
+	# Install the DTC auth for extplorer
+	$(INSTALL) -m $(PHP_RIGHTS) doc/contrib/extplorer/dtc.php $(DESTDIR)$(DTC_APP_DIR)/extplorer/include/authentication/dtc.php
+
 	# Copy the internationalization stuff
 	${MAKE} l12n
 	cd shared/vars && cp -rf locale $(APP_INST_DIR)/shared/vars && cd ../..
