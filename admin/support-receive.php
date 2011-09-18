@@ -133,6 +133,11 @@ if( preg_match("/".$tik_regexp."/",$email_to) ){
 		if($n == 1){
 			// We have a match, we should consider inserting this ticket as a reply...
 			$start_tik = mysql_fetch_array($r);
+			if($start_tik["adm_login"] == "" && isValidEmail($start_tik["customer_email"])){
+				$request_adm_name = $start_tik["customer_email"];
+			}else{
+				$request_adm_name = $start_tik["adm_login"];
+			}
 
 			// Reopen the ticket if it was closed
 			$q = "UPDATE $pro_mysql_tik_queries_table SET closed='no' WHERE hash='$ticket_hash';";
@@ -146,7 +151,7 @@ if( preg_match("/".$tik_regexp."/",$email_to) ){
 				$new_id = mysql_insert_id();
 				$q = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$new_id' WHERE id='$last_id';";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
-				mailTicketToAllAdmins($start_tik["subject"],$body,$start_tik["adm_login"]);
+				mailTicketToAllAdmins($start_tik["subject"],$body,$request_adm_name);
 				exit(0);
 			}
 		}
