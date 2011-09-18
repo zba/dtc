@@ -329,6 +329,11 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="delete_waiting_user"){
 	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 }
 
+if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="archive_waiting_user"){
+	$q = "UPDATE $pro_mysql_new_admin_table SET archive='yes' WHERE id='".$_REQUEST["reqadm_id"]."';";
+	mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+}
+
 // action=valid_waiting_user&reqadm_login=tom
 if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="valid_waiting_user"){
 	validateWaitingUser($_REQUEST["reqadm_id"]);

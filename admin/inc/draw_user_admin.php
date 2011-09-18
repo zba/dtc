@@ -395,7 +395,7 @@ dtcFromOkDraw()."
 	}
 	// Draw the list of users awaiting for an account
 	$waiting_new_users = "<h3>". _("User and domain waiting for addition:") ."</h3>";
-	$q = "SELECT * FROM $pro_mysql_new_admin_table ORDER BY date,time";
+	$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE archive='no' ORDER BY date,time";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
@@ -484,7 +484,8 @@ dtcFromOkDraw()."
 			}
 			$waiting_new_users .= "<$td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_id=".$a["id"]."\">". _("Edit") ."</a><br/>
 			<a href=\"?action=valid_waiting_user&reqadm_id=".$a["id"]."\">". _("Add") ."</a><br/>
-			<a href=\"?action=delete_waiting_user&reqadm_id=".$a["id"]."\">". _("Delete") ."</a></td>";
+			<a href=\"?action=delete_waiting_user&reqadm_id=".$a["id"]."\">". _("Delete") ."</a><br/>
+			<a href=\"?action=archive_waiting_user&reqadm_id=".$a["id"]."\">". _("Archive") ."</a></td>";
 			$waiting_new_users .= "</tr>";
 		}
 		$waiting_new_users .= "</table>";

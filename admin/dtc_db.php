@@ -748,7 +748,8 @@ $dtc_database = array(
 			"maxmind_output" => "text",
 			"last_used_lang" => "varchar(32) NOT NULL default 'en_US.UTF-8'",
 			"add_service" => "enum('yes','no') NOT NULL default 'no'",
-			"customfld" => "text"
+			"customfld" => "text",
+			"iscomp" => "archive('yes','no') NOT NULL default 'yes'"
 		),
 		"primary" => "(id)"
 	),
