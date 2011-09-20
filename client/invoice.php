@@ -256,6 +256,29 @@ class zPDF extends FPDF{
 		$this->Ln();$this->Ln();
 		$right = $this->GetY();
 		$this->SetXY(10,max($left,$right));
+	}
+	function dtc_invoice_table_head(){
+		// The table
+		$this->SetFont('Arial','B',11);
+		$this->Cell(110,7,"Product","1",0,"L");
+		$this->Cell(20,7,"Start date","1",0,"L");
+		$this->Cell(20,7,"End date","1",0,"L");
+		$this->Cell(35,7,"Price","1",0,"L");
+		$this->SetFont('Arial','',9);
+	}
+	function makeBody(){
+		global $company;
+		global $cc_code_array;
+		global $conf_generated_file_path;
+		global $client;
+		global $product;
+		global $completedorder;
+		global $pay;
+		global $eu_vat_warning;
+		global $use_vat;
+		global $secpayconf_currency_letters;
+		global $price_dollar;
+		global $invoice_dtctext_number;
 
 		// VAT calculation
 		if($use_vat == "yes"){
@@ -266,14 +289,8 @@ class zPDF extends FPDF{
 			$vat = 0;
 		}
 		$gateway_cost = $without_vat - $price_dollar;
-		
-		// The table
-		$this->SetFont('Arial','B',11);
-		$this->Cell(110,7,"Product","1",0,"L");
-		$this->Cell(20,7,"Start date","1",0,"L");
-		$this->Cell(20,7,"End date","1",0,"L");
-		$this->Cell(35,7,"Price","1",0,"L");
-		$this->SetFont('Arial','',9);
+
+		$this->dtc_invoice_table_head();
 		// Single item invoice?
 		if($completedorder["product_id"] != 0){
 			$pname = $product["name"];
@@ -306,6 +323,10 @@ class zPDF extends FPDF{
 				$date_expire = calculateExpirationDate($product[$i]["last_expiry_date"],$product[$i]["period"]);
 				$this->Cell(20,7,$date_expire,"1",0,"L");
 				$this->Cell(35,7,$pprice." ".$secpayconf_currency_letters,"1",0,"L");
+				if( ($i%18) == 0 && $i != 0){
+					$this->AddPage();
+					$this->dtc_invoice_table_head();
+				}
 			}
 			$this->Ln();
 		}
@@ -359,9 +380,13 @@ class zPDF extends FPDF{
 		$this->SetXY(10,255);
 		$this->SetFont('Courier','',6);
 		$this->MultiCell(190,3,stripslashes($company["footer"]),"0","C");
+		$this->SetXY(10,275);
+		$this->Cell(0,10,'Page '.$this->PageNo(),0,0,'C');
 	}
 }
 $pdf=new zPDF('P','mm','A4');
+$pdf->AddPage();
+$pdf->makeBody();
 $comp = str_replace(" ","_",$company["name"]);
 if(strlen($client["company_name"]) > 0){
 	$cl = $client["company_name"] . "_";
