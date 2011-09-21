@@ -749,7 +749,7 @@ $dtc_database = array(
 			"last_used_lang" => "varchar(32) NOT NULL default 'en_US.UTF-8'",
 			"add_service" => "enum('yes','no') NOT NULL default 'no'",
 			"customfld" => "text",
-			"iscomp" => "archive('yes','no') NOT NULL default 'yes'"
+			"archive" => "enum('yes','no') NOT NULL default 'yes'"
 		),
 		"primary" => "(id)"
 	),
@@ -1330,6 +1330,16 @@ $dtc_database = array(
 			"pseudo" => "(pseudo)"
 		)
 	),
+	"tik_attach" => array(
+		"vars" => array(
+			"id" => "int(12) NOT NULL auto_increment",
+			"filename" => "varchar(255) NOT NULL default ''",
+			"ctype_prim" => "varchar(64) NOT NULL default ''",
+			"ctype_sec" => "varchar(64) NOT NULL default ''",
+			"datahex" => "blob NOT NULL"
+		),
+		"primary" => "(id)"
+	),
 	"tik_cats" => array(
 		"vars" => array(
 			"id" => "int(11) NOT NULL auto_increment",
@@ -1357,7 +1367,8 @@ $dtc_database = array(
 			"customer_email" => "varchar(255) NOT NULL default ''",
 			"closed" => "enum('yes','no') NOT NULL default 'no'",
 			"hash" => "varchar(32) NOT NULL default ''",
-			"admin_name" => "varchar(256) NOT NULL default 'dtc'"
+			"admin_name" => "varchar(256) NOT NULL default 'dtc'",
+			"attach" => "text"
 		),
 		"primary" => "(id)",
 		"index" => array(
