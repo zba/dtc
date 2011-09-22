@@ -1,5 +1,5 @@
 <?php
-
+                                                        
 function deleteTicketThread($delete_me){
 	global $pro_mysql_tik_queries_table;
 
@@ -257,6 +257,31 @@ function drawNewAdminForm(){
 				$replied_by = "";
 			}
 			$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i>".$replied_by."</td><td$bg>".nl2br(htmlspecialchars(stripslashes($a["text"])))."</td></tr>";
+			// Display attachements
+			if($a["attach"] != ""){
+				$attachments = explode("|",$a["attach"]);
+				$natt = sizeof($attachments);
+				for($z=0;$z<$natt;$z++){
+					$att = $attachments[$z];
+					$qatt = "SELECT * FROM tik_attach WHERE id='$att';";
+					$ratt = mysql_query($qatt)or die("Cannot query $qatt line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+					$zn = mysql_num_rows($ratt);
+					if($zn != 1){
+						continue;
+					}
+					$at = mysql_fetch_array($ratt);
+					$binary = pack("H*" , $at["datahex"]);
+					$chment_size = smartByte(strlen($binary));
+					$out .= "<tr><td$bg valign=\"top\"><i>".htmlspecialchars($at["ctype_prim"])."/".htmlspecialchars($at["ctype_sec"])." ".$chment_size."<br>
+						".htmlspecialchars($at["filename"])."</i></td>";
+					// Show Imagick miniature if we have a gif, jpeg or PNG.
+					if($at["ctype_prim"] == "image" && ($at["ctype_sec"] == "jpeg" || $at["ctype_sec"] == "gif" || $at["ctype_sec"] == "png")){
+						$out .= "<td$bg><a target=\"_blank\" href=\"show_attachment.php?id=".$att."\"><img src=\"show_attachment.php?id=".$att."&minipic=yes\"></a></td></tr>";
+					}else{
+						$out .= "<td$bg><a target=\"_blank\" href=\"show_attachment.php?id=".$att."\">".htmlspecialchars($at["filename"])."</a></td></tr>";
+					}
+				}
+			}
 			if($a["request_close"] == "yes"){
 				$close_request = "yes";
 			}
@@ -395,7 +420,7 @@ dtcFromOkDraw()."
 	}
 	// Draw the list of users awaiting for an account
 	$waiting_new_users = "<h3>". _("User and domain waiting for addition:") ."</h3>";
-	$q = "SELECT * FROM $pro_mysql_new_admin_table WHERE archive='no' ORDER BY date,time";
+	$q = "SELECT * FROM $pro_mysql_new_admin_table ORDER BY date,time";
 	$r = mysql_query($q)or die("Cannot query \"$q\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n < 1){
@@ -484,8 +509,7 @@ dtcFromOkDraw()."
 			}
 			$waiting_new_users .= "<$td style=\"white-space:nowrap\"><a target=\"_blank\" href=\"/dtcadmin/view_waitingusers.php?reqadm_id=".$a["id"]."\">". _("Edit") ."</a><br/>
 			<a href=\"?action=valid_waiting_user&reqadm_id=".$a["id"]."\">". _("Add") ."</a><br/>
-			<a href=\"?action=delete_waiting_user&reqadm_id=".$a["id"]."\">". _("Delete") ."</a><br/>
-			<a href=\"?action=archive_waiting_user&reqadm_id=".$a["id"]."\">". _("Archive") ."</a></td>";
+			<a href=\"?action=delete_waiting_user&reqadm_id=".$a["id"]."\">". _("Delete") ."</a></td>";
 			$waiting_new_users .= "</tr>";
 		}
 		$waiting_new_users .= "</table>";

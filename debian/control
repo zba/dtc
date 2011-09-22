@@ -11,7 +11,7 @@ Homepage: http://www.gplhost.com/software-dtc.html
 
 Package: dtc-common
 Architecture: all
-Depends: ${misc:Depends}, apache2, aufs-tools, bind9, bzip2, ca-certificates, chrootuid, cpio, cron, debconf, debootstrap, file, gawk, libapache2-mod-log-sql-mysql, libapache2-mod-php5, libnss-mysql-bg | libnss-mysql, libnusoap-php, libpam-mysql, libsasl2-modules-sql, libpam-unix2, locales-all | language-pack-en, lsb-release, mhonarc, mime-support, mlmmj, mysql-client, ncftp, net-tools, openssl, php5, php5-cli, php5-gd, php5-mysql, php-pear, php-fpdf, php-crypt-cbc, php-mail-mime, php5-curl, php-net-ipv4, php-xml-serializer, postfix, postfix-mysql, pure-ftpd-mysql | proftpd-mysql | proftpd-mod-mysql, rrdtool, sasl2-bin, sbox-dtc, ssh, sudo, unzip, webalizer, zip, patch
+Depends: ${misc:Depends}, apache2, aufs-tools, bind9, bzip2, ca-certificates, chrootuid, cpio, cron, debconf, debootstrap, file, gawk, libapache2-mod-log-sql-mysql, libapache2-mod-php5, libnss-mysql-bg | libnss-mysql, libnusoap-php, libpam-mysql, libsasl2-modules-sql, libpam-unix2, locales-all | language-pack-en, lsb-release, mhonarc, mime-support, mlmmj, mysql-client, ncftp, net-tools, openssl, php5, php5-cli, php5-gd, php5-imagick, php5-mysql, php-pear, php-fpdf, php-crypt-cbc, php-mail-mime, php5-curl, php-net-ipv4, php-xml-serializer, postfix, postfix-mysql, pure-ftpd-mysql | proftpd-mysql | proftpd-mod-mysql, rrdtool, sasl2-bin, sbox-dtc, ssh, sudo, unzip, webalizer, zip, patch
 Recommends: libapache2-mod-bwshare
 Breaks: dtc (<< 0.25.1), dtc-postfix-courier (<< 0.25.1)
 Suggests: dtc-postfix-courier | dtc-cyrus

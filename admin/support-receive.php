@@ -109,10 +109,66 @@ if(isset($stt->parts)){
 		$body = $stt->parts[$text_part]->body;
 		$charset = $stt->parts[$text_part]->ctype_parameters["charset"];
 	}
+	// Search for images attached to the mail
+	$attachements_ids = "";
+	for($i=0;$i<$n_parts;$i++){
+		// Accept only certain mime types we want
+		switch($stt->parts[$i]->ctype_primary){
+		case "image":
+			if($stt->parts[$i]->ctype_secondary != "gif" &&
+				$stt->parts[$i]->ctype_secondary != "jpeg" &&
+				$stt->parts[$i]->ctype_secondary != "png" &&
+				$stt->parts[$i]->ctype_secondary != "tiff" &&
+				$stt->parts[$i]->ctype_secondary != "x-ms-bmp"){
+				continue;
+			}
+			break;
+		case "application":
+			if($stt->parts[$i]->ctype_secondary != "pdf" &&
+				$stt->parts[$i]->ctype_secondary != "rar" &&
+				$stt->parts[$i]->ctype_secondary != "rtf" &&
+				$stt->parts[$i]->ctype_secondary != "zip" &&
+				$stt->parts[$i]->ctype_secondary != "vnd.ms-powerpoint" &&
+				$stt->parts[$i]->ctype_secondary != "vnd.oasis.opendocument.presentation" &&
+				$stt->parts[$i]->ctype_secondary != "vnd.oasis.opendocument.spreadsheet" &&
+				$stt->parts[$i]->ctype_secondary != "vnd.oasis.opendocument.text" &&
+				$stt->parts[$i]->ctype_secondary != "x-httpd-php" &&
+				$stt->parts[$i]->ctype_secondary != "x-tar" &&
+				$stt->parts[$i]->ctype_secondary != "x-gtar"){
+				continue;
+			}
+			break;
+		case "message":
+			if($stt->parts[$i]->ctype_secondary != "rfc822"){
+				continue;
+			}
+			break;
+		case "video":
+			if($stt->parts[$i]->ctype_secondary != "mpeg" &&
+				$stt->parts[$i]->ctype_secondary != "mp4" &&
+				$stt->parts[$i]->ctype_secondary != "quicktime" &&
+				$stt->parts[$i]->ctype_secondary != "x-ms-asf" &&
+				$stt->parts[$i]->ctype_secondary != "x-ms-wmv" &&
+				$stt->parts[$i]->ctype_secondary != "x-msvideo")
+				continue;
+			break;
+		}
+		$file_name = mysql_real_escape_string($stt->parts[$i]->ctype_parameters["name"]);
+		$file_body = bin2hex($stt->parts[$i]->body);
+		$q = "INSERT INTO tik_attach (id,filename,ctype_prim,ctype_sec,datahex)
+VALUES ('','$file_name','".mysql_real_escape_string($stt->parts[$i]->ctype_primary)."','".mysql_real_escape_string($stt->parts[$i]->ctype_secondary)."','$file_body');";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		$id = mysql_insert_id();
+		if($attachements_ids != ""){
+			$attachements_ids .= "|";
+		}
+		$attachements_ids .= mysql_insert_id();
+	}
 }else{
 	$body = $stt->body;
 	$charset = $stt->ctype_parameters["charset"];
 }
+
 //echo "$charset\n";
 $body = mb_convert_encoding($body,"UTF-8",strtoupper($charset));
 //echo $body;
@@ -145,8 +201,8 @@ if( preg_match("/".$tik_regexp."/",$email_to) ){
 
 			$last_id = findLastTicketID($ticket_hash);
 			if($last_id != 0){
-				$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket)
-				VALUES('','".$start_tik["adm_login"]."','".date('Y-m-d')."','".date('H:i:s')."','$last_id','0','user','". mysql_real_escape_string($body) ."','no');";
+				$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,attach)
+				VALUES('','".$start_tik["adm_login"]."','".date('Y-m-d')."','".date('H:i:s')."','$last_id','0','user','". mysql_real_escape_string($body) ."','no','$attachements_ids');";
 				$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$new_id = mysql_insert_id();
 				$q = "UPDATE $pro_mysql_tik_queries_table SET reply_id='$new_id' WHERE id='$last_id';";
@@ -172,8 +228,8 @@ if($n == 1){
 	// At this point, we got an exact match: let's create a new ticket for this adm_login!
 	if($n == 1){
 		$adm = mysql_fetch_array($r);
-		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject)
-		VALUES('','".$adm["adm_login"]."','".date('Y-m-d')."','".date('H:i:s')."','0','0','user','". mysql_real_escape_string($body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."');";
+		$q = "INSERT INTO $pro_mysql_tik_queries_table (id,adm_login,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject,attach)
+		VALUES('','".$adm["adm_login"]."','".date('Y-m-d')."','".date('H:i:s')."','0','0','user','". mysql_real_escape_string($body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."','$attachements_ids');";
 		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 		mailTicketToAllAdmins($stt->headers["subject"],$body,$adm["adm_login"]);
 		exit(0);
@@ -181,8 +237,8 @@ if($n == 1){
 // If nothing matches, then we want to create a new ticket associated with
 // this email address.
 }else{
-	$q = "INSERT INTO $pro_mysql_tik_queries_table (id,customer_email,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject)
-	VALUES('','$email_from','".date('Y-m-d')."','".date('H:i:s')."','0','0','user','". mysql_real_escape_string($body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."');";
+	$q = "INSERT INTO $pro_mysql_tik_queries_table (id,customer_email,date,time,in_reply_of_id,reply_id,admin_or_user,text,initial_ticket,hash,subject,attach)
+	VALUES('','$email_from','".date('Y-m-d')."','".date('H:i:s')."','0','0','user','". mysql_real_escape_string($body) ."','yes','".createSupportHash()."','". mysql_real_escape_string($stt->headers["subject"]) ."','$attachements_ids');";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	mailTicketToAllAdmins($stt->headers["subject"],$body,$email_from);
 }
