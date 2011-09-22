@@ -89,6 +89,9 @@ if [ -f /etc/debian_version ] ; then
 	mkdir -p ${sbox_copy_disk_path}/html/sbox404
 	cp -auxf ${sbox_copy_disk_path}/../etc/dtc404/* ${sbox_copy_disk_path}/html/sbox404
 	chmod +x ${sbox_copy_disk_path}/html/sbox404/*.php
+	if ! grep dtc ${sbox_copy_disk_path}/etc/passwd 2>&1 >/dev/null ; then
+		grep ^dtc:x: /etc/passwd >>${sbox_copy_disk_path}/etc/passwd
+	fi
 	chown -R dtc:dtcgrp ${sbox_copy_disk_path}
 else
 	echo "Currently only supported in Debian: sorry..."
