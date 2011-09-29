@@ -191,7 +191,7 @@ function drawAdminTools_VPSMonitor($admin,$vps){
 	$vps_stat_out .= "<td>"._("CPU Time:")."<br>";
 	$vps_stat_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_cpu.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td></tr>";
 
-	$vps_stat_out .= "<tr><td>".$vps_out_net_stats."<br>"._("Max: ").$vps["bandwidth_per_month_gb"]." GB</td><td>$vps_out_cpu_stats</td></tr>";
+	$vps_stat_out .= "<tr><td>".$vps_out_net_stats."<br>"._("Max: ").$vps["bandwidth_per_month_gb"]." MB</td><td>$vps_out_cpu_stats</td></tr>";
 
 	$vps_stat_out .= "<tr><td>"._("Swap I/O:")."<br>";
 	$vps_stat_out .= "<img width=\"120\" height=\"48\" src=\"vps_stats_swap.php?adm_login=$adm_login&adm_pass=$adm_pass&vps_node=$vps_node&vps_name=$vps_name\"></td>";

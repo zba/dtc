@@ -382,7 +382,7 @@ WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='x
 				$vps_specs = mysql_fetch_array($r2);
 				mysql_free_result($r2);
 				// See if VPS is at 80% of quota
-				if( (($vps_current_use["network_in_count"] + $vps_current_use["network_out_count"]) > ($vps_specs["bandwidth_per_month_gb"] * 0.8 *1024*1024*1024))
+				if( (($vps_current_use["network_in_count"] + $vps_current_use["network_out_count"]) > ($vps_specs["bandwidth_per_month_gb"] * 0.8 *1024*1024))
 							&& $vps_current_use["tresh_before_warn_sent"] == "no"){
 					$q2 = "UPDATE $pro_mysql_vps_stats_table SET tresh_before_warn_sent='yes'
 					WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='xen".$vps_number."' AND month='".date("m",$timestamp)."' AND year='".date("Y",$timestamp)."'";
@@ -391,7 +391,7 @@ WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='x
 					send_quota_warning_email($vps_specs,"vps_80_percent");
 				}
 				// See if VPS has reached its quota
-				if( (($vps_current_use["network_in_count"] + $vps_current_use["network_out_count"]) > ($vps_specs["bandwidth_per_month_gb"] *1024*1024*1024))
+				if( (($vps_current_use["network_in_count"] + $vps_current_use["network_out_count"]) > ($vps_specs["bandwidth_per_month_gb"] *1024*1024))
 							&& $vps_current_use["tresh_quota_reached_warn_sent"] == "no"){
 					$q2 = "UPDATE $pro_mysql_vps_stats_table SET tresh_quota_reached_warn_sent='yes'
 					WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='xen".$vps_number."' AND month='".date("m",$timestamp)."' AND year='".date("Y",$timestamp)."'";
@@ -400,7 +400,7 @@ WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='x
 					send_quota_warning_email($vps_specs,"vps_quota_reached");
 				}
 				// See if VPS is well over quota
-				if( (($vps_current_use["network_in_count"] + $vps_current_use["network_out_count"]) > ($vps_specs["bandwidth_per_month_gb"] * 1.2 *1024*1024*1024))
+				if( (($vps_current_use["network_in_count"] + $vps_current_use["network_out_count"]) > ($vps_specs["bandwidth_per_month_gb"] * 1.2 *1024*1024))
 							&& $vps_current_use["tresh_vps_shutdown"] == "no"){
 					$q2 = "UPDATE $pro_mysql_vps_stats_table SET tresh_vps_shutdown='yes'
 					WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='xen".$vps_number."' AND month='".date("m",$timestamp)."' AND year='".date("Y",$timestamp)."'";
