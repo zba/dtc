@@ -72,7 +72,7 @@ function drawAdminTools_VPSInstallation($admin,$vps){
 
 		if($vps_remote_info == false){
 			if(strstr($vps_soap_err,_("Method getVPSState failed"))){
-				$vps_out .= _("Could not get remote status (Method getVPSState() failed). Maybe the VPS is not running?") ."<br><br>";
+				$vps_out .= _("Could not get remote status (Method getVPSState() failed): the VPS is not running. Click the xm start button to boot it up.") ."<br><br>";
 			}else if(strstr($vps_soap_err,_("couldn't connect to host"))){
 				$vps_out .= _("Could not get remote status: could not connect to the SOAP server (HTTP error).") ."<br><br>";
 			}else{
@@ -130,6 +130,8 @@ function drawAdminTools_VPSInstallation($admin,$vps){
 		$vps_out .= _("Could not connect to the VPS SOAP Server.") ;
 	}
 
+
+
 	$frm_start = "<form action=\"?\">
 <input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 <input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
@@ -183,6 +185,12 @@ onMouseOut=\"this.className='input_btn_container';\">
 	// VPS status
 	$out .= "<h3>". _("Current VPS status:") ."</h3><br>";
 	$out .= $vps_out;
+
+	if($vps["locked"] == "yes"){
+		$out .= "<h3>". _("VPS locked:") ."</h3><br>";
+		$out .= _("Your VPS has been locked administratively, so you cannot start it (this may have happened because your VPS used too much network bandwidth, or because of an action from the administrator). File a support ticket to get in touch with the administrators to solve this issue.")."<br>";
+		return $out;
+	}
 
 	// Start / stop VPS
 	$out .= "<h3>". _("Start and stop of your VPS:") ."</h3><br>";

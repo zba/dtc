@@ -87,6 +87,11 @@ monitor_imap4='$monitor_imap4', monitor_ftp='$monitor_ftp' WHERE vps_xen_name='$
 
 if(isset($_REQUEST["action"]) && ($_REQUEST["action"] == "shutdown_vps" || $_REQUEST["action"] == "destroy_vps" || $_REQUEST["action"] == "start_vps")){
 	if(checkVPSAdmin($adm_login,$adm_pass,$vps_node,$vps_name) == true){
+		$q = "SELECT * FROM $pro_mysql_vps_table WHERE vps_xen_name='$vps_name' AND vps_server_hostname='$vps_node' AND locked='no';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+		if($n != 1){
+			$submit_err = _("Access not granted (VPS is locked), line ") .__LINE__. _(" file ") .__FILE__;
+		}
 		remoteVPSAction($vps_node,$vps_name,$_REQUEST["action"]);
 	}else{
 		$submit_err = _("Access not granted line ") .__LINE__. _(" file ") .__FILE__;

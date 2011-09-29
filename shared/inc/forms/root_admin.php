@@ -667,6 +667,11 @@ function drawDomainConfig($admin){
 					"size" => "5",
 					"help" => _("Bandwidth per month in MBytes."),
 					"legend" => _("Bandwidth") ),
+				"locked" => array(
+					"type" => "checkbox",
+					"values" => array("yes","no"),
+					"display_replace" => array(_("Yes"),_("No")),
+					"legend" => _("Locked") ),
 				"product_id" => array(
 					"type" => "popup",
 					"legend" => _("Product ID") ,
