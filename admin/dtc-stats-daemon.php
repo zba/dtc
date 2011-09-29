@@ -96,6 +96,48 @@ function daemonize() {
 	return posix_getpid();
 }
 
+// send_quota_warning_email($vps_specs,"vps_80_percent");
+// $vps_specs is a raw of the table "vps" as returnted by mysql_fetch_array
+// $warning_type is the name X of the file as in /etc/dtc/vps_over_quota/X.txt
+function send_quota_warning_email($vps_specs,$warning_type){
+	global $pro_mysql_admin_table;
+	global $pro_mysql_client_table;
+
+	// Get the admin and client records
+	$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$vps_specs["owner"]."';";
+	if(($r2 = mysql_query($q2)) === FALSE){
+		continue;
+	}
+	$n2 = mysql_num_rows($r2);
+	if($n2 != 1){
+		continue;
+	}
+	$vps_admin = mysql_fetch_array($r2);
+	mysql_free_result($r2);
+
+	$q2 = "SELECT * FROM $pro_mysql_client_table WHERE id='".$vps_admin["id_client"]."';";
+	if(($r2 = mysql_query($q2)) === FALSE){
+		continue;
+	}
+	$n2 = mysql_num_rows($r2);
+	if($n2 != 1){
+		continue;
+	}
+	$vps_client = mysql_fetch_array($r2);
+	mysql_free_result($r2);
+
+	// Send the message
+	$msg_2_send = readCustomizedMessage("vps_over_quota/vps_80_".$warning_type,$vps_specs["owner"]);
+	$signature = readCustomizedMessage("signature",$vps_specs["owner"]);
+	$msg_2_send = str_replace("%%%SIGNATURE%%%",$signature,$msg_2_send);
+	$msg_2_send = str_replace("%%%VPS_NUMBER%%%",$vps_specs["vps_xen_name"],$msg_2_send);
+	$msg_2_send = str_replace("%%%VPS_NODE%%%",$vps_specs["vps_server_hostname"],$msg_2_send);
+	$subject = readCustomizedMessage("vps_over_quota/".$warning_type."_subject",$admin["adm_login"]);
+	$headers = $send_email_header;
+	$headers .= "From: ".$conf_webmaster_email_addr;
+	mail($vps_client["email"],"$conf_message_subject_header $subject",$msg_2_send,$headers);
+}
+
 // daemonize the process so it's sits in the background
 // we don't do it in Debian since there, we use start-stop-daemon that does all the job
 if( !file_exists("/etc/debian_version")){
@@ -305,7 +347,6 @@ VALUES ('".$vps_servers_row["hostname"]."','xen$vps_number','".date("m",$timesta
 				if(mysql_query($q2) === FALSE){
 					continue;
 				}
-				//die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 				$q2 = "UPDATE $pro_mysql_vps_stats_table
 SET cpu_usage=cpu_usage + '$vps_cpu', network_in_count=network_in_count + '$vps_net_in', network_out_count=network_out_count + '$vps_net_out',
 diskio_count=diskio_count + '$vps_fs_sectors', swapio_count=swapio_count + '$vps_swap_sectors'
@@ -314,7 +355,58 @@ WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='x
 				if(mysql_query($q2) === FALSE){
 					continue;
 				}
-				//die("Cannot query $q2 line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+				// Find out what is the current usage
+				$q2 = "SELECT * FROM $pro_mysql_vps_stats_table WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='xen".$vps_number."' AND month='".date("m",$timestamp)."' AND year='".date("Y",$timestamp)."'";
+				$r2 = mysql_query($q2);
+				if($r2 === FALSE){
+					continue;
+				}
+				$n2 = mysql_num_rows($r2);
+				if($n2 != 1){
+					continue;
+				}
+				$vps_current_use = mysql_fetch_array($r2);
+				mysql_free_result($r2);
+				// Get the quota
+				$q2 = "SELECT * FROM $pro_mysql_vps_table WHERE vps_xen_name='".$vps_number."' AND vps_server_hostname='".$vps_servers_row["hostname"]."';";
+				$r2 = mysql_query($q2);
+				if($r2 === FALSE){
+					continue;
+				}
+				$n2 = mysql_num_rows($r2);
+				if($n2 != 1){
+					continue;
+				}
+				$vps_specs = mysql_fetch_array($r2);
+				mysql_free_result($r2);
+				// See if VPS is at 80% of quota
+				if( (($vps_current_use["network_in_count"] + $vps_current_use["network_out_count"]) > ($vps_specs["bandwidth_per_month_gb"] * 0.8 *1024*1024*1024))
+							&& $vps_current_use["tresh_before_warn_sent"] == "no"){
+					$q2 = "UPDATE $pro_mysql_vps_stats_table SET tresh_before_warn_sent='yes'
+					WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='xen".$vps_number."' AND month='".date("m",$timestamp)."' AND year='".date("Y",$timestamp)."'";
+					mysql_query($q2);
+					send_quota_warning_email($vps_specs,"vps_80_percent");
+				}
+				// See if VPS has reached its quota
+				if( (($vps_current_use["network_in_count"] + $vps_current_use["network_out_count"]) > ($vps_specs["bandwidth_per_month_gb"] *1024*1024*1024))
+							&& $vps_current_use["tresh_quota_reached_warn_sent"] == "no"){
+					$q2 = "UPDATE $pro_mysql_vps_stats_table SET tresh_quota_reached_warn_sent='yes'
+					WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='xen".$vps_number."' AND month='".date("m",$timestamp)."' AND year='".date("Y",$timestamp)."'";
+					mysql_query($q2);
+					send_quota_warning_email($vps_specs,"vps_quota_reached");
+				}
+				// See if VPS is well over quota
+				if( (($vps_current_use["network_in_count"] + $vps_current_use["network_out_count"]) > ($vps_specs["bandwidth_per_month_gb"] * 1.2 *1024*1024*1024))
+							&& $vps_current_use["tresh_vps_shutdown"] == "no"){
+					$q2 = "UPDATE $pro_mysql_vps_stats_table SET tresh_vps_shutdown='yes'
+					WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='xen".$vps_number."' AND month='".date("m",$timestamp)."' AND year='".date("Y",$timestamp)."'";
+					mysql_query($q2);
+					send_quota_warning_email($vps_specs,"vps_quota_shutdown");
+					// Time to shutdown the VPS...
+					$q2 = "UPDATE $pro_mysql_vps_table SET locked='yes' WHERE vps_xen_name='".$vps_number."' AND vps_server_hostname='".$vps_servers_row["hostname"]."';";
+					mysql_query($q2);
+					remoteVPSAction($vps_servers_row["hostname"],$vps_number,"shutdown_vps");
+				}
 			}
 		}
 		fwrite($log_fp, " recorded\n");

@@ -1427,7 +1427,8 @@ $dtc_database = array(
 			"monitor_smtp" => "enum('yes','no') NOT NULL default 'no'",
 			"monitor_pop3" => "enum('yes','no') NOT NULL default 'no'",
 			"monitor_imap4" => "enum('yes','no') NOT NULL default 'no'",
-			"monitor_ftp" => "enum('yes','no') NOT NULL default 'no'"
+			"monitor_ftp" => "enum('yes','no') NOT NULL default 'no'",
+			"locked" => "enum('yes','no') NOT NULL default 'no'"
 		),
 		"primary" => "(id)",
 		"keys" => array(
@@ -1497,7 +1498,10 @@ $dtc_database = array(
 			"diskio_last" => "bigint(22) default NULL",
 			"diskio_count" => "bigint(22) default NULL",
 			"swapio_last" => "bigint(22) default NULL",
-			"swapio_count" => "bigint(22) default NULL"
+			"swapio_count" => "bigint(22) default NULL",
+			"tresh_before_warn_sent" => "enum('yes','no') NOT NULL default 'no'",
+			"tresh_quota_reached_warn_sent" => "enum('yes','no') NOT NULL default 'no'",
+			"tresh_vps_shutdown" => "enum('yes','no') NOT NULL default 'no'"
 		),
 		"primary" => "(month,year,vps_server_hostname,vps_xen_name)"
 	),
