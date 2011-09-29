@@ -1336,7 +1336,7 @@ $dtc_database = array(
 			"filename" => "varchar(255) NOT NULL default ''",
 			"ctype_prim" => "varchar(64) NOT NULL default ''",
 			"ctype_sec" => "varchar(64) NOT NULL default ''",
-			"datahex" => "mediumblob NOT NULL"
+			"datahex" => "mediumblob NOT NULL default ''"
 		),
 		"primary" => "(id)"
 	),

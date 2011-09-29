@@ -102,6 +102,7 @@ function daemonize() {
 function send_quota_warning_email($vps_specs,$warning_type){
 	global $pro_mysql_admin_table;
 	global $pro_mysql_client_table;
+	global $conf_webmaster_email_addr;
 
 	// Get the admin and client records
 	$q2 = "SELECT * FROM $pro_mysql_admin_table WHERE adm_login='".$vps_specs["owner"]."';";
@@ -127,7 +128,7 @@ function send_quota_warning_email($vps_specs,$warning_type){
 	mysql_free_result($r2);
 
 	// Send the message
-	$msg_2_send = readCustomizedMessage("vps_over_quota/vps_80_".$warning_type,$vps_specs["owner"]);
+	$msg_2_send = readCustomizedMessage("vps_over_quota/".$warning_type,$vps_specs["owner"]);
 	$signature = readCustomizedMessage("signature",$vps_specs["owner"]);
 	$msg_2_send = str_replace("%%%SIGNATURE%%%",$signature,$msg_2_send);
 	$msg_2_send = str_replace("%%%VPS_NUMBER%%%",$vps_specs["vps_xen_name"],$msg_2_send);
@@ -385,6 +386,7 @@ WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='x
 					$q2 = "UPDATE $pro_mysql_vps_stats_table SET tresh_before_warn_sent='yes'
 					WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='xen".$vps_number."' AND month='".date("m",$timestamp)."' AND year='".date("Y",$timestamp)."'";
 					mysql_query($q2);
+					fwrite($log_fp, "\n" . date("Y-m-d H:i:s")." VPS is at 80% of its quota: $vps_number:".$vps_servers_row["hostname"].": sending warning email\n");
 					send_quota_warning_email($vps_specs,"vps_80_percent");
 				}
 				// See if VPS has reached its quota
@@ -393,6 +395,7 @@ WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='x
 					$q2 = "UPDATE $pro_mysql_vps_stats_table SET tresh_quota_reached_warn_sent='yes'
 					WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='xen".$vps_number."' AND month='".date("m",$timestamp)."' AND year='".date("Y",$timestamp)."'";
 					mysql_query($q2);
+					fwrite($log_fp, "\n" . date("Y-m-d H:i:s")." VPS reached its quota: $vps_number:".$vps_servers_row["hostname"].": sending warning email\n");
 					send_quota_warning_email($vps_specs,"vps_quota_reached");
 				}
 				// See if VPS is well over quota
@@ -401,6 +404,7 @@ WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='x
 					$q2 = "UPDATE $pro_mysql_vps_stats_table SET tresh_vps_shutdown='yes'
 					WHERE vps_server_hostname='".$vps_servers_row["hostname"]."' AND vps_xen_name='xen".$vps_number."' AND month='".date("m",$timestamp)."' AND year='".date("Y",$timestamp)."'";
 					mysql_query($q2);
+					fwrite($log_fp, "\n" . date("Y-m-d H:i:s")." VPS is a way over its quota: $vps_number:".$vps_servers_row["hostname"].": sending warning email and shutting down\n");
 					send_quota_warning_email($vps_specs,"vps_quota_shutdown");
 					// Time to shutdown the VPS...
 					$q2 = "UPDATE $pro_mysql_vps_table SET locked='yes' WHERE vps_xen_name='".$vps_number."' AND vps_server_hostname='".$vps_servers_row["hostname"]."';";
