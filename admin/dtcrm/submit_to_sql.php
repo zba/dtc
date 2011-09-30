@@ -83,13 +83,13 @@ country,phone,fax,
 email,special_note,dollar,
 disk_quota_mb,bw_quota_per_month_gb
 )VALUES(
-'','".$_REQUEST["ed_is_company"]."','".$_REQUEST["ed_company_name"]."','".$_REQUEST["ed_vat_num"]."',
-'".$_REQUEST["ed_familyname"]."','".$_REQUEST["ed_christname"]."',
-'".$_REQUEST["ed_addr1"]."','".$_REQUEST["ed_addr2"]."','".$_REQUEST["ed_addr3"]."',
-'".$_REQUEST["ed_city"]."','".$_REQUEST["ed_zipcode"]."','".$_REQUEST["ed_state"]."',
-'".$_REQUEST["ed_country"]."','".$_REQUEST["ed_phone"]."','".$_REQUEST["ed_fax"]."',
-'".$_REQUEST["ed_email"]."','".$_REQUEST["ed_special_note"]."','".$_REQUEST["ed_dollar"]."',
-'".$_REQUEST["ed_disk_quota_mb"]."','".$_REQUEST["ed_bw_quota_per_month_gb"]."');";
+'','".$_REQUEST["ed_is_company"]."','".mysql_real_escape_string($_REQUEST["ed_company_name"])."','".mysql_real_escape_string($_REQUEST["ed_vat_num"])."',
+'".mysql_real_escape_string($_REQUEST["ed_familyname"])."','".mysql_real_escape_string($_REQUEST["ed_christname"])."',
+'".mysql_real_escape_string($_REQUEST["ed_addr1"])."','".mysql_real_escape_string($_REQUEST["ed_addr2"])."','".mysql_real_escape_string($_REQUEST["ed_addr3"])."',
+'".mysql_real_escape_string($_REQUEST["ed_city"])."','".mysql_real_escape_string($_REQUEST["ed_zipcode"])."','".mysql_real_escape_string($_REQUEST["ed_state"])."',
+'".mysql_real_escape_string($_REQUEST["ed_country"])."','".mysql_real_escape_string($_REQUEST["ed_phone"])."','".mysql_real_escape_string($_REQUEST["ed_fax"])."',
+'".mysql_real_escape_string($_REQUEST["ed_email"])."','".mysql_real_escape_string($_REQUEST["ed_special_note"])."','".mysql_real_escape_string($_REQUEST["ed_dollar"])."',
+'".mysql_real_escape_string($_REQUEST["ed_disk_quota_mb"])."','".mysql_real_escape_string($_REQUEST["ed_bw_quota_per_month_gb"])."');";
 	$r = mysql_query($q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysql_error());
 }
 
