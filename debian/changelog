@@ -4,7 +4,7 @@ dtc (0.34.4-1) experimental; urgency=low
     - Automatic email and shutdown of VPS over bandwidth quota.
     - Archiving of pending list for addition of new account (useful for fraud).
     - Invoices can now be on multiple pages (useful for big multi-renew).
-    - Support tickets are now displaying attachment (specific mime types only).
+    - Support tickets are now supporting attachment (specific mime types only).
 
  -- Thomas Goirand <zigo@debian.org>  Thu, 29 Sep 2011 14:17:53 +0800
 

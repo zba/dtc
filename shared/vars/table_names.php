@@ -38,6 +38,7 @@ $pro_mysql_pending_renewal_table = "pending_renewal";
 $pro_mysql_tik_admins_table = "tik_admins";
 $pro_mysql_tik_queries_table = "tik_queries";
 $pro_mysql_tik_cats_table = "tik_cats";
+$pro_mysql_tik_atc_table = "tik_attach";
 $pro_mysql_ssl_ips_table = "ssl_ips";
 $pro_mysql_dedicated_ips_table = "dedicated_ip";
 $pro_mysql_dedicated_table = "dedicated";

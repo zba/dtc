@@ -5,6 +5,7 @@ function drawTickets($admin){
 	global $pro_mysql_tik_admins_table;
 	global $pro_mysql_tik_queries_table;
 	global $pro_mysql_tik_cats_table;
+	global $pro_mysql_tik_atc_table;
 
 	global $adm_login;
 	global $adm_pass;
@@ -12,6 +13,13 @@ function drawTickets($admin){
 	global $conf_administrative_site;
 
 	$out = "<br>";
+
+	$frm_start = "<form enctype=\"multipart/form-data\" action=\"?\" method=\"post\">
+<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
+<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
+<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+";
+	$att_frm = _("Add a binary file attachment:")."<br><br><input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"800000\" /><input type=\"file\" name=\"attach\">";
 
 	// New ticket form
 	if(isset($_REQUEST["subaction"]) && $_REQUEST["subaction"] == "new_ticket"){
@@ -43,10 +51,7 @@ function drawTickets($admin){
 			$popup_cats .= "<option value=\"".$a["id"]."\">".$a["catdescript"]."</option>";
 		}
 
-		$out .= "<form action=\"?\">
-<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
+		$out .= $frm_start."
 <input type=\"hidden\" name=\"action\" value=\"new_ticket\">
 
 ". _("Subject") ." <input name=\"subject\" type=\"text\" size=\"40\" maxlength=\"40\"><br>
@@ -62,13 +67,9 @@ $popup_cats
 </select><br><br>
 
 ". _("Full description of the trouble:") ."<br>
-<textarea name=\"ticketbody\" cols=\"60\" rows=\"10\" wrap=\"physical\"></textarea><br><br>
-
-<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
- <div class=\"input_btn_left\"></div>
- <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"". _("Send trouble ticket") ."\"></div>
- <div class=\"input_btn_right\"></div>
-</div>
+<textarea name=\"ticketbody\" cols=\"60\" rows=\"10\" wrap=\"physical\"></textarea><br>
+$att_frm<br><br>
+".submitButtonStart(). _("Send trouble ticket") .submitButtonEnd()."
 </form>";
 	// View a ticket
 	}else if(isset($_REQUEST["subaction"]) && $_REQUEST["subaction"] == "view_ticket"){
@@ -132,43 +133,44 @@ $popup_cats
 				}else{
 					$replied_by = "";
 				}
-				$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."</i>".$replied_by."</td><td$bg>".nl2br(htmlspecialchars(stripslashes($a["text"])))."</td></tr>";
+				$atfiles = "";
+				if($a["attach"] != ""){
+					$atc = explode("|",$a["attach"]);
+					$natc = sizeof($atc);
+					for($z=0;$z<$natc;$z++){
+						$qat = "SELECT * FROM $pro_mysql_tik_atc_table WHERE id='".$atc[$z]."';";
+						$rat = mysql_query($qat)or die("Cannot query $qat line ".__LINE__." file ".__FILE__." sql said ".mysql_error());
+						$natr = mysql_num_rows($rat);
+						if($natr == 1){
+							$aat = mysql_fetch_array($rat);
+							$binary = pack("H*" , $aat["datahex"]);
+							$chment_size = smartByte(strlen($binary));
+							$atfiles .= "<br>".htmlspecialchars($aat["ctype_prim"])."/".htmlspecialchars($aat["ctype_sec"]).$chment_size."<br>".htmlspecialchars($aat["filename"]);
+						}
+					}
+				}
+				$out .= "<tr><td$bg valign=\"top\"><i>".$a["date"]." ".$a["time"]."$atfiles</i>".$replied_by."</td><td$bg>".nl2br(htmlspecialchars(stripslashes($a["text"])))."</td></tr>";
 			}
 			$out .= "</table>";
-			$out .= "<form action=\"?\" method=\"post\">
-<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-<input type=\"hidden\" name=\"subaction\" value=\"view_ticket\">
+			$out .= $frm_start."<input type=\"hidden\" name=\"subaction\" value=\"view_ticket\">
 <input type=\"hidden\" name=\"action\" value=\"add_ticket_reply\">
-<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
 <input type=\"hidden\" name=\"tik_id\" value=\"".$_REQUEST["tik_id"]."\">
 <input type=\"hidden\" name=\"last_tik_id\" value=\"$last_tik_id\">
 <input type=\"hidden\" name=\"subject\" value=\"".$a_t["subject"]."\">
 <input type=\"hidden\" name=\"cat_id\" value=\"".$a_t["cat_id"]."\">
 <input type=\"hidden\" name=\"server_hostname\" value=\"".$a_t["server_hostname"]."\">
 <textarea name=\"ticketbody\" cols=\"60\" rows=\"10\" wrap=\"physical\"></textarea><br>
+$att_frm<br>
 ". _("Request to close the issue:") ."<input type=\"radio\" name=\"request_to_close\" value=\"yes\" checked> "._("Yes")."
 <input type=\"radio\" name=\"request_to_close\" value=\"no\"> "._("No")."<br>
-<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
- <div class=\"input_btn_left\"></div>
- <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"". _("Submit new support issue") ."\"></div>
- <div class=\"input_btn_right\"></div>
-</div>
+".submitButtonStart(). _("Submit new support issue") .submitButtonEnd()."
 </form>
 ";
 		}
 	// The main screen
 	}else{
-		$out .= "<form action=\"?\" method=\"post\">
-<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
-<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
-<input type=\"hidden\" name=\"subaction\" value=\"new_ticket\">
-<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
-<div class=\"input_btn_container\" onMouseOver=\"this.className='input_btn_container-hover';\" onMouseOut=\"this.className='input_btn_container';\">
- <div class=\"input_btn_left\"></div>
- <div class=\"input_btn_mid\"><input class=\"input_btn\" type=\"submit\" value=\"". _("Submit new support issue") ."\"></div>
- <div class=\"input_btn_right\"></div>
-</div>
+		$out .= $frm_start."<input type=\"hidden\" name=\"subaction\" value=\"new_ticket\">
+".submitButtonStart(). _("Submit new support issue") .submitButtonEnd()."
 </form>
 ";
 		$out .= "<br><br><h3>". _("Old tickets:") ."</h3>";
@@ -195,7 +197,7 @@ $popup_cats
 				$a2 = mysql_fetch_array($r2);
 				$out .= "<td>".$a2["catname"]."</td>";
 			}
-			$out .= "<td>".$a["server_hostname"]."</td><td><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&subaction=view_ticket&tik_id=".$a["id"]."\">".stripslashes($a["subject"])."</a></td>";
+			$out .= "<td>".$a["server_hostname"]."</td><td><a href=\"?adm_login=$adm_login&adm_pass=$adm_pass&addrlink=$addrlink&subaction=view_ticket&tik_id=".$a["id"]."\">".htmlspecialchars(stripslashes($a["subject"]))."</a></td>";
 			$out .= "</tr>";
 		}
 		$out .= "</table>";
