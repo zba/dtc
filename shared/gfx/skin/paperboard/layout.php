@@ -66,7 +66,6 @@ function skin_EmailPage(){
 		$error = pass_check_email();
 		// Fetch all the user informations, Print a nice error message if failure.
 		if($error == false){
-			$mesg = $admin["mesg"];
 			$login_txt = "<font color=\"red\">"._("Wrong login or password")." !</font><br>";
 			$login_txt .= login_emailpanel_form();
 			$mypage = skin($conf_skin,$login_txt, _("Email panel: ") . _("Login") );

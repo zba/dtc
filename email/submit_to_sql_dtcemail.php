@@ -6,19 +6,31 @@ function pass_check_email(){
 	global $pro_mysql_pop_table;
 	global $user;
 	global $host;
-	if(!isValidEmail($_REQUEST["adm_email_login"]))
-		die("Check: Incorrect email format!");
-	if(!isDTCPassword($_REQUEST["adm_email_pass"]))
-		die("Check: Incorrect password format!");
+	global $conf_session_expir_minute;
+	global $adm_email_random_pass;
+	global $adm_email_login;
+	global $adm_email_pass;
+
+	if(!isValidEmail($adm_email_login))	die("Check: Incorrect email format!");
+	if(!isDTCPassword($adm_email_pass))	die("Check: Incorrect password format!");
 	$q = "SELECT * FROM $pro_mysql_pop_table WHERE ";
 
-	$tbl = explode('@',$_REQUEST["adm_email_login"]);
+	$tbl = explode('@',$adm_email_login);
 	$user = $tbl[0];
 	$host = $tbl[1];
-	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
+	$q = "SELECT * FROM $pro_mysql_pop_table WHERE id='$user' AND mbox_host='$host' AND (passwd='".$adm_email_pass."' OR (pass_next_req='".$adm_email_pass."' AND pass_expire > '".mktime()."') );";
 	$res_mailbox = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($res_mailbox);
-	if($n == 1)	return true;
+	if($n == 1){
+		if( !isset($adm_email_random_pass)){
+			$adm_email_random_pass = getRandomValue();
+			$adm_email_pass = $adm_email_random_pass;
+			$expirationTIME = mktime() + (60 * $conf_session_expir_minute);
+			$q = "UPDATE $pro_mysql_pop_table SET pass_next_req='$adm_email_random_pass', pass_expire='$expirationTIME' WHERE id='$user' AND mbox_host='$host'";
+			$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		}
+		return true;
+	}
 	else		return false;
 }
 
@@ -28,17 +40,7 @@ if($_REQUEST["action"] != "logout"){
 	if(pass_check_email()==false)   die("User not found!");
 }
 switch($_REQUEST["action"]){
-
-case "activate_antispam":
-	if($_REQUEST["iwall_on"] == "yes"){
-		$q = "UPDATE $pro_mysql_pop_table SET iwall_protect='yes' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
-		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	}else{
-		$q = "UPDATE $pro_mysql_pop_table SET iwall_protect='no' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
-		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	}
-	break;
-
+/*
 // action=add_whitelist_rule&mail_from_user=toto&mail_from_domain=toto.com&mail_to=
 case "add_whitelist_rule":
 	if((isValidEmail($_REQUEST["mail_from_user"].'@'.$_REQUEST["mail_from_domain"]) && $_REQUEST["mail_to"] == "")||
@@ -70,16 +72,6 @@ case "edit_whitelist_rule":
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	}else{
 		echo "<font color=\"red\">This is not a valid rule!</font>";
-	}
-	break;
-
-case "edit_bounce_msg":
-//&action=edit_bounce_msg&bounce_msg=Hello%2C%0D%0AYou+have+tried+to+write+an+email+to+me%2C+and+because+of+the+big+amount%0D%0Aof+spam+I+recieved%2C+I+use+an+antispam+software+that+require+a+message%0D%0Aconfirmation.+This+is+very+easy%2C+and+you+will+have+to+do+it+only+once.%0D%0AJust+click+on+the+following+link%2C+copy+the+number+you+see+on+the%0D%0Ascreen+and+I+will+recieve+the+message+you+sent+me.+If+you+do+not%0D%0Aclick%2C+then+your+message+will+be+considered+as+advertising+and+I+will%0D%0ANOT+recieve+it.%0D%0A%0D%0A***URL***%0D%0A%0D%0AThank+you+for+your+understanding.%0D%0A
-	if(strstr($_REQUEST["bounce_msg"],"***URL***")){
-		$q = "UPDATE $pro_mysql_pop_table SET bounce_msg='".mysql_real_escape_string($_REQUEST["bounce_msg"])."' WHERE id='$user' AND mbox_host='$host' AND passwd='".$_REQUEST["adm_email_pass"]."';";
-		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
-	}else{
-		echo "Bounce message MUST contain ***URL***";
 	}
 	break;
 
@@ -136,6 +128,17 @@ case "del_fetchmail":
 	$q = "DELETE FROM $pro_mysql_fetchmail_table WHERE domain_user='$user' AND domain_name='$host' AND id='".$_REQUEST["boxid"]."';";
 	$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 	break;
+*/
+case "edit_bounce_msg":
+//&action=edit_bounce_msg&bounce_msg=Hello%2C%0D%0AYou+have+tried+to+write+an+email+to+me%2C+and+because+of+the+big+amount%0D%0Aof+spam+I+recieved%2C+I+use+an+antispam+software+that+require+a+message%0D%0Aconfirmation.+This+is+very+easy%2C+and+you+will+have+to+do+it+only+once.%0D%0AJust+click+on+the+following+link%2C+copy+the+number+you+see+on+the%0D%0Ascreen+and+I+will+recieve+the+message+you+sent+me.+If+you+do+not%0D%0Aclick%2C+then+your+message+will+be+considered+as+advertising+and+I+will%0D%0ANOT+recieve+it.%0D%0A%0D%0A***URL***%0D%0A%0D%0AThank+you+for+your+understanding.%0D%0A
+	if(strstr($_REQUEST["bounce_msg"],"***URL***")){
+		$q = "UPDATE $pro_mysql_pop_table SET bounce_msg='".mysql_real_escape_string($_REQUEST["bounce_msg"])."' WHERE id='$user' AND mbox_host='$host';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+	}else{
+		echo "Bounce message MUST contain ***URL***";
+	}
+	break;
+
 
 case "dtcemail_change_pass":
 	if(!isDTCPassword($_REQUEST["newpass1"]))	die("Incorrect password format!");

@@ -70,7 +70,7 @@ function drawImportedMail($mailbox){
         $out = dtcListItemsEdit($dsc);
 	return $out;
 }
-
+/*
 function drawAntispamRules($mailbox){
 	global $adm_email_login;
 	global $adm_email_pass;
@@ -179,14 +179,14 @@ function drawQuarantine($mailbox){
 
 	return $out;
 }
-
+*/
 function drawAdminTools_emailAccount($mailbox){	
 	global $adm_email_login;
 	global $adm_email_pass;
 	global $cyrus_used;
 
 	$url_start = "<a href=\"?adm_email_login=$adm_email_login&adm_email_pass=$adm_email_pass&addrlink=".$_REQUEST["addrlink"];
-	$form_start = "<form action=\"?\">
+	$form_start = "<form action=\"?\" method=\"post\">
 <input type=\"hidden\" name=\"adm_email_login\" value=\"$adm_email_login\">
 <input type=\"hidden\" name=\"adm_email_pass\" value=\"$adm_email_pass\">
 <input type=\"hidden\" name=\"addrlink\" value=\"".$_REQUEST["addrlink"]."\">";
@@ -298,18 +298,18 @@ function drawAdminTools_emailPanel($mailbox){
 		$title = _("Mailbox configuration: ") ;
 		$panel = drawAdminTools_emailAccount($mailbox);
 		break;
-	case "antispam":
-		$title = _("Protect your mailbox with efficient tools:") ;
-		$panel = drawAntispamRules($mailbox);
-		break;
 	case "fetchmail":
 		$title = _("Your list of imported mail") ;
 		$panel = drawImportedMail($mailbox);
 		break;
+/*	case "antispam":
+		$title = _("Protect your mailbox with efficient tools:") ;
+		$panel = drawAntispamRules($mailbox);
+		break;
 	case "quarantine":
 		$title = _("Those mail are in quarantine, and were not delivered to your pop account:") ;
 		$panel = drawQuarantine($mailbox);
-		break;
+		break;*/
 	default:
 		$title = _("Welcom to the email panel!");
 		$panel = _("Login successfull. Please select a menu entry on the left...");
@@ -644,7 +644,7 @@ function drawAdminTools_Emails($domain){
 		$catch_popup .= "<option value=\"".$a["id"]."\" $selected>".$a["id"]."</option>";
         }
 	$out .= "<b><u>". _("Catch-all email set to deliver to") .":</u></b><br>";
-	$out .= "<form action=\"?\">
+	$out .= "<form action=\"?\" method=\"post\">
 	<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 	<input type=\"hidden\" name=\"adm_pass\" value=\"$adm_pass\">
 	<input type=\"hidden\" name=\"addrlink\" value=\"$addrlink\">
