@@ -1,3 +1,12 @@
+dtc (0.34.5-1) experimental; urgency=low
+
+  * New upstream release:
+    - /etc/pure-ftpd/conf/MinUID is now filled with the dtc system UID.
+    - email panel code has been cleaned-up: no real password in the URLs,
+    old unused (and potentially dangerous) code is now desactivated.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 09 Oct 2011 18:41:45 +0800
+
 dtc (0.34.4-1) experimental; urgency=low
 
   * New upstream version:

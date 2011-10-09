@@ -3355,6 +3355,9 @@ MYSQLGetDir     SELECT homedir FROM ftp_access WHERE login=\"\L\"
 				restartDaemonMultiUnix pure-ftpd-mysql
 				restartDaemonMultiUnix pure-ftpd
 			fi
+			if [ "$UNIX_TYPE" = "debian" -o -f /etc/pure-ftpd/conf/MinUID ] ; then
+				echo "${CONF_DTC_SYSTEM_UID=}" >/etc/pure-ftpd/conf/MinUID
+			fi
 		fi
 	fi
 }
