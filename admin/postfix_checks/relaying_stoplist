@@ -1,35 +1,35 @@
-/^dsl.*\..*/i 553 AUTO_DSL We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server. -dsl-
+/^dsl.*\..*/i 553 AUTO_DSL We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server. -dsl-
 
-/.*\.dsl\..*/i 553 AUTO_DSL2 We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/.*\.dsl\..*/i 553 AUTO_DSL2 We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-/[a|x]dsl.*\..*\..*/i 553 AUTO_[A|X]DSL We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/[a|x]dsl.*\..*\..*/i 553 AUTO_[A|X]DSL We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-#/client.*\..*\..*/i 553 AUTO_CLIENT We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+#/client.*\..*\..*/i 553 AUTO_CLIENT We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-/cable.*\..*\..*/i 553 AUTO_CABLE We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/cable.*\..*\..*/i 553 AUTO_CABLE We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-#/pool\..*/i 553 AUTO_POOL We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+#/pool\..*/i 553 AUTO_POOL We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-/.*dial(\.|-).*\..*\..*/i 553 AUTO_DIAL We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/.*dial(\.|-).*\..*\..*/i 553 AUTO_DIAL We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-/ppp.*\..*/i 553 AUTO_PPP We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/ppp.*\..*/i 553 AUTO_PPP We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-/dslam.*\..*\..*/i 553 AUTO_DSLAM We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/dslam.*\..*\..*/i 553 AUTO_DSLAM We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-/dslb.*\..*\..*/i 553 AUTO_DSLB We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/dslb.*\..*\..*/i 553 AUTO_DSLB We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-/dynamicIP.*\..*\..*/i 553 AUTO_ABO We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/dynamicIP.*\..*\..*/i 553 AUTO_ABO We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-/dynamic.*\..*\..*/i 553 AUTO_ABO We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/dynamic.*\..*\..*/i 553 AUTO_ABO We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-#/staticIP.*\..*\..*/i 553 AUTO_ABO We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+#/staticIP.*\..*\..*/i 553 AUTO_ABO We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-#/dip.*\..*\..*/i 553 AUTO_ABO We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+#/dip.*\..*\..*/i 553 AUTO_ABO We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-/fbx.*\..*\..*/i 553 AUTO_fbx  We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/fbx.*\..*\..*/i 553 AUTO_fbx  We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-/abo.*\..*\..*/i 553 AUTO_ABO We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/abo.*\..*\..*/i 553 AUTO_ABO We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-/socal.res.*\..*\..*/i 553 AUTO_REV We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/socal.res.*\..*\..*/i 553 AUTO_REV We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
 
-/.dhcp.*\..*\..*/i 553 AUTO_dhcp We aren't accept direct connection not from dedicated SMTP servers. Please use your internet provider SMTP Server.
+/.dhcp.*\..*\..*/i 553 AUTO_dhcp We don't accept direct connections not from dedicated SMTP servers. Please use your internet provider's SMTP Server.
