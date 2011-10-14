@@ -424,12 +424,11 @@ AND $pro_mysql_admin_table.id_client != '0'";
 		$a = mysql_fetch_array($r);
 		$vhost_file .= "
 <CBandUser ".$a["adm_login"].">
-	CBandSpeed 10Mbps 10 30
-	CBandRemoteSpeed 2Mbps 3 3
-	CBandLimit ".$a["bandwidth"]."M
-	CBandPeriod 4W
-	CBandPeriodSlice 1W
-	CBandExceededSpeed 32kbps 2 5
+	CBandUserSpeed 10Mbps 10 30
+	CBandUserLimit ".$a["bandwidth"]."M
+	CBandUserPeriod 4W
+	CBandUserPeriodSlice 1W
+	CBandUserExceededSpeed 32kbps 2 5
 	CBandUserScoreboard /var/lib/dtc/etc/cband_scores/".$a["adm_login"]."
 </CBandUser>
 ";
@@ -946,6 +945,7 @@ $vhost_file .= "
 	</IfModule>
 	<IfModule mod_cband.c>
 		CBandUser $web_owner
+		CBandRemoteSpeed 2Mbps 3 3
 	</IfModule>
 </VirtualHost>
 
