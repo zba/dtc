@@ -79,6 +79,9 @@ if(isset($addrlink) && $addrlink != ""){
 				$vps_name = $vps_exploded[2];
 			}
 			break;
+		case "custom":
+			$custom_id = $vps_exploded[1];
+			break;
 		default:
 			die("No command recognized and a : in \$addrlink line ".__LINE__." file ".__FILE__);
 		}

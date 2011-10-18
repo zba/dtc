@@ -250,7 +250,7 @@ SHARED_INC_PHP_SCRIPT_FILES=shared/inc/accounting.php shared/inc/dbconect.php sh
 shared/inc/draw.php shared/inc/fetchmail.php shared/inc/fetch.php shared/inc/nusoap.php shared/inc/skin.class.php \
 shared/inc/submit_to_sql.php shared/inc/tree_mem_to_db.php shared/inc/vps.php shared/inc/forms/vps_monitoring.php shared/inc/forms/vps_graphs.php \
 shared/inc/forms/vps_installation.php shared/inc/forms/admin_stats.php \
-shared/inc/forms/aliases.php shared/inc/forms/database.php shared/inc/forms/dedicated.php \
+shared/inc/forms/aliases.php shared/inc/forms/database.php shared/inc/forms/dedicated.php shared/inc/forms/customservices.php\
 shared/inc/forms/dns.php shared/inc/forms/domain_info.php shared/inc/forms/domain_stats.php shared/inc/forms/email.php \
 shared/inc/forms/ftp.php shared/inc/forms/invoices.php shared/inc/forms/lists.php \
 shared/inc/forms/my_account.php shared/inc/forms/packager.php shared/inc/forms/reseller.php shared/inc/forms/root_admin.php \

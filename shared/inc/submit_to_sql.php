@@ -20,6 +20,19 @@ function checkDedicatedAdmin($adm_login,$adm_pass,$dedicated_server_hostname){
 	}
 }
 
+function checkCustomAdmin($adm_login,$adm_pass,$custom_service_id){
+	global $pro_mysql_custom_product_table;
+	checkLoginPass($adm_login,$adm_pass);
+	$q = "SELECT * FROM $pro_mysql_custom_product_table WHERE owner='$adm_login' AND id='".mysql_real_escape_string($custom_service_id)."';";
+	$r = mysql_query($q) or die("Cannot query \"$q\" line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
+	$n = mysql_num_rows($r);
+	if($n == 1){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 function validateRenewal($renew_id){
 	global $pro_mysql_pending_renewal_table;
 	global $pro_mysql_product_table;

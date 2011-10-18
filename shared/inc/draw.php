@@ -29,6 +29,7 @@ if($panel_type !="email"){
 	require("$dtcshared_path/inc/forms/vps_installation.php");
 	require("$dtcshared_path/inc/forms/dedicated.php");
 	require("$dtcshared_path/inc/forms/multiple_renew.php");
+	require("$dtcshared_path/inc/forms/customservices.php");
 }
 require("$dtcshared_path/inc/forms/email.php");
 require("$dtcshared_path/inc/forms/aliases.php");
@@ -109,6 +110,7 @@ function drawAdminTools($admin){
 	global $vps_node;
 	global $vps_name;
 	global $dedicated_server_hostname;
+	global $custom_id;
 	global $server_subscreen;
 	global $vps_subcommand;
 
@@ -134,6 +136,13 @@ function drawAdminTools($admin){
 		$nbr_dedicated = sizeof($admin_dedicated);
 	}else{
 		$nbr_dedicated = 0;
+	}
+
+	if(isset($admin["custom"])){
+		$admin_custom = $admin["custom"];
+		$nbr_custom = sizeof($admin_custom);
+	}else{
+		$nbr_custom = 0;
 	}
 
 	$admin_info = $admin["info"];
@@ -235,6 +244,15 @@ function drawAdminTools($admin){
 			"icon" => "box_wnb_nb_picto-dedicatedservers.gif",
 			"type" => "link",
 			"link" => "server:".$admin_dedicated[$i]["server_hostname"]);
+	}
+
+	//Draw all custom products
+	for($i=0;$i<$nbr_custom;$i++){
+		$user_menu[] = array(
+			"text" => $admin_custom[$i]["id"],
+			"icon" => "box_wnb_nb_picto-dedicatedservers.gif",
+			"type" => "link",
+			"link" => "custom:".$admin_custom[$i]["id"]);
 	}
 
 	// Generate the admin tools
@@ -454,6 +472,9 @@ function drawAdminTools($admin){
 			$title = _("Virtual Private Server") . " $vps_name " . _("running on") . " $vps_node";
 		}else if(substr($addrlink,0,7) == "server:"){
 			$web_editor .= drawAdminTools_Dedicated($admin,$dedicated_server_hostname);
+			$title = _("Dedicated server") .": $dedicated_server_hostname";
+		}else if(substr($addrlink,0,7) == "custom:"){
+			$web_editor .= drawAdminTools_Custom($admin,$custom_id);
 			$title = _("Dedicated server") .": $dedicated_server_hostname";
 		}else if(@$add_array[1] == "mailboxs"){
                         $web_editor .= "<img src=\"gfx/toolstitles/mailboxs.png\" align=\"left\"><font size=\"+2\"><b><u>". _("Mailboxes:") ."</u></b><br></font>";
