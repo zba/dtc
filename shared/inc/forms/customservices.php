@@ -58,9 +58,9 @@ function drawAdminTools_Custom($admin,$custom_id){
 		$a = mysql_fetch_array($r);
 		$out .= "<br><form action=\"/dtc/new_account.php\">
 		<input type=\"hidden\" name=\"action\" value=\"contract_renewal\">
-		<input type=\"hidden\" name=\"renew_type\" value=\"server\">
+		<input type=\"hidden\" name=\"renew_type\" value=\"custom\">
 		<input type=\"hidden\" name=\"product_id\" value=\"".$a["id"]."\">
-		<input type=\"hidden\" name=\"server_id\" value=\"".$dedicated["id"]."\">
+		<input type=\"hidden\" name=\"custom_id\" value=\"".$dedicated["id"]."\">
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		".submitButtonStart().$a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)".submitButtonEnd()."
 		</form><br>";

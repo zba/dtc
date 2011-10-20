@@ -10,6 +10,7 @@ function renew_form(){
 	global $pro_mysql_vps_table;
 	global $pro_mysql_dedicated_table;
 	global $pro_mysql_vps_server_table;
+	global $pro_mysql_custom_product_table;
 
 	global $conf_webmaster_email_addr;
 	global $conf_message_subject_header;
@@ -236,6 +237,24 @@ function renew_form(){
 		if($n != 1){
 			$ret["err"] = 3;
 			$ret["mesg"] = "<font color=\"red\">Cannot find dedicated server country</font>";
+			return $ret;
+		}
+		$ax = mysql_fetch_array($r);
+		$country = $ax["country_code"];
+		break;
+	case "custom":
+		if(!isRandomNum($_REQUEST["custom_id"])){
+			$ret["err"] = 3;
+			$ret["mesg"] = "<font color=\"red\">Custom id is not a valid number!</font>";
+			return $ret;
+		}
+		$client_id = $_REQUEST["custom_id"];
+		$q = "SELECT country_code FROM $pro_mysql_custom_product_table WHERE id='".$_REQUEST["custom_id"]."';";
+		$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." mysql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$ret["err"] = 3;
+			$ret["mesg"] = "<font color=\"red\">Cannot find custom service country</font>";
 			return $ret;
 		}
 		$ax = mysql_fetch_array($r);

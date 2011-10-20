@@ -192,6 +192,7 @@ function drawNewAdminForm(){
 	global $pro_mysql_tik_queries_table;
 	global $pro_mysql_tik_cats_table;
 	global $pro_mysql_dedicated_table;
+	global $pro_mysql_custom_product_table;
 
 	global $pro_mysql_vps_ip_table;
 	global $pro_mysql_dedicated_ips_table;
@@ -680,6 +681,17 @@ dtcFromOkDraw()."
 						break;
 					}
 				}
+				break;
+			case "custom":
+				$q2 = "SELECT * FROM $pro_mysql_custom_product_table WHERE id='".$a["renew_id"]."'";
+				$r2 = mysql_query($q2)or die("Cannot query \"$q2\" ! Line: ".__LINE__." in file: ".__FILE__." mysql said: ".mysql_error());
+				if($n2 != 1){
+					$tmp = _("Cannot find custom service in database.");
+				}else{
+					$a2 = mysql_fetch_array($r2);
+					$tmp = $a2["owner"];
+				}
+				$heb_type = _("Custom:") ." ".$tmp;
 				break;
 			default:
 				echo "Renew type ".$a["heb_type"]." not implemented line ".__LINE__." file ".__FILE__;

@@ -39,6 +39,7 @@ function validateRenewal($renew_id){
 	global $pro_mysql_vps_table;
 	global $pro_mysql_admin_table;
 	global $pro_mysql_dedicated_table;
+	global $pro_mysql_custom_product_table;
 	global $pro_mysql_completedorders_table;
 	global $pro_mysql_client_table;
 	global $pro_mysql_ssl_ips_table;
@@ -218,6 +219,26 @@ login: ";
 		$old_expire = $dedicated_entry["expire_date"];
 		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
 		$q = "UPDATE $pro_mysql_dedicated_table SET expire_date='$date_expire' WHERE id='".$renew_entry["renew_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$txt_renewal_approved = "
+
+A renewal have been paid! Here is the details of the renewal:
+
+login: ";
+		break;
+	case "custom":
+		$q = "SELECT * FROM $pro_mysql_custom_product_table WHERE id='".$renew_entry["renew_id"]."';";
+		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
+		$n = mysql_num_rows($r);
+		if($n != 1){
+			$submit_err = "Could not find custom service id in table line ".__LINE__." file ".__FILE__;
+			$commit_flag = "no";
+			return false;
+		}
+		$dedicated_entry = mysql_fetch_array($r);
+		$old_expire = $dedicated_entry["expire_date"];
+		$date_expire = calculateExpirationDate($old_expire,$product["period"]);
+		$q = "UPDATE $pro_mysql_custom_product_table SET expire_date='$date_expire' WHERE id='".$renew_entry["renew_id"]."';";
 		$r = mysql_query($q)or die("Cannot execute query \"$q\" ! line: ".__LINE__." file: ".__FILE__." sql said: ".mysql_error());
 		$txt_renewal_approved = "
 
