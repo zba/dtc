@@ -25,10 +25,10 @@ function drawAdminTools_Custom($admin,$custom_id){
 	if($n != 1){
 		$out .= _("Custom id not found!");
 	}
-	$dedicated = mysql_fetch_array($r);
+	$custom_prod = mysql_fetch_array($r);
 
 	// Display the current contract
-	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$dedicated["product_id"]."';";
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE id='".$custom_prod["product_id"]."';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	if($n == 1){
@@ -39,19 +39,19 @@ function drawAdminTools_Custom($admin,$custom_id){
 	}
 	$out .= "<h3>". _("Custom product contract:") ."</h3><br>$contract<br><br>";
 
-	$ar = explode("-",$dedicated["expire_date"]);
+	$ar = explode("-",$custom_prod["expire_date"]);
 	$out .= "<b><u>". _("Custom product expiration dates:") ."</u></b><br>";
-	$out .= _("Your custom product was first registered on the:") ." ".$dedicated["start_date"]."<br>";
+	$out .= _("Your custom product was first registered on the:") ." ".$custom_prod["start_date"]."<br>";
 	if(date("Y") > $ar[0] ||
 			(date("Y") == $ar[0] && date("m") > $ar[1]) ||
 			(date("Y") == $ar[0] && date("m") == $ar[1] && date("d") > $ar[2])){
-		$out .= "<font color=\"red\">". _("Your custom product has expired on the: ") .$dedicated["expire_date"]."</font>"
+		$out .= "<font color=\"red\">". _("Your custom product has expired on the: ") .$custom_prod["expire_date"]."</font>"
 		."<br>". _("Please renew it with one of the following options") ."<br>";
 	}else{
-		$out .= _("Your custom product will expire on the: ") .$dedicated["expire_date"];
+		$out .= _("Your custom product will expire on the: ") .$custom_prod["expire_date"];
 	}
 
-	$q = "SELECT * FROM $pro_mysql_product_table WHERE renew_prod_id='".$dedicated["product_id"]."';";
+	$q = "SELECT * FROM $pro_mysql_product_table WHERE renew_prod_id='".$custom_prod["product_id"]."';";
 	$r = mysql_query($q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said: ".mysql_error());
 	$n = mysql_num_rows($r);
 	for($i=0;$i<$n;$i++){
@@ -60,7 +60,7 @@ function drawAdminTools_Custom($admin,$custom_id){
 		<input type=\"hidden\" name=\"action\" value=\"contract_renewal\">
 		<input type=\"hidden\" name=\"renew_type\" value=\"custom\">
 		<input type=\"hidden\" name=\"product_id\" value=\"".$a["id"]."\">
-		<input type=\"hidden\" name=\"custom_id\" value=\"".$dedicated["id"]."\">
+		<input type=\"hidden\" name=\"custom_id\" value=\"".$custom_prod["id"]."\">
 		<input type=\"hidden\" name=\"adm_login\" value=\"$adm_login\">
 		".submitButtonStart().$a["name"]." (".$a["price_dollar"]." $secpayconf_currency_letters)".submitButtonEnd()."
 		</form><br>";
