@@ -282,8 +282,8 @@ class zPDF extends FPDF{
 
 		// VAT calculation
 		if($use_vat == "yes"){
-			$vat = round(($pay["paiement_total"] * ($pay["vat_rate"] / 100)),2);
-			$without_vat = $pay["paiement_total"] - $vat;
+			$without_vat = round(($pay["paiement_total"] / (1 + ($pay["vat_rate"] / 100))),2);
+			$vat = $pay["paiement_total"] - $without_vat;
 		}else{
 			$without_vat = $pay["paiement_total"];
 			$vat = 0;
