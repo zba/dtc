@@ -6,6 +6,12 @@
 # panel so it keeps compatibility with backward versions
 # it normaly doesn't alter the CONTENT of the db itself.
 
+chdir(dirname(__FILE__));
+
+require("dtc_db.php");
+require("../shared/dtc_version.php");
+require("../shared/autoSQLconfig.php");
+
 echo "==> Restor DB script for DTC\n";
 
 $pro_mysql_host="localhost";
@@ -56,19 +62,24 @@ if($argc > 6){
         }
 }
 
-#Set default timezona tog et rid of warnings...
-if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
-@date_default_timezone_set(@date_default_timezone_get());
+$con = mysqli_connect("$pro_mysql_host", "$pro_mysql_login", "$pro_mysql_pass")or die ("Cannot connect to $pro_mysql_host");
+mysqli_select_db($con,"$pro_mysql_db")or die ("Cannot select db: $pro_mysql_db");
 
-chdir(dirname(__FILE__));
-require("dtc_db.php");
-require("../shared/dtc_version.php");
 
+<<<<<<< Updated upstream
 mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])or die ("Cannot connect to $pro_mysql_host");
 mysqli_select_db(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),"$pro_mysql_db")or die ("Cannot select db: $pro_mysql_db");
 
 function mysql_table_exists($table){
         $exists = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),"SELECT 1 FROM $table LIMIT 0");
+=======
+#Set default timezone to get rid of warnings...
+if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
+@date_default_timezone_set(@date_default_timezone_get());
+
+function mysql_table_exists($table){
+        $exists = mysqli_query($GLOBALS['con'],"SELECT 1 FROM $table LIMIT 0");
+>>>>>>> Stashed changes
         if ($exists) return true;
         return false;
 }
@@ -76,6 +87,7 @@ function mysql_table_exists($table){
 // Return true=field found, false=field not found
 function findFieldInTable($table,$field){
         $q = "SELECT * FROM $table LIMIT 0;";
+<<<<<<< Updated upstream
         $res = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q) or die("Could not query $q!");;
         $num_fields = mysql_num_fields($res);
         for($i=0;$i<$num_fields;$i++){
@@ -85,11 +97,23 @@ function findFieldInTable($table,$field){
                 }
         }
         mysql_free_result($res);
+=======
+        $res = mysqli_query($con,$q) or die("Could not query $q!");;
+        $num_fields = mysqli_num_fields($res);
+        for($i=0;$i<$num_fields;$i++){
+                if( strtolower(mysqli_field_name($res,$i)) == strtolower($field)){
+                        mysqli_free_result($res);
+                        return true;
+                }
+        }
+        mysqli_free_result($res);
+>>>>>>> Stashed changes
         return false;
 }
 
 function findKeyInTable($table,$key){
         $q = "SHOW INDEX FROM $table";
+<<<<<<< Updated upstream
         $res = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q) or die("Could not query $q!");;
         $num_keys = mysql_num_rows($res);
         for($i=0;$i<$num_keys;$i++){
@@ -100,6 +124,18 @@ function findKeyInTable($table,$key){
                 }
         }
         mysql_free_result($res);
+=======
+        $res = mysqli_query($GLOBALS['con'],$q) or die("Could not query $q!");;
+        $num_keys = mysqli_num_rows($res);
+        for($i=0;$i<$num_keys;$i++){
+                $a = mysqli_fetch_array($res);
+                if(strtolower($a["Key_name"]) == strtolower($key)){
+                        mysqli_free_result($res);
+                        return true;
+                }
+        }
+        mysqli_free_result($res);
+>>>>>>> Stashed changes
         return false;
 }
 
@@ -148,8 +184,12 @@ for($i=0;$i<$nbr_tables;$i++){
                 }else{
                         $qc .= "\n)ENGINE=MyISAM\n";
                 }
+<<<<<<< Updated upstream
         echo $q;
                 $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$qc)or die("Cannot execute query: \"$qc\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
+=======
+
+>>>>>>> Stashed changes
         // If the table exists already, then check all variables types, primary key, unique keys
         // and remove useless variables.
         // All this to make sure that we upgrade correctly each tables.
@@ -160,8 +200,13 @@ for($i=0;$i<$nbr_tables;$i++){
                         $vc = $allvars[$v];
                         // If the field is present, create it.
                         $q = "SHOW FULL COLUMNS FROM $curtbl WHERE Field='$v'";
+<<<<<<< Updated upstream
                         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
                         $n = mysql_num_rows($r);
+=======
+                        $r = mysqli_query($con,$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+                        $n = mysqli_num_rows($r);
+>>>>>>> Stashed changes
                         if($n == 0){
                                 // If we are adding a new auto_increment field, then we must drop the current PRIMARY KEY
                                 // before adding this new field.
@@ -169,12 +214,21 @@ for($i=0;$i<$nbr_tables;$i++){
                                         // In case there was a primary key, drop it!
                                         $q = "ALTER IGNORE TABLE $curtbl DROP PRIMARY KEY;";
                                         // Don't die, in some case it can fail!
+<<<<<<< Updated upstream
                                         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q); // or die("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
                                         $q = "ALTER TABLE $curtbl ADD $v $vc PRIMARY KEY;";
                                         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']))."\n");
                                 }else{
                                         $q = "ALTER TABLE $curtbl ADD $v $vc;";
                                         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']))."\n");
+=======
+                                        $r = mysqli_query($con,$q); // or die("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+                                        $q = "ALTER TABLE $curtbl ADD $v $vc PRIMARY KEY;";
+                                        $r = mysqli_query($con,$q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']))."\n");
+                                }else{
+                                        $q = "ALTER TABLE $curtbl ADD $v $vc;";
+                                        $r = mysqli_query($con,$q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']))."\n");
+>>>>>>> Stashed changes
                                 }
                         // If it is present in MySQL already, then we need to check if types are marching
                         // if types don't match, then we issue an ALTER TABLE
@@ -190,7 +244,11 @@ for($i=0;$i<$nbr_tables;$i++){
                                 case "text":
                                         $type = $a_type;
                                         $q2 = "SELECT character_set_name FROM information_schema.`COLUMNS` WHERE table_name = '".$curtbl."' AND column_name = '".$v."'";
+<<<<<<< Updated upstream
                                         $r2 = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q2)or die("Cannot execute query: \"$q2\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
+=======
+                                        $r2 = mysqli_query($con,$q2)or die("Cannot execute query: \"$q2\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+>>>>>>> Stashed changes
                                         $a2 = mysqli_fetch_array($r2);
                                         if($a2["character_set_name"] != 'latin1'){
                                                 $type .= ' character set '.$a2["character_set_name"];
@@ -247,7 +305,11 @@ for($i=0;$i<$nbr_tables;$i++){
                                         echo "In file: $vc\n";
                                         $q = "ALTER TABLE $curtbl CHANGE $v $v $vc;";
                                         echo "Altering: $q\n";
+<<<<<<< Updated upstream
                                         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']))."\n");
+=======
+                                        $r = mysqli_query($con,$q)or print("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']))."\n");
+>>>>>>> Stashed changes
                                 }
                         }
                 }
@@ -262,7 +324,11 @@ for($i=0;$i<$nbr_tables;$i++){
                                 if(!findKeyInTable($curtbl,$key_name)){
                                         $var_2_add = "UNIQUE KEY ".$key_name;
                                         $q = "ALTER TABLE ".$curtbl." ADD $var_2_add ".$keys[$key_name].";";
+<<<<<<< Updated upstream
                                         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
+=======
+                                        $r = mysqli_query($con,$q)or die("\nCannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+>>>>>>> Stashed changes
                                 }
                         }
                 }
@@ -272,11 +338,19 @@ for($i=0;$i<$nbr_tables;$i++){
                 // First, check if primary keys in MySQL and in dtc_db.php are matching
                 // So we first get the primary key from DB, and then compare.
                 $q = "SHOW INDEX FROM $curtbl WHERE Key_name='PRIMARY'";
+<<<<<<< Updated upstream
                 $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
                 $n = mysql_num_rows($r);
                 $pkey = "";
                 for($j=0;$j<$n;$j++){
                         $apk = mysql_fetch_array($r);
+=======
+                $r = mysqli_query($con,$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+                $n = mysqli_num_rows($r);
+                $pkey = "";
+                for($j=0;$j<$n;$j++){
+                        $apk = mysqli_fetch_array($r);
+>>>>>>> Stashed changes
                         if($j>0){
                                 $pkey .= ",";
                         }
@@ -285,11 +359,19 @@ for($i=0;$i<$nbr_tables;$i++){
                 // Is this a primary key that is new in dtc_db.php?
                 if($n == 0 && isset($t["primary"])){
                         $q = "ALTER IGNORE TABLE $curtbl ADD PRIMARY KEY dtcprimary ".$t["primary"].";";
+<<<<<<< Updated upstream
                         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
                 // Does dtc_db.php drops a primary key?
                 }elseif($n > 0 && !isset($t["primary"])){
                         $q = "ALTER IGNORE TABLE $curtbl DROP PRIMARY KEY;";
                         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
+=======
+                        $r = mysqli_query($con,$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+                // Does dtc_db.php drops a primary key?
+                }elseif($n > 0 && !isset($t["primary"])){
+                        $q = "ALTER IGNORE TABLE $curtbl DROP PRIMARY KEY;";
+                        $r = mysqli_query($con,$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+>>>>>>> Stashed changes
                 // If there's no primary key at all, do nothing...
                 }elseif($n == 0 && !isset($t["primary"])){
                         echo "";
@@ -303,9 +385,15 @@ for($i=0;$i<$nbr_tables;$i++){
                                 if( strstr($t["vars"][ $nop_pk ],"auto_increment") === FALSE){
                                         // Always remove and readd the PRIMARY KEY in case it has changed
                                         $q = "ALTER IGNORE TABLE $curtbl DROP PRIMARY KEY;";
+<<<<<<< Updated upstream
                                         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
                                         $q = "ALTER IGNORE TABLE $curtbl ADD PRIMARY KEY dtcprimary $pk;";
                                         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
+=======
+                                        $r = mysqli_query($con,$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+                                        $q = "ALTER IGNORE TABLE $curtbl ADD PRIMARY KEY dtcprimary $pk;";
+                                        $r = mysqli_query($con,$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+>>>>>>> Stashed changes
                                 }
                         }
                 }
@@ -313,6 +401,7 @@ for($i=0;$i<$nbr_tables;$i++){
 
                 // We have to rebuild indexes in order to get rid of past mistakes in the db in case of panel upgrade
                 $q = "SHOW INDEX FROM $curtbl WHERE Key_name NOT LIKE 'PRIMARY' AND Non_unique='1' and Seq_in_index='1';";
+<<<<<<< Updated upstream
                 $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
                 $n = mysql_num_rows($r);
                 for($j=0;$j<$n;$j++){
@@ -320,6 +409,15 @@ for($i=0;$i<$nbr_tables;$i++){
                         // Drop all indexes
                         $q2 = "ALTER TABLE $curtbl DROP INDEX ".$a["Key_name"].";";
                         $r2 = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q2)or die("Cannot execute query: \"$q2\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
+=======
+                $r = mysqli_query($con,$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+                $n = mysqli_num_rows($r);
+                for($j=0;$j<$n;$j++){
+                        $a = mysqli_fetch_array($r);
+                        // Drop all indexes
+                        $q2 = "ALTER TABLE $curtbl DROP INDEX ".$a["Key_name"].";";
+                        $r2 = mysqli_query($con,$q2)or die("Cannot execute query: \"$q2\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+>>>>>>> Stashed changes
                 }
                 // The readd all indexes
                 if( isset($t["index"]) ){
@@ -332,10 +430,17 @@ for($i=0;$i<$nbr_tables;$i++){
                                         // We have to rebuild indexes in order to get rid of past mistakes in the db in case of panel upgrade
                                         if(findKeyInTable($curtbl,$v)){
                                                 $q = "ALTER TABLE $curtbl DROP INDEX ".$v."";
+<<<<<<< Updated upstream
                                                 $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
                                         }
                                         $q = "ALTER TABLE $curtbl ADD INDEX ".$v." ".$indexes[$v].";";
                                         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
+=======
+                                                $r = mysqli_query($con,$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+                                        }
+                                        $q = "ALTER TABLE $curtbl ADD INDEX ".$v." ".$indexes[$v].";";
+                                        $r = mysqli_query($con,$q)or die("Cannot execute query: \"$q\" line ".__LINE__." in file ".__FILE__.", mysql said: ".mysqli_error($con));
+>>>>>>> Stashed changes
                                 }
                         }
                 }
@@ -347,6 +452,7 @@ echo "\n";
 # This is a safety against user's stupidity...
 $year = date("Y");
 $year = $year + 10;
+<<<<<<< Updated upstream
 $q = "UPDATE admin SET expire='".$year."-".date("m-d")."' WHERE expire='0000-00-00';";
 $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
 
@@ -357,38 +463,70 @@ $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql
 // Sets the fullemail field correctly, as it might be wrong in some setups.
 $q = "UPDATE pop_access SET fullemail = concat( `id`,  '@', `mbox_host` )";
 $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
+=======
+$q = "UPDATE admin SET expire='".$year."-".date("m-d")."' WHERE expire='0000-00-00'";
+$r = mysqli_query($con,$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error($con));
+
+// Fill the new quota_couriermaildrop with values
+$q = "UPDATE pop_access SET quota_couriermaildrop=CONCAT(1024000*quota_size,'S,',quota_files,'C')";
+$r = mysqli_query($con,$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error($con));
+
+// Sets the fullemail field correctly, as it might be wrong in some setups.
+$q = "UPDATE pop_access SET fullemail = concat( `id`,  '@', `mbox_host` )";
+$r = mysqli_query($con,$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error($con));
+>>>>>>> Stashed changes
 
 // Alter the default shell value for FreeBSD, as the path will be in /usr/local
 if($conf_unix_type == "bsd"){
         $q = "ALTER TABLE ssh_access CHANGE shell shell varchar(64) NOT NULL default '/usr/local/bin/dtc-chroot-shell'";
+<<<<<<< Updated upstream
         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
         $q = "ALTER TABLE ftp_access CHANGE shell shell varchar(64) NOT NULL default '/usr/local/bin/bash'";
         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
+=======
+        $r = mysqli_query($con,$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error($con));
+        $q = "ALTER TABLE ftp_access CHANGE shell shell varchar(64) NOT NULL default '/usr/local/bin/bash'";
+        $r = mysqli_query($con,$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error($con));
+>>>>>>> Stashed changes
 }
 
 // Get all the config values from db
 $q = "SELECT * FROM config";
+<<<<<<< Updated upstream
 $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
 $n = mysql_num_rows($r);
+=======
+$r = mysqli_query($con,$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error($con));
+$n = mysqli_num_rows($r);
+>>>>>>> Stashed changes
 if($n != 1){
         die("Cannot read config table: not one and only one row...");
 }
-$config_vals = mysql_fetch_array($r);
+$config_vals = mysqli_fetch_array($r);
 
 // Get rid of old skins names if they were set previously in the db...
 $zeskin = $config_vals["skin"];
 if( $zeskin == "green2" || $zeskin == "iglobal" || $zeskin == "green_gpl" || $zeskin == "darkblue" || $zeskin == "frame" || $zeskin == "green" || $zeskin == "ruffdogs_mozilla" || $zeskin == "tex" || $zeskin == "muedgrey" || $zeskin == "grayboard"){
         $q = "UPDATE config SET skin='bwoup';";
+<<<<<<< Updated upstream
         $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
+=======
+        $r = mysqli_query($con,$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error($con));
+>>>>>>> Stashed changes
 }
 
 # Sets old install of ssh shell path to be /usr/bin/dtc-chroot-shell and not /bin/dtc-chroot-shell
 $q = "UPDATE ssh_access SET shell='/usr/bin/dtc-chroot-shell' WHERE shell='/bin/dtc-chroot-shell';";
+<<<<<<< Updated upstream
 $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
+=======
+$r = mysqli_query($con,$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error($con));
+>>>>>>> Stashed changes
 
 // Iterate on all mailing lists to set the correct recipient delimiter
 echo "-> Changing all recipient delimiter for mailing lists: ";
 $q = "SELECT * FROM mailinglist";
+<<<<<<< Updated upstream
 $r = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
 $n = mysql_num_rows($r);
 for($i=0;$i<$n;$i++){
@@ -398,10 +536,22 @@ for($i=0;$i<$n;$i++){
         $q2 = "SELECT * FROM domain WHERE name='".$a["domain"]."';";
         $r2 = mysqli_query(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass']),$q2)or die("Cannot query ".$q2." line ".__LINE__." file ".__FILE__." sql said ".mysqli_error(mysqli_connect($GLOBALS['pro_mysql_host'], $GLOBALS['pro_mysql_login'], $GLOBALS['pro_mysql_pass'])));
         $n2 = mysql_num_rows($r2);
+=======
+$r = mysqli_query($con,$q)or die("Cannot query $q line ".__LINE__." file ".__FILE__." sql said ".mysqli_error($con));
+$n = mysqli_num_rows($r);
+for($i=0;$i<$n;$i++){
+        $a = mysqli_fetch_array($r);
+
+        echo $a["name"];
+        $q2 = "SELECT * FROM domain WHERE name='".$a["domain"]."';";
+        $r2 = mysqli_query($con,$q2)or die("Cannot query ".$q2." line ".__LINE__." file ".__FILE__." sql said ".mysqli_error($con));
+        $n2 = mysqli_num_rows($r2);
+>>>>>>> Stashed changes
         if($n2 != 1){
                 echo "Could not found domain of list ".$a["name"]."@".$a["domain"]."\n";
                 break;
         }
+<<<<<<< Updated upstream
         $a2 = mysql_fetch_array($r2);
 
         $q3 = "SELECT * FROM admin WHERE adm_login='".$a2["owner"]."'";
@@ -411,6 +561,17 @@ for($i=0;$i<$n;$i++){
                 echo "Could not found owner of list ".$a["name"]."@".$a["domain"]."\n";
         }
         $a3 = mysql_fetch_array($r3);
+=======
+        $a2 = mysqli_fetch_array($r2);
+
+        $q3 = "SELECT * FROM admin WHERE adm_login='".$a2["owner"]."'";
+        $r3 = mysqli_query($con,$q3)or die("Cannot query ".$q3." line ".__LINE__." file ".__FILE__." sql said ".mysqli_error($con));
+        $n3 = mysqli_num_rows($r3);
+        if($n3 != 1){
+                echo "Could not found owner of list ".$a["name"]."@".$a["domain"]."\n";
+        }
+        $a3 = mysqli_fetch_array($r3);
+>>>>>>> Stashed changes
 
         $path = $a3["path"]."/".$a["domain"]."/lists/".$a["domain"]."_".$a["name"]."/control/delimiter";
         if(file_exists($path)){
