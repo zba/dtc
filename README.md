@@ -26,15 +26,13 @@ Debian Users:
 
 Install dependencies as follows apt-get install or my preferred method aptitude install
 
-Accept this solution? [Y/n/q/?] y 
-The following packages will be DOWNGRADED:
-  default-mysql-client default-mysql-server galera-3 
-The following NEW packages will be installed:
-  altermime{a} amavisd-new clamav clamav-daemon clamav-freshclam courier-authlib{a} expect{a} libberkeleydb-perl{a} 
-  libclamav9{a} libconvert-binhex-perl{a} libconvert-tnef-perl{a} libconvert-uulib-perl{a} libcourier-unicode4{a} 
-  libdbd-mysql-perl{a} libio-multiplex-perl{a} libjemalloc1{a} libmime-tools-perl{a} libnet-cidr-perl{a} 
-  libnet-server-perl{a} libtfm1{a} libunix-syslog-perl{a} maildrop mariadb-client-10.1{a} mariadb-client-core-10.1{a} 
-  mariadb-server-10.1{a} mariadb-server-core-10.1{a} mysql-server pax{a} ripole{a} tcl-expect{a} 
+default-mysql-client default-mysql-server galera-3 altermime amavisd-new clamav clamav-daemon clamav-freshclam courier-authlib expect libberkeleydb-perl 
+libclamav9 libconvert-binhex-perl libconvert-tnef-perl libconvert-uulib-perl libcourier-unicode4 libdbd-mysql-perl libio-multiplex-perl libjemalloc1 
+libmime-tools-perl libnet-cidr-perl libnet-server-perl libtfm1 libunix-syslog-perl maildrop mariadb-client-10.1 mariadb-client-core-10.1 
+mariadb-server-10.1 mariadb-server-core-10.1 mysql-server pax ripole tcl-expect composer jsonlint php-composer-ca-bundle php-composer-semver 
+php-composer-spdx-licenses php-composer-xdebug-handler php-json-schema php-symfony-console php-symfony-filesystem php-symfony-finder 
+php-symfony-polyfill-php80 php-symfony-process 
+
 
 apt-get update
 apt-get upgrade
