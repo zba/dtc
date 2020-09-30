@@ -73,7 +73,7 @@ In this case it would be /usr/share
 
 cd to /usr/share and execute the following.
 
-dpkg -i dtc-common_0.34.5-1_all.deb
+dpkg -i --force all dtc*.deb
 
 then execute the following
 
