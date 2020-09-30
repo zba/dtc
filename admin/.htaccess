@@ -1,0 +1,20 @@
+<Files *>
+	Order deny,allow
+	deny from all
+</Files>
+
+<FilesMatch "^$">
+	Order allow,deny
+	allow from all
+</FilesMatch>
+
+<FilesMatch "\.(|gif|jpg|jpeg|png|ico|css|js)$">
+	Order allow,deny
+	allow from all
+</FilesMatch>
+
+<FilesMatch ^(index\.php|show_attachment\.php|logPushlet\.php|bw_per_month\.php|deamons_state\.php|vm-cpu\.php|vm-net-all\.php|vps_stats_hdd\.php|cpugraph\.php|logPushlet\.php|memgraph\.php|view_waitingusers\.php|vm-io-all\.php|vm-net\.php|vps_stats_network\.php|mailgraph\.php|netusegraph\.php|active_prods_graph\.php|vm-cpu-all\.php|vm-io\.php|vps_stats_cpu\.php|vps_stats_swap\.php)$>
+	Order allow,deny
+	allow from all
+</FilesMatch>
+
