@@ -17,11 +17,20 @@ git commit
 git push
 
 How to build from source
+
 Install required dependences before package build.
+
 Dependencies:
-autopoint{a} debhelper dh-autoreconf{a} dh-strip-nondeterminism{a} dwz{a} intltool-debian{a} libarchive-zip-perl{a} libdebhelper-perl{a} 
-  libfile-stripnondeterminism-perl{a} libsub-override-perl{a} po-debconf 
+
 Debian Users:
+
+Install dependencies as follows apt-get install or my preferred method aptitude install
+
+apt-get update
+apt-get upgrade
+
+Then Debian Users:
+
 dpkg-buildpackage in /usr/share/dtc directory after clone.
 
 Other Users:
@@ -33,6 +42,25 @@ Other Users:
 *directly, but dpkg-buildpackage that will call it.              *
 ******************************************************************
 
+The above process will build the following packages.
+dpkg-deb: building package 'dtc-postfix-dovecot' in '../dtc-postfix-dovecot_0.34.5-1_all.deb'.
+dpkg-deb: building package 'dtc-cyrus' in '../dtc-cyrus_0.34.5-1_all.deb'.
+dpkg-deb: building package 'dtc-stats-daemon' in '../dtc-stats-daemon_0.34.5-1_all.deb'.
+dpkg-deb: building package 'dtc-common' in '../dtc-common_0.34.5-1_all.deb'.
+dpkg-deb: building package 'dtc-autodeploy' in '../dtc-autodeploy_0.34.5-1_all.deb'.
+dpkg-deb: building package 'dtc-core' in '../dtc-core_0.34.5-1_all.deb'.
+dpkg-deb: building package 'dtc-toaster' in '../dtc-toaster_0.34.5-1_all.deb'.
+dpkg-deb: building package 'dtc-postfix-courier' in '../dtc-postfix-courier_0.34.5-1_all.deb'.
+dpkg-deb: building package 'dtc-dos-firewall' in '../dtc-dos-firewall_0.34.5-1_all.deb'.
+
+The packages will be in the directory above your chosen directory. 
+In this case it would be /usr/share
+
+cd to /usr/share and execute the following.
+
+
+
+or install the desired packages from the list above dtc-common will require you to execute the following after the install.
 
 How to install.
 /usr/share/dtc/admin/install/install
