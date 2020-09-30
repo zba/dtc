@@ -16,6 +16,20 @@ git commit
 
 git push
 
+How to build from source
+Debian Users:
+dpkg-buildpackage in /usr/share/dtc directory after clone.
+
+Other Users:
+******************************************************************
+*Please select one of the following targets:                     *
+*install-dtc-stats-daemon, install-dtc-common, bsd-ports-packages*
+*install-dtc-dos-firewall or make debian-packages                *
+*Note that debian users should NOT use make debian-packages      *
+*directly, but dpkg-buildpackage that will call it.              *
+******************************************************************
+
+
 How to install.
 /usr/share/dtc/admin/install/install
 
