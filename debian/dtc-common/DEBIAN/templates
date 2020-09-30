@@ -1,0 +1,1395 @@
+Template: dtc/conf_mysqlautoconfig
+Type: boolean
+Default: true
+Description: Automatically configure MySQL user?
+ DTC can use /etc/mysql/debian.cnf to automatically create a root mysql user
+ for DTC to access and manage MySQL and DTC's database. This way, no question
+ will be asked to you about what MySQL root password is used, all will be
+ automated, but the drawback is that the MySQL server that will be used will
+ always be located in the local machine (you won't be able to configure DTC
+ to use a remote database server).
+ .
+ In any case, please make sure that your MySQL root password is set. As per
+ default, Debian installs it with a blank password. To set your MySQL root
+ password, issue the following command: dpkg-reconfigure mysql-server-5.1.
+ You've been warned!
+Description-cs.UTF-8: Nastavit MySQL uživatele automaticky?
+ DTC umí na základě souboru /etc/mysql/debian.cnf automaticky vytvořit mysql uživatele pro přístup a správu databází MySQL a DTC. Takto nebudete dotázáni na správcovské heslo k MySQL a vše bude automatizováno. Nevýhodou je, že použitý MySQL server bude vždy na lokálním počítači (nebudete moci nastavit DTC, aby použil vzdálený databázový server).
+ .
+ Ať už se rozhodnete jakkoliv, přesvědčte se, že je správcovské heslo MySQL nastaveno, protože ve výchozím nastavení Debian instaluje MySQL s prázdným heslem. Pro nastavení správcovského hesla MySQL zadejte následující příkaz: dpkg-reconfigure mysql-server-5.1. Byli jste varováni!
+Description-de.UTF-8: Den MySQL-Benutzer automatisch konfigurieren?
+ DTC kann /etc/mysql/debian.cnf verwenden, um automatisch einen MySQL-root-Benuzter zu erstellen, damit DTC auf MySQL und DTCs Datenbank zugreifen und diese verwalten kann. Auf diese Weise werden Ihnen keine Fragen über das verwendete root-Passwort von MySQL gestellt, alles wird automatisiert. Der Nachteil ist aber, dass immer der MySQL-Server auf der lokalen Maschine verwendet wird (Sie werden nicht in der Lage sein, DTC so zu konfigurieren, dass es einen entfernten Datenbankserver verwendet).
+ .
+ Auf jeden Fall sollten Sie sicherstellen, dass das root-Passwort von MySQL gesetzt ist. Standardmäßig installiert Debian es mit einem leeren Passwort. Um ein root-MySQL-Passwort zu setzen, geben Sie den folgenden Befehl ein: dpkg-reconfigure mysql-server-5.1. Sie wurden gewarnt!
+Description-es.UTF-8: ¿Desea configurar automáticamente el usuario de MySQL?
+ DTC puede usar el archivo «/etc/mysql/debian.cnf» para crear automáticamente un usuario de mysql de administración para que DTC acceda y gestione MySQL y la base de datos de DTC. De este modo, no se le preguntará por ninguna contraseña de administración de MySQL, pero la pega es que el servidor de MySQL que se usará deberá estar siempre ubicado en la máquina local (no le está permitido configurar DTC para que use un servidor de bases de datos remoto).
+ .
+ En cualquier caso, por favor esté seguro de que su contraseña de administración de MySQL está configurada. De manera predeterminada, Debian instala MySQL con una contraseña en blanco. Para configurar su contraseña de administración, ejecute el siguiente comando: «dpkg-reconfigure mysql-server-5.1». ¡Está avisado!
+Description-eu.UTF-8: Konfiguratu automatikoki MySQL erabiltzailea?
+ DTC-k /etc/mysql/debian.cnf erabil dezake mysql supererabiltzailea automatikoki sortzeko (DTC-ek MySQL eta DTC-ren datu-baseetara sarbidetzeko eta kudeatzeko). Honela, MySQL-ko supererabiltzailearen pasahitzik ez zaizu eskatuko, horren ordainean ordea MySQL zerbitzariak beti ordenagailu lokalean kokatuta egon beharko du (ezingo duzu DTC konfiguratu urruneko datu-base zerbitzari batekin erabiltzeko).
+ .
+ Edozein modutan, ziurtatu ezazu MySQL-ko supererabiltzailearen pasahitza ezarrita dagoela. Lehenetsi gisa, Debian-ek pasahitz hutsa ezartzen du. MySQL-ko supererabiltzailearen pasahitza konfiguratzeko exekutatu honako komandoa: dpkg-reconfigure mysql-server-5.1. Jakinean zaude!
+Description-fi.UTF-8: Tehdäänkö MySQL-tunnuksen asetukset automaattisesti?
+ DTC voi käyttää tiedostoa /etc/mysql/debian.cnf luodakseen automaattisesti mysql-ylläpitotunnuksen DTC:n käyttöön MySQL:n ja DTC:n tietokantojen hallintaa varten. Tällöin ylläpitäjän salasanaa ei kysytä ja kaikki automatisoidaan, mutta käytettävän MySQL-palvelimen tulee sijaita samalla koneella (DTC:tä ei voida asettaa käyttämään tietokantapalvelinta etänä).
+ .
+ Varmista joka tapauksessa, että MySQL:n pääkäyttäjälle on asetettu salasana. Oletuksena Debian asettaa salasanan tyhjäksi. MySQL:n ylläpitosalana voidaan asettaa ajamalla komento ”dpkg-reconfigure mysql-server-5.1”.
+Description-fr.UTF-8: Faut-il automatiquement créer un identifiant MySQL ?
+ Il est possible de créer automatiquement le superutilisateur de MySQL en utilisant /etc/mysql/debian.cnf, afin que DTC puisse gérer MySQL et sa base de données. De cette façon, la question relative au mot de passe du superutilisateur de MySQL ne sera pas posée et l'ensemble des opérations seront automatisées. En contrepartie, ce choix requiert que le serveur MySQL soit installé sur l'hôte local.
+ .
+ Quel que soit votre choix, veuillez vous assurer que le mot de passe du superutilisateur de MySQL est en place. Par défaut, ce mot de passe est vide. Pour définir un mot de passe pour le superutilisateur de MySQL, vous pouvez utiliser la commande « dpkg-reconfigure mysql-server-5.1 ».
+Description-gl.UTF-8: ¿Configurar automaticamente o usuario de MySQL?
+ DTC pode empregar /etc/mysql/debian.cnf para crear automaticamente un usuario administrador de mysql para que DTC acceda e xestione MySQL e a base de datos de DTC. Desta maneira, non se lle ha preguntar o contrasinal do administrador de MySQL, e todo ha ser automático, pero o inconveniente é que o servidor MySQL que se empregue sempre terá que residir no servidor local (non ha poder configurar DTC para que empregue un servidor de bases de datos remoto).
+ .
+ En calquera caso, asegúrese de configurar o seu contrasinal de administrador de MySQL. Por defecto, Debian instala MySQL cun contrasinal baleiro. Para configurar un contrasinal para MySQL, execute a seguinte orde: dpkg-reconfigure mysql-server-5.1.
+Description-ja.UTF-8: MySQL ユーザを自動的に設定しますか?
+ MySQL および DTC データベースへのアクセス／管理用の MySQL root ユーザを自動的に作成するため、DTC は /etc/mysql/debian.cnf を利用できます。このため、MySQL の root パスワードに何が使われているのかを聞かれることはなく、全てが自動的に作成されますが、利用する MySQL サーバが必ずローカルマシンになければいけないという欠点があります (DTC をリモートのデータベースサーバを使うように設定はできません)。
+ .
+ 何にしても、MySQL の root パスワードが設定されていることを確認してください。デフォルトでは、Debian はパスワードを空白でインストールしています。MySQL の root パスワードを設定するには、以下のコマンド「dpkg-reconfigure mysql-server-5.1」を実行してください。警告しました!
+Description-pt_BR.UTF-8: Configurar automaticamente o usuário MySQL?
+ O DTC pode usar o /etc/mysql/debian.cnf para criar automaticamente um super usuário para o DTC para acessar e gerenciar o MySQL e o banco de dados do DTC. Desta forma não serão perguntadas suas configurações de root de mysql. Todo do processo é automatizado. (Porem este recurso impede de usar o DTC com um servidor de banco de dados remoto.)
+ .
+ Em todo caso por favor tenha certeza que a sua senha de root de MySQL está configurada. Geralmente por padrão a instalação do Debian faz uso de uma senha em branco. Para configurar uma senha de root de MySQL use o seguinte comando: dpkg-reconfigure·mysql-server-5.1 você foi avisado!
+Description-ru.UTF-8: Настроить пользователя MySQL автоматически?
+ Для доступа и управления MySQL и базой данных в DTC может быть автоматически создан пользователь root mysql (используются данные файла /etc/mysql/debian.cnf). При этом не будет задан вопрос об используемом root пароле для MySQL, всё будет сделано автоматически. Недостатком является то, что используемый сервер MySQL всегда будет располагаться на локальной машине (вы не сможете настроить для DTC удалённый сервер базы данных).
+ .
+ В любом случае, проверьте, что пароль root в MySQL установлен. По умолчанию, в Debian устанавливается пустой пароль. Чтобы задать пароль MySQL, запустите следующую команду: dpkg-reconfigure mysql-server-5.1. Вы предупреждены!
+Description-sv.UTF-8: Ska inställningarna för MySQL-användaren sättas automatiskt?
+ DTC kan använda /etc/mysql/debian.cnf för att automatiskt skapa en rotanvändare på mysqlservern som DTC kan använda för att hantera MySQL och DTC:s databas. Med denna metod behöver du inte besvara några frågor om vilket lösenord MySQL har för rotanvändaren, allting kommer att vara automatiserat. Nackdelen är att MySQL-servern som ska användas måste vara på den loakala maskinen (du kan inte ange att DTC ska ansluta till en extern databasserver).
+ .
+ I vilket fall som helst ska du säkerställa att din rotanvändare i MySQL har ett lösenord. Standardläget i Debian är att rotanvändaren inte har ett lösenord. För att ge MySQL:s rotanvändare ett lösenord använder du följande kommando: dpkg-reconfigure mysql-server-5.1. Nu har vi varnat dig!
+Description-vi.UTF-8: Tự động cấu hình người dùng MySQL không?
+ DTC có khả năng sử dụng « /etc/mysql/debian.cnf » để tự động tạo một người dùng MySQL chủ (root) để truy cập và quản lý cơ sở dữ liệu của cả hai MySQL và DTC. Bằng cách này, bạn sẽ không được nhắc nhập mật khẩu người chủ của MySQL vì tất cả tự động chạy. Tuy nhiên, trình phục vụ MySQL được dùng phải nằm trên máy cục bộ : bạn sẽ không có khả năng cấu hình DTC để sử dụng một máy phục vụ cơ sở dữ liệu từ xa.
+ .
+ Trong mọi trường hợp đều, hãy kiểm tra xem mật khẩu người chủ đã được đặt cho MySQL. Mặc định là Debian cài đặt nó với mật khẩu trống. Để đặt mật khẩu người chủ MySQL, chạy câu lệnh « dpkg-reconfigure mysql-server-5.1 ». Hãy cẩn thận khi sử dụng câu lệnh này.
+Description-zh_CN.UTF-8: 自动配置MySQL 用户?
+ DTC 可以使用 /etc/mysql/debian.cnf 自动创建一个根目录 mysql 用户 来操作和管理 MySQL 和 DTC 的数据库. 这种方法, 将不会询问您有关使用哪个 MySQL 根目录密码, 所有将被自动操作, 但是缺点是使用的MySQL 服务器将一直是位置于本地计算机 (您将无法配置DTC使用遥控数据库服务器).
+ .
+ 任何情况下, 请确保您的MySQL根目录密码的设定. 作为每一个默认, Debian 使用空白密码安装. 要安装您的 MySQL 根目录密码, 执行下列命令: dpkg-reconfigure mysql-server-5.1. 您已经被警告!
+
+Template: dtc/conf_mysqlhost
+Type: string
+Default: localhost
+Description: MySQL hostname:
+ Please enter the hostname or IP address of the MySQL server.
+Description-cs.UTF-8: Jméno MySQL serveru:
+ Zadejte prosím jméno nebo IP adresu MySQL serveru:
+Description-de.UTF-8: MySQL-Hostname:
+ Bitte geben Sie den Hostnamen oder die IP-Adresse des MySQL-Servers ein.
+Description-es.UTF-8: Nombre de la máquina de MySQL:
+ Introduzca el nombre de la máquina o la dirección IP del servidor de MySQL.
+Description-eu.UTF-8: MySQL-ren ostalari-izena:
+ Sartu MySQL zerbitzariaren ostalari-izena edo IP helbidea.
+Description-fi.UTF-8: MySQL-verkkonimi:
+ Anna MySQL-palvelimen verkkonimi tai IP-osoite.
+Description-fr.UTF-8: Nom de l'hôte MySQL :
+ Veuillez indiquer le nom d'hôte ou l'adresse IP du serveur MySQL.
+Description-gl.UTF-8: Nome do servidor MySQL:
+ Introduza o nome ou enderezo IP do servidor MySQL.
+Description-ja.UTF-8: MySQL ホスト名:
+ MySQL サーバのホスト名あるいは IP アドレスを入力してください。
+Description-ml.UTF-8: MySQL ഹോസ്റ്റ്നാമം
+ ദയവായി MySQL സേവകന്റെ ഹോസ്റ്റ്നാമമോ ഐപി വിലാസമോ നല്‍കുക.
+Description-nl.UTF-8: MySQL-servernaam:
+ Wat is de computernaam (of het ip-adres) van de MySQL-server?
+Description-pt.UTF-8: Nome da máquina MySQL:
+ Por favor introduza o nome da máquina ou IP do seu servidor de MySQL.
+Description-pt_BR.UTF-8: Nome da máquina MySQL:
+ Por favor, informe o nome da máquina ou endereço IP do servidor MySQL.
+Description-ru.UTF-8: Имя узла MySQL:
+ Введите имя машины или IP-адрес сервера MySQL.
+Description-sv.UTF-8: Värdnamn, MySQL:
+ Ange värdnamn eller IP-adress för MySQL-servern.
+Description-vi.UTF-8: Tên máy MySQL:
+ Hãy nhập tên máy hoặc địa chỉ IP của máy phục vụ MySQL.
+Description-zh_CN.UTF-8: MySQL 主机名:
+ 请输入主机名或者MySQL 服务器的IP地址.
+
+Template: dtc/conf_mysqllogin
+Type: string
+Default: root
+Description: MySQL administrator:
+ Please enter the login name of a MySQL user with administrative
+ privileges. DTC will use it to grant privileges for the tables to
+ its users.
+Description-cs.UTF-8: Správce MySQL:
+ Zadejte prosím přihlašovací jméno MySQL uživatele se správcovskými oprávněními. DTC ho využije k udělování práv k tabulkám.
+Description-de.UTF-8: MySQL-Administrator:
+ Bitte geben Sie einen MySQL-Benutzernamen mit administrativen Privilegien ein. DTC wird ihn verwenden, um Privilegien für die Tabellen an seine Benutzer zu vergeben.
+Description-es.UTF-8: Administrador de MySQL:
+ Introduzca el nombre de un usuario de MySQL con privilegios de administración. DTC lo usará para conceder privilegios sobre las tablas a sus usuarios.
+Description-eu.UTF-8: MySQL-ko administratzailea:
+ Sartu MySQL-ko administratzaile baimenak dituen erabiltzaile baten saio-hasierako izena. DTC-k hura erabiliko du taulen baimenak bere erabiltzaileei emateko.
+Description-fi.UTF-8: MySQL-ylläpitäjä:
+ Anna pääkäyttäjäoikeudet omaava MySQL-käyttäjätunnus. DTC käyttää sitä antaakseen käyttäjilleen oikeuksia tauluihin.
+Description-fr.UTF-8: Administrateur de MySQL :
+ Veuillez indiquer l'identifiant d'un utilisateur MySQL qui possède les privilèges d'administration du serveur. DTC s'en servira pour attribuer les privilèges sur les tables à ses utilisateurs.
+Description-gl.UTF-8: Administrador de MySQL:
+ Introduza o nome dun usuario de MySQL con privilexios administrativos. DTC ha empregalo para dar privilexios para as táboas aos seus usuarios.
+Description-ja.UTF-8: MySQL 管理者:
+ 管理者権限を持つ MySQL ユーザのログイン名を入力してください。DTC はユーザにテーブル操作の権限を許可する際、このログイン名を使います。
+Description-ml.UTF-8: MySQL ഭരണാധികാരി:
+ ദയവായി ഭരണാധികാരാവകാശമുള്ള ഉപയോക്താവിന്റെ ലോഗിന്‍ നാമം നല്‍കുക. സ്വന്തം ഉപയോക്താക്കള്‍ക്ക് വിശേഷാധികാരങ്ങള്‍ അനുവധിയ്ക്കാന്‍ DTC ഇത് ഉപയോഗിയ്ക്കും.
+Description-nl.UTF-8: MySQL-beheerder:
+ Welke MySQL-gebruiker heeft beheerdersrechten? DTC heeft dit nodig om rechten op tabellen toe te kennen voor zijn gebruikers.
+Description-pt.UTF-8: Administrador MySQL:
+ Por favor introduza o login de um utilizador de MySQL com privilégios administrativos. O DTC irá usá-lo para dar privilégios sobre as suas tabelas aos seus utilizadores.
+Description-pt_BR.UTF-8: Administrador MySQL:
+ Por favor, informe o nome do login do usuário MySQL com privilégios administrativos. O DTC irá utilizá-lo para conceder privilégios para as tabelas aos seus usuários.
+Description-ru.UTF-8: Администратор MySQL:
+ Введите имя учётной записи пользователя MySQL, обладающего административными правами. DTC будет использовать это имя для предоставления доступа к таблицам.
+Description-sv.UTF-8: Adminstratörskonto, MySQL:
+ Ange användarnamnet för MySQL-användaren som har administratörsrättigheter. DTC kommer använda den för att överföra privilegier för tabellerna till sina användare.
+Description-vi.UTF-8: Quản trị MySQL:
+ Hãy nhập tên đăng nhập của một người dùng MySQL có quyền quản trị. DTC sẽ sử dụng nó để cấp quyền truy cập bảng cho các người dùng.
+Description-zh_CN.UTF-8: MySQL 管理员:
+ 请使用管理员权限输入MySQL用户的登录名. DTC 将用于授权给其用户.
+
+Template: dtc/conf_mysqlpass
+Type: password
+Description: MySQL administrator password:
+ Please enter the password of the MySQL administrator.
+Description-cs.UTF-8: Správcovské heslo k MySQL:
+ Zadejte prosím heslo pro správce MySQL.
+Description-de.UTF-8: MySQL-Administrator-Passwort:
+ Bitte geben Sie das Passwort für den MySQL-Administrator ein.
+Description-es.UTF-8: Contraseña del administrador de MySQL:
+ Introduzca la contraseña del administrador de MySQL.
+Description-eu.UTF-8: MySQL-ko administratzailearen pasahitza:
+ Sartu MySQL-ko administratzailearen pasahitza.
+Description-fi.UTF-8: MySQL-ylläpitäjän salasana:
+ Anna MySQL-ylläpitäjän salasana.
+Description-fr.UTF-8: Mot de passe de l'administrateur de MySQL :
+ Veuillez indiquer le mot de passe de l'administrateur de MySQL.
+Description-gl.UTF-8: Contrasinal do administrador de MySQL:
+ Introduza o contrasinal do administrador de MySQL.
+Description-ja.UTF-8: MySQL 管理者のパスワード:
+ MySQL 管理者のパスワードを入力してください。
+Description-ml.UTF-8: MySQL ഭരണാധികാരിയുടെ അടയാളവാക്ക്:
+ ദയവായി MySQL ഭരണാധികാരിയുടെ അടയാളവാക്ക് നല്‍കുക.
+Description-nl.UTF-8: MySQL-beheerderswachtwoord:
+ Wat is het wachtwoord van de MySQL-beheerder?
+Description-pt.UTF-8: Palavra-chave do administrador MySQL:
+ Por favor introduza a palavra-chave do administrador do MySQL.
+Description-pt_BR.UTF-8: Senha do administrador MySQL:
+ Por favor, informe a senha do administrador MySQL.
+Description-ru.UTF-8: Пароль администратора MySQL:
+ Введите пароль администратора MySQL.
+Description-sv.UTF-8: Administratörslösenord, MySQL:
+ Ange lösenordet för MySQL-administratören.
+Description-vi.UTF-8: Mật khẩu quản trị MySQL:
+ Hãy nhập mật khẩu của quản trị MySQL.
+Description-zh_CN.UTF-8: MySQL 管理员密码:
+ 请输入MySQL 管理员的密码.
+
+Template: dtc/conf_mysqldb
+Type: string
+Default: dtc
+Description: DTC database name:
+ Please enter the name of the database to use for storing all DTC
+ hosting information.
+Description-cs.UTF-8: Jméno DTC databáze:
+ Zadejte prosím jméno databáze, která se má použít pro uložení všech informací o hostingu.
+Description-de.UTF-8: DTC-Datenbankname:
+ Bitte geben Sie den Namen der Datenbank ein, die zum Speichern aller DTC-Hosting-Informationen verwandt werden soll.
+Description-es.UTF-8: Nombre de la base de datos DTC :
+ Introduzca el nombre de la base de datos a usar para almacenar toda la información del sistema de DTC.
+Description-eu.UTF-8: DTC datu-basearen izena:
+ Sartu datu-basearen izena (DTC-k edukiko duen informazio guztia gordetzeko).
+Description-fi.UTF-8: DTC-tietokannan nimi:
+ Anna kaikkien DTC:n isännöintitietojen säilytykseen käytettävän tietokannan nimi.
+Description-fr.UTF-8: Nom de la base de données de DTC :
+ Veuillez indiquer le nom de la base de données dont DTC se servira pour conserver ses informations d'hébergement.
+Description-gl.UTF-8: Nome da base de datos de DTC:
+ Introduza o nome da base de datos a empregar para armacenar toda a información de hospedaxe de DTC.
+Description-ja.UTF-8: DTC データベース名:
+ すべての DTC ホスト情報を保存するのに使うデータベース名を入力してください。
+Description-ml.UTF-8: DTC ഡാറ്റാബേസ് നാമം:
+ ദയവായി എല്ലാ DTC ഹോസ്റ്റിങ്ങ് വിവരങ്ങളും ശേഖരിയ്ക്കാന്‍ ഉപയോഗിയ്ക്കേണ്ട ഡാറ്റാബേസിന്റെ പേര് നല്‍കുക.
+Description-nl.UTF-8: DTC-databasenaam:
+ Wat is de naam van de database waarin DTC alle 'hosting'-informatie dient op te slaan?
+Description-pt.UTF-8: Nome da base de dados do DTC:
+ Por favor introduza o nome da base de dados onde guardar toda a informação de gestão do DTC.
+Description-pt_BR.UTF-8: Nome da base de dados DTC:
+ Por favor, informe o nome da base de dados a ser usada para armazenar toda a informação de hospedagem DTC.
+Description-ru.UTF-8: Имя базы данных DTC:
+ Введите имя базы данных, в которой будет храниться вся информация о хостинге DTC.
+Description-sv.UTF-8: Namn på DTC:s databas:
+ Ange namnet på den databas som DTC ska använda för att lagra all information om värdar.
+Description-vi.UTF-8: Tên cơ sở dữ liệu DTC:
+ Hãy nhập tên của cơ sở dữ liệu sẽ chứa tất cả các thông tin hỗ trợ DTC.
+Description-zh_CN.UTF-8: DTC 数据库名字:
+ 请输入数据库名，为了存储所有的DTC托管信息.
+
+Template: dtc/conf_mysql_change_root
+Type: boolean
+Default: false
+Description: Change MySQL root password?
+ By default, the mysql-server package does not require a password for
+ the MySQL root user. This can be changed during the configuration of
+ the DTC package.
+Description-cs.UTF-8: Změnit heslo MySQL uživatele root?
+ Balík mysql-server implicitně nevyžaduje heslo ke správcovskému účtu MySQL (root). To můžete změnit během nastavení balíku DTC.
+Description-de.UTF-8: MySQL-root-Passwort ändern?
+ Standardmäßig benötigt das mysql-server-Paket kein Passwort für den MySQL-root-Benutzer. Das kann während der Konfiguration von DTC geändert werden.
+Description-es.UTF-8: ¿Desea cambiar la contraseña del administrador MySQL?
+ De manera predeterminada, el paquete mysql-server no necesita una contraseña para el usuario de administración de MySQL. Esto se puede cambiar durante la configuración del paquete DTC.
+Description-eu.UTF-8: Aldatu MySQL-ko 'root'-en pasahitza?
+ Lehenetsi gisa, mysql-server paketeak ez du MySQL-ko supererabiltzailearen (root) pasahitzik behar. DTC paketearen konfigurazioan zehar alda daiteke.
+Description-fi.UTF-8: Vaihdetaanko MySQL:n ylläpitosalasana?
+ Oletuksena paketti mysql-server ei vaadi MySQL:n ylläpitäjälle salasanaa. Se voidaan asettaa paketin DTC asetusten teon aikana.
+Description-fr.UTF-8: Faut-il changer le mot de passe du superutilisateur (« root ») de MySQL ?
+ Par défaut, le paquet mysql-server n'impose pas de mot de passe pour le superutilisateur du serveur de bases de données. Ce mot de passe peut être mis en place pendant la configuration du paquet de DTC.
+Description-gl.UTF-8: ¿Cambiar o contrasinal de administrador de MySQL?
+ Por defecto, o paquete mysql-server non precisa dun contrasinal para o usuario administrador de MySQL. Isto pódese cambiar durante a configuración do paquete DTC.
+Description-ja.UTF-8: MySQL の root パスワードを変更しますか?
+ デフォルトでは、mysql-server パッケージは MySQL root ユーザにパスワードを必要としません。これは DTC パッケージの設定中に変更できます。
+Description-ml.UTF-8: MySQL റൂട്ട് അടയാളവാക്ക് മാറ്റണോ?
+ mysql-server പാക്കേജിന് MySQL റൂട്ട് ഉപയോക്താവിനൊരു അടയാളവാക്ക് ഡിഫാള്‍ട്ടായി ആവശ്യമില്ല. DTC പാക്കേജിന്റെ ക്രമീകരണ സമയത്ത് ഇത് മാറ്റാവുന്നതാണ്.
+Description-nl.UTF-8: Wilt u het MySQL-root-wachtwoord veranderen?
+ Standaard vereist het 'mysql-server'-pakket geen wachtwoord voor de MySQL-root-gebruiker. Dit kan tijdens de configuratie van het DTC-pakket aangepast worden.
+Description-pt.UTF-8: Mudar a palavra-chave do root de MySQL?
+ Por omissão o pacote mysql-server não precisa de uma palavra-chave para o utilizador root do MySQL. Isto pode ser alterado durante a configuração do pacote DTC.
+Description-pt_BR.UTF-8: Mudar a senha do root do MySQL?
+ Por padrão, o pacote mysql-server não requer uma senha para o usuário root do MySQL. Isto pode ser mudado durante a configuração do pacote DTC.
+Description-ru.UTF-8: Изменить пароль root в MySQL?
+ По умолчанию, пакет mysql-server не требует установки пароля для пользователя root в MySQL. Это можно исправить во время настройки пакета DTC.
+Description-sv.UTF-8: Byta rotlösenord för MySQL?
+ I standardutförandet kräver paketet mysql-server inte något lösenord för MySQL:s rotanvändare. Detta kan ändras i och med installationen av DTC-paketet.
+Description-vi.UTF-8: Thay đổi mật khẩu người chủ MySQL không?
+ Mặc định là gói trình phục vụ MySQL (mysql-server) không cần thiết mật khẩu cho người dùng chủ MySQL. Vẫn có thể thay đổi trường hợp này trong khi cấu hình gói DTC.
+Description-zh_CN.UTF-8: 更改 MySQL 目录密码?
+ 默认状态下,  mysql-server 软件包不需要设置密码给 MySQL 根目录用户. 在DTC 软件包配置时，设置密码项可以更改.
+
+Template: dtc/main_domainname
+Type: string
+Description: Domain name:
+ Please enter the first domain which you want DTC to
+ manage. This domain name will be used to install the root
+ admin and customer web control panel of DTC (under one of this domain's
+ subdomains).
+Description-cs.UTF-8: Doménové jméno:
+ Zadejte prosím první doménu, kterou má DTC spravovat. Toto doménové jméno se použije pro instalaci správcovského a zákaznického webového ovládacího panelu DTC (jako poddoména této domény).
+Description-de.UTF-8: Domain-Name:
+ Geben Sie die erste Domain ein, die von DTC administriert werden soll. Diese Domain wird verwandt, um den Hauptadministrator und das Kunden-Web-Steuer-Panel von DTC (auf einer Subdomain dieser Domain) zu installieren.
+Description-es.UTF-8: Nombre de dominio:
+ Introduzca el primer dominio que quiere que gestione DTC. Este dominio se usará para instalar el panel web de administración e información de DTC (bajo uno de los subdominios de este dominio).
+Description-eu.UTF-8: Domeinu-izena:
+ Sartu aurreneko domeinua DTC-k kudeatzeko. Domeinuaren izen hau DTC-ren root administratzailearen eta bezeroaren web kontrol-panela instalatzeko erabiliko da (domeinu honetako azpidomeinu batean).
+Description-fi.UTF-8: Verkkoaluenimi:
+ Anna ensimmäinen verkkoalue, jota DTC:n tulisi hallinnoida. Tätä verkkoaluenimeä käytetään DTC:n pääkäyttäjän ja asiakkaiden juuriverkkohallintapaneelien asennuksessa (tämän verkkoalueen yhteen alialueeseen).
+Description-fr.UTF-8: Nom de domaine :
+ Veuillez indiquer le premier domaine que vous voulez administrer avec DTC. Ce domaine sera utilisé pour installer le panneau de contrôle web général pour l'administration et la gestion des clients (dans un sous-domaine de ce domaine principal).
+Description-gl.UTF-8: Nome de dominio
+ Introduza o primeiro dominio que quere xestionar con DTC. Este nome de dominio hase empregar para instalar o panel de control raíz de usuarios e administradores de DTC (embaixo dun dos subdominios deste dominio).
+Description-ja.UTF-8: ドメイン名:
+ DTC に管理させたい最初のドメインを入力してください。このドメイン名は、 (このドメインのサブドメインの一つの配下の) DTC の root 管理者および顧客ウェブコントロールパネルの導入に使わることになります。
+Description-ml.UTF-8: ഡൊമൈന്‍ നാമം:
+ ദയവായി നിങ്ങള്‍ DTC മാനേജ് ചെയ്യണമെന്നാഗ്രഹിയ്ക്കുന്ന ആദ്യ ഡൊമൈന്‍ നല്‍കുക. ഈ ഡൊമൈന്‍ നാമം DTC യുടെ റൂട്ട് ഭരണാധികാരിയുടേയും ഉപഭോക്താവിന്റേയും (ഈ ഡൊമൈനിന്റെ സബ്ഡൊമൈനുകളിലൊന്നിനടിയില്‍) വെബ് നിയന്ത്രണ പാനല്‍ ഇന്‍സ്റ്റാള്‍ ചെയ്യാനുപയോഗിയ്ക്കുന്നതായിരിയ്ക്കും.
+Description-nl.UTF-8: Domeinnaam:
+ Wat is de eerste domeinnaam die u door DTC wilt laten beheren? Deze domeinnaam wordt gebruikt om de beheerder en klant web-controlepanelen van DTC te installeren (in een van de sub-domeinen van dit domein).
+Description-pt.UTF-8: Nome de domínio:
+ Introduza o primeiro nome de domínio que quer que o DTC administre. Este nome de domínio será usado para instalar a administração root e o controlo web do DTC para os clientes (num dos subdomínios deste domínio).
+Description-pt_BR.UTF-8: Nome do domínio:
+ Por favor, informe o primeiro domínio que você quer que o DTC gerencie. Este nome de domínio será usado para instalar o administrador root e o painel de controle web do cliente do DTC (sob um dos subdomínios deste domínio).
+Description-ru.UTF-8: Имя домена:
+ Введите первое имя домена, которым вы хотите управлять из DTC. Данное имя будет использовано для установки корневой административной и клиентской веб-панели управления DTC (под одним из субдоменов).
+Description-sv.UTF-8: Domännamn:
+ Ange den första domänen som du vill att DTC ska hantera. Detta domännamn kommer att användas för att installera rotadminstrationen och kundernas webbkontrollpanel från DTC (som underdomäner till denna domän).
+Description-vi.UTF-8: Tên miền:
+ Hãy nhập miền thứ nhất bạn muốn DTC quản lý. Tên miền này sẽ được dùng để cài đặt bảng điều khiển DTC cho cả hai người chủ quản trị và khách hàng (dưới một của những miền phụ của miền này).
+Description-zh_CN.UTF-8: 域名:
+ 请输入您希望DTC管理的第一个域名. 这个域名将用于安装DTC的 目录管理员和客户网站控制面板 (在这其中一个域名下的子域名).
+
+Template: dtc/dtc_adminsubdomain
+Type: string
+Default: dtc
+Description: DTC root panel subdomain:
+ Please enter the subdomain to be used by the DTC control panel.
+Description-cs.UTF-8: Poddoména hlavního panelu DTC:
+ Zadejte prosím poddoménu, která se použije pro řídící panel DTC.
+Description-de.UTF-8: DTC-root-Panel-Subdomain:
+ Geben Sie die Subdomain ein, die vom DTC-Steuer-Panel verwandt werden soll.
+Description-es.UTF-8: Subdominio del panel de control DTC:
+ Introduzca el subdominio que usará el panel de control de DTC.
+Description-eu.UTF-8: DTC-ko root-aren panelaren azpidomeinua:
+ Sartu azpidomeinua DTC kontrol-panelak erabiltzeko.
+Description-fi.UTF-8: DTC:n juuripaneelin aliverkkoalue:
+ Anna aliverkkoalue, jota DTC:n hallintapaneelin tulisi käyttää.
+Description-fr.UTF-8: Sous-domaine du panneau de contrôle principal de DTC :
+ Veuillez indiquer le sous-domaine qu'utilisera DTC pour son panneau de contrôle principal.
+Description-gl.UTF-8: Subdominio do panel raíz de DTC:
+ Introduza o subdominio a empregar no panel de control de DTC.
+Description-ja.UTF-8: DTC root パネルサブドメイン:
+ DTC コントロールパネルが使うサブドメインを入力してください。
+Description-ml.UTF-8: DTC റൂട്ട് പാനല്‍ സബ്ഡൊമൈന്‍:
+ ദയവായി DTC നിയന്ത്രണ പാനലുപയോഗിയ്ക്കുന്ന സബ്ഡൊമൈന്‍ നല്‍കുക.
+Description-nl.UTF-8: Sub-domein voor het DTC-basispaneel:
+ Wat is het subdomein dat door het DTC-controlepaneel gebruikt dient te worden?
+Description-pt.UTF-8: Subdomínio do painel root do DTC:
+ Por favor introduza o subdomínio a ser usado pelo painel de controlo do DTC.
+Description-pt_BR.UTF-8: Subdomínio do painel root do DTC:
+ Por favor, informe o subdomínio a ser usado pelo painel de controle DTC.
+Description-ru.UTF-8: Субдомен корневой панели DTC:
+ Введите субдомен, который будет использоваться для корневой панели DTC.
+Description-sv.UTF-8: Underdomän för DTC-rotpanel:
+ Ange underdomän som ska användas för DTC:s kontrollpanel.
+Description-vi.UTF-8: Miền phụ bảng người chủ DTC:
+ Hãy nhập miền phụ nên được dùng bởi bảng điều khiển DTC.
+Description-zh_CN.UTF-8: DTC 根目录面板子域名:
+ 请输入一个DTC控制面板使用的子域名.
+
+Template: dtc/conf_ipaddr
+Type: string
+Description: Primary IP address:
+ Please enter this host's primary IP address. This address will be
+ used for the domain name you just provided, and will be used as the
+ default for most DTC variables.  If you are using Network Address
+ Translation (NAT), please enter your external IP address.
+Description-cs.UTF-8: Primární IP adresa:
+ Zadejte prosím primární IP adresu tohoto počítače. Zadaná adresa se použije pro doménové jméno, které jste právě zadali, a také bude výchozí hodnotou pro většinu DTC proměnných. Používáte-li překlad adres (NAT), zadejte prosím svou externí IP adresu.
+Description-de.UTF-8: Primäre IP-Adresse:
+ Geben Sie die primäre IP-Adresse des Hosts ein. Diese IP-Adresse wird für die Domain benutzt, die Sie zuvor eingegeben haben und als Vorgabe für DTC-Variablen. Falls Sie Network Address Translation (NAT) benutzen, geben Sie hier bitte Ihre externe IP-Adresse ein.
+Description-es.UTF-8: IP primaria:
+ Introduzca la dirección IP primaria de esta máquina. Esta dirección se usará para el dominio que proporcionó, y se usará de manera predeterminada para la mayoría de las variables de DTC. Si está usando la traducción de direcciones de red (NAT), por favor, introduzca su dirección IP externa.
+Description-eu.UTF-8: IP helbide nagusia:
+ Sartu ostalari honen IP helbide nagusia. Helbide hau eman duzun domeinuaren izenarentzako erabiliko da, eta DTC-ko aldagai gehienetan lehenetsi gisa erabiliko da. NAT (Sareko Helbideen Itzulpena) erabiltzen ari bazara, sartu kanpoko IP helbidea.
+Description-fi.UTF-8: Ensisijainen IP-osoite:
+ Anna tämän koneen ensisijainen IP-osoite. Tätä osoitetta käytetään juuri antamasi verkkoaluenimen osoitteena ja sitä käytetään oletusarvona useimmille DTC:n muuttujille. Jos käytät verkko-osoitteiden kääntämistä (NAT), anna ulkoinen IP-osoite.
+Description-fr.UTF-8: Adresse IP primaire :
+ Veuillez indiquer l'adresse IP principale du serveur. Cette adresse sera utilisée pour le nom de domaine principal et sera la valeur par défaut de la plupart des variables du programme. Si vous utilisez la traduction d'adresses réseau (NAT : « Network Address Translation »), vous devriez indiquer l'adresse externe du serveur.
+Description-gl.UTF-8: Enderezo IP primario:
+ Introduza o enderezo IP primario deste servidor. Hase empregar este enderezo para o nome de dominio que acaba de fornecer, e hase empregar coma valor por defecto para moitas variables de DTC. Se emprega tradución de enderezos de rede (NAT), introduza o enderezo IP externo.
+Description-ja.UTF-8: プライマリ IP アドレス:
+ このホストのプライマリ IP アドレスを入力してください。このアドレスはあなたが入力したドメイン名に使われます。そして、DTC のほとんどの設定値のデフォルト値として使われます。ネットワークアドレス変換 (NAT) を使っている場合は、外部 IP アドレスを入力してください。
+Description-ml.UTF-8: പ്രാഥമിക ഐപി വിലാസം:
+ ദയവായി ഹോസ്റ്റിന്റെ പ്രാഥമിക ഐപി വിലാസം നല്‍കുക. ഈ വിലാസം നിങ്ങള്‍ തൊട്ടു മുന്‍പേ നല്‍കിയ ഡൊമൈന്‍ നാമത്തിനുപയോഗിയ്ക്കുന്നതായിരിയ്ക്കും അതുപോലെ തന്നെ കൂടുതല്‍ DTC വാരിയബിളുകള്‍ക്കും ഡിഫാള്‍ട്ടായിട്ടും ഉപയോഗിയ്ക്കുന്നതായിരിയ്ക്കും. നിങ്ങള്‍ ഒരു നെറ്റ്‌വര്‍ക്ക് വിലാസ ട്രാന്‍സ്ലേഷന്‍ (NAT) ഉപയോഗിയ്ക്കുന്നുണ്ടെങ്കില്‍ നിങ്ങളുടെ പുറത്തെ ഐപി വിലാസം നല്‍കുക.
+Description-nl.UTF-8: Primair IP-adres:
+ Wat is het primaire IP-adres van deze computer? Dit adres wordt gebruikt voor de zojuist door u opgegeven domeinnaam, en als standaardwaarde voor de meeste DTC-variabelen. Als u gebruik maakt van NAT (Network Address Translation) dient u hier het externe IP-adres aan te geven.
+Description-pt.UTF-8: Endereço IP principal:
+ Introduza aqui o seu endereço IP principal. Este IP será usado para o nome de domínio que acabou de dar, e será usado como valor por omissão para a maioria das variáveis do DTC. No caso de estar sobre NAT (Network Address Translation), por favor introduza o seu endereço IP externo.
+Description-pt_BR.UTF-8: Endereço de IP primário:
+ Por favor, informe o endereço IP primário desta máquina. Este endereço será usado para o nome de domínio que você acabou de informar, e será usado como padrão para a maioria das variáveis DTC. Se você está usando "Network Address Translation" (NAT -- Tradução de Endereço de Rede), por favor, informe o seu endereço IP externo.
+Description-ru.UTF-8: Первичный IP-адрес:
+ Введите первичный IP-адрес этого узла. Данный адрес будет использован для доменного имени, которое было указано ранее, и будет использован в качестве значения по умолчанию для большинства переменных DTC. Если вы используете трансляцию сетевых адресов (NAT), вводите внешний IP-адрес.
+Description-sv.UTF-8: Primär IP-adress:
+ Ange den här värdens primära IP-adress. Denna adress kommer att användas för det domännamn som du just angav samt användas som standard för de flesta DTC-variablerna. Om du använder NAT (Network Address Translation) ska du ange den externa IP-adressen.
+Description-vi.UTF-8: Địa chỉ IP chính:
+ Hãy nhập địa chỉ IP chính của máy này. Địa chỉ này sẽ được dùng cho tên miền bạn vừa mới cung cấp, và sẽ được dùng làm mặc định cho phần lớn biến DTC. Nếu bạn cũng dùng dịch vụ NAT (dịch địa chỉ mạng), hãy nhập địa chỉ IP bên ngoài.
+Description-zh_CN.UTF-8: 第一个 IP 地址:
+ 请输入这个主机的第一个IP地址. 这个地址将被用于您刚刚提供的域名, 也将作为默认形式被用于大多数的DTC参数域.  如果您使用Network Address Translation (NAT), 请输入您的延伸ID地址.
+
+Template: dtc/conf_hostingpath
+Type: string
+Default: /var/www/sites
+Description: Path for hosted domains:
+ Please enter the directory to be used by DTC to store files for
+ all hosted domains.
+ .
+ If you choose /var/www, which is Apache's default document root, all
+ files hosted in that directory may become publicly accessible. It is
+ therefore recommended to change the DocumentRoot setting in Apache
+ configuration if you choose /var/www as path for hosted domains.
+Description-cs.UTF-8: Cesta k hostovaným doménám:
+ Zadejte prosím adresář, který má DTC použít pro ukládání souborů všech hostovaných domén.
+ .
+ Zvolíte-li /var/www, což je v Apache výchozí kořen pro dokumenty, stanou se všechny zde hostované soubory veřejně přístupné. Jestliže tedy zvolíte pro hostované domény cestu /var/www, doporučujeme v nastavení Apache změnit proměnnou DocumentRoot.
+Description-de.UTF-8: Pfad für gehostete Domains:
+ Bitte geben Sie das Verzeichnis ein, das von DTC zum Speichen aller gehosteten Domains verwendet werden soll.
+ .
+ Falls Sie /var/www verwenden, welches Apaches voreingestelltes Wurzelverzeichnis ist, könnten alle gehosteten Dateien öffentlich zugänglich werden. Es wird daher empfohlen, die DocumentRoot-Einstellung in der Konfiguration von Apache zu ändern, falls Sie /var/www als Pfad für die gehosteten Domains wählen.
+Description-es.UTF-8: Ruta para los dominios alojados:
+ Introduzca el directorio que usará DTC para almacenar los archivos de todos los dominios controlados.
+ .
+ Si elije «/var/www», que es el directorio raíz predeterminado de los documentos de Apache, todos los archivos contenidos en este directorio se podrán acceder de manera pública. Sin embargo, si elije el directorio «/var/www» para los dominios, se recomienda cambiar el valor de «DocumentRoot» en la configuración de Apache.
+Description-eu.UTF-8: Ostatutako domeinuen bide-izena:
+ Sartu direktorioa DTC-k ostatuta dauden domeinu guztien fitxategiak gordetzeko.
+ .
+ /var/www aukeratzen baduzu (Apache zerbitzariaren erroko dokumentuen direktorio lehenetsia da), direktorio horretan kokatuta dauden fitxategi guztiak publikoki atzi daitezke. Hori dela eta, Apache-ren konfigurazioan DocumentRoot aldatzea biziki gomendatzen da (baldin eta /var/www aukeratu baduzu ostatutako domeinuen bide-izen gisa).
+Description-fi.UTF-8: Isännöityjen verkkoalueiden polku:
+ Anna hakemisto, johon DTC tallentaa kaikkien isännöityjen verkkoalueiden tiedostot.
+ .
+ Jos valitset hakemiston /var/www, joka on Apachen oletustiedostojuuri, kaikki hakemistossa olevat tiedostot saattavat tulla julkisesti saataville. Tämän takia on suositeltavaa vaihtaa Apachen asetuksista asetus DocumentRoot, jos valitset hakemiston /var/www isännöityjen verkkoalueiden poluksi.
+Description-fr.UTF-8: Chemin d'accès des domaines hébergés :
+ Veuillez indiquer le répertoire qu'utilisera DTC pour les fichiers relatifs aux domaines hébergés.
+ .
+ Si vous choisissez le répertoire /var/www qui est la racine par défaut pour le serveur web Apache, tous les fichiers de ce répertoire pourraient devenir accessibles publiquement. Il est donc recommandé de changer le réglage « DocumentRoot » d'Apache si vous souhaitez utiliser /var/www pour les domaines hébergés.
+Description-gl.UTF-8: Ruta para os dominios hospedados:
+ Introduza o directorio a empregar para que DTC armacene os ficheiros de tódolos dominios hospedados.
+ .
+ Se escolle /var/www, que é a raíz de documentos por defecto de Apache, tódolos ficheiros hospedados nese directorio poden quedar accesibles publicamente. Polo tanto, recoméndase que cambie o valor de DocumentRoot na configuración de Apache se escolle /var/www coma ruta dos dominios hospedados.
+Description-ja.UTF-8: ホストしているドメインへのパス (path):
+ DTC がホストしている全てのドメインについてファイルを保存するディレクトリを入力してください。
+ .
+ Apache のデフォルト document root である /var/www を指定した場合、このディレクトリに保存されている全てのファイルは外部からアクセス可能になります。このため、/var/www をホストしているドメインのパスとして使う場合は、Apache の設定で DocumentRoot 設定を変更するのをお勧めします。
+Description-ml.UTF-8: ഹോസ്റ്റ് ചെയ്ത ഡൊമൈനുകള്‍ക്കുള്ള പാത്ത്:
+ ദയവായി എല്ലാ ഹോസ്റ്റ് ചെയ്ത ഡൊമൈനുകള്‍ക്കുമുള്ള ഫയലുകള്‍ സൂക്ഷിയ്ക്കാന്‍ DTC ഉപയോഗിയ്ക്കുന്ന ഡയറക്റ്ററി നല്‍കുക.
+ .
+ നിങ്ങള്‍ /var/www എന്ന അപാച്ചെയുടെ ഡിഫാള്‍ട്ട് ഡോക്യുമെന്റ് റൂട്ട് തിരഞ്ഞെടുത്താല്‍ ആ ഡയറക്റ്ററിയില്‍ ഹോസ്റ്റ് ചെയ്ത എല്ലാ ഫയലുകളും പൊതുജനത്തിന് സമീപിയ്ക്കാവുന്നതായേയ്ക്കാം. അതുകൊണ്ടുതന്നെ ഹോസ്റ്റ് ചെയ്ത ഡൊമൈനുകള്‍ക്കുള്ള പാത്തായി നിങ്ങള്‍ /var/www തിരഞ്ഞെടുത്തെങ്കില്‍ അപാച്ചെ ക്രമീകരണത്തിലെ DocumentRoot സെറ്റിങ്ങ് മാറ്റാനായി ശുപാര്‍ശ ചെയ്തിരിയ്ക്കുന്നു.
+Description-nl.UTF-8: Pad voor gehoste domeinen:
+ In welke map dient DTC de bestanden van de gehoste domeinen op te slaan?
+ .
+ Als u /var/www (de standaard document-basismap van Apache) kiest kan het zijn dat alle in deze map gehoste bestanden publiek toegankelijk worden. Het is dan ook aan te raden om de 'DocumentRoot'-instelling in de Apache-configuratie aan te passen wanneer u /var/www als pad voor gehoste domeinen gebruikt.
+Description-pt.UTF-8: Caminho para os domínios geridos:
+ Por favor introduza o directório que o DTC deve usar para guardar os ficheiros de todos os domínios geridos.
+ .
+ Se escolher /var/www, que é a raiz de documentos por omissão do Apache, todos os ficheiros nesse directório podem ficar disponíveis publicamente. É portanto recomendado que altere a definição DocumentRoot na configuração do Apache se escolher /var/www como o caminho para os domínios geridos.
+Description-pt_BR.UTF-8: Caminho para os domínios hospedados:
+ Por favor, informe o diretório a ser usado pelo DTC para armazenar arquivos para todos os domínios hospedados.
+ .
+ Se você escolher /var/www, que é o padrão para o "document root" do Apache, todos os arquivos hospedados neste diretório podem tornar-se publicamente acessíveis. Portanto, é recomendado mudar a configuração do DocumentRoot no Apache se você escolher /var/www como caminho para os domínios hospedados.
+Description-ru.UTF-8: Каталог для размещаемых доменов:
+ Введите каталог, в котором будут храниться файлы всех размещаемых доменов DTC.
+ .
+ Если вы укажите /var/www, что является корнем документов по умолчанию для Apache, то все файлы из этого каталога могут стать публично доступными. Поэтому рекомендуется изменить настройку DocumentRoot в конфигурации Apache, если вы укажите /var/www в качестве каталога для размещаемых доменов.
+Description-sv.UTF-8: Sökväg för domäner under värdskap:
+ Ange katalogen som ska användas för DTC för att lagra filer för alla domäner som DTC hanterar värden för.
+ .
+ Om du väljer /var/www, som är Apaches standard rot för dokument kan det innebära att alla filer i katalogen blir publikt åtkomstbara.I sådana fall bör du ändra inställningen DocumentRoot i Apaches inställningar.
+Description-vi.UTF-8: Đường dẫn cho miền đã hỗ trợ :
+ Hãy nhập thư mục sẽ được DTP dùng để chứa các tập tin cho mọi miền đã hỗ trợ.
+ .
+ Nếu bạn chọn thư mục « /var/www », thư mục gốc Apache cho các tài liệu, tất cả các tập tin nằm trong thư mục đó có thể công bố cho mọi người dùng truy cập. Do đó khuyên bạn thay đổi giá trị DocumentRoot (gốc tài liệu) trong cấu hình Apache thành thư mục khác với « /var/www » đối với các miền đã hỗ trợ (hosted domains).
+Description-zh_CN.UTF-8: 被管理域名的路径:
+ 请输入DTC 使用的目录，来对所有管理的域名进行存储文件.
+ .
+ 如果您选择 /var/www 作为管理的域名的路径，作为 Apache 默认文档根目录, 所有在这个目录管理下的文件可能会被公开. 因此建议您以后在Apache 配置时更改DocumentRoot 设置.
+
+Template: dtc/conf_chroot_path
+Type: string
+Default: /var/lib/dtc/chroot_template
+Description: Path for the chroot environment template:
+ Please enter the directory to be used by DTC to build the cgi-bin chroot
+ environment template.
+Description-cs.UTF-8: Cesta k šabloně chrootovaného prostředí:
+ Zadejte prosím adresář, který má DTC použít jako šablonu pro vytvoření cgi-bin chrootu.
+Description-de.UTF-8: Pfad für die chroot-Umgebungsvorlage:
+ Bitte geben Sie den Pfad ein, der von DTC für die chroot-Umgebungsvorlage für cgi-bin verwendet werden soll.
+Description-es.UTF-8: Ruta de la plantilla del entorno chroot:
+ Introduzca el directorio usado por DTC para generar la plantilla del entorno del cgi-bin de chroot.
+Description-eu.UTF-8: Chroot inguruneko txantiloiaren bide-izena:
+ Sartu direktorioa DTC-k erabiltzeko (cgi-bin chroot inguruneko txantiloia eraikitzeko).
+Description-fi.UTF-8: chroot-ympäristön mallin polku:
+ Anna hakemisto, jota DTC käyttää cgi-bin chroot -ympäristön mallin rakentamiseen.
+Description-fr.UTF-8: Chemin pour l'environnement fermé d'exécution (« chroot ») :
+ Veuillez indiquer le répertoire qu'utilisera DTC pour construire le canevas de l'environnement fermé d'exécution des programmes CGI.
+Description-gl.UTF-8: Ruta para o patrón do ambiente de chroot:
+ Introduza o directorio a empregar para que DTC constrúa o patrón do ambiente do chroot de cgi-bin.
+Description-ja.UTF-8: chroot 環境テンプレートのパス (path):
+ DTC が cgi-bin chroot 環境のテンプレートを構築するのに使うディレクトリを入力してください。
+Description-ml.UTF-8: chroot പരിസ്ഥിതി ടെംപ്ലേറ്റിനുവേണ്ട പാത്ത്:
+ ദയവായി cgi-bin chroot പരിസ്ഥിതി ടെംപ്ലേറ്റ് നിര്‍മിയ്ക്കാന്‍ DTC ഉപയോഗിയ്ക്കാന്‍ പോകുന്ന ഡയറക്റ്ററി നല്‍കുക.
+Description-nl.UTF-8: Pad voor de chroot-omgeving sjabloon:
+ In welke map dient DTC de sjabloon voor de cgi-bin chroot omgeving op te bouwen?
+Description-pt.UTF-8: Caminho onde construir o ambiente template chroot:
+ Por favor introduza o caminho onde quer que o DTC construa o template de ambiente template chroot para cgi-bin.
+Description-pt_BR.UTF-8: Caminho para o modelo de ambiente chroot:
+ Por favor, informe o diretório a ser usado pelo DTC para construir o modelo de ambiente chroot cgi-bin.
+Description-ru.UTF-8: Каталог шаблона окружения chroot:
+ Введите каталог, который будет использовать DTC для построения шаблона cgi-bin chroot окружения.
+Description-sv.UTF-8: Sökväg till mallen för chroot-miljö:
+ Ange katalogen som ska användas av DTC för att skapa mallen för cgi-bin-chroot-miljön.
+Description-vi.UTF-8: Đường dẫn đốn mẫu môi trường chroot:
+ Hãy nhập thư mục sẽ được DTC dùng để xây dựng mẫu môi trường choot cgi-bin.
+Description-zh_CN.UTF-8: chroot 环境模板的路径:
+ 请输入DTC 使用的目录，来建立cgi-bin chroot 环境模板.
+
+Template: dtc/conf_admlogin
+Type: string
+Default: dtc
+Description: Main domain admin name:
+ Each DTC domain must have an administrator. Please enter the login
+ name of the administrator for the domain name containing the control
+ panel installation.
+Description-cs.UTF-8: Jméno správce hlavní domény:
+ Každá DTC doména musí mít správce. Zadejte prosím přihlašovací jméno správce k doméně, která obsahuje instalaci řídícího panelu.
+Description-de.UTF-8: Name des Administrators der Hauptdomain:
+ Jede DTC-Domain muss einen Administrator haben. Bitte geben Sie einen Benutzernamen für den Administrator der Domain ein, die die Steuer-Panel-Installation enthält.
+Description-es.UTF-8: Nombre del administrador del dominio principal:
+ Cada dominio DTC debe tener un administrador. Por favor, introduzca el nombre del administrador del dominio que contiene la instalación del panel de control.
+Description-eu.UTF-8: Domeinu nagusiko administratzailearen izena:
+ DTC domeinu bakoitzak administratzaile bat eduki behar du. Sartu administratzailearen saio-hasierako izena (instalazioko kontrol-panela duen domeinuaren izenarentzako).
+Description-fi.UTF-8: Pääverkkoalueen ylläpitäjän tunnus:
+ Jokaisella DTC-verkkoalueella tulee olla ylläpitäjä. Anna hallintapaneelin sisältävän verkkoalueen ylläpitäjän käyttäjätunnus.
+Description-fr.UTF-8: Identifiant de l'administrateur du domaine principal :
+ Chaque nom de domaine DTC doit avoir un administrateur. Veuillez indiquer l'identifiant de l'administrateur du domaine qui hébergera le panneau de contrôle principal.
+Description-gl.UTF-8: Nome do administrador do dominio principal:
+ Cada dominio de DTC debe ter un administrador. Introduza o nome de usuario do administrador do nome de dominio que contén a instalación do panel de control.
+Description-ja.UTF-8: メインドメイン管理者名:
+ 各 DTC ドメインは管理者を持つ必要があります。コントロールパネル導入を含むドメイン名の管理者ログイン名を入力してください。
+Description-ml.UTF-8: പ്രധാന ഡൊമൈന്‍ ഭരണാധികാരിയുടെ പേര്:
+ ഓരോ DTC ഡൊമൈനും നിര്‍ബന്ധമായി ഒരു ഭരണാധികാരിയുണ്ടായിരിയ്ക്കണം. ദയവായി നിയന്ത്രണ പാനല്‍ ഇന്‍സ്റ്റളേഷന്‍ ഉള്‍‌ക്കൊള്ളുന്ന ഡൊമൈന്‍ നാമത്തിന് വേണ്ട ഭരണാധികാരിയുടെ ലോഗിന്‍ നാമം നല്‍കുക.
+Description-nl.UTF-8: Beheerder van het hoofddomein:
+ Elk DTC-domein dient een beheerder te hebben. Wat is de gebruikersnaam van de beheerder voor de domeinnaam die de installatie van het controlepaneel bevat?
+Description-pt.UTF-8: Nome do domínio principal de administração:
+ Cada domínio DTC tem de ter um administrador. Por favor introduza o nome de login do administrador do nome de domínio que tem a instalação do painel de controlo.
+Description-pt_BR.UTF-8: Nome do administrador do domínio principal:
+ Cada domínio DTC deve ter um administrador. Por favor, informe o nome do login do administrador para o nome de domínio contendo a instalação do painel de controle.
+Description-ru.UTF-8: Имя администратора главного домена:
+ Каждый домен DTC должен иметь администратора. Введите имя учётной записи администратора для доменного имени, содержащего установку панели управления.
+Description-sv.UTF-8: Huvuddomänens administratör:
+ Alla DTC-domäner måste har en administratör. Ange användarnamnet för domännamnet som innehåller kontrollpanelen.
+Description-vi.UTF-8: Tên quản trị miền chính:
+ Mỗi miền DTC phải có một quản trị. Hãy nhập tên đăng nhập của quản trị cho tên của miền chứa bản cài đặt bảng điều khiển.
+Description-zh_CN.UTF-8: 主要域名管理员名字:
+ 每个DTC 域名必须有一个管理员. 请输入管理员的登录名以便于域名的有关控制面板安装.
+
+Template: dtc/conf_admpass
+Type: password
+Default:
+Description: Main domain admin password:
+ Please choose the main domain administrator's password. Access
+ to the control panel must be managed manually through a .htpasswd
+ file in the root path.
+Description-cs.UTF-8: Heslo správce hlavní domény:
+ Zadejte prosím heslo správce hlavní domény. Přístup k řídícímu panelu musí být spravován ručně skrze soubor .htpasswd.
+Description-de.UTF-8: Administrator-Kennwort für die Hauptdomain:
+ Bitte geben Sie das Passwort für den Administrator der Hauptdomain ein. Der Zugriff auf das Steuer-Panel muss manuell durch eine .htpasswd-Datei im Wurzelverzeichnis verwaltet werden.
+Description-es.UTF-8: Contraseña del administrador del dominio principal:
+ Elija la contraseña del administrador del dominio principal. El acceso al panel de control se debe gestionar manualmente mediante un archivo «.htpasswd» en el directorio raíz.
+Description-eu.UTF-8: Domeinu nagusiko administratzailearen pasahitza:
+ Aukeratu domeinu nagusiko administratzailearen pasahitza. Kontrol-panelerako sarbidea eskuz kudeatu behar da erroko bide-izenean dagoen .htpasswd fitxategiaren bidez.
+Description-fi.UTF-8: Pääverkkoalueen ylläpitäjän salasana:
+ Valitse salasana pääverkkoalueen ylläpitäjälle. Kontrollipaneelin oikeuksia täytyy hallinnoida käsin juurihakemistossa olevan tiedoston .htpasswd avulla.
+Description-fr.UTF-8: Mot de passe de l'administrateur du domaine principal :
+ Veuillez choisir un mot de passe pour l'administrateur du domaine principal. L'accès au panneau de contrôle est géré par un fichier .htpasswd à la racine du serveur.
+Description-gl.UTF-8: Contrasinal do administrador do dominio principal:
+ Escolla o contrasinal do administrador do dominio principal. Debe xestionarse manualmente o acceso ao panel de control mediante un ficheiro .htpasswd na ruta raíz.
+Description-ja.UTF-8: メインドメイン管理者パスワード:
+ メインのドメイン管理者のパスワードを入力してください。コントロールパネルへのアクセスは、ルートパスにある .htpasswd ファイルを介して手動で設定する必要があります。
+Description-ml.UTF-8: പ്രധാന ഡൊമൈന്‍ ഭരണാധികാരിയുടെ അടയാളവാക്ക്:
+ ദയവായി പ്രധാന ഡൊമൈന്‍ ഭരണാധികാരിയുടെ അടയാളവാക്ക് തിരഞ്ഞെടുക്കുക. നിയന്ത്രണ പാനലിലേക്കുള്ള സമീപനം റൂട്ട് പാത്തിലുള്ള .htpasswd ഫയല്‍ വഴി മാന്വലായി മാനേജ് ചെയ്യേണ്ടതുണ്ട്.
+Description-nl.UTF-8: Wachtwoord van de beheerder van het hoofddomein:
+ Wat is het wachtwoord van de beheerder van het hoofddomein? Toegang tot het controlepaneel dient handmatig via een '.htpasswd'-bestand in de pad-wortel geregeld te worden.
+Description-pt.UTF-8: Palavra-chave do administrador principal de domínio:
+ Por favor escolha a palavra-chave do administrador do domínio principal. O acesso ao painel de controlo tem de ser gerido manualmente através de um ficheiro .htpasswd no caminho raiz.
+Description-pt_BR.UTF-8: Senha do administrador do domínio principal:
+ Por favor, escolha a senha do administrador do domínio principal. O acesso ao painel de controle deve ser gerenciado manualmente através de um arquivo .htpasswd na raiz do caminho.
+Description-ru.UTF-8: Пароль администратора главного домена:
+ Введите пароль администратора главного домена. Доступом к панели управления нужно управлять вручную через файл .htpasswd в корневом пути.
+Description-sv.UTF-8: Huvuddomänens administrations lösenord:
+ Ange huvuddomänens administratörs lösenord. Tillgång till kontrollpanelen hanteras manuellt genom en .htpasswd-fil i rotsökvägen.
+Description-vi.UTF-8: Mật khẩu quản trị miền chính:
+ Hãy chọn mật khẩu của quản trị miền chính. Quyền truy cập vào bảng điều khiển phải được quản lý bằng tay thông qua một tập tin « .htpasswd » trên đường dẫn gốc.
+Description-zh_CN.UTF-8: 主要域名管理员密码:
+ 请选择主要域名管理员的密码. 进行控制面板的操作必须通过在根目录路径中到 .htpasswd文件手动进行.
+
+Template: dtc/conf_mta_type
+Type: select
+Choices: postfix, qmail
+Description: Mail Transfer Agent (MTA) type:
+ Please select the MTA that will be used with DTC. It
+ should be installed on the system already. If no such MTA is currently
+ installed, please complete the setup of DTC, install a MTA
+ package, then run "dpkg-reconfigure dtc".
+Description-cs.UTF-8: Typ poštovního serveru (MTA):
+ Vyberte prosím MTA, který má DTC používat. MTA by již měl být na systému nainstalován. Pokud tomu tak není, dokončete nastavení DTC, nainstalujte balík s MTA a poté spusťte „dpkg-reconfigure dtc“.
+Description-de.UTF-8: Typ des Mail Transfer Agents (MTA):
+ Bitte wählen Sie einen MTA, der mit DTC verwendet werden soll. Er sollte bereits auf dem System installiert sein. Falls derzeit kein solcher MTA installiert ist, dann konfigurieren Sie DTC zu ende, installieren einen MTA und rufen »dpkg-reconfigure dtc« auf.
+Description-es.UTF-8: Tipo de agente de transporte de correo electrónico (MTA):
+ Seleccione el MTA que se usará con DTC. Ya debería estar instalado en el sistema. Si no hay instalado ningún MTA, complete la configuración de DTC, instale un paquete de un MTA, y ejecute «dpkg-reconfigure dtc».
+Description-eu.UTF-8: MTA (Posta-Transferentzien Agentea) mota:
+ Hautatu MTA (DTC-rekin erabiltzeko). Dagoeneko sisteman instalatuta egon beharko luke. MTA-rik ez badago, osatu DTC-ren konfigurazioa, instalatu MTA paketea, eta ondoren exekutatu "dpkg-reconfigure dtc".
+Description-fi.UTF-8: Käytettävä sähköpostipalvelin (MTA):
+ Valitse DTC:n kanssa käytettävä sähköpostipalvelin. Sen tulisi olla jo asennettuna järjestelmään. Jos mitään palvelinta ei ole asennettuna, tee DTC:n asetukset loppuun, asenna palvelin ja aja sen jälkeen komento ”dpkg-reconfigure dtc”.
+Description-fr.UTF-8: Type du serveur de courriel (MTA : « Mail Transfer Agent ») :
+ Veuillez indiquer le serveur de courriel qui sera utilisé avec DTC. Ce serveur doit déjà être installé sur le système. Si aucun serveur n'est installé, veuillez terminer la configuration de DTC, installer le paquet d'un serveur de courriel puis utiliser la commande « dpkg-reconfigure dtc ».
+Description-gl.UTF-8: Tipo de axente de transferencia de correo (MTA):
+ Escolla o MTA que quere empregar con DTC. Debería estar xa instalado no sistema. Se non hai un MTA tal instalado, complete a configuración de DTC, instale un paquete de MTA e execute "dpkg-reconfigure dtc".
+Description-ja.UTF-8: メール転送エージェント (MTA) の種類
+ DTC で使う MTA を選んでください。既にシステムに導入されているものである必要があります。現状そのような MTA が導入されていない場合は、DTC の設定を完了し、MTA パッケージを導入してから「dpkg-reconfigure dtc」を実行してください。
+Description-ml.UTF-8: കത്ത് എത്തിയ്ക്കുന്ന ഏജന്റ് (MTA) തരം:
+ ദയവായി DTC യുടെയൊപ്പം ഉപയോഗിയ്ക്കാന്‍ പോകുന്ന MTA ഏതെന്ന് തിരഞ്ഞെടുക്കുക. ഇത് സിസ്റ്റത്തില്‍ നേരത്തെ തന്നെ ഇന്‍സ്റ്റാള്‍ ചെയ്തിരിയ്ക്കണം. അങ്ങനെയൊരു MTA ഇപ്പോള്‍ ഇന്‍സ്റ്റാള്‍ ചെയ്തിട്ടില്ലെങ്കില്‍, ദയവായി DTC യുടെ സജ്ജീകരണം പൂര്‍ത്തിയാക്കുക, MTA പാക്കേജ് ഇന്‍സ്റ്റാള്‍ ചെയ്യുക, അതിനു ശേഷം "dpkg-reconfigure dtc" എന്ന് പ്രവര്‍ത്തിപ്പിയ്ക്കുക.
+Description-nl.UTF-8: Type MTA (Mail Transfer Agent):
+ Welke MTA dient DTC te gebruiken? Deze dient reeds op het systeem geïnstalleerd te zijn, als dit niet het geval is dient u na het installeren van het MTA-pakket de configuratie van DTC af te maken via het commando 'dpkg-reconfigure dtc'.
+Description-pt.UTF-8: Tipo de Mail Transfer Agent (MTA):
+ Por favor escolha que MTA irá ser usado com o DTC. Deve já estar instalado no sistema. Se o MTA não estiver instalar, por favor termine a configuração do DTC, instale um pacote MTA, e depois corra "dpkg-reconfigure dtc".
+Description-pt_BR.UTF-8: Tipo do "Mail Transfer Agent" (MTA -- Agente de Transporte de Mensagem):
+ Por favor, selecione o MTA que será usado com o DTC. Ele já deveria estar instalado no sistema. Se não há um MTA atualmente instalado, por favor, complete a configuração do DTC, instale um pacote MTA, e execute "dpkg-reconfigure dtc".
+Description-ru.UTF-8: Тип агента пересылки почты (MTA):
+ Выберите MTA, который будет использоваться с DTC. Он уже должен быть установлен в системе. Если такой MTA сейчас не установлен, то завершите настройку DTC, установите пакет с MTA, а затем выполните «dpkg-reconfigure dtc».
+Description-sv.UTF-8: Typ av posthanteringsagent (MTA):
+ välj vilken MtA som ska användas av DTC. Den ska redan finnas installerad på systemet. Om MTA:n inte finns installerad redan slutför först installationen av DTC, installera sedan MTA:n och kör därefter "dpkg-reconfigure dtc".
+Description-vi.UTF-8: Kiểu tác nhân truyền thư tín (MTA):
+ Hãy chọn MTA sẽ được dùng với DTC. Nó nên đã được cài đặt vào hệ thống. Chưa thì bạn thiết lập xong DTC, cài đặt một gói MTA, rồi chạy câu lệnh cấu hình lại « dpkg-reconfigure dtc ».
+Description-zh_CN.UTF-8: Mail Transfer Agent (MTA) 类型:
+ 请选择DTC使用的MTA. 可能系统上已经安装. 如果目前MTA没有安装, 请完成DTC的安装, 安装一个MTA 软件包, 再运行 "dpkg-reconfigure dtc".
+
+Template: dtc/conf_use_cyrus
+Type: boolean
+Default: false
+Description: Use Cyrus mail system?
+ Please choose this option if you are using Cyrus for mail
+ delivery, IMAP and MTA. This option is only compatible with Postfix.
+Description-cs.UTF-8: Používat poštovní systém Cyrus?
+ Pokud jako poštovní a IMAP server používáte Cyrus, vyberte tuto možnost. Tato možnost je kompatibilní pouze s Postfixem.
+Description-de.UTF-8: Cyrus-E-Mail-System verwenden?
+ Bitte wählen sie diese Option, falls Sie Cyrus (IMAP und MTA) für die E-Mail-Zustellung verwenden wollen. Diese Option ist nur mit Postfix kompatibel.
+Description-es.UTF-8: ¿Desea usar el sistema de correo electrónico de Cyrus?
+ Elija está opción si está usando Cyrus para la transmisión del correo electrónico, IMAP y MTA. Esta opción sólo es compatible con Postfix.
+Description-eu.UTF-8: Erabili Cyrus posta-sistema?
+ Hautatu aukera hau Cyrus erabiltzen baduzu (IMAP, MTA eta posta bidaltzeko). Aukera hau Postfix-ekin soilik da bateragarria.
+Description-fi.UTF-8: Käytetäänkö Cyrus-sähköpostijärjestelmää?
+ Valitse tämä vaihtoehto, jos käytät Cyrusia sähköposti- ja IMAP-palvelimena. Tämä vaihtoehto on yhteensopiva vain Postfixin kanssa.
+Description-fr.UTF-8: Souhaitez-vous utiliser le système de courriel Cyrus ?
+ Veuillez choisir cette option si Cyrus est utilisé pour la distribution des courriels, le service IMAP ou comme serveur de courriel. Cette option n'est compatible qu'avec Postfix.
+Description-gl.UTF-8: ¿Empregar o sistema de correo Cyrus?
+ Escolla esta opción se emprega Cyrus para a entrega de correo, IMAP e MTA. Esta opción só é compatible con Postfix.
+Description-ja.UTF-8: Cyrus メールシステムを使いますか?
+ Cyrus をメール配送/IMAP/MTA に使っている場合はこのオプションを選んでください。このオプションは Postfix のみと互換性があります。
+Description-ml.UTF-8: സൈറസ് കത്ത് സിസ്റ്റം ഉപയോഗിയ്ക്കണോ?
+ കത്ത് എത്തിയ്ക്കുന്നതിനും IMAP നും MTA യ്ക്കും നിങ്ങള്‍ സൈറസാണ് ഉപയോഗിയ്ക്കുന്നതെങ്കില്‍ ഈ വില തിരഞ്ഞെടുക്കുക. ഈ തിരഞ്ഞെടുക്കാവുന്ന വില പോസ്റ്റ്ഫിക്സുമായി മാത്രം പൊരുത്തമുള്ളതാണ്.
+Description-nl.UTF-8: Wilt u het Cyrus e-mailsysteem gebruiken?
+ U dient deze optie te kiezen indien u Cyrus gebruikt voor e-mailbezorging, IMAP en MTA. DEze optie is enkel compatibel met Postfix.
+Description-pt.UTF-8: Usar o sistema de mail Cyrus?
+ Por favor escolha esta opção se estiver a usar o Cyros para entrega de mails, IMAP e MTA. Esta opção só é compatível com Postfix.
+Description-pt_BR.UTF-8: Usar o sistema de e-mail Cyrus?
+ Por favor, escolha esta opção se você está usando o Cyrus para a entrega de e-mails, IMAP e MTA. Esta opção somente é compatível com o Postfix.
+Description-ru.UTF-8: Использовать почтовую систему Cyrus?
+ Ответьте утвердительно, если используете Cyrus для доставки почты, IMAP и MTA. Этот параметр совместим только с Postfix.
+Description-sv.UTF-8: Ska e-post-systemet Cyrus användas?
+ Välj detta alternativ om du använder Cyrus för e-post-leveranser, IMAP och MTA. Detta alternativ är kompatibelt med Postfix.
+Description-vi.UTF-8: Dùng hệ thống thư tín Cyrus không?
+ Bật tùy chọn này nếu bạn dùng Cyrus để phát thư, IMAP và MTA. Tùy chọn này chỉ tương thích với Postfix.
+Description-zh_CN.UTF-8: 使用 Cyrus 邮件系统?
+ 如果您使用Cyrus发送邮件,IMAP 和 MTA，请选择此选项. 此选项仅和Postfix兼容.
+
+Template: dtc/conf_apache_version
+Type: select
+Choices: 2, 1
+Description: Apache version to configure:
+ DTC supports both Apache and Apache2. Please enter the version
+ which DTC should use.
+Description-cs.UTF-8: Verze Apache, která se má nastavit:
+ DTC podporuje jak Apache, tak Apache2. Zadejte verzi, kterou má DTC používat.
+Description-de.UTF-8: Apache-Version, die konfiguriert werden soll:
+ DTC unterstützt Apache und Apache2. Bitte geben Sie ein, welche Version DTC verwenden soll.
+Description-es.UTF-8: Versión de Apache para configurar:
+ DTC es compatible con Apache y Apache2. Por favor, introduzca la versión que DTC debería usar.
+Description-eu.UTF-8: Konfiguratuko den Apache bertsioa:
+ DTC-k bai Apache bai Apache2 onartzen ditu. Sartu DTC-k erabili beharreko bertsioa.
+Description-fi.UTF-8: Asetettava Apachen versio:
+ DTC tukee sekä Apachea että Apache2:ta. Valitse mitä versiota DTC:n tulisi käyttää.
+Description-fr.UTF-8: Version d'Apache à configurer :
+ DTC gère à la fois Apache et Apache2. Veuillez choisir la version à utiliser.
+Description-gl.UTF-8: Versión de Apache a configurar:
+ DTC soporta Apache e Apache2. Introduza a versión que se debería empregar con DTC.
+Description-ja.UTF-8: 設定する Apache のバージョン:
+ DTC は Apache と Apache2 の両方をサポートしています。DTC が使うバージョンを入力してください。
+Description-ml.UTF-8: ക്രമീകരിയ്ക്കേണ്ട അപാച്ചെ ലക്കം:
+ DTC അപാച്ചെയേയും അപാച്ചെ2വിനേയും പിന്തുണയ്ക്കുന്നു. ദയവായി DTC ഉപയോഗിയ്ക്കേണ്ട ലക്കമേതെന്ന് നല്‍കുക.
+Description-nl.UTF-8: Te configureren Apache-versie:
+ DTC ondersteund Apache en Apache2. Welke versie wilt u DTC laten gebruiken?
+Description-pt.UTF-8: Versão do apache a configurar:
+ O DTC suporta tanto o Apache como o Apache2. Por favor indique a versão que o DTC deve usar.
+Description-pt_BR.UTF-8: Versão do apache a configurar:
+ DTC suporta ambos Apache e Apache2. Por favor, informe a versão que o DTC deveria usar.
+Description-ru.UTF-8: Версия Apache для настройки:
+ DTC поддерживает работу с Apache и Apache2. Укажите версию, которую нужно использовать DTC.
+Description-sv.UTF-8: Inställningar för följande Apacheversion:
+ DTC har stöd för både Apache och Apache2. Ange den version som DTC ska använda.
+Description-vi.UTF-8: Phiên bản Apache cần cấu hình:
+ DTC hỗ trợ cả hai Apache và Apache2. Hãy nhập phiên bản sẽ được DTC dùng.
+Description-zh_CN.UTF-8: Apache 版本来配置:
+ DTC 都支持 Apache 和 Apache2. 请输入DTC 应该使用的版本.
+
+Template: dtc/conf_use_nated_vhosts
+Type: boolean
+Default: false
+Description: Use "NATed" vhosts?
+ DTC can configure Apache to use one of your IP addresses. If the
+ server is firewalled with NAT and port redirections of public IP(s)
+ address(es), a "NATed" vhost configuration can be generated.
+ .
+ This option should be chosen only if the server is not connected to
+ the Internet directly, but through a firewall doing network address
+ translation (NAT). If the server uses a dynamic public IP address,
+ NAT and port forwarding are mandatory for DTC.
+Description-cs.UTF-8: Použít „NATované“ vhosty?
+ DTC může nastavit Apache tak, aby používal některou z vašich IP adres. Pokud se server nachází za NATem a jsou na něj přesměrovány porty z veřejné IP adresy (nebo adres), je možné vytvořit „NATovanou“ konfiguraci vhostu.
+ .
+ Tuto možnost byste měli vybrat pouze v případech, kdy server není připojen k Internetu přímo, ale skrze firewall provádějící překlad síťových adres (NAT). Pokud server používá dynamickou veřejnou IP adresu, DTC vyžaduje použití NAT a přesměrování portů.
+Description-de.UTF-8: Vhosts über NAT verwenden?
+ DTC kann Apache so konfigurieren, dass es eine Ihrer IP-Adressen benutzt. Falls der Server hinter eine Firewall mit NAT und Portweiterleitung der öffentlichen IP-Adresse(n) steht, kann eine vhost-Konfiguration über NAT generiert werden.
+ .
+ Diese Option sollte nur verwendet werden, falls der Server nicht direkt sondern über eine Firewall mit Network Address Translation (NAT) mit dem Internet verbunden ist. Falls der Server eine dynamische öffentliche IP-Adresse verwendet, sind NAT und Portweiterleitung für DTC vorgeschrieben.
+Description-es.UTF-8: ¿Usar vhosts con NAT?
+ DTC puede configurar Apache para usar una de sus direcciones IP. Si el servidor está detrás de un cortafuegos con NAT y redirecciones de puertos de la(s) dirección(es) IP, se puede generar una configuración de vhost con NAT.
+ .
+ Esta opción se debería elegir sólo si el servidor no está conectado a internet directamente, pero sí mediante un cortafuegos realizando traducción de direcciones de red (NAT). Si el servidor usa una dirección IP dinámica y pública, el uso de NAT y de la redirección de puertos son obligados para DTC.
+Description-eu.UTF-8: Erabili "NATed" ostalari birtualak?
+ DTC-ek Apache konfigura dezake IP helbideetariko bat erabiltzeko. Zerbitzariak suebaki bat badu (NAT eta IP helbide publikoen ataken birbideraketekin) "NATed" ostalari birtualaren konfigurazioa sor daiteke.
+ .
+ Aukera hau honako kasuan soilik hauta daiteke: zerbitzaria zuzenean Internetera konektatuta ez dagoenean, baizik eta suebaki baten bidez (sareko helbideen itzulpena egiten duena) konektatzen bada. Zerbitzariak IP helbide publiko dinamiko bat erabiltzen badu NAT eta ataken bideraketa derrigorrezkoak dira DTC-rentzako.
+Description-fi.UTF-8: Käytetäänkö ”käännettyjä” (NAT) vhosteja?
+ DTC voi asettaa Apachen käyttämään yhtä IP-osoitetta. Jos palvelimella on palomuuri, joka kääntää osoitteet (NAT) ja ohjaa julkisten IP-osoitteiden portteja edelleen, voidaan luoda ”käännetyt” vhost-asetukset.
+ .
+ Tämä vaihtoehto tulisi valita vain, jos palvelin ei ole suorassa yhteydessä Internetiin vaan verkko-osoitteiden kääntöä (NAT) tekevän palomuurin takana. Jos palvelin käyttää dynaamisia julkisia IP-osoitteita, NAT ja porttien edelleenohjaus ovat pakollisia DTC:n kanssa.
+Description-fr.UTF-8: Faut-il utiliser des hôtes virtuels avec traduction d'adresses ?
+ DTC peut configurer Apache pour utiliser une des adresses publiques du serveur. Si celui-ci est protégé par un pare-feu avec traduction d'adresses (NAT) et redirection de port depuis une ou des adresses publiques, une configuration utilisant des hôtes virtuels avec traduction d'adresses (« NATed vhosts ») peut être créée.
+ .
+ Cette option ne doit être activée que si le serveur n'est pas connecté directement sur l'Internet mais est accessible via un pare-feu avec traduction d'adresses. Si le serveur utilise une adresse IP publique dynamique, la traduction d'adresses et la redirection de ports sont obligatoires pour utiliser DTC.
+Description-gl.UTF-8: ¿Empregar servidores virtuales con NAT?
+ DTC pode configurar Apache para que empregue un dos seus enderezos IP. Se o servidor ten unha devasa con NAT e redirecións de portos de enderezos IP públicos, pódese xerar unha configuración de servidores virtuales con NAT.
+ .
+ Só se debería escoller esta opción se o servidor non está conectado directamente a Internet, senón a través dunha devasa que fai tradución de enderezos de rede (NAT). Se o servidor emprega un enderezo IP público dinámico, o NAT e a redireción de portos son obrigatorios con DTC.
+Description-ja.UTF-8: 「NAT された」 vhost を使いますか?
+ DTC は IP アドレスのうちの一つを使うように Apache を設定できます。サーバが公開 IP アドレスを NAT とポートリダイレクションしているファイアウォールの配下にある場合、「NAT された」vhost 設定を生成できます。
+ .
+ このオプションはサーバがインターネットに直接ではないが、ネットワークアドレス変換 (NAT) をしているファイアウォール経由で接続されている場合にのみ選択すべきです。サーバがダイナミックな公開 IP アドレスを使っている場合は、DTC 用には NAT とポートフォワーディングが必須になります。
+Description-ml.UTF-8: "NATed" vhost കള്‍ ഉപയോഗിയ്ക്കണോ?
+ DTC യ്ക്ക് നിങ്ങളുടെ ഐപി വിലാസങ്ങളിലൊന്നുപയോഗിയ്ക്കാന്‍ അപാച്ചെയെ ക്രമീകരിയ്ക്കാന്‍ കഴിയും. നിങ്ങളുടെ സെര്‍വര്‍ NAT കൊണ്ടും പബ്ലിക് ഐപി വിലാസങ്ങളുടെ പോര്‍ട്ട് തിരിച്ചു വിടലുകള്‍ കൊണ്ടും ഫയര്‍വാള്‍ ചെയ്തിരിയ്ക്കുകയുമാണെങ്കില്‍ ഒരു "NATed" vhost ക്രമീകരണമുണ്ടാക്കാം.
+ .
+ സെര്‍വര്‍ ഇന്റര്‍നെറ്റിലേയ്ക്ക് നേരിട്ട് ബന്ധിപ്പിയ്ക്കാതെ ശൃംഘലാ വിലാസ തര്‍ജ്ജമ (NAT) ചെയ്യുന്ന ഒരു ഫയര്‍വാളിലൂടെ കടത്തിവിടുകയാണെങ്കില്‍ മാത്രമേ ഈ ഐച്ഛികം തിരഞ്ഞെടുക്കേണ്ടതുള്ളൂ. സെര്‍വര്‍ ഒരു മാറുന്ന പബ്ലിക് ഐപി വിലാസമുപയോഗിയ്ക്കുന്നുണ്ടെങ്കില്‍ DTC യ്ക്ക് NAT ഉം പോര്‍ട്ട് മാറ്റി അയയ്ക്കലും നിര്‍ബന്ധമാണ്.
+Description-nl.UTF-8: Wilt u via 'NAT' lopende vhosts gebruiken?
+ DTC kan Apache instelllen om een van uw IP-adressen te gebruiken. Als uw server zich achter een firewall met NAT en poort-omleiding van publieke IP-adressen bevindt, kan een via 'NAT' lopende vhost configuratie aangemaakt worden.
+ .
+ Enkel wanneer de server niet rechstreeks met internet verbonden is, maar via een firewall die NAT (Network Adress Translation) uitvoert dient u deze optie te kiezen. Als de server een dynamisch publiek IP-adres gebruikt zijn NAT en poort-omleiding verplicht voor DTC.
+Description-pt.UTF-8: Usar vhosts atrás de NAT?
+ O DTC pode configurar o Apache para usar um dos seus endereços IP. Se o servidor estiver atrás de uma firewall com NAT e redirecções de portos de IP(s) público(s), será gerada uma configuração de vhost especial para o caso.
+ .
+ Esta opção deve ser escolhida apenas se o servidor não estiver ligado directamente à Internet, mas através de uma firewall que faça tradução de endereços de rede (NAT). Se o servidor usar endereços públicos dinâmicos, é obrigatório usar NAT e redireccionamento de portos com o DTC.
+Description-pt_BR.UTF-8: Usar vhosts com "NAT"?
+ DTC pode configurar o Apache para usar um dos seus endereços IP. Se o servidor tem firewall com NAT e redirecionamentos de porta de endereço(s) IP públicos, uma configuração de vhost com "NAT" pode ser gerada.
+ .
+ Esta opção deveria ser escolhida somente se o servidor não está conectado à Internet diretamente, mas através de um firewall fazendo tradução de endereços de rede (NAT). Se o servidor usa endereços dinâmicos de IPs públicos, NAT e "port forwarding" são obrigatórios para o DTC.
+Description-ru.UTF-8: Использовать «NAT-теные» vhosts?
+ DTC может настроить Apache на использование одного из ваших IP-адресов. Если сервер находится за межсетевым экраном с NAT и перенаправлением портов публичного(ых) IP-адреса(ов), то может быть создана «NAT-теная» vhost конфигурация.
+ .
+ Отвечать утвердительно нужно только, если сервер подключён к Интернет не напрямую, а через межсетевой экран, выполняющий трансляцию сетевых адресов (NAT). Если сервер использует динамический публичный IP-адрес, то NAT и перенаправление портов обязательно для DTC.
+Description-sv.UTF-8: Använd "NAT:ade" vitruella värdar?
+ DTC kan ställa in Apache att använda endast en IP-adress. Om servern står bakom en brandvägg med NAT- eller port-inställningar på den publika IP-adressen kan en "NAT:ad" inställning skapas.
+ .
+ Detta alternativ ska bara användas om servern inte är ansluten direkt till Internet, servern måste med andra ord ansluta genom en brandvägg som gör översättningar av nätverksadressen (NAT, Network Address Translation) mot Internet. Om servern använder en publikt dynamisk IP-adress måste DTC använda NAT och port-sändning.
+Description-vi.UTF-8: Use các máy ảo theo NAT không?
+ DTC có khả năng cấu hình Apache để sử dụng một của những địa chỉ IP của bạn. Nếu trình phục vụ phải đi qua một bức tường lửa có chạy NAT và cũng chuyển tiếp cổng của địa chỉ IP công, một cấu hình vhost (máy ảo) kiểu NAT có thể được tạo.
+ .
+ Bật tùy chọn này chỉ nếu trình phục vụ không được kết nối trực tiếp tới Internet, nhưng phải đi qua một bức tường lửa có dịch địa chỉ mạng (NAT). Nếu trình phục vụ dùng một địa chỉ IP công động, DTC phải dùng cả hai dịch vụ NAT và chuyển tiếp cổng.
+Description-zh_CN.UTF-8: 使用 "NATed" vhosts?
+ DTC 可以通过您其中的一个IP地址来配置 Apache. 如果服务器使用NAT和公众 IP 地址的端口更改方向作为防火墙, 一个  "NATed" vhost 配置可以被产生.
+ .
+ 只有在服务器不是直接连接互联网,但是通过network address translation (NAT)作为防火墙时,才选择此项. 如果服务器使用一个动态公众IP地址, DTC则必须要求 NAT 和 端口转接.
+
+Template: dtc/conf_nated_vhosts_ip
+Type: string
+Description: NATed LAN IP address:
+ Please enter the IP address of the server for DTC to
+ generate all vhosts that will be used by Apache.
+Description-cs.UTF-8: NATovaná IP adresa:
+ Zadejte prosím IP adresu serveru, aby mohl DTC vygenerovat všechny vhosty, které bude Apache používat.
+Description-de.UTF-8: IP-Adresse für LAN über NAT:
+ Bitte geben Sie die IP-Adresse des Servers für DTC ein, um alle vhosts zu generieren, die von Apache verwendet werden sollen.
+Description-es.UTF-8: Dirección IP de la red local con NAT:
+ Introduzca la dirección IP del servidor de DTC para generar todos los vhost que se usarán en Apache.
+Description-eu.UTF-8: NATed LAN IP helbidea:
+ Sartu zerbitzariaren IP helbidea DTC-rentzako (Apache-k erabiliko dituen ostalari birtual guztiak sortzeko).
+Description-fi.UTF-8: Käännetty sisäverkon IP-osoite:
+ Anna DTC-palvelimen IP-osoite luodaksesi kaikki Apachen käyttämät vhostit.
+Description-fr.UTF-8: Adresse IP traduite (avec NAT) sur le réseau local :
+ Veuillez indiquer l'adresse IP du serveur, qui sera utilisée pour créer tous les hôtes virtuels utilisés par Apache.
+Description-gl.UTF-8: Enderezo IP da NAT da rede local:
+ Introduza o enderezo IP do servidor para que DTC xere tódolos servidores virtuais que se han empregar en Apache.
+Description-ja.UTF-8: NAT された LAN の IP アドレス:
+ Apache が利用する全てのバーチャルホスト (vhost) を DTC が生成するのに使うサーバの IP アドレスを入力してください。
+Description-ml.UTF-8: NATed ലാന്‍ ഐപി വിലാസം:
+ DTC യ്ക്ക് അപാച്ചെ ഉപയോഗിയ്ക്കാന്‍ പോകുന്ന എല്ല vhost കളേയും ഉണ്ടാക്കാന്‍ ദയവായി സെര്‍വറിന്റെ ഐപി വിലാസം നല്‍കുക.
+Description-nl.UTF-8: Via NAT toegankelijk IP-netwerkadres:
+ Welk IP-adres dient de DTC-server te gebruiken voor het aanmaken van de door Apache te gebruiken vhosts?
+Description-pt.UTF-8: IP da LAN sobre NAT:
+ Por favor introduza o endereço IP do servidor do DTC para gerar todos os vhosts que serão usados pelo Apache.
+Description-pt_BR.UTF-8: Endereço IP da LAN com NAT:
+ Por favor, informe o endereço IP do servidor para o DTC gerar todos os vhosts que serão usados pelo Apache.
+Description-ru.UTF-8: NAT-теный LAN IP-адрес:
+ Введите IP-адрес сервера DTC для генерации всех vhosts, которые будут использованы Apache.
+Description-sv.UTF-8: Lokal IP-adress för NAT:
+ Ange serverns IP-adress som DTC ska skapa sina vhost:ar (ungefär virtuella värdar) som Apache ska använda.
+Description-vi.UTF-8: Địa chỉ IP LAN có NAT:
+ Hãy nhập địa chỉ IP của trình phục vụ để DTC tạo ra tất cả các máy ảo (vhost) sẽ được Apache dùng.
+Description-zh_CN.UTF-8: NATed LAN IP 地址:
+ 请输入一个服务器的IP地址，DTC 将产生Apache要使用的所有vhosts.
+
+Template: dtc/conf_gen_ssl_cert
+Type: boolean
+Default: true
+Description: Generate an SSL certificate for DTC?
+ If you choose this option, DTC will generate a self-signed SSL
+ certificate and will use SSL to browse the panel. SSL will also be
+ activated and the generated Apache configuration will activate HTTPS
+ URLs for the control panel.
+ .
+ This certificate can be changed for a root CA certificate later.
+ .
+ Previously-generated certificates will never be overwritten. To
+ regenerate the certificate, you need to remove all the files in
+ /usr/share/dtc/etc/ssl.
+Description-cs.UTF-8: Vygenerovat pro DTC SSL certifikát?
+ Zvolíte-li tuto možnost, DTC vygeneruje SSL certifikát (podepsaný sám sebou) a pro brouzdání panelem použije SSL. SSL bude také povoleno v konfiguraci Apache, čímž se pro řídící panel povolí HTTPS adresy.
+ .
+ Tento certifikát může být později vyměněn za certifikát od kořenové certifikační autority.
+ .
+ Dříve vygenerované certifikáty nebudou nikdy přepsány. Pro znovuvytvoření certifikátu musíte z /usr/share/dtc/etc/ssl odstranit všechny soubory.
+Description-de.UTF-8: Soll ein SSL-Zertifikat für DTC generiert werden?
+ Falls Sie diese Option wählen, wird DTC ein selbst-signiertes SSL-Zertifikat generieren und SSL für das Navigieren im Control Panel verwenden. SSL wird auch aktiviert und die generierte Apachekonfiguration wird HTTPS-URLs für das Steuer-Panel verwenden.
+ .
+ Dieses Zertifikat kann später gegen ein root CA-Zertifikat ausgetauscht werden.
+ .
+ Zuvor generierte Zertifikate werden nie überschrieben. Um das Zertifikat neu zu generieren, müssen Sie alle Dateien in /usr/share/dtc/etc/ssl entfernen.
+Description-es.UTF-8: ¿Desea generar un certificado SSL de DTC?
+ Si elije esta opción, DTC generará un certificado SSL autofirmado y usará SSL para navegar por el panel. SSL también se activará y la configuración generada de Apache activará HTTPS para las URL del panel de control.
+ .
+ Este certificado se puede cambiar más tarde por una autoridad de certificación raíz.
+ .
+ Los certificados generados anteriormente nunca se sobrescribirán. Para regenerar el certificado, necesita borrar todos los archivos del directorio «/usr/share/dtc/etc/ssl».
+Description-eu.UTF-8: Sortu DTC-ren SSL ziurtagiria?
+ Aukera hau hautatzen baduzu, DTC-k berak sinatutako SSL ziurtagiria sortuko du eta SSL erabiliko da panela arakatzeko. SSL ere aktibatu egingo da eta sortutako Apache-ren konfigurazioak HTTPS URLak aktiba ditzake kontrol-panelarentzako.
+ .
+ Geroago, ziurtagiri hau alda daiteke supererabiltzailearen ZE (CA) ziurtagiri batengatik.
+ .
+ Aurrez sortutako ziurtagiriak ez dira inoiz gainidatziko. Ziurtagiria birsortzeko /usr/share/dtc/etc/ssl direktoriopean dauden fitxategi guztiak kendu behar dituzu.
+Description-fi.UTF-8: Luodaanko DTC:lle SSL-varmenne?
+ Jos valitset tämän vaihtoehdon, DTC luo itseallekirjoitetun SSL-varmenteen ja näyttää paneelin käyttäen SSL:ää. SSL myös aktivoidaan ja luodut Apache-asetukset käyttävät HTTPS-osoitteita kontrollipaneelin kanssa.
+ .
+ Tämä varmenne voidaan vaihtaa juurivarmentajan varmenteeseen myöhemmin.
+ .
+ Aikaisemmin luotuja varmenteita ei koskaan kirjoiteta yli. Jos varmenne halutaan luoda uudelleen, kaikki tiedostot hakemistosta /usr/share/dtc/etc/ssl tulee poistaa.
+Description-fr.UTF-8: Faut-il créer un certificat SSL pour DTC ?
+ Si vous choisissez cette option, DTC créera un certificat SSL auto-signé et l'accès au panneau de contrôle se fera avec chiffrement SSL. La gestion de SSL sera également activée et la configuration créée pour Apache activera les URL HTTPS pour le panneau de contrôle.
+ .
+ Ce certificat peut être remplacé ultérieurement par un certificat signé par une autorité de certification.
+ .
+ En aucun cas, un certificat créé précédemment ne sera remplacé. Pour créer un nouveau certificat, tous les fichiers présents dans /usr/share/dtc/etc/ssl doivent préalablement être supprimés.
+Description-gl.UTF-8: ¿Xerar un certificado SSL para DTC?
+ Se escolle esta opción, DTC ha xerar un certificado SSL autoasinado e ha empregar SSL para navegar no panel. SSL tamén se ha activar e a configuración xerada de Apache ha activar os URLs HTTPS para o panel de control.
+ .
+ Pódese cambiar este certificado por un certificado de CA raíz máis tarde.
+ .
+ Nunca se han sobrescribir os certificados xerados antes. Para volver xerar o certificado, ten que eliminar tódolos ficheiros de /usr/share/dtc/etc/ssl.
+Description-ja.UTF-8: DTC 用に SSL 証明書を生成しますか?
+ このオプションを選ぶと、DTC は自己署名 SSL 証明書を生成し、パネルの閲覧に SSL を使うようになります。SSL が有効にされ、生成された Apache の設定はコントロールパネルに対して HTTPS での URL を有効になります。
+ .
+ この証明書は、後ほどルート CA 証明書に合わせて変更できます。
+ .
+ 先ほど生成した証明書は、上書きされることはありません。証明書を再生成するには、/usr/share/dtc/etc/ssl にある全てのファイルを削除する必要があります。
+Description-ml.UTF-8: DTC യ്ക്കായി ഒരു SSL സാക്ഷ്യപത്രെ ഉണ്ടാക്കട്ടേ?
+ നിങ്ങള്‍ ഈ ഐച്ഛികം തിരഞ്ഞെടുക്കുകയാണെങ്കില്‍ DTC ഒരു സ്വന്തം-ഒപ്പുവച്ച SSL സാക്ഷ്യപത്രം ഉണ്ടാക്കുകയും പാനല്‍ ബ്രൌസ് ചെയ്യാന്‍ SSL ഉപയോഗിയ്ക്കുകയും ചെയ്യും. SSL സജീവമാക്കപ്പെടുകയും ഉണ്ടാക്കിയ അപാച്ചെ ക്രമീകരണം നിയന്ത്രണ പാനലിനുള്ള HTTPS URL സജീവമാക്കുകയും ചെയ്യും.
+ .
+ ഈ സാക്ഷ്യപത്രം ഒരു റൂട്ട് CA സാക്ഷ്യപത്രത്തിനായി പിന്നീട് മാറ്റാവുന്നതാണ്.
+ .
+ നേരത്തെ ഉണ്ടാക്കിയ സാക്ഷ്യ പത്രങ്ങള്‍ ഒരിയ്ക്കലും മാറ്റി എഴുതുന്നതായിരിയ്ക്കില്ല. ഒരു സാക്ഷ്യപത്രം വീണ്ടുമുണ്ടാക്കാന്‍ നിങ്ങള്‍ /usr/share/dtc/etc/ssl ലുള്ള എല്ലാ ഫയലുകളും കളയോണ്ടതുണ്ട്.
+Description-nl.UTF-8: Wil u een SSL-certificaat aanmaken voor DTC?
+ Als u deze optie kiest maakt DTC een zelf-ondertekend SSL-certificaat aan, en wordt SSL gebruikt bij het benaderen van het controlepaneel (SSL wordt geactiveerd en de apache-configuratie maakt https-URL's aan voor het controlepaneel).
+ .
+ Dit certificaat kan later vervangen worden door een root-CA-certificaat.
+ .
+ Eerder aangemaakte certificaten worden nooit overschreven. Om een certificaat opnieuw aan te maken dient u alle bestanden in /usr/share/dtc/etc/ssl te verwijderen.
+Description-pt.UTF-8: Gerar um certificado SSL para o DTC?
+ Se escolher esta opção, o DTC irá gerar um certificado SSL auto-assinado e irá usar SSL para aceder ao painel. Também irá activar o SSL e a configuração gerada do Apache irá activar URLs HTTPS para o painel de controlo.
+ .
+ Este certificado pode ser posteriormente mudado para um certificado CA de raiz.
+ .
+ Certificados gerados anteriormente nunca serão escritos por cima. Para gerar de novo o certificado, tem de remover todos os ficheiros em /usr/share/dtc/etc/ssl.
+Description-pt_BR.UTF-8: Gerar um certificado SSL para o DTC?
+ Se você escolher esta opção, o DTC vai gerar um certificado SSL auto-assinado e usará SSL para navegar no painel. O SSL também pode ser ativado e a configuração Apache gerada será ativada com URLs HTTPS para o painel de controle.
+ .
+ Este certificado pode ser mudado para um certificado CA raiz posteriormente.
+ .
+ Certificados previamente gerados nunca serão sobrescritos. Para regerar o certificado, você precisa remover todos os arquivos em /usr/share/dtc/etc/ssl.
+Description-ru.UTF-8: Генерировать сертификат SSL для DTC?
+ Если вы ответите утвердительно, то DTC сгенерирует самоподписанный сертификат SSL и будет использовать SSL для доступа к панели. SSL будет всегда включён и созданная конфигурация Apache будет включать HTTPS URL-ы для панели управления.
+ .
+ Позже этот сертификат можно будет изменить на корневой сертификат CA.
+ .
+ Ранее созданные сертификаты никогда не перезаписываются. Для регенерации сертификата вам нужно удалить все файлы из каталога /usr/share/dtc/etc/ssl.
+Description-sv.UTF-8: Skapa SSL-certifikat för DTC?
+ Väljer du detta alternativ kommer DTC att skapa självsignerade SSL-certifikat och använda dessa för anslutningar till panelen. SSL kommer också att aktiveras och inställningarna för Apache kommer innehålla aktiverade adresser för HTTPS för kontrolpanelen.
+ .
+ Detta certifikat kan bytas ut till ett certifikat från en certifikatutfärdare vid ett senare tillfälle.
+ .
+ Existerande certifikatfiler kommer aldrig att skrivas över. för att skapa nya certifikat måste alla filer i /usr/share/dtc/etc/ssl först raderas.
+Description-vi.UTF-8: Tạo một một chứng nhận SSL cho DTC không?
+ Bật tùy chọn này thì DTC sẽ tạo một chứng nhận SSL tự ký, và sẽ dùng dịch vụ SSL để duyệt bảng điều khiển. SSL sẽ cũng được kích hoạt, và cấu hình Apache đã tạo sẽ kích hoạt các địa chỉ URL HTTPS (địa chỉ Web bảo mật) cho bảng điều khiển.
+ .
+ Lúc sau thì chứng nhận này có thể được trao đổi với một chứng nhận CA gốc. (CA: nhà cầm quyền cấp chứng nhận.)
+ .
+ Chứng nhận đã tạo trước sẽ không bao giờ bị ghi đè. Để tạo lại chứng nhận, bạn cần phải gỡ bỏ tất cả các tập tin khỏi thư mục « /usr/share/dtc/etc/ssl ».
+Description-zh_CN.UTF-8: 产生一个DTC的SSL 证书?
+ 如果您选择此选项, DTC 将会产生一个自我签订的SSH证书并且使用SSL浏览面板. SSL 也将被激活, 其产生的 Apache 配置将激活控制面板的HTTPS URLs .
+ .
+ 这个证书以后可以更改为一个根目录 CA 证书.
+ .
+ 以前产生的证书无法重写. 如果要重新产生证书,您需要删除在/usr/share/dtc/etc/ssl 下的所有的文件.
+
+Template: dtc/conf_cert_passphrase
+Type: password
+Description: DTC certificate passphrase:
+ Please choose a passphrase to protect the generated SSL certificate.
+Description-cs.UTF-8: Přístupová fráze k DTC certifikátu:
+ Zvolte si prosím frázi, která bude chránit vytvořený SSL certifikát.
+Description-de.UTF-8: Passphrase für das DTC-Zertifikat:
+ Bitte wählen Sie eine Passphrase, um das generierte SSL-Zertifikat zu schützen.
+Description-es.UTF-8: Frase de paso del certificado para DTC:
+ Elija una contraseña para proteger el certificado SSL generado.
+Description-eu.UTF-8: DTC ziurtagiriaren pasaesaldia:
+ Aukeratu pasaesaldi bat sortutako SSL ziurtagiria babesteko.
+Description-fi.UTF-8: DTC-varmenteen salalause:
+ Valitse luotua SSL-varmennetta suojaava salalause:
+Description-fr.UTF-8: Phrase secrète pour le certificat de DTC :
+ Veuillez choisir une phrase secrète qui servira à protéger le certificat SSL créé.
+Description-gl.UTF-8: Contrasinal do certificado de DTC:
+ Escolla un contrasinal para protexer o certificado SSL xerado.
+Description-ja.UTF-8: DTC の証明書パスフレーズ:
+ 生成した SSL 証明書を保護するパスフレーズを入力してください。
+Description-ml.UTF-8: DTC സാക്ഷ്യപത്ര അടയാളവാക്യം:
+ ഉണ്ടാക്കിയ SSL സാക്ഷ്യപത്രത്തെ സംരക്ഷിയ്ക്കാന്‍ ഒരു അടയാളവാക്യം തിരഞ്ഞെടുക്കുക.
+Description-nl.UTF-8: Wachtzin voor het DTC-certificaat:
+ Wat is de wachtzin waarmee het aangemaakte SSL-certificaat beveiligd wordt?
+Description-pt.UTF-8: Palavra-chave do certificado DTC
+ Por favor escolha uma frase-chave para proteger o certificado SSL gerado.
+Description-pt_BR.UTF-8: Frase-senha do certificado DTC:
+ Por favor, escolha a frase-senha para proteger o certificado SSL gerado.
+Description-ru.UTF-8: Пароль на сертификат DTC:
+ Введите пароль для защиты генерируемого сертификата SSL.
+Description-sv.UTF-8: Lösenord för DTC-certifikat:
+ Ange ett lösenord för att skydda skapade SSL-certifikat.
+Description-vi.UTF-8: Cụm từ mật khẩu chứng nhận DTC:
+ Hãy chọn một cụm từ mật khẩu để bảo vệ chứng nhận SSL đã tạo.
+Description-zh_CN.UTF-8: DTC 证书密码:
+ 请选择一个密码来保护产生的SSL 证书.
+
+Template: dtc/conf_cert_countrycode
+Type: string
+Default: FR
+Description: Country code for the DTC SSL certificate:
+ Please enter the 2-letter country code for the generated
+ certificate. This should usually be the code for the country the
+ server is located in.
+Description-cs.UTF-8: Kód země pro SSL certifikát DTC:
+ Pro vytvořený certifikát prosím zadejte dvoupísmenný kód země. Měl by to být kód země, ve které je umístěn server.
+Description-de.UTF-8: Ländercode für das DTC-SSL-Zertifikat:
+ Bitte geben Sie den Ländercode (zwei Buchstaben) für das generierte Zertifikat ein. Das sollte der Code für das Land sein, in dem sich Ihr Server befindet.
+Description-es.UTF-8: Código del país del certificado SSL de DTC:
+ Introduzca el código de 2 letras del país para el certificado generado. Normalmente, éste debería ser el código del país en el que está el servidor.
+Description-eu.UTF-8: Herrialdearen kodea DTC SSL ziurtagiriarentzako:
+ Sartu 2 hizkiko herrialdearen kodea sortutako ziurtagiriarentzako. Normalean zerbitzaria kokatuta dagoen herrialdearen kodea izaten da.
+Description-fi.UTF-8: DTC:n SSL-varmenteen maakoodi:
+ Anna kaksikirjaiminen maakoodi luotavaa varmennetta varten. Tämän tulisi yleensä olla sen maan koodi, jossa palvelin on.
+Description-fr.UTF-8: Code du pays pour le certificat SSL de DTC :
+ Veuillez indiquer le code à deux lettres du pays qui sera utilisé pour le certificat SSL créé. Il est conseillé d'utiliser le code du pays où est situé le serveur.
+Description-gl.UTF-8: Código de país do certificado SSL de DTC:
+ Introduza o código de dúas letras para o certificado xerado. Este debería ser normalmente o código do país no que reside o servidor.
+Description-ja.UTF-8: DTC 用 SSL 証明書の国コード:
+ 証明書の生成に使う 2 文字の国別コードを入力してください。これは、通常サーバが存在している国のコードです。
+Description-ml.UTF-8: DTC SSL സാക്ഷ്യപത്രത്തിന് വേണ്ട രാജ്യ കോഡ്:
+ ഉണ്ടാക്കിയ സാക്ഷ്യപത്രത്തിന് വേണ്ട 2-അക്ഷര രാജ്യ കോഡ് ദയവായി നല്‍കുക. ഇത് സാധാരണയായി സെര്‍വര്‍ സ്ഥിതി ചെയ്യുന്ന രാജ്യത്തിന്റെ കോഡാണ്.
+Description-nl.UTF-8: Landcode voor het DTC SSL-certificaat:
+ Wat is de 2-letterige landcode voor het aangemaakte certificaat? Gewoonlijk is dit de code voor het land waar de server zich bevind.
+Description-pt.UTF-8: Código de país para o certificado SSL do DTC:
+ Por favor introduza o código de país de duas letras para o certificado gerado. Deve ser o código do país onde o servidor está localizado.
+Description-pt_BR.UTF-8: Código do país para o certificado SSL do DTC:
+ Por favor, informe o código de 2-letras do país para o certificado gerado. Este deveria usualmente ser o código do país onde o servidor está localizado.
+Description-ru.UTF-8: Код страны для SSL сертификата DTC:
+ Введите двухбуквенный код страны для генерируемого сертификата. Обычно это код страны, где расположен сервер (Россия — RU).
+Description-sv.UTF-8: Landskod för DTC:s SSL-certifikat:
+ Ange en landskod (två tecken) för för certifikatet. Den bör motsvara landskoden för platsen där servern finns.
+Description-vi.UTF-8: Mã quốc gia cho chứng nhận SSL DTC:
+ Hãy nhập mã quốc gia hai chữ (v.d. « vi » cho Việt Nam) cho chứng nhận đã tạo. Mã này thường nên là mã nhận diện quốc gia chứa máy phục vụ đó.
+Description-zh_CN.UTF-8: DTC  SSL证书的国家代码:
+ 请输入2个字母的国家代码来产生证书. 这个通常是服务器所在国家的代码.
+
+Template: dtc/conf_cert_locality
+Type: string
+Default: Paris
+Description: City name for the DTC SSL certificate:
+Description-cs.UTF-8: Jméno města pro SSL certifikát DTC:
+Description-de.UTF-8: Stadtname für das DTC-SSL-Zertifikat:
+Description-es.UTF-8: Nombre de la ciudad del certificado SSL de DTC:
+Description-eu.UTF-8: Herriaren izena DTC SSL ziurtagiriarentzako:
+Description-fi.UTF-8: DTC:n SSL-varmenteen kaupungin nimi:
+Description-fr.UTF-8: Nom de ville pour le certificat SSL de DTC :
+Description-gl.UTF-8: Nome da cidade do certificado SSL de DTC:
+Description-ja.UTF-8: DTC 用 SSL 証明書の都市名:
+Description-ml.UTF-8: DTC SSL സാക്ഷ്യപത്രത്തിന് വേണ്ട നഗരനാമം:
+Description-nl.UTF-8: Plaatsnaam voor het DTC SSL-certificaat:
+Description-pt.UTF-8: Nome de cidade para o certificado SSL do DTC:
+Description-pt_BR.UTF-8: Nome da cidade para o certificado SSL do DTC:
+Description-ru.UTF-8: Название города для сертификата SSL DTC:
+Description-sv.UTF-8: Ortsnamn för DTC:s SSL-certifikat:
+Description-vi.UTF-8: Tên thành phố cho chứng nhận SSL DTC:
+Description-zh_CN.UTF-8: DTC SSL 证书的城市名:
+
+Template: dtc/conf_cert_organization
+Type: string
+Default: GPLHost
+Description: Organization name for the DTC SSL certificate:
+Description-cs.UTF-8: Jméno organizace pro SSL certifikát DTC:
+Description-de.UTF-8: Organisationsnamen für das DTC-SSL-Zertifikat:
+Description-es.UTF-8: Nombre de la organización del certificado SSL de DTC:
+Description-eu.UTF-8: Erakundearen izena DTC SSL ziurtagiriarentzako:
+Description-fi.UTF-8: DTC:n SSL-varmenteen organisaation nimi:
+Description-fr.UTF-8: Organisme pour le certificat SSL de DTC :
+Description-gl.UTF-8: Nome da organización para o certificado SSL de DTC:
+Description-ja.UTF-8: DTC 用 SSL 証明書の組織名:
+Description-ml.UTF-8: DTC SSL സാക്ഷ്യപത്രത്തിന് വേണ്ട സ്ഥാപന നാമം:
+Description-nl.UTF-8: Organisatienaam voor het DTC SSL-certificaat:
+Description-pt.UTF-8: Nome da organização para o certificado SSL do DTC:
+Description-pt_BR.UTF-8: Nome da organização para o certificado SSL do DTC:
+Description-ru.UTF-8: Название организации для сертификата SSL DTC:
+Description-sv.UTF-8: Organisationsnamn för DTC:s SSL-certifikat:
+Description-vi.UTF-8: Tên tổ chức cho chứng nhận SSL DTC:
+Description-zh_CN.UTF-8: DTC SSL 证书的组织名:
+
+Template: dtc/conf_cert_unit
+Type: string
+Default: no-unit
+Description: Organizational unit for the DTC SSL certificate:
+Description-cs.UTF-8: Organizační jednotka pro SSL certifikát DTC:
+Description-de.UTF-8: Organisationseinheit für das DTC-SSL-Zertifikat:
+Description-es.UTF-8: Departamento de la organización del certificado SSL de DTC:
+Description-eu.UTF-8: Erakundeko saila DTC SSL ziurtagiriarentzako:
+Description-fi.UTF-8: DTC:n SSL-varmenteen organisaatioyksikkö:
+Description-fr.UTF-8: Unité organisationnelle pour le certificat SSL de DTC :
+Description-gl.UTF-8: Unidade organizativa para o certificado SSL de DTC:
+Description-ja.UTF-8: DTC 用 SSL 証明書の組織名:
+Description-ml.UTF-8: DTC SSL സാക്ഷ്യപത്രത്തിന് വേണ്ട സ്ഥാപന വിഭാഗം:
+Description-nl.UTF-8: Organisatorische Afdeling voor het DTC SSL-certificaat:
+Description-pt.UTF-8: Unidade organizacional para o certificado DTC SSL:
+Description-pt_BR.UTF-8: Unidade organizacional para o certificado SSL do DTC:
+Description-ru.UTF-8: Название подразделения организации для сертификата SSL DTC:
+Description-sv.UTF-8: Organisationsavdelning för DTC:s SSL-certifikat:
+Description-vi.UTF-8: Tên đơn vị tổ chức cho chứng nhận SSL DTC:
+Description-zh_CN.UTF-8: DTC SSL 证书的组织单元:
+
+Template: dtc/conf_cert_email
+Type: string
+Default: example@example.com
+Description: Email address for the DTC SSL certificate:
+Description-cs.UTF-8: Emailová adresa pro SSL certifikát DTC:
+Description-de.UTF-8: E-Mail-Adresse für das DTC-SSL-Zertifikat:
+Description-es.UTF-8: Dirección de correo electrónico del certificado SSL de DTC:
+Description-eu.UTF-8: Helbide elektronikoa DTC SSL ziurtagiriarentzako:
+Description-fi.UTF-8: DTC:n SSL-varmenteen sähköpostiosoite:
+Description-fr.UTF-8: Adresse électronique pour le certificat SSL de DTC :
+Description-gl.UTF-8: Enderezo de email para o certificado SSL de DTC:
+Description-ja.UTF-8: DTC 用 SSL 証明書のメールアドレス:
+Description-ml.UTF-8: DTC SSL സാക്ഷ്യപത്രത്തിന് വേണ്ട ഇമെയില്‍ വിലാസം:
+Description-nl.UTF-8: E-mailadres voor het DTC SSL-certificaat:
+Description-pt.UTF-8: Endereço de email para o certificado SSL do DTC:
+Description-pt_BR.UTF-8: Endereço de e-mail para o certificado SSL do DTC:
+Description-ru.UTF-8: Адрес электронной почты для сертификата SSL DTC:
+Description-sv.UTF-8: E-post-adress för DTC:s SSL-certifikat:
+Description-vi.UTF-8: Địa chỉ thư điện tử cho chứng nhận SSL DTC:
+Description-zh_CN.UTF-8: DTC SSL 证书的Email地址:
+
+Template: dtc/conf_cert_challenge_pass
+Type: password
+Description: DTC SSL certificate challenge password:
+Description-cs.UTF-8: Heslo pro SSL certifikát DTC:
+Description-de.UTF-8: »Challenge«-Passwort für das DTC-SSL-Zertifikat:
+Description-es.UTF-8: Contraseña del desafío del certificado SSL de DTC:
+Description-eu.UTF-8: DTC SSL ziurtagiriaren erronka-pasahitza:
+Description-fi.UTF-8: DTC:n SSL-varmenteen haastesalasana:
+Description-fr.UTF-8: Mot de passe pour le certificat SSL de DTC :
+Description-gl.UTF-8: Contrasinal de desafío do certificado SSL de DTC:
+Description-ja.UTF-8: SSL 証明書のチャレンジパスワード:
+Description-ml.UTF-8: DTC SSL സാക്ഷ്യപത്രത്തിന് വേണ്ട വെല്ലുവിളി അടയാളവാക്ക്:
+Description-nl.UTF-8: Uitdagingswachtwoord voor het DTC SSL-certificaat:
+Description-pt.UTF-8: Palavra-chave de desafio do certificado SSL do DTC:
+Description-pt_BR.UTF-8: Senha desafio do certificado SSL do DTC:
+Description-ru.UTF-8: Пароль вызова для сертификата SSL DTC:
+Description-sv.UTF-8: Lösenord för DTC:s SSL-certifikat:
+Description-vi.UTF-8: Mật khẩu đáp ứng cho chứng nhận SSL DTC:
+Description-zh_CN.UTF-8: DTC SSL 证书的 challenge 密码:
+
+Template: dtc/conf_dnsbl_list
+Type: string
+Default: zen.spamhaus.org
+Description: DNSBL (DNS BlackList) list:
+ Please enter the list of preferred DNSBL servers to add to your Postfix mail
+ server configuration.
+Description-cs.UTF-8: Seznam DNSBL (DNS BlackList):
+ Zadejte prosím seznam preferovaných DNSBL serverů, které se přidají k vašemu nastavení Postfixu.
+Description-de.UTF-8: DNSBL-Liste (DNS BlackList):
+ Geben Sie bitte eine Liste Ihrer bevorzugten DNSBL-Server ein, die zu Ihrer Postfix-Konfiguration hinzufügt werden sollen.
+Description-es.UTF-8: Lista DNSBL («DNS BlackList»):
+ Introduzca la lista de servidores DNSBL preferidos para añadirlos a su configuración del servidor de correo electrónico Postfix.
+Description-eu.UTF-8: DNSBL (DNS BlackList) zerrenda:
+ Sartu DNSBL zerbitzari hobetsien zerrenda, Postfix zerbitzariaren konfigurazioari gehitzeko.
+Description-fi.UTF-8: DNSBL-lista (DNS-palvelimien musta lista):
+ Anna lista DNSBL-palvelimista, jotka lisätään Postfix-sähköpostipalvelimen asetuksiin.
+Description-fr.UTF-8: Liste de serveurs DNSBL :
+ Veuillez indiquer la liste des serveurs de listes noires DNSBL qui doivent être ajoutés à la configuration du serveur de messagerie Postfix.
+Description-gl.UTF-8: Lista de DNSBL (lista negra de DNS):
+ Introduza a lista de servidores DNSBL preferidos para engadir á configuración do seu servidor de correo Postfix.
+Description-ja.UTF-8: DNSBL (DNS ブラックリスト) のリスト:
+ Postfix メールサーバ設定に追加する優先 DNSBL サーバ一覧を入力してください。
+Description-ml.UTF-8: DNSBL (DNS കരിമ്പട്ടിക) പട്ടിക:
+ പോസ്റ്റ്ഫിക്സ് കത്ത് സേവക ക്രമീകരണത്തിലേക്ക് കൂട്ടിച്ചേര്‍ക്കേണ്ട മുന്‍ഗണനയുള്ള DNSBL സെര്‍വറുകളുടെ പട്ടിക നല്‍കുക.
+Description-nl.UTF-8: DNS Zwarte lijst (DNSBL):
+ Gelieve hier de lijst van DNSBL-servers die u aan uw Postfix-mailserver configuratie wilt toevoegen op te geven.
+Description-pt.UTF-8: Lista DNSBL (DNS BlackList):
+ Introduza a lista dos servidores DNSBL preferidos para adicionar à sua configuração do Postfix.
+Description-pt_BR.UTF-8: Lista DNSBL (DNS Blacklist):
+ Por favor, informe a lista de servidores DNSBL preferidos para adicionar à configuração do seu servidor de e-mail Postfix.
+Description-ru.UTF-8: Список DNSBL («чёрный список» DNS):
+ Введите список предпочитаемых DNSBL серверов для добавления к настройкам почтового сервера Postfix.
+Description-sv.UTF-8: DNSBL (DNS BlackList) lista:
+ Ange en lista med de DNSBL-servrar som du vill lägga till i Postfix e-post-server-inställningar.
+Description-vi.UTF-8: Danh sách DNSBL (DNS bị cấm):
+ Hãy nhập danh sách các máy phục vụ DNSBL cần thêm vào cấu hình trình phục vụ thư tín Postfix.
+Description-zh_CN.UTF-8: DNSBL (DNS 黑名单) 列表:
+ 请输入优先权的DNSBL服务器列表来加入到您的Postfix邮件服务器配置.
+
+Template: dtc/conf_recipient_delim
+Type: select
+Choices: +, -
+Description: Local address extension character:
+ Please choose the character that will be used to define a local address
+ extension. This MUST match what you have set in your postfix or qmail setup.
+ .
+ The recipient delimiter will be used for your mailing lists. Let's say you use
+ the + char as delimiter, then your users will have to send a mail to
+ list+subscribe@example.com. The drawback when choosing + is that some MTA
+ don't allow to send mail with this char in the recipient (namely some bad
+ qmail patches are incompatibles), but when using - as delimiter, you will not
+ be able to use an email of the form john-doe@example.com as - is the
+ delimiter.
+Description-cs.UTF-8: Znak pro příponu lokální adresy:
+ Vyberte prosím znak, který se použije pro definování přípony lokální adresy. Znak MUSÍ souhlasit s tím, který jste zadali v nastavení postfixu nebo qmailu.
+ .
+ Pro vaše poštovní konference se použije oddělovač příjemců. Řekněme, že jako oddělovač používáte znak „+“. Vaši uživatelé pak budou muset posílat poštu na konference+subscribe@priklad.cz. Nevýhoda použití „+“ je v tom, že některé poštovní programy odmítají poslat mail na adresu, která tento znak obsahuje (jmenovitě některé patche do qmailu). Při použití oddělovače „-“ zase nebudete moci používat adresu ve formátu franta-uzivatel@priklad.cz, protože „-“ slouží jako oddělovač.
+Description-de.UTF-8: Lokales Adress-Erweiterungszeichen:
+ Bitte wählen Sie das Zeichen aus, dass zur Definition einer lokalen Adresserweiterung verwendet wird. Es MUSS mit der Einstellung in Ihrer Postfix- oder QMail-Konfiguration übereinstimmen.
+ .
+ Das Trennzeichen für Empfänger wird für Ihre Mailinglisten verwandt. Verwenden Sie beispielsweise das »+«-Zeichen als Trenner, dann müssen Ihre Benutzer eine E-Mail an die Liste +subscribe@example.com schicken. Der Nachteil bei der Wahl von »+« besteht darin, dass einige MTA es nicht erlauben, E-Mails mit diesem Zeichen im Empfänger zu versenden (insbesondere sind einige schlechte Patches für Qmail inkompatibel). Verwenden Sie stattdessen »-« als Trenner, können Sie keine E-Mails der Form max-planck@example.com senden, da »-« der Trenner ist.
+Description-es.UTF-8: Carácter de extensión de la dirección local:
+ Elija el carácter que se usará para definir la extensión de la dirección local. Éste DEBE coincidir con el valor configurado en postfix o qmail.
+ .
+ El delimitador del receptor se usará para sus listas de correo electrónico. Por ejemplo, si usa el carácter «+» como delimitador, sus usuarios tendrán que enviar un correo electrónico a «lista+suscribirse@ejemplo.com». La pega es que si elije «+» algunos MTA no permiten enviar correos electrónicos con este carácter en el receptor (algunos parches malos de qmail son incompatibles), pero cuando usa «-» como delimitador, no podrá usar una dirección de correo con la forma «john-doe@ejemplo.com» porque el carácter «-» es el delimitador
+Description-eu.UTF-8: Helbide lokalen luzepenaren karakterea:
+ Helbide lokaleko luzapen bat definitzeko erabiliko den karakterea aukeratu. Postfix edo qmail zerbitzariaren konfigurazioan ezarritakoarekin bat etorri behar du.
+ .
+ Hartzailearen mugatzailea posta-zerrendetan erabiliko da. Demagun + karakterea erabiltzen duzula mugatzaile gisa, orduan erabiltzaileek +harpidetu@adibidea.org zerrendara bidali beharko dute mezu bat. Tamalez + karakterea aukeratzean MTA batzuek ez dute onartuko karaktere hau hartzailean erabiltzea (batik bat qmail-en bateragarriak ez diren zenbait adabakitan), baina - karakterea erabiltzen baduzu ezin izango duzu enbata-hondamendieta@adibidea.org moduko mezurik erabili (mugatzailea - ikurra delako).
+Description-fi.UTF-8: Paikallisen osoitelaajennoksen merkki:
+ Anna merkki, jota käytetään paikallisen osoitelaajennoksen määrittämiseen. Tämän TÄYTYY täsmätä postfixin tai qmailin asetuksissa asetettuun merkkiin.
+ .
+ Vastaanottoerotinta käytetään sähköpostilistoillasi. Jos valitset erottimeksi merkin ”+”, tulee käyttäjien lähettää postinsa listalle +subscribe@esimerkki.fi. Merkin ”+” varjopuoli on se, että eräät sähköpostiohjelmat eivät salli tätä merkkiä vastaanottajan nimessä (lähinnä eräät qmailin huonot versiot ovat epäyhteensopivia). Toisaalta, jos erottimena käytetään merkkiä ”-”, sähköpostiosoitteet eivät voi olla muotoa juha-pekka@esimerkki.fi, koska ”-” on erotinmerkki.
+Description-fr.UTF-8: Caractère d'extension des adresses locales :
+ Veuillez choisir le caractère qui sert à définir une extension d'adresses locales. Ce caractère doit être le même que celui qui est utilisé dans la configuration de l'agent de transport de courriel (MTA : « Mail Transport Agent ») comme Postfix ou Qmail.
+ .
+ Le caractère de délimitation du destinataire sera utilisé pour vos listes de diffusion. Si, par exemple, vous utilisez le caractère + comme délimiteur, alors vos utilisateurs devront s'enregistrer avec maliste+subscribe@example.com. Le problème en choisissant + c'est que certains MTA refusent d'envoyer des couriels à ce genre d'adresse (notamment certains mauvais patchs pour qmail), mais si vous utilisez - comme délimiteur, alors vous ne pourrez pas utiliser jean-paul@example.com car le caractère - est le délimiteur.
+Description-gl.UTF-8: Carácter de extensión de enderezos locais:
+ Indique o carácter que se ha empregar para definir unha extensión de enderezos locais. Este carácter debe ser o mesmo que configurou en postfix ou qmail.
+ .
+ O delimitador do destinatario hase empregar nas listas de correo. Por exemplo, se emprega o carácter "+" coma delimitador, os usuarios han ter que enviar mensaxes a lista+subscribe@exemplo.com. O inconveniente de escoller "+" é que algúns sistemas de correo non permiten enviar mensaxes con este carácter no enderezo do destinatario (en particular, algunhas versións de qmail con parches incompatibles), pero se emprega "-" coma delimitador non ha poder empregar enderezos da forma xose-perez@exemplo.com, xa que "-" había ser o delimitador.
+Description-ja.UTF-8: ローカルアドレスの拡張文字:
+ ローカルアドレスの拡張を定義するのに利用する文字を選んでください。これは、postfix あるいは qmail での設定に一致している必要があります。
+ .
+ 受信アドレスの区切り文字は、メーリングリストに利用されます。+ という文字を区切り文字に使った場合を例にすると、ユーザは list+subscribe@example.com にメールを送信する必要があります。+ を選んだ場合の欠点は、幾つかの MTA ではこの文字を受信者アドレスに含んだメールを送るのを許可していないことです (すなわちいくつかの行儀の悪い qmail パッチとは互換性がありません)。しかし、- を区切り文字に使った場合は、john-doe@example.com というメールアドレスの形式は - を区切り文字とするため、利用できなくなります。
+Description-pt.UTF-8: Caracter de extensão de um endereço local:
+ Por favor escolha o caracter que será usado para definir uma extensão de um endereço local. Este caracter TEM de ser igual ao que definiu na sua configuração do postfix ou do qmail.
+ .
+ O delimitador do receptor irá ser utilizado nas suas listas de correio electrónico. Imaginemos que usa o caracter + como delimitador, então os seus utilizadores terão de enviar correio para a list+subscribe@example.com. A contrapartida de escolher + é que alguns servidores de correio electrónico não permitem o uso deste caracter no receptor (nomeadamente algumas patches do qmail são incompatíveis), mas se usar - como delimitador, não poderá usar um email com a forma ze-dos-pipos@exemplo.com já que o - é o delimitador.
+Description-pt_BR.UTF-8: Caractere de indicação de correio local:
+ Você deve escolher um caracter para definir uma indicação de correio local. O mesmo deve ser compatível com o caracter escolhido na configuração do postfix ou qmail.
+ .
+ O delimitador sera usado para suas listas de correio. Por padrão geralmente é usado o sinal de + como caractere delimitador. Então os seus usuários devem enviar um correio para lista+subscribe@exemplo.com. Em contra partida escolhendo o caracter + alguns MTA não permitem enviar uma mensagem contendo este caracter no recipiente. (principalmente patches no qmail são imcompatíveis) entretanto, você pode usar - como delimitador, mas isso vai impedir de você criar contas com o formato nome-usuario@exemplo.com já que o - será usado como delimitador.
+Description-ru.UTF-8: Символ расширения локального адреса:
+ Укажите символ, который будет использован для определения расширения локального адреса. Он ДОЛЖЕН совпадать с уже настроенным в postfix или qmail.
+ .
+ В почтовых списках будет использован разделитель имени получателя. Например, если используется символ + как разделитель, то для отправки писем в список пользователям нужно писать на адрес +subscribe@example.com. Недостатком выбора + является то, что некоторые MTA не позволяют посылать почту с таким символом в получателе (а именно, некоторые плохие заплатки к qmail так поступают), но при выборе в качестве разделителя символа «-» вы не сможете использовать адреса вида john-doe@example.com, так как «-» является разделителем.
+Description-sv.UTF-8: Tecken för lokal adressutökning:
+ Ange teckenet som ska användas för att definiera en lokal adressutökning. Denna MÅSTE stämma överrens med det du har i dina inställningar för postfix eller qmail.
+ .
+ Avdelaren för mottagre kommer att användas för dina sändlistor. Låt oss anta att du använder +-tecknet som avdelare, då kommer användarna att skicka e-post till +subscribe@example.com. Nackdelen med att använda + är att vissa MTA:er inte tillåter att e-post skickas med detta tecken i mottagarnamnet (för att tala klarspårk, vissa distribuerade förändringar i qmail fungerar inte med detta). Å andra sidan, om du använder - som avdelare kan dessa inte användas i vanliga e-post-adresser, exempelvis ingen-aning@example.com eftersom - är en avdelare.
+Description-vi.UTF-8: Ký tự mở rộng địa chỉ cục bộ :
+ Hãy chọn ký tự sẽ được dùng để xác định phần mở rộng địa chỉ cục bộ. Ký tự này PHẢI tương ứng với thiết lập Postfix hoặc Qmail của bạn.
+ .
+ Dấu tách người nhận sẽ được dùng cho các hộp thư chung. Chẳng hạn, nếu bạn dùng dấu cộng « + » làm dấu tách thì các người dùng sẽ cần phải gửi thư cho « list+subscribe@máy.com ». Sự bất lợi khi chọn dấu cộng là một số MTA không cho phép gửi thư chứa ký tự này trong địa chỉ người nhận (tức là một số đắp vá Qmail không tương thích), nhưng khi dùng dấu trừ « - » làm dấu tách, bạn sẽ không thể sử dụng địa chỉ thư có dạng « nguyen-van@máy.com » vì dấu trừ làm dấu tách.
+Description-zh_CN.UTF-8: 邮件地址中延伸的符号:
+ 请选择邮件地址延伸符号. 必须于在您的 postfix 或者 qmail 设置中相匹配.
+ .
+ 在您的邮件列表中将使用 recipient delimiter 功能. 如果您使用 + 符号作为 delimiter, 那么您的用户将发送邮件到 list+subscribe@example.com. 缺点是当选择 + 时，在recipient一些 MTA 不允许使用这个符号发送邮件(就是一些不好的 qmail 补丁无法兼容), 但是如果使用 - 作为 delimiter, 您将无法使用 john-doe@example.com 的email格式,因为 - 是 delimiter.
+
+Template: dtc/conf_mx_mail
+Type: string
+Default: mx
+Description: Subdomain name for the MX server:
+ Your mail server will need to use a subdomain name to accept mail. This
+ subdomain will be configured in your mail server and your domain name server
+ by DTC. Any name is ok here.
+Description-cs.UTF-8: Poddoména pro MX server:
+ Aby mohl váš poštovní server přijímat poštu, bude muset použít poddoménu. DTC tuto poddoménu nastaví ve vašem poštovním serveru i ve jmenném serveru. Můžete zadat libovolný název.
+Description-de.UTF-8: Subdomain-Name für den MX-Server:
+ Ihr E-Mail-Server muss einen Subdomain-Namen verwenden, um E-Mail zu akzeptieren. Von DTC wird diese Subdomain in Ihrem E-Mail-Server und in Ihrem Domain-Server konfiguriert. Jeder Name ist hier geeignet.
+Description-es.UTF-8: Nombre del subdominio del servidor MX:
+ Su servidor de correo electrónico necesitará usar un subdominio para aceptar el correo electrónico. Este subdominio lo configurará DTC en su servidor de correo electrónico y su servidor de nombres de dominio. Cualquier nombre es válido aquí.
+Description-eu.UTF-8: Azpidomeinuaren izena MX zerbitzariarentzako:
+ Posta-zerbitzariak azpidomeinu bat erabili behar du mezuak onartzeko. Azpidomeinu hau DTC-k konfiguratuko du posta-zerbitzarian eta domeinu-izenen zerbitzarian (DNS). Edozein izen baliozkoa da hor.
+Description-fi.UTF-8: MX-palvelimen aliverkkoaluenimi:
+ Sähköpostipalvelimen tulee käyttää aliverkkoaluenimeä sähköpostin vastaanottoon. Tämä aliverkkoalue asetetaan DTC:n toimesta sähköpostipalvelimen ja nimipalvelimen asetuksiin. Mikä tahansa nimi kelpaa tähän.
+Description-fr.UTF-8: Nom du sous-domaine pour le serveur MX :
+ Votre serveur de messagerie a besoin d'utiliser un sous-domaine pour accepter des messages. Ce sous-domaine sera configuré par DTC dans votre serveur de messagerie et dans votre serveur de nom. N'importe quel nom est possible.
+Description-gl.UTF-8: Nome do subdominio do servidor MX:
+ O servidor de correo ha precisar dun subdominio para aceptar correo. DTC ha configurar este subdominio no servidor de correo e no servidor de dominios. Serve calquera nome.
+Description-ja.UTF-8: MX サーバのサブドメイン名:
+ メールサーバは、メールを受けとるためにサブドメイン名を使う必要があります。このサブドメインは、DTC によってメールサーバと DNS サーバに反映されます。ここの名前は何でも構いません。
+Description-pt.UTF-8: Nome do sub-domínio do servidor MX:
+ O seu servidor de correio electrónico precisará de usar um nome de sub-domínio para poder aceitar correio. Este sub-domínio será configurado no seu servidor de correio electrónico e no seu servidor de nomes de domínio pelo DTC. Qualquer nome estará bem aqui.
+Description-pt_BR.UTF-8: Nome do subdomínio para o servidor MX:
+ O seu servidor de correio precisa de um subdomínio para aceitar mensagens. Este subdomínio deve estar configurado no seu servidor de correio e o servidor de nomes deve estar configurado no DTC. Qualquer nome pode ser usado aqui.
+Description-ru.UTF-8: Имя субдомена сервера MX:
+ Вашему почтовому серверу нужен субдомен для приёма почты. Этот субдомен будет настроен в вашем почтовом сервере и сервере доменных имён с помощью DTC. Можно использовать любое имя.
+Description-sv.UTF-8: Underdomännamn för MX-server:
+ Din e-post-server måste ha en underdomän för att kunna ta emot e-post. Denna underdomän måste läggas till i inställningarna för din e-post-server och din domännamnsserver av DTC. Vilket namn som helst är tillåtet här.
+Description-vi.UTF-8: Tên miền phụ cho trình phục vụ MX:
+ Trình phục vụ thư tín của bạn sẽ cần phải dùng một tên miền phụ để chấp nhận thư. Miền phụ này sẽ được DTC cấu hình trong trình phục vụ thư tín và trình phục vụ tên miền của bạn. Bất cứ tên nào là thích hợp ở đây.
+Description-zh_CN.UTF-8: MX 服务器的子域名:
+ 您的邮件服务器需要使用一个子域名来接收邮件. 这个子域名将被DTC在您的邮件服务器和域名服务器中配置. 这里可以使用任何名字.
+
+Template: dtc/conf_eth2monitor
+Type: string
+Description: Network devices to monitor:
+ Please enter all the network devices you wish to be monitored by the
+ RRDTool graphing utility.
+Description-cs.UTF-8: Síťová zařízení, která sledovat:
+ Zadejte prosím všechna síťová zařízení, která mají být sledována nástrojem pro vykreslování grafů - RRDTool.
+Description-de.UTF-8: Netzgeräte, die überwacht werden sollen: 
+ Bitte geben Sie alle Netzgeräte ein, die mittels RRDTool-Graphik-Hilfswerkzeug überwacht werden sollen.
+Description-es.UTF-8: Redes para monitorizar:
+ Introduzca todos los dispositivos de red que quiere monitorizar mediante la herramienta de gráficos RRDTool.
+Description-eu.UTF-8: Sareko gailuak monitorizatzeko:
+ RRDTool tresna grafikoarekin monitorizatzea nahi dituzun sareko gailu guztiak sartu.
+Description-fi.UTF-8: Tarkkailtavat verkkolaitteet:
+ Anna kaikki verkkolaitteet, joita haluat graafisen RRDTool-työkalun tarkkailevan.
+Description-fr.UTF-8: Interfaces réseaux à surveiller :
+ Veuillez indiquer les interfaces réseaux qui seront surveillées avec l'utilitaire de représentation graphique RRDTool.
+Description-gl.UTF-8: Dispositivo de rede a monitorizar:
+ Introduza tódolos dispositivos de rede que quere monitorizar coa utilidade de graficación RRDTool.
+Description-ja.UTF-8: 監視するネットワークデバイス:
+ RRDTool グラフユーティリティで監視したい、全てのネットワークデバイスを入力してください。
+Description-ml.UTF-8: നിരീക്ഷിയ്ക്കേണ്ട ശൃംഘലാ ഉപകരണങ്ങള്‍:
+ RRDTool ഗ്രാഫിങ്ങ് യൂട്ടിലിറ്റിയാല്‍ നിരീക്ഷിയ്ക്കപ്പെടാന്‍ നിങ്ങളാഗ്രഹിയ്ക്കുന്ന എല്ലാ ശൃംഘലാ ഉപകരണങ്ങളും നല്‍കുക.
+Description-nl.UTF-8: Te controleren netwerkapparaten:
+ Gelieve hier alle netwerkapparaten die u door het RRDTool grafiek-hulpprogramma wilt laten controleren op te geven.
+Description-pt.UTF-8: Dispositivos rede a monitorizar:
+ Por favor introduza aqui todos os dispositivos de rede que deseja que sejam monitorizados pelas RRDTools.
+Description-pt_BR.UTF-8: Dispostivos de rede a monitorar:
+ Por favor, informe todos os dispositivos de rede que você gostaria que fossem monitorados pelo utilitário de gráficos RRDTool.
+Description-ru.UTF-8: Сетевые устройства для мониторинга:
+ Введите все сетевые устройства, за которыми вы хотите следить с помощью утилиты RRDTool.
+Description-sv.UTF-8: Nätverksenheter som ska övervakas:
+ Ange alla nätverksenheter som du vill hålla koll på med grafverktyget RRDTool.
+Description-vi.UTF-8: Thiết bị mạng cần theo dõi:
+ Hãy nhập các thiết bị mạng bạn muốn theo dõi dùng tiện ích vẽ đồ thị RRDTool.
+Description-zh_CN.UTF-8: 用于监控的网络装置
+ 请输入您希望被RRDTool 图形用途 监控的所有的网络装置.
+
+Template: dtc/conf_report_setup_stat
+Type: boolean
+Default: false
+Description: Allow to report anonymous statistics to GPLHost?
+ DTC installations can be reported to the GPLHost web site. The only
+ collected data are the operating system name (Debian) and the IP
+ address (used as a unique identifier only). An Internet connection
+ and the wget binary are required to report the statistics.
+Description-cs.UTF-8: Povolit zasílání anonymních statistik GPLHostu?
+ Instalace DTC se může ohlásit na webové stránky GPLHostu. Jediná odesílaná data jsou název operačního systému (Debian) a IP adresa (používá se pouze pro jednoznačnou identifikaci). Pro odeslání statistiky je vyžadováno internetové připojení a program wget.
+Description-de.UTF-8: Darf eine anonyme Statistik an GPLHost geschickt werden?
+ DTC-Installationen können an die GPLHost-Webseite gemeldet werden. Es wird nur der Betriebssystemname (Debian) und die IP-Adresse (als eindeutiger Bezeichner verwendet) gesandt. Eine Internetverbindung und das wget-Programm müssen installiert sein, damit die Statistiken gemeldet werden können.
+Description-es.UTF-8: ¿Desea permitir informar de estadísticas anónimas a GPLHost?
+ Las instalaciones de DTC se pueden informar al sitio web GPLHost. Los únicos datos recolectados son el nombre del sistema operativo (Debian) y la dirección IP (usada sólo como identificador único). Se necesita una conexión a internet y el binario de wget para realizar el informe de las estadísticas.
+Description-eu.UTF-8: Baimendu estatistika anonimoak bidaltzea GPLHost-era?
+ DTC instalazioari buruzko txostena GPLHost webgunera bidal daiteke. Bilduko diren datuak sistema eragilearen izena (Debian) eta IP helbidea (identifikatzaile esklusibo gisa erabiltzeko) izango dira. Interneteko konexioa eta wget aplikazioa behar dira estatistikak bidaltzeko.
+Description-fi.UTF-8: Sallitaanko nimettömien tilastojen lähetys GPLHostille?
+ DTC-asennukset voidaan raportoida GPLHost-verkkosivulle. Kerättävät tiedot ovat käyttöjärjestelmän nimi (Debian) ja IP-osoite (jota käytetään vain yksilöivänä tunnisteena). Tilastojen raportointi vaatii Internet-yhteyden ja wget-ohjelman.
+Description-fr.UTF-8: Faut-il envoyer des statistiques (anonymes) à GPLHost ?
+ Les installations de DTC peuvent être signalées au site web de GPLHost. Les seules données relevées sont le nom du système d'exploitation (Debian) et l'adresse IP (qui ne sert que de clé d'unicité). Une connexion à l'Internet ainsi que l'utilitaire wget sont indispensables pour envoyer ces informations.
+Description-gl.UTF-8: ¿Permitir engadir estatísticas anónimas a GPLHost?
+ Pódese informar das instalacións de DTC á páxina web de GPLHost. Os únicos datos que se recollen son o nome do sistema operativo (Debian) e o enderezo IP (que se emprega só coma identificador único). Son necesarios unha conexión a Internet e o programa "wget" para informar das estatísticas.
+Description-ja.UTF-8: GPLHost への匿名での統計レポートを許可しますか?
+ DTC のインストールを GPLHost ウェブサイトにレポートできます。収集されるデータはオペレーティングシステム名 (Debian) と IP アドレス (一意性の判別にのみ使われる) だけです。統計のレポートにはインターネット接続と wget プログラムが必要です。
+Description-ml.UTF-8: GPLHost ലേക്ക് സ്വയം വെളിപ്പെടുത്താത്ത സ്ഥിതിവിവരകണക്ക് അറിയിയ്ക്കാന്‍ അനുവദിയ്ക്കണോ?
+ DTC ഇന്‍സ്റ്റളേഷനുകള്‍ GPLHost വെബ് സൈറ്റിലേയ്ക്ക് അറിയിയ്ക്കാവുന്നതാണ്. പ്രവര്‍ത്തക സംവിധാനത്തിന്റെ പേരും (ഡെബിയന്‍) ഐപി വിലാസവും (സമാനമില്ലാത്ത തിരിച്ചറിയല്‍ രേഖയായി മാത്രം ഉപയോഗിയ്ക്കുന്നു) മാത്രമാണ് ശേഖരിച്ച ഡാറ്റ. ഒരു ഇന്റര്‍നെറ്റ് ബന്ധവും wget ബൈനറിയും സ്ഥിതിവിവരകണക്ക് അറിയിയ്ക്കാന്‍ ആവശ്യമാണ്.
+Description-nl.UTF-8: Wilt u het rapporteren van anonieme statistieken aan GPLhost toelaten?
+ DTC-installaties kunnen rapporten insturen naar de GPLHost website. De enige informatie die gerapporteerd wordt zijn de OS-naam (Debian) en het IP-adres (enkel gebruikt als unieke identifier). Een Internetverbinding en het programma wget zijn vereist om de statistieken te kunnen rapporteren.
+Description-pt.UTF-8: Permitir envio de estatísticas anónimas para GPLHost?
+ As instalações do DTC podem ser reportadas ao site do GPLHost. Os únicos dados recolhidos são o nome do sistema operativo (Debian) e o endereço IP (que é usado como um identificador único). É necessária uma ligação à Internet e o wget para reportar as estatísticas.
+Description-pt_BR.UTF-8: Permitir relatar estatísticas anônimas a GPLHost?
+ Instalações DTC podem ser relatadas ao site web GPLHost. Os únicos dados coletados são o nome do sistema operacional (Debian) e o endereço IP (apenas usado como identificador único). Uma conexão com a Internet e o binário wget são requeridos para relatar as estatísticas.
+Description-ru.UTF-8: Разрешать анонимно отсылать статистику на GPLHost?
+ DTC установки могут отсылать отчёты на веб-сайт GPLHost. Собирается только имя операционной системы (Debian) и IP адрес (используется только как уникальный идентификатор). Для отправки статистики требуется подключение к Интернет и программа wget.
+Description-sv.UTF-8: Vill du skicka anonyma rapporter med statistik till GPL Host?
+ DTC-installationen kan skicka rapporter till webbplatsen GPL Host. Datan som skickas är bara operativ system (Debian) och IP-adressen (som unik identitet). En Internetanslutning och binären wget krävs för att skicka statistiken.
+Description-vi.UTF-8: Cho phép thông báo thống kê vô danh cho GPLHost không?
+ Bản cài đặt DTC có khả năng thông báo cho địa chỉ Web của GPLHost. Tiến trình này chỉ thông báo tên của hệ điều hành (v.d. Debian) và địa chỉ IP (chỉ được dùng để phân biệt mỗi thông báo). Cũng cần thiết kết nối tới Internet và tập tin nhị phân wget.
+Description-zh_CN.UTF-8: 允许向GPLHost报告匿名统计?
+ DTC 的安装可以报告给GPLHost 网站. 仅收集的数据是操作系统名字 (Debian)和IP地址(仅用于作为一个唯一标识). 一个互联网的连接和wget binary 是必须被要求提供统计.
+
+Template: dtc/conf_omit_dev_mknod
+Type: boolean
+Default: false
+Description: Skip mknod calls when building the chroot template?
+ In some environments, such as Linux vServer, mknod cannot be
+ executed. This option allows skipping the creation of the null,
+ random and urandom devices during the chroot template creation.
+Description-cs.UTF-8: Přeskočit při vytváření šablony pro chroot volání mknod?
+ V některých prostředích, např. Linux VServer, není možné používat program mknod. Povolením této volby se při vytváření šablony pro chroot přeskočí vytvoření zařízení null, random a urandom.
+Description-de.UTF-8: Sollen mknod-Aufrufe beim Generieren der chroot-Vorlage übersprungen werden?
+ In manchen Umgebungen, z.B. Linux vServer, darf mknod nicht ausgeführt werden. Diese Option erlaubt das Überspringen der Erstellung der null-, random- und urandom-Geräte während der Erstellung der chroot-Vorlage.
+Description-es.UTF-8: ¿Desea saltarse las llamadas a «mknod» cuando se genere la plantilla de chroot?
+ En algunos entornos, como Linux vServer, no se puede ejecutar «mknod». Esta opción permite saltarse la creación de los dispositivos «null», «random» y «urandom» durante la creación de la plantilla de chroot.
+Description-eu.UTF-8: Saltatu mknod deiak chroot txantiloia eraikitzean?
+ Ingurune batzuetan, Linux vServer bezalakoetan, mknod ezin da exekutatu. Aukera honek null, random eta urandom gailuen sorrera saltatzea baimentzen du chroot txantiloia eraikitzean.
+Description-fi.UTF-8: Ohitetaanko mknod-kutsut rakennettaessa chroot-mallia?
+ Jossain ympäristöissä, kuten Linux vServerillä, ohjelmaa mknod ei voida ajaa. Tämä valinta mahdollistaa null-, random- ja urandom-laitteiden luonnin ohituksen luotaessa chroot-mallia.
+Description-fr.UTF-8: Omettre les appels à mknod lors de la création de l'environnement fermé d'exécution ?
+ Dans certains environnements comme Linux vServer, mknod ne peut pas être exécuté. Pour cette raison, il est possible d'omettre la création des fichiers de périphériques « null », « random » et « urandom » pendant la création du canevas de l'environnement fermé d'exécution (« chroot »).
+Description-gl.UTF-8: ¿Omitir as chamadas a mknod ao construír o patrón de chroot?
+ Nalgúns ambientes, coma Linux vServer, non se pode executar mknod. Esta opción permite omitir a creación dos dispositivos "null", "random" e "urandom" durante a creación do patrón de chroot.
+Description-ja.UTF-8: chroot テンプレートの構築時に mknod の呼び出しをスキップしますか?
+ Linux vServer などの幾つかの環境下では、mknod は実行できません。このオプションは、chroot テンプレートの作成時に null/random/urandom デバイスの作成を飛ばすことを許可します。
+Description-ml.UTF-8: chroot ടെംപ്ലേറ്റ് നിര്‍മിച്ചുകൊണ്ടിരിയ്ക്കുമ്പോള്‍ mknod വിളികള്‍ വിട്ടുകളയണോ?
+ ലിനക്സ് vServer പോലുള്ള ചില പരിസ്ഥിതികളില്‍ mknod പ്രവര്‍ത്തിപ്പിയ്ക്കാന്‍ സാധ്യമല്ല. ഈ ഐച്ഛികം chroot ടെംപ്ലേറ്റ് സൃഷ്ടി സമയത്ത് null, random, urandom എന്നീ ഉപകരണങ്ങളുടെ സൃഷ്ടി വിട്ടുകളയുന്നതിന് അനുവദിയ്ക്കുന്നു.
+Description-nl.UTF-8: Wilt u mknod-aanroepen overslaan bij het opbouwen van de chroot-sjabloon?
+ In sommige omgevingen, zoals een Linux vServer, kan mknod niet uitgevoerd worden. Deze optie laat toe om het aanmaken van de null, random, en urandom apparaatbestanden over te slaan tijdens het aanmaken van de chroot sjabloon.
+Description-pt.UTF-8: Saltar chamadas ao mknod durante a construção do template chroot?
+ Em alguns ambientes, como Linux vServer, não é permitida a execução do mknod. Por essa razão é possível saltar a criação dos dispositivos null, random e urandom durante a criação do template chroot.
+Description-pt_BR.UTF-8: Pular chamadas mknod quando construir o modelo chroot?
+ Em alguns ambientes, como Linux vServer, mknod não pode ser executado. Esta opção permite pular a criação dos dispositivos null, random e urandom durante a criação do modelo chroot.
+Description-ru.UTF-8: Пропускать вызовы mknod при сборке шаблона chroot?
+ В некоторых окружениях, например в Linux vServer, невозможно выполнять mknod. Этот параметр позволяет пропускать создание устройств null, random и urandom во время создания шаблона chroot.
+Description-sv.UTF-8: Hoppa över att köra mknod när chroot-mallen skapas?
+ I vissa miljöer, som exempelvis Linux vServer, kan mknod inte köras. Detta alternativ gör att delen där enheterna null, random och urandom skapas i chroot-miljön hoppas över.
+Description-vi.UTF-8: Bỏ qua cuộc gọi mknod khi xây dựng mẫu chroot không?
+ Trong một số môi trường nào đó, v.d. Linux vServer, không thể thực hiện mknod. Tùy chọn này cho phép bỏ qua tiến trình tạo thiết bị null (vô giá trị), random (ngẫu nhiên) và urandom trong khi tạo mẫu chroot.
+Description-zh_CN.UTF-8: 当建立chroot 模板时，Skip mknod 给予警示?
+ 在一些环境下, 例如 Linux vServer, mknod 无法开始. 在 chroot 模板创建期间,这个选项允许跳过 null, random 和 urandom 装置的创建.
+
+Template: dtc/conf_enforce_adm_encryption
+Type: boolean
+Default: true
+Description: Enforce DTC admin password encryption?
+ To enhance security in case of a breach, DTC can encrypt all
+ admin passwords. If passwords are encrypted, you cannot see them
+ by clicking on the magnifying glass icon (you will only see the
+ encrypted version of the password), but you can always use the
+ /usr/share/dtc/admin/dtcpasswdm shell script to (re)set a password.
+ .
+ The encryption will be applied to passwords created from now on. If
+ you have existing unencrypted admin passwords that should be
+ converted, see /usr/share/doc/dtc-common/README.Debian.
+Description-de.UTF-8: DTC-Passwortverschlüsselung erzwingen?
+ Um im Falle eines Vorfalls die Sicherheit zu erhöhen, kann DTC alle Administratorpasswörter verschlüsseln. Falls die Passwörter verschlüsselt sind, können Sie sie nicht durch Anklicken des Vergrößerungsglases sehen (Sie werden nur eine verschlüsselte Version davon sehen). Sie können aber immer das Shell-Skript /usr/share/dtc/admin/dtcpasswdm verwenden, um ein Passwort (zurückzu-)setzen.
+ .
+ Die Verschlüsselung greift für Passwörter, die ab jetzt erstellt werden. Falls bei Ihnen unverschlüsselte Passwörter vorliegen, die umgewandelt werden sollen, lesen Sie /usr/share/doc/dtc-common/README.Debian.
+Description-fr.UTF-8: Forcer l'utilisation de mots de passe chiffrés avec DTC ?
+ DTC peut, pour améliorer la sécurité, chiffrer les mots de passe d'administration. Dans ce cas, il n'est plus possible de les afficher en cliquant sur la loupe (seule la version chiffrée sera affichée). Par contre, le script /usr/share/dtc/admin/dtcpasswdm pourra toujours être utilisé pour (re)définir un mot de passe.
+ .
+ Le chiffrement s'appliquera aux nouveaux mots de passe. Les anciens mots de passe resteront non chiffrés. Pour plus d'informations à propos de leur conversion, veuillez consulter le fichier /usr/share/doc/dtc-common/README.Debian.
+Description-ru.UTF-8: Шифровать административные пароли?
+ В с целью усиления безопасности в случае компроментации, DTC может хранить все административные пароли зашифрованными. Если пароли зашифрованы, то вы не сможете увидеть их при нажатии на значок с лупой (вы увидите зашифрованный текст), но всегда можете использовать сценарий оболочки /usr/share/dtc/admin/dtcpasswdm для их сброса(установки).
+ .
+ Зашифрованными будут только вновь создаваемые пароли. О том, как преобразовать имеющиеся нешифрованные административные пароли, смотрите в /usr/share/doc/dtc-common/README.Debian.
+Description-sv.UTF-8: Ska kryptering av lösenord för DTC-adminstratörer användas?
+ För att öka säkerheten och försvåra vid intrång kan DTC kryptera alla lösenord för administratörer. Om lösenorden är krypterade kan du inte se dem genom att klicka på förstoringsglasikonen (endast den krypterade versionen av lösenordet syns) men du kan alltid använda skriptet /usr/share/dtc/admin/dtcpasswdm för att ange ett (nytt) lösenord.
+ .
+ Krypteringen kommer att användas på lösenord som skapas från och med nu. Existerande okrypterade administratörslösenord ska konverteras, läs mer i /usr/share/doc/dtc-common/README.Debian.

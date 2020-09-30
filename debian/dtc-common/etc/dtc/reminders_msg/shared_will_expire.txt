@@ -1,0 +1,16 @@
+
+Subject: Your hosting account will expire soon
+
+Hello %%%FIRST_NAME%%%,
+
+Your shared hosting account will expire in %%%REMAINING_DAYS%%% days, on the:
+%%%EXPIRATION_DATE%%%.
+
+Please login into your control panel at:
+
+%%%DTC_CLIENT_URL%%%
+
+with your login %%%DTC_ADM_LOGIN%%% click on your my-account tab, and
+renew it.
+
+%%%SIGNATURE%%%

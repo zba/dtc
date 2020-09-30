@@ -1,0 +1,20 @@
+
+Assunto: Sua conta de hospedagem compartilhada expira hoje!
+
+Olá %%%FIRST_NAME%%%,
+
+Sua conta de hospedagem compartilhada expira hoje, na data:
+
+%%%EXPIRATION_DATE%%%
+
+Por favor logue-se no painel de controle em:
+
+%%%DTC_CLIENT_URL%%%
+
+com o seu login %%%DTC_ADM_LOGIN%%%, clique em "minha conta", para renova-la.
+
+Manteremos a sua conta ativa somente pro alguns dias de forma a dar tempo
+para que seu contrato conosco seja renovado. Depois deste período sua 
+conta será efetivamente removida.
+
+%%%SIGNATURE%%%

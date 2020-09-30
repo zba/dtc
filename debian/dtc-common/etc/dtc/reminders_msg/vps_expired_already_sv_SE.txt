@@ -1,0 +1,22 @@
+
+Subject: Din VPS har löpt ut
+
+Hej %%%FIRST_NAME%%%,
+
+Detta är ett automatiskt meddelande skickat av Domain Technologie
+Control (DTC) robot.
+
+Din Xen Virtual Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+har löpt ut för %%%EXPIRED_DAYS%%% dagar sedan, den: %%%EXPIRATION_DATE%%%.
+
+Var god logga in på din kontrollpanel på
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login %%%DTC_ADM_LOGIN%%%, klicka sedan på VPS fliken, och
+förnya den.
+
+Vi kommer att hålla din VPS aktivt ett par dagar för att ge dig tid att
+förnya ditt abonnemang.
+
+%%%SIGNATURE%%%

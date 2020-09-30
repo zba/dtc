@@ -1,0 +1,124 @@
+Howto Log Apache & Proftp to mysql
+
+1. Proftpd
+
+1.1 Changes to table ftp_access:
+
+added the following fields
+login_count int(11),
+last_login datetime,
+dl_bytes int(14),
+dl_count int(14),
+ul_bytes int(14),
+ul_count int(14)
+
+1.2 Create table ftp_logs
+
+CREATE TABLE ftp_logs (
+  username tinytext,
+  filename text,
+  size bigint(20) default NULL,
+  host tinytext,
+  ip tinytext,
+  command tinytext,
+  command_time tinytext,
+  local_time datetime default NULL,
+  success char(1) default NULL,
+  ui bigint(20) NOT NULL auto_increment,
+  PRIMARY KEY  (ui)
+) TYPE=MyISAM;
+
+
+1.3 Add the following lines to proftpd.conf
+
+// Transfer Log to Proftpd
+SQLLog RETR,STOR transfer1
+SQLNamedQuery transfer1 INSERT "'%u', '%f', '%b', '%h', '%a', '%m', '%T',now(), 'c', NULL" ftp_logs
+
+// Count Logins per User
+SQLLog                PASS logincount
+SQLNamedQuery         logincount UPDATE "count=count+1 WHERE login='%u'" ftp_access
+
+// Remember the last login time
+SQLLog                PASS lastlogin
+SQLNamedQuery         lastlogin UPDATE "last_login=now() WHERE login='%u'" ftp_access
+
+// Count the downloaded bytes
+SQLLog RETR           dlbytescount
+SQLNamedQuery         dlbytescount UPDATE "dl_bytes=dl_bytes+%b WHERE login='%u'" ftp_access
+
+// Count the downloaded files
+SQLLog RETR           dlcount
+SQLNamedQuery         dlcount UPDATE "dl_count=dl_count+1 WHERE login='%u'" ftp_access
+
+// Count the uploaded bytes
+SQLLog STOR           ulbytescount
+SQLNamedQuery         ulbytescount UPDATE "ul_bytes=ul_bytes+%b WHERE login='%u'" ftp_access
+
+// Count the uploaded files
+SQLLog STOR           ulcount
+SQLNamedQuery         ulcount UPDATE "ul_count=ul_count+1 WHERE login='%u'" ftp_access
+
+1.4 Restart Proftpd
+
+2 Apache
+
+2.1 mod_log_sql
+
+You will need mod_log_sql. Get it from http://www.grubbybaby.com/mod_log_sql !
+
+Edit Makefile and change the values of the variables in the first section.
+
+   1. These paths are necessary:
+
+      APACHEINSTALLED:
+          the location where you installed Apache - usually /usr/local/apache, 'locate apxs' can help you find it. 
+      APACHEHEADERS:
+          The location of your Apache header files, find using 'locate httpd.h' 
+      MYSQLLIBRARIES:
+          The location of your MySQL libraries, find using 'locate libmysqlclient.so' 
+      MYSQLHEADERS:
+          The location of your MySQL header files, find using 'locate mysql.h' 
+
+   2. Optional: if you compiled mod_ssl for Apache and want to log SSL data such as 'keysize' and 'cipher type':
+
+      MODSSLHEADERS:
+          the location of your mod_ssl header files, find using 'locate mod_ssl.h' 
+      DB1HEADERS:
+          the location of your db1 header files, find using 'locate ndbm.h' 
+
+You do not need to compile SSL support into mod_log_sql in order to simply use it with a secure site. You only need to compile SSL support into mod_log_sql if you want to log SSL-specific data such as the cipher type.
+
+Then 'make dso' 'make dsoinstall'
+
+Add the module to httpd.conf
+
+LoadModule sql_log_module     modules/mod_log_sql.so
+AddModule mod_log_sql.c
+
+Then create a new database in mysql. Let's call it apachelogs.
+Create a user for that database.
+
+Then add the following lines to httpd.conf
+
+LogSQLLoginInfo [HOSTNAME] [DATABASEUSER] [DATABASE PASSWORD]
+LogSQLSocketFile [PATH TO mysql.sock]
+LogSQLDatabase [DATABASE NAME]
+LogSQLMassVirtualHosting On
+LogSQLTransferLogFormat IAbHhmRSsTUuv
+
+Then restart your apache. Watch the error_log.
+Check the created database. There should be serveral new tables.
+mod_log_sql creates them for you One table per vhost.
+
+
+
+
+
+
+
+
+
+
+
+install mod_log_sql

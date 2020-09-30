@@ -1,0 +1,14 @@
+Package: dtc-dos-firewall
+Source: dtc
+Version: 0.34.5-1
+Architecture: all
+Maintainer: Thomas Goirand <zigo@debian.org>
+Installed-Size: 88
+Depends: iptables, lsb-base
+Section: admin
+Priority: extra
+Homepage: http://www.gplhost.com/software-dtc.html
+Description: small anti-DoS firewall script for your web, ftp and mail servers
+ If running in a production environment, you might want to have a basic
+ firewall running on your server to avoid having DoS attack. This is not the
+ state-of-the-art, but just another attempt to make things a bit more smooth.

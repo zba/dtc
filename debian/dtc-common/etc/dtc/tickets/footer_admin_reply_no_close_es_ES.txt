@@ -1,0 +1,18 @@
+
+Tenga en cuenta de que el ticket todavia esta abierto, esto significa
+que estamos esperando por su respuesta. Asi que por favor ingrese al
+panel de control en la siguiente URL:
+
+%%%DTC_CLIENT_URL%%%
+
+Una vez ingrese, vaya a la pestaña de soporte y escriba su respuesta.
+Tambien puede presionar "responder" en su cliente de correo, o escribir
+a:
+
+%%%SUPPORT_EMAIL_ADDRESS%%%
+
+Si usted esta respondiendo por email, por favor no cambie la direccion
+de respuesta. El numero que esta incluido en esta direccion es muy
+importante, y nos ayuda a enlazar su correo con el ticket antiguo!
+Ademas, por favor no incluya nuestra respuesta en el cuerpo de su
+mensaje, ya que contamos con un historial de este.

@@ -1,0 +1,17 @@
+Notez que le ticket est toujours ouvert, ce qui signifie que nous sommes
+en attente de votre réponse. Veuillez vous connecter au panneau de
+contrôle à l'adresse suivante: 
+
+%%%DTC_CLIENT_URL%%%
+
+avec votre nom d'utilisateur, puis allez dans l'onglet ticket de support
+et tapez votre réponse. Vous pouvez aussi simplement utiliser la
+fonction "répondre" avec votre client de messagerie, ou écrire à: 
+
+%%%SUPPORT_EMAIL_ADDRESS%%%
+
+Si vous répondez par email, merci de ne PAS changez l'adresse, le numéro
+qu'elle comporte est tres important, et permet de lier votre email a son
+ancien ticket de support! Aussi, n'incluez PAS notre réponse dans le
+corp du méssage, nous avons l'historique des messages envoyés.
+

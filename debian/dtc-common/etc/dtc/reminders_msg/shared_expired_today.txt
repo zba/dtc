@@ -1,0 +1,21 @@
+
+Subject: Your shared hosting account expires today
+
+Hello %%%FIRST_NAME%%%,
+
+Your shared hosting account expires today, on the:
+
+%%%EXPIRATION_DATE%%%
+
+Please login into your control panel at
+
+%%%DTC_CLIENT_URL%%%
+
+with your login %%%DTC_ADM_LOGIN%%%, click on the my-account tab, and
+renew it.
+
+We will keep your hosting account up few days to give you the time to
+renew your contract. After the grace period your account will be
+deleted.
+
+%%%SIGNATURE%%%

@@ -1,0 +1,25 @@
+#!/bin/sh
+
+set -e
+
+. /usr/share/debconf/confmodule
+db_version 2.0
+
+. /usr/share/dtc/admin/install/debian_config
+. /usr/share/dtc/admin/install/functions
+
+debianGetDebconfValues
+if [ "$UNIX_TYPE" = "debian" ] ; then
+	db_stop
+fi
+
+DTCinstallPackage
+
+
+
+echo "************************************************************************"
+echo "* Warning! DTC setup is not completed. The postinst didn't do it all.  *"
+echo "To finish the installation: execute /usr/share/dtc/admin/install/install"
+echo "************************************************************************"
+
+exit 0

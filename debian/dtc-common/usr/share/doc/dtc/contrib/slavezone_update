@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# This script will query your DTC panel for a list of domains,
+# then install this list in /etc/bind/named.slavezones.conf
+# and do a "rndc reload" to tell bind9 to reload the list.
+#
+# To install this script, put it for example in /usr/local/bin
+# and add a file in /etc/cron.d containing the following:
+#
+# */5 * * * * root (/usr/local/bin/slavezone_update)
+#
+# then add an include directive in your bind configuration:
+#
+# echo "include \"/etc/bind/named.slavezones.conf\";" >>/etc/bind/named.conf.local
+#
+# then edit the following 3 parameters, and maybe your
+# /etc/hosts file to make sure your backup DNS can resolve
+# the main DTC panel.
+
+DTC_PANEL_URL=dtc.example.com
+BACKUP_LOGIN=bla
+BACKUP_PASSWORD=changeme
+
+# Start of backup script here...
+TEMP_OUTFILE=`mktemp -t -u`
+TEMP_OUTFILE2=`mktemp -t`
+
+/usr/bin/wget --no-check-certificate -O ${TEMP_OUTFILE} "https://${DTC_PANEL_URL}/dtc/list_domains.php?login=${BACKUP_LOGIN}&pass=${BACKUP_PASSWORD}&action=list_dns"
+
+/bin/cat ${TEMP_OUTFILE} | /bin/sed -e 's/\(type slave;\)/\1\n\tallow-query { any; };/' > ${TEMP_OUTFILE2}
+
+/bin/cp /etc/bind/named.slavezones.conf /etc/bind/named.slavezones.conf.bak
+FILESIZE=0
+FILESIZE=$(/usr//bin/stat -c%s "${TEMP_OUTFILE2}")
+# don't overwrite the working slavezones.conf if the generated one is zero bytes
+if [ $FILESIZE -gt 0 ]; then
+        /bin/mv ${TEMP_OUTFILE2} /etc/bind/named.slavezones.conf
+	chown bind.bind /etc/bind/named.slavezones.conf
+        /usr/sbin/rndc reload
+fi
+
+rm -f ${TEMP_OUTFILE}
+rm -f ${TEMP_OUTFILE2}

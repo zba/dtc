@@ -1,0 +1,6 @@
+
+Esta mensagem foi automaticamente enviada usando o robo do Domain Technologie Control (DTC)
+DTC é um painel de controle open source que pretende ser uma solução para hosting comercial.
+O DTC é construido pela GPLHost e colaboradores maiores informações sobre o projeto visite.
+http://www.gplhost.com/software.html 
+

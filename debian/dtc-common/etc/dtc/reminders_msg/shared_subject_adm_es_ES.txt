@@ -1,0 +1,1 @@
+El hosting compartido de %%%DTC_ADM_LOGIN%%% expiró hace %%%EXPIRED_DAYS%%% días.

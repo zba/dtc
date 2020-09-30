@@ -1,0 +1,65 @@
+#!/bin/sh
+
+. /lib/lsb/init-functions
+
+case "$1" in
+	stop)
+/etc/init.d/postfix stop
+/etc/init.d/dkimproxy stop
+/etc/init.d/amavis stop
+/etc/init.d/spamassassin stop
+/etc/init.d/clamav-daemon stop
+/etc/init.d/clamav-freshclam stop
+/etc/init.d/courier-imap stop
+/etc/init.d/courier-imap-ssl stop
+/etc/init.d/courier-pop stop
+/etc/init.d/courier-pop-ssl stop
+/etc/init.d/mailgraph stop
+
+/etc/init.d/mysql stop
+/etc/init.d/pure-ftpd-mysql stop
+
+/etc/init.d/portmap stop
+/etc/init.d/ntp stop
+/etc/init.d/mdadm stop
+/etc/init.d/bind stop
+/etc/init.d/fam stop
+
+/etc/init.d/sysklogd stop
+/etc/init.d/klogd stop
+
+	;;
+	start)
+
+
+
+/etc/init.d/portmap stop
+/etc/init.d/ntp stop
+/etc/init.d/mdadm stop
+/etc/init.d/bind stop
+/etc/init.d/fam stop
+
+/etc/init.d/sysklogd stop
+/etc/init.d/klogd stop
+
+/etc/init.d/mysql stop
+/etc/init.d/pure-ftpd-mysql stop
+
+/etc/init.d/mailgraph start
+/etc/init.d/amavis start
+/etc/init.d/spamassassin start
+/etc/init.d/clamav-daemon start
+/etc/init.d/clamav-freshclam start
+/etc/init.d/courier-imap start
+/etc/init.d/courier-imap-ssl start
+/etc/init.d/courier-pop start
+/etc/init.d/courier-pop-ssl start
+
+/etc/init.d/dkimproxy start
+/etc/init.d/postfix start
+	;;
+	*)
+		echo "Usage: $0 {start|stop}"
+		exit 1
+esac
+exit 0

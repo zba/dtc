@@ -1,0 +1,59 @@
+#!/bin/sh
+
+UNIX_TYPE=osx
+VERBOSE_INSTALL=yes
+
+CONF_DTC_SYSTEM_USERNAME=dtc
+CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
+PATH_HTTPD_CONF="/etc/httpd/httpd.conf"
+PATH_NAMED_CONF="/etc/named.conf"
+PATH_CRONTAB_CONF="/etc/crontab"
+PATH_POSTFIX_ETC="/etc/postfix"
+PATH_AWSTATS_ETC="/etc/awstats"
+PATH_CGIBIN="/usr/lib/cgi-bin"
+
+PATH_SASLLIB=/usr/lib/sasl2
+
+PATH_APACHE_PID_FILE="/var/run/httpd.pid"
+# Copy default conf if no conf exists (BSD specific)
+if [ ! -f ${LOCALBASE}/etc/proftpd.conf ] ; then
+	if [ -e ${LOCALBASE}/etc/proftpd.conf.default ] ; then
+		cp ${LOCALBASE}/etc/proftpd.conf.default ${LOCALBASE}/etc/proftpd.conf
+	fi
+fi
+conf_apache_version=1
+PATH_PROFTPD_CONF="/etc/proftpd.conf"
+PATH_DOVECOT_CONF="/etc/dovecot.conf"
+PATH_COURIER_CONF_PATH="/etc/courier"
+PATH_COURIER_AUTHD_CONF_PATH="/etc/courier"
+if [ ! -f $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc ]; then
+	if [ -f ${LOCALBASE}/etc/authlib/authdaemonrc ]; then
+		PATH_COURIER_AUTHD_CONF_PATH="${LOCALBASE}/etc/authlib"
+	fi
+fi
+PATH_QMAIL_NEWU="/var/qmail/bin/qmail-newu"
+PATH_POSTFIX_CONF="/etc/postfix/main.cf"
+PATH_POSTFIX_ETC="/etc/postfix"
+PATH_SASL_PASSWD2="/sbin/saslpasswd2"
+PATH_MAILDROP_BIN="/bin/maildrop"
+PATH_USERDB_BIN="/sbin/userdb"
+PATH_PHP_CGI="/usr/bin/php"
+FREERADIUS_ETC="$/etc/raddb"
+PATH_DTC_SHARED="/usr/share/dtc"
+PATH_CRONTAB_CONF=/etc/crontab
+PATH_AWSTATS_ETC=/etc/awstats
+MYSQL_DB_SOCKET_PATH="/tmp/mysql.sock"
+
+PATH_SUDOERS_CONF="/etc/sudoers"
+PATH_RRDTOOL="/bin/rrdtool"
+
+PATH_CYRUS_CONF=/usr/local/etc/imapd.conf
+
+PATH_DTC_ETC=$PATH_DTC_SHARED"/etc"
+PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
+PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
+
+PATH_SSH_CONF=/private/etc/sshd_config
+
+DTC_SAVED_INSTALL_CONFIG=/var/lib/dtc/saved_install_config
+DKFILTER_INIT_SCRIPT=/etc/init.d/dkfilter

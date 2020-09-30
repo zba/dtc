@@ -1,0 +1,18 @@
+
+Ämne: Din VPS löper ut idag
+
+Hej %%%FIRST_NAME%%%,
+
+Din Xen Virtual Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+har löpt ut idag, den: %%%EXPIRATION_DATE%%%.
+
+Var god logga in på din kontrollpanel på
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login %%%DTC_ADM_LOGIN%%% klicka sedan på din VPS flik och förnya den.
+
+Vi kommer att hålla din VPS uppe ett par dagar för att ge dig tid för att 
+förnya ditt abonnemang. Efter denna period kommer din konto att raderas.
+
+%%%SIGNATURE%%%

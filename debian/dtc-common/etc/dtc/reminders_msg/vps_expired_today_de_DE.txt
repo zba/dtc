@@ -1,0 +1,20 @@
+
+Subject: Ihr virtueller Serverv läuft heute ab
+
+Sehr geehrte Damen und Herren,
+
+Ihr virtueller Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+läuft heute, d.h. am %%%EXPIRATION_DATE%%% ab.
+
+Bitte melden Sie sich im Kundencenter unter 
+
+%%%DTC_CLIENT_URL%%%
+
+mit Ihrem Benutzernamen %%%DTC_ADM_LOGIN%%% an, gehen Sie in den VPS-Bereich,
+und verlängern Sie Ihren virtuellen Server.
+
+Ihr VPS bleibt noch ein paar Tage online, um Ihnen Gelegenheit zur
+Verlängerung zu geben. Nach dieser Übergangsphase wird Ihr virtueller
+Server gelöscht.
+
+%%%SIGNATURE%%%

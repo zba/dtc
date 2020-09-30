@@ -1,0 +1,98 @@
+#!/usr/bin/perl -w
+# Time-stamp: <05 April 2004, 13:37 home>
+#
+# sa-wrapper.pl
+#
+# SpamAssassin sa-learn wrapper
+# (c) Alexandre Jousset, 2004
+# This script is GPL'd
+#
+# Thanks to: Chung-Kie Tung for the removal of the dir
+#            Adam Gent for bug report
+#
+# v1.2
+
+use strict;
+use MIME::Tools;
+use MIME::Parser;
+use File::Temp;
+
+my $DEBUG = 0;
+my $debug_file;
+my $debug_file2;
+my $UNPACK_DIR = '/var/lib/amavis/tmp';
+my $SA_LEARN = '/usr/bin/sa-learn';
+# my @DOMAINS = qw/example.com example.org/;
+# read from file instead
+my $file='/var/lib/dtc/etc/local_domains';
+open (FH, "< $file") or die "Can't open $file for read: $!";
+my @DOMAINS = <FH>;
+close FH or die "Cannot close $file: $!"; 
+@DOMAINS = trim(@DOMAINS);
+
+# trim the whitespace off the array or string
+sub trim 
+{
+	my @out = @_;
+	for (@out)
+	{
+		s/^\s+//;
+		s/\s+$//;
+	}
+	return wantarray ? @out : $out[0];
+}
+
+my ($spamham, $sender) = @ARGV;
+
+sub recurs
+{
+	my $ent = shift;
+
+	if ($ent->head->mime_type eq 'message/rfc822') {
+		if ($DEBUG) {
+			$debug_file = mktemp("/tmp/sa-wrapper.log.XXXXXX");
+			open(OUT, "|$SA_LEARN -D --$spamham --single >>$debug_file 2>&1") or die "Cannot pipe $SA_LEARN: $!";
+		} else {
+			open(OUT, "|$SA_LEARN --$spamham --single") or die "Cannot pipe $SA_LEARN: $!";
+		}
+
+		$ent->bodyhandle->print(\*OUT);
+
+		close(OUT);
+		return;
+	}
+
+	my @parts = $ent->parts;
+
+	if (@parts) {
+		map { recurs($_) } @parts;
+	}
+}
+
+my ($domain) = $sender =~ /\@(.*)$/;
+unless (grep { $_ eq $domain } @DOMAINS) {
+	die "$sender, I don't recognize your domain ($domain)!";
+}
+
+if ($DEBUG) {
+	MIME::Tools->debugging(1);
+	$debug_file2 = mktemp("/tmp/sa-wrapper.stderr.XXXXXX");
+	open(STDERR, ">$debug_file2");
+}
+my $parser = new MIME::Parser;
+$parser->extract_nested_messages(0);
+$parser->output_under($UNPACK_DIR);
+
+my $entity;
+eval {
+	$entity = $parser->parse(\*STDIN);
+};
+
+if ($@) {
+	die $@;
+} else {
+	recurs($entity);
+}
+
+$parser->filer->purge;
+rmdir $parser->output_dir;

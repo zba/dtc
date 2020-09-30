@@ -1,0 +1,4 @@
+
+Detta meddelande skickas ut automatiskt av Domain Technologie Control (DTC)
+robot. DTC är en kontrollpanel i open source, framtaget av GPLHost för kommersiell hosting
+(se http://www.gplhost.com/software.html för mer info).

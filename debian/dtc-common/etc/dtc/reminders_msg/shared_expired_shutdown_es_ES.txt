@@ -1,0 +1,14 @@
+
+Asunto: Borrado de su cuenta de hosting compartido
+
+Hola %%%FIRST_NAME%%%,
+
+Su cuenta de hosting compartido con el nombre de usuario %%%DTC_ADM_LOGIN%%%
+ha expirado hace %%%EXPIRED_DAYS%%% días, el %%%EXPIRATION_DATE%%%.
+
+Ya le hemos enviado algunos mensajes pidiéndole que renovara el servicio
+y usted no lo ha hecho. Lo lamentamos pero tenemos que desactivar su
+cuenta hoy y borrar los datos de la misma para tener el espacio
+disponible para otros clientes.
+
+%%%SIGNATURE%%%

@@ -1,0 +1,46 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          dtc-stats-daemon
+# Required-Start:    $remote_fs $all
+# Required-Stop:     $remote_fs
+# Should-Start:      $local_fs
+# Should-Stop:       $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: dtc-xen VM statistics for the dtc web control panel
+# Description:       Domain Technologie Control (DTC) is a control panel for hosting. This small
+#                    daemon will query all the dtc-xen servers that you have configured in DTC and
+#                    fetch the statistics from them: I/O stats, network and CPU. This  information
+#                    is then stored in DTC for your customer accounting.
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+case "$1" in
+	start)
+		log_daemon_msg "Starting dtc-xen statistic daemon" "dtc-stats-daemon"
+		start-stop-daemon --start -b --quiet --pidfile /var/run/dtc-stats-daemon.pid --make-pidfile --chuid dtc:dtcgrp --exec "/usr/share/dtc/admin/dtc-stats-daemon.php"
+		log_end_msg $?
+		echo "."
+        ;;
+
+	stop)
+		log_daemon_msg "Stopping dtc-xen statistic daemon" "dtc-stats-daemon"
+		start-stop-daemon --stop --oknodo --pidfile /var/run/dtc-stats-daemon.pid
+		log_end_msg $?
+	;;
+
+	restart|reload|force-reload)
+		$0 stop
+		sleep 1
+		$0 start
+	;;
+
+	*)
+		echo 'Usage: /etc/init.d/dtc-stats-daemon {start|stop|restart|reload}'
+		exit 1
+
+esac
+
+exit 0

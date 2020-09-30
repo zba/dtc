@@ -1,0 +1,152 @@
+#!/bin/sh
+
+# Uncomment this to have a verbose output durring setup (both postinst and userspace install).
+#VERBOSE_INSTALL=yes
+
+UNIX_TYPE=debian
+
+debianGetDebconfValues () {
+	# Simply fetch all values stored in debconf
+	db_get dtc/conf_mysqlautoconfig
+	conf_mysqlautoconfig=$RET
+	db_get dtc/conf_mysqlhost
+	conf_mysql_host=$RET
+	db_get dtc/conf_mysqllogin
+	conf_mysql_login=$RET
+	db_get dtc/conf_mysqlpass
+	conf_mysql_pass=$RET
+	db_get dtc/conf_mysqldb
+	conf_mysql_db=$RET
+	db_get dtc/conf_mysql_change_root
+	conf_mysql_change_root=$RET
+	db_get dtc/conf_mta_type
+	conf_mta_type=$RET
+	db_get dtc/conf_use_cyrus
+	conf_use_cyrus=$RET
+	db_get dtc/main_domainname
+	main_domain_name=$RET
+	db_get dtc/dtc_adminsubdomain
+	dtc_admin_subdomain=$RET
+	db_get dtc/conf_ipaddr
+	conf_ip_addr=$RET
+	# If running in non-interactive mode, maybe the IP is not set,
+	# so we try to guess it with default gateway interface
+	if [ -z "${conf_ip_addr}" ] ; then
+		IF=`/sbin/route | grep default |awk -- '{ print $8 }'`
+		conf_ip_addr=`ifconfig ${IF} | grep 'inet adr' | sed 's/.\+inet adr:\([0-9.]\+\).\+/\1/'`
+	fi
+	db_get dtc/conf_use_nated_vhosts
+	conf_use_nated_vhosts=$RET
+	if [ ""$conf_use_nated_vhosts = "true" -o ""$conf_use_nated_vhosts = "yes" ] ; then
+		conf_use_nated_vhosts="yes"
+		db_get dtc/conf_nated_vhosts_ip
+		conf_nated_vhosts_ip=$RET
+	else
+		conf_use_nated_vhosts="no"
+		conf_nated_vhosts_ip="192.168.0.2"
+	fi
+	db_get dtc/conf_hostingpath
+	conf_hosting_path=$RET
+	db_get dtc/conf_chroot_path
+	conf_chroot_path=$RET
+	db_get dtc/conf_enforce_adm_encryption
+	conf_enforce_adm_encryption=$RET
+	db_get dtc/conf_admlogin
+	conf_adm_login=$RET
+	db_get dtc/conf_admpass
+	conf_adm_pass=$RET
+
+	conf_apache_version=2
+
+	db_get dtc/conf_gen_ssl_cert
+	conf_gen_ssl_cert=$RET
+	db_get dtc/conf_cert_passphrase
+	conf_cert_passphrase=$RET
+	db_get dtc/conf_cert_countrycode
+	conf_cert_countrycode=$RET
+	db_get dtc/conf_cert_locality
+	conf_cert_locality=$RET
+	db_get dtc/conf_cert_organization
+	conf_cert_organization=$RET
+	db_get dtc/conf_cert_unit
+	conf_cert_unit=$RET
+	db_get dtc/conf_cert_email
+	conf_cert_email=$RET
+	db_get dtc/conf_cert_challenge_pass
+	conf_cert_challenge_pass=$RET
+	db_get dtc/conf_omit_dev_mknod
+	if [ ""$RET = "true" -o ""$RET = "yes" ] ; then
+		conf_omit_dev_mknod="true"
+	else
+		conf_omit_dev_mknod="false"
+	fi
+	db_get dtc/conf_dnsbl_list
+	conf_dnsbl_list=$RET
+	db_get dtc/conf_recipient_delim
+	conf_recipient_delim=$RET
+	db_get dtc/conf_mx_mail
+	conf_mx_mail=$RET
+	db_get dtc/conf_eth2monitor
+	conf_eth2monitor=$RET
+	db_get dtc/conf_report_setup_stat
+	conf_report_setup=$RET
+	db_unregister dtc/conf_mysqlpass
+	db_unregister dtc/conf_mysql_change_root
+	db_unregister dtc/conf_admlogin
+	db_unregister dtc/conf_admpass
+}
+
+CONF_DTC_SYSTEM_USERNAME=dtc
+CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
+PATH_NAMED_CONF=/etc/bind/named.conf
+PATH_QMAIL_NEWU=/var/qmail/bin/qmail-newu
+PATH_QMAIL_CTRL=/etc/qmail
+PATH_HTTPD_CONF=/etc/apache2/apache2.conf
+PATH_APACHE_PID_FILE=/var/run/apache2.pid
+conf_apache_version=2
+PATH_PHP_INI_APACHE=/etc/php5/apache2/php.ini
+
+# This is needed to support Etch and newer
+if [ -f /etc/proftpd/proftpd.conf ] ; then
+	PATH_PROFTPD_CONF=/etc/proftpd/proftpd.conf
+else
+	PATH_PROFTPD_CONF=/etc/proftpd.conf
+fi
+PATH_DOVECOT_CONF=/etc/dovecot.conf
+PATH_CRONTAB_CONF=/etc/crontab
+if [ -f /etc/dovecot/dovecot.conf ] ; then
+        PATH_DOVECOT_CONF=/etc/dovecot/dovecot.conf
+fi
+
+PATH_COURIER_CONF_PATH=/etc/courier
+PATH_COURIER_AUTHD_CONF_PATH=/etc/courier
+PATH_CYRUS_CONF=/etc/imapd.conf
+PATH_POSTFIX_CONF=/etc/postfix/main.cf
+PATH_POSTFIX_ETC=/etc/postfix
+PATH_SASL_START_CONF=/etc/default/saslauthd
+PATH_SASL_STARTUP=/etc/init.d/saslauthd
+PATH_SASL_SOCKET=/var/spool/postfix/var/run/saslauthd/
+PATH_SASL_PASSWD2=/usr/sbin/saslpasswd2
+PATH_USERDB_BIN=/usr/sbin/userdb
+PATH_MAILDROP_BIN=/usr/bin/maildrop
+PATH_DTC_SHARED=/usr/share/dtc
+FREERADIUS_ETC="/etc/raddb"
+PATH_AWSTATS_ETC=/etc/awstats
+PATH_AMAVISD_CONF=/etc/amavis/amavisd.conf
+PATH_CLAMAV_CONF=/etc/clamav/clamd.conf
+PATH_CGIBIN=/usr/lib/cgi-bin
+
+PATH_SASLLIB=/usr/lib/sasl2
+
+PATH_BASH=/bin/bash
+
+USER_ADD_CMD=useradd
+GROUP_ADD_CMD=groupadd
+USER_MOD_CMD=usermod
+PASSWD_CMD=passwd
+
+PATH_DTC_ETC="/var/lib/dtc/etc"
+PATH_DTC_ADMIN=$PATH_DTC_SHARED"/admin"
+PATH_DTC_CLIENT=$PATH_DTC_SHARED"/client"
+DTC_SAVED_INSTALL_CONFIG=/var/lib/dtc/saved_install_config
+DKFILTER_INIT_SCRIPT=/etc/init.d/dkfilter

@@ -1,0 +1,12 @@
+Ihre Bestellung eines dedizierten Servers ist nun in Arbeit. Bitte beachten
+Sie, dass die Online-Stellung von dedizierten Servern Zeit in Anspruch nimmt.  
+Bitte kontatieren Sie uns für genaue Informationen, wann Ihr Server online 
+sein wird.
+
+Sie können sich bereits in unserem Kundencenter anmelden, um Vertrags-
+verlängerungen durchzuführen oder den Support zu kontaktieren. 
+Bitte nutzen Sie dafür die folgenden Login-Informationen:
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%%

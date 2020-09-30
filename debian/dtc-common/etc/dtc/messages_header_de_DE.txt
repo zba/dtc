@@ -1,0 +1,5 @@
+
+Diese Nachricht wurde automatisch vom Domain Technologie Control (DTC)-
+System verschickt. DTC ist ein Open-Source-Programm zur Serververwaltung
+für kommerzielles Webhosting und wurde von GPLHost entwickelt (siehe
+http://www.gplhost.com/software.html for weitere Informationen).

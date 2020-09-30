@@ -1,0 +1,6 @@
+	weekly
+	missingok
+	rotate 5
+	compress
+	delaycompress
+	create 640 dtc dtcgrp

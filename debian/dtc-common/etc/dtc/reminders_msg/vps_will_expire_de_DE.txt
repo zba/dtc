@@ -1,0 +1,16 @@
+
+Subject: Ihr virtueller Server wird in Kürze auslaufen
+
+Sehr geehrte Damen und Herren,
+
+Ihr virtueller Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+wird in %%%REMAINING_DAYS%%% Tagen, d.h. am %%%EXPIRATION_DATE%%% auslaufen.
+
+Bitte melden Sie sich im Kundencenter unter
+
+%%%DTC_CLIENT_URL%%%
+
+mit Ihrem Benutzernamen %%%DTC_ADM_LOGIN%%% an, gehen Sie in den
+VPS-Bereich, und verlängern Sie Ihren virtuellen Server.
+
+%%%SIGNATURE%%%

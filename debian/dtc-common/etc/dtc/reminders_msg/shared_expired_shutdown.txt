@@ -1,0 +1,14 @@
+
+Subject: Deletion of your shared hosting account
+
+Hello %%%FIRST_NAME%%%,
+
+Your shared hosting account with login %%%DTC_ADM_LOGIN%%% has expired
+%%%EXPIRED_DAYS%%% days ago, on the: %%%EXPIRATION_DATE%%%.
+
+We sent you some messages already to ask you to renew and you didn't do
+it. We are sorry but we have to shutdown your account today and erase
+the datas of your account to have the space available for other
+customers.
+
+%%%SIGNATURE%%%

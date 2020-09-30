@@ -1,0 +1,59 @@
+#!/bin/sh
+
+UNIX_TYPE=redhat
+
+VERBOSE_INSTALL=yes
+
+# Create our group and user
+CONF_DTC_SYSTEM_USERNAME=dtc
+CONF_DTC_SYSTEM_GROUPNAME=dtcgrp
+conf_apache_version=1
+PATH_NAMED_CONF=/etc/named.conf
+PATH_QMAIL_CTRL=/var/qmail/control
+PATH_QMAIL_NEWU="/var/qmail/bin/qmail-newu"
+PATH_PHP_CGI=/usr/bin/php
+PATH_PHP_INI_APACHE=/etc/php.ini
+PATH_PROFTPD_CONF=/etc/proftpd.conf
+PATH_DOVECOT_CONF=/etc/dovecot.conf
+PATH_CRONTAB_CONF=/etc/crontab
+PATH_COURIER_CONF_PATH=/etc/courier
+PATH_COURIER_AUTHD_CONF_PATH=/etc/courier
+if [ -d /var/run/httpd ] ; then
+	PATH_APACHE_PID_FILE=/var/run/httpd/httpd.pid
+else
+	PATH_APACHE_PID_FILE=/var/run/httpd.pid
+fi
+
+if [ ! -f $PATH_COURIER_AUTHD_CONF_PATH/authdaemonrc ]; then
+        if [ -f /etc/authlib/authdaemonrc ]; then
+                PATH_COURIER_AUTHD_CONF_PATH="/etc/authlib"
+        fi
+fi
+PATH_CYRUS_CONF=/etc/imapd.conf
+PATH_POSTFIX_CONF=/etc/postfix/main.cf
+PATH_POSTFIX_ETC=/etc/postfix
+PATH_SASL_START_CONF=/etc/init.d/saslauthd
+PATH_SASL_STARTUP=/etc/init.d/saslauthd
+PATH_SASL_SOCKET=/var/spool/postfix/var/run/saslauthd/
+PATH_SASL_PASSWD2=/usr/sbin/saslpasswd2
+PATH_USERDB_BIN=/usr/sbin/userdb
+PATH_MAILDROP_BIN=/usr/bin/maildrop
+PATH_HTTPD_CONF=/etc/httpd/conf/httpd.conf
+PATH_AWSTATS_ETC=/etc/awstats
+PATH_AMAVISD_CONF=/etc/amavisd.conf
+PATH_CLAMAV_CONF=/etc/clamd.conf
+PATH_PUREFTPD_CONF="/etc/pure-ftpd/pure-ftpd.conf"
+conf_ftp_type=pureftpd
+
+PATH_DTC_ETC=/var/lib/dtc/etc
+PATH_DTC_SHARED=/usr/share/dtc
+PATH_DTC_ADMIN=/usr/share/dtc/admin
+PATH_DTC_CLIENT=/usr/share/dtc/client
+PATH_CGIBIN=/var/www/cgi-bin
+
+PATH_SASLLIB=/usr/lib/sasl2
+
+MKTEMP="mktemp -p /tmp"
+MYSQL_DB_SOCKET_PATH="/var/lib/mysql/mysql.sock"
+DTC_SAVED_INSTALL_CONFIG=/var/lib/dtc/saved_install_config
+DKFILTER_INIT_SCRIPT=/etc/init.d/dkfilter

@@ -1,0 +1,20 @@
+
+Asunto: Última advertencia antes del borrado de su cuenta de hosting
+
+Hola %%%FIRST_NAME%%%,
+
+Su cuenta de hosting compartido ha expirado hace %%%EXPIRED_DAYS%%% días, el: %%%EXPIRATION_DATE%%%.
+
+Por favor ingrese a su panel de control en:
+
+%%%DTC_CLIENT_URL%%%
+
+Con su nombre de usuario %%%DTC_ADM_LOGIN%%%, haga click en la pestaña "mi cuenta" y renuévela.
+
+Esta es nuestra última advertencia antes de que desactivemos su cuenta
+compartida. Por favor entienda que no podemos mantener su cuenta
+funcionando ya que necesitamos el espacio para otros clientes,
+y este hosting debe ser pagado por adelantado. Si usted no renueva,
+tendremos que borrar su cuenta y todos los datos que contenga.
+
+%%%SIGNATURE%%%

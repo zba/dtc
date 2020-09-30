@@ -1,0 +1,32 @@
+Package: dtc-postfix-courier
+Source: dtc
+Version: 0.34.5-1
+Architecture: all
+Maintainer: Thomas Goirand <zigo@debian.org>
+Installed-Size: 74
+Depends: amavisd-new, clamav, clamav-daemon, clamav-freshclam, dtc-common (= 0.34.5-1), courier-maildrop | maildrop, courier-authdaemon (>= 0.50) | courier-authmysql (>= 0.37.3), courier-authlib-mysql | courier-authmysql, courier-authlib-userdb, courier-imap, courier-imap-ssl, courier-pop, courier-pop-ssl, libsasl2-modules, mysql-client, mysql-server, spamassassin, spamc
+Suggests: mysqmail
+Conflicts: dtc-core, dtc-cyrus
+Replaces: dtc-core, dtc-cyrus
+Provides: dtc
+Section: admin
+Priority: extra
+Homepage: http://www.gplhost.com/software-dtc.html
+Description: web control panel for admin and accounting hosting services (more depends)
+ Domain Technologie Control (DTC) is a control panel aiming at commercial
+ hosting. Using a web GUI for the administration and accounting all hosting
+ services, DTC can delegate the task of creating subdomains, email, ssh,
+ database, mailing lists, and FTP accounts to users for the domain names they
+ own.
+ .
+ DTC manages a MySQL database containing all the hosting information,
+ and configure your server's services and apllication for doing virtual hosting
+ (DTC is compabible with a huge list of applications). It also connects to
+ dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
+ does the billing in general (including billing of dedicated servers), has
+ integrated support tickets and more.
+ .
+ This metapackage has more dependencies to setup postfix, courier, and others
+ so you don't have to select them by hand. If you want to use other daemons,
+ use the dtc-core package which has a lot less dependencies, or the dtc-cyrus
+ to setup with cyrus.

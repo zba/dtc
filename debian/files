@@ -1,0 +1,10 @@
+dtc-autodeploy_0.34.5-1_all.deb admin extra
+dtc-common_0.34.5-1_all.deb admin extra
+dtc-core_0.34.5-1_all.deb admin extra
+dtc-cyrus_0.34.5-1_all.deb admin extra
+dtc-dos-firewall_0.34.5-1_all.deb admin extra
+dtc-postfix-courier_0.34.5-1_all.deb admin extra
+dtc-postfix-dovecot_0.34.5-1_all.deb admin extra
+dtc-stats-daemon_0.34.5-1_all.deb admin extra
+dtc-toaster_0.34.5-1_all.deb admin extra
+dtc_0.34.5-1_i386.buildinfo admin extra

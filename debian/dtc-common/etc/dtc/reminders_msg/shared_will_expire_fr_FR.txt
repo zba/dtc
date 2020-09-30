@@ -1,0 +1,16 @@
+
+Subject: Votre compte d'hébergement va expirer bientôt.
+
+Bonjour %%%FIRST_NAME%%%,
+
+Votre compte d'hébergement va expirer dans %%%REMAINING_DAYS%%% jours, le :
+%%%EXPIRATION_DATE%%%.
+
+Veuillez vous connecter à votre panneau de contrôle à l'adresse :
+
+%%%DTC_CLIENT_URL%%%
+
+avec votre nom d'utilisateur %%%DTC_ADM_LOGIN%%%, cliquez sur l'onglet
+"mon compte", et effectuez le renouvellement.
+
+%%%SIGNATURE%%%

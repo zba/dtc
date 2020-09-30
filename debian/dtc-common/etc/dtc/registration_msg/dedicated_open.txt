@@ -1,0 +1,11 @@
+The dedicated server you have ordered is now validated. Note that there
+is a delay when ordering a dedicated server with us. Please get in touch
+to know how long it can take to have it online.
+
+From now on, you can login to our control panel for doing the renewals
+of your contract and send support tickets. Here is the login information
+you will need:
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%%

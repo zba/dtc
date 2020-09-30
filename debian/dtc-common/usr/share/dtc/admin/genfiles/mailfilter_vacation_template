@@ -1,0 +1,25 @@
+
+RECIPIENT=$LOGNAME
+RESPOND="~/.vacation.msg"
+RESPONDDB="~/.vacation.db"
+if ( ! /^Precedence: (bulk|list|junk)/ && \
+     ! /^List-Id:/ && \
+     ! /^List-Unsubscribe:/ && \
+     ! /^Return-Path:.*<#@\[\]>/ && \
+     ! /^Return-Path:.*<>/ && \
+     ! /^From:.*MAILER-DAEMON/ && \
+     ! /^X-ClamAV-Notice-Flag: *YES/ && \
+     ! /^Content-Type:.*message\/delivery-status/ && \
+     ! /^Subject:.*Delivery Status Notification/ && \
+     ! /^Subject:.*Undelivered Mail Returned to Sender/ && \
+     ! /^Subject:.*Delivery failure/ && \
+     ! /^Subject:.*Message delay/ && \
+     ! /^Subject:.*Mail Delivery Subsystem/ && \
+     ! /^Subject:.*Mail System Error.*Returned Mail/ && \
+     ! /^X-AutoReply.*/ && \
+     ! /^X-Mail-Autoreply.*/ && \
+     ! /^X-DTC-Support-Ticket.*/ && \
+     ! /^X-Spam-Flag: YES/ )
+{
+	cc "| mailbot -A 'X-AutoReply-From: dtc-autoreply' -A 'X-Mail-Autoreply: dtc-autoreply' -t $RESPOND -c 'UTF-8' -d $RESPONDDB -D 1 -A 'From: $RECIPIENT' -s 'Auto Response: from $RECIPIENT' /usr/sbin/sendmail -t"
+}

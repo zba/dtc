@@ -1,0 +1,2 @@
+/etc/init.d/dtc-stats-daemon
+/etc/logrotate.d/dtc-stats-daemon

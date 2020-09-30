@@ -1,0 +1,15 @@
+# /etc/cron.d/dtc
+
+*/10 * * * * root [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php /usr/share/dtc/admin/cron.php 2>&1 >> /var/log/dtc.log
+9    4 * * * dtc  [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && nice -n+20 /usr/bin/php /usr/share/dtc/admin/accesslog.php 2>&1
+*    * * * * root [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && nice -n+20 /usr/share/dtc/admin/rrdtool.sh 2>&1 >> /var/log/dtc.log
+*/15 * * * * dtc  [ -d /usr/share/dtc/admin -a -s /var/lib/dtc/etc/fetchmailrc ] && fetchmail -N -n -f /var/lib/dtc/etc/fetchmailrc 2>&1
+34   0 * * * root [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php /usr/share/dtc/admin/reminders.php
+*/5  * * * * root  [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php /usr/share/dtc/admin/stat_total_active_prods.php 2>&1 >> /var/log/dtc.log
+34   3 * * * root [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php /usr/share/dtc/admin/maint_apache.php 2>&1 >> /var/log/dtc.log
+
+# cleanup old virus mails older than 30 days, otherwise it will fill up the disk  
+0    3 * * * root /usr/bin/find /var/lib/amavis/virusmails/ -mtime +30 -type f -exec rm -f {} \;
+
+# SCP all invoices every 1st of the months at 2:35
+35   2 * * * dtc [ -d /usr/share/dtc/admin ] && cd /usr/share/dtc/admin && /usr/bin/php /usr/share/dtc/admin/get_invoices.php 2>&1 >> /var/log/dtc.log

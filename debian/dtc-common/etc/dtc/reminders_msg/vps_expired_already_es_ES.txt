@@ -1,0 +1,19 @@
+
+Asunto: Su VPS ha expirado
+
+Hola %%%FIRST_NAME%%%
+
+Su Servidor Virtual Xen (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+ha expirado hace %%%EXPIRED_DAYS%%% días, el: %%%EXPIRATION_DATE%%%.
+
+Por favor ingrese en su panel de control en:
+
+%%%DTC_CLIENT_URL%%%
+
+Con su nombre de usuario %%%DTC_ADM_LOGIN%%%, haga click en la pestaña
+VPS y renuévelo.
+
+Mantendremos su VPS funcionando unos días más para darle tiempo de
+renovar su contrato.
+
+%%%SIGNATURE%%%

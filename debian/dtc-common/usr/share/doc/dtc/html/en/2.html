@@ -1,0 +1,352 @@
+<h3><a name="2."></a>2. Installation</h3>
+
+<h4><a name="2.1"></a>2.1 Before installing</h4>
+
+Before installing DTC, apache MUST be already installed/installable, as
+well as php4 (and it's cgi command line version (php4-cgi under debian / php-cli under BSD)
+and the mod_php4 module for apache) and mysql.<br><br>
+
+Then, you MUST install any mail server PRIOR to install DTC. If you need
+to install mail daemons after DTC is installed, you will then need to
+relaunch install script (in /var/lib/dpkg/info/dtc.postinst for Debian
+users and dtc-install.sh under BSD). Install bind (or any compatible
+nameserver), make it up and running (be able to resolv and have your
+/etc/resolv.conf point to 127.0.0.1). Have qmail et and proftpd with mod_sql
+activated and running. Be ready to have one domain name to use and have
+it's name server IP points to the server (it can be fake, but beware then
+that you will have to use tricks to resolve it).<br><br>
+
+Under BSD or under Debian systems, the dependancy does the stuff to install
+apache, mysql proftpd, and php4 with all necessary modules and options. But
+because you can choose what type of MTA you will use (namely QMail/Postfix
+and Courier/Dovecot/QMail), you will setup them, and then DTC will detect
+them durring install and modify it's config files.<br><br>
+
+<h4><a name="2.2"></a>2.2 Configurating daemons before installing</h4>
+
+On all systems, DTC install script will asks some vital questions.
+Be ready to answer to the following:<br><br>
+
+- MySQL database hostname<br>
+- MySQL root login<br>
+- MySQL root password<br>
+- A domain name you will use to bind DTC's interface<br>
+- The public IP address of the server<br>
+- The path were files will be saved for the domains (mail,html) when creating a new account.<br>
+- The root admin login/pass you will use with DTC<br>
+- etc...<br><br>
+
+<h5><a name="2.2.1"></a>2.2.1 Mysql</h5>
+
+By default, most Unix distributions install the MySQL server with no admin password.
+You have to enter one using this command unther shell prompt:<br><br>
+
+<pre>mysql -uroot -Dmysql</pre><br>
+
+Then issue the following SQL command:<br>
+<pre>UPDATE user SET Password=PASSWORD(\'YOUR_ROOT_PASSWORD\') WHERE User=\'root\';
+FLUSH PRIVILEGES;</pre>
+
+Note: in case of a lost password, you can launch mysqld with "--skip-grant-tables"
+option.
+ 
+<h5><a name="2.2.2"></a>2.2.2 Apache</h5>
+
+You'll have to get your hands dirty editing apache httpd.conf file. Only
+1 directives must be set: ServerName. Other directives are happily setup
+automaticaly by DTC using the Unix tool sed. We consider it's up to
+distribution's to do that job.<br><br>
+
+You have to setup a default server name for apache, using the same as what you
+have setup in /etc/hostname.
+
+<pre>ServerName www.example.com</pre>
+
+On latest versions, DTC modify itself the httpd.conf. Under debian woody and
+FreeBSD, you normaly have nothing to do with it.
+
+<h4><a name="2.3"></a>2.3 Installation under Debian</h4>
+
+DTC is not yet in Debian's oficial tree. But it should still work for
+both Woody, Sarge and Sid flavor of Debian, the installer have been designed
+to take advantage of them. Before it can once be in it, use the
+following alternative source in your /etc/apt/source.list:<br>
+
+<pre>deb ftp://gplhost.com/debian stable main</pre>
+
+This repository also contains compiled versions of qmail-src and ucspi-tcp-src
+that are given only on source versions on official repositories (for licence
+problems). It's borring not conveinient, so sorry for not complying to licence...<br>
+
+On that repository you will also find the alternative password check from jedi
+in a debian package (packaging done by the autor of DTC), and the mysqmail package
+that contains a pached version of qmail-pop3d for easy log of pop trafic, a logger,
+and another checkpassword for smtp, all the above using MySQL backend. You will
+also find usefull debian package like libapache-mod-log-sql (warning for
+Sarge and Sid: use special package for unstable linked against the good
+glibc), the sbox-dtc package (this one works on both 3 debian  flavor).<br><br>
+
+Once this repository added, install DTC like other debian packages:<br>
+
+<pre>apt-get install dtc</pre><br><br>
+
+<h4><a name="2.4"></a>2.4 Installation under RedHat</h4>
+
+The actual version of the RPM package for DTC has been done for a 7.3 redhat, but
+because it is php scripts it should run on all other superior versions. It
+has been successfully tested under Fedora Core 2.<br><br>
+
+The RPM package can be downloaded there:<br><br>
+
+<a href="ftp://ftp.gplhost.com/pub/dtc/RPMS">ftp://ftp.gplhost.com/pub/dtc/RPMS</a><br><br>
+
+Installation is done like for any other rpm package:<br>
+
+<pre>rpm -ivh dtc-VERSION_noarch.rpm</pre>
+
+Because it's not possible to ask questions to user before installing a package
+under RedHat, there is a post-installation script that will be installed in
+/usr/share/dtc/admin/dtc.rpm-install.sh. Simply launch it.<br><br>
+
+Please not that because I've had no return at all from redhat team, I didn't
+test a lot that package. Please send me feedback if you can.<br><br>
+
+<h4><a name="2.5"></a>2.5 Installation under FreeBSD</h4>
+
+DTC is now integrated in FreeBSD ports collection. FreeBSD users can go in
+/usr/ports/sysutils/dtc and issue a "make install". After preinstallation is
+done, you have to manualy launch the setup script (this is the way FreeB works,
+not my fault) by typing dtc-install (it should be located in /usr/sbin).<br><br>
+
+Because submitting takes time, the port may be a bit old. You can still
+fetch latest version in:
+<a href="ftp://ftp.gplhost.com/pub/dtc/bsd">ftp://ftp.gplhost.com/pub/dtc/bsd</a><br><br>
+
+Note that DTC depends on all the ports needed, and even PHP has a special slave
+port for DTC.<br><br>
+
+<h4><a name="2.6"></a>2.6 Manual installation</h4>
+
+First download the tar archive at:<br><br>
+
+<a href="ftp://ftp.gplhost.com/pub/dtc/generic/">ftp://ftp.gplhost.com/pub/dtc/generic/</a><br><br>
+
+Uncompress the archive:<br>
+<pre>tar -xvzf dtc_VERSION_all.tar.gz</pre>
+
+Install uncompressed files:<br>
+<pre>mkdir -p /usr/share/dtc/etc/zones
+mv dtc_VERSION_all/dtc /usr/share
+chown -R root:root /usr/share/dtc
+chown -R nobody:nogroup /usr/share/dtc/etc</pre>
+
+And launch the install script:<br>
+<pre>dtc_VERSION_all/install.sh</pre>
+
+The usual questions will be asked to you plus the path of the folowing
+config file that DTC install need to modify: httpd.conf, proftpd.conf, named.conf.<br><br>
+
+Verify that your qmail install reflect something close to the following:<br>
+<pre>qmaild:x:64011:65534:qmail daemon,,,:/var/qmail:/bin/sh
+qmaill:x:64015:65534:qmail log,,,:/var/qmail:/bin/sh
+qmailp:x:64016:65534:qmail pw,,,:/var/qmail:/bin/sh</pre>
+
+If you want to install all by hand without using the install script, here
+is how to do:<br><br>
+
+- First, install apache, bind, proftpd with mysql support, and qmail with either mysql support
+or using the Jedi's checklocalpasswd program for authentification.
+Already done ? You should either be very fast or have debian system installed !<br><br>
+
+- Setup the database the way the "create_table.sql" describe it. You can cut-paste
+this file content in phpmyadmin if you like...<br><br>
+
+- Create some folders for dtc to store the generated files :
+
+<pre>
+# Create /etc/dtc (conf file), /etc/dtc/data (generated file path)
+# and /etc/dtc/data/zone (where named zone files will be stored)
+# Folder where dtc will generate it's files for apache, qmail and bind :
+mkdir -p /etc/dtc/data/zone
+</pre>
+
+- Make this folder accessible by your web user (it should be either nobody or www-data
+depending the way things are set up...).
+<pre>
+
+chown -R nobody:nogroup /etc/dtc/data;
+</pre>
+
+- DTC will generate the following files in the /etc/dtc/data folder. You have to either
+replace package files by a symlink to those files, or include these in the package file.
+Let's see them one by one. Note that you can change the path to all of them in the
+config.inc.php.<br><br>
+DTC will generate the folowing files for you : named.zones - named_slave.zones - vhosts.prosites - rcpthosts - virtualdomains - assign - poppasswd<br><br>
+
+* named.zones or named_slave.zones<br>
+Include this file in your named.conf (located in /etc/bind under
+debian and /etc/namedb under FreeBSD) file using the following syntax :
+
+<pre>
+include "/etc/dtc/data/named.zones";
+</pre>
+
+* vhosts.conf<br>
+
+Include this in your /etc/apache/httpd.conf :
+
+<pre>
+Include /etc/dtc/data/vhosts.prosites
+</pre>
+
+* qmail files<br>
+You have to replace the qmail files by symlinks to those files :
+<pre>
+rm /etc/qmail/rcpthosts; ln -s /etc/qmail/rcpthosts /etc/dtc/data/rcpthosts;
+rm /etc/qmail/virtualdomains; ln -s /etc/qmail/virtualdomains /etc/dtc/data/virtualdomains;
+rm /etc/qmail/users/assign; ln -s /etc/qmail/users/assign /etc/dtc/data/assign
+</pre>
+
+If you use the Jedi's checklocalpasswd :
+<pre>
+rm /etc/poppasswd; ln -s /etc/poppasswd /etc/dtc/data/poppasswd;
+</pre>
+
+- You have to add the following directives in /etc/proftpd.conf to enable
+sql control :
+<pre>
+# Beware that one is deprecated in newer version of proftpd:
+#	UseReverseDNS   off
+
+	IdentLookups    off
+# This is specific to mod_sql for proftpd
+	SQLAuthenticate on 
+	SQLConnectInfo  YOURDATABASENAME@localhost YOURSQLUSER YOURSQLPASS
+	SQLUserInfo     ftp_access login password uid gid homedir shell
+	SQLAuthTypes    Plaintext
+</pre>
+you can also add the following if you need quota support :
+<pre>
+	Quotas          on
+	DefaultQuota    50
+	QuotaType       hard
+	QuotaCalc       on
+	QuotaBlockName  Mbites
+	QuotaBlockSize  1024000
+	User            nobody
+	Group           nogroup
+	SQLHomedirOnDemand on
+</pre>
+You can also add some directives to have FTP accouting done, like the install
+script does...
+
+- Next, you have to put all the dtc php file somewhere in your apache tree so you can
+browse, click, and enjoy dtc.<br><br>
+
+<h4><a name="2.7"></a>2.7 Post-Installation (protection via .htaccess)</h4>
+
+By default, a .htaccess file is protecting your admin directory (it should be
+located in /usr/share/dtc/admin). This file contains something like this:
+
+<pre>AuthName "A funny message prompted to user !"
+AuthType Basic
+AuthUserFile /var/www/.htpasswd
+require valid-user</pre>
+
+That means you have to create a .htpasswrd in /var/www. Issue the following
+command to create it (a prompt will ask for password):
+<pre>htpasswd -c /var/www/.htpasswd user_name</pre>
+The -c option create the file. If it's not specified, then the user will be added
+to that auth file.<br><br>
+
+Don't forget that the apache directive AllowOverride tells if you can or not use
+.htaccess file. Please set it to correct value or your admin panel wont be protected
+and everybody will have access to it (see apache documentation...).<br><br>
+
+In order to have bind (named) working, you have to edit the 'forwarders' part of
+the main 'option' derective of named.conf. Fill it with the IP address of an accessible
+name server (the one of your ISP). Don't forget to set your /etc/resolv.conf with
+the following value:
+<pre>nameserver 127.0.0.1
+</pre>
+Or your server will not resolv correctly.
+
+<h4><a name="2.8"></a>2.8 Running DTC under a clustered environement</h4>
+
+Many people asked me if one day DTC could handle a cluster. The answer is
+that it was primary written to held all the services in one server only,
+but it already supports it. This chapter will tell you how to do it. What we
+will do here is slowly add new servers to a "normal" DTC server,
+so first of all, setup a box with DTC like you already did. For the
+purpose of this example, we will say that main server is called smain,
+with IP address 192.168.1.10.<br><br>
+
+<img src="dtc_cluster.png"><br><br>
+
+<b><u>MySQL</u></b><br>
+There is no need here that I explain how to use MySQL in a cluster. Please
+se <a href="http://www.mysql.org">mysql.org</a> web site to know more about
+it. Remember that nearly ALL the services needs that MySQL server, and that
+this one is realy as critical as the file server itself.<br><br>
+
+<b><u>The DNS server</u></b><br>
+DTC generates automaticaly slave files for slave DNS servers. What you have
+to do is to setup the IP of the main server. Login into the root DTC panel
+on smain, and enter smain's IP in the &quot;Slave dns server ip address&quot;
+wich is 192.168.1.10 for this example. When done, you can ask DTC to generate
+the named zones. The next step is to regularity (a good choice would be at
+1,11,21,31,41,51 of each ours because DTC will generate it's file at
+0,10,20,30,40,50) upload the generated file. Do it from smain (the file is
+called "named.slavezones.conf") to all the slave DNS servers you have. I have
+a special good feeling with ncftpput wich is rother simple for FTP upload, but
+you can use whatever technique you want including scp. When this is done,
+you can schedule the reload of bind each 10 minutes for example at
+2,12,22,32,42,52 of each hours. If the MySQL server crashes, then
+POP3 and apache wont work anymore, but SMTP (without SQL loggin) and DNS
+should still work so normaly no mail is lost. This is one of the reasons I like
+a lot more to use that technique over an SQL pluggin for Bind. Here, even if
+smain is crashed, DNS works and mail is routed.<br><br>
+
+<b><u>SMTP and POP3</u></b><br>
+For SMTP, all is done via generated files in /var/qmail. If you only need
+to use only one SMTP server, then you can only import DTC's main crontab from
+smain to the slave SMTP (cron.php). Remove all the stuff that are for other
+services than mail and keep only the /var/qmail config file generation stuff.
+Don't forget that because DTC uses a lock flag in the database, the slave
+SMTP server wont be able to run it's cronjob at the same time as other servers,
+so twicking the cron time correctly and setuping network clock is not a
+bad idea.<br>
+If you need to have more than one SMTP server, the it will be a bit more
+complicated as long as DTC is not done for it. The main problem is that
+once a mail server has finished it's cronjob, it will reset the value of
+the cronjob table to &quot;not neede to regenerate users&quot;. You have
+to do something that reloads both servers. One good idea is to modify the
+SMTP's cronjob so that the first server will tell the second to update
+the same way he did. Anyway, Qmail can handle really a lot of messages,
+so if you need to do it, then you are good enought to setup the replication
+of /var/qmail/ and reload qmail concequently by yourself!<br>
+For the pop3 it's a lot more easy as long as it does not uses flatfiles
+but only a SQL connection for auth and traffic loggin (if you use Mysqmail).
+Because of that, no file replication or daemon reload is needed.<br><br>
+
+<b><u>Apache and squid</u></b><br>
+As you may know, Squid is designed to work in both 2 directions, so it
+can act as a caching server. The main advantage is that your critical
+servers are not accessible from the internet, but only in the DMZ, but
+it also reduce a lot the load on your HTTP servers. The second stage is
+to have more than one Apache server. To do that, the only thing you have
+to do is to populate all your servers with the vhosts.conf file and
+reload using apachectl stop/start when the cronjob asks for it. You can
+use the same technique as for the SMTP server, and once again, if it's
+easy to do it with only one HTTP server, it might be a bit more
+complicated on a cluster (you have to inform via network all the HTTP
+servers to reload). Once this configuration achieve, the caching server
+squid can do the load balancing between all you servers (read squid
+documentation to know how).<br><br>
+
+<b><u>The file server</u></b><br>
+All your customer services will need access to file server exept DNS.
+Http, ftp, pop3 and smtp serivces all need access to it. What I suggest
+here is that you mount the same big area in all the servers using same
+mountpoint for example using nfs. All the servers need is access in
+read/write with user nobody:nogroup.<br><br>

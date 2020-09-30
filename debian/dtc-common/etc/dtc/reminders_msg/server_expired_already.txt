@@ -1,0 +1,18 @@
+
+Subject: Your dedicated server has expired
+
+Hello %%%FIRST_NAME%%%,
+
+Your dedicated server %%%SERVER_HOSTNAME%%%
+has expired %%%EXPIRED_DAYS%%% days ago, on the: %%%EXPIRATION_DATE%%%.
+
+Please login into your control panel at
+
+%%%DTC_CLIENT_URL%%%
+
+with your login %%%DTC_ADM_LOGIN%%%, click on your server tab, and renew it.
+
+We will keep your dedicated server up few days to give you the time to
+renew your contract.
+
+%%%SIGNATURE%%%

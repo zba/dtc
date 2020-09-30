@@ -1,0 +1,90 @@
+<h3><a name="1"></a>1 Qu'est-ce que DTC</h3>
+
+<h4><a name="1.1"></a>1.1 A quoi sert DTC ?</h4>
+
+Domain Technologie Control (DTC) est un package permettant l'hébergement à
+travers une interface d'administration web. DTC est constitué d'une suite
+de scripts php qui maintiennes une base de donnée MySQL qui contient toutes
+les données de l'hébergement. DTC génère ensuite les fichiers de configurations
+pour Bind, Apache, Proftpd et Qmail, en utilisant un seul UID/GID sur votre
+système. Avec DTC vous pouvez délégués les taches de créations de sous-domaines,
+d'emails, de comptes FTP aux utilisateurs et pour les dommaines q'ils
+possèdent.
+
+<h4><a name="1.2"></a>1.2 A qui s'adresse cette documentation ?</h4>
+
+Cette documentation s'addresse uniquement aux administrateurs de serveurs de machines Unix possédant 
+au minimum une connaissance basique des services internet, et désireux d'installer ou d'utiliser DTC.
+Si vous êtes un simple utilisateur de DTC (vous avez un ou plusieurs nom de domaine hébergé), veuillez
+vous consulter la documentation intégré de DTC.<br><br>
+
+<h4><a name="1.3"></a>1.3 Les points forts de DTC ?</h4>
+
+Si vous êtes habitué à utiliser des interfaces d'administration par le web  pour une configuration
+rapide des serveurs (http, ftp, etc) sur une machine unix, vous serez surpris
+par la simplicité et la rapidité d'utilisation de DTC. DTC à pour but d'être
+hergonomique et simple pour l'utilisateur lambda. L'idée est de minimiser le
+nombre de taches effectués par l'administrateur au maximum.<br><br>
+
+La principale différence entre Webmin et DTC par exemple, est que Webmin a
+une approche par service (un module par serveur à configurer) alors que DTC
+centralise tous les services dans une interface web unifiée (Par exemple
+quand un administrateur ajoute un domaine dans DTC, la configuration est
+mise à jour pour Apache, Bind et Qmail).<br><br>
+
+<h4><a name="1.4"></a>1.4 Technologies utilisées par DTC</h4>
+
+DTC est basé sur des scripts PHP et une base de données MYSQL permettant la
+configuration de vos domaines. Pour le moment, les serveurs suivants sont
+supportés:<br><br>
+
+- <b>bind</b> et tous serveurs de noms compatibles (<a href="http://www.isc.org">http://www.isc.org</a>)<br>
+- Le serveur web <b>apache</b> (<a href="http://www.apache.org">http://www.apache.org</a>)<br>
+- Le serveur ftp <b>proftpd</b> (<a href="http://www.proftpd.org">http://www.proftpd.org</a>)<br>
+- Le module <b>mod_sql</b> pour proftpd</b><br>
+- Le serveur de messagerie <b>qmail</b> (<a href="http://www.qmail.org">http://www.qmail.org</a>)<br><br>
+
+Les choix de ces programmes ont été motivé par leur disponibilité sous de nombreux
+systèmes Unix. Veuillez notter qu'il serait très simple d'ajouter une compatibilité
+pour d'autres serveurs (je pense notament a exim, postfix ou pureftpd), et que les
+contributions sont les bien venus.<br><br>
+
+Pour profiter pleinement de DTC, vous pouvez installer de plus:<br>
+- Le module <b>mod_log_sql</b> qui loguent le trafic HTTP en
+base de donnée MySQL (<a href="http://www.grubbybaby.com/mod_log_sql/">http://www.grubbybaby.com/mod_log_sql/</a>)<br>
+- Les programmes suplémentaires de <b>mysqmail</b> qui loguent le trafic POP3 et
+SMTP en base de donnée MySQL (<a href="http://www.gplhost.com/?rub=software&sousrub=dtc">http://www.gplhost.com/?rub=software&sousrub=dtc</a>)<br>
+- The statisticc analysis tool <b>Webalizer</b> that parses CommonLog access.log
+standard file (<a href="http://www.mrunix.net/webalizer/">http://www.mrunix.net/webalizer/</a>)<br>
+<br>
+DTC peut aussi servir de solution de backup en compressant dans un fichier .tar tous les fichiers hostés.<br><br>
+
+<h4><a name="1.5"></a>1.5 Les possibilitées de DTC</h4>
+
+- Nombre d'utilisateurs illimités<br>
+- Nombre de domaines et de zones illimités<br>
+- N'occupe qu'un seul UID/GID sur votre serveur<br>
+- Pas de conflit avec le même nom de compte mail sur un domaine différent (par
+exemple entre postmaster@domaine1.com et postmaster@domaine2.com)
+mais sans utiliser vpopmgr (standalone qmail package)<br>
+- Calcul et statistic de la <U>consomation croisée</u> de la <u>bande passante</u>
+consomée par tous les <u>services</u> et des <u>utilisateurs</u>.<br>
+- Intègre 2 systèmes de paiement (pour le moment paypal et worldpay)<br>
+- Interfacé avec l'API d'enregistrement de nom de domaine de Tucows (utilisation de
+openSRS-PHP)<br>
+- Basé sur un système de skin permettant de changer le visuel de l'interface<br>
+- Support du NAT (très pratique pour l'utilisation d'un serveur apache avec une IP dans le LAN)<br>
+- Support de SSL<br>
+- Programmation modulaire facilement modifiable<br>
+- Compatible avec les Browsers Internet Explorer, Mozilla, lynx/links, .. (pas
+de frame, confirmation par Javascript désactivable)<br><br>
+
+<h4><a name="1.6"></a>1.6 Principe de fonctionnement</h4>
+
+DTC stocke dans la base mysql toutes les informations relatives aux différents serveurs et les réutilise pour
+générer les fichiers de configuration d'apache, de qmail et de  bind (grâce au module mod_sql, proftpd lit
+dynamiquement dans la base mysql).<br><br>
+
+Une fois installé, DTC fournit deux types d'interfaces web de configuration, une pour l'administrateur (permettant d'ajouter
+des clients et des noms de domaines) et une pour les clients (permettant de gérer leurs domaines(comptes mail, ftp, zones, mx).
+L'accès à l'interface client est également intégré à l'interface administrateur.<br><br>

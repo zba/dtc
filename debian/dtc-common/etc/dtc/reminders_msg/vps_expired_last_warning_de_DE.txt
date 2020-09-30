@@ -1,0 +1,23 @@
+
+Subject: Letzte Warnung vor dem Löschen Ihres VPS
+
+Sehr geehrte Damen und Herren,
+
+Ihr virtueller Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+ist vor %%%EXPIRED_DAYS%%% Tagen, d.h. am %%%EXPIRATION_DATE%%% abgelaufen.
+
+Bitte melden Sie sich im Kundencenter unter
+
+%%%DTC_CLIENT_URL%%%
+
+mit dem Benutzernamen %%%DTC_ADM_LOGIN%%% an, gehen Sie in den VPS-Bereich,
+und verlängern Sie Ihren virtuellen Server.
+
+Dies ist die letzte Warnung, bevor Ihr VPS gelöscht wird. Er wurde bereits 
+abgeschaltet und kann ohne Verlängerung nicht mehr gestartet werden.
+Bitte haben Sie Verständnis dafür, dass wir Ihren VPS nicht laufen lassen
+können, da wir die Server-Kapazitäten für weitere Kunden benötigen, und dass
+die Gebühren im Voraus zu entrichten sind. Wenn Sie Ihren VPS nicht
+verlängern, wird er in drei Tagen entgültig und unwideruflich gelöscht.
+
+%%%SIGNATURE%%%

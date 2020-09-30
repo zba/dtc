@@ -1,0 +1,86 @@
+<h3><a name="3"></a>3. Configuration de DTC</h3>
+
+<h4><a name="3.1"></a>3.1 Accès à la configuration</h4>
+
+<CENTER><IMG src="menudtc.png"></CENTER><br>
+
+Faites pointer votre browser sur l'adresse configurée lors de l'installation pour
+accéder à l'interface de DTC (cette URL est affiché a la fin du script d'installation).
+Puis cliquer sur l'icône en haut a droite pour accéder au menu de configuration principale.<br><br>
+
+<h4><a name="3.2"></a>3.2 configuration générale</h4>
+
+<CENTER><IMG src="confprinc.png"></CENTER><br>
+
+- Version de Démo : laisser le radiobouton sur 'no' sinon aucun répertoire ne sera créé et les tables seront effacées à chaque nouvelle visite.<br><br>
+
+- Utiliser le javascript : certaines opérations dangereuses sont confirmées à l'aide du javascript, cette option permet de le désactiver pour être
+compatible avec les browser ne le supportant pas.<br><br>
+
+- Utiliser le SSL : Si cette option est activée, l'accès à l'interface de dtc (admin et client (dans cet exemple: dtc.domaine.com)) se fera via
+le protocole https au lieu d'http.<br><br>
+
+- Générer les vhost apache sur l'ip du réseau local (NAT) : activer cette option si votre serveur se trouve derrière un routeur réalisant du NAT (Network
+Adress Translation).<br><br>
+
+- Adresse IP dans le réseau local des vhost utilisant le NAT : cette adresse IP est à spécifier dans le cas d'une activation de l'option précédente,
+ il s'agit de l'adresse IP du serveur dans le réseau local.<br><br>
+
+- Utiliser plusieurs adresses IP : dans cet exemple, cette option a été cochée du fait que le NAT était activé et que donc la machine a forcément deux IP
+(l'ip vu de l'extérieur et l'ip vu du lan), notez que vous pouvez ajouter une adresse même si elle ne correspond pas à votre serveur (cela permettra
+de réaliser la configuration pour bind, évidement dans ce cas il sera impossible que le service web fonctionne sur cette machine).<br><br>
+
+- Adresses IP de votre machine : lister ici les différentes adresses IP pour lesquels vous désirer les voir apparaitre dans l'interface administrateur.
+Vous devez absolument avoir au moins spécifier l'adresse IP principale.<br><br>
+
+- Hostname de l'administrateur DTC : dans cet exemple l'accès a l'interface administrateur se fera via http://dtc.domaine.com/dtcadmin et
+http://dtc.domaine.com/dtc pour l'interface client. Attention, cette url DOIT exister,
+autrement dit, vous devez avoir configuré quelquepart dans DTC le domaine "domaine.com"
+et le sous-domaine "dtc" (c'est ce que fait le script d'installation).<br><br>
+ 
+<h4><a name="3.3"></a>3.3 configuration des zones bind</h4>
+
+<CENTER><IMG src="confzone.png"></CENTER><br>
+
+Cette partie de la configuration influe directement sur la manière dont les fichiers de zones named vont être générés.
+voici un exemple de zonefile correspondant à la configuration ci-dessus (les valeurs
+entre crochets [] sont celles modifiés ici) :<br><br>
+
+<PRE>
+$TTL 7200
+@               IN      SOA     [ns1.domaine.com]. webmaster.domaine.com. (
+						2003092022; serial
+                        1H ; refresh
+                        60M ; retry
+                        1W ; expire
+                        24H ; default_ttl
+                        )
+@	IN	NS	[ns1.domaine.com].
+@	IN	NS	[ns2.domaine.com].
+
+@	IN	MX	5	[mx.domaine.com].
+
+	IN	A	1.2.3.4
+pop	IN	A	1.2.3.4
+smtp	IN	A	1.2.3.4
+ftp	IN	A	1.2.3.4
+dtc	IN	A	1.2.3.4
+mx	IN	A	1.2.3.4
+ns1	IN	A	1.2.3.4
+ns2	IN	A	1.2.3.5
+www	IN	A	1.2.3.4 
+</PRE>
+
+La configuration spécifiée dans ce formulaire est la configuration par défaut pour les domaines
+hébergé.<br><br>
+
+Si une modification est apportée dans l'interface client (ajout de zones, changement de
+mx,..) ce sera évidement cette dernière qui sera utilisée et non celle par défaut.
+C'est l'adresse IP du domaine qui est prise en compte par defaut, a moins qu'une autre
+ai été spécifié par les clients au niveau de ses sous-domaines.<br><br>
+
+<h4><a name="3.4"></a>3.4 configuration des chemins</h4>
+ 
+Laisser la configuration par défaut à moins que vous ne vouliez utiliser plusieurs DTC sur la même machine. Dans ce cas, il faudra modifier
+manuellement les fichiers de configuration des daemons pour qu'ils prennent en compte ces nouveaux chemins.<br><br>
+

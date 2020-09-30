@@ -1,0 +1,15 @@
+
+Subject: Ihr dedizierter Server wurde abgeschaltet
+
+Sehr geehrte Damen und Herren,
+
+Ihr dedizierter Server %%%SERVER_HOSTNAME%%%
+ist vor %%%EXPIRED_DAYS%%% Tagen, d.h. am %%%EXPIRATION_DATE%%% abgeschaltet worden.
+
+Wir haben Ihnen bereits zuvor einige Nachrichten geschickt, in denen wir 
+Sie um die Verlängerung gebeten haben. Bitte haben Sie Verständnis dafür, 
+dass wir Ihren Server nun abgeschaltet haben. Ihre Daten verbleiben auf dem 
+Server, bis wir ihn für einen anderen Kunden neu einrichten. Wenn Sie Ihren
+Server wieder online bringen wollen, verlängern Sie ihn bitte.
+
+%%%SIGNATURE%%%

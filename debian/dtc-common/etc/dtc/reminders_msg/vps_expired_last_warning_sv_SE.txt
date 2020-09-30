@@ -1,0 +1,23 @@
+
+Ämne: Sista påminnelsen innan VPS stängs ner
+
+Hej %%%FIRST_NAME%%%,
+
+Din Xen Virtual Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+har löpt ut för %%%EXPIRED_DAYS%%% dagar sen, den: %%%EXPIRATION_DATE%%%.
+
+Var god logga in på din kontrollpanel på:
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login %%%DTC_ADM_LOGIN%%%, klicka sedan på VPS fliken, och
+förnya den.
+
+Detta är den sista varningen innan vi raderar datan på din VPS. Vi har
+redan stoppat den, och du kommer inte att kunna starta den om du inte
+förnyar den. Vi ber dig att ha förståelse för att vi inte kan fortsätta 
+att drifta din VPS då vi behöver utrymmet för andra kunder, och att hosting
+måste betalas i förskott. Om du inte förnyar ditt abonnemang kommer din 
+VPS att stängas av om 3 dagar.
+
+%%%SIGNATURE%%%

@@ -1,0 +1,17 @@
+dtc dtc/conf_mysqlautoconfig boolean true
+dtc dtc/conf_mysqlautoconfig seen true
+
+dtc dtc/main_domainname string example.com
+dtc dtc/main_domainname seen true
+
+dtc dtc/conf_admpass string XXXXX
+dtc dtc/conf_admpass seen true
+
+dtc dtc/conf_use_cyrus boolean false
+dtc dtc/conf_use_cyrus seen true
+
+dtc dtc/conf_use_nated_vhosts boolean false
+dtc dtc/conf_use_nated_vhosts seen true
+
+dtc dtc/conf_nated_vhosts_ip string XXX.XXX.XXX.XXX
+dtc dtc/conf_nated_vhosts_ip seen true

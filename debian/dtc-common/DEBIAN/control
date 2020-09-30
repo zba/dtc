@@ -1,0 +1,28 @@
+Package: dtc-common
+Source: dtc
+Version: 0.34.5-1
+Architecture: all
+Maintainer: Thomas Goirand <zigo@debian.org>
+Installed-Size: 6230
+Depends: debconf (>= 0.5) | debconf-2.0, apache2, aufs-tools, bind9, bzip2, ca-certificates, chrootuid, cpio, cron, debconf, debootstrap, file, gawk, libapache2-mod-log-sql-mysql, libapache2-mod-php5, libnss-mysql-bg | libnss-mysql, libnusoap-php, libpam-mysql, libsasl2-modules-sql, libpam-unix2, locales-all | language-pack-en, lsb-release, mhonarc, mime-support, mlmmj, mysql-client, ncftp, net-tools, openssl, php5, php5-cli, php5-gd, php5-imagick, php5-mysql, php-pear, php-fpdf, php-crypt-cbc, php-mail-mime, php5-curl, php-net-ipv4, php-xml-serializer, postfix, postfix-mysql, pure-ftpd-mysql | proftpd-mysql | proftpd-mod-mysql, rrdtool, sasl2-bin, sbox-dtc, ssh, sudo, unzip, webalizer, zip, patch
+Recommends: libapache2-mod-bwshare
+Suggests: dtc-postfix-courier | dtc-cyrus
+Breaks: dtc (<< 0.25.1), dtc-postfix-courier (<< 0.25.1)
+Section: admin
+Priority: extra
+Homepage: http://www.gplhost.com/software-dtc.html
+Description: web control panel for admin and accounting hosting services (common files)
+ Domain Technologie Control (DTC) is a control panel aiming at commercial
+ hosting. Using a web GUI for the administration and accounting all hosting
+ services, DTC can delegate the task of creating subdomains, email, ssh,
+ database, mailing lists, and FTP accounts to users for the domain names they
+ own.
+ .
+ DTC manages a MySQL database containing all the hosting information,
+ and configure your server's services and apllication for doing virtual hosting
+ (DTC is compabible with a huge list of applications). It also connects to
+ dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
+ does the billing in general (including billing of dedicated servers), has
+ integrated support tickets and more.
+ .
+ This package contains the common files.

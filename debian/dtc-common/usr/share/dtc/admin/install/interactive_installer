@@ -1,0 +1,730 @@
+#!/bin/sh
+
+# This is the interactive installer that will asks questions
+# for all of these OS that don't have ncurse (or similar)
+# automated system.
+# Authors: Thomas Goirand <thomas at goirand.fr>
+# and Damien Mascord <tusker at tusker.org> with the help
+# of some contributors
+
+installerQuestions () {
+	echo "###############################################################"
+	echo "### Welcome to DTC config script for automatic installation ###"
+	echo "###############################################################"
+
+	if [ -z ""$DTC_SAVED_INSTALL_CONFIG ] ; then
+		DTC_SAVED_INSTALL_CONFIG="/root/.dtc_saved_config"
+	fi
+
+	if [ -f ${DTC_SAVED_INSTALL_CONFIG} ] ; then
+		. ${DTC_SAVED_INSTALL_CONFIG}
+	else
+		touch DTC_SAVED_INSTALL_CONFIG
+	fi
+
+	# DATABASE CONFIGURATION
+	# conf_mysql_host
+	echo "### MYSQL CONFIGURATION ###"
+	echo ""
+	echo "DTC needs to access to your mysql database"
+	echo "Please give your mysql account information"
+	if [ -z $conf_mysql_host ] ; then
+		conf_mysql_host="localhost"
+	fi
+	echo -n "MySQL hostname [${conf_mysql_host}]: "
+	read answer
+	if [ ! -z $answer ]; then
+		conf_mysql_host=${answer}
+	fi
+
+	# conf_mysql_login
+	if [ -z $conf_mysql_login ] ; then
+		conf_mysql_login="root"
+	fi
+	echo -n "MySQL root login [${conf_mysql_login}]: "
+	read answer
+	if [ ! -z $answer ]; then
+		conf_mysql_login=${answer}
+	fi
+
+	# conf_mysql_pass
+	if [ -z $conf_mysql_pass ] ; then
+		conf_mysql_pass=""
+	fi
+	echo -n "MySQL root password [${conf_mysql_pass}]: "
+	read answer
+	if [ ! -z $answer ]; then
+		conf_mysql_pass=${answer}
+	fi
+
+	# conf_mysql_change_root
+	echo ""
+	echo "Do you want that DTC setup this password"
+	echo "for you ? (eg: UPDATE user SET Password=PASSWORD('XXX')...)"
+	if [ -z ""$conf_mysql_change_root ] ; then
+		conf_mysql_change_root="false"
+	fi
+	if [ $conf_mysql_change_root"" = "true" ] ; then
+		echo -n 'Setup the mysql password [nY]: '
+		read answer
+		if [ -z $answer"" ] ; then
+			answer="true"
+		fi
+	else
+		echo -n 'Setup the mysql password [Ny]: '
+		read answer
+		if [ -z $answer"" ] ; then
+			answer="false"
+		fi
+	fi
+	if [ ""$answer = "y" -o ""$answer = "Y" ]; then
+		answer="true"
+	fi
+	if [ ""$answer = "n" -o ""$answer = "N" ]; then
+		answer="false"
+	fi
+	if [ ""$answer = "true" ] ; then
+		echo "===> Will change MySQL Root password"
+		conf_mysql_change_root="true"
+	else
+		echo "-> Will skip MySQL password root change!"
+		conf_mysql_change_root="false"
+	fi
+
+	# conf_mysql_db
+	if [ -z ""$conf_mysql_db ] ; then
+		conf_mysql_db="dtc"
+	fi
+	echo -n "Choose a DB name for DTC [${conf_mysql_db}]: "
+	read answer
+	if [ ! -z ""$answer ] ; then
+		conf_mysql_db=$answer
+	fi
+	if [ ""$conf_mysql_db = "" ] ; then
+		conf_mysql_db="dtc"
+	fi
+
+	# conf_mta_type
+	if [ -f $PATH_POSTFIX_CONF -a -f $PATH_QMAIL_NEWU ]; then
+		if [ -z ""$conf_mta_type ] ; then
+			conf_mta_type=postfix
+		fi
+		echo ""
+		echo "Both Qmail and Postfix have been found on your system"
+		echo "and DTC needs to work with one of them."
+		echo "What MTA (Mail Tranport Agent, the one that"
+		echo "will route and deliver your incoming mail) do"
+		echo "you wish to use with DTC ? Type q for qmail"
+		echo "or type p for postfix."
+		if [ ""$conf_mta_type = "postfix" ] ; then
+			echo -n 'MTA type (Qmail or Postfix) [q/P]: '
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_mta_type=postfix
+			fi
+		else
+			echo -n 'MTA type (Qmail or Postfix) [Q/p]: '
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_mta_type=qmail
+			fi
+		fi
+		if [ ""$answer = "Q" -o ""$answer = "q" ]; then
+			conf_mta_type=qmail
+		fi
+		if [ ""$answer = "P" -o ""$answer = "p" ]; then
+			conf_mta_type=postfix
+		fi
+		if [ ! ""$conf_mta_type = "postfix" ] ; then
+			conf_mta_type=qmail
+		fi
+	elif [ -f $PATH_POSTFIX_CONF ]; then
+		conf_mta_type=postfix
+	elif [ -f $PATH_QMAIL_NEWU ]; then
+		conf_mta_type=qmail
+	else
+		echo "No MTA Available"
+		exit 1;
+	fi
+
+	# conf_use_cyrus
+	if [ -z ""$conf_use_cyrus -a -f $PATH_CYRUS_CONF ] ; then
+		conf_use_cyrus="true"
+	fi
+	if [ ""$conf_use_cyrus = "true" ] ; then
+		echo -n 'Are you using Cyrus IMAPd? [Y/n]: '
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_use_cyrus="true"
+		fi
+	else
+		echo -n 'Are you using Cyrus IMAPd? [y/N]: '
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_use_cyrus="false"
+		fi
+	fi
+	if [ ""$answer = "n" -o ""$conf_use_cyrus = "N" ]; then
+		conf_use_cyrus="false"
+	fi
+	if [ ""$answer = "y" -o ""$conf_use_cyrus = "Y" ]; then
+		conf_use_cyrus="true"
+	fi
+
+	if [ "$conf_use_cyrus" = "true" ]; then
+		if [ -z ""$conf_cyrus_pass ] ; then
+			conf_cyrus_pass=${conf_mysql_pass}
+		fi
+		echo "Cyrus IMAPd will be used"
+		echo ""
+		echo -n "Password for Mail Administrator? [${conf_cyrus_pass}]: "
+		read answer
+		if [ ! -z $answer ]; then
+			conf_cyrus_pass=${answer}
+		fi
+	else
+		conf_cyrus_pass=${conf_mysql_pass}
+	fi
+
+	# FTP configuration
+	if [ -f $PATH_PUREFTPD_CONF -a -f $PATH_PROFTPD_CONF ] ; then
+		if [ -z "$conf_ftp_type" ] ; then
+			conf_ftp_type=pureftpd
+		fi
+		echo ""
+		echo "Both pure-ftpd and pro-ftpd have been found on your system"
+		echo "What FTP Server do you wish to use with DTC ?"
+		if [ $conf_ftp_type = "pureftpd" ] ; then
+			echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [1]"
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_ftp_type=pureftpd
+				answer="1"
+			fi
+		else
+			echo -n "Type 1 for pure-ftpd or type 2 for proftpd: [2]"
+			read answer
+			if [ -z ""$answer ] ; then
+				conf_ftp_type=proftpd
+				answer="2"
+			fi
+		fi
+		if [ ""$answer = "1" ]; then
+			conf_ftp_type=pureftpd
+		fi
+		if [ ""$answer = "2" ]; then
+			conf_ftp_type=proftpd
+		fi
+	elif [ -f $PATH_PUREFTPD_CONF ]; then
+		conf_ftp_type=pureftpd
+	elif [ -f $PATH_PROFTPD_CONF ]; then
+		conf_ftp_type=proftpd
+	else
+		echo "No FTP Server Available: please install either pure-ftpd or proftpd."
+		exit 1;
+	fi
+	if [ -z ""$conf_ftp_type ] ; then
+		conf_ftp_type=pureftpd
+	fi
+	# Host configuration
+	if [ -z ""${main_domain_name} ] ; then
+		if [ $UNIX_TYPE != freebsd ]
+		then
+			main_domain_name=`hostname -d`
+		else
+			main_domain_name=`hostname -s`
+			main_domain_name=`hostname | awk -F$main_domain_name. '{print $2}'`
+		fi
+	fi
+	echo "### YOUR SERVER CONFIGURATION ###"
+	echo ""
+	echo "Please enter the main domain name you will use."
+	echo "DTC will install the root admin panel on that host."
+	echo -n "Domain name [${main_domain_name}]: "
+	read answer
+	if [ ! -z ""${answer} ] ; then
+		main_domain_name=${answer}
+	fi
+
+	if [ -z ""$dtc_admin_subdomain ] ; then
+		dtc_admin_subdomain="dtc"
+	fi
+	echo ""
+	echo "DTC will install a root admin panel on a subdomain"
+	echo "of the domain you just provided. The default subdomain"
+	echo "is dtc, which leads you to http://dtc."$main_domain_name"/"
+	echo "You can enter another subdomain name if you want."
+	echo -n "Subdomain for DTC admin panel [$dtc_admin_subdomain]: "
+	read answer
+	if [ ! -z ""$answer ] ; then
+		dtc_admin_subdomain=$answer
+	fi
+
+	if [ -x /sbin/ifconfig ] ; then
+		IFCONFIG=/sbin/ifconfig
+	else
+		IFCONFIG=ifconfig
+	fi
+	if [ ""$UNIX_TYPE = "osx" ]; then
+		echo "***FIX ME*** Installer in OS X version don't have IP addr detection yet!"
+		guessed_ip_addr=""
+	elif [ ""$UNIX_TYPE = "freebsd" ]
+	then
+		guessed_ip_addr=`${IFCONFIG} | grep inet | head -n 1 | cut -f2 -d" "`
+	else
+		echo "Trying to guess your current IP..."
+		guessed_ip_addr=`${IFCONFIG} | head -n 2 | tail -n 1 | cut -f2 -d":" | cut -f1 -d" "`
+	fi
+
+	# conf_use_nated_vhosts
+	# conf_nated_vhosts_ip
+	echo ""
+	echo "Do you want that DTC generates apache file to use"
+	echo "a LAN IP address that your server is using?"
+	echo "If your server is in the LAN behind a firewall"
+	echo "that does NAT and port redirections of the public IP(s)"
+	echo "address(es) to your server, then you must say YES"
+	echo "here, otherwise (if your server is connected directly"
+	echo "to the internet with a public static IP) leave it to NO."
+	if [ -z ""$conf_use_nated_vhosts ] ; then
+		conf_use_nated_vhosts="false"
+	fi
+	if [ ""$conf_use_nated_vhosts = "false" ] ; then
+		echo -n "Use NATed vhosts ? [N/y]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_use_nated_vhosts="false"
+		fi
+	else
+		echo -n "Use NATed vhosts ? [n/Y]: "
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_use_nated_vhosts="true"
+		fi
+	fi
+	if [ ""$answer = "y" -o ""$answer = "Y" -o ""$answer = "yes" ]; then
+		conf_use_nated_vhosts="true"
+	fi
+	if [ ""$answer = "n" -o ""$answer = "N" ] ; then
+		conf_use_nated_vhosts="false"
+	fi
+	if [ ! ""$conf_use_nated_vhosts = "false" ] ; then
+		conf_use_nated_vhosts="true"
+	fi
+	if [ ""$conf_use_nated_vhosts = "true" ] ; then
+		echo ""
+		echo " Please enter the LAN IP of your server."
+		echo -n "IP address of your server if in the LAN [${guessed_ip_addr}]: "
+		read answer
+		if [ ! -z ""$answer ]; then
+			conf_nated_vhosts_ip=$answer
+		else
+			conf_nated_vhosts_ip=${guessed_ip_addr}
+		fi
+	else
+		conf_nated_vhosts_ip="192.168.0.2"
+	fi
+
+	# conf_ip_addr
+	echo ""
+	echo "I need now you host information to configure the daemons."
+	if [ "$conf_use_nated_vhosts" = "yes" -o "$conf_use_nated_vhosts" = "true" ] ; then
+		echo -n "What is your external (public) IP addresse ?: "
+		read conf_ip_addr
+	else
+		if [ -z "${conf_ip_addr}" -a -n "${guessed_ip_addr}" ] ; then
+			conf_ip_addr=${guessed_ip_addr}
+		fi
+		echo -n "What is your IP addresse ? [${conf_ip_addr}]: "
+		read answer
+		if [ ! -z ${answer} ] ; then
+			conf_ip_addr=${answer}
+		fi
+	fi
+
+	if [ -z ""$conf_hosting_path ] ; then
+		conf_hosting_path="/var/www/sites"
+	fi
+	echo ""
+	echo "Where will you keep your files for hosting ?"
+	echo -n "Hosting path [$conf_hosting_path]: "
+	read answer
+	if [ ! -z ""$answer ] ; then
+		conf_hosting_path=$answer
+	fi
+
+	# conf_chroot_path
+	if [ -z ""$conf_chroot_path ] ; then
+		conf_chroot_path="/var/lib/dtc/chroot_template"
+	fi
+	echo ""
+	echo "Path where to build the chroot environment."
+	echo "Where do you want DTC to build the cgi-bin chroot"
+	echo "environment? Please note that DTC will do hardlinks"
+	echo "to that directory, so the chroot path should be in"
+	echo "the same logical device as the path for hosted"
+	echo "domains files."
+	echo -n "Chroot path [$conf_chroot_path]: "
+	read answer
+	if [ ! -z ""$answer ] ; then
+		conf_chroot_path=$answer
+	fi
+
+	# conf_enforce_adm_encryption
+	echo ""
+	echo "Do you want to enfonce DTC admin passwords encryption?"
+	if [ -z ""$conf_enforce_adm_encryption ] ; then
+		conf_mysql_change_root="true"
+	fi
+	if [ $conf_enforce_adm_encryption"" = "true" ] ; then
+		echo -n 'Password encryption [nY]: '
+		read answer
+		if [ -z $answer"" ] ; then
+			answer="true"
+		fi
+	else
+		echo -n 'Password encryption [Ny]: '
+		read answer
+		if [ -z $answer"" ] ; then
+			answer="false"
+		fi
+	fi
+	if [ ""$answer = "y" -o ""$answer = "Y" ]; then
+		answer="true"
+	fi
+	if [ ""$answer = "n" -o ""$answer = "N" ]; then
+		answer="false"
+	fi
+	if [ ""$answer = "false" ] ; then
+		echo "===> Will *NOT* use password encryption"
+		conf_enforce_adm_encryption="false"
+	else
+		echo "===> Will use password encryption"
+		conf_enforce_adm_encryption="true"
+	fi
+
+	# conf_adm_login
+	if [ -z ""$conf_adm_login ] ; then
+		conf_adm_login=dtc
+	fi
+	echo ""
+	echo "What admin login/pass you want for the administration of "$main_domain_name "?"
+	echo -n "Login [${conf_adm_login}]: "
+	read answer
+	if [ ! -z ""$answer ] ; then
+		conf_adm_login=${answer}
+	fi
+
+	# conf_adm_pass
+	echo -n "Password: [${conf_adm_pass}]"
+	read answer
+	if [ ! -z ${answer} ] ; then
+		conf_adm_pass=${answer}
+	fi
+
+	# conf_eth2monitor
+	if [ ""$UNIX_TYPE = "freebsd" ]
+	then
+                ALL_IFACES=''
+                for if in `${IFCONFIG} -l`
+		do
+			if [ $if != lo0 ]
+			then
+				ALL_IFACES=${ALL_IFACES}' '$if
+			fi
+                done
+	elif [ ""$UNIX_TYPE = "osx" ]; then
+		echo "***FIX ME*** OS X don't have interface detection yet!"
+	else
+		NBRLINES=`grep -v "lo:" /proc/net/dev | grep -v sit0 | wc -l`
+		NBRIFACE=$((${NBRLINES} - 2 ))
+		CNT=${NBRIFACE}
+		ALL_IFACES=''
+		while [ ${CNT} -gt 0 ] ; do
+			ALL_IFACES=${ALL_IFACES}' '`grep -v "lo:" /proc/net/dev | grep -v sit0 | tail -n ${CNT} | cut -f 1 -d':' | gawk -F ' ' '{print $1}' | head -n 1`
+			CNT=$((${CNT} - 1 ))
+		done
+	fi
+	if [ -z "$conf_eth2monitor" ] ; then
+		conf_eth2monitor=$ALL_IFACES
+	fi
+	echo ""
+	echo "DTC will setup an RRDTools graphing system for you, please"
+	echo "enter all the interfaces you wish to see in the total traffic."
+	echo -n 'Enter the iface you wish to monitor ['$conf_eth2monitor']: '
+	read answer
+	if [ ! -z "$answer" ]; then
+		conf_eth2monitor=$answer
+	fi
+
+	echo ""
+	echo "In order to know how many DTC installs have been done, the installer"
+	echo "can report your install to the GPLHost web site. No data is collected"
+	echo "except the operating system, ${UNIX_TYPE} in your case, and the IP address"
+	echo "of the install.  We only use the IP as an identifier so we don't count"
+	echo "upgrades and/or reinstalls.  We won't ever use it for commercial purposes."
+	echo ""
+	echo "You need an internet connection and wget installed to report. Do you"
+	echo "wish to allow DTC installer to report the install of the control panel?"
+
+	# If <ENTER> is pressed we don't need to reset the variable to the same setting.	# gregmo
+	if [ "$conf_report_setup" = "true" ] ; then
+		echo -n 'Allow installer to report setup? [Yn]:'
+	else
+		echo -n 'Allow installer to report setup? [yN]:'
+	fi
+
+	read answer
+	if [ "$answer" = "y" -o "$answer" = "Y" ] ; then
+		conf_report_setup="true"
+	elif [ "$answer" = "n" -o "$answer" = "N" ] ; then
+		conf_report_setup="false"
+	fi
+
+
+	echo ""
+	echo "Choose the recpient delimiter character. This MUST match what"
+	echo "you have setup in Qmail or Postfix."
+	if [ "${conf_recipient_delim}" = "-" ] ; then
+		echo -n "MTA recipient delimiter (default -) [+/-]:"
+		read answer
+		if [ -z "$answer" ] ; then
+			conf_recipient_delim="-"
+		else
+			conf_recipient_delim="+"
+		fi
+	else
+		echo -n "MTA recipient delimiter (default +) [+/-]:"
+		read answer
+		if [ -z "$answer" ] ; then
+			conf_recipient_delim="+"
+		else
+			conf_recipient_delim="-"
+		fi
+	fi
+
+	if [ -z "${conf_mx_mail}" ] ; then
+		conf_mx_mail="mx"
+	fi
+	echo ""
+	echo -n "Choose your MX server subdomain [${conf_mx_mail}]:"
+	read answer
+	if [ ! -z "$answer" ] ; then
+		conf_mx_mail=${answer}
+	fi
+
+	echo ""
+	echo "In some environment, like FreeBSD Jail or Linux vServer,"
+	echo "mknod is not allowed to be executed. For that reason, it's possible"
+	echo "to skip the creation of the dev null, random and urandom devices"
+	echo "durring the chroot template creation."
+	echo "Choosing yes here also gets FreeBSD apache not bound to 127.0.0.1"
+	if [ ""$conf_omit_dev_mknod = "true" ] ; then
+		echo -n "Skip mknod? [Yn]";
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_omit_dev_mknod="true"
+		fi
+	else
+		echo "Skip mknod? [yN]";
+		read answer
+		if [ -z ""$answer ] ; then
+			conf_omit_dev_mknod="false"
+		fi
+	fi
+	if [ ""$answer = "n" -o ""$answer = "N" ] ; then
+		conf_omit_dev_mknod="false"
+	fi
+	if [ ""$answer = "y" -o ""$answer = "Y" ] ; then
+		conf_omit_dev_mknod="true"
+	fi
+	if [ ! ""$conf_omit_dev_mknod = "true" ] ; then
+		conf_omit_dev_mknod="false"
+	fi
+
+	echo ""
+	echo "DTC can generates a self signed certificate"
+	echo "so you can browse safely the control panel use SSL"
+	echo -n "Generate an SSL cert [Yn]: "
+	read answer
+	if [ -z ""$answer -o ""$answer = "y" -o ""$answer = "Y" ] ; then
+		conf_gen_ssl_cert="true"
+	else
+		conf_gen_ssl_cert="false"
+	fi
+	if [ "$conf_gen_ssl_cert" = "true" ] ; then
+		if [ -z "${conf_cert_passphrase}" ] ; then
+			if [ -x /sbin/md5 ] ; then
+				MD5="md5 -r"
+			else
+				MD5="md5sum"
+			fi
+			conf_cert_passphrase=`dd if=/dev/random bs=64 count=1 2>|/dev/null | ${MD5} | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
+		fi
+		echo ""
+		echo -n "Certificate pass phrase [${conf_cert_passphrase}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_passphrase=$answer
+		fi
+
+		if [ -z "${conf_cert_countrycode}" ] ; then
+			conf_cert_countrycode="US"
+		fi
+		echo -n "Certificate 2 letter country code [${conf_cert_countrycode}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_countrycode=$answer
+		fi
+
+		if [ -z "${conf_cert_statecode}" ] ; then
+			conf_cert_statecode="FL"
+		fi
+		echo -n "Certificate State Name [${conf_cert_statecode}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_statecode=$answer
+		fi
+
+		if [ -z "${conf_cert_locality}" ] ; then
+			conf_cert_locality="Paris"
+		fi
+		echo -n "Certificate locality [${conf_cert_locality}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_locality=$answer
+		fi
+
+		if [ -z "${conf_cert_organization}" ] ; then
+			conf_cert_organization="N/A"
+		fi
+		echo -n "Certificate organization [${conf_cert_organization}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_organization=$answer
+		fi
+
+		if [ -z "${conf_cert_unit}" ] ; then
+			conf_cert_unit="No-unit"
+		fi
+		echo -n "Organization unit [${conf_cert_unit}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_unit=$answer
+		fi
+
+		if [ -z "${conf_cert_email}" ] ; then
+			conf_cert_email="changeme@example.com"
+		fi
+		echo -n "Certificate email [${conf_cert_email}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_email=$answer
+		fi
+
+		if [ -z "${conf_cert_challenge_pass}" ] ; then
+			if [ -x /sbin/md5 ] ; then
+				MD5="md5 -r"
+			else
+				MD5="md5sum"
+			fi
+			conf_cert_challenge_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | ${MD5} | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
+		fi
+		echo -n "Certificate challenge pass [${conf_cert_challenge_pass}]: "
+		read answer
+		if [ ! -z ""$answer ] ; then
+			conf_cert_challenge_pass=$answer
+		fi
+	fi
+}
+
+printVariables () {
+	echo "### Daemon path ###"
+	echo "httpd.conf: "$PATH_HTTPD_CONF
+	echo "named.conf: "$PATH_NAMED_CONF
+	if [ "$conf_ftp_type" = "pureftpd" ]; then
+		echo "pure-ftpd.conf: "$PATH_PUREFTPD_CONF
+	else
+		echo "proftpd.conf: "$PATH_PROFTPD_CONF
+	fi
+        if [ $conf_mta_type = "postfix" ]; then
+                echo "postfix/main.cf: "$PATH_POSTFIX_CONF
+        else   
+                echo "qmail control: "$PATH_QMAIL_CTRL
+        fi
+	echo "php cgi: "$PATH_PHP_CGI
+	echo "generated files: "$PATH_DTC_ETC
+
+	echo "### DATABASE ###"
+	echo "MySQL host: "$conf_mysql_host
+	echo "MySQL login: "$conf_mysql_login
+	echo "MySQL pass: "$conf_mysql_pass
+	echo "MySQL db: "$conf_mysql_db
+	echo "MySQL change pass: $conf_mysql_change_root"
+
+	echo "### Mail ###"
+	echo "MTA type: $conf_mta_type"
+	echo "Cyrus enable: $conf_use_cyrus"
+	if [ $conf_use_cyrus != "true" ]; then
+		echo "dovecot.conf: "$PATH_DOVECOT_CONF
+		echo "Courier config path: "$PATH_COURIER_CONF_PATH
+	else
+		echo "Cyrus IMAPd config path: "$PATH_CYRUS_CONF
+		echo "Cyrus pass: $conf_cyrus_pass"
+	fi
+
+	echo "### Admin interface addresse ###"
+	echo "Addresse of dtc panel: http://"$dtc_admin_subdomain"."$main_domain_name"/"
+	echo "DTC login: "$conf_adm_login
+	echo "DTC pass: "$conf_adm_pass
+	echo "IP addr: "$conf_ip_addr
+	echo "Use nated vhosts: $conf_use_nated_vhosts"
+	if [ $conf_use_nated_vhosts = "true" ]; then
+		echo "LAN IP for NAT: $conf_nated_vhosts_ip"
+	fi
+
+	echo "### Preferences ###"
+	echo "Apache version: "$conf_apache_version
+	echo "Hosting path: "$conf_hosting_path
+	echo "Chroot template path: $conf_chroot_path"
+	echo "Iface to monitor: $conf_eth2monitor"
+	echo "Report setup: $conf_report_setup"
+	echo "Omit mknod devices: $conf_omit_dev_mknod"
+}
+
+interactiveInstaller () {
+	if [ -z ""${DTC_SAVED_INSTALL_CONFIG} ] ; then
+		DTC_SAVED_INSTALL_CONFIG="/root/.dtc_saved_config"
+	fi
+
+	if [ -f $DTC_SAVED_INSTALL_CONFIG ] ; then
+		. ${DTC_SAVED_INSTALL_CONFIG}
+	else
+		touch ${DTC_SAVED_INSTALL_CONFIG}
+	fi
+	if [ -z $conf_mysql_host ]; then
+		installerQuestions
+	fi
+	printVariables
+	echo "Config ok and continuing install? [Yn]"
+	read continueinst
+	while [ ""$continueinst = "n" -o ""$continueinst = "N" ] ; do
+		installerQuestions
+		printVariables
+		echo "Config ok and continuing install? [Yn]"
+		read continueinst
+	done
+	saveConfig
+
+	# Deamon path configuration
+	echo ""
+	echo "### Last confirmation before installation !!! ###"
+	echo -n 'Confirm and install DTC ? [Ny]:'
+	read valid_infos
+	if [ ""$valid_infos = "y" -o ""$valid_infos = "Y" ] ; then
+		echo "Installation has started..."
+	else
+		echo "Configuration not validated : exiting !"
+		exit 1
+	fi
+}

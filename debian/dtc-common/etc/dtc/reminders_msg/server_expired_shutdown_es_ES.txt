@@ -1,0 +1,14 @@
+
+Asunto: Apagado de su servidor dedicado
+
+Hola %%%FIRST_NAME%%%,
+
+Su servidor dedicado %%%SERVER_HOSTNAME%%% ha expirado hace %%%EXPIRED_DAYS%%% días, el: %%%EXPIRATION_DATE%%%.
+
+Ya le enviamos algunos mensajes pidiéndole que renueve el servicio,
+y no lo hizo. Lo lamentamos pero tenemos que apagar su servidor el
+día de hoy. Su información quedara en nuestro servidor hasta que
+alguien tome el espacio. Si usted desea reinciar su servidor, por
+favor renuévelo.
+
+%%%SIGNATURE%%%

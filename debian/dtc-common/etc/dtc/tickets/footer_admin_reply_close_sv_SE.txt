@@ -1,0 +1,18 @@
+Notera att ärendet har stängsts, vilket innebär att det inte finns behov av
+ett svar. Behöver du fortsatt hjälp måste du öppna ett nytt ärende, eller
+skriva i detta ärende att öppna det på nytt. För att göra det, så loggar du in
+i kontrollpanelen med följande adress:
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login, gå sedan på fliken för supportärenden och skriv in ditt svar.
+Du kan även trycka på på svara i din e-postklient, eller skriva till:
+
+%%%SUPPORT_EMAIL_ADDRESS%%%
+
+som även kommer att öppna ärendet på nytt.
+
+Om du svarar på detta meddelande via e-post, så ändra inte i svarsaddressen.
+Numret som är inkluderat i denna adress är mycket viktigt och hjälper
+till med att länka ditt svar till det gamla ärendet! Var god att inte 
+inkludera vårt svar i e-postens meddelandefält, då vi redan lagrar det i vår historik.

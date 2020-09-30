@@ -1,0 +1,99 @@
+#!/bin/sh
+
+# copy_path
+sbox_copy_disk_path=/var/lib/dtc/sbox_copy
+
+############# parse params #############
+SU="no"
+for i in $@ ; do
+	case "${1}" in
+	"-su")
+		SU="yes"
+		shift;
+	;;
+	*)
+		shift;
+	;;
+	esac
+done
+
+
+PHP_PKGS="php5-cgi php5-mysql php5-curl php5-gd php5-imap php5-mcrypt php5-odbc php5-pgsql php5-sqlite php5-xmlrpc php5-xsl php-compat php-html-common php-apc php-config php-date php-fpdf php-http-request php5-imagick php-mail-mimedecode php-mail php-net-ftp php-net-ipv4 php-net-socket php-net-url php-openid php-xml-serializer php-xml-parser php-xml-util"
+PERL_PKGS="perl"
+PYTHON_PKGS="python"
+RUBY_PKGS="ruby"
+UTILS="vim joe screen bash openssh-client ssmtp"
+DO_ALL_PKGS="${PHP_PKGS} ${PERL_PKGS} ${PYTHON_PKGS} ${RUBY_PKGS} ${UTILS}"
+
+############# get arch #############
+FOUNDED_ARCH=`uname -m`
+
+case "$FOUNDED_ARCH" in
+i386)
+	DEBIAN_BINARCH=i386
+	CENTOS_BINARCH=i386
+;;
+i436)
+	DEBIAN_BINARCH=i386
+	CENTOS_BINARCH=i386
+;;
+i586)
+	DEBIAN_BINARCH=i386
+	CENTOS_BINARCH=i386
+;;
+i686)
+	DEBIAN_BINARCH=i386
+	CENTOS_BINARCH=i386
+;;
+x86_64)
+	DEBIAN_BINARCH=amd64
+	CENTOS_BINARCH=x86_64
+;;
+*)
+echo "Unrecognized arch: exiting!"
+	exit 1
+;;
+esac
+
+# If we are on a Debian system, let's bootstrap the current stable
+if [ -f /etc/debian_version ] ; then
+	if [ $SU = "no" ] ; then
+		cp /etc/apt/sources.list ${sbox_copy_disk_path}/etc/apt
+		cp /etc/hosts ${sbox_copy_disk_path}/etc
+		chroot ${sbox_copy_disk_path} apt-get update
+		chroot ${sbox_copy_disk_path} apt-get dist-upgrade -y --force-yes
+	fi
+	############# Install of PHP #############
+	chroot /var/lib/dtc/sbox_copy apt-get install -y --force-yes locales-all ${DO_ALL_PKGS}
+
+	# Configure ssmtp to be able to send mail from the chroot
+	sed -i "s/mailhub=mail/mailhub=127.0.0.1/" ${sbox_copy_disk_path}/etc/ssmtp/ssmtp.conf
+	sed -i "s/#FromLineOverride=YES/FromLineOverride=YES/" ${sbox_copy_disk_path}/etc/ssmtp/ssmtp.conf
+
+	# Some stuff on the target php.ini:
+	PHP_INI_PATH=${sbox_copy_disk_path}/etc/php5/cgi/php.ini
+	if [ -f ${PHP_INI_PATH} ] ; then
+		# doc_root=/var/www
+		if grep "^doc_root =$" ${PHP_INI_PATH} ; then
+			sed -i "s/doc_root =/doc_root = \/html/" ${PHP_INI_PATH}
+		fi
+		# cgi.force_redirect=0
+		if grep "^; cgi.force_redirect = 1$" ${PHP_INI_PATH} ; then
+			sed -i "s/; cgi.force_redirect = 1/cgi.force_redirect = 0/" ${PHP_INI_PATH}
+		fi
+		# cgi.fix_pathinfo=1
+		if grep "^; cgi.fix_pathinfo=0$" ${PHP_INI_PATH} ; then
+			sed -i "s/; cgi.fix_pathinfo=0/cgi.fix_pathinfo=1/" ${PHP_INI_PATH}
+		fi
+	fi
+	mkdir -p ${sbox_copy_disk_path}/html/sbox404
+	cp -auxf ${sbox_copy_disk_path}/../etc/dtc404/* ${sbox_copy_disk_path}/html/sbox404
+	chmod +x ${sbox_copy_disk_path}/html/sbox404/*.php
+	if ! grep dtc ${sbox_copy_disk_path}/etc/passwd 2>&1 >/dev/null ; then
+		grep ^dtc:x: /etc/passwd >>${sbox_copy_disk_path}/etc/passwd
+	fi
+	chown -R dtc:dtcgrp ${sbox_copy_disk_path}
+else
+	echo "Currently only supported in Debian: sorry..."
+	exit 1
+fi

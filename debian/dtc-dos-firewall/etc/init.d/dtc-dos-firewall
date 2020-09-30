@@ -1,0 +1,139 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          dtc-dos-firewall
+# Required-Start:    $all
+# Required-Stop:
+# Should-Start:      $local_fs
+# Should-Stop:       $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: A small anti-DoS firewall script for your web, ftp and mail server
+# Description:       If running in a production environment, you might want
+#                    to have a basic firewall running on your server to avoid
+#                    having DoS attack. This is not the state-of-the-art, but
+#                    just another attempt to make things a bit more smooth.
+### END INIT INFO
+
+IPTABLES=/sbin/iptables
+
+if [ -f /etc/dtc/dtc-dos-firewall.conf ] ; then
+	. /etc/dtc/dtc-dos-firewall.conf
+fi
+
+if [ -z "${INTERFACE}" ] ; then
+	INTERFACE="eth0"
+fi
+
+flush-input-chain () {
+	${IPTABLES} -F dtc-dos-in
+}
+
+create-dtc-dos-chain () {
+	# Create the chain (if it doesn't exists, then it should be inserted in the INPUT chain)
+	if ${IPTABLES} --new-chain dtc-dos-in ; then
+		${IPTABLES} -I INPUT -j dtc-dos-in
+	fi
+	${IPTABLES} -F dtc-dos-in
+}
+
+accept-localhost-traffic () {
+	${IPTABLES} -A dtc-dos-in -i lo -j ACCEPT
+}
+
+limit-ssh-login-rate () {
+	if [ -z "${SSH_LOGIN_RATE}" ] ; then
+		SSH_LOGIN_RATE=10
+	fi
+	if [ -z "${SSH_LOGIN_TIME}" ] ; then
+		SSH_LOGIN_TIME=300
+	fi
+	# Anti DoS SSH : deny ssh for 300 seconds after 10 attempts
+	# This can't be too high because of the use of scp
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 22 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 22 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${SSH_LOGIN_TIME} --hitcount ${SSH_LOGIN_RATE} -j REJECT
+}
+limit-smtp-connection-rate () {
+	if [ -z "${SMTP_RATE}" ] ; then
+		SMTP_RATE=8
+	fi
+	if [ -z "${SMTP_TIME}" ] ; then
+		SMTP_TIME=1
+	fi
+	# max-rate to 15 connections per seconds
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 25 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 25 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${SMTP_TIME} --hitcount ${SMTP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 587 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 587 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${SMTP_TIME} --hitcount ${SMTP_RATE} -j REJECT
+}
+
+limit-http-connection-rate () {
+	if [ -z "${HTTP_RATE}" ] ; then
+		HTTP_RATE=20
+	fi
+	if [ -z "${HTTP_TIME}" ] ; then
+		HTTP_TIME=1
+	fi
+	# max-rate to 20 connections per seconds
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 80 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 80 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${HTTP_TIME} --hitcount ${HTTP_RATE} -j REJECT
+}
+
+limit-pop-and-imap-connection-rate () {
+	if [ -z "${POP_RATE}" ] ; then
+		POP_RATE=5
+	fi
+	if [ -z "${POP_TIME}" ] ; then
+		POP_TIME=1
+	fi
+	# max-rate to 10 connections per seconds
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 110 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 110 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${POP_TIME} --hitcount ${POP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 995 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 995 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${POP_TIME} --hitcount ${POP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 143 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 143 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${POP_TIME} --hitcount ${POP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 993 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 993 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${POP_TIME} --hitcount ${POP_RATE} -j REJECT
+}
+
+limit-ftp-connection-rate () {
+	if [ -z "${FTP_RATE}" ] ; then
+		FTP_RATE=5
+	fi
+	if [ -z "${FTP_TIME}" ] ; then
+		FTP_TIME=1
+	fi
+	# max-rate to 5 connections per seconds for both ftp and ftp-data
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 20 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 20 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${FTP_TIME} --hitcount ${FTP_RATE} -j REJECT
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 21 -i ${INTERFACE} -m state --state NEW -m recent --set
+	${IPTABLES} -A dtc-dos-in -p tcp --dport 21 -i ${INTERFACE} -m state --state NEW -m recent --update --seconds ${FTP_TIME} --hitcount ${FTP_RATE} -j REJECT
+}
+
+case "${1}" in
+start)
+	# flush-input-chain
+	create-dtc-dos-chain
+	accept-localhost-traffic
+	limit-ssh-login-rate
+	limit-smtp-connection-rate
+	limit-http-connection-rate
+	limit-ftp-connection-rate
+	limit-pop-and-imap-connection-rate
+;;
+stop)
+	while iptables -D dtc-dos-in 1 ; do echo -n "" ; done
+;;
+restart|reload|force-reload)
+	${0} stop
+	sleep 1
+	${0} start
+;;
+*)
+	echo "Usage: ${0} "'{start|stop|restart|reload}'
+	exit 1
+;;
+esac
+
+exit 0

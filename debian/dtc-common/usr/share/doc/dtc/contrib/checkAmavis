@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Check amavis script by Damien Mascord
+
+AMAVISD=`/usr/bin/pgrep amavis`
+if [ $? != 0 ]; then
+	echo "amavis isn't running, restart it, and reflush the postfix queue"
+	/etc/init.d/amavis stop
+	sleep 5
+	/usr/bin/pkill -9 amavis
+	/etc/init.d/amavis start
+	/usr/sbin/postfix reload
+	/usr/sbin/sendmail -q
+fi
+
+# check for queue size greater than 150, then flush if so
+QUEUESIZE=`mailq | grep Requests | cut -f5 -d' '`
+if [ -z $QUEUESIZE ]; then
+	QUEUESIZE=0
+fi
+if [ $? != 0 -o $QUEUESIZE -gt 150 ]; then
+	echo "postfix queue stalled, flush..."
+	/usr/sbin/sendmail -q
+fi

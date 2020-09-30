@@ -1,0 +1,174 @@
+#!/bin/sh
+
+set -e
+
+action=$1
+version=$2
+
+. /usr/share/debconf/confmodule
+db_version 2.0
+
+db_input high dtc/conf_mysqlautoconfig || true
+db_get dtc/conf_mysqlautoconfig
+if [ -z "${RET}" -o "${RET}" = "no" -o "${RET}" = "false" ] ; then
+	db_input low dtc/conf_mysqlhost || true
+	db_input low dtc/conf_mysqllogin || true
+	db_input high dtc/conf_mysqlpass || true
+	db_input low dtc/conf_mysqldb || true
+else
+	if [ -f /var/lib/dtc/saved_install_config ] ; then
+		# If there's a config file already, let's read it!
+		. /var/lib/dtc/saved_install_config
+		db_set dtc/conf_mysqlhost ${conf_mysql_host}
+		db_set dtc/conf_mysqllogin ${conf_mysql_login}
+		db_set dtc/conf_mysqlpass ${conf_mysql_pass}
+		db_set dtc/conf_mysqldb ${conf_mysql_db}
+	else
+		# Otherwise, we simply generate new infos
+		GEN_ROOT_DB_USER=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
+		db_set dtc/conf_mysqlhost localhost
+		db_set dtc/conf_mysqllogin dtc
+		db_set dtc/conf_mysqlpass ${GEN_ROOT_DB_USER}
+		db_set dtc/conf_mysqldb dtc
+	fi
+fi
+# I would have lie to keep that question for people running Sarge
+# but it seems it's forbidden by Debian policy. I still want to keep
+# this in the code, so I'm only commenting out in here. To all DD
+# reviewing the code: please bare with us: it's more easy for us
+# to manage it this way.
+
+#DEBIAN_VERSION=`lsb_release -c -s`
+#if [ "$DEBIAN_VERSION" = "sarge" ] ; then
+#	db_input high dtc/conf_mysql_change_root || true
+#else
+	db_set dtc/conf_mysql_change_root "false"
+#fi
+
+db_input low dtc/conf_mta_type || true
+db_input medium dtc/conf_use_cyrus || true
+
+# Get the domain name from the hostname set on the computer
+GUESSED_DOMAIN=`hostname --domain`
+db_get dtc/main_domainname
+if [ -z "${RET}" ] ; then
+	if [ ! -z "${GUESSED_DOMAIN}" ] ; then
+		db_set dtc/main_domainname $GUESSED_DOMAIN
+	fi
+fi
+db_input medium dtc/main_domainname || true
+db_input low dtc/dtc_adminsubdomain || true
+
+# Another way to guess the IP address could be:
+# NETDEV=`ip route list | grep default | cut -d' ' -f5`
+# ip addr show ${NETDEV} | grep inet | awk '{print $2}' | cut -d'/' -f1
+# if you think it's better, let me know, and I'll switch to it.
+
+# There are most chances that the server's "main" IP is the one of the NIC used for default gateway
+# so we try to guess it this way
+IF=`route | grep default |awk -- '{ print $8 }'`
+guessed_ip_addr=`ifconfig ${IF} | grep 'inet addr' | sed 's/.\+inet addr:\([0-9.]\+\).\+/\1/'`
+# Seems there can be BOTH addr and adr...
+if [ -z "${guessed_ip_addr}" ] ; then
+	guessed_ip_addr=`ifconfig ${IF} | grep 'inet adr' | sed 's/.\+inet adr:\([0-9.]\+\).\+/\1/'`	
+fi
+
+# TODO: check validity of the IP with this function, using something like:
+#
+# is_ipv4 $toto
+# while [ $? = 1 ] ; do
+# 	echo -n "enter your IP: "
+# 	read toto
+# 	is_ipv4 $toto
+# done
+is_ipv4(){
+	mycheckip=$(echo $1 | egrep '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$')
+	nums=$(echo $mycheckip | tr "." "\n")
+	count_nums=$(echo $mycheckip | tr "." "\n" | wc -l)       
+	if [ $count_nums -ne 4 ] ; then        
+		return 1   
+	fi
+	for i in $nums ; do
+		if [ $i -lt 0 -o $i -gt 255 ] ; then
+			return 1   
+		fi
+	done
+	return 0
+}
+
+db_input high dtc/conf_use_nated_vhosts || true
+db_get dtc/conf_use_nated_vhosts
+if [ "$RET" = "yes" -o "$RET" = "true" ] ; then
+	db_get dtc/conf_nated_vhosts_ip
+	debconf_ip=$RET
+	if [ -z "${debconf_ip}" ] ; then
+		db_set dtc/conf_nated_vhosts_ip ${guessed_ip_addr}
+	fi
+	db_input high dtc/conf_nated_vhosts_ip || true
+	db_input high dtc/conf_ipaddr || true
+else
+	db_set dtc/conf_nated_vhosts_ip "192.168.0.2"
+	# If nothing has been set before, then we can set the guessed IP address
+	db_get dtc/conf_ipaddr
+	debconf_ip=$RET
+	if [ -z "${debconf_ip}" ] ; then
+		db_set dtc/conf_ipaddr ${guessed_ip_addr}
+	fi
+	db_input high dtc/conf_ipaddr || true
+fi
+db_input low dtc/conf_hostingpath || true
+db_input low dtc/conf_chroot_path || true
+db_input high dtc/conf_enforce_adm_encryption || true
+db_input high dtc/conf_admlogin || true
+db_input high dtc/conf_admpass || true
+db_input low dtc/conf_gen_ssl_cert || true
+db_get dtc/conf_gen_ssl_cert
+if [ "$RET" = "yes" -o "$RET" = "true" ] ; then
+	db_get dtc/conf_cert_passphrase
+	debconf_cert_passphrase=$RET
+	# If there is no passphrase in debconf, then we generate one...
+	if [ -z "${debconf_cert_passphrase}" ] ; then
+		gen_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
+		db_set dtc/conf_cert_passphrase ${gen_pass}
+	fi
+	db_input low dtc/conf_cert_passphrase || true
+	db_input low dtc/conf_cert_countrycode || true
+	db_input low dtc/conf_cert_locality || true
+	db_input low dtc/conf_cert_organization || true
+	db_input low dtc/conf_cert_unit || true
+	db_input low dtc/conf_cert_email || true
+	db_get dtc/conf_cert_challenge_pass
+	debconf_cert_passphrase=$RET
+	# If there is no passphrase in debconf, then we generate one...
+	if [ -z "${debconf_cert_passphrase}" ] ; then
+		gen_pass=`dd if=/dev/random bs=64 count=1 2>|/dev/null | md5sum | cut -d' ' -f1 | awk '{print substr($0,0,16)}'`
+		db_set dtc/conf_cert_challenge_pass ${gen_pass}
+	fi
+	db_input low dtc/conf_cert_challenge_pass || true
+fi
+db_input low dtc/conf_omit_dev_mknod || true
+db_input low dtc/conf_dnsbl_list || true
+
+db_input low dtc/conf_recipient_delim || true
+db_input low dtc/conf_mx_mail || true
+
+db_get dtc/conf_eth2monitor || true
+conf_eth2monitor=$RET
+if [ -z "${conf_eth2monitor}" -a -e /proc/net/dev ] ; then
+	NBRLINES=`grep -v "lo:" /proc/net/dev | wc -l`
+	NBRIFACE=$((${NBRLINES} - 2 ))
+	CNT=${NBRIFACE}
+	ALL_IFACES=''
+	while [ ${CNT} -gt 0 ] ; do
+		ALL_IFACES=${ALL_IFACES}' '`grep -v "lo:" /proc/net/dev | grep -v sit0 | tail -n ${CNT} | cut -f 1 -d':' | awk -F ' ' '{print $1}' | head -n 1`
+		CNT=$((${CNT} - 1 ))
+	done
+	db_set dtc/conf_eth2monitor "${ALL_IFACES}"
+fi
+db_input low dtc/conf_eth2monitor || true
+db_input low dtc/conf_report_setup_stat || true
+db_go
+
+
+
+exit 0

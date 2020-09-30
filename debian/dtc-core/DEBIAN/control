@@ -1,0 +1,29 @@
+Package: dtc-core
+Source: dtc
+Version: 0.34.5-1
+Architecture: all
+Maintainer: Thomas Goirand <zigo@debian.org>
+Installed-Size: 74
+Depends: dtc-common (= 0.34.5-1), mysql-client, libsasl2-2, libsasl2-modules
+Suggests: courier-authmysql, courier-authlib-mysql, dovecot, mysql-server, mysqmail, awstats, courier-base, sqwebmail, cyrus-admin-2.2, cyrus-clients-2.2, cyrus-common-2.2
+Conflicts: dtc-cyrus, dtc-postfix-courier
+Replaces: dtc-cyrus, dtc-postfix-courier
+Section: admin
+Priority: extra
+Homepage: http://www.gplhost.com/software-dtc.html
+Description: web control panel for admin and accounting hosting services (fewer depends)
+ Domain Technologie Control (DTC) is a control panel aiming at commercial
+ hosting. Using a web GUI for the administration and accounting all hosting
+ services, DTC can delegate the task of creating subdomains, email, ssh,
+ database, mailing lists, and FTP accounts to users for the domain names they
+ own.
+ .
+ DTC manages a MySQL database containing all the hosting information,
+ and configure your server's services and apllication for doing virtual hosting
+ (DTC is compabible with a huge list of applications). It also connects to
+ dtc-xen to manage and monitor the usage of Virtual Private Servers (VPS), it
+ does the billing in general (including billing of dedicated servers), has
+ integrated support tickets and more.
+ .
+ This metapackage contains as few dependencies as possible to let you choose
+ what daemon you want to use. Even the MySQL server wont be pulled by default.

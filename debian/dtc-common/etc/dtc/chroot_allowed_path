@@ -1,0 +1,2 @@
+# List here the path allowed to do ssh, separated by spaces
+CHROOT_ALLOWED_PATH="/var/www/sites /usr/local/www/sites"

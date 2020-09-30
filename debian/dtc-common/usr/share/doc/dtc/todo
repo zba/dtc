@@ -1,0 +1,13 @@
+Here is the todo in unsorted order:
+- Add support for moving domains with one click (save of a domain conf in
+one flat file)
+- Add support for Freeradius: now only need to write the user interface
+- Finish resseller interface (enable quota and flag edition of subadmins)
+- Find a SMART way to handle disk quotas
+- Finish tucows API integration: working in Tucows test server, transfer
+of domain names to be finished using the bulk_transfer() function
+- Make a windows port for cygwin using NDIS scriptable installer.
+
+If you think you can help in one of those, please register the developer
+mailing list by sending a mail to: dtcdev-subscribe@gplhost.sg
+

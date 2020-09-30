@@ -1,0 +1,246 @@
+<h3><a name="2."></a>2. Installation</h3>
+
+<h4><a name="2.1"></a>2.1 Pré-requis</h4>
+
+Avant d'installer DTC, apache doit être déja installé sur le système ainsi
+que php4 (version cgi en ligne de commande (php4-cgi sous debian / php-cgi sous BSD)
+et le module mod_php4 pour apache). mysql.<br><br>
+
+Pour que DTC ait un intérêt, installer bind(ou autre nameserver compatible), qmail et proftpd avec le module mod_sql
+sans oublier de prévoir au moins un nom de domaine utilisable.<br><br>
+
+Nottez que sous BSD comme sous Debian, les dépendances installent éléments
+manquants. Par contre, le mot de passe administrateur du serveur MySQL doit
+etre configuré avant d'installer DTC.<br><br>
+
+<h4><a name="2.2"></a>2.2 Configuration des daemons avant installation</h4>
+
+<h5><a name="2.2.1"></a>2.2.1 Mysql</h5>
+
+Par défaut, la plupart des distributions installent mysql-server sans mot de passe administrateur, il faut donc
+mettre un mot de passe avant l'installation de DTC :<br><br>
+
+Taper sous shell la ligne de commande suivante pour vous connecter à mysql :<br>
+
+<pre>mysql -uroot -Dmysql</pre><br>
+
+Puis la requête SQL suivante :<br>
+<pre>UPDATE user SET Password=PASSWORD('VOTRE_MOT_DE_PASSE') WHERE User='root';
+FLUSH PRIVILEGES;</pre>
+ 
+<h5><a name="2.2.2"></a>2.2.2 Apache</h5>
+
+Il faut maintenant donner un nom par défaut au serveur apache et le configurer pour utiliser nobody/nogroup
+comme utilisateur, pour ce faire il suffit d'éditer le fichier httpd.conf en changeant les directives User, Group,
+ServerName :<br>
+
+<b>User nobody</b><br>
+<b>Group nogroup</b><br>
+<b>ServerName www.example.com</b> (le ServerName doit être le même que dans /etc/hostname)<br><br>
+
+(le fichier httpd.conf se retrouve avec un chemin différent selon la distribution installée, par exemple sous debian :
+/etc/apache/httpd.conf , sous redhat : /etc/httpd/conf/httpd.conf , si vous compilé apache vous même : /usr/local/apache/etc/httpd.conf , .. )<br><br>
+
+<h4><a name="2.3"></a>2.3 Installation avec la distribution debian</h4>
+
+DTC ne fait pas encore partie de l'arborescence officielle des packages debian, En attendant il suffit de
+rajouter la ligne suivante  dans le fichier /etc/apt/sources.list :<br><br>
+
+<pre>deb ftp://gplhost.com/debian stable main</pre><br>
+
+Ce repository contient les versions compilées de qmail-src et ucspi-tcp-src qui ne sont
+fournies qu'en version source sur les repository officiels (pour des raisons de licences),
+on trouvera aussi le programme d'authentification alternatif (via le fichier /etc/poppasswd)
+pour qmail nommé checklocalpwd par Jedi (en package debian réalisé par l'auteur de DTC),
+et mysqmail qui contient une version patché de qmail-pop3d pour logger le trafic pop
+en MySQL, un logger et une authetification.<br><br>
+
+Une fois ce rajout effectué, l'installation se fait comme pour n'importe quel package debian:<br><br>
+
+<pre>apt-get install dtc</pre><br>
+
+Une suite de questions vous sera posée pour permettre à DTC d'installer le 1er domaine
+(c'est sur une zone de ce domaine que sera installé l'interface web de DTC) :<br><br>
+
+- le nom d'hote mysql.<br>
+- le login administrateur de mysql.<br>
+- le mot de passe administrateur de mysql.<br>
+- le nom de la base de données utilisée par DTC.<br>
+- le nom de domaine principal.<br>
+- la zone utilisée pour accéder à l'interface DTC.<br>
+- l'adresse ip principale de la machine.<br>
+- le chemin par défaut où seront stockés les données des domaines (mail,html) lors de la création d'un nouveau compte client.<br>
+- le couple login/mot de passe utilisé pour administrer le 1er domaine créé<br><br>
+
+Attention ! Il peut arrivé, si php4-cgi est installé après php4-mysql par
+exemple, que le module ne soit pas activé dans php4-cgi. Veuillez alors
+activer mysql.so manuellement dans /etc/php4/cgi/php.ini (de meme pour
+les autres modules de php4 nécessaires). De manière générale, il est raisonable
+de passer du temps pour vérifier que vos httpd.conf et php.ini sont bien
+configuré et permettent une sécurité maximale (reegister_globales=0,
+safe_mode=1 par exemple).<br><br>
+
+<h4><a name="2.4"></a>2.4 Installation avec la distribution redhat</h4>
+
+La version actuelle du package RPM de DTC a été conçue pour les dépendances et les chemins d'une redhat 7.3,
+mais puisqu'il s'agit de scripts php non compilés le package devrait fonctionner avec toutes les versions supérieures.<br><br>
+
+Le package RPM est disponible sur <a href="ftp://ftp.gplhost.com">ftp.gplhost.com</a><br><br>
+
+L'installation se fait comme pour n'importe quel package rpm :<br>
+
+<pre>rpm -ivh dtc-VERSION_noarch.rpm</pre>
+
+Puisque sous redhat, il n'est pas possible de poser des questions à l'utilisateur durant la phase d'installation, un
+script de post-installation est disponible ( /usr/share/dtc/admin/dtc.rpm-install.sh ) qui vous posera les questions déja
+énumérées dans le sous-chapitre "installation avec la distribution debian".<br><br>
+
+<h4><a name="2.5"></a>2.5 Installation avec une distribution BSD/GENTOO</h4>
+
+Un port est en cours de développement permettant de résoudre les dépendances.
+Pour le moment vous devez vous satisfaire du script d'installation livré avec
+l'archive BSD. Veuillez notté que cette archive a été testé et qu'elle fonctionne,
+c'est simplement qu'il y a beaucoup de choses a installer pour que DTC soit
+opérationnel.<br><br>
+
+<h4><a name="2.6"></a>2.6 Installation manuelle</h4>
+
+Dans un premier temps il faut télécharger l'archive .tar de DTC qui est disponible sur <a href="ftp://ftp.gplhost.com">ftp.gplhost.com</a><br><br>
+
+Puis décompresser l'archive:<br>
+<pre>tar -xvzf dtc_VERSION_all.tar.gz</pre>
+
+ensuite installer les fichiers décompressés:<br>
+<pre>mkdir -p /usr/share/dtc/etc/zones
+mv dtc_VERSION_all/dtc /usr/share
+chown -R root:root /usr/share/dtc
+chown -R nobody:nogroup /usr/share/dtc/etc</pre>
+
+enfin le lancement du script d'installation finale:<br>
+<pre>dtc_VERSION_all/install.sh</pre>
+
+En plus des questions déja énumérées dans le sous-chapitre
+"installation avec la distribution debian" il vous sera demandé le chemin des
+fichiers de configuration suivants : httpd.conf, proftpd.conf, named.conf.<br><br>
+
+Véfifier après installation de qmail que votre fichier /etc/passwd soit de la forme suivante :<br>
+<pre>qmaild:x:64011:65534:qmail daemon,,,:/var/qmail:/bin/sh
+qmaill:x:64015:65534:qmail log,,,:/var/qmail:/bin/sh
+qmailp:x:64016:65534:qmail pw,,,:/var/qmail:/bin/sh</pre>
+
+Si vous préféré installer tout 'a la main' sans le script d'installation,
+voici comment il faut procéder (désolé, c'est en anglais...):<br><br>
+
+- First, install apache, bind, proftpd with mysql support, and qmail with either mysql support
+or using the Jedi's checklocalpasswd program for authentification.
+Already done ? You should either be very fast or have debian system installed !<br><br>
+
+- Setup the database the way the "create_table.sql" describe it. You can cut-paste
+this file content in phpmyadmin if you like...<br><br>
+
+- Create some folders for dtc to store the generated files :
+
+<pre>
+# Create /etc/dtc (conf file), /etc/dtc/data (generated file path)
+# and /etc/dtc/data/zone (where named zone files will be stored)
+# Folder where dtc will generate it's files for apache, qmail and bind :
+mkdir -p /etc/dtc/data/zone
+</pre>
+
+- Make this folder accessible by your web user (it should be either nobody or www-data
+depending the way things are set up...).
+<pre>
+
+chown -R nobody:nogroup /etc/dtc/data;
+</pre>
+
+- DTC will generate the following files in the /etc/dtc/data folder. You have to either
+replace package files by a symlink to those files, or include these in the package file.
+Let's see them one by one. Note that you can change the path to all of them in the
+config.inc.php.<br><br>
+DTC will generate the folowing files for you : named.zones - named_slave.zones - vhosts.prosites - rcpthosts - virtualdomains - assign - poppasswd<br><br>
+
+* named.zones or named_slave.zones<br>
+Include this file in your named.conf (located in /etc/bind under
+debian and /etc/namedb under FreeBSD) file using the following syntax :
+
+<pre>
+include "/etc/dtc/data/named.zones";
+</pre>
+
+* vhosts.prosites<br>
+
+Include this in your /etc/apache/httpd.conf :
+
+<pre>
+Include /etc/dtc/data/vhosts.prosites
+</pre>
+
+* qmail files<br>
+You have to replace the qmail files by symlinks to those files :
+<pre>
+rm /etc/qmail/rcpthosts; ln -s /etc/qmail/rcpthosts /etc/dtc/data/rcpthosts;
+rm /etc/qmail/virtualdomains; ln -s /etc/qmail/virtualdomains /etc/dtc/data/virtualdomains;
+rm /etc/qmail/users/assign; ln -s /etc/qmail/users/assign /etc/dtc/data/assign
+</pre>
+
+If you use the Jedi's checklocalpasswd :
+<pre>
+rm /etc/poppasswd; ln -s /etc/poppasswd /etc/dtc/data/poppasswd;
+</pre>
+
+- You have to add the following directives in /etc/proftpd.conf to enable
+sql control :
+<pre>
+# Beware that one is deprecated in newer version of proftpd:
+#	UseReverseDNS   off
+
+	IdentLookups    off
+# This is specific to mod_sql for proftpd
+	SQLAuthenticate on 
+	SQLConnectInfo  YOURDATABASENAME@localhost YOURSQLUSER YOURSQLPASS
+	SQLUserInfo     ftp_access login password uid gid homedir shell
+	SQLAuthTypes    Plaintext
+</pre>
+you can also add the following if you need quota support :
+<pre>
+	Quotas          on
+	DefaultQuota    50
+	QuotaType       hard
+	QuotaCalc       on
+	QuotaBlockName  Mbites
+	QuotaBlockSize  1024000
+	User            nobody
+	Group           nogroup
+	SQLHomedirOnDemand on
+</pre>
+You can also add some directives to have FTP accouting done, like the install
+script does...
+
+- Next, you have to put all the dtc php file somewhere in your apache tree so you can
+browse, click, and enjoy dtc.<br><br>
+
+<h4><a name="2.7"></a>2.7 Post-Installation (protection via .htaccess)</h4>
+
+Par défaut le fichier .htaccess suivant protège le repertoire (par défaut dans /usr/share/dtc/admin) de l'interface administrateur :<br>
+<pre>AuthName "A funny message prompted to user !"
+AuthType Basic
+AuthUserFile /var/www/.htpasswd
+require valid-user</pre>
+
+Vous devez créer le fichier .htpasswd en spécifiant l'utilisateur pouvant accéder à ce répertoire :<br>
+<pre>htpasswd -c /var/www/.htpasswd nom_utilisateur</pre>
+(l'option -c permet de créer le fichier, si elle n'est pas spécifiée l'utilisateur sera ajouté au fichier).<br>
+A la suite de cette commande, il vous sera demandé d'entrer un mot de passe.<br><br>
+
+N'oubliez pas que la directive apache AllowOverride restreint l'utilisation des fichiers .htaccess, il y a 
+donc de fortes chances que vous deviez configurer le fichier httpd.conf pour autoriser l'utilisation de la
+restriction d'accès, sans quoi ce répertoire ne sera pas protégé. (voir la documentation d'apache).<br><br>
+
+Pour que bind (named) fonctionne il faut que vous éditiez la partie 'forwarders' de
+votre named.conf. N'oubliez pas de configurer /etc/resolv.conf comme il suit :
+
+<pre>nameserver 127.0.0.1
+</pre>
+
+Sans quoi votre serveur ne pourra pas résolver correctement.

@@ -1,0 +1,16 @@
+
+Asunto: Su servidor dedicado expirará pronto
+
+Hola %%%FIRST_NAME%%%,
+
+Su servidor dedicado %%%SERVER_HOSTNAME%%% expirará en %%%REMAINING_DAYS%%% días,
+el: %%%EXPIRATION_DATE%%%.
+
+Por favor ingrese a su panel de control en:
+
+%%%DTC_CLIENT_URL%%%
+
+Con su nombre de usuario %%%DTC_ADM_LOGIN%%% haga click en la pestaña de
+su servidor, y renuévelo.
+
+%%%SIGNATURE%%%

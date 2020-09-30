@@ -1,0 +1,15 @@
+
+Subject: Shutdown of your dedicated server
+
+Hello %%%FIRST_NAME%%%,
+
+Your dedicated server %%%SERVER_HOSTNAME%%%
+has expired %%%EXPIRED_DAYS%%% days ago, on the: %%%EXPIRATION_DATE%%%.
+
+We sent you some messages already to ask you to renew and you
+didn't do it. We are sorry but we have to shutdown your server
+today. Your data will remain on our server until somebody else
+takes the space. If you wish to restart your server, please renew
+it.
+
+%%%SIGNATURE%%%

@@ -1,0 +1,4 @@
+
+这是一个从Domain Technologie Control（DTC）软件自动发送的邮件。
+DTC是针对商务网络托管业所开发的一个开放源代码的控制面板软件，
+由GPLHost（http://www.gplhost.com/software.html）设计开发。

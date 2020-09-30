@@ -1,0 +1,15 @@
+Bitte beachten Sie, dass das Support-Ticket noch offen ist, d.h. wir 
+warten auf Ihre Antwort. Melden Sie sich daher bitte im Kundencenter unter
+
+%%%DTC_CLIENT_URL%%%
+
+an, gehen in den Support-Bereich und schreiben Ihre Antwort.
+Sie können auch auf diese E-Mail antworten, oder schreiben Sie an
+
+%%%SUPPORT_EMAIL_ADDRESS%%%
+
+Wenn Sie auf diese E-Mail antworten, dann ändern Sie bitte nicht die
+Adresse, an die die E-Mail geht. In der Adresse ist eine Nummer enthalten,
+die uns bei der Zuordnung hilft. Sie brauchen auch nicht diesen Text in
+der E-Mail behalten, da wir einen Verlauf der Support-Anfrage gespeichert
+haben.

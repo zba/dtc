@@ -1,0 +1,27 @@
+
+Subject: Dernier avertissement avant la suppression de votre compte
+d'hébergement.
+
+Bonjour %%%FIRST_NAME%%%,
+
+Votre compte d'hébergement a expiré il y a %%%EXPIRED_DAYS%%% jours, le :
+%%%EXPIRATION_DATE%%%.
+
+Veuillez vous connecter à votre panneau de contrôle à :
+
+%%%DTC_CLIENT_URL%%%
+
+avec votre nom d'utilisateur %%%DTC_ADM_LOGIN%%%, puis cliquez sur
+l'onglet "mon compte", et effectuez le renouvellement.
+
+Ceci est notre dernier avertissement avant que nous effacions votre
+compte d'hébergement.
+Veuillez noter que nous ne pouvons pas continuer de conserver votre
+compte, car Nous avons besoin d'espace pour d'autres clients, et que
+l'hébergement doit être payé à l'avance.
+
+Si vous ne renouvelez pas, nous effacerons votre compte ainsi que
+toutes les données qu'il contient.
+
+%%%SIGNATURE%%%
+

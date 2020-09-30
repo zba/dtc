@@ -1,0 +1,20 @@
+
+Subject: Votre serveur dédié expire aujourd'hui.
+
+Bonjour %%%FIRST_NAME%%%,
+
+Votre serveur dédié %%%SERVER_HOSTNAME%%%
+a expiré aujourd'hui, le : %%%EXPIRATION_DATE%%%.
+
+Veuillez vous connecter à votre panneau d'administration DTC à :
+
+%%%DTC_CLIENT_URL%%%
+
+avec votre nom d'utilisateur %%%DTC_ADM_LOGIN%%%, cliquez sur l'onglet
+de votre serveur, et effectuez le renouvellement de ce dernier.
+
+Nous conserverons votre serveur pendant quelques jours pour vous donner
+le temps de renouveler votre contrat. Après cette période, votre serveur
+sera arrêté.
+
+%%%SIGNATURE%%%

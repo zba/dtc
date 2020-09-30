@@ -1,0 +1,14 @@
+Notera att detta ärende forsatt är öppet, innebärande att vi inväntar
+ditt svar. Var god logga in i kontrollpanelen på följande URL:
+
+%%%DTC_CLIENT_URL%%%
+
+med ditt login, gå sedan på fliken för supportärenden och skriv in ditt svar.
+Du kan även trycka på på svara i din e-postklient, eller skriva till:
+
+%%%SUPPORT_EMAIL_ADDRESS%%%
+
+Om du svarar på detta meddelande via e-post, så ändra inte i svarsaddressen.
+Numret som är inkluderat i denna adress är mycket viktigt och hjälper
+till med att länka ditt svar till det gamla ärendet! Var god att inte 
+inkludera vårt svar i e-postens meddelandefält, då vi redan lagrar det i vår historik.

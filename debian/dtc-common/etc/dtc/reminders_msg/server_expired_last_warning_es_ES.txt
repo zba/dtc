@@ -1,0 +1,19 @@
+Asunto: Última advertencia antes del apagado del servidor dedicado
+
+Hola %%%FIRST_NAME%%%,
+
+Su servidor dedicado %%%SERVER_HOSTNAME%%% ha expirado hace %%%EXPIRED_DAYS%%% días, el: %%%EXPIRATION_DATE%%%.
+
+Por favor ingrese en su panel de control en:
+
+%%%DTC_CLIENT_URL%%%
+
+Con su nombre de usuario %%%DTC_ADM_LOGIN%%%, haga click en la pestaña
+de su servidor y renupevelo.
+
+Esta es nuestra última advertencia antes de que apaguemos su servidor.
+Por favor entienda que no podemos mantener su servidor funcionando ya
+que necesitamos el espacio para otros clientes, y este hosting debe ser
+pagado por adelantado. Si usted no renueva, su servidor sera apagado en breve.
+
+%%%SIGNATURE%%%

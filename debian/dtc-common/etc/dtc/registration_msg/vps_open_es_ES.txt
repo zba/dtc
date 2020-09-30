@@ -1,0 +1,34 @@
+La cuenta de servidor virtual que ha ordenado ha sido validada. Ahora se
+esta instalando el sistema operativo. Usted puede ingresar en el panel
+de control usando la informacion proporcionada a continuación. 
+
+Si quiere instalar DTC dentro de su VPS, o seleccionar otro sistema
+operativo, solo reinstale nuevamente seleccionando las opciones
+apropiadas. Entonces en el siguiente reinicio, el script de
+configuracion instalara DTC en ese caso. Una vez que DTC este
+configurado, por favor no confunda los 2 paneles de control: aquel de su
+VPS y el panel de cliente que tiene dentro de nuestra compañia. Ambos
+paneles de control cumplen con propositos diferentes. Por ejemplo no
+envie tickets de soporte dentro del panel de control de su VPS, porque
+nunca nos llegara. 
+
+En vez de eso use su panel de cliente que tiene con nosotros. Una vez
+que el sistema operativo este listo, usted tendra que iniciar la VPS
+desde el panel de control. Cuando ya haya iniciado, tendra que ingresar
+en la consola fisica de la VPS usando SSH: ssh xenXX@ejemplo.com, donde
+XX es el numero de su VPS, y ejemplo es el nombre del host del servidor
+xen donde su VPS esta ejecutandose. Este NO ES el servicio ssh dentro de
+la VPS que sera usado, sino la consola del sistema operativo del
+servidor fisico que automaticamente lo conectara con la consola de su
+VPS. Una vez dentro de la consola fisica de su VPS, ingrese como root,
+entonces podra instalar ssh y terminar la instalacion. 
+
+Un detalle completo del procedimiento puede ser leido en:
+
+http://dtcsupport.gplhost.com/PmWiki/Setup-A-VPS-Once-DTC-Xen-Installed-It
+
+Aqui esta la informacion de su panel de control DTC: 
+
+%%%DTC_LOGIN_INFO%%%
+
+%%%SIGNATURE%%%

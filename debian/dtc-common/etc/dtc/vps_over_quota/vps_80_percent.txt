@@ -1,0 +1,11 @@
+Subject: Your VPS has reach 80% of his network quota
+
+Hello,
+
+Your Xen Virtual Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+has reached 80% of its monthly network transfer quota. Please note that
+when monthly network transfer quota, your VPS may be shutdown at any
+time. Please file a support ticket to reach the billing department if
+you want to pay for more bandwidth.
+
+%%%SIGNATURE%%%

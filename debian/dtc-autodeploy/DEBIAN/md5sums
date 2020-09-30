@@ -1,0 +1,6 @@
+e4414a3289fb685b94398a64182def7a  usr/bin/dtc_autodeploy
+4256e5f024eb02a9d49b025c1c7e0385  usr/share/doc/dtc-autodeploy/changelog.Debian.gz
+de2625677e74c06b7f30e82242300406  usr/share/doc/dtc-autodeploy/changelog.gz
+e4bd55912bfcab5e016b4eb47fc73faa  usr/share/doc/dtc-autodeploy/copyright
+1b77de1b1f34af2e24f97d1a84b13b1a  usr/share/dtc-autodeploy/selection_config_file
+68be048b50d4663c2e2974991fef2056  usr/share/man/man8/dtc_autodeploy.8.gz

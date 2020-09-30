@@ -1,0 +1,22 @@
+
+Subject: Last warning before VPS shutdown
+
+Hello %%%FIRST_NAME%%%,
+
+Your Xen Virtual Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+has expired %%%EXPIRED_DAYS%%% days ago, on the: %%%EXPIRATION_DATE%%%.
+
+Please login into your control panel at:
+
+%%%DTC_CLIENT_URL%%%
+
+with your login %%%DTC_ADM_LOGIN%%%, click on your VPS tab, and renew it.
+
+This is our last warning before we destroy the data of your VPS. We
+have already stoped it, and you wont be able to start it if you don't
+renew it. Please understand that we can't keep your VPS running as we
+need the space for other customers, and that hosting has to be paid in
+advance. If you don't renew, your VPS data will be destroyed in 3 days,
+and that is not recoverable.
+
+%%%SIGNATURE%%%

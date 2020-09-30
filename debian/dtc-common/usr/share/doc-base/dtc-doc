@@ -1,0 +1,11 @@
+Document: dtc-doc
+Title: DTC Documentation
+Author: Thomas Goirand
+Abstract: This manual describes DTC and how to install and use it in Debian.
+ Note that this is quite outdated, and it's always a good idea to refer to
+ the online wiki of DTC.
+Section: Web Development
+
+Format: HTML
+Index: /usr/share/doc/dtc/html/en/index.html
+Files: /usr/share/doc/dtc/html/en/*.html /usr/share/doc/dtc/html/fr/*.html

@@ -1,0 +1,16 @@
+
+Asunto: Su cuenta de hosting compartido ha expirado
+
+Hola %%%FIRST_NAME%%%
+
+Su cuenta de hosting compartido ha expirado hace %%%EXPIRED_DAYS%%% días, el: %%%EXPIRATION_DATE%%%.
+
+Por favor ingrese a su panel de control en:
+
+%%%DTC_CLIENT_URL%%%
+
+Con su nombre de usuario %%%DTC_ADM_LOGIN%%%, haga click en "mi cuenta", y renuévela.
+
+Mantendremos su cuenta compartida en funcionamiento unos días más para darle tiempo para renovar su contrato.
+
+%%%SIGNATURE%%%

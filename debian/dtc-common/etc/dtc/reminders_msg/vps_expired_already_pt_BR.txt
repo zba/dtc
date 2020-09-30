@@ -1,0 +1,18 @@
+
+Assunto: Seu VPS expirou
+
+Olá %%%FIRST_NAME%%%,
+
+Seu servidor virtual XEN (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+expirou a %%%EXPIRED_DAYS%%% dias atrás, na data: %%%EXPIRATION_DATE%%%.
+
+
+Por favor logue-se no painel de controle em:
+
+%%%DTC_CLIENT_URL%%%
+
+com o seu login %%%DTC_ADM_LOGIN%%%, clique na aba "VPS", para renova-lo.
+
+Seu VPS será mantido no ar por somente mais alguns dias tempo o suficiente para renova-lo.
+
+%%%SIGNATURE%%%

@@ -1,0 +1,14 @@
+Note that the ticket is still open, meaning we are waiting for your
+answer. So please login to the control panel at the following URL:
+
+%%%DTC_CLIENT_URL%%%
+
+with your login, then go in the support ticket tab and type your reply.
+You can also just hit reply with your email client, or write to:
+
+%%%SUPPORT_EMAIL_ADDRESS%%%
+
+If you are answering by email, please do not change the address of the
+reply. The number that is included in this address is very important, and
+helps to link your email to the old ticket! Also, please do not include our
+reply in the body of your message, as we already keep a history of it.

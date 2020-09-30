@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e
+
+. /usr/share/dtc/admin/install/debian_config
+. /usr/share/dtc/admin/install/functions
+
+. /usr/share/debconf/confmodule
+db_version 2.0
+
+if [ "$1" = purge ] ; then
+	rm -f /var/lib/dtc/saved_install_config
+fi
+
+db_get dtc/conf_apache_version
+conf_apache_version=$RET
+PATH_HTTPD_CONF=/etc/apache2/apache2.conf
+
+DTCuninstallPackage
+
+
+
+exit 0

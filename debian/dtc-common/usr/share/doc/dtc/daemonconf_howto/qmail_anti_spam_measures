@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+| Spam Control with Qmail                                                     |
+-------------------------------------------------------------------------------
+| This file is written and maintained by Jelle R. Kalf <jelle@kalf.org>       |
+-------------------------------------------------------------------------------
+
+Together with the installation of qmail, you've had to install a package called
+ucspi-tcp. If all of the installation went OK you've also gotten the binary
+rblsmtpd. That's the file we're going to use to keep spammers away from our
+beloved qmail installation.
+
+The use of the rblsmtpd program is quite easy. You have to place it in your
+start-up script. Probabely it's /etc/init.d/qmail (debian) or
+/services/qmail-smtpd/run (gentoo).
+
+You have to add it into debian like this:
+
+		sh -c "start-stop-daemon --start --quiet --user qmaild \
+            --exec /usr/bin/tcpserver -- -v -R -H \
+            -u `id -u qmaild` -g `id -g nobody` -x /etc/tcp.smtp.cdb 0 smtp \
+            /usr/bin/rblsmtpd -b \
+                        -rblackholes.easynet.nl \
+                        -rproxies.blackholes.easynet.nl \
+                        -rdynablock.easynet.nl \
+                        -rbl.spamcop.net \
+                        -rcbl.abuseat.org \
+                        -rrelays.ordb.org \
+                        -rlist.dsbl.org \
+                        -rdnsbl.njabl.org \
+						-rsbl.spamhaus.org \
+            /usr/sbin/qmail-smtpd 2>&1 | $logger -t qmail -p mail.notice &"
+
+See how I've added in rblsmtpd. rblsmtpd accepts the -r switch to query the
+various dnsbl lists. The most used blacklists right now are bl.spamcop.net ,
+relays.ordb.org , blackholes.wirehub.net and list.dsbl.org .
+
+Monitor this file in the future because I might change the lists and
+take off the dnsbl lists that are broken and put in new ones because they
+give back a higher result.
+-----
+
+blackholes information @ easynet.nl:
+- http://abuse.easynet.nl/blackholes.html
+- http://abuse.easynet.nl/proxies.html

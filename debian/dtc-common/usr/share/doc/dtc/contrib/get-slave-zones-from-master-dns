@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Use this script to get all the zones from DTC
+
+LOG=YOURLOGINHERE
+PASS=YOURPASSHERE
+DTCURL=dtc.example.com
+
+MKTEMP="mktemp -t"
+WGETOPT="-q --tries=3 --no-check-certificate"
+DESTFILE=/etc/bind/dtc-slavezones.conf
+TMP=`${MKTEMP}`
+
+if wget ${WGETOPT} "https://${DTCURL}/dtc/list_domains.php?login=${LOG}&pass=${PASS}&action=list_dns" --output-document=${TMP} ; then
+	if [ -e /etc/redhat-release ] ; then
+		echo "view \"external2\" {">${DESTFILE}
+	else
+		echo "" >${DESTFILE}
+	fi
+	echo "allow-query { any; };" >> >${DESTFILE}
+	echo "allow-query-cache { any; };" >> >${DESTFILE}
+	cat ${TMP} >>${DESTFILE}
+	if [ -e /etc/redhat-release ] ; then
+		echo "};" >>${DESTFILE}
+		chown named:named ${DESTFILE}
+	else
+		chown bind:bind ${DESTFILE}
+	fi
+	/usr/sbin/rndc reload >/dev/null
+else
+	echo "Error while getting slave zones list!"
+fi
+
+rm ${TMP}

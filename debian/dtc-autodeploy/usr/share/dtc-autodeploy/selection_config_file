@@ -1,0 +1,140 @@
+
+# This is the FULL list of question that would be requested by
+# debconf when setting-up DTC with debconf level set to medium.
+# Here is the full list of things that should be replaced:
+# __PASSWORD__ : password for dtc, mysql and phpmadmin
+# __DOMAIN_NAME__ : domain name of the VPS
+# __IP__ADDRESS__
+# Best is to use something like this before using it:
+# sed -i "s/__PASSWORD__/your-password/g" selection_config_file
+# sed -i "s/__DOMAIN_NAME__/example.com/g" selection_config_file
+# sed -i "s/__IP__ADDRESS__/1.2.3.4/g" selection_config_file
+
+# MySQL Server
+mysql-server-5.0 mysql-server/root_password password __PASSWORD__
+mysql-server-5.0 mysql-server/root_password seen true
+mysql-server-5.0 mysql-server/root_password_again password __PASSWORD__
+mysql-server-5.0 mysql-server/root_password_again seen true
+mysql-server-5.0 mysql-server-5.0/need_sarge_compat boolean false
+mysql-server-5.0 mysql-server-5.0/need_sarge_compat seen true
+
+# Webalizer
+webalizer webalizer/directory string /var/www/webalizer
+webalizer webalizer/directory seen true
+webalizer webalizer/doc_title string Usate statistics for
+webalizer webalizer/doc_title seen true
+webalizer webalizer/logfile string /var/lib/apache2/access.log.1
+webalizer webalizer/logfile seen true
+webalizer webalizer/dnscache boolean false
+webalizer webalizer/dnscache seen true
+
+# Mailgraph
+mailgraph mailgraph/start_on_boot boolean true
+mailgraph mailgraph/start_on_boot seen true
+mailgraph mailgraph/mail_log string /var/log/mail.log
+mailgraph mailgraph/mail_log seen true
+mailgraph mailgraph/ignore_localhost boolean false
+mailgraph mailgraph/ignore_localhost seen true
+
+# ca-certificates
+ca-certificates ca-certificates/trust_new_crts boolean true
+ca-certificates ca-certificates/trust_new_crts seen true
+
+# clamav
+clamav-freshclam clamav-freshclam/autoupdate_freshclam select daemon
+clamav-freshclam clamav-freshclam/autoupdate_freshclam seen true
+clamav-freshclam clamav-freshclam/local_mirror select db.us.clamav.net
+clamav-freshclam clamav-freshclam/local_mirror seen true
+clamav-freshclam clamav-freshclam/http_proxy string 
+clamav-freshclam clamav-freshclam/http_proxy seen true
+clamav-freshclam clamav-freshclam/NotifyClamd boolean true
+clamav-freshclam clamav-freshclam/NotifyClamd seen true
+
+# Courier
+courier-base courier-base/webadmin-configmode boolean true
+courier-base courier-base/webadmin-configmode seen true
+
+courier-ssl courier-ssl/certnotice string fakestring
+courier-ssl courier-ssl/certnotice seen true
+
+# Postfix
+postfix postfix/main_mailer_type select Internet Site
+postfix postfix/main_mailer_type seen true
+postfix postfix/mailname string /etc/mailname
+postfix postfix/mailname seen true
+postfix postfix/destinations string mx.__DOMAIN_NAME__, localhost.__DOMAIN_NAME__, localhost.localdomain, localhost
+postfix postfix/destinations seen true
+postfix postfix/root_address string 
+postfix postfix/root_address seen true
+postfix postfix/recipient_delim string +
+postfix postfix/recipient_delim seen true
+
+# mlmmj
+mlmmj mlmmj/text-format-changed string toto
+mlmmj mlmmj/text-format-changed seen true
+mlmmj mlmmj/remove-on-purge boolean false
+mlmmj mlmmj/remove-on-purge seen true
+
+# pure-ftpd
+pure-ftpd-common pure-ftpd/standalone-or-inetd select standalone
+pure-ftpd-common pure-ftpd/standalone-or-inetd seen true
+pure-ftpd-common pure-ftpd/ftpwho-setuid boolean false
+pure-ftpd-common pure-ftpd/ftpwho-setuid seen true
+pure-ftpd-common pure-ftpd/virtualchroot boolean true
+pure-ftpd-common pure-ftpd/virtualchroot seen true
+
+# sasl2
+sasl2-bin cyrus-sasl2/backup-sasldb2 string /var/backups/sasldb2.back
+sasl2-bin cyrus-sasl2/backup-sasldb2 seen true
+
+# sbox
+sbox-dtc sbox-dtc/conf_use_dtc_dtcgrp boolean true
+sbox-dtc sbox-dtc/conf_use_dtc_dtcgrp seen true
+
+# dtc
+dtc-postfix-courier dtc/conf_mysqlautoconfig boolean true
+dtc-postfix-courier dtc/conf_mysqlautoconfig seen true
+dtc-postfix-courier dtc/conf_use_cyrus boolean false
+dtc-postfix-courier dtc/conf_use_cyrus seen true
+dtc-postfix-courier dtc/main_domainname string __DOMAIN_NAME__
+dtc-postfix-courier dtc/main_domainname seen true
+dtc-postfix-courier dtc/conf_use_nated_vhosts boolean true
+dtc-postfix-courier dtc/conf_use_nated_vhosts seen true
+dtc-postfix-courier dtc/conf_ipaddr string __IP__ADDRESS__
+dtc-postfix-courier dtc/conf_ipaddr seen true
+dtc-postfix-courier dtc/conf_admpass password __PASSWORD__
+dtc-postfix-courier dtc/conf_admpass seen true
+
+# phpmyadmin
+phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2
+phpmyadmin phpmyadmin/reconfigure-webserver seen true
+phpmyadmin phpmyadmin/setup-username string admin
+phpmyadmin phpmyadmin/setup-username seen true
+phpmyadmin phpmyadmin/setup-password password __PASSWORD__
+phpmyadmin phpmyadmin/setup-password password true
+phpmyadmin phpmyadmin/restart-webserver boolean false
+phpmyadmin phpmyadmin/restart-webserver seen true
+
+# roundcube
+roundcube-core roundcube/hosts string localhost
+roundcube-core roundcube/hosts seen true
+roundcube-core roundcube/reconfigure-webserver multiselect apache2
+roundcube-core roundcube/reconfigure-webserver seen true
+roundcube-core roundcube/restart-webserver boolean false
+roundcube-core roundcube/restart-webserver seen true
+roundcube-core roundcube/language select en_US
+roundcube-core roundcube/language seen true
+roundcube-core roundcube/dbconfig-install boolean true
+roundcube-core roundcube/dbconfig-install seen true
+roundcube-core roundcube/database-type select sqlite
+roundcube-core roundcube/database-type seen true
+
+# debconf
+debconf debconf/frontend select Noninteractive
+debconf debconf/frontend seen true
+debconf debconf/priority select medium
+debconf debconf/priority seen true
+debconf debconf-apt-progress/title string fake
+debconf debconf-apt-progress/title seen true
+debconf debconf-apt-progress/preparing string fake
+debconf debconf-apt-progress/preparing seen true

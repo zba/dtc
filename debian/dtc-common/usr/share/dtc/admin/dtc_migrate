@@ -1,0 +1,81 @@
+#!/bin/sh
+
+set -e
+
+DTC_PATH=/usr/share/dtc
+
+# Basic check of paramteres
+usages () {
+	echo "dtc_migrate [-d] <DESTINATION_SERVER>"
+	echo "The -d flag does a rsync with the --delete option"
+	echo "when uploading /var/www/sites"
+	exit 1
+}
+if [ $# = 2 ] ; then
+	if ! [ ${1} = "-d" ] ; then
+		usages
+	fi
+	RSYNCOPT="--delete"
+	DST=${2}
+else
+	if [ $# -lt 1 ]; then
+		usages
+	fi
+	if [ $# -gt 1 ]; then
+		usages
+	fi
+	RSYNCOPT=""
+	DST=${1}
+fi
+
+echo "===> DTC Migrate script: upload of all DBs"
+echo -n "Getting local IP: "
+my_ip=`${DTC_PATH}/admin/guess_ip.sh`
+echo ${my_ip}
+
+scp ${DTC_PATH}/admin/guess_ip.sh ${DST}:${DTC_PATH}/admin/
+echo -n "Getting remote IP: "
+rem_ip=`ssh ${DST} ${DTC_PATH}/admin/guess_ip.sh`
+echo ${rem_ip}
+
+if [ -f /etc/redhat-release ] ; then
+	MKTEMP="mktemp -p /tmp"
+else
+	MKTEMP="mktemp -t"
+fi
+
+bk_dir=`${MKTEMP} -d DTC_migrate.XXXXXX`
+echo "Will backup in ${bk_dir}"
+
+echo -n "Will import in "
+rem_dir=`ssh ${DST} "${MKTEMP} -d DTC_migrate.XXXXXX"`
+echo ${rem_dir}
+
+php migrate_to_server.php ${bk_dir} ${my_ip} ${rem_ip}
+sed -i "s/${my_ip}/${rem_ip}/g" ${bk_dir}/dtc.sql
+
+echo "Copying SQL files to remote:"
+scp ${bk_dir}/*.sql ${DTC_PATH}/admin/dtc_import_all_dbs $DST:$rem_dir
+
+echo "Starting the dtc_import_all_dbs script on remote:"
+ssh ${DST} ${rem_dir}/dtc_import_all_dbs ${rem_dir}
+
+echo -n "Cleaning temp folders on: "
+echo -n "local server"
+rm -rf ${bk_dir}
+echo -n ", remote server"
+ssh ${DST} rm -rf ${rem_dir}
+echo "done"
+
+echo "===> DTC Migrate script: upload of all files"
+echo "rsync -e ssh -azvp ${RSYNCOPT} /var/www/sites/ ${DST}:/var/www/sites"
+nice rsync -e ssh -azvp ${RSYNCOPT} /var/www/sites/ ${DST}:/var/www/sites || true
+echo "rsync of the MLMMJ and /etc/dtc folders"
+nice rsync -e ssh -azvp ${RSYNCOPT} /etc/mlmmj/ ${DST}:/etc/mlmmj
+nice rsync -e ssh -azvp /etc/dtc/ ${DST}:/etc/dtc
+# copy the rrd files over too
+nice rsync -e ssh -azvp /var/lib/dtc/etc/*.rrd ${DST}:/var/lib/dtc/etc
+# copy the squirrelmail prefs and address book
+nice rsync -e  ssh -azvp /var/lib/squirrelmail/data/ ${DST}:/var/lib/squirrelmail/data
+echo "===> Starting the DTC installer script on the remote"
+ssh ${DST} ${DTC_PATH}/admin/install/install

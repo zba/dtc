@@ -1,0 +1,14 @@
+
+Asunto: Apagado de su VPS
+
+Hola %%%FIRST_NAME%%%,
+
+Su Servidor virtual Xen (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+ha expirado hace %%%EXPIRED_DAYS%%% días, el: %%%EXPIRATION_DATE%%%.
+
+Ya le hemos enviado varios mensajes pidiéndole que renueve y no lo ha
+hecho. Lo sentimos pero tenemos que apagar su VPS hoy. Sus datos serán
+destruídos en nuestro servidor para que alguien más pueda tomar el
+lugar. Si desea reiniciar su VPS  por favor renuévelo antes de 24hs.
+
+%%%SIGNATURE%%%

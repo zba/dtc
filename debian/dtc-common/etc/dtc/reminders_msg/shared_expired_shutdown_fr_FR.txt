@@ -1,0 +1,15 @@
+
+Subject: Supression de votre compte d'hébergement.
+
+Bonjour %%%FIRST_NAME%%%,
+
+Votre compte d'hébergement avec le nom d'utilisateur %%%DTC_ADM_LOGIN%%%
+a expiré il y a %%%EXPIRED_DAYS%%% jours, le: %%%EXPIRATION_DATE%%%.
+
+Nous vous avons déjà envoyé plusieurs messages pour vous demander de
+renouveler votre compte d'hébergement, cependant vous ne l'avez pas
+fait. Nous sommes désolés, mais nous allons effacer votre compte ainsi
+que toutes les données qu'il contient aujourd'hui. Nous avons besoin de
+cet espace pour le mettre à disposition des autres clients.
+
+%%%SIGNATURE%%%

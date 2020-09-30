@@ -1,0 +1,15 @@
+
+Assunto: Desligamento do seu VPS
+
+Olá %%%FIRST_NAME%%%,
+
+Seu servidor virtual Xen(VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+expirou a %%%EXPIRED_DAYS%%% dias atrás, na data: %%%EXPIRATION_DATE%%%.
+
+Após o envio de diversas mensagens solicitando a renovação de 
+seu VPS não obtivemos quaisquer respostas. Infelizmente
+teremos que remove-lo. Seus dados serão removidos para alocação
+de novos clientes.   Se você deseja manter seu VPS por gentileza renove-o.
+
+
+%%%SIGNATURE%%%

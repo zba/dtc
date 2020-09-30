@@ -1,0 +1,15 @@
+
+Assunto: Sua conta de hospedagem está expirando
+
+Olá %%%FIRST_NAME%%%,
+
+Sua conta de hospedagem espira em %%%REMAINING_DAYS%%% dias, na data:
+%%%EXPIRATION_DATE%%%.
+
+Por favor logue-se no painel de controle em:
+
+%%%DTC_CLIENT_URL%%%
+
+com o seu login %%%DTC_ADM_LOGIN%%%, clique em "minha conta", para renova-la.
+
+%%%SIGNATURE%%%

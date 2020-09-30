@@ -1,0 +1,16 @@
+
+Assunto: Desligamento do seu servidor
+
+Olá %%%FIRST_NAME%%%,
+
+O seu servidor dedicado %%%SERVER_HOSTNAME%%%
+expirou a %%%EXPIRED_DAYS%%% dias atraz, no dia: %%%EXPIRATION_DATE%%%.
+
+Após o envio de diversas mensagens solicitando a renovação do 
+seu servidor não obtivemos quaisquer respostas. Infelizmente
+teremos que desliga-lo. Seus dados permanecerão no servidor
+somente enquanto algum outro cliente não precisar do espaço
+para alocar um novo servidor. Se você deseja reiniciar o seu
+servidor por gentileza procure renova-lo conosco.
+
+%%%SIGNATURE%%%

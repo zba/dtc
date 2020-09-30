@@ -1,0 +1,52 @@
+#!/bin/sh
+
+set -e
+
+usages () {
+	echo "Usages: dtcpassadm -{l,p,a} [param]"
+	echo "With -l = list users and passwords"
+	echo "     -p MyUser MyPass = set password to be MyPass for MyUser"
+	echo "     -a MyUser MyPass = adds MyUser with password MyPass"
+	echo "     -d MyUser = removes MyUser"
+	exit 1
+}
+
+if [ $# -lt 1 ] ; then
+	usages
+fi
+
+if [ -r /var/lib/dtc/saved_install_config ] ; then
+	. /var/lib/dtc/saved_install_config
+fi
+
+case ${1} in
+"-l")
+	if [ $# != 1 ] ; then usages ; fi
+	# Show passwords:
+	mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="SELECT pseudo,tikadm_pass FROM tik_admins"
+;;
+"-p")
+	if [ $# != 3 ] ; then usages ; fi
+	# Change a password
+	if [ "${conf_enforce_adm_encryption}" = "true" ] ; then
+		mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="UPDATE tik_admins SET tikadm_pass=SHA1('${3}') WHERE pseudo='${2}'"
+	else
+		mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="UPDATE tik_admins SET tikadm_pass='${3}' WHERE pseudo='${2}'"
+	fi
+;;
+"-a")
+	if [ $# != 3 ] ; then usages ; fi
+	# Adds a user
+	if [ "${conf_enforce_adm_encryption}" = "true" ] ; then
+		mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="INSERT INTO tik_admins (pseudo,tikadm_pass) VALUES ('${2}',SHA1('${3}'))"
+	else
+		mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="INSERT INTO tik_admins (pseudo,tikadm_pass) VALUES ('${2}','${3}')"
+	fi
+;;
+"-d")
+	if [ $# != 2 ] ; then usages ; fi
+	# Delete a user
+	mysql --defaults-file=/etc/mysql/debian.cnf -Ddtc --execute="DELETE FROM tik_admins WHERE pseudo='${2}'"
+;;
+esac
+exit 0

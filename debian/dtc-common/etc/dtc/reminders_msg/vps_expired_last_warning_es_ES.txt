@@ -1,0 +1,23 @@
+
+Asunto: Última advertencia antes de apagado de VPS
+
+Hola %%%FIRST_NAME%%%,
+
+Su Servidor Virtual Xen (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%% 
+ha expirado hace %%%EXPIRED_DAYS%%% días, el: %%%EXPIRATION_DATE%%%.
+
+Por favor ingrese a su panel de control en:
+
+%%%DTC_CLIENT_URL%%%
+
+Con su nombre de usuario %%%DTC_ADM_LOGIN%%%, haga click en la pestaña
+VPS, y renuévelo.
+
+Esta es nuestra última advertencia antes de destruir los datos de su
+VPS. Ya ha sido detenida y no podra iniciarla hasta no haber renovado.
+Por favor entienda de que no podemos mantener su VPS funcionando ya que
+necesitamos el espacio para otros clientes, y dicho hosting debe pagarse
+por adelantado. Si usted no renueva, los datos de su VPS serán
+destruídos dentro de poco tiempo, y eso no es recuperable.
+
+%%%SIGNATURE%%% 

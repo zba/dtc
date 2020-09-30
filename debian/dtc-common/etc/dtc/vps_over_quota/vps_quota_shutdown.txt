@@ -1,0 +1,13 @@
+Subject: Your VPS will be shutdown because of network quota abuse
+
+Hello,
+
+Your Xen Virtual Private Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+is well over its network quota. We are sorry, but we cannot keep
+it running if it is using more network transfer than it is allowed,
+so it has been shutdown. Note that you will not be able to restart
+your VPS until someone from the support unlocks it. Please file a
+support ticket to reach the billing department if you want to solve
+this problem.
+
+%%%SIGNATURE%%%

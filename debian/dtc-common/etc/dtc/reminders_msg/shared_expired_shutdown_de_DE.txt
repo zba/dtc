@@ -1,0 +1,14 @@
+
+Subject: Löschen Ihres Webhosting-Pakets
+
+Sehr geehrte Damen und Herren,
+
+Ihr Webhosting-Paket mit dem Benutzernamen %%%DTC_ADM_LOGIN%%% ist vor
+%%%EXPIRED_DAYS%%% Tagen, d.h. am %%%EXPIRATION_DATE%%% abgelaufen.
+
+Wir haben Ihnen bereits zuvor einige Nachrichten geschickt, in denen wir
+Ihnen den Ablauf Ihres Webhosting-Pakets angekündigt haben. Bitte haben
+Sie Verständnis dafür, dass wir Ihr Paket nun abschalten und die Server-
+Kapazitäten für andere Kunden freigeben.
+
+%%%SIGNATURE%%%

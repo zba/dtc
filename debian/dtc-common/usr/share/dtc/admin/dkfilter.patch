@@ -1,0 +1,19 @@
+--- dkfilter.orig	2008-02-19 16:07:22.000000000 +0800
++++ dkfilter	2008-02-19 16:06:59.000000000 +0800
+@@ -27,8 +27,14 @@
+ DKFILTER_OUT_PRIVKEY="/var/lib/dkfilter/private.key"
+ 
+ HOSTNAME=`hostname -f`
+-DOMAIN=`hostname -d`
+-DKFILTER_IN_ARGS="--hostname=$HOSTNAME 127.0.0.1:10026 127.0.0.1:10027"
++# Configured by DTC v0.26 : Please do not touch this line !
++DOMAIN=`cat /var/lib/dtc/etc/local_domains | tr \\\r\\\n ,,`
++# End of DTC configuration v0.26 : please do not touch this line !
++#DOMAIN=`hostname -d`
++# Configured by DTC v0.26 : Please do not touch this line !
++DKFILTER_IN_ARGS="--hostname=$HOSTNAME 127.0.0.1:10026 127.0.0.1:10024"
++# End of DTC configuration v0.26 : please do not touch this line !
++#DKFILTER_IN_ARGS="--hostname=$HOSTNAME 127.0.0.1:10026 127.0.0.1:10027"
+ DKFILTER_OUT_ARGS="--keyfile=$DKFILTER_OUT_PRIVKEY --selector=postfix --domain=$DOMAIN --method=nofws --headers 127.0.0.1:10028 127.0.0.1:10029"
+ 
+ DKFILTER_IN_BIN="$DKFILTERDIR/bin/dkfilter.in"

@@ -1,0 +1,4 @@
+Ce message a été envoyé automatiquement par le robot de Domain Technologie
+Control (DTC). DTC est un logiciel libre de panneau de contrôle ayant pour
+but l'hébergements commercial, et concu par GPLHost (voyez l'adresse suivante
+pour plus de détails: http://www.gplhost.com/software.html).

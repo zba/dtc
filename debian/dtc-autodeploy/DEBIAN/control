@@ -1,0 +1,21 @@
+Package: dtc-autodeploy
+Source: dtc
+Version: 0.34.5-1
+Architecture: all
+Maintainer: Thomas Goirand <zigo@debian.org>
+Installed-Size: 89
+Section: admin
+Priority: extra
+Homepage: http://www.gplhost.com/software-dtc.html
+Description: Autodeploy the DTC in a single non-interactive debconf command
+ This package helps to setup DTC if you don't want even a single question to
+ do the full setup.
+ .
+ After apt-get install dtc-autodeploy, simply type dtc_autodeploy -password-
+ and this tiny package will setup ssh, MySQL and dtc root with -password-, set
+ debconf priority as non-interactive, install DTC and all it's dependencies
+ with preset answers, then switch back debconf priority to medium. This is
+ mostly useful if you want to do fully automated servers preset with DTC.
+ .
+ Your server must have mx.example.com in /etc/hostname and /etc/hosts set
+ correctly with mx.example.com and dtc.example.com in order to succeed.

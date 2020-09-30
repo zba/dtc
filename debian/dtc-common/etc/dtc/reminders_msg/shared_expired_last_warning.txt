@@ -1,0 +1,22 @@
+
+Subject: Last warning before deletion of your hosting account
+
+Hello %%%FIRST_NAME%%%,
+
+Your shared hosting account has expired %%%EXPIRED_DAYS%%% days ago, on the:
+%%%EXPIRATION_DATE%%%.
+
+Please login into your control panel at
+
+%%%DTC_CLIENT_URL%%%
+
+with your login %%%DTC_ADM_LOGIN%%%, click on the my-account tab, and
+renew it.
+
+This is our last warning before we shutdown your shared account. Please
+understand that we can't keep your account running as we need the space
+for other customers, and that hosting has to be paid in advance. If you
+don't renew, we will have to delete your account and all the data it
+contains.
+
+%%%SIGNATURE%%%

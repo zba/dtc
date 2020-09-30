@@ -1,0 +1,14 @@
+
+Assunto: Remoção de sua conta de hospedagem
+
+Hello %%%FIRST_NAME%%%,
+
+Sua conta de hospedagem de login %%%DTC_ADM_LOGIN%%% expirou a
+%%%EXPIRED_DAYS%%% dias atrás, na data: %%%EXPIRATION_DATE%%%.
+
+Após o envio de diversas mensagens solicitando a renovação da 
+sua conta não obtivemos quaisquer respostas. Infelizmente
+teremos que remove-la. Seus dados serão removidos para alocação
+de novos clientes.
+
+%%%SIGNATURE%%%

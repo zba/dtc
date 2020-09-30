@@ -1,0 +1,15 @@
+
+Subject: Your dedicated server will expire soon
+
+Hello %%%FIRST_NAME%%%,
+
+Your dedicated server %%%SERVER_HOSTNAME%%%
+will expire in %%%REMAINING_DAYS%%% days, on the: %%%EXPIRATION_DATE%%%.
+
+Please login into your control panel at:
+
+%%%DTC_CLIENT_URL%%%
+
+with your login %%%DTC_ADM_LOGIN%%% click on your server tab, and renew it.
+
+%%%SIGNATURE%%%

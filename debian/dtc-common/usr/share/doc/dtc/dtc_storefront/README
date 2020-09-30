@@ -1,0 +1,17 @@
+Those files are there to help you to have
+a small testimonials online.
+
+Here is the SQL structure you need:
+
+CREATE TABLE testimonials (
+  id int(11) NOT NULL auto_increment,
+  url varchar(255) NOT NULL default '',
+  company varchar(255) NOT NULL default '',
+  comment text NOT NULL,
+  publish enum('yes','no') NOT NULL default 'no',
+  PRIMARY KEY  (id)
+) TYPE=MyISAM;
+
+Have fun and a successfull hosting company,
+
+Thomas (thomas [ at ] gplhost.com)

@@ -1,0 +1,64 @@
+#!/bin/sh
+
+# copy_path
+sbox_copy_disk_path=/var/lib/dtc/sbox_copy
+
+FOUNDED_ARCH=`uname -m`
+
+case "$FOUNDED_ARCH" in
+i386)
+	DEBIAN_BINARCH=i386
+	CENTOS_BINARCH=i386
+;;
+i436)
+	DEBIAN_BINARCH=i386
+	CENTOS_BINARCH=i386
+;;
+i586)
+	DEBIAN_BINARCH=i386
+	CENTOS_BINARCH=i386
+;;
+i686)
+	DEBIAN_BINARCH=i386
+	CENTOS_BINARCH=i386
+;;
+x86_64)
+	DEBIAN_BINARCH=amd64
+	CENTOS_BINARCH=x86_64
+;;
+*)
+echo "Unrecognized arch: exiting!"
+	exit 1
+;;
+esac
+
+
+# If we are on a Debian system, let's bootstrap the current stable
+if [ -f /etc/debian_version ] ; then
+	mkdir -p /var/lib/dtc/sbox_copy
+	RELEASE=`lsb_release -c | awk '{print $2}'`
+	debootstrap --verbose --include=php5-cgi,locales-all --arch ${DEBIAN_BINARCH} ${RELEASE} ${sbox_copy_disk_path} http://cdn.debian.net/debian || debret=$?
+	if [ "$debret" != "" ]; then
+		echo "create_sbox_bootstrap_copy: Failed to debootstrap"
+		exit 1
+	else
+		cp /etc/apt/sources.list ${sbox_copy_disk_path}/etc/apt/
+	fi
+	# Some stuff on the target php.ini:
+	if [ -f ${sbox_copy_disk_path}/etc/php5/cgi-bin/php.ini ] ; then
+		# doc_root=/var/www
+		if grep "^doc_root =$" ${sbox_copy_disk_path}/etc/php5/cgi/php.ini ; then
+			sed -i "s/doc_root =/doc_root = \/var\/www/" ${sbox_copy_disk_path}/etc/php5/cgi-bin/php.ini
+		fi
+		if grep "^; cgi.force_redirect = 1$" ${sbox_copy_disk_path}/etc/php5/cgi/php.ini ; then
+			sed -i "s/; cgi.force_redirect = 1/cgi.force_redirect = 0" ${sbox_copy_disk_path}/etc/php5/cgi-bin/php.ini
+		fi
+		if grep "^; cgi.fix_pathinfo=0$" ${sbox_copy_disk_path}/etc/php5/cgi/php.ini ; then
+			sed -i "s/; cgi.fix_pathinfo=0/cgi.fix_pathinfo=1/" ${sbox_copy_disk_path}/etc/php5/cgi-bin/php.ini
+		fi
+	fi
+	# cgi.force_redirect=0
+else
+	echo "Currently only supported in Debian: sorry..."
+	exit 1
+fi

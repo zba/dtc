@@ -1,0 +1,15 @@
+Package: dtc-stats-daemon
+Source: dtc
+Version: 0.34.5-1
+Architecture: all
+Maintainer: Thomas Goirand <zigo@debian.org>
+Installed-Size: 105
+Depends: dtc-core | dtc-postfix-courier | dtc-cyrus, lsb-base, php5-cli
+Section: admin
+Priority: extra
+Homepage: http://www.gplhost.com/software-dtc.html
+Description: dtc-xen VM statistics for the dtc web control panel
+ Domain Technologie Control (DTC) is a control panel aiming at commercial
+ hosting. This small daemon will query all the dtc-xen servers that you have
+ configured in DTC and fetch the statistics from them: I/O stats, network and
+ CPU. This information is then stored in DTC for your customer accounting.

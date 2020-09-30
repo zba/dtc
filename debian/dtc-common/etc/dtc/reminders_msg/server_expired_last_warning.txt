@@ -1,0 +1,21 @@
+
+Subject: Last warning before dedicated server shutdown
+
+Hello %%%FIRST_NAME%%%,
+
+Your dedicated server %%%SERVER_HOSTNAME%%%
+has expired %%%EXPIRED_DAYS%%% days ago, on the: %%%EXPIRATION_DATE%%%.
+
+Please login into your control panel at:
+
+%%%DTC_CLIENT_URL%%%
+
+with your login %%%DTC_ADM_LOGIN%%%, click on your server tab, and
+renew it.
+
+This is our last warning before we shutdown your server. Please
+understand that we can't keep your server running as we need the space
+for other customers, and that hosting has to be paid in advance. If you
+don't renew, your server will be shutdown in 3 days.
+
+%%%SIGNATURE%%%

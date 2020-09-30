@@ -1,0 +1,16 @@
+
+Subject: Votre serveur dédié va bientôt expirer.
+
+Bonjour %%%FIRST_NAME%%%,
+
+Votre serveur dédié %%%SERVER_HOSTNAME%%%
+va expirer dans %%%REMAINING_DAYS%%% jours, le : %%%EXPIRATION_DATE%%%.
+
+Veuillez vous connecter à votre panneau de contrôle à :
+
+%%%DTC_CLIENT_URL%%%
+
+avec votre nom d'utilisateur %%%DTC_ADM_LOGIN%%% cliquez sur l'onglet de
+votre serveur, et effectuez le renouvellement.
+
+%%%SIGNATURE%%%

@@ -1,0 +1,15 @@
+
+Assunto: Seu servidor dedicado está expirando!
+
+Olá %%%FIRST_NAME%%%,
+
+Seu servidor dedicado %%%SERVER_HOSTNAME%%%
+vai expirar em %%%REMAINING_DAYS%%% dias, no dia: %%%EXPIRATION_DATE%%%.
+
+Por favor logue-se no painel de controle em:
+
+%%%DTC_CLIENT_URL%%%
+
+com o seu login %%%DTC_ADM_LOGIN%%%, e clique na tab servidores para renova-lo.
+
+%%%SIGNATURE%%%

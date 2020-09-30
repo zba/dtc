@@ -1,0 +1,19 @@
+
+Subject: Ihr VPS ist abgelaufen
+
+Sehr geehrte Damen und Herren,
+
+Ihr virtueller Server (VPS) %%%VPS_NUMBER%%%:%%%VPS_NODE%%%
+ist vor %%%EXPIRED_DAYS%%% Tagen, d.h. am %%%EXPIRATION_DATE%%% abgelaufen.
+
+Bitte melden Sie sich im Kundencenter unter
+
+%%%DTC_CLIENT_URL%%%
+
+mit Ihrem Benutzernamen %%%DTC_ADM_LOGIN%%% an, gehen Sie in den VPS-Bereich,
+und verlängern Ihren virtuellen Server.
+
+Ihr VPS wird noch ein paar Tage online bleiben, um Ihnen Gelegenheit zur
+Verlängerung zu geben.
+
+%%%SIGNATURE%%%

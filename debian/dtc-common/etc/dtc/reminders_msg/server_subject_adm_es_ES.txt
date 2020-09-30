@@ -1,0 +1,1 @@
+El Servidor Dedicado de %%%DTC_ADM_LOGIN%%%: %%%SERVER_NAME%%% expiró hace %%%EXPIRED_DAYS%%% días.
