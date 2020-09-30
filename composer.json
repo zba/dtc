@@ -1,0 +1,18 @@
+{
+    "name": "timothygwebb/dtc",
+    "description": "Domain Technologie Control",
+    "type": "project",
+    "license": "GNU LESSER GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007",
+    "keywords": ["billing", "invoice", "client management, hosting, control panel"],
+    "homepage": "http://gplhost.com/about-us/our-gpl-software/dtc-domain-technologie-control.html",
+    "authors": [
+        {
+            "name": "Thomas GOIRAND",
+            "email": "thomas@goirand.fr"
+        }
+    ],
+    "require": {
+
+        "php": ">=7.4.0",
+    }
