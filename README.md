@@ -17,6 +17,10 @@ git commit
 git push
 
 How to build from source
+Install required dependences before package build.
+Dependencies:
+autopoint{a} debhelper dh-autoreconf{a} dh-strip-nondeterminism{a} dwz{a} intltool-debian{a} libarchive-zip-perl{a} libdebhelper-perl{a} 
+  libfile-stripnondeterminism-perl{a} libsub-override-perl{a} po-debconf 
 Debian Users:
 dpkg-buildpackage in /usr/share/dtc directory after clone.
 
