@@ -1,0 +1,46 @@
+{
+  "name": "maxmind/minfraud",
+  "description": "MaxMind minFraud API",
+  "minimum-stability": "stable",
+  "keywords": [
+    "minfraud",
+    "fraud",
+    "maxmind"
+  ],
+  "homepage": "https://github.com/maxmind/minfraud-api-php",
+  "type": "library",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Gregory Oschwald",
+      "email": "goschwald@maxmind.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6",
+    "ext-json": "*",
+    "geoip2/geoip2": "^2.10",
+    "maxmind/web-service-common": "^0.7",
+    "respect/validation": "~1.0"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "*",
+    "phpunit/phpunit": "^5.0.0",
+    "squizlabs/php_codesniffer": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "MaxMind\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MaxMind\\Test\\": "tests/MaxMind/Test"
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "sniff": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src/ tests/",
+    "format": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src/ tests/"
+  }
+}

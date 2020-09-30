@@ -6,4 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CreditCardFraudDetection' => $vendorDir . '/minfraud/http/src/CreditCardFraudDetection.php',
+    'HTTPBase' => $vendorDir . '/minfraud/http/src/HTTPBase.php',
 );

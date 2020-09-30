@@ -6,9 +6,82 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit9bf0fb0a6bd5b3e31b625b59f52e1ef5
 {
+    public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+    );
+
+    public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+        ),
+        'R' => 
+        array (
+            'Respect\\Validation\\' => 19,
+        ),
+        'M' => 
+        array (
+            'MaxMind\\WebService\\' => 19,
+            'MaxMind\\Exception\\' => 18,
+            'MaxMind\\Db\\' => 11,
+            'MaxMind\\' => 8,
+        ),
+        'G' => 
+        array (
+            'GeoIp2\\' => 7,
+        ),
+        'C' => 
+        array (
+            'Composer\\CaBundle\\' => 18,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Respect\\Validation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/respect/validation/library',
+        ),
+        'MaxMind\\WebService\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/maxmind/web-service-common/src/WebService',
+        ),
+        'MaxMind\\Exception\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/maxmind/web-service-common/src/Exception',
+        ),
+        'MaxMind\\Db\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/maxmind-db/reader/src/MaxMind/Db',
+        ),
+        'MaxMind\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/maxmind/minfraud/src',
+        ),
+        'GeoIp2\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/geoip2/geoip2/src',
+        ),
+        'Composer\\CaBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
+        ),
+    );
+
+    public static $classMap = array (
+        'CreditCardFraudDetection' => __DIR__ . '/..' . '/minfraud/http/src/CreditCardFraudDetection.php',
+        'HTTPBase' => __DIR__ . '/..' . '/minfraud/http/src/HTTPBase.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9bf0fb0a6bd5b3e31b625b59f52e1ef5::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9bf0fb0a6bd5b3e31b625b59f52e1ef5::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit9bf0fb0a6bd5b3e31b625b59f52e1ef5::$classMap;
 
         }, null, ClassLoader::class);
     }

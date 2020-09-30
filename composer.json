@@ -7,14 +7,14 @@
     "homepage": "http://gplhost.com/about-us/our-gpl-software/dtc-domain-technologie-control.html",
     "authors": [
         {
-		 "name": "Thomas Goriand",
-            	"email": "thomas@goirand.fr",
 		 "name": "Timothy Webb",
                 "email": "timothy@webbhostingservices.com"
         }
     ],
     "require": {
 
-        "php": ">=7.4.0"
+        "php": ">=7.4.0",
+        "maxmind/minfraud": "^1.14",
+        "minfraud/http": "~1.70"
     }
 }
