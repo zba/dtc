@@ -26,6 +26,16 @@ Debian Users:
 
 Install dependencies as follows apt-get install or my preferred method aptitude install
 
+Accept this solution? [Y/n/q/?] y 
+The following packages will be DOWNGRADED:
+  default-mysql-client default-mysql-server galera-3 
+The following NEW packages will be installed:
+  altermime{a} amavisd-new clamav clamav-daemon clamav-freshclam courier-authlib{a} expect{a} libberkeleydb-perl{a} 
+  libclamav9{a} libconvert-binhex-perl{a} libconvert-tnef-perl{a} libconvert-uulib-perl{a} libcourier-unicode4{a} 
+  libdbd-mysql-perl{a} libio-multiplex-perl{a} libjemalloc1{a} libmime-tools-perl{a} libnet-cidr-perl{a} 
+  libnet-server-perl{a} libtfm1{a} libunix-syslog-perl{a} maildrop mariadb-client-10.1{a} mariadb-client-core-10.1{a} 
+  mariadb-server-10.1{a} mariadb-server-core-10.1{a} mysql-server pax{a} ripole{a} tcl-expect{a} 
+
 apt-get update
 apt-get upgrade
 
